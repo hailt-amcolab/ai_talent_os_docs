@@ -1,0 +1,200 @@
+0	AI Talent OS
+1	Màn hình ứng dụng Talent
+2	Phong cách Instagram · Trang cá nhân làm điểm bắt đầu
+3	Giới thiệu 9 màn hình L-00–L-09, từ trang cá nhân, cùng nhân vật Momo
+4	Huấn luyện viên AI Momo
+5	Tháng 11/2026
+6	Bắt đầu từ trang cá nhân
+7	Luồng tổng thể
+8	Trò chuyện
+9	Đăng ký lần đầu
+10	Kiểm tra video
+14	Tin nổi bật “Momo” · Menu dưới
+15	Chỉ lần đầu → Trang cá nhân
+16	Tin nổi bật “Video”
+17	Trang chủ
+18	Lịch và kết quả đăng bài
+22	Menu dưới “Trang chủ”
+23	Menu dưới “Lịch” · Ô bài đăng
+24	Trang cá nhân
+25	Xem ngay người theo dõi, mục tiêu và bài đăng
+26	Chi tiết đề xuất bài đăng
+27	Trạng thái kết nối mạng xã hội
+30	. Từ đây mở mọi màn hình
+31	Từ nút “Mở” ở trang chủ
+32	Nút “Kết nối mạng xã hội”
+33	Gửi ảnh và video
+34	Sử dụng và thanh toán
+37	Menu dưới “+” · “Tư liệu”
+38	Nút “Sử dụng và thanh toán”
+43	Đây là không gian của bạn! Từ đây có thể
+47	Mục đích: Xem nhanh số liệu, bài đăng và chuyển màn hình
+48	đi đến mọi nơi
+49	Bài đăng
+50	Người theo dõi
+51	Đạt mục tiêu
+52	Talent A
+53	Từ trang cá nhân: Hiển thị đầu tiên khi mở ứng dụng (điểm bắt đầu)
+54	Còn 3.800 người để đạt mục tiêu 10.000 người theo dõi
+55	IG 3.100 · TT 2.400 · YT 700 · Đăng liên tục 5 ngày
+56	Nội dung hiển thị chính
+57	Kết nối mạng xã hội
+59	Ảnh đại diện; số bài, người theo dõi, tỷ lệ đạt mục tiêu; số còn thiếu; chi tiết theo mạng xã hội; số ngày đăng liên tục; tin nổi bật; danh sách bài (chờ duyệt, đã lên lịch, lỗi, lượt xem)
+60	Momo
+61	Đề xuất hôm nay
+62	Video
+63	Lịch
+64	Tư liệu
+65	Thao tác chính và điểm đến
+66	Chờ duyệt
+67	Đã lên lịch
+68	• Tin nổi bật: Momo → L-00 / Đề xuất hôm nay → L-03 / Video → L-06
+69	/ Lịch → L-07 / Tư liệu → L-05
+71	• Nút: Kết nối mạng xã hội → L-02 / Sử dụng → L-09 • Menu dưới: Trang chủ · Trò chuyện · + · Lịch
+73	Thất bại
+74	Ghi chú
+75	Đây là màn hình bổ sung, chưa có trong danh sách của tài liệu
+81	Huấn luyện viên trò chuyện mỗi sáng
+82	Mỗi sáng, mình sẽ chào bạn
+83	Mục đích: Nhận lời chào buổi sáng, tổng kết, trò chuyện, nhắc nhở từ AI và gửi yêu cầu sửa
+84	Hôm nay 7:30
+85	ở đây nhé!
+86	Chào buổi sáng! Bài hôm qua có 1.240 lượt xem và 86 lượt thích. Tăng thêm 12 người theo dõi. Còn 3.800 người để đạt mục tiêu (62%).
+87	Từ trang cá nhân: Tin nổi bật “Momo” / Biểu tượng hội thoại ở menu dưới
+88	Có thể video đăng lúc 20 giờ được xem nhiều nên người theo dõi tăng. Hôm nay mình cũng đề xuất đăng buổi tối.
+90	Lời nhắn AI (kết quả hôm qua, tiến độ mục tiêu, xu hướng tăng người theo dõi), lối mở đề xuất bài và phản hồi của Talent
+91	Mình đã chuẩn bị 2 đề xuất bài đăng hôm nay.
+92	Xem đề xuất bài đăng
+93	Với đề xuất thứ hai, tôi muốn đổi sang ảnh chụp trong buổi chụp hình
+95	• “Xem đề xuất bài đăng” → L-03 • “Gửi ảnh/video” → L-05
+96	Hay đấy. Hãy gửi ảnh cho mình nhé.
+97	Gửi ảnh/video
+100	Tạo màn hình trò chuyện và lịch sử hội thoại trong ứng dụng. Gửi/nhận tin nhắn bằng cơ chế của ứng dụng.
+101	Gửi
+102	Tin nhắn...
+106	Chào bạn! Trước tiên
+107	Mục đích: Liên kết người dùng đăng nhập với Talent
+108	hãy đăng nhập nhé
+109	Từ trang cá nhân: Chỉ lần đầu. Sau đăng ký trở về trang cá nhân
+111	Hướng dẫn, tên Talent sau đăng ký
+114	• “Đăng nhập” → L-02
+115	Bắt đầu sử dụng AI Talent OS. Vui lòng đăng nhập.
+117	Đăng nhập
+118	Liên kết người đăng nhập với hồ sơ Talent. Phương thức đăng nhập sẽ xác định khi định nghĩa yêu cầu.
+120	Sau đăng nhập: Hiển thị “Đã đăng nhập với tư cách Talent A
+121	”, rồi chuyển đến kết nối mạng xã hội.
+122	Phương thức đăng nhập sẽ xác định khi định nghĩa yêu cầu.
+127	Kết nối đủ 3 mạng xã hội
+128	Mục đích: Hướng dẫn kết nối 3 mạng xã hội
+129	là sẵn sàng!
+130	Từ trang cá nhân: Nút “Kết nối mạng xã hội”
+131	Vui lòng kết nối 3 mạng xã hội
+133	Cần kết nối để đăng bài. Với Instagram, chuyển sang tài khoản
+134	nhà sáng tạo trước khi kết nối.
+135	Trạng thái kết nối Instagram, TikTok và YouTube
+139	Đã kết nối
+142	• “Kết nối” → Màn hình kết nối của dịch vụ đăng bài • “Về trang cá nhân” → Trang cá nhân
+144	Kết nối
+145	Chưa kết nối
+151	“Kết nối” mở màn hình của dịch vụ đăng bài (không phát triển màn hình này). Nếu mất kết nối, thông báo trong ứng dụng và trang quản trị.
+152	Dùng màn hình kết nối của dịch vụ đăng bài. Talent tự chuyển sang tài khoản nhà sáng tạo.
+153	Về trang cá nhân
+159	Đề xuất hôm nay và tiến độ mục tiêu ở đây!
+161	5 ngày
+162	3 lần
+163	Mục đích: Xem đề xuất hôm nay và tiến độ đạt mục tiêu
+165	Mục tiêu
+166	Đăng liên tục
+167	Lượt video còn lại
+168	Từ trang cá nhân: Menu dưới “Trang chủ” / Tin nổi bật “Đề xuất hôm nay”
+169	Có 1 bài đang chờ duyệt
+170	Đề xuất bài đăng hôm nay
+171	Đề xuất của Momo · Bài thường
+173	Tỷ lệ đạt mục tiêu (%), số ngày đăng liên tục, lượt video còn lại, 2 đề xuất hôm nay (thường/video), số bài chờ duyệt
+174	Xem trước bài đăng
+176	Giới thiệu 3 bộ trang phục thu mới
+177	Mở
+178	• “Mở” đề xuất → L-04 • “Đăng ảnh/video của tôi” → L-05 • Chờ duyệt → L-07
+179	Đề xuất video
+181	Hậu trường buổi chụp trong 15 giây
+183	Đăng ảnh/video của tôi
+185	Menu dưới: Trang chủ / Trò chuyện / + / Lịch / Trang cá nhân
+190	Đề xuất bài đăng
+191	Nếu thích hãy chọn; nếu chưa phù hợp, cho mình biết
+193	Mục đích: Kiểm tra và chọn bản xem trước kết hợp tư liệu với nội dung bài
+195	Dự kiến 10/1 19:00 · Đề xuất thường
+196	điểm cần sửa nhé
+198	Từ trang cá nhân: “Mở” đề xuất bài trên trang chủ
+199	Xem trước (ảnh đã gửi + nội dung bài)
+201	Bản xem trước, nội dung, hashtag và giờ dự kiến đăng
+203	talent_a Hôm nay giới thiệu 3 món yêu thích trong bộ sưu tập thu mới
+204	• Chọn → Lên lịch (L-07) • Yêu cầu sửa → L-00 • Gửi ảnh → L-05 • Tạo video → L-06 • Bật/tắt yêu cầu duyệt
+205	nhé…
+206	#TrangPhucThu #NguoiMau #TrangPhucHomNay
+207	Đăng theo đề xuất này (chọn)
+209	Yêu cầu sửa
+210	Gửi ảnh
+211	Tạo video
+212	Bài công việc: Yêu cầu quản lý duyệt
+214	Bài công việc cần yêu cầu quản lý duyệt (M-03)
+219	Gửi
+220	Bạn có thể gửi nhiều
+221	Mục đích: Gửi tư liệu dùng cho bài đăng
+222	ảnh/video cùng lúc!
+223	Từ trang cá nhân: Menu dưới “+” / Tin nổi bật “Tư liệu”
+224	Xem trước ảnh đã chọn
+226	Danh sách và bản xem trước ảnh/video đã chọn
+227	Đang chọn 3 mục
+229	Mục gần đây
+230	Chọn nhiều
+231	• “Chọn nhiều” để chọn ảnh/video • “Gửi” → L-04
+236	Ảnh/video gửi trực tiếp đến nơi lưu trữ. Hỗ trợ tệp lớn và ngắt kết nối. Giới hạn dung lượng xác định khi định nghĩa yêu cầu.
+238	Nhấn lại mục đã chọn để bỏ chọn. Giới hạn dung lượng mỗi tệp xác định khi định nghĩa yêu cầu.
+244	Hãy kiểm tra video
+245	Mục đích: Xem video hoàn tất qua liên kết, chọn hoặc yêu cầu tạo lại
+246	đã tạo nhé
+247	Từ trang cá nhân: Tin nổi bật “Video”
+249	Phát video (mở qua liên kết)
+250	Liên kết phát video, số lần tạo video trong tháng, lượt miễn phí còn lại
+254	• Chọn → L-07 • Yêu cầu tạo lại (tính 1 lượt)
+255	Tháng này: 10 lượt tạo video (miễn phí 12)
+256	Còn 2 lượt
+257	Đăng video này (chọn)
+260	Tạo lại cũng tính 1 lượt. Phần vượt lượt miễn phí được cộng phí tháng để thu cuối tháng. Tài khoản miễn phí không tạo được video.
+261	Yêu cầu tạo lại (tính 1 lượt)
+262	Tạo lại cũng tính 1 lượt. Phần vượt lượt miễn phí được cộng phí sử dụng tháng để thu cuối tháng. Tài khoản miễn phí không tạo được video.
+267	Cùng xem lịch và kết quả đăng bài
+268	Tất cả
+270	Đã đăng
+271	Mục đích: Xem trạng thái và kết quả bài đăng của mình
+272	Sắp tới
+275	Từ trang cá nhân: Menu dưới “Lịch” / Ô trong danh sách bài
+277	Bài đăng công việc
+282	Danh sách chờ duyệt, đã lên lịch, đã đăng, thất bại; kết quả từng bài (lượt xem, thích, bình luận, lưu)
+291	Lượt xem
+292	Lượt thích
+293	Bình luận
+294	Lưu
+295	• Bộ lọc: Tất cả / Lịch / Đã đăng • Chuyển màn hình qua menu dưới
+298	Đã gửi cảnh báo cho quản lý
+299	Các chỉ số kết quả hiển thị sẽ xác định khi định nghĩa yêu cầu.
+302	Khi lỗi, gửi cảnh báo cho quản lý (M-02). Các chỉ số kết quả hiển thị xác định khi định nghĩa yêu cầu.
+308	Xem phí tháng và phí video vượt mức
+309	Mục đích: Kiểm tra phí sử dụng tháng và phí video vượt mức
+310	Sử dụng tháng này (ước tính)
+311	Trả phí · Đang sử dụng
+312	ở đây nhé
+314	Từ trang cá nhân: Nút “Sử dụng và thanh toán” / Menu góc phải trên
+315	Phí sử dụng tháng
+317	Video vượt mức (2 lượt)
+319	Hạn mức phí video tháng ¥— (quản lý thiết lập)
+321	Lịch sử thanh toán
+322	Trạng thái hợp đồng (trả phí), ước tính tháng này (phí tháng, video vượt mức, tổng), hạn mức tháng và lịch sử thanh toán
+323	Tháng 9/2026
+325	Tháng 8/2026
+328	Cài đặt
+329	• Đăng ký phương thức thanh toán (mở dịch vụ thanh toán) • Thủ tục hủy
+330	Đăng ký phương thức thanh toán
+334	Thủ tục hủy
+335	Phương thức thanh toán (chỉ qua nhà mạng / thêm thẻ tín dụng) sẽ quyết định sau. Đăng ký theo hợp đồng giữa Adesso và Talent.
+336	Ưu tiên thanh toán qua nhà mạng. Có thể bổ sung thẻ tín dụng như tùy chọn. Đăng ký trên màn hình của đơn vị thanh toán.

@@ -1,0 +1,331 @@
+1408	Ngày lập 11/11/2026 · FutureCore Partners
+1409	Sơ đồ chuyển màn hình
+1410	Trang 1 / 8
+1411	Phương án màn hình và luồng chuyển, xác định từ chức năng chương 6 của bản yêu cầu tổng quan. Mã và cách chia màn hình sẽ chốt khi lập định nghĩa màn hình.
+1414	Điện thoại (PWA)
+1420	Mở ứng dụng
+1421	Trò chuyện với AI
+1423	Cài đặt Talent
+1424	Biểu tượng trên màn hình chính
+1425	Chức năng 3-4
+1426	Chức năng 1-6
+1427	Chức năng 1-2, 1-3, 7-3, 7-7
+1428	Từ lần thứ hai
+1440	Danh sách đề xuất bài
+1442	Danh sách Talent
+1444	Chức năng 1-4
+1445	Chức năng 6-8
+1446	Chức năng 4-1
+1447	Chức năng 4-2, 4-3
+1448	Chức năng 7-1
+1449	Chức năng 2-4, 7-1
+1450	Khi cần duyệt
+1451	Sau khi chọn
+1452	Sau hướng dẫn
+1453	Lần đầu sử dụng
+1454	Bài của Talent đó
+1457	Gửi ảnh/video
+1458	Tạo video
+1459	Chức năng 6-3
+1460	Chức năng 5-1, 5-4
+1464	Hướng dẫn đăng ký ban đầu
+1465	Danh sách bài đăng
+1466	Chức năng 6-2
+1467	Chức năng 7-2
+1474	Dùng ảnh/video đã gửi
+1475	Chức năng 7-7
+1476	Kết quả
+1477	Yêu cầu duyệt
+1478	Chức năng 5-3
+1479	Chức năng 3-10, 6-7
+1483	Chức năng 7-4
+1484	Sử dụng
+1487	Kiểm tra bản xem trước
+1488	Menu bên
+1489	Danh sách thông báo
+1490	Chức năng 6-6
+1491	Chức năng 6-1
+1493	Có thể mở M-02, M-04, M-06, M-08, M-09, M-10 từ mọi màn hình quản trị.
+1495	Bài của tài khoản công ty
+1496	Chức năng 9-1
+1497	Mở từ thông báo trên điện thoại
+1498	Menu dưới
+1499	Nhấn thông báo để mở màn hình liên quan (lời nhắn AI → T-04; đăng lỗi → T-12, v.v.).
+1500	Có thể mở T-03, T-04, T-05, T-11 từ mọi màn hình ứng dụng Talent.
+1503	Cài đặt chung
+1504	Chức năng 7-5
+1505	Màn hình dịch vụ khác (không thao tác trong AI Talent OS)
+1509	Kết nối mạng xã hội
+1510	Đăng ký phương thức thanh toán
+1511	Talent đọc hướng dẫn đăng ký (T-02), rồi thao tác trên màn hình dịch vụ khác.
+1512	Chức năng 7-6
+1513	Màn hình dịch vụ đăng bài
+1514	Màn hình dịch vụ thanh toán
+1515	Cách đọc sơ đồ
+1516	Nội dung chưa quyết định
+1517	Màn hình mở đầu tiên
+1518	Màn hình
+1519	Điểm vào từ ngoài ứng dụng
+1520	[Cần xác nhận] Bố cục trang chủ Talent (T-03): Chọn phương án A/B/C ở trang 2
+1521	Menu mở được từ mọi màn hình
+1522	Chuyển màn hình
+1523	Nhận thông báo
+1524	Màn hình dịch vụ khác
+1525	“Chức năng” là mã chức năng chương 6 của bản yêu cầu tổng quan
+1526	AI Talent OS · Sơ đồ chuyển màn hình
+1530	Phương án trang chủ Talent (3 phương án)
+1531	Trang 2 / 8
+1532	Tài liệu chọn bố cục trang chủ. Câu chữ, số liệu và menu dưới là nội dung tạm để so sánh phương án.
+1533	Cả 3 phương án dùng màu, phông, logo và nút theo website Adesso (adessonet.co.jp). Mỗi màn hình chỉ làm nổi bật một nội dung chính; màu cam chỉ dành cho nút ưu tiên nhất. Menu dưới có 4 mục.
+1534	Làm nổi bật một việc cần làm hôm nay
+1535	Bắt đầu bằng lời nhắn của AI
+1536	Làm nổi bật số người theo dõi
+1537	Phương án A
+1538	Phương án B
+1539	Phương án C
+1546	Thứ Tư, 11/11
+1547	Tổng người theo dõi
+1548	Chào buổi sáng, Yamada
+1552	So với tuần trước
+1554	Yamada, bài hôm qua
+1555	được lưu rất nhiều đấy.
+1556	Việc hôm nay
+1557	Đã có 2 đề xuất bài đăng
+1558	Hôm nay bạn muốn làm gì?
+1559	7 tuần gần đây
+1560	Mục tiêu 15.000
+1561	Xem đề xuất (2 bài)
+1563	Lịch đăng 12:00 / 19:00
+1565	Kiểm tra đề xuất
+1567	Trao đổi với AI
+1570	2 bài
+1572	Gửi ảnh/video
+1576	Trò chuyện với AI
+1578	Trò chuyện với AI
+1580	Người theo dõi
+1584	Nhập tin nhắn
+1598	AI
+1609	Nổi bật: Một việc hôm nay. Hoàn tất thì khung chuyển sang
+1610	Nổi bật: Lời nhắn AI và 3 lựa chọn phía dưới. Số người theo dõi
+1611	Nổi bật: Tổng người theo dõi và mức tăng/giảm so với tuần trước.
+1612	việc tiếp theo.
+1613	xem ở màn hình “Kết quả”.
+1614	Bên dưới liệt kê việc hôm nay.
+1615	Ưu điểm
+1616	Mở là biết cần làm gì. Có ít thao tác nhất trong 3 phương án.
+1618	Tạo thói quen trò chuyện với AI mỗi ngày, trao đổi ngay từ trang chủ.
+1620	Kiểm tra thay đổi người theo dõi hằng ngày.
+1621	Cần quyết định
+1622	Hiển thị gì trong giai đoạn người theo dõi không tăng.
+1624	Thứ tự ưu tiên khi có nhiều việc cần làm.
+1626	Dùng dữ liệu nào để tạo lời nhắn AI mỗi ngày.
+1627	AI Talent OS · 3 phương án trang chủ Talent
+1631	Phương án màn hình (ngoài trang chủ) · Ứng dụng Talent
+1632	Trang 3 / 8
+1633	Phương án kiểm tra bố cục. Câu chữ, số liệu, tên người chỉ là ví dụ tạm. Mã màn hình trùng sơ đồ trang 1.
+1639	Chức năng 6-2, 8-2
+1653	Việc cần làm ban đầu
+1656	Chào buổi sáng! Bài hôm qua có số lượt lưu cao hơn trung bình tuần trước. Nhiệm vụ hôm nay là “Chụp 1 ảnh trước buổi tập”.
+1657	Thêm vào màn hình chính
+1660	Vui lòng kiểm tra
+1662	Đã thêm
+1663	Giãn cơ trước buổi tập là việc quan trọng mỗi ngày. Hôm nay thử vũ đạo mới…
+1666	Cho phép thông báo
+1668	Đã cho phép
+1671	Kết nối mạng xã hội
+1673	Tôi sẽ chụp thử. Nên viết nội dung như thế nào?
+1678	Đã kết nối
+1680	Trưa ghé quán cà phê gần công ty. Giới thiệu chỗ yêu thích gần đây.
+1684	Chưa kết nối
+1686	Đã chuẩn bị 2 đề xuất hôm nay. Bài đầu bắt đầu bằng chuyện giãn cơ.
+1687	Mở dịch vụ đăng bài
+1689	Bài trước đây
+1692	Thứ Ba, 11/10
+1699	Quên mật khẩu
+1700	Mở dịch vụ thanh toán
+1702	Thứ Hai, 11/9
+1705	Chủ Nhật, 11/8
+1710	Đến trang chủ
+1728	Talent đăng nhập và chỉ mở được các màn hình của chính mình.
+1729	Hướng dẫn các bước bắt đầu. Kết nối mạng xã hội và đăng ký thanh toán trên dịch vụ khác. Bước 4 chỉ hiện với Talent trả phí.
+1730	Trò chuyện bằng văn bản với AI. Lời chào sáng, nhiệm vụ hằng ngày và lời chúc mừng đăng bài cũng gửi ở đây.
+1731	Xem đề xuất hôm nay và các bài trước. Chọn đề xuất để mở chi tiết (T-06).
+1732	[Cần xác nhận] Cách đăng nhập (bản yêu cầu tổng quan, chương 14 No.5)
+1733	AI Talent OS · Phương án màn hình (ngoài trang chủ)
+1738	Trang 4 / 8
+1745	Chức năng 6-3, 6-4
+1747	Chức năng 5-3, 5-5
+1754	Tạo video bằng AI
+1760	Đề xuất sử dụng
+1761	Chọn ảnh/video nguồn
+1763	Lịch đăng 19:00
+1765	Do AI tạo
+1766	19:00 Giãn cơ trước buổi tập là thói quen…
+1769	Nội dung
+1773	Giãn cơ trước buổi tập là khoảng thời gian quan trọng mỗi ngày. Hôm nay tôi thử vũ đạo mới. Mong mọi người ủng hộ!
+1775	Chọn ảnh/video
+1776	Hashtag
+1777	Phí mỗi lần tạo video
+1778	Số lần tạo video tháng này
+1780	#TapNhay #GianCo #DangMoiNgay
+1781	yên
+1782	lần
+1783	Tối đa ○○ MB mỗi tệp
+1786	Xem kịch bản video
+1788	Phí cộng vào phí sử dụng tháng. Tạo lại cũng tính vào số lần tạo video.
+1789	Ảnh/video đã chọn (2 tệp)
+1790	Yêu cầu quản lý duyệt
+1795	Dùng video này
+1797	Chọn đề xuất này
+1799	Không dùng
+1802	Nêu điểm cần sửa
+1804	Tạo video từ nội dung này
+1805	Tạo lại
+1810	Kiểm tra nội dung, hashtag, kịch bản; chọn hoặc nêu điểm cần sửa. “Yêu cầu quản lý duyệt” chỉ hiện với Talent có bật duyệt.
+1811	Gửi ảnh/video để đăng, kể cả video tự tạo. Nếu vượt dung lượng tối đa thì hiển thị lý do.
+1812	AI tạo video ngắn từ ảnh/video đã gửi. Hiển thị phí mỗi lần trước khi tạo.
+1813	Phát video hoàn tất để quyết định dùng đăng bài. Video do AI tạo phải có nhãn tương ứng.
+1814	[Cần xác nhận] Phí mỗi lần tạo video (chương 14 No.34)
+1815	[Cần xác nhận] Giới hạn dung lượng mỗi ảnh/video (chương 14 No.40)
+1821	Trang 5 / 8
+1838	Bạn nhận được lời nhắn từ AI
+1843	Hôm nay 8:00
+1845	/ Mục tiêu 15.000
+1846	Đã mất kết nối TikTok
+1850	Hôm nay 7:42
+1857	Đăng bài thành công. Chúc mừng!
+1863	Hôm qua 19:01
+1864	Kết quả từng bài
+1866	Vui lòng gửi ảnh/video
+1870	Hôm qua 17:00
+1871	3.210 lượt hiển thị
+1872	Trưa ở quán cà phê gần công ty…
+1875	Người theo dõi đã tăng
+1879	11/9 9:00
+1880	2.840 lượt hiển thị
+1882	Trang phục mới đã đến…
+1884	11/11 19:00
+1885	Thứ Bảy, 11/7
+1886	4.105 lượt hiển thị
+1888	Buổi tập cuối tuần…
+1893	Về trang chủ
+1903	Kiểm tra bản xem trước kết hợp nội dung đã chọn và ảnh/video đã gửi trên cùng một màn hình.
+1904	Xem tổng người theo dõi 3 mạng xã hội, tiến độ mục tiêu và kết quả từng bài.
+1905	Xem danh sách thông báo gửi Talent. Chọn thông báo để mở màn hình liên quan.
+1910	Phương án màn hình (ngoài trang chủ) · Quản trị
+1911	Trang 6 / 8
+1916	Chức năng 7-1, 3-5
+1920	Tìm theo tên
+1921	AI Talent OS · Quản trị
+1923	Ngày đăng cuối
+1924	Lượt tạo video (tháng)
+1925	Trạng thái
+1926	Tiến độ mục tiêu
+1930	Danh sách Talent
+1932	Danh sách bài đăng
+1933	1 ID và mật khẩu
+1934	2 Mã xác thực
+1935	Yamada Hanako
+1936	Đang sử dụng
+1940	11/10
+1943	Danh sách thông báo
+1945	Mã xác thực (6 số)
+1946	Suzuki Sakura
+1953	0 lần
+1956	Bài tài khoản công ty
+1957	Takahashi Minami
+1962	11/9
+1963	Mất TikTok
+1964	5 lần
+1966	Nhập mã nhận qua phương thức đã đăng ký.
+1967	Cài đặt chung
+1968	Tanaka Yui
+1973	11/6
+1975	1 lần
+1977	Lịch sử truy cập
+1978	Ito Akari
+1983	10/28
+1991	Quản lý Sato
+1992	Quản lý đã đăng ký đăng nhập bằng xác thực hai bước. Người chưa đăng ký không thể đăng nhập.
+1993	Màn hình đầu của quản lý. Xem trạng thái các Talent phụ trách. Chọn Talent để mở chi tiết (M-03).
+2002	Talent: Tất cả
+2003	Trạng thái: Tất cả
+2004	Kỳ: Tuần này
+2005	Cài đặt 〉
+2006	Xem bài Talent này 〉
+2007	Đang dùng · Trả phí
+2013	Ngày giờ đăng
+2019	Lượt hiển thị
+2020	Thông tin Talent
+2024	11/11 19:00
+2032	Nhảy và đời thường
+2033	AI · Hôm nay 8:00
+2036	Từ cấm: Đã đăng ký 12 từ
+2037	Bài hôm qua có số lượt lưu cao hơn trung bình tuần trước.
+2038	11/11 12:00
+2045	Ngày cập nhật thông tin
+2046	11/5
+2049	11/10 19:00
+2055	2.150 lượt
+2057	Yamada Hanako · Hôm nay 8:12
+2060	11/10 18:00
+2066	5.020 lượt
+2068	Mục tiêu người theo dõi
+2069	15.000 · Sửa
+2072	Tổng theo dõi hiện tại 12.480 (83%)
+2073	11/10 12:00
+2079	3.210 lượt
+2082	AI · Hôm nay 8:12
+2083	Đã chuẩn bị 2 đề xuất bài hôm nay.
+2088	Xem thông tin, mục tiêu và hội thoại AI theo Talent. Đăng ký, cập nhật mục tiêu tại đây.
+2089	Xem bài đã lên lịch, đã đăng, lỗi và kết quả theo Talent. Chọn bài chờ duyệt để mở duyệt bài (M-05).
+2095	Trang 7 / 8
+2105	Loại: Tất cả
+2119	Yêu cầu duyệt bài lúc 11/11 19:00
+2122	Hôm nay 9:20
+2129	Yêu cầu lúc 11/11 9:20
+2130	Đăng lên TikTok thất bại
+2134	Hôm qua 18:01
+2137	Bài chưa duyệt trước giờ đăng sẽ không được đăng.
+2140	Đề xuất chứa từ trong danh sách cấm
+2141	Tôi được xuất hiện trên tạp chí ra mắt hôm nay. Xin chia sẻ một chút hậu trường buổi chụp.
+2143	Hôm qua 8:05
+2145	Phát hiện từ cấm
+2152	Đăng lên YouTube thất bại
+2154	11/9 7:42
+2157	#ThongTinTapChi #ChupAnh
+2158	Không duyệt
+2163	Kiểm tra nội dung Talent yêu cầu duyệt và phản hồi. Bài được duyệt sẽ đăng vào giờ đã lên lịch.
+2164	Xem thông báo cho quản lý (yêu cầu duyệt, đăng lỗi, phát hiện từ cấm).
+2176	Chỉ dẫn đăng bài
+2183	Chuyển sang miễn phí thì dừng thu phí từ thời điểm đã quy định.
+2184	Đăng thông báo sự kiện tháng 12 cùng phần giới thiệu người biểu diễn
+2185	11/12 18:00 · Chưa lên lịch
+2186	Đã xác định nghệ sĩ sự kiện tháng 12. Thông tin vé…
+2194	Chuyển trạng thái sẽ thay đổi đăng bài, nhắc nhở và thu phí.
+2199	Tạo đề xuất theo chỉ dẫn này
+2207	Talent bật “Có” được chọn yêu cầu duyệt khi chọn đề xuất bài.
+2216	Cài đặt trả phí/miễn phí, trạng thái và có cần duyệt bài cho từng Talent.
+2217	Quản lý nhập chỉ dẫn, kiểm tra và duyệt đề xuất. Bài đã duyệt đăng lên tài khoản công ty theo lịch.
+2218	[Cần xác nhận] Các trạng thái (chương 14 No.42)
+2219	[Cần xác nhận] Số tài khoản công ty, có dùng AI viết bài không, ai cung cấp ảnh/video (chương 14 No.30)
+2225	Trang 8 / 8
+2235	Quản lý: Tất cả
+2236	Kỳ: Tháng này
+2244	Thông tin đã xem
+2245	Tất cả đăng tự động
+2247	Đang chạy
+2250	11/11 9:31
+2257	11/11 9:20
+2261	Giờ nhắc buổi sáng
+2265	11/10 18:10
+2266	Nakamura
+2271	2 giờ trước khi đăng
+2272	Giờ nhắc gửi tư liệu
+2274	11/10 10:02
+2277	Thông tin, mục tiêu Talent
+2280	Danh sách từ không được phép
+2281	Thêm
+2293	Dừng/tiếp tục toàn bộ đăng tự động và đổi cài đặt chung. Trong thời gian dừng, không tài khoản nào được đăng bài.
+2294	Kiểm tra ai đã xem thông tin Talent nào, vào lúc nào.
+2295	[Cần xác nhận] Quản lý được quyền đổi cài đặt (chương 14 No.11)

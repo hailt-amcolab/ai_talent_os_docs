@@ -1,0 +1,184 @@
+3580	7-5 Dừng toàn bộ đăng tự động (Ưu tiên: Cao)
+3581	Quản lý dừng/tiếp tục toàn bộ đăng tự động trong quản trị. Hiển thị xác nhận trước thao tác.
+3582	Bài đến giờ trong lúc dừng không đăng; tiếp tục cũng không tự đăng lại. ※29
+3583	7-2 Hiển thị thông tin bài (Ưu tiên: Cao)
+3584	Quản lý xem bài từng Talent, lọc đã lên lịch, chờ duyệt, đã đăng, thất bại.
+3585	Hủy lịch trên màn hình dịch vụ đăng bài; không hủy từ ứng dụng Talent hay quản trị.
+3586	9-1 Bài tài khoản công ty (Ưu tiên: Trung bình)
+3587	Đăng ký tài khoản công ty làm nơi đăng.
+3588	Quản lý nhập chỉ dẫn, gửi tư liệu, kiểm tra và chọn đề xuất trong quản trị; đăng cùng luồng Talent.
+3590	Xác nhận 27: Mỗi Talent nối một tài khoản Instagram, TikTok, YouTube.
+3591	Xác nhận 28: Quản lý hủy lịch trên dịch vụ đăng bài, Talent không hủy trong ứng dụng.
+3592	Xác nhận 29: Bài đến giờ khi dừng toàn bộ không tự đăng sau khi tiếp tục.
+3594	8-7 Lấy kết quả (Ưu tiên: Cao)
+3595	Một lần/ngày, lấy kết quả từng bài và người theo dõi từng mạng từ dịch vụ.
+3596	Lấy trong phạm vi dịch vụ cung cấp. Kết nối tài khoản thực để kiểm tra rồi ghi bản cuối.
+3597	Không lấy được thì thử lại kỳ sau.
+3598	8-8 Ghi trả kết quả (Ưu tiên: Cao)
+3599	Ghi kết quả vào tệp Talent, AI đọc dùng từ sáng sau.
+3600	3-10 Hiển thị người theo dõi (Ưu tiên: Cao)
+3601	Hiện người theo dõi từng mạng và tiến độ mục tiêu trên ứng dụng/quản trị.
+3602	6-7 Kết quả và tiến độ cho Talent (Ưu tiên: Cao)
+3603	Hiện kết quả từng bài, ngày đăng liên tục, biến động người theo dõi và khoảng cách mục tiêu.
+3604	8-1 Phân tích giờ đăng (Ưu tiên: Trung bình)
+3605	Chưa đủ dữ liệu thì theo giờ Adesso chỉ dẫn thuật toán.
+3606	Đủ dữ liệu thì chọn giờ phản hồi tốt theo Talent.
+3607	8-9 Lấy khung giờ phản hồi (Ưu tiên: Thấp)
+3608	Lấy giờ xem và phản hồi trong phạm vi dịch vụ cung cấp.
+3610	6-1 Tin nhắn ứng dụng và thông báo điện thoại (Ưu tiên: Cao)
+3611	Hiện thông báo trong ứng dụng, gửi đẩy đến máy đã cấp quyền.
+3612	Mở thông báo đến màn hình liên quan.
+3613	Không cấp quyền vẫn xem thông báo khi mở ứng dụng.
+3614	7-4 Danh sách thông báo (Ưu tiên: Cao)
+3615	Hiện thông báo quản lý: Yêu cầu duyệt, từ cấm, đăng lỗi, bỏ đăng lâu, trao đổi nghiêm trọng, đạt mục tiêu, thanh toán lỗi.
+3616	Lọc loại/đã xử lý. Mở thông báo đến màn hình Talent liên quan.
+3617	6-8 Nền tảng PWA từ màn hình chính (Ưu tiên: Cao)
+3618	Thêm ứng dụng Talent vào màn hình chính điện thoại, không cần kho ứng dụng.
+3619	Trang mở đầu giúp biết ngay việc hôm nay. ※30
+3621	Xác nhận 30: Chọn bố cục trang chủ trong 3 phương án.
+3623	Có 15 loại thông báo tự động. Phụ lục A ghi ai nhận, khi nào, ở đâu. Chốt câu chữ khi xem màn hình thực tế.
+3625	Ưu tiên dễ dùng hơn hình thức; dựa trên nội dung đã xác nhận qua định nghĩa và màn hình thực tế.
+3626	Dùng tên, logo, màu ứng dụng Adesso hiện có. Adesso cung cấp ảnh logo và màu.
+3627	Hiện rõ trạng thái lỗi, không dữ liệu, đang tải.
+3628	Cấu trúc menu ghi trong định nghĩa màn hình.
+3631	Hồ sơ, định hướng, sở thích/sở trường, mục tiêu tương lai: Quản lý trò chuyện ChatGPT để ghi thư mục Talent.
+3632	Mục tiêu theo dõi và thời hạn: Nhập từng mạng trong cài đặt Talent, mặc định 10.000 mỗi mạng.
+3633	Bí quyết, chỉ dẫn thuật toán/AI: Quản lý ghi thư mục riêng hoặc chung.
+3634	Từ cấm: Adesso rà soát mẫu chúng tôi cấp; quản lý đăng ký danh sách chung trong quản trị.
+3635	Ảnh/video: Talent gửi từ ứng dụng.
+3636	Kết quả/người theo dõi: Tự lấy từ dịch vụ, ghi trả thư mục Talent.
+3638	Thông tin, mục tiêu, bí quyết, kết quả: OneDrive Microsoft 365 theo Talent. Quản lý và AI (chỉ người tương ứng) đọc được.
+3639	Ảnh/video: Lưu OneDrive; chính Talent và quản lý xem được.
+3640	Hội thoại AI: Lưu trong hệ thống; chính Talent và quản lý xem được.
+3641	Thanh toán: Trung gian quản lý. Hệ thống không lưu thẻ.
+3643	Talent rời công ty thì giữ thông tin một thời gian.
+3645	Adesso đăng ký thông tin, mục tiêu, bí quyết, từ cấm trước vận hành.
+3647	AI đọc tệp OneDrive mỗi sáng. Quản lý sửa tệp thì từ sáng sau áp dụng, không cần phát triển.
+3648	AI dùng kiến thức riêng cho sự kiện thường niên như Tết, Halloween. Thông tin riêng như sinh nhật/lịch biểu diễn Talent cần ghi tệp để AI đọc.
+3649	Ví dụ nội dung thay đổi qua tệp:
+3650	Giọng nhắc: Thân mật, lịch sự...
+3651	Thông tin: Hồ sơ, định hướng, sở thích/sở trường, mục tiêu tương lai
+3652	Ngày riêng: Sinh nhật, kỷ niệm ra mắt, lịch biểu diễn, ngày sự kiện
+3653	Ý tưởng bài: Theo thứ trong tuần, chủ đề nên hoặc tránh đề cập
+3654	Bí quyết/chỉ dẫn thuật toán: Giờ đăng, hashtag, độ dài văn bản
+3655	Từ cấm, giờ nhắc, số ngày không đăng và giá trị khác đổi trong quản trị (5-6).
+3657	Dùng dịch vụ ngoài theo hình 2-4. Adesso đứng tên hợp đồng, chịu cả phí phát triển/kiểm thử và làm thủ tục ký/xét duyệt.
+3658	Dịch vụ dự kiến như sau.
+3659	Dịch vụ
+3660	Cách dùng trong hệ thống
+3661	Giả định của chúng tôi
+3663	Lên lịch 3 mạng, lấy kết quả/người theo dõi
+3664	Dự kiến Upload-Post qua API; tự đăng ký từng Talent và cấp màn hình kết nối. Cần gói đủ Talent. Khả năng từng mạng (chỉ số, mất kết nối) phải thử tài khoản thực.
+3666	Hội thoại AI, tạo đề xuất, tổng kết
+3667	Dùng OpenAI (đơn vị ChatGPT), cài không dùng dữ liệu gửi để huấn luyện.
+3668	Dịch vụ tạo video
+3669	Tạo video từ ảnh/video
+3670	Dự kiến Kling trên fal.ai. Thử nghiệm phí thấp, video người Nhật chất lượng tốt.
+3671	Trung gian thanh toán
+3672	Nhà mạng và thẻ
+3673	Dự kiến GMO Payment Gateway. Cần xác nhận thu tổng phí tháng/video biến động được không.
+3674	Thông báo điện thoại
+3675	Thông báo đến máy Talent
+3676	Cơ chế sẽ xem xét sau
+3678	Lưu thông tin, bí quyết, kết quả, ảnh/video Talent
+3679	Dùng Microsoft 365 Adesso đang sử dụng
+3681	Quản lý cung cấp, đăng ký thông tin Talent
+3682	Khoảng 5 quản lý dùng
+3683	Máy chủ
+3684	Vận hành hệ thống
+3685	Dự kiến Vercel, Supabase, Xserver VPS hiện có; tiền đề nâng Vercel/Supabase lên gói trả phí
+3686	Dịch vụ đăng không hỗ trợ chức năng thì thống nhất phương án thay thế bằng văn bản.
+3687	Adesso cung cấp tài khoản/thông tin kết nối phát triển, kiểm thử.
+3688	Ước phí dịch vụ/máy chủ hằng tháng sau vận hành sẽ cung cấp riêng.
+3690	Trình bày thiết bị, hiệu năng, nhật ký, bảo mật và tiền đề.
+3693	Ứng dụng Talent: iPhone, Android. OS/trình duyệt ghi bản cuối. iPhone nhận đẩy cần iOS 16.4+.
+3694	Quản trị: Trình duyệt PC.
+3695	Môi trường: Chính thức và kiểm thử.
+3696	Đang vận hành: Không ảnh hưởng ứng dụng tự động DM Instagram.
+3698	Xác nhận 31: Quản lý dùng PC; mở được trên trình duyệt điện thoại nhưng chưa tối ưu cho điện thoại.
+3700	Quy mô: Bắt đầu ít, mở 80–150 chủ yếu Talent mới; mục tiêu 200–300, tương lai 1.000. Adesso chọn nhóm đầu.
+3701	Xử lý sáng: Đọc dữ liệu/kết quả, tạo đề xuất xong trước giờ nhắc. Chốt số người thử sau chốt nhóm đầu, kiểm tra xong đúng giờ.
+3702	Dung lượng tư liệu: Giới hạn mỗi tệp/tổng lưu chốt khi thiết kế, ghi bản cuối.
+3703	Phí dịch vụ khi tăng người nêu cùng ước phí chương 8.
+3705	Giờ sử dụng: Chốt khi thiết kế, ghi bản cuối.
+3706	Sự cố ngoài: Dừng chức năng đó, giữ chức năng khác; báo đăng lỗi.
+3707	Sao lưu: Đối tượng, tần suất, thời hạn chốt khi thiết kế, ghi bản cuối.
+3709	Nhật ký xem: Quản lý nào, lúc nào, Talent nào
+3710	Nhật ký thao tác: Duyệt, đổi trạng thái, dừng/tiếp tục đăng...
+3711	Nhật ký xử lý: Kết quả đăng, nhập kết quả, tạo video, thu phí
+3712	Thời hạn nhật ký chốt khi thiết kế, ghi bản cuối.
+3714	Giới hạn tần suất và biện pháp khác (6-10). Chốt chi tiết khi thiết kế, ghi bản cuối. Không bảo đảm tránh khóa tài khoản.
+3717	Quản lý đăng nhập xác thực hai bước.
+3718	Cách đăng nhập Talent/quản lý ở 6-1, 6-2.
+3719	Talent chỉ xem thông tin mình.
+3721	Mã hóa đường truyền và thông tin lưu.
+3722	Quản lý khóa API không hiện trên màn hình/nhật ký.
+3723	Chỉ gửi AI dữ liệu cần cho chat/tạo bài; cài không dùng huấn luyện.
+3724	Không lưu thẻ; trung gian quản lý.
+3726	Adesso lấy đồng ý Talent trước cung cấp dữ liệu dịch vụ ngoài.
+3727	Adesso lấy đồng ý phụ huynh khi ký hợp đồng Talent chưa thành niên. Hệ thống không lưu bằng chứng đồng ý.
+3728	Phát triển/kiểm thử nguyên tắc dùng dữ liệu thử. Dùng dữ liệu Talent cần Adesso chấp thuận trước bằng văn bản.
+3730	Xác nhận 32: Adesso lấy đồng ý phụ huynh khi ký hợp đồng; hệ thống không lưu bằng chứng.
+3732	Thông báo đẩy có thể chậm/không tới do máy, OS, cài đặt, mạng. Không bảo đảm chắc chắn nhận.
+3733	Giới hạn đăng và biện pháp khác không bảo đảm tránh khóa tài khoản.
+3734	Không bảo đảm chính xác/chất lượng nội dung, ảnh, video AI. Chức năng không chạy đúng thỏa thuận được sửa như lỗi.
+3735	Chúng tôi cấp mẫu từ cấm chung; Adesso bắt buộc rà soát, bổ sung/sửa.
+3736	Cách kiểm tra bài/tư liệu không xâm phạm quyền bên thứ ba ghi bản cuối.
+3737	Đối tượng là tài khoản đáp ứng tuổi mạng xã hội.
+3738	Adesso quyết định điều khoản, hiển thị phí, thông tin theo Luật Giao dịch thương mại đặc định.
+3739	Bảo trì sau phát hành theo hợp đồng riêng; thay đổi đặc tả/giá/điều khoản dịch vụ ngoài xử lý trong hợp đồng bảo trì.
+3740	Phạm vi không bảo đảm chỉ ghi ở chương này.
+3742	Trình bày nghiệm thu, chức năng tương lai, lịch và cách liên lạc.
+3745	Chúng tôi thử theo tiêu chí nghiệm thu, gửi kết quả. Adesso cho quản lý/Talent thao tác thực tế và kiểm tra kết quả thử.
+3746	Hình 12-1 Từ kiểm thử nghiệm thu đến vận hành
+3747	Hạn nghiệm thu 5 ngày làm việc sau thông báo hoàn thành. Không phản hồi trong hạn coi đạt.
+3748	Yêu cầu/đổi ngoài tài liệu và màn hình không làm căn cứ trượt; xử lý theo 14-3.
+3749	Dịch vụ chưa xong hợp đồng/xét duyệt trước nghiệm thu thì loại chức năng đó khỏi nghiệm thu, phát hành riêng sau.
+3750	Dùng chính thức trước nghiệm thu cần thống nhất điều kiện bằng văn bản.
+3751	Phát hành từng phần hay không trao đổi theo tiến độ.
+3753	Lỗi nghiêm trọng: Dừng hệ thống/chức năng chính, không có cách thay nên không tiếp tục nghiệp vụ. Sửa trước phát hành.
+3754	Lỗi nhẹ: Không cản chức năng chính; không làm trượt nghiệm thu, định hạn sửa.
+3755	Chức năng chính thiết yếu để Talent đăng; là các chức năng ưu tiên Cao.
+3757	Ghi mã chức năng có khi vận hành mục tiêu cuối 2/2027 vào yêu cầu; gồm Cao/Trung bình.
+3759	Môi trường: Chốt trong kế hoạch thử.
+3760	Tài khoản mạng xã hội: Chuẩn bị tài khoản thử.
+3761	Thanh toán: Chốt cách thử sau chọn trung gian.
+3762	Dữ liệu: Nguyên tắc dùng dữ liệu thử.
+3763	Kiểm tra đăng: Sau triển khai chính thức, thử tài khoản thực. Số Talent, mạng, bài chốt trong kế hoạch.
+3765	Lập hướng dẫn quản lý thao tác quản trị/ChatGPT:
+3766	Đăng ký Talent, trả phí/miễn phí, cần duyệt
+3767	Đăng ký ChatGPT, đăng ký/rà soát mục tiêu
+3768	Xem/xử lý thông báo duyệt, lỗi đăng, từ cấm
+3769	Dừng/tiếp tục toàn bộ; hủy lịch trên dịch vụ
+3770	Xem thông tin, bài, hội thoại, kết quả Talent
+3771	Chuyển trả phí sang miễn phí, đổi trạng thái
+3772	Chỉ dẫn và duyệt bài tài khoản công ty
+3773	Thêm/vô hiệu quản lý
+3775	Luồng bắt đầu ở UC-01, UC-03. Bắt đầu ít Talent do Adesso chọn.
+3777	Các yêu cầu sau sẽ quyết định cách triển khai qua trao đổi:
+3778	Tăng động lực: Xếp hạng/phần thưởng (ai phát triển tốt), hội thoại giọng nói (thêm sau, người dùng trả phí)
+3779	Mở đối tượng: X (Twitter cũ), TikTok Live, Talent ngoài công ty, mạng xã hội đối tác, chức năng nhà tài trợ/công ty tiếp thị
+3780	Thêm: Trả lời bình luận, mạng liên lạc, lịch, thu xu hướng mạng xã hội, kiếm tiền như TikTok Shop
+3781	Đổi cơ chế: Tích hợp hệ thống đang dùng (chung đăng nhập...), AI cục bộ/máy chủ công ty
+3784	Mục tiêu vận hành cuối 2/2027; định mốc kết thúc. Thiết kế/phát triển/kiểm thử song song định nghĩa yêu cầu. Nghiệm thu khoảng giữa 1/2027, ngày bắt đầu điều chỉnh sau.
+3785	Hình 14-1 Lịch trình
+3786	Ghi lịch cụ thể sau chốt ngày bắt đầu nghiệm thu.
+3788	Họp 1–2 lần/tuần; trình màn hình xác nhận, báo tiến độ.
+3789	Liên lạc hằng ngày qua Chatwork.
+3790	Tài liệu/biên bản trên Google Docs; thông báo Chatwork.
+3791	Hỏi/đáp Google Sheets, nguyên tắc trả lời trong 3 ngày làm việc.
+3793	Đổi sau chốt tài liệu/màn hình theo luồng sau:
+3794	Hình 14-2 Luồng thay đổi sau chốt
+3795	Trong phạm vi SOW/báo giá không báo giá lại. Yêu cầu vượt phạm vi trao đổi phạm vi, phí, lịch theo luồng này.
+3797	Thời hạn sẽ điều chỉnh sau.
+3798	Xác nhận tài liệu, định nghĩa/màn hình thực tế, trả lời phiếu
+3799	Quyết định ưu tiên chức năng
+3800	Ký/xét duyệt dịch vụ ngoài (thanh toán mất thời gian, cần làm trước)
+3801	Cấp tài khoản, kết nối phát triển/kiểm thử
+3802	Cấp logo và màu
+3803	Quyết định điều khoản, hiển thị phí, thông tin theo Luật Giao dịch thương mại đặc định
+3804	Quyết định phí mỗi lần video (chúng tôi cung cấp ước phí)
+3805	Lấy đồng ý Talent về dữ liệu cá nhân
+3806	Chuẩn bị/đăng ký thông tin, mục tiêu, bí quyết; rà soát/đăng ký từ cấm
+3807	Kiểm thử nghiệm thu (quản lý/Talent thao tác), nghiệm thu
+3809	Thông báo tự động cho Talent/quản lý; ai nhận, khi nào, ở đâu.
