@@ -4,20 +4,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-No source code yet. The repo holds only Japanese specification documents for **AI育成OS** (AI talent-development OS), built by FutureCore Partners for the client アデッソ様 (a talent agency). No build/lint/test commands exist; add them here once a project is scaffolded. Not a git repository yet.
+No source code yet. The repo holds only Japanese specification documents for **AI育成OS** (AI talent-development OS), built by FutureCore Partners for the client アデッソ様 (a talent agency). No build/lint/test commands exist; add them here once a project is scaffolded. Git repo on `main`.
 
 | File | What it is |
 |---|---|
 | `AI育成OS_概要要件定義書_v2.docx` | Outline requirements definition, v2 (cover still says 0.1版 2026-11-13). **Primary source of truth.** 確認 renumbered 1–56; each UC now has a 前提 (premises) block. |
 | `AI育成OS_概要要件定義書.docx` | v1 of the same doc (確認1–37). Superseded; v1→v2 diff and 確認 number mapping are in `Phan_tich/12_Cap_nhat_theo_v2.md`. |
 | `AI-Talent-OS_Q&A表.xlsx` | Q&A sheet (not yet analyzed) |
-| `Phan_tich/` | Our Vietnamese analysis exports (00 report, 01–11 by topic, all written against v2; 12 = v1→v2 changes and 確認 renumbering). Markdown is exported from the Claude Doc tabs, which are the source |
-| `画面遷移図と画面案_AI育成OS.pdf` | Screen transition diagram (T-xx talent screens, manager screens) |
+| `Phan_tich/` | Our Vietnamese analysis (00 report, 01–11 by topic, all written against v2; 12 = v1→v2 changes and 確認 renumbering; 13 = post time reached but draft not adopted; 14 = analysis of `アプリ画面案`; 18 = infrastructure design (what runs on Vercel / Supabase / VPS worker, environments, scheduled jobs, open questions I1–I8; mostly proposals, marked [Chốt]/[Cũ]/[Đề xuất]); 17 = system context document (SCD: actors, external services, boundaries, constraints; read first before any dev work); 16 = development modules EP01–EP10 (54 functions regrouped, with [AG] screens and build order); `15_Cau_hoi_lam_ro_luong.csv` = master question list: all 確認1–56 plus our new questions A/B/C, column "Loại" tells them apart, column "Module" maps each row to EP01–EP10 of file 16). 00–12 are exported from the Claude Doc tabs, which are the source. Docs cite v2 as `[YK2]`, the screen proposal as `[AG]` |
+| `SCD/` | Per-feature specs for AI-agent coding: one file per function, folders EP01–EP10. `SCD/README.md` has the readiness criteria (R1–R9, 🟢/🟡/🔴), the spec template and the readiness matrix. EP01 is fully written; the other 54 files are generated skeletons (marked "Bản khung", from `SCD/gen_ban_khung.py`, which never overwrites hand-written files). Only hand an agent a 🟢/🟡 file with no "Bản khung" line. |
+| `アプリ画面案_AI育成OS.pdf` | **Latest screen proposal** (FutureCore, 2026-11-12, 12 pp): T-01〜T-15 talent, M-01〜M-19 admin. Client design style, content fixed to match v2. Red 【要確認】/red frames = pending a 確認 |
+| `画面遷移図と画面案_AI育成OS.pdf` | Older screen transition diagram (2026-11-11, 8 pp, T-01〜T-12, M-01〜M-10, based on a pre-v2 spec). Likely superseded by `アプリ画面案` |
 | `要件説明資料_AI育成OS.pdf` | Older requirements explainer deck (42 pp) |
 | `Design style/★…タレントアプリ画面_かわいい版.pdf` | Talent app visual design: L-00〜L-09, mascot AI coach "モモ", Instagram-like, My Page as hub |
 | `Design style/★…マネージャー管理画面_PC_携帯….pdf` | Manager admin design: M-01〜M-11, PC (left menu) + mobile (bottom menu) |
 
-Reading the docs: `.docx` text can be extracted with Python `zipfile` + regex on `word/document.xml` (set `PYTHONIOENCODING=utf-8` on Windows); PDFs via `pdftotext -enc UTF-8` (available in Git Bash).
+Reading the docs: `.docx` text can be extracted with `python3` `zipfile` + regex on `word/document.xml`; PDFs via `pdftotext -enc UTF-8` (both available in this WSL environment; on Windows set `PYTHONIOENCODING=utf-8` and use Git Bash).
+
+**Screen IDs collide across docs:** the same code means different screens in the client designs (L-xx, M-01〜M-11), `画面遷移図` and `アプリ画面案` (e.g. M-10 = category mgmt / view log / talent settings). Always name the source when citing a screen ID. The mapping table is in `Phan_tich/10_Giao_dien.md` §8.1. Which set becomes official is still open.
 
 **Conflicts between docs:** the docx says newer documents win, and contract > SOW > estimate. The older deck describes the talent UI as LINE (Messaging API/LIFF) with n8n. That was dropped in the 2026-10-20 meeting in favor of a **PWA** (docx 別紙B, 正式要件整理表 No.17).
 
@@ -27,6 +31,7 @@ Reading the docs: `.docx` text can be extracted with Python `zipfile` + regex on
 - Every Japanese term gets a Vietnamese note right beside it: `確認 (mục cần xác nhận)`, `高 (cao)`, `別紙B (phụ lục B)`. In a long table, notes may sit in a legend above the table instead of in every cell.
 - Proper nouns and product names stay as they are (Instagram, OneDrive, Upload-Post). Common acronyms get a Vietnamese note on first use, e.g. "PWA (ứng dụng web cài lên màn hình chính)".
 - Cite the source of every claim: document, section (§), function ID, 確認 number, and PDF page. The .docx has no fixed line numbers, so cite sections instead.
+- In `SCD/EPxx/00_Cau_hoi_cho_khach.md`, do not propose answers or Japanese drafts for 確認 items (they are already in the client's sheet); only reference their numbers. Every proposal must stay within the 54 functions of [YK2] ch.6 or general requirements already in [YK2]. Work handoff and conventions: `TIEP_TUC.md`.
 - Do not assume anything the client has not confirmed. Items that rest only on a 確認 go under "chưa rõ" (unclear), not into the in-scope or out-of-scope lists.
 
 ## What the system does

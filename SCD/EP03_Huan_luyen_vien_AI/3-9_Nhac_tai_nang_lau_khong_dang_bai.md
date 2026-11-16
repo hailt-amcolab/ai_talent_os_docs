@@ -1,0 +1,81 @@
+# 3-9 Nhắc tài năng lâu không đăng bài
+
+| Mục | Giá trị |
+|---|---|
+| Module | EP03 – Huấn luyện viên AI |
+| 優先順位 (ưu tiên) | 中 (trung bình) |
+| Mục [YK2] | §6-5, chức năng 3-9; §5-2; UC-04; UC-09; 別紙A |
+| Màn hình [AG] | T-08, T-14; M-02; M-17 (số ngày) |
+| Tên trong mã nguồn | Inactive Talent Reminder |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ tham số | ⚠ đội đề xuất | ✅ | ⚠ đọc bài ngoài hệ thống (8-7) | ⚠ đội đề xuất | ⚠ 8-3, 8-7 |
+
+## Mục đích
+
+Tài năng không đăng đủ số ngày đã cài (mặc định 3) thì AIコーチ hỏi han. Không đăng tới mốc thứ hai (mặc định 7) thì báo quản lý (§6-5 chức năng 3-9).
+
+## Luồng chính
+
+1. Mỗi sáng trong lô buổi sáng, tính số ngày không đăng của từng tài năng ở 利用中: số ngày từ ngày có bài đăng thành công gần nhất tới hôm qua. Bài tự đăng ngoài hệ thống cũng tính nếu Upload-Post đọc được (UC-09). Chưa đăng bài nào thì tính từ ngày chuyển sang 利用中.
+2. Số ngày **bằng** mốc 1: tin buổi sáng có thêm lời hỏi han (3-4), kèm thông báo 投稿がない日の声かけ (別紙A).
+3. Số ngày **bằng** mốc 2: tạo thông báo 投稿のない日が続いたタレント cho mọi quản lý (7-4).
+4. Đăng lại thì đếm lại từ 0.
+
+Dùng "bằng" chứ không dùng "từ … trở lên", để mỗi đợt không đăng chỉ nhắc một lần ở mỗi mốc.
+
+## Luồng lỗi và trường hợp biên
+
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Quản lý dừng đăng tự động của tài năng, hoặc dừng toàn bộ (7-5) | Không đếm những ngày đang dừng | [Đề xuất nội bộ], S03-05 |
+| Tài khoản công ty | Không nhắc, không báo quản lý | B10 |
+| Quản lý đổi mốc khi đang có tài năng vượt mốc mới | Không gửi bù; áp dụng từ ngày hôm sau | [Đề xuất nội bộ] |
+| Lấy kết quả (8-7) lỗi nên không biết hôm qua có bài ngoài hệ thống không | Chỉ dùng bài đăng qua hệ thống; không báo quản lý nếu thiếu dữ liệu ngày hôm qua | [Đề xuất nội bộ] |
+
+## Quy tắc và giá trị
+
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Mốc 1 (AIコーチ hỏi han) | 3 ngày | Tham số (M-17) | §5-2 |
+| Mốc 2 (báo quản lý) | 7 ngày | Tham số (M-17) | §5-2 |
+| Ngày tính theo | Giờ Nhật | [Đề xuất nội bộ] | — |
+
+## Dữ liệu
+
+Tính từ dữ liệu bài đăng (8-3, 8-7), không lưu thêm bảng. Lưu ngày đã nhắc để không nhắc trùng: `talent_nudges`: `talent_id`, `level` (1, 2), `streak_start_date`, `sent_at`.
+
+## Màn hình
+
+T-08 (lời hỏi han), T-14 (thông báo), M-02 (thông báo quản lý), M-06 (cột số ngày không đăng, 7-1), M-17 (hai mốc).
+
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
+
+1. Cho tài năng đăng lần cuối 3 ngày trước, thì sáng nay tin buổi sáng có lời hỏi han.
+2. Cho tài năng không đăng 4 ngày, thì sáng nay không có lời hỏi han nữa.
+3. Cho tài năng không đăng 7 ngày, thì mọi quản lý thấy thông báo ở M-02 đúng một lần.
+4. Cho quản lý đổi mốc 1 thành 2 ngày, thì từ hôm sau áp dụng mốc mới.
+5. Cho tài năng bị dừng đăng tự động 5 ngày, thì không bị nhắc vì 5 ngày đó.
+
+## Phụ thuộc
+
+8-3, 8-7 (dữ liệu bài đăng), 7-4, 3-4, C-02 (cài đặt).
+
+## Câu hỏi mở
+
+Các 確認 liên quan (không xử lý ở đây): 確認19, 43.
+
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S03-05 | Không đếm ngày đang dừng đăng tự động | Không | Như đề xuất |
+| B10 | Tài khoản công ty không bị nhắc | Không | Như B10 |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
+
+## Nguồn
+
+- [YK2] §5-2, §6-5 (3-9), UC-04, UC-09, 別紙A, 確認19, 43.

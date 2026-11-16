@@ -8,8 +8,11 @@ Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn
 | [TK-T] | Thiết kế ứng dụng tài năng, phiên bản dễ thương | 11/2026 | L-00…L-09 và Trang của tôi | Căn cứ thiết kế: giống Instagram, Trang của tôi là trung tâm, nhân vật モモ (Momo) (6-14) |
 | [TK-M] | Thiết kế màn hình quản trị cho máy tính và điện thoại, có nhóm tài năng và chỉ dẫn cho AI | 11/2026 | M-01…M-11 | Căn cứ thiết kế. Phần nhóm tài năng và chỉ dẫn cho AI đang hỏi khách (確認6, 7, 8, 47) |
 | [SD] | 画面遷移図と画面案 (sơ đồ chuyển màn hình và phương án màn hình) của FutureCore | 11/11/2026 | T-01…T-12, M-01…M-10 | Bản cũ, làm theo một bản yêu cầu cũ hơn. Chỉ dùng để đối chiếu mã chức năng |
+| [AG] | アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng) của FutureCore | 12/11/2026 | T-01…T-15, M-01…M-19 | Mới nhất: giữ phong cách của [TK], sửa nội dung theo [YK2]. Phân tích chi tiết ở file 14; đối chiếu với tab này ở mục 8 |
 
-**Cách đọc:** bảng màn hình dùng mã của thiết kế (L-xx, M-xx của [TK]) làm cột chính, cột bên cạnh là mã [SD] tương ứng. Màn còn thiếu ghi "(mới)". ⚠ là chỗ thiết kế lệch với [YK2] hoặc còn để ngỏ. Số 確認 (mục cần xác nhận) theo đánh số của v2.
+**Cách đọc:** bảng màn hình dùng mã của thiết kế (L-xx, M-xx của [TK]) làm cột chính, cột bên cạnh là mã [SD] tương ứng. Mã [AG] tương ứng tra ở mục 8. Màn còn thiếu ghi "(mới)". ⚠ là chỗ thiết kế lệch với [YK2] hoặc còn để ngỏ. Số 確認 (mục cần xác nhận) theo đánh số của v2.
+
+⚠ Mục 1–7 viết trước khi có [AG]. Phần lớn điểm thiếu ở mục 7 đã được [AG] thể hiện; tình trạng từng điểm xem ở mục 8.2.
 
 **Quy tắc chung cho mọi màn hình** ([YK2] 6-14):
 
@@ -213,3 +216,84 @@ Có 17 điểm, chia 3 nhóm. So với bản theo v1, 5 điểm không còn là 
 | 15 | Cho tài năng chọn nhân vật hay chỉ dùng モモ (Momo) | 6-14 |
 | 16 | Mã màn hình dùng trong 画面定義書: theo [TK] hay đánh lại | 6-14, [SD] tr.1 |
 | 17 | Không tài liệu nào nói tới khả năng truy cập cho người khuyết tật (cỡ chữ, độ tương phản), ngôn ngữ hiển thị, hay câu chữ cho thông báo và lỗi. Câu chữ thông báo "sẽ xác nhận trên màn hình thật" | 6-13, 6-14 |
+
+## 8. Đối chiếu với phương án màn hình [AG] (12/11/2026)
+
+Cập nhật ngày 16/11/2026. Nguồn: [AG] trang 1 (bảng đối chiếu mã) và trang 12 (những chỗ đã đổi so với thiết kế của khách). Phân tích từng màn của [AG] nằm ở file 14.
+
+### 8.1 Bảng đối chiếu ba bộ mã màn hình
+
+Cùng một mã có thể chỉ màn khác nhau trong ba tài liệu (ví dụ M-10). Chưa chốt bộ mã nào dùng chung với khách (câu A10 trong file 15). Cột [SD] là đối chiếu của mình theo tên màn, [AG] không ghi.
+
+**Ứng dụng tài năng**
+
+| [AG] | Màn hình | [TK-T] | [SD] |
+| --- | --- | --- | --- |
+| T-01 | 利用の申し込み (đăng ký dùng) | (mới) | (không có) |
+| T-02 | ログイン (đăng nhập) | L-01 | T-01 |
+| T-03 | パスワードの設定 (đặt mật khẩu lần đầu, kèm xác nhận quản lý xem hội thoại) | (mới) | (không có) |
+| T-04 | はじめに行うこと (4 bước đầu) | (mới) | T-02 |
+| T-05 | SNS の接続 (kết nối mạng xã hội) | L-02 | T-02 (một phần) |
+| T-06 | マイページ (Trang của tôi) | Trang của tôi | T-03 |
+| T-07 | ホーム (việc hôm nay) | L-03 | T-03, T-05 |
+| T-08 | AIコーチとの会話 (trò chuyện với AI) | L-00 | T-04 |
+| T-09 | 投稿案の詳細 (chi tiết bản nháp, xem trước) | L-04 | T-06, T-10 |
+| T-10 | 写真・動画の送付 (gửi ảnh, video) | L-05 | T-07 |
+| T-11 | 動画の作成 (tạo video) | (mới) | T-08 |
+| T-12 | 動画の確認 (xem video đã tạo) | L-06 | T-09 |
+| T-13 | 投稿の予定と結果 (lịch và kết quả đăng) | L-07 | T-11 (một phần) |
+| T-14 | お知らせ (thông báo) | (mới) | T-12 |
+| T-15 | ご利用とお支払い (sử dụng và thanh toán) | L-09 | (không có) |
+
+**Màn hình quản trị**
+
+| [AG] | Màn hình | [TK-M] | [SD] |
+| --- | --- | --- | --- |
+| M-01 | ログイン（二段階認証）(đăng nhập hai bước) | M-01 | M-01 |
+| M-02 | お知らせ一覧 (danh sách thông báo) | M-02 | M-06 |
+| M-03 | 申し込みの確認 (duyệt đơn đăng ký) | (mới) | (không có) |
+| M-04 | 承認待ち一覧 (danh sách chờ duyệt) | M-03 | M-05 (một phần) |
+| M-05 | 投稿の承認 (duyệt bài) | M-04 | M-05 |
+| M-06 | タレント一覧 (danh sách tài năng) | M-05 | M-02 |
+| M-07 | タレントの詳細（情報）(chi tiết – thông tin) | M-06 | M-03 |
+| M-08 | タレントの詳細（投稿）(chi tiết – bài đăng) | M-06 | M-04 |
+| M-09 | タレントの詳細（会話）(chi tiết – hội thoại) | (mới) | (không có) |
+| M-10 | タレントの詳細（設定）(chi tiết – cài đặt) | M-06 | M-07 |
+| M-11 | 使ってはいけない言葉が入っていた投稿の確認 (bài dính từ cấm) | (mới) | (không có) |
+| M-12 | 事務所アカウントの作成 (tạo tài khoản công ty) | (mới) | M-08 (một phần) |
+| M-13 | カテゴリーの管理 (nhóm tài năng) | M-10 | (không có) |
+| M-14 | AIへの指示（一覧）(danh sách chỉ dẫn AI) | M-11 | (không có) |
+| M-15 | AIへの指示（入力）(soạn chỉ dẫn AI) | M-11 | (không có) |
+| M-16 | すべての自動投稿の停止 (dừng toàn bộ đăng tự động) | M-07 | M-09 (một phần) |
+| M-17 | 全体の設定 (cài đặt chung, gồm danh sách từ cấm) | (mới) | M-09 (một phần) |
+| M-18 | マネージャーの管理 (quản lý tài khoản quản lý) | M-08 | (không có) |
+| M-19 | 閲覧の記録 (nhật ký xem) | M-09 | M-10 |
+
+### 8.2 Tình trạng 17 điểm ở mục 7 sau khi có [AG]
+
+| STT (mục 7) | Tình trạng | Căn cứ trong [AG] |
+| --- | --- | --- |
+| 1 | Đã thể hiện: có nút 差し戻す (trả lại) kèm lý do | M-05 |
+| 2 | Đã thể hiện: bỏ lượt miễn phí, phân loại miễn phí, trần tiền video | T-11, T-12, T-15, M-10 |
+| 3 | Đã thể hiện: mọi quản lý dừng được, bỏ cột quyền | M-16, M-18 |
+| 4 | Đã thể hiện: bỏ LINE, còn 9 loại thông báo khớp 別紙A | M-02 |
+| 5 | Đã thể hiện: bỏ nút hủy, ghi "muốn ngừng thì báo quản lý". Vẫn chờ 確認53 | T-15 |
+| 6 | Đã thể hiện: nhập mục tiêu từng mạng và hạn | M-10 |
+| 7 | Đã thể hiện: mọi quản lý xem mọi tài năng. Vẫn chờ 確認41 | M-06 |
+| 8 | Đã chọn theo UC-12: tài khoản công ty đăng nhập ứng dụng tài năng, không duyệt. [YK2] 9-1 vẫn nói khác (câu A1, A2 trong file 15) | M-12 |
+| 9 | Đã thể hiện: thanh toán trước, kết nối sau | T-04 |
+| 10 | Đã thể hiện: chỉ dùng ứng dụng xác thực | M-01 |
+| 11 | Gần đủ: có đăng ký, đặt mật khẩu, xác nhận quản lý xem hội thoại (gộp vào T-03). "Đã gửi đơn" là dòng chữ trên T-01. **Còn thiếu màn đặt lại mật khẩu** | T-01, T-02, T-03 |
+| 12 | Đã thể hiện | T-11, T-14 |
+| 13 | Đã thể hiện: duyệt đơn, tạo tài khoản công ty, từ cấm (trong cài đặt chung), gửi ảnh và tạo video thay tài năng (khung đỏ, chờ 確認27), số lần video và chi phí AI, cài đặt chung, nút 予約し直す (đặt lịch lại) | M-03, M-08, M-10, M-12, M-17 |
+| 14 | Vẫn chờ: [AG] giữ nguyên M-13〜M-15 kèm 【要確認】 (cần xác nhận) | M-13, M-14, M-15 |
+| 15 | Vẫn mở: [AG] chỉ dùng モモ, không nói chọn nhân vật | — |
+| 16 | Vẫn mở, nay có ba bộ mã (mục 8.1) | Trang 1 |
+| 17 | Vẫn mở | — |
+
+### 8.3 Điều hướng theo [AG]
+
+- **Menu dưới của ứng dụng tài năng:** 5 mục ホーム (Trang chủ), チャット (Trò chuyện), 送る (Gửi), 予定 (Lịch), マイページ (Trang của tôi). Danh sách thông báo mở từ biểu tượng chuông trên T-06, T-07. Điểm "chỗ đặt danh sách thông báo" ở mục 3 đã có câu trả lời.
+- **Bấm thông báo:** T-14 ghi mở T-08, T-12, T-13, T-05 hoặc T-15 tùy loại. Vẫn chưa có bảng đủ cho từng loại.
+- **Màn mở đầu tiên của tài năng:** [AG] mở T-06 Trang của tôi, còn việc hôm nay nằm ở T-07. Chức năng 6-8 nói màn đầu tiên phải cho thấy việc hôm nay (câu B13 trong file 15).
+- **Menu bên trái của màn hình quản trị:** 9 mục お知らせ (thông báo), 承認待ち (chờ duyệt), タレント (tài năng), カテゴリー (nhóm), AIへの指示 (chỉ dẫn AI), 自動投稿の停止 (dừng đăng tự động), 全体の設定 (cài đặt chung), マネージャー (quản lý), 閲覧の記録 (nhật ký xem). Trên điện thoại: menu dưới gồm thông báo, chờ duyệt, tài năng và một mục menu chung. Duyệt đơn mở từ thông báo, tài khoản công ty mở từ danh sách tài năng, từ cấm nằm trong cài đặt chung.

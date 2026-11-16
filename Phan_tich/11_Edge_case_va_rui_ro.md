@@ -75,7 +75,7 @@ Tab này đã viết lại theo bản yêu cầu v2. Mã cũ được giữ khi 
 | D4 (đổi) | Quản lý hủy lịch đăng thành công trong hệ thống nhưng lệnh hủy gửi sang Upload-Post bị lỗi, bài vẫn đăng | Trung bình | Chỉ đổi trạng thái khi Upload-Post xác nhận đã hủy. Thử lại và báo quản lý nếu vẫn lỗi | [YK2] 6-10 (7-5) |
 | D5 | Tài năng tự xóa bài trực tiếp trên mạng xã hội, hệ thống vẫn ghi "đã đăng" và vẫn lấy số liệu | Trung bình | Khi lấy số liệu không thấy bài thì đánh dấu "đã xóa ngoài hệ thống" | [YK2] 6-7 |
 | D6 | Mục tiêu người theo dõi bị sửa giữa kỳ, tiến độ và thông báo đạt mục tiêu bị lệch | Thấp | Lưu lịch sử mục tiêu, tính tiến độ theo mục tiêu hiện tại | [YK2] 6-4, 確認3, 39 |
-| D7 | Thiết kế của khách khác nội dung [YK2] | Trung bình | [YK2] 6-14 nói theo [YK2]. Còn 6 điểm cần khách chốt (xem tab Giao diện, nhóm A2) | [YK2] 6-14; [TK-T], [TK-M] |
+| D7 | Thiết kế của khách khác nội dung [YK2] | Trung bình | [YK2] 6-14 nói theo [YK2]. Phương án màn hình [AG] (12/11) đã sửa gần hết theo [YK2]. Còn lại: bộ mã màn hình trùng nhau giữa [TK], [SD], [AG], màn đặt lại mật khẩu, chọn nhân vật (xem tab Giao diện mục 8.2 và file 14) | [YK2] 6-14; [TK-T], [TK-M]; [AG] |
 | D8 | Giờ hệ thống và giờ hiển thị khác múi giờ (máy chủ nước ngoài) | Thấp | Lưu giờ chuẩn quốc tế, hiển thị giờ Nhật | Suy ra từ kế hoạch dùng Vercel và Supabase |
 | D9 (mới) | Chỉ dẫn cho huấn luyện viên AI đến từ ba nơi (ChatGPT project, file trên OneDrive, màn hình chỉ dẫn AI) và có thể trái nhau | Trung bình | Quy định thứ tự ưu tiên, ví dụ tài năng > nhóm > toàn bộ. Phải chờ khách trả lời 確認6–8 | [YK2] 6-13, 7-5, 確認5–8 |
 
@@ -171,6 +171,9 @@ Các câu dưới đây gắn với edge case và rủi ro ở trên. Số 確�
 5. Nguồn tin tức cho đề xuất chủ đề (確認16; R6).
 6. Thông báo gấp cho quản lý có gửi qua email hoặc điện thoại không (確認45; E25).
 7. Có xác minh email và chặn đơn đăng ký rác không (E27).
+8. Tài năng 採用 (chấp nhận) sau khi giờ đăng đã qua thì đăng ngay, dời sang giờ tốt kế tiếp trong ngày, hay để sang hôm sau ([YK2] chức năng 4-3, mục 5-2, 確認30; E01).
+9. Bản nháp không ai chấp nhận thì hết hạn cuối ngày hay giữ lại để hôm sau dùng tiếp ([YK2] mục 5-1, 確認25).
+10. Có nhắc tài năng khi đã gửi ảnh hoặc video nhưng chưa bấm chấp nhận không. Chức năng 6-5 hiện chỉ nhắc khi thiếu ảnh hoặc video ([YK2] chức năng 6-5).
 
 ### 4.3 Hỏi để chốt chính sách
 
@@ -179,3 +182,4 @@ Các câu dưới đây gắn với edge case và rủi ro ở trên. Số 確�
 3. "Đã đăng" tính theo ngày hay theo từng mạng (確認22; E11).
 4. Số liệu của hệ thống là số tham khảo, không cam kết số người theo dõi (D1, R2).
 5. Ngưỡng chi phí AI mỗi tài năng để báo quản lý (確認23, 29; R7).
+6. Ngày không đăng có làm đứt chuỗi ngày đăng liên tục không, và có báo quản lý ngay trong ngày không, hay chỉ báo ở mốc 7 ngày (確認19, 22; E11).

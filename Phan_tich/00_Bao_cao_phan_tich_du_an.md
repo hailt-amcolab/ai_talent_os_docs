@@ -15,7 +15,7 @@ Báo cáo này tổng hợp các tab phân tích, đã viết lại theo bản y
 
 **Cách đọc nhãn:**
 
-- **[Xác nhận]:** có trong tài liệu gốc. Nguồn ghi theo mục của [YK2] (概要要件定義書 – bản định nghĩa yêu cầu khái quát, bản v2), hoặc theo trang của [SM], [SD], [TK-T], [TK-M] (xem mục "Tài liệu nguồn" ở cuối tab). 前提 là phần tiền đề ở cuối mỗi UC.
+- **[Xác nhận]:** có trong tài liệu gốc. Nguồn ghi theo mục của [YK2] (概要要件定義書 – bản định nghĩa yêu cầu khái quát, bản v2), hoặc theo trang của [SM], [SD], [TK-T], [TK-M], [AG] (xem mục "Tài liệu nguồn" ở cuối tab). 前提 là phần tiền đề ở cuối mỗi UC.
 - **[Xác nhận ⚠]:** có trong tài liệu nhưng còn kèm 確認 (mục cần xác nhận). Đây là đề xuất của FutureCore, khách chưa trả lời. Số 確認 theo đánh số của v2 (1–56).
 - **[Đề xuất]:** đề xuất kỹ thuật của mình để các chức năng đã xác nhận chạy được. Không phải yêu cầu mới.
 - **[Giả định]:** mình suy ra khi tài liệu im lặng. Cần khách xác nhận trước khi dùng.
@@ -41,20 +41,22 @@ Chi tiết: tab "Tab 1" (bối cảnh kinh doanh), tab "Phạm vi", tab "Cập n
 
 Có 54 chức năng chia vào 12 module: 42 mức 高 (cao), 11 mức 中 (trung bình), 1 mức 低 (thấp). Khi vận hành chính thức chỉ cam kết các chức năng mức cao và trung bình. [Xác nhận] [YK2] 6, 12-3. Mã và số chức năng không đổi so với v1, nhưng nội dung 12 chức năng đã đổi.
 
-| Module | Chức năng chính | Số chức năng |
+Bảng dưới liệt kê đủ 54 chức năng theo thứ tự trong [YK2] mục 6-1 đến 6-12. Mã chức năng giữ nguyên theo số hạng mục lớn của SOW (bản mô tả phạm vi công việc), nên không liên tục trong một module. Mức ưu tiên: 高 (cao), 中 (trung bình), 低 (thấp). Chi tiết đầu vào, điều kiện và kết quả của từng chức năng nằm ở tab Yêu cầu chức năng.
+
+| Module | Tất cả chức năng (mã – tên – mức ưu tiên) | Số chức năng |
 | --- | --- | --- |
-| 1. Đăng ký và đăng nhập | Tự đăng ký trên ứng dụng, quản lý duyệt, email mật khẩu tạm, tự đặt lại mật khẩu, nhận diện tài năng, hướng dẫn lần đầu | 3 |
-| 2. Phân quyền | Đăng nhập hai bước cho quản lý, đổi trạng thái tài năng, nhật ký xem | 3 |
-| 3. Thu phí | Phí tháng cho mọi tài năng, loại tài khoản (tài năng / công ty), tính gộp phí video. Chức năng 1-3 (đổi loại) không còn việc để làm | 4 |
-| 4. Thông tin tài năng | Tạo thư mục OneDrive khi thanh toán xong, nhập hồ sơ qua ChatGPT project, mục tiêu và hạn, đọc dữ liệu mỗi sáng | 5 |
-| 5. Huấn luyện viên AI (lõi) | Trò chuyện, giới hạn chủ đề, tự cải thiện, nhận xét, tổng kết tuần, nhắc nhở, báo đạt mục tiêu, chi phí AI | 9 |
-| 6. Bản nháp | 3 chủ đề mỗi sáng, bản nháp không giới hạn số lượng, viết lại qua AI, 採用 (chấp nhận), kiểm tra từ cấm, xem trước | 5 |
-| 7. Tư liệu | Gửi và lưu ảnh, video, nhắc gửi | 3 |
-| 8. Video | Tạo video từ ảnh, video dọc, xem lại, gắn nhãn AI | 4 |
-| 9. Duyệt bài | Duyệt hoặc trả lại bài cho công việc cần khách hàng cho phép, gửi lại, hủy lịch khi quá giờ | 1 |
-| 10. Đăng bài hẹn giờ | Kết nối Upload-Post, đăng lên các mạng đã kết nối, chống bị khóa, báo lỗi, dừng toàn bộ hoặc từng tài năng, hủy bài trên màn hình quản trị, tài khoản công ty | 8 |
-| 11. Số liệu | Lấy và ghi số liệu, hiển thị tiến độ, chọn giờ đăng | 6 |
-| 12. Thông báo và nền tảng | Thông báo trong ứng dụng và thông báo đẩy, danh sách 8 loại thông báo cho quản lý, nền tảng PWA (ứng dụng web cài lên màn hình chính) | 3 |
+| 1. Đăng ký và đăng nhập ([YK2] 6-1) | **1-4** Đăng ký, duyệt đơn và đăng nhập (高): tự đăng ký trên ứng dụng, quản lý duyệt hoặc từ chối, email mật khẩu tạm, tự đặt mật khẩu, khóa 15 phút khi sai 5 lần, tự đặt lại khi quên<br>**1-5** Nhận diện tài năng (高)<br>**6-2** Hướng dẫn lần đầu và kết nối mạng xã hội (高) | 3 |
+| 2. Phân quyền ([YK2] 6-2) | **1-6** Đăng nhập và quyền của quản lý (高): đăng nhập hai bước, một loại quyền, thêm và vô hiệu hóa quản lý<br>**7-3** Đổi trạng thái tài năng (高): trước khi dùng, đang dùng, đã kết thúc<br>**7-6** Nhật ký xem thông tin (中) | 3 |
+| 3. Thu phí ([YK2] 6-3) | **1-1** Thu phí thuê bao tháng (高): qua cước nhà mạng hoặc thẻ<br>**1-2** Loại tài khoản (高): tài năng trả phí hoặc tài khoản công ty không tính phí<br>**1-3** Đổi loại (中): không còn việc để làm vì v2 bỏ loại miễn phí<br>**5-4** Đếm số lần tạo video và thu gộp với phí tháng (高) | 4 |
+| 4. Thông tin tài năng ([YK2] 6-4) | **2-2** Tạo thư mục riêng cho tài năng (高): tạo trên OneDrive khi đăng ký thanh toán xong<br>**2-3** Nhập thông tin từ ChatGPT (高): quản lý nhập hồ sơ qua ChatGPT project của từng tài năng<br>**2-4** Đăng ký mục tiêu (高): số người theo dõi, hạn đạt<br>**2-1** Đọc thông tin tài năng (高): huấn luyện viên AI đọc mỗi sáng<br>**7-1** Xem thông tin tài năng (高): trên màn hình quản trị | 5 |
+| 5. Huấn luyện viên AI – lõi ([YK2] 6-5) | **3-1** Hiểu tài năng và thuật toán (高)<br>**3-4** Trò chuyện với huấn luyện viên AI (高): tối đa 1.000 ký tự mỗi tin<br>**3-3** Giới hạn chủ đề trò chuyện (高): chuyện sức khỏe, rời công ty thì báo quản lý<br>**3-9** Nhắc tài năng lâu không đăng bài (中): mặc định 3 ngày nhắn tài năng, 7 ngày báo quản lý<br>**3-2** Tự cải thiện (高)<br>**3-6** Nhận xét bài hôm trước và gợi ý cải thiện (高)<br>**3-8** Tổng kết tuần (中)<br>**3-7** Thông báo khi đạt mục tiêu (中)<br>**3-5** Quản lý chi phí AI (中) | 9 |
+| 6. Bản nháp ([YK2] 6-6) | **4-1** Tự tạo bản nháp (高): 3 chủ đề mỗi sáng, chú thích, hashtag, hướng dẫn chụp, kịch bản video<br>**4-2** Yêu cầu sửa và viết lại (高): không giới hạn số lần (⚠ 確認29)<br>**4-3** 採用 – chấp nhận bản nháp (高): bắt buộc có ảnh hoặc video, chọn có gửi duyệt không<br>**4-4** Phát hiện từ cấm (高)<br>**6-6** Xem trước bài đăng (中) | 5 |
+| 7. Tư liệu ([YK2] 6-7) | **6-3** Gửi ảnh và video (高): tài năng gửi, quản lý cũng gửi thay được<br>**6-4** Lưu tư liệu (高): lưu vào thư mục OneDrive, video tự làm dùng mỗi ngày 1 cái<br>**6-5** Nhắc gửi tư liệu (中): trước giờ đăng 2 tiếng, 1 lần mỗi ngày | 3 |
+| 8. Video ([YK2] 6-8) | **5-1** Tạo video (高): từ ảnh, qua Kling<br>**5-2** Định dạng video (高): video ngắn dọc<br>**5-3** Xem và xử lý video đã tạo (高): dùng, tạo lại hoặc bỏ<br>**5-5** Ghi rõ video do AI tạo (高) | 4 |
+| 9. Duyệt bài ([YK2] 6-9) | **7-7** Duyệt bài đăng (高): bật theo từng tài năng; tài năng tự chọn gửi duyệt; duyệt hoặc trả lại có lý do; quá giờ chưa duyệt thì không đăng (⚠ 確認34–36) | 1 |
+| 10. Đăng bài hẹn giờ ([YK2] 6-10) | **8-2** Kết nối dịch vụ đăng bài (高): đăng ký tài năng với Upload-Post<br>**8-3** Đăng lên 3 mạng xã hội (高): cùng ảnh hoặc video và chú thích<br>**8-4** Chống bị khóa tài khoản (高)<br>**8-5** Thông báo khi đăng lỗi (高)<br>**8-6** Thông báo khi mất kết nối (中)<br>**7-5** Dừng đăng tự động, toàn bộ hoặc từng tài năng (高): dừng thì hủy cả bài đã hẹn<br>**7-2** Xem và hủy bài đăng (高): trên màn hình quản trị<br>**9-1** Đăng bài bằng tài khoản công ty (中) | 8 |
+| 11. Số liệu ([YK2] 6-11) | **8-7** Lấy số liệu (高): từ Upload-Post<br>**8-8** Ghi số liệu vào file (高): vào thư mục OneDrive của tài năng<br>**3-10** Hiển thị số người theo dõi (高)<br>**6-7** Số liệu và mức đạt cho tài năng (高)<br>**8-1** Phân tích giờ đăng (中): chọn giờ đăng cho từng tài năng<br>**8-9** Lấy khung giờ tương tác (低) | 6 |
+| 12. Thông báo và nền tảng ([YK2] 6-12) | **6-1** Tin nhắn trong ứng dụng và thông báo đẩy (高)<br>**7-4** Danh sách thông báo cho quản lý (高)<br>**6-8** Nền tảng PWA – ứng dụng web cài lên màn hình chính (高) | 3 |
 
 **Ngoài phạm vi [Xác nhận]:**
 
@@ -82,8 +84,8 @@ Chi tiết: tab "Phạm vi", tab "Yêu cầu chức năng".
 
 - Không có vai trò quản trị cao hơn, nên chưa rõ ai tạo quản lý đầu tiên và có chặn vô hiệu hóa quản lý cuối cùng không.
 - Tài năng có được xem hồ sơ của chính mình không (mục 7-2 chỉ cho quản lý và AI xem).
-- Tài khoản công ty thao tác từ ứng dụng hay từ màn hình quản trị (UC-12 前提 và 6-10 chức năng 9-1 nói khác nhau).
-- Thiết kế [TK-M] có "quyền dừng đăng tự động" riêng. V2 nói rõ theo [YK2] và sẽ sửa trong 画面定義書 (bản định nghĩa màn hình) (6-14).
+- Tài khoản công ty thao tác từ ứng dụng hay từ màn hình quản trị (UC-12 前提 và 6-10 chức năng 9-1 nói khác nhau). Phương án màn hình [AG] M-12 đã chọn theo UC-12 (đăng nhập ứng dụng tài năng), nhưng [YK2] 9-1 chưa sửa.
+- Thiết kế [TK-M] có "quyền dừng đăng tự động" riêng. V2 nói rõ theo [YK2] và sẽ sửa trong 画面定義書 (bản định nghĩa màn hình) (6-14). [AG] M-16, M-18 đã sửa.
 
 Chi tiết: tab "Vai trò và phân quyền" (viết theo v1).
 
@@ -351,3 +353,4 @@ Danh sách đầy đủ: tab "Cập nhật theo v2" (10 điểm mới trong v2),
 | [SD] | 画面遷移図と画面案_AI育成OS.pdf (sơ đồ chuyển màn hình và phương án màn hình) | Ngày 11/11/2026 |
 | [TK-T] | Design style/★AI育成OS_タレントアプリ画面_かわいい版.pdf (thiết kế ứng dụng tài năng) | Các màn L-00 đến L-09 |
 | [TK-M] | Design style/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf (thiết kế màn hình quản trị) | Các màn M-01 đến M-11 |
+| [AG] | アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng của FutureCore) | Ngày 12/11/2026, 12 trang. T-01 đến T-15, M-01 đến M-19. Giữ phong cách [TK], sửa nội dung theo [YK2]. Phân tích ở file 14 |
