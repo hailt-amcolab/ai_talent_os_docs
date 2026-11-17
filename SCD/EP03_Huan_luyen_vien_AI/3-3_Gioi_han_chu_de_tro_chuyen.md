@@ -98,3 +98,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 
 - [YK2] §5-5, §6-5 (3-3), §11, UC-10, 別紙A, 確認17, 23.
 - [AG] trang 3 (T-08), trang 6 (M-02), trang 8 (M-09).
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.18 (đã chốt): quy tắc chủ đề, cách nói và câu từ chối với tài năng vị thành niên **không phải chức năng của hệ thống**. アデッソ viết vào file chỉ thị cho AI ([YK2] 7-5). Hệ thống chỉ tính tuổi từ ngày sinh và hiển thị tham khảo. Không làm logic riêng cho vị thành niên.

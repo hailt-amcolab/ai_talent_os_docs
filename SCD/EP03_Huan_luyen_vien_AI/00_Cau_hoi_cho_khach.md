@@ -84,3 +84,16 @@ Cả hai câu đều thuộc 3-3 và liên quan an toàn của tài năng, nhấ
 | 3-8 | 🟡 | 🟢 |
 | 3-7 | 🟡 | 🟢 |
 | 3-5 | 🟡 | 🟢 |
+
+## Đối chiếu với file Q&A (bản ngày 15/11/2026)
+
+Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã gửi thì **không gửi lại**; câu đã chốt thì làm theo. Chi tiết ở `Phan_tich/19_Doi_chieu_QA_bao_gia.md`.
+
+| Mã | Tiêu đề | Q&A | Tình trạng |
+|---|---|---|---|
+| B10 | Huấn luyện viên AI với tài khoản văn phòng | No.66 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); màn thử thách chưa làm tới khi khách quyết |
+| S03-02 | Dấu hiệu tự hại, nguy hiểm | No.18 | Đã chốt trong Q&A một phần: quy tắc cho tài năng vị thành niên nằm trong file chỉ thị do khách viết |
+| S03-03 | Câu từ chối cố định | No.18 | Đã chốt trong Q&A một phần: câu từ chối do khách viết vào file chỉ thị |
+| S03-05 | Ngày đang dừng đăng tự động | No.60 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S03-08 | Cách hiện phí AI | No.17 | Đã chốt trong Q&A: tổng hợp theo tài năng và tháng, không trần |

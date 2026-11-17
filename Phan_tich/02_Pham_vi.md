@@ -1,5 +1,14 @@
 # Phạm vi dự án: Trong phạm vi / Ngoài phạm vi / Chưa rõ
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- Trong phạm vi, đã chốt: tự đăng ký (CR-01); 3 chủ đề (CR-02); trả lại kèm lý do (CR-03); hai loại video, video trình chiếu ghép ảnh ở máy chủ, không dùng Kling (CR-04); tìm tin tức (CR-05); màn sửa bài dính từ cấm tối thiểu (CR-06); màn cài đặt chung (CR-07); thông báo đạt mục tiêu và thu tiền lỗi (CR-08); quản lý gửi thay tài năng (CR-09); lưu OneDrive (CR-10).
+- Bị cắt so với báo giá (không làm): phân loại trả phí/miễn phí, trần tháng tạo video, hai loại quản lý, người duyệt chỉ định, tự đăng lại, trần phí AI (CR-11〜CR-16).
+- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Dòng 6-4 "mỗi ngày dùng một video tự làm" thuộc CR-23; dòng 確認47 thuộc CR-17.
+
+
 Tab này đã viết lại theo bản yêu cầu v2. [YK2] = AI育成OS_概要要件定義書_v2.docx. Số 確認 (mục cần xác nhận) theo đánh số của v2. 前提 là phần tiền đề ở cuối mỗi UC.
 
 **Thay đổi phạm vi chính so với v1:** tài năng tự đăng ký trên ứng dụng chuyển từ "ngoài phạm vi" vào "trong phạm vi". Người ngoài công ty không còn là mục để sau mà dùng chung luồng đăng ký (⚠ 確認1). Loại tài năng miễn phí bị bỏ. Hủy bài trên màn hình quản trị và dừng đăng theo từng tài năng vào phạm vi. Màn hình chỉ dẫn cho AI và nhóm tài năng vẫn chưa rõ.

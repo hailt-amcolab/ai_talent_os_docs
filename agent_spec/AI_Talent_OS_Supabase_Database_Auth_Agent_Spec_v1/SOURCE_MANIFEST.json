@@ -1,0 +1,192 @@
+{
+  "createdDate": "2026-11-17",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://supabase.com/docs/guides/auth/auth-mfa/totp",
+      "use": "Active default TOTP enrollment/challenge/verify and AAL; restored by CR-MFA-02",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S02",
+      "url": "https://supabase.com/docs/guides/auth/auth-email-passwordless",
+      "use": "Không dùng: đã bỏ OTP qua email (17/11/2026)",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S03",
+      "url": "https://supabase.com/docs/guides/auth/server-side/creating-a-client",
+      "use": "SSR browser/server clients and getClaims/getUser/getSession distinction",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S04",
+      "url": "https://supabase.com/docs/guides/database/connecting-to-postgres",
+      "use": "Direct/session/shared transaction pooling, max1 and preparefalse",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S05",
+      "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "use": "RLS/JWT metadata/privileges/securitydefiner",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S06",
+      "url": "https://supabase.com/docs/guides/auth/sessions",
+      "use": "JWT/session lifetime, timeout enforcement and signout caveats",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S07",
+      "url": "https://supabase.com/docs/guides/auth/auth-hooks/password-verification-hook",
+      "use": "Password verification hook custom lockout",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S08",
+      "url": "https://supabase.com/docs/guides/auth/rate-limits",
+      "use": "Auth rate limit configuration",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S09",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-unenroll",
+      "use": "Verified factor removal requires aal2",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S10",
+      "url": "https://supabase.com/docs/guides/auth/auth-smtp",
+      "use": "Custom SMTP production requirements",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S11",
+      "url": "https://supabase.com/docs/guides/database",
+      "use": "Database docs; project-specific backup/restore must be verified before release",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S12",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-challenge",
+      "use": "MFA challenge API",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S13",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-verify",
+      "use": "MFA verify API",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S14",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-recovery-codes-generate",
+      "use": "Recovery codes exist but require experimental flag at retrieval",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S15",
+      "name": "AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "kind": "current_local_requirements",
+      "use": "V2 §§4,6-1,6-2,6-4,9,10-1; Q&A relevant rows11,12,21,26; dependency Auth integration"
+    },
+    {
+      "id": "S16",
+      "name": "AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "d2340fa971bed7c86c6aac3698f1a7de63565b0eeab31eed48e22951294ea8b9",
+      "kind": "current_local_requirements",
+      "use": "Bản 15/11/2026: No.10, 11, 20, 25 đã chốt; No.63–67 đang hỏi; CR-01"
+    },
+    {
+      "id": "S17",
+      "name": "AI_Talent_OS_PWA_Agent_Spec_v1/ (thư mục, bản 1.1)",
+      "kind": "prior_design_dependency",
+      "use": "V2 §§4,6-1,6-2,6-4,9,10-1; Q&A relevant rows11,12,21,26; dependency Auth integration"
+    },
+    {
+      "id": "S18",
+      "name": "UPLOAD_POST_IMPLEMENTATION_SPEC_VI.md",
+      "sha256": "cda329690a5222d64a3b61993f16a7b2166c74e7cdcda92ce4930a8bc80ca5c3",
+      "kind": "prior_design_dependency",
+      "use": "V2 §§4,6-1,6-2,6-4,9,10-1; Q&A relevant rows11,12,21,26; dependency Auth integration"
+    },
+    {
+      "id": "S19",
+      "url": "https://supabase.com/docs/guides/auth/auth-mfa/phone",
+      "use": "Phone MFA flow, code lifetime/overlap, factor constraints",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S20",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-enroll",
+      "use": "factorType phone and phone number input",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S21",
+      "url": "https://supabase.com/docs/reference/javascript/auth-mfa-challenge",
+      "use": "default SMS vs explicit WhatsApp channel",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S22",
+      "url": "https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook",
+      "use": "optional provider hook; requires signature/adapter POC",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S23",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/advanced-mfa-phone",
+      "use": "add-on enablement billing and provider message charges; spend cap exception",
+      "readDate": "2026-11-17",
+      "kind": "official_technical_documentation"
+    },
+    {
+      "id": "S24",
+      "kind": "user_supplied_requirement_excerpt",
+      "date": "2026-11-17",
+      "text": "スマートフォンの認証アプリ（6桁）を使います。初回はQRコードで登録。SMS方式は要件定義でご相談。",
+      "use": "Authenticator default, first QR setup, SMS to be discussed; source page unknown"
+    }
+  ],
+  "sourceStatus": "V2 directly re-read; Q&A re-read 2026-11-17 (version answered 2026-11-13/15); Supabase plan facts re-checked 2026-11-17",
+  "notIncluded": "Original customer source files, credentials and Library helpers are not shipped",
+  "verification": "Documentation only; no Supabase configuration/add-on/SMS send executed",
+  "documentVersion": "1.2",
+  "changeHistory": [
+    {
+      "id": "CR-SMS-01",
+      "date": "2026-11-17",
+      "decision": "User explicitly requested replacing Manager TOTP with SMS Phone MFA",
+      "originalRequirement": "V2 §6-2 specified authenticator app; not edited retrospectively"
+    }
+  ],
+  "changeDecision": {
+    "id": "CR-MFA-02",
+    "date": "2026-11-17",
+    "decision": "Keep both TOTP Authenticator and SMS implementation; default TOTP QR/6 digits; SMS optional/configurable pending requirements discussion",
+    "sourceQuote": "スマートフォンの認証アプリ（6桁）を使います。初回はQRコードで登録。SMS方式は要件定義でご相談。",
+    "quoteOrigin": "User supplied in conversation; original page not identified",
+    "supersedes": "SMS-only default of CR-SMS-01"
+  }
+}

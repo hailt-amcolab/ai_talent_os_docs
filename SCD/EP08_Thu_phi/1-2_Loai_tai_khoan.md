@@ -1,76 +1,63 @@
 # 1-2 Loại tài khoản
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP08 – Thu phí |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-3 |
-| Màn hình [AG] | M-12 |
+| Mục [YK2] | §6-3, chức năng 1-2 (tên trong [YK2]: 有償と無償の区分); §3-1; §5-4; UC-12 前提 |
+| Màn hình [AG] | M-12 (tạo tài khoản công ty), M-06 (nhãn 事務所) |
 | Tên trong mã nguồn | Account Type (Paid / Office) |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ | ✅ | ✅ | ✅ | ⚠ đội đề xuất | ⚠ 1-4, 2-2, 8-2 |
 
 ## Mục đích
 
-**Phân loại tài khoản trả phí và tài khoản công ty** (không có miễn phí)
-
-## Tác nhân
-
-Quản lý (tạo tài khoản công ty), hệ thống
-
-## Đầu vào
-
-Thông tin tài khoản công ty ⚠ chưa nêu các trường
-
-## Điều kiện trước
-
-—
+Mọi người xin dùng qua ứng dụng đều là tài năng trả phí. Quản lý tạo tài khoản công ty trên màn hình quản trị: không có bước thanh toán, không thu phí tháng, dùng đủ chức năng như tài năng. Tài năng không tự chọn hay đổi loại (§6-3 chức năng 1-2, §5-4). Không có gói miễn phí.
 
 ## Luồng chính
 
-1. Người đăng ký qua ứng dụng đều là tài năng có trả phí.
-2. Quản lý tạo tài khoản công ty trên màn hình quản trị: không hiện bước đăng ký thanh toán, không thu phí tháng.
-3. Tài năng không tự chọn hay đổi loại
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Loại tài khoản được lưu
-- Kết quả mong đợi: Tài khoản công ty dùng đủ chức năng như tài năng, không bị thu phí tháng
+1. Người được duyệt qua 1-4: `account_type = talent`.
+2. Quản lý bấm ＋事務所アカウント ở M-06, mở M-12, nhập tên và email đăng nhập, bấm 作る (tạo).
+3. Hệ thống tạo tài khoản đăng nhập (gửi thư có mật khẩu tạm như 1-4), `account_type = office`, trạng thái 利用中, tạo thư mục (2-2), đăng ký Upload-Post (8-2).
+4. M-06 hiện dòng có nhãn 事務所.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Email đã dùng | Không tạo; báo lỗi | §6-4 chức năng 2-2 |
+| Muốn đổi tài khoản công ty thành trả phí | Không đổi; đăng ký mới như tài năng | §5-4 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Không có phân loại trả phí và miễn phí | Chốt | §5-4, UC-11 前提 |
+| Tài khoản công ty không bị thu phí tháng, phí video quyết toán nội bộ | Chốt | §3-1, UC-12 前提 |
+| Tài năng không đổi loại | Chốt | §6-3 |
 
-## Dữ liệu
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho quản lý tạo tài khoản công ty, thì có thư mục, hồ sơ Upload-Post, nhãn 事務所 ở M-06, và hướng dẫn lần đầu không có bước thanh toán.
+2. Cho tài khoản tài năng, khi gọi API đổi loại, thì bị từ chối.
 
-## Tích hợp
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1-4, 2-2, 8-2, 9-1.
 
-## Tiêu chí chấp nhận
+## Câu hỏi mở
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| A1 | Tài khoản công ty thao tác ở đâu | Không (thuộc 9-1) | Ứng dụng tài năng |
 
-## Chỗ còn thiếu
-
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | A1 (tài khoản công ty thao tác ở đâu) |
-| Kiểm chứng | — |
-| Đội | — |
-
-## Điểm chưa rõ (từ file 04)
-
-- [YK2] còn giữ tên chức năng cũ. Nên đổi tên hoặc bỏ 1-3 để khớp nội dung.
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 5-4, 6-3 (1-1, 1-2, 1-3, 5-4), UC-11, UC-12 前提, 確認48–51.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP08.
+- [YK2] §3-1, §5-4, §6-3 (1-2), UC-11 前提, UC-12 前提. [AG] trang 7 (M-06), trang 8 (M-12).

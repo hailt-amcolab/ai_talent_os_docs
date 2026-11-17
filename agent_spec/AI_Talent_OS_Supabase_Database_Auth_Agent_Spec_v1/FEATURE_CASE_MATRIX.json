@@ -1,0 +1,291 @@
+[
+  {
+    "id": "DB01",
+    "title": "Khởi tạo dự án và cấu hình kết nối",
+    "source": "TK; S04,S10",
+    "testIds": [
+      "DB01-T01",
+      "DB01-T02",
+      "DB01-T03",
+      "DB01-T04"
+    ]
+  },
+  {
+    "id": "DB02",
+    "title": "Đọc ghi và tính nhất quán nghiệp vụ",
+    "source": "TK; S05",
+    "testIds": [
+      "DB02-T01",
+      "DB02-T02",
+      "DB02-T03",
+      "DB02-T04"
+    ]
+  },
+  {
+    "id": "AU01",
+    "title": "Nộp đơn Talent chưa được phép đăng nhập",
+    "source": "YC v2 UC-01,§6-1 1-4; Q&A No.11 và CR-01 đã chốt: làm ở SP1",
+    "testIds": [
+      "AU01-T01",
+      "AU01-T02",
+      "AU01-T03",
+      "AU01-T04"
+    ]
+  },
+  {
+    "id": "AU02",
+    "title": "Manager duyệt/từ chối đơn",
+    "source": "YC v2 UC-01,§6-1; TK saga",
+    "testIds": [
+      "AU02-T01",
+      "AU02-T02",
+      "AU02-T03",
+      "AU02-T04"
+    ]
+  },
+  {
+    "id": "AU03",
+    "title": "Gửi mật khẩu tạm theo v2 và bắt buộc đổi",
+    "source": "YC v2 §6-1; TK secret delivery",
+    "testIds": [
+      "AU03-T01",
+      "AU03-T02",
+      "AU03-T03",
+      "AU03-T04"
+    ]
+  },
+  {
+    "id": "AU04",
+    "title": "Đăng nhập Talent bằng mật khẩu",
+    "source": "YC v2 §6-1 1-4/1-5",
+    "testIds": [
+      "AU04-T01",
+      "AU04-T02",
+      "AU04-T03",
+      "AU04-T04"
+    ]
+  },
+  {
+    "id": "AU05",
+    "title": "Khóa sau5 lần sai và rate limit",
+    "source": "YC v2 §6-1; TK S07,S08",
+    "testIds": [
+      "AU05-T01",
+      "AU05-T02",
+      "AU05-T03",
+      "AU05-T04"
+    ]
+  },
+  {
+    "id": "AU06",
+    "title": "Manager chọn một phương thức MFA được phép",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "AU06-T01",
+      "AU06-T02",
+      "AU06-T03",
+      "AU06-T04"
+    ]
+  },
+  {
+    "id": "MF01",
+    "title": "Nhánh SMS tùy chọn Đăng ký số điện thoại cho SMS MFA",
+    "source": "CR-MFA-02 nhánh phone_sms",
+    "testIds": [
+      "MF01-T01",
+      "MF01-T02",
+      "MF01-T03",
+      "MF01-T04",
+      "MF01-T05",
+      "MF01-T06",
+      "MF01-T07"
+    ]
+  },
+  {
+    "id": "MF02",
+    "title": "Nhánh SMS tùy chọn Gửi và xác minh mã SMS khi đăng nhập",
+    "source": "CR-MFA-02 nhánh phone_sms",
+    "testIds": [
+      "MF02-T01",
+      "MF02-T02",
+      "MF02-T03",
+      "MF02-T04",
+      "MF02-T05",
+      "MF02-T06",
+      "MF02-T07",
+      "MF02-T08",
+      "MF02-T09",
+      "MF02-T10",
+      "MF02-T11",
+      "MF02-T12",
+      "MF02-T13",
+      "MF02-T14"
+    ]
+  },
+  {
+    "id": "MF03",
+    "title": "Nhánh SMS tùy chọn Đổi số điện thoại khi còn dùng được số cũ",
+    "source": "CR-MFA-02 nhánh phone_sms",
+    "testIds": [
+      "MF03-T01",
+      "MF03-T02",
+      "MF03-T03",
+      "MF03-T04",
+      "MF03-T05",
+      "MF03-T06"
+    ]
+  },
+  {
+    "id": "MF04",
+    "title": "Nhánh SMS tùy chọn Mất số điện thoại và khôi phục SMS MFA",
+    "source": "CR-MFA-02 nhánh phone_sms",
+    "testIds": [
+      "MF04-T01",
+      "MF04-T02",
+      "MF04-T03",
+      "MF04-T04",
+      "MF04-T05",
+      "MF04-T06",
+      "MF04-T07"
+    ]
+  },
+  {
+    "id": "AU07",
+    "title": "Quên và đặt lại mật khẩu",
+    "source": "YC v2 §6-1; S03",
+    "testIds": [
+      "AU07-T01",
+      "AU07-T02",
+      "AU07-T03",
+      "AU07-T04"
+    ]
+  },
+  {
+    "id": "AU08",
+    "title": "Đổi email tài khoản",
+    "source": "TK; CĐ quy trình email change",
+    "testIds": [
+      "AU08-T01",
+      "AU08-T02",
+      "AU08-T03",
+      "AU08-T04"
+    ]
+  },
+  {
+    "id": "AU09",
+    "title": "Thu hồi, vô hiệu hóa và bật lại",
+    "source": "YC v2 UC-13,§6-2 7-3; S06",
+    "testIds": [
+      "AU09-T01",
+      "AU09-T02",
+      "AU09-T03",
+      "AU09-T04"
+    ]
+  },
+  {
+    "id": "AU10",
+    "title": "Tạo Manager đầu tiên và account văn phòng",
+    "source": "YC v2 §6-2/UC-12; TK bootstrap",
+    "testIds": [
+      "AU10-T01",
+      "AU10-T02",
+      "AU10-T03",
+      "AU10-T04"
+    ]
+  },
+  {
+    "id": "OP01",
+    "title": "Migration, backup và khôi phục",
+    "source": "TK; S04,S11",
+    "testIds": [
+      "OP01-T01",
+      "OP01-T02",
+      "OP01-T03",
+      "OP01-T04"
+    ]
+  },
+  {
+    "id": "SMSSEC",
+    "title": "Nhánh SMS tùy chọn Bảo mật và vận hành SMS",
+    "source": "CR-MFA-02 nhánh phone_sms",
+    "testIds": [
+      "SMSSEC-T01",
+      "SMSSEC-T02",
+      "SMSSEC-T03",
+      "SMSSEC-T04",
+      "SMSSEC-T05",
+      "SMSSEC-T06",
+      "SMSSEC-T07",
+      "SMSSEC-T08"
+    ]
+  },
+  {
+    "id": "TP01",
+    "title": "TOTP QR enrollment",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "TP01-T01",
+      "TP01-T02",
+      "TP01-T03",
+      "TP01-T04",
+      "TP01-T05",
+      "TP01-T06"
+    ]
+  },
+  {
+    "id": "TP02",
+    "title": "TOTP login/challenge/verify",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "TP02-T01",
+      "TP02-T02",
+      "TP02-T03",
+      "TP02-T04",
+      "TP02-T05",
+      "TP02-T06",
+      "TP02-T07",
+      "TP02-T08"
+    ]
+  },
+  {
+    "id": "TP03",
+    "title": "Đổi Authenticator",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "TP03-T01",
+      "TP03-T02",
+      "TP03-T03",
+      "TP03-T04"
+    ]
+  },
+  {
+    "id": "TP04",
+    "title": "Mất Authenticator/recovery",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "TP04-T01",
+      "TP04-T02",
+      "TP04-T03",
+      "TP04-T04"
+    ]
+  },
+  {
+    "id": "MP01",
+    "title": "Policy và lựa chọn hai phương thức",
+    "source": "CR-MFA-02",
+    "testIds": [
+      "MP01-T01",
+      "MP01-T02",
+      "MP01-T03",
+      "MP01-T04",
+      "MP01-T05",
+      "MP01-T06",
+      "MP01-T07",
+      "MP01-T08",
+      "MP01-T09",
+      "MP01-T10",
+      "MP01-T11",
+      "MP01-T12"
+    ]
+  }
+]

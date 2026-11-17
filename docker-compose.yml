@@ -1,0 +1,66 @@
+# Chạy cả FE và BE trên máy lập trình (hoặc VPS). Lệnh ở thư mục gốc: docker compose up -d --build
+# - Kết nối DB (Supabase) lấy từ apps/api/.env; giá trị dùng chung (VAPID, CORS, URL API) lấy từ .env gốc.
+# - Không có Caddy: chạy local dùng HTTP; HTTPS cho điện thoại thì đi qua đường hầm (ngrok…). Xem DOCKER.md.
+services:
+  # PostgreSQL local, chỉ khi không dùng Supabase: docker compose --profile local-db up -d db
+  db:
+    profiles: ['local-db']
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: talent
+      POSTGRES_USER: talent
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-talent-local-development}
+    ports:
+      - '127.0.0.1:5433:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U talent -d talent']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # Chạy Prisma Migrate một lần trước API. Chỉ service này dùng DIRECT_URL.
+  migrate:
+    build:
+      context: ./apps/api
+      target: migration
+    env_file: ./apps/api/.env
+    environment:
+      NODE_ENV: production
+    restart: 'no'
+
+  # BE: Hono chạy bằng PM2 (pm2-runtime ecosystem.config.cjs)
+  api:
+    build: ./apps/api
+    env_file: ./apps/api/.env
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: '8080'
+      DIRECT_URL: '' # không cần ở runtime
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      API_INSTANCES: ${API_INSTANCES:-1}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports:
+      - '127.0.0.1:8080:8080'
+
+  # FE: Next.js, chỉ giao diện. NEXT_PUBLIC_* gắn lúc build: đổi giá trị thì build lại.
+  web:
+    build:
+      context: ./apps/web
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8080}
+        NEXT_PUBLIC_VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - '127.0.0.1:3000:3000'
+
+volumes:
+  pg_data:

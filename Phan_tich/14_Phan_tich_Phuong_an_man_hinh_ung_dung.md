@@ -1,5 +1,12 @@
 # Phân tích tài liệu アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng)
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này.
+
+- M-13 (nhóm tài năng), M-14 và M-15 (chỉ thị cho AI) của [AG]: CR-17, CR-18, chưa làm. M-11 của [AG] (bài dính từ cấm) làm ở mức tối thiểu: sửa chữ, hẹn giờ, hủy (CR-06).
+
+
 Viết ngày 16/11/2026. Ký hiệu nguồn trong file này:
 
 - **[AG]** = アプリ画面案_AI育成OS.pdf, 12 trang, ghi ngày tạo 12/11/2026, đơn vị tạo FutureCore Partners.

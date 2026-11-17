@@ -1,5 +1,14 @@
 # Edge case, xung đột dữ liệu và rủi ro
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- R6 (nguồn tin tức): đã chốt dùng tìm web của AI (CR-05). R8 (phạm vi phình): AMCOLAB đã phân loại thành CR-01〜CR-25; CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50.
+- D3 (đổi chỉ dẫn AI trên M-11): M-11 là CR-18, chưa làm.
+- Rủi ro kỹ thuật: xem file 20.
+
+
 Có 28 edge case, 9 xung đột dữ liệu, 12 rủi ro nghiệp vụ và 9 rủi ro kỹ thuật. Trong đó có 27 mục ảnh hưởng cao. Sáu rủi ro cần xử lý trước đợt kiểm thử nghiệm thu (giữa tháng 1/2027):
 
 - cổng thanh toán, nay chặn cả luồng chính vì mọi tài năng phải thanh toán (R1);
@@ -99,6 +108,8 @@ Tab này đã viết lại theo bản yêu cầu v2. Mã cũ được giữ khi 
 | R12 (mới) | Việc tay của quản lý tăng: tạo ChatGPT project và nhập hồ sơ cho từng tài năng, khoảng 10 người mới mỗi tháng | Trung bình | Cung cấp mẫu hồ sơ và hướng dẫn. Hiện danh sách tài năng chưa có hồ sơ | [YK2] UC-01 前提, 2 |
 
 ### 3.2 Rủi ro kỹ thuật
+
+> Cập nhật 17/11/2026: danh sách đầy đủ và mới hơn ở [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md) (RT01–RT12, có người phụ trách, hạn và kế hoạch POC). Bảng dưới giữ để tham chiếu mã cũ T1–T9.
 
 | Mã | Rủi ro | Ảnh hưởng | Cách giảm | Nguồn |
 | --- | --- | --- | --- | --- |

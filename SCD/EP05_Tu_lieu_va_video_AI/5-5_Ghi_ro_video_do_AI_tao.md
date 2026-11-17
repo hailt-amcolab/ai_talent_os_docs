@@ -1,74 +1,71 @@
 # 5-5 Ghi rõ video do AI tạo
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-8 |
-| Màn hình [AG] | — |
+| Mục [YK2] | §6-8, chức năng 5-5; §5-7; UC-06 前提 |
+| Màn hình [AG] | Không có màn riêng |
 | Tên trong mã nguồn | AI Content Labeling |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🔴 Đỏ – chưa biết Upload-Post có bật được nhãn "nội dung do AI tạo" của từng mạng không (C3) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ⚠ C3 | ⚠ | ⚠ C3 | ✅ | ✅ | ❌ kiểm chứng Upload-Post | ⚠ đội đề xuất | ⚠ 8-3 |
 
 ## Mục đích
 
-Ghi rõ video do AI tạo
-
-## Tác nhân
-
-Xử lý tự động
-
-## Đầu vào
-
-Video do AI tạo
-
-## Điều kiện trước
-
-Khi đăng bài
+Khi đăng video do AI tạo, ghi rõ là do AI tạo theo quy định của từng mạng (§6-8 chức năng 5-5, §5-7).
 
 ## Luồng chính
 
-1. Gắn nhãn "do AI tạo" theo quy định của từng mạng xã hội
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Bài đăng có nhãn
-- Kết quả mong đợi: Tuân thủ quy định của các mạng xã hội
+1. Khi 8-3 gửi bài sang Upload-Post: nếu bài dùng tư liệu có nguồn `ai_generated` thì bật nhãn AI của từng mạng qua Upload-Post (nếu có tham số tương ứng).
+2. Mạng nào Upload-Post không hỗ trợ: thêm một dòng vào cuối chú thích (ví dụ "※この動画は AI で作成しています") hoặc hashtag (C3). Dòng này tính vào giới hạn độ dài (4-1).
+3. Ghi lại cách đã gắn nhãn cho từng mạng.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Video tài năng tự làm bằng công cụ AI khác | Hệ thống không biết; nhắc tài năng tự ghi rõ khi lưu video tự làm (S05-10) | S05-10 |
+| Không gắn được nhãn | Không đăng mạng đó, báo như đăng lỗi (8-5) | [Đề xuất nội bộ] |
+| Quy định của mạng thay đổi | Xử lý trong hợp đồng bảo trì | §11 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Video do AI tạo phải ghi rõ | Chốt | §5-7, §6-8, UC-06 前提 |
+| Cách ghi theo quy định từng mạng | Chốt (cách làm cụ thể chờ C3) | §6-8 |
 
 ## Dữ liệu
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`post_platform_results` (8-3) thêm `ai_label_method` (`platform_flag`, `caption_text`, `none`).
 
 ## Tích hợp
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Upload-Post (tài liệu tra 17/11): TikTok `is_aigc` **chỉ áp dụng khi đăng thẳng (Direct Post)**; Instagram `is_ai_generated` hiện nhãn "AI info" và **không gỡ được sau khi đăng**; YouTube `containsSyntheticMedia`. `is_ai_generated` là tên thay thế dùng chung. Vẫn phải thử trên tài khoản thật, nhất là chế độ đăng TikTok.
 
-## Tiêu chí chấp nhận
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho bài có video AI, thì trên cả 3 mạng của tài khoản thử đều thấy nhãn AI hoặc dòng ghi chú.
+2. Cho bài chỉ có ảnh tài năng chụp, thì không có nhãn.
 
-## Chỗ còn thiếu
+## Phụ thuộc
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | C3 |
-| Kiểm chứng | Upload-Post có gắn được nhãn AI trên 3 mạng không |
-| Đội | — |
+8-3 (đăng bài), 5-1 (nguồn tư liệu), kiểm chứng Upload-Post.
 
-## Điểm chưa rõ (từ file 04)
+## Câu hỏi mở
 
-- Upload-Post có hỗ trợ gắn nhãn AI trên cả 3 mạng xã hội không, chưa kiểm chứng. Video tài năng tự làm bằng công cụ AI khác thì ai chịu trách nhiệm gắn nhãn.
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| C3 | Upload-Post có bật nhãn AI không; không có thì thêm dòng chữ | Có | Thêm dòng chữ |
+| S05-10 | Video tự làm bằng AI khác | Không | Nhắc tài năng tự ghi |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-8, 5-7, UC-06, UC-06 前提, 確認27, 31.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP05.
+- [YK2] §5-7, §6-8 (5-5), §11, UC-06 前提. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) C3.

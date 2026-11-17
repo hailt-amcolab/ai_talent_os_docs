@@ -7,11 +7,15 @@ File này để mở lại công việc ở máy khác hoặc phiên Claude Code
 | Việc | Kết quả |
 |---|---|
 | Kiểm tra phương án màn hình mới [AG] (`アプリ画面案_AI育成OS.pdf`) | Sửa [file 14](Phan_tich/14_Phan_tich_Phuong_an_man_hinh_ung_dung.md); thêm mục 8 vào [file 10](Phan_tich/10_Giao_dien.md) (bảng đối chiếu 3 bộ mã màn hình); cập nhật file 00, 11 |
-| Bảng câu hỏi tổng | [15_Cau_hoi_lam_ro_luong.csv](Phan_tich/15_Cau_hoi_lam_ro_luong.csv): 113 dòng = 確認1–56, A1–A10, B1–B13, C1–C6, S01–S03. Có cột Module |
+| Bảng câu hỏi tổng | [15_Cau_hoi_lam_ro_luong.csv](Phan_tich/15_Cau_hoi_lam_ro_luong.csv): 172 dòng = 確認1–56, A1–A10, B1–B13, C1–C6, I1–I8, S01–S10. Có cột Module |
 | Chia module phát triển | [16_Chia_module_phat_trien.md](Phan_tich/16_Chia_module_phat_trien.md): EP01–EP10 |
 | Bối cảnh hệ thống (SCD mức hệ thống) | [17_Tai_lieu_boi_canh_he_thong.md](Phan_tich/17_Tai_lieu_boi_canh_he_thong.md) |
-| Hạ tầng | [18_Ha_tang_he_thong.md](Phan_tich/18_Ha_tang_he_thong.md): API trên Vercel, dữ liệu trên Supabase, worker trên VPS; câu hỏi I1–I8 (chưa đưa vào file 15) |
-| Đặc tả từng chức năng | [SCD/](SCD/README.md): 60 file (54 chức năng + C-01〜C-06). **Đã viết đầy đủ EP01, EP02, EP03** (20 chức năng), mỗi module có `00_Cau_hoi_cho_khach.md`. Còn lại là bản khung |
+| Mã nguồn | `apps/web` (Next.js 16, PWA, chỉ giao diện) và `apps/api` (Hono, PM2, Docker Compose, Caddy; có API `POST /api/v1/dev/push-test`). Quyết định tách FE và BE ghi ở đầu file 18 |
+| Rủi ro kỹ thuật | [20_Rui_ro_ky_thuat.md](Phan_tich/20_Rui_ro_ky_thuat.md): RT01–RT12, kế hoạch 4 POC (Upload-Post, OneDrive/Graph, GMO, AI và video) đề xuất xong trước 01/12/2026 |
+| Đối chiếu Q&A (bản 15/11) | [19_Doi_chieu_QA_bao_gia.md](Phan_tich/19_Doi_chieu_QA_bao_gia.md); cột "Q&A AMCOLAB" trong file 15; mục "Cập nhật theo Q&A" trong 26 file SCD và mục "Đối chiếu với file Q&A" trong 10 file câu hỏi module |
+| Tra lại Graph và Upload-Post (17/11) | Bộ OneDrive §4.2, §9.1, §11.1; bộ Upload-Post §13.2a; SCD 3-10, 8-1, 8-9; đóng S07-08. Xem `agent_spec/KET_QUA_KIEM_CHUNG_17-11.md` §7 |
+| Hạ tầng | [18_Ha_tang_he_thong.md](Phan_tich/18_Ha_tang_he_thong.md): API trên Vercel, dữ liệu trên Supabase, worker trên VPS; câu hỏi I1–I8 (đã đưa vào file 15) |
+| Đặc tả từng chức năng | [SCD/](SCD/README.md): 60 file (54 chức năng + C-01〜C-06). **Đã viết đầy đủ cả 10 module EP01–EP10** (54 chức năng + C-01〜C-06), không còn bản khung; EP06 có danh sách kiểm chứng Upload-Post, mỗi module có `00_Cau_hoi_cho_khach.md`. Còn lại là bản khung |
 
 ## 2. Quyết định và quy ước đã thống nhất với người dùng
 
@@ -34,10 +38,11 @@ Trích chữ: `.docx` bằng `python3` + `zipfile` (đọc `word/document.xml`);
 
 | Ưu tiên | Việc |
 |---|---|
-| 1 | Viết đầy đủ **EP04** (bản nháp: 4-1, 4-2, 4-3, 4-4, 6-6) hoặc **EP10** (C-01 bộ trạng thái, là điểm nghẽn chung của 7-3, 7-2, 7-7, 8-5). Người dùng chưa chọn |
-| 2 | Lần lượt EP05 → EP06 → EP07 → EP08 → EP09 |
-| 3 | Đưa câu I1–I8 (file 18) vào file 15 nếu người dùng đồng ý |
-| 4 | Cập nhật file 18: đổi dòng n8n thành "không dùng" kèm lý do (đã đề xuất, người dùng chưa trả lời) |
-| 5 | Các tab Claude Doc (nguồn của file 00–12) chưa được cập nhật theo bản markdown trong máy |
+| 1 | Gửi khách các câu S01–S10, A, B, C, I (mỗi module có bản tiếng Nhật trong `SCD/EPxx/00_Cau_hoi_cho_khach.md`). Có thể gom thành một bảng tiếng Nhật duy nhất |
+| 2 | Kiểm chứng kỹ thuật: Upload-Post (danh sách ở `SCD/EP06…/00_Cau_hoi_cho_khach.md` mục 4), GMO môi trường thử (確認49), ChatGPT ghi qua MCP (S02-01), Kling qua fal.ai (5-1) |
+| 3 | MCP có căn cứ trong 御見積書 前提条件A4 (trích ở Q&A số 45 của `AI-Talent-OS_Q&A表.xlsx`): cần sửa file 16 mục 1.1 điểm 4, `SCD/EP02/2-3`, S02-01, `SCD/EP03/3-1` (đã đề xuất, người dùng chưa trả lời) |
+| 4 | File Q&A đã cập nhật (bản 15/11) → [19_Doi_chieu_QA_bao_gia.md](Phan_tich/19_Doi_chieu_QA_bao_gia.md). Việc tiếp: thống nhất No.58 (bài trả lại là cùng bài hay bài mới, khác C-01); đưa hình 5-1 cho No.51; xin 確認シート; không giao agent các phần CR-17〜CR-25 tới khi có trả lời No.50 |
+| 5 | Cập nhật file 18: đổi dòng n8n thành "không dùng" kèm lý do (đã đề xuất, người dùng chưa trả lời) |
+| 6 | Các tab Claude Doc (nguồn của file 00–12) chưa được cập nhật theo bản markdown trong máy. File 00–14 có thêm khối "Cập nhật ngày 17/11/2026" ở đầu file (theo Q&A bản 15/11); khối này cũng cần đưa vào tab Claude Doc |
 
 Việc chưa quyết với khách nhưng ảnh hưởng nhiều module: kiểm chứng Upload-Post (8-2, 8-7, 8-9, 5-5, 7-7), cách ChatGPT ghi vào OneDrive (S02-01), quyền Microsoft Graph (S02-02).

@@ -1,0 +1,334 @@
+[
+  {
+    "featureId": "F01",
+    "title": "Đăng nhập và session",
+    "route": "/login",
+    "source": "YC [YK2] §6-1 chức năng 1-4; `SCD/EP01/1-4`; TK auth adapter.",
+    "api": "NEW POST /auth/login; POST /auth/logout; GET /me/bootstrap; GET /operations/by-command/{commandId}.",
+    "yk2Functions": "1-4 (đăng nhập)",
+    "agScreens": "T-02",
+    "scdFiles": "EP01/1-4",
+    "testIds": [
+      "F01-T01",
+      "F01-T02",
+      "F01-T03",
+      "F01-T04",
+      "F01-T05",
+      "F01-T06"
+    ]
+  },
+  {
+    "featureId": "F02",
+    "title": "Mật khẩu lần đầu và đặt lại mật khẩu",
+    "route": "/first-password; /forgot-password; /reset-password",
+    "source": "YC [YK2] §6-1 chức năng 1-4, UC-01, 確認13; `SCD/EP01/1-4`, S01-05.",
+    "api": "NEW POST /auth/first-password; POST /auth/password-reset-requests; POST /auth/password-reset.",
+    "yk2Functions": "1-4 (mật khẩu lần đầu, đặt lại)",
+    "agScreens": "T-03; màn đặt lại mật khẩu (thiếu trong [AG])",
+    "scdFiles": "EP01/1-4",
+    "testIds": [
+      "F02-T01",
+      "F02-T02",
+      "F02-T03",
+      "F02-T04"
+    ]
+  },
+  {
+    "featureId": "F03",
+    "title": "Gửi đơn và hướng dẫn lần đầu",
+    "route": "/apply; /onboarding",
+    "source": "YC [YK2] §6-1 chức năng 1-4, 6-2; §6-4 chức năng 2-2; UC-01, UC-03; `SCD/EP01/1-4`, `SCD/EP01/6-2`.",
+    "api": "NEW POST /applications; GET /me/onboarding; PATCH /me/onboarding; POST /me/consents.",
+    "yk2Functions": "1-4 (gửi đơn), 6-2",
+    "agScreens": "T-01, T-04",
+    "scdFiles": "EP01/1-4, EP01/6-2",
+    "testIds": [
+      "F03-T01",
+      "F03-T02",
+      "F03-T03",
+      "F03-T04",
+      "F03-T05",
+      "F03-T06"
+    ]
+  },
+  {
+    "featureId": "F04",
+    "title": "Cài đặt PWA và cập nhật phiên bản",
+    "route": "/onboarding; /settings/install`.",
+    "source": "YC cài Home Screen; TK PWA.",
+    "api": "Static /manifest.webmanifest; /sw.js; NEW GET /client-config.",
+    "yk2Functions": "6-8",
+    "agScreens": "—",
+    "scdFiles": "EP09/6-8",
+    "testIds": [
+      "F04-T01",
+      "F04-T02",
+      "F04-T03",
+      "F04-T04"
+    ]
+  },
+  {
+    "featureId": "F05",
+    "title": "Trang chủ (T-07) và trang của tôi (T-06)",
+    "route": "/home; /mypage`.",
+    "source": "YC [YK2] §6-12 chức năng 6-8, §6-14, chức năng 3-10, 6-7; [AG] T-06, T-07; `SCD/EP09/6-8`, `SCD/EP07/3-10`, `SCD/EP07/6-7`.",
+    "api": "NEW GET /me/home; GET /me/dashboard; GET /me/profile; REUSE GET /me/social-connections.",
+    "yk2Functions": "6-8 (màn đầu), 3-10, 6-7",
+    "agScreens": "T-07, T-06",
+    "scdFiles": "EP09/6-8, EP07/3-10, EP07/6-7",
+    "testIds": [
+      "F05-T01",
+      "F05-T02",
+      "F05-T03",
+      "F05-T04",
+      "F05-T05"
+    ]
+  },
+  {
+    "featureId": "F06",
+    "title": "Chat với AI coach Momo",
+    "route": "/coach`.",
+    "source": "YC [YK2] §6-5.",
+    "api": "NEW GET /me/coach/messages?before=&limit=; POST /me/coach/messages; GET /operations/{id}.",
+    "yk2Functions": "3-4, 3-3",
+    "agScreens": "T-08",
+    "scdFiles": "EP03/3-4, EP03/3-3",
+    "testIds": [
+      "F06-T01",
+      "F06-T02",
+      "F06-T03",
+      "F06-T04",
+      "F06-T05"
+    ]
+  },
+  {
+    "featureId": "F07",
+    "title": "Ba chủ đề hằng ngày và kế hoạch riêng",
+    "route": "/suggestions`.",
+    "source": "YC [YK2] §6-6; TK daily batch.",
+    "api": "NEW GET /me/suggestions?date=; POST /me/drafts.",
+    "yk2Functions": "4-1 (chủ đề)",
+    "agScreens": "T-07",
+    "scdFiles": "EP04/4-1",
+    "testIds": [
+      "F07-T01",
+      "F07-T02",
+      "F07-T03",
+      "F07-T04"
+    ]
+  },
+  {
+    "featureId": "F08",
+    "title": "Chi tiết draft và sửa qua AI",
+    "route": "/drafts/:id`.",
+    "source": "YC [YK2] §6-6; CĐ D02.",
+    "api": "NEW GET /drafts/{id}; POST /drafts/{id}/revisions; PATCH /drafts/{id}/media.",
+    "yk2Functions": "4-1, 4-2, 6-6",
+    "agScreens": "T-09",
+    "scdFiles": "EP04/4-1, 4-2, 6-6",
+    "testIds": [
+      "F08-T01",
+      "F08-T02",
+      "F08-T03",
+      "F08-T04"
+    ]
+  },
+  {
+    "featureId": "F09",
+    "title": "Adopt, kiểm duyệt và chọn lịch",
+    "route": "/drafts/:id/preview`.",
+    "source": "YC [YK2] §6-6,6-9; TK atomic command.",
+    "api": "NEW POST /drafts/{id}/adopt; GET /posts/{id}; publishing application service dùng REUSE /posts/{id}/schedule contract.",
+    "yk2Functions": "4-3, 4-4, 7-7",
+    "agScreens": "T-09",
+    "scdFiles": "EP04/4-3, 4-4; EP06/7-7",
+    "testIds": [
+      "F09-T01",
+      "F09-T02",
+      "F09-T03",
+      "F09-T04",
+      "F09-T05"
+    ]
+  },
+  {
+    "featureId": "F10",
+    "title": "Upload và chụp/chọn media",
+    "route": "/media/upload",
+    "source": "YC [YK2] §6-7 chức năng 6-3; `SCD/EP05/6-3`; file 18 mục 4; câu C2.",
+    "api": "NEW POST /me/media/upload-sessions; GET /me/media/upload-sessions/{id}; POST /me/media/upload-sessions/{id}/complete; POST /me/media/upload-sessions/{id}/abort.",
+    "yk2Functions": "6-3",
+    "agScreens": "T-10",
+    "scdFiles": "EP05/6-3",
+    "testIds": [
+      "F10-T01",
+      "F10-T02",
+      "F10-T03",
+      "F10-T04",
+      "F10-T05"
+    ]
+  },
+  {
+    "featureId": "F11",
+    "title": "Thư viện và media detail",
+    "route": "/media; /media/:id`.",
+    "source": "YC [YK2] §6-7; OneDrive ownership.",
+    "api": "NEW GET /me/media; GET /media/{id}; POST /media/{id}/preview-grants; DELETE /media/{id} (gated).",
+    "yk2Functions": "6-4",
+    "agScreens": "T-10 (送ったもの)",
+    "scdFiles": "EP05/6-4",
+    "testIds": [
+      "F11-T01",
+      "F11-T02",
+      "F11-T03",
+      "F11-T04"
+    ]
+  },
+  {
+    "featureId": "F12",
+    "title": "Tạo video có xác nhận giá",
+    "route": "/video/new; /video/:id`.",
+    "source": "YC [YK2] §6-8; CĐ D07.",
+    "api": "NEW POST /me/video-quotes; POST /me/video-generations; GET /video-generations/{id}; POST .../{id}/discard.",
+    "yk2Functions": "5-1, 5-2, 5-3, 5-4",
+    "agScreens": "T-11, T-12",
+    "scdFiles": "EP05/5-1, 5-2, 5-3; EP08/5-4",
+    "testIds": [
+      "F12-T01",
+      "F12-T02",
+      "F12-T03",
+      "F12-T04",
+      "F12-T05"
+    ]
+  },
+  {
+    "featureId": "F13",
+    "title": "Kết nối TikTok/Instagram/YouTube",
+    "route": "/connections; /connections/return`.",
+    "source": "Connect API đã chốt; Upload-Post spec §7.",
+    "api": "REUSE GET /me/social-connections; POST /me/social-connections/{platform}/attempts; POST /me/social-connections/attempts/{id}/confirm; disconnect/replacement-confirmation gated.",
+    "yk2Functions": "8-2, 8-6",
+    "agScreens": "T-05",
+    "scdFiles": "EP06/8-2, 8-6",
+    "testIds": [
+      "F13-T01",
+      "F13-T02",
+      "F13-T03",
+      "F13-T04",
+      "F13-T05"
+    ]
+  },
+  {
+    "featureId": "F14",
+    "title": "Lịch và chi tiết bài đăng",
+    "route": "/schedule; /posts/:id`.",
+    "source": "YC [YK2] §6-9,6-10; Upload-Post state.",
+    "api": "NEW GET /me/posts?from=&to=&status=&cursor=; GET /posts/{id}; REUSE GET /posts/{id}/deliveries.",
+    "yk2Functions": "8-3, 6-7",
+    "agScreens": "T-13",
+    "scdFiles": "EP06/8-3; EP07/6-7",
+    "testIds": [
+      "F14-T01",
+      "F14-T02",
+      "F14-T03",
+      "F14-T04",
+      "F14-T05"
+    ]
+  },
+  {
+    "featureId": "F15",
+    "title": "Gửi lại bài bị trả và đặt lại bài lỗi",
+    "route": "/posts/:id",
+    "source": "YC [YK2] §5-1 (hình 5-1), §6-9 chức năng 7-7, §6-10 chức năng 8-5; `SCD/EP06/7-7`, `SCD/EP06/8-5`.",
+    "api": "REUSE POST /posts/{id}/reschedule-failed (sau cờ); NEW POST /posts/{id}/revision-drafts.",
+    "yk2Functions": "8-5, 7-7 (gửi lại sau khi bị trả)",
+    "agScreens": "T-13",
+    "scdFiles": "EP06/8-5, 7-7",
+    "testIds": [
+      "F15-T01",
+      "F15-T02",
+      "F15-T03",
+      "F15-T04"
+    ]
+  },
+  {
+    "featureId": "F16",
+    "title": "Thống kê và mục tiêu",
+    "route": "/analytics; /mypage/goals`.",
+    "source": "YC [YK2] §6-4,6-11.",
+    "api": "REUSE GET /talents/{id}/metrics; NEW GET /me/goals; GET /me/reports.",
+    "yk2Functions": "3-10, 6-7, 2-4 (xem)",
+    "agScreens": "T-06",
+    "scdFiles": "EP07/3-10, 6-7",
+    "testIds": [
+      "F16-T01",
+      "F16-T02",
+      "F16-T03",
+      "F16-T04"
+    ]
+  },
+  {
+    "featureId": "F17",
+    "title": "Inbox thông báo và deep link",
+    "route": "/notifications`.",
+    "source": "YC [YK2] §6-12.",
+    "api": "NEW GET /me/notifications; POST /me/notifications/{id}/read; POST /me/notifications/read-all.",
+    "yk2Functions": "6-1, 別紙A",
+    "agScreens": "T-14",
+    "scdFiles": "EP09/6-1; EP10/C-05",
+    "testIds": [
+      "F17-T01",
+      "F17-T02",
+      "F17-T03",
+      "F17-T04"
+    ]
+  },
+  {
+    "featureId": "F18",
+    "title": "Web Push và quyền thiết bị",
+    "route": "/settings/notifications`.",
+    "source": "YC push tùy chọn; TK Web Push.",
+    "api": "NEW GET /me/push-devices; POST /me/push-subscriptions; DELETE /me/push-subscriptions/{id}; GET /client-config (public VAPID).",
+    "yk2Functions": "6-1 (thông báo đẩy), 6-2 bước 2",
+    "agScreens": "T-04",
+    "scdFiles": "EP09/6-1",
+    "testIds": [
+      "F18-T01",
+      "F18-T02",
+      "F18-T03",
+      "F18-T04",
+      "F18-T05"
+    ]
+  },
+  {
+    "featureId": "F19",
+    "title": "Thanh toán và ご利用とお支払い",
+    "route": "/billing; /billing/return",
+    "source": "YC [YK2] §5-4 (hình 5-3), §6-3 chức năng 1-1, 1-2, 5-4, §8, UC-11; `SCD/EP08/1-1`, `SCD/EP08/5-4`.",
+    "api": "NEW GET /me/billing; POST /me/billing/setup-sessions; GET /me/billing/setup-sessions/{id}; GET /me/billing/portal-link.",
+    "yk2Functions": "1-1, 5-4",
+    "agScreens": "T-04 bước 3, T-15",
+    "scdFiles": "EP08/1-1, 5-4",
+    "testIds": [
+      "F19-T01",
+      "F19-T02",
+      "F19-T03",
+      "F19-T04"
+    ]
+  },
+  {
+    "featureId": "F20",
+    "title": "Profile, cài đặt và trợ giúp",
+    "route": "/settings; /help`.",
+    "source": "YC riêng tư/hồ sơ; OneDrive spec.",
+    "api": "NEW GET /me/profile; PATCH /me/preferences; GET /legal/{document}/{version}; POST /auth/logout.",
+    "yk2Functions": "1-4 (đăng xuất), §6-14",
+    "agScreens": "T-15 (mục 設定)",
+    "scdFiles": "EP10/C-06",
+    "testIds": [
+      "F20-T01",
+      "F20-T02",
+      "F20-T03",
+      "F20-T04"
+    ]
+  }
+]

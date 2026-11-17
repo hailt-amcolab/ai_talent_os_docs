@@ -1,5 +1,14 @@
 # Vai trò người dùng và phân quyền
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- Một loại quản lý, mọi quản lý dừng được đăng tự động toàn bộ (Q&A No.5, CR-13). Không có người duyệt chỉ định (CR-14).
+- Nhóm tài năng và duyệt theo nhóm: CR-17, CR-19, chưa làm. Quản lý xem toàn bộ hội thoại: Q&A No.7 còn mở; nếu khách chọn riêng tư thì là CR-24.
+- Khôi phục tài khoản quản lý: Q&A No.67 đang hỏi (quản lý khác đặt lại xác thực hai bước; không cho vô hiệu hóa quản lý cuối cùng).
+
+
 Tab này đã viết lại theo bản yêu cầu v2. [YK2] = AI育成OS_概要要件定義書_v2.docx. Số 確認 (mục cần xác nhận) theo đánh số của v2. **So với v1:** thêm vai trò người đăng ký (chưa duyệt), bỏ vai trò tài năng miễn phí, quản lý có thêm quyền duyệt đơn, tạo tài khoản công ty, hủy bài trên màn hình quản trị và dừng đăng tự động theo từng tài năng.
 
 ## 1. Danh sách vai trò

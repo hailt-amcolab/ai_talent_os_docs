@@ -27,7 +27,7 @@ Cùng nguyên tắc với EP01: đề xuất chỉ được là cách làm của
 
 | Mã | Chức năng | Câu hỏi | Đề xuất | Phạm vi |
 |---|---|---|---|---|
-| S02-01 | 2-3 | ChatGPT ghi vào file OneDrive bằng cách nào? Có cần mỗi tài năng một dự án ChatGPT không? Khách dùng gói ChatGPT nào? | Một công cụ chung trên ChatGPT (GPT tùy chỉnh có Action, hoặc connector) gọi API ghi của hệ thống. Quản lý gọi tên tài năng trong hội thoại; trước khi ghi luôn hiện "tài năng nào, mục nào, trước và sau". Không cần dự án riêng cho từng tài năng. Đội kiểm chứng trên gói ChatGPT của khách. Dự phòng: ChatGPT soạn theo mẫu, quản lý tự dán. Chi tiết hóa câu C4 | Trong phạm vi: cách làm của 2-3. Đổi tiền đề UC-01 nên cần khách đồng ý |
+| S02-01 | 2-3 | ChatGPT ghi vào file OneDrive bằng cách nào? Có cần mỗi tài năng một dự án ChatGPT không? Khách dùng gói ChatGPT nào? | Một connector MCP dùng chung trên ChatGPT (căn cứ 御見積書 前提条件A4, Q&A số 45; dự phòng GPT có Action) gọi API ghi của hệ thống. Quản lý gọi tên tài năng trong hội thoại; trước khi ghi luôn hiện "tài năng nào, mục nào, trước và sau". Không cần dự án riêng cho từng tài năng. Đội kiểm chứng trên gói ChatGPT của khách. Dự phòng: ChatGPT soạn theo mẫu, quản lý tự dán. Chi tiết hóa câu C4 | Trong phạm vi: cách làm của 2-3. Đổi tiền đề UC-01 nên cần khách đồng ý |
 | S02-02 | 2-2, 2-1 | Thư mục gốc đặt ở đâu (OneDrive của tài khoản nào, hay site SharePoint nào)? Quản trị viên Microsoft 365 có cấp quyền cho hệ thống không? | Quản trị viên đăng ký ứng dụng AI育成OS và cấp quyền **chỉ trong thư mục hoặc site dành cho hệ thống**. Cùng nội dung với câu I3 ở file 18 | Trong phạm vi: §8, §10-2 |
 
 ## 3. Câu cần trả lời trước kiểm thử chấp nhận (không chặn viết mã)
@@ -52,7 +52,7 @@ Cùng nguyên tắc với EP01: đề xuất chỉ được là cách làm của
 
 | Mã | 確認事項（日本語案） |
 |---|---|
-| S02-01 | 6-4「2-3 ChatGPT からの情報の登録」について、ChatGPT の標準の OneDrive 連携は読み込み用のため、ChatGPT からタレントのファイルに書き込むには、AI育成OS が用意する書き込み用の機能（GPT のアクション、またはコネクタ）を使う必要があります。そこで、タレントごとに ChatGPT のプロジェクトを作る代わりに、マネージャーの皆様が共通で使う「AI育成OS 用の GPT」を1つ用意し、会話の中でタレントの名前を指定して登録する形を提案します。登録の前に、どのタレントのどの項目をどう変えるかを表示し、マネージャーが確かめてから登録します。この形でよろしいでしょうか。あわせて、ご利用中の ChatGPT のプラン（Business、Enterprise など）をお教えください。プランによって使える機能が異なるため、弊社で動作を確かめます。 |
+| S02-01 | 6-4「2-3 ChatGPT からの情報の登録」について、御見積書の前提条件A4（マネージャーは ChatGPT（MCP）経由で AI を調整）に沿って、AI育成OS が用意する MCP のコネクタを使う形を想定しています。ChatGPT の標準の OneDrive 連携は読み込み用のため、書き込みにはこのコネクタ（使えない場合は GPT のアクション）が必要です。そこで、タレントごとに ChatGPT のプロジェクトを作る代わりに、マネージャーの皆様が共通で使う「AI育成OS 用の GPT」を1つ用意し、会話の中でタレントの名前を指定して登録する形を提案します。登録の前に、どのタレントのどの項目をどう変えるかを表示し、マネージャーが確かめてから登録します。この形でよろしいでしょうか。あわせて、ご利用中の ChatGPT のプラン（Business、Enterprise など）をお教えください。プランによって使える機能が異なるため、弊社で動作を確かめます。 |
 | S02-02 | タレント別フォルダを作る場所（OneDrive のどのアカウントの下か、または SharePoint のどのサイトか）をお決めください。また、AI育成OS がフォルダを作り、ファイルを読み書きできるように、Microsoft 365 の管理者の方に、AI育成OS 用のアプリの登録とアクセス許可の承認をお願いいたします。許可の範囲は、AI育成OS 用のフォルダ（またはサイト）だけに限る形を提案します。 |
 | S02-03 | タレント別フォルダができたことは、新しいお知らせを増やさず、管理画面のタレント一覧（M-06）とタレントの詳細（M-07）に、フォルダの状態とフォルダへのリンクを表示してお知らせする形でよろしいでしょうか。 |
 | S02-04 | タレントの情報のファイル（プロフィール.md）は、弊社がひな形をお渡しし、見出し（プロフィール、方向性、趣味・特技、将来の目標、チャレンジ、日付、個別の指示）を決めた形にします。タレントの詳細（M-07）は、この見出しごとに表示します。見出しの外に書いた内容は M-07 には表示されませんが、AIコーチは読み込みます。この形でよろしいでしょうか。 |
@@ -70,3 +70,15 @@ Cùng nguyên tắc với EP01: đề xuất chỉ được là cách làm của
 | 2-4 | 🟡 | 🟢 |
 | 2-1 | 🟡 | 🟢 khi có S02-02 và đo xong tốc độ đọc |
 | 7-1 | 🟡 | 🟢; các cột dùng số liệu của 3-10, 8-2, 8-7 vẫn chờ module đó |
+
+## Đối chiếu với file Q&A (bản ngày 15/11/2026)
+
+Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã gửi thì **không gửi lại**; câu đã chốt thì làm theo. Chi tiết ở `Phan_tich/19_Doi_chieu_QA_bao_gia.md`.
+
+| Mã | Tiêu đề | Q&A | Tình trạng |
+|---|---|---|---|
+| B11 | Đơn bị từ chối và đổi thông tin cơ bản | No.65 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); màn thử thách chưa làm tới khi khách quyết |
+| S02-04 | Mẫu file hồ sơ | No.22 | Đã chốt trong Q&A: mẫu file do khách đưa |
+| S02-05 | Hạn đạt và nơi lưu mục tiêu | No.14 | Đã chốt trong Q&A: mục tiêu từng mạng, có hạn |
+| S02-07 | Đọc OneDrive lỗi buổi sáng | No.22 | Đã chốt trong Q&A: hiện tình trạng đọc ở chi tiết tài năng |

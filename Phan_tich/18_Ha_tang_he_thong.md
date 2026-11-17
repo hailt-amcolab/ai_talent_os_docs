@@ -1,5 +1,16 @@
 # Hạ tầng hệ thống – AI育成OS
 
+## Quyết định ngày 17/11/2026: tách FE và BE
+
+Thay cho phần "API trên Vercel" ở dưới. Phần thân file chưa viết lại; chỗ nào khác khối này thì làm theo khối này.
+
+- **FE** (`apps/web`, sau này `apps/admin`): chỉ giao diện, không có API. Đặt trên Vercel hoặc CDN.
+- **BE thuần trên VPS** (`apps/api`): Node.js 22 + TypeScript + Hono; chạy bằng PM2 trong Docker Compose; Caddy lo HTTPS. Gồm API, worker (sau này là tiến trình PM2 thứ hai) và điểm nhận webhook của Upload-Post và GMO.
+- **Supabase**: Auth, Storage và Postgres (dữ liệu nghiệp vụ). FE không đọc DB trực tiếp; các bảng của app bật RLS nhưng không mở quyền.
+- **Hàng đợi và lịch chạy**: pg-boss trên Postgres, thay cho Supabase Queues (pgmq) và pg_cron.
+- **Đăng nhập** đi qua `POST /api/v1/auth/login` của BE, để khóa sau 5 lần sai có hiệu lực.
+- **Rủi ro**: API, worker và webhook cùng một VPS (RT07). VPS không giữ dữ liệu nên dựng lại được nhanh.
+
 Nguồn:
 - [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2).
 - [SM] = `要件説明資料_AI育成OS.pdf` (tài liệu giải thích yêu cầu, bản cũ, viết khi còn dùng LINE).
@@ -24,7 +35,7 @@ Cách đánh dấu trong tài liệu:
 | Sao lưu, khung giờ hoạt động, thời gian giữ nhật ký: quyết định khi thiết kế | [Chốt] (là việc còn mở) | [YK2] §9-3, §9-4 |
 | Dùng Next.js | [Cũ] | [SM] tr.3 |
 | Việc buổi sáng chạy bằng n8n, là công cụ tự động hóa mà ứng dụng tin nhắn đang dùng, tách thành một quy trình riêng | [Cũ] | [SM] tr.9 |
-| Xác thực hai bước của quản lý dùng TOTP (mã dùng một lần theo thời gian) qua Supabase Auth MFA | [Cũ] | [SM] tr.28 |
+| Xác thực hai bước của quản lý dùng TOTP (mã dùng một lần theo thời gian) qua Supabase Auth MFA. SMS chờ bàn với khách (S01-11); không làm OTP qua email | [Chốt] 17/11 | [SM] tr.28; [YK2] §6-2; quyết định nội bộ 17/11 |
 | Đăng hẹn giờ do dịch vụ đăng bài chạy, hệ thống chỉ gửi lịch sang | [Cũ] | [SM] tr.9 |
 
 [YK2] không nói phần nào chạy ở Vercel, phần nào ở Supabase, phần nào ở VPS. Mục 2 trở đi là đề xuất.
@@ -147,12 +158,12 @@ Mọi giờ trong bảng là giá trị mặc định, quản lý đổi đượ
 |---|---|
 | Tài năng chỉ thấy dữ liệu của mình (1-5, §10-1) | RLS trên mọi bảng có dữ liệu tài năng. Worker dùng khóa quản trị (service role) nhưng chỉ chạy trên VPS, không bao giờ đưa xuống trình duyệt |
 | Quản lý đăng nhập 2FA (1-6) | Supabase MFA TOTP. Mọi đường dẫn quản trị đều đòi đã qua bước 2 (mức xác thực AAL2) |
-| Khóa 15 phút sau 5 lần sai; quản lý hết phiên sau 30 phút (1-4, 1-6) | Supabase Auth không có sẵn kiểu khóa theo tài khoản như vậy, và cài đặt phiên của nó áp cho cả dự án. Phải tự làm: đếm số lần sai trong cơ sở dữ liệu, kiểm tra thời gian không thao tác ở tầng trung gian (middleware) của Next.js cho tên miền quản trị |
+| Khóa 15 phút sau 5 lần sai; quản lý hết phiên sau 30 phút (1-4, 1-6) | Supabase Auth không có sẵn kiểu khóa theo tài khoản như vậy, và cài đặt phiên của nó áp cho cả dự án. Phải tự làm: đếm số lần sai trong cơ sở dữ liệu, kiểm tra thời gian không thao tác ở tầng trung gian (middleware) của Next.js cho tên miền quản trị. **Đã quyết 17/11:** khóa ở BE qua `POST /api/v1/auth/login`; Password Verification Hook chỉ có ở gói Team nên gọi thẳng Supabase Auth không bị đếm (rủi ro RT12 đã chấp nhận) |
 | Không lộ khóa API (§10-2) | Khóa để trong biến môi trường của Vercel và tệp bí mật của container trên VPS. Không ghi khóa vào nhật ký. Mỗi môi trường một bộ khóa |
 | Webhook giả mạo | Kiểm tra chữ ký hoặc mã bí mật của từng dịch vụ. Nhận lặp lại không bị xử lý hai lần |
 | Mã hóa (§10-2) | HTTPS ở mọi đầu. Supabase mã hóa dữ liệu lưu sẵn |
 | Chỉ gửi AI phần dữ liệu cần (§10-2) | Mỗi lần gọi OpenAI chỉ đọc thư mục của đúng tài năng đó. Tắt việc dùng dữ liệu để huấn luyện ở cài đặt tổ chức của OpenAI |
-| Quyền OneDrive | Xin quyền tối thiểu trên Microsoft Graph, giới hạn vào khu vực chứa thư mục tài năng, không xin quyền trên toàn bộ Microsoft 365 của công ty (câu I3) |
+| Quyền OneDrive | Xin quyền tối thiểu trên Microsoft Graph, giới hạn vào khu vực chứa thư mục tài năng, không xin quyền trên toàn bộ Microsoft 365 của công ty (câu I3). Tra lại 17/11: các trang endpoint chỉ ghi quyền toàn tenant; quyền Selected phải chứng minh bằng POC P02 (bộ OneDrive §4.2, rủi ro RT02) |
 | VPS | Chỉ mở cổng SSH, đăng nhập bằng khóa. Worker không mở cổng nào, chỉ gọi ra ngoài |
 
 ## 8. Sao lưu, theo dõi, nhật ký [Đề xuất]
@@ -178,7 +189,7 @@ Mọi giờ trong bảng là giá trị mặc định, quản lý đổi đượ
 
 ## 10. Câu hỏi về hạ tầng cần hỏi khách hoặc thống nhất nội bộ
 
-Đây là câu hỏi mới, chưa có trong file 15. Nếu đồng ý, sẽ thêm vào file 15 với mã I1–I8 và module EP10.
+Các câu này đã có trong file 15 (mã I1–I8, module EP10) và có bản tiếng Nhật ở `SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/00_Cau_hoi_cho_khach.md`. I3 trùng với S02-02.
 
 | Mã | Câu hỏi | Vì sao cần |
 |---|---|---|

@@ -1,77 +1,78 @@
 # 8-3 Đăng lên 3 mạng xã hội
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-10 |
-| Màn hình [AG] | — |
+| Mục [YK2] | §6-10, chức năng 8-3; §5-1; UC-08, UC-08 前提 |
+| Màn hình [AG] | T-13 (lịch và kết quả), M-08 |
 | Tên trong mã nguồn | Multi-platform Publishing |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – luồng rõ; lệnh gọi Upload-Post phải kiểm chứng trước khi chốt |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ | ⚠ C-01 | ✅ | ⚠ kiểm chứng | ⚠ đội đề xuất | ⚠ 8-2, 4-3 |
 
 ## Mục đích
 
-Đăng lên cả 3 mạng, ghi thành công hay lỗi theo từng mạng. Không có video thì không đăng YouTube
-
-## Tác nhân
-
-Xử lý tự động, Upload-Post
-
-## Đầu vào
-
-Bài đã hẹn giờ (ảnh hoặc video, chú thích)
-
-## Điều kiện trước
-
-Đến giờ đăng. Bài đã 採用 (đã duyệt nếu cần). Mạng xã hội đã kết nối
+Đến giờ đã hẹn, đăng cùng ảnh hoặc video và cùng chú thích lên Instagram, TikTok, YouTube. Ghi thành công hay lỗi cho từng mạng. Không có video thì không đăng YouTube; mạng chưa kết nối thì bỏ qua (§6-10 chức năng 8-3).
 
 ## Luồng chính
 
-1. Đăng cùng một nội dung lên Instagram, TikTok, YouTube.
-2. Bài không có video thì không đăng YouTube.
-3. Mạng chưa kết nối thì bỏ qua.
-4. Ghi kết quả cho từng mạng
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Kết quả đăng trên từng mạng xã hội
-- Kết quả mong đợi: Bài xuất hiện trên mạng xã hội mà tài năng không cần thao tác (UC-08)
+1. **Hẹn giờ** (gọi từ 4-3, 7-7, 4-4): gửi sang Upload-Post một lịch đăng gồm tư liệu, chú thích, hashtag, tiêu đề YouTube (B3), nhãn AI (5-5), giờ đăng, danh sách mạng (mạng đã kết nối; bài ảnh bỏ YouTube). Lưu mã lịch.
+2. **Đăng:** Upload-Post tự đăng đúng giờ ([SM] trang 9: việc hẹn và đăng do dịch vụ làm).
+3. **Kết quả:** nhận qua webhook của Upload-Post nếu có, không thì hỏi định kỳ sau giờ đăng. Lưu cho từng mạng: thành công hay lỗi, mã bài, đường dẫn bài, lý do lỗi.
+4. Ít nhất một mạng thành công: bài sang "đã đăng" (lỗi một phần vẫn ghi rõ); gửi tin "đã đăng" và số ngày liên tục (3-4).
+5. Có mạng lỗi: chuyển sang 8-5.
+6. T-13 và M-08 hiện kết quả từng mạng (xanh: được, đỏ: lỗi, xám: không đăng).
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Bài ảnh | Không đăng YouTube; T-13 ghi "không có video nên không lên YouTube" | §6-10, [AG] T-13 |
+| Mạng mất kết nối lúc đến giờ | Mạng đó lỗi; báo qua 8-5 và 8-6 | §6-10 |
+| Không nhận được kết quả sau 1 giờ | Hỏi Upload-Post; vẫn không rõ thì ghi "không rõ" và cảnh báo đội vận hành | [Đề xuất nội bộ] |
+| Upload-Post ngừng dịch vụ | Không hẹn được bài mới; bài sang "hẹn giờ lỗi", báo như 8-5 | §9-3 |
+| Bản tạm trên Supabase đã xóa | Lấy lại từ OneDrive trước khi gửi (6-4) | S05-03 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Cùng tư liệu và chú thích cho cả 3 mạng | Chốt | UC-05 前提, §6-10 |
+| Ghi kết quả cho từng mạng | Chốt | §6-10, §5-1 |
+| Không có video thì không đăng YouTube | Chốt | §6-10 |
+| Chỉ đăng mạng đã kết nối | Chốt | §6-10 |
+| Phí Upload-Post không tăng theo số bài | Chốt | UC-08 前提 |
 
-## Dữ liệu
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`post_platform_results`: `post_id`, `platform`, `status` (`skipped`, `scheduled`, `posted`, `failed`, `unknown`), `platform_post_id`, `url`, `error_code`, `error_message`, `ai_label_method` (5-5), `updated_at`.
 
 ## Tích hợp
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Upload-Post: hẹn giờ, hủy, nhận kết quả. Chống trùng: khóa theo `post_id`; webhook đến nhiều lần chỉ xử lý một lần.
 
-## Tiêu chí chấp nhận
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho bài video, tài năng nối cả 3 mạng, thì sau giờ đăng có 3 dòng kết quả `posted` kèm đường dẫn.
+2. Cho bài ảnh, thì YouTube là `skipped`.
+3. Cho TikTok lỗi, Instagram được, thì bài là "đã đăng" có ghi lỗi TikTok, và 8-5 chạy cho TikTok.
+4. Cho webhook đến 2 lần, thì chỉ một lần cập nhật và một tin "đã đăng".
 
-## Chỗ còn thiếu
+## Ngoài phạm vi của chức năng này
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | B3 (tiêu đề YouTube) |
-| Kiểm chứng | Lệnh đăng và kết quả theo từng mạng |
-| Đội | — |
+- Chú thích riêng cho từng mạng (UC-05 前提). Chọn tay mạng cho từng bài: không có, đăng mọi mạng đã nối.
 
-## Điểm chưa rõ (từ file 04)
+## Phụ thuộc
 
-- tiêu đề YouTube lấy từ đâu. Upload-Post lỗi toàn bộ thì xử lý thế nào.
+8-2, 4-3, 7-7, 4-4, 5-5, 3-4, 8-5, C-01.
+
+Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và kiểm tra phạm vi của cả EP06: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-10, UC-03 前提, UC-08, UC-08 前提, UC-12 前提, 確認9–11, 37, 38, 52.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP06.
+- [YK2] §5-1, §6-10 (8-3), §9-3, UC-05 前提, UC-08, UC-08 前提. [SM] trang 9. [AG] trang 5 (T-13), trang 7 (M-08).

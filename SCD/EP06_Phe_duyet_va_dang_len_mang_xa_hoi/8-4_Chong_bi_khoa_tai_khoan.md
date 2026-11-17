@@ -1,74 +1,75 @@
 # 8-4 Chống bị khóa tài khoản
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-10 |
-| Màn hình [AG] | — |
+| Mục [YK2] | §6-10, chức năng 8-4 (凍結対策); §9-5; §11; UC-08 前提 |
+| Màn hình [AG] | Không có |
 | Tên trong mã nguồn | Anti-ban Measures |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🔴 Đỏ – [YK2] chưa có nội dung ("quyết khi thiết kế"). Đội đề xuất bộ biện pháp tối thiểu (S06-03) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ⚠ | ❌ S06-03 | ❌ | ❌ | ⚠ | ✅ không cần màn | ⚠ quy định từng mạng | ⚠ | ⚠ 4-3 |
 
 ## Mục đích
 
-Chống khóa tài khoản (chưa rõ nội dung, xem mục 3)
+Giảm nguy cơ mạng xã hội khóa tài khoản của tài năng, ví dụ khi đăng nhiều video AI trong thời gian ngắn. Giới hạn gì sẽ quyết sau khi xem quy định và các trường hợp thực tế của từng mạng. Không cam kết tài khoản không bị khóa (§6-10 chức năng 8-4, §9-5, §11).
 
-## Tác nhân
+## Đề xuất biện pháp tối thiểu (S06-03)
 
-Xử lý tự động
+Áp dụng ở bước hẹn giờ (4-3), không chặn việc tạo bản nháp:
 
-## Đầu vào
+1. **Khoảng cách giữa hai bài của cùng tài năng:** ít nhất 3 giờ (S04-04).
+2. **Số bài tối đa mỗi ngày của một tài năng:** mặc định 3, là tham số. Vượt thì bài chờ sang khung trống ngày hôm sau, báo tài năng.
+3. **Rải giờ đăng giữa các tài năng:** cộng ngẫu nhiên vài phút (mặc định ±10 phút) vào giờ đăng, để nhiều tài năng không đăng cùng một phút.
+4. Đội xem quy định hiện hành của Instagram, TikTok, YouTube về nội dung AI và tần suất đăng, rồi chỉnh tham số trước khi chạy thật.
+5. Upload-Post có giới hạn đăng riêng của từng mạng trong 24 giờ (Instagram 50, TikTok 15, YouTube 30) và giới hạn số request theo gói; giới hạn của hệ thống (mặc định 3 bài/ngày) luôn nhỏ hơn (tài liệu Upload-Post, tra 17/11).
+6. Upload-Post chặn nội dung trùng hoặc gần giống trong 48 giờ trên cùng tài khoản và mạng, và chặn gắn @ quá nhiều. Bài hẹn giờ được kiểm lại số bài lúc tới giờ đăng, nên vẫn có thể bị từ chối (bộ Upload-Post §8.4a, U19).
+7. Giới hạn của chính các mạng (tra 17/11, bộ Upload-Post §8.4a): Instagram 100 bài/24 giờ qua API; TikTok khoảng 15 bài/24 giờ **dùng chung cho mọi ứng dụng**, nên nếu tài năng tự đăng bằng công cụ khác thì hệ thống có thể bị từ chối dù chưa tới 3 bài.
 
-⚠ chưa nêu
-
-## Điều kiện trước
-
-⚠ chưa nêu
-
-## Luồng chính
-
-1. Giới hạn gì sẽ quyết sau khi xem quy định và ví dụ thực tế của từng mạng. V2 bỏ mức tham khảo 1 bài ảnh và 1 bài video mỗi ngày, và đề xuất không giới hạn số bài vì lý do chi phí ⚠ (確認37)
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: ⚠ chưa nêu
-- Kết quả mong đợi: Giảm nguy cơ bị khóa tài khoản, nhưng không đảm bảo
+A5 (別紙B, phụ lục B): "cơ bản mỗi ngày 1 bài" được coi là mục tiêu, không phải giới hạn.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Bài vượt giới hạn trong ngày | Dời sang khung trống đầu tiên hôm sau, báo tài năng | S06-03 |
+| Mạng báo tài khoản bị hạn chế | Ghi lỗi (8-5); quản lý có thể dừng đăng tự động của tài năng đó (7-5) | [Đề xuất nội bộ] |
+| TikTok trả `spam_risk_too_many_posts` | Không thử lại trong 24 giờ; lỗi cho riêng TikTok, hai mạng kia vẫn đăng | TikTok Content Posting API |
+| TikTok trả `spam_risk_user_banned_from_posting` | Không thử lại; báo quản lý, gợi ý dừng đăng tự động của tài năng đó | TikTok Content Posting API |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Khoảng cách tối thiểu | 3 giờ | Tham số | S04-04, S06-03 |
+| Số bài tối đa mỗi ngày | 3 | Tham số | S06-03 |
+| Rải giờ | ±10 phút | Tham số | S06-03 |
 
-## Dữ liệu
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho tài năng chấp nhận bài thứ 4 trong ngày, thì bài được dời sang hôm sau và tài năng được báo.
+2. Cho 100 tài năng cùng giờ đăng 19:00, thì giờ hẹn thực tế rải trong khoảng 18:50–19:10.
 
-## Tích hợp
+## Ngoài phạm vi của chức năng này
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+- Cam kết không bị khóa (§11). Giám sát tình trạng tài khoản trên mạng xã hội ngoài những gì Upload-Post trả về.
 
-## Tiêu chí chấp nhận
+## Câu hỏi mở
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Các 確認 liên quan (không xử lý ở đây): 確認37.
 
-## Chỗ còn thiếu
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S06-03 | Bộ biện pháp tối thiểu | Có | Như trên |
+| A5 | "Mỗi ngày 1 bài" là mục tiêu | Không | Như A5 |
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認37; chưa có nội dung (§9-5) |
-| Kiểm chứng | Quy định của từng mạng |
-| Đội | — |
-
-## Điểm chưa rõ (từ file 04)
-
-- giới hạn gì, áp dụng ở bước nào, bài vượt giới hạn thì hoãn hay bỏ.
+Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và kiểm tra phạm vi của cả EP06: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-10, UC-03 前提, UC-08, UC-08 前提, UC-12 前提, 確認9–11, 37, 38, 52.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP06.
+- [YK2] §6-10 (8-4), §9-5, §11, UC-08 前提, 別紙B, 確認37. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A5.

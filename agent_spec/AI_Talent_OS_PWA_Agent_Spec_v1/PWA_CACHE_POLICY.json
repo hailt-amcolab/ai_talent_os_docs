@@ -1,0 +1,39 @@
+{
+  "classification": "proposed_project_policy",
+  "strategy": "allowlist_only",
+  "cacheNamePrefix": "ai-talent-public-",
+  "cacheable": [
+    {
+      "path": "/_next/static/**",
+      "strategy": "cache-first",
+      "condition": "content-hashed public build assets only"
+    },
+    {
+      "path": "/public-assets/**",
+      "strategy": "cache-first",
+      "condition": "approved versioned public icons/fonts/mascot"
+    },
+    {
+      "path": "/offline",
+      "strategy": "precache",
+      "condition": "generic document, no cookie/session/user data"
+    }
+  ],
+  "networkOnly": [
+    "/api/**",
+    "/auth/**",
+    "/login",
+    "/activate",
+    "/reset-password",
+    "/connections/**",
+    "/billing/**",
+    "/admin/**",
+    "all authenticated HTML navigation",
+    "all RSC flight responses",
+    "private media bytes/thumbnails/grants"
+  ],
+  "mutationOfflineQueue": false,
+  "logout": "clear memory and any documented legacy private caches; revoke push server binding; no blanket origin cache deletion",
+  "update": "user confirmation; defer while unsaved text or upload/payment/command unknown; version compatibility check",
+  "httpHeadersPrivate": "Cache-Control: private, no-store; verify deployed CDN behavior"
+}

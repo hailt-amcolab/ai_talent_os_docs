@@ -95,3 +95,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 
 - [YK2] §6-4 (2-4), §7-1, §7-2, UC-02 前提, 確認3, 5.
 - [AG] trang 8 (M-10). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B12.
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.14 (đã chốt): mục tiêu theo từng mạng, mặc định 10.000, có hạn đạt. Ô phần trăm mục tiêu chung trong thiết kế アデッソ sẽ chỉnh theo từng mạng khi làm định nghĩa màn hình. Đóng S02-05.

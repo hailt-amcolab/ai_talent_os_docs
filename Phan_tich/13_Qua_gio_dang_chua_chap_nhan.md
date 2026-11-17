@@ -1,5 +1,12 @@
 # Xử lý khi đến giờ đăng mà tài năng chưa chấp nhận bài
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này.
+
+- Q1 (chấp nhận sau giờ đăng): Q&A No.56 đang hỏi, đề xuất dời sang khung giờ tốt kế tiếp. Bản nháp chưa dùng giữ 7 ngày rồi ẩn (Q&A No.55, đang hỏi).
+
+
 Tổng hợp những gì [YK2] (AI育成OS_概要要件定義書_v2.docx) nói về trường hợp đến giờ đăng mà tài năng chưa 採用 (chấp nhận) bản nháp, kèm vị trí của từng điểm trong các file phân tích và các điểm còn thiếu cần hỏi khách. Viết ngày 16/11/2026.
 
 **Ký hiệu:** ⚠ = nội dung mới là đề xuất trong một mục 確認 (mục cần xác nhận), khách chưa trả lời. Chức năng ghi theo mã trong [YK2] mục 6 (ví dụ 4-3).

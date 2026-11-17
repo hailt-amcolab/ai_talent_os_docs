@@ -35,11 +35,11 @@ Cách chia này giữ ranh giới nhóm của [YK2], nên dễ đối chiếu v�
    - 1-2: mọi tài năng xin dùng qua ứng dụng đều trả phí. Tài khoản công ty (事務所アカウント) do quản lý tạo và không bị thu phí. **Không có gói miễn phí.** Nên đổi tên thành "Phân loại tài khoản trả phí và tài khoản công ty".
    - 1-3: [YK2] ghi "有償・無償の区分を設けないため、有償から無償への変更は行いません" (vì không có phân loại trả phí và miễn phí, nên không đổi từ trả phí sang miễn phí). Tức là **không phải làm 1-3**. Vẫn giữ mã để khớp số với khách, nhưng khối lượng bằng 0.
 3. **8-4 không phải "kiểm soát tần suất đăng".** [YK2] §6-10 gọi chức năng này là 凍結対策 (biện pháp chống khóa tài khoản) và ghi "何を制限するかは、各 SNS の規約と事例を確認して決めます" (giới hạn gì sẽ quyết định sau khi xem quy định và các trường hợp thực tế của từng mạng xã hội). Chưa có nội dung cụ thể nên xếp vào mục 3 "chưa rõ".
-4. **Ghi chú ở EP02 nhắc "AI Instructions qua MCP", nhưng cả [YK2] lẫn [AG] đều không có chữ MCP.** Hai thứ có thật là:
+4. **Ghi chú ở EP02 nhắc "AI Instructions qua MCP". [YK2] và [AG] không có chữ MCP, nhưng 御見積書 (bản báo giá) 前提条件A4 「マネージャーはChatGPT(MCP)経由でAIを調整」, trích ở file Q&A câu số 45.** Báo giá đứng trên [YK2] khi mâu thuẫn ([YK2] §1), nên MCP có căn cứ hợp đồng. Hai màn liên quan là:
    - Màn AIへの指示 (chỉ thị cho AI), tức M-14 và M-15 trong [AG], chờ 確認6 (mục cần xác nhận số 6). [YK2] ghi rằng chỉ thị theo nhóm cần kiểm tra kỹ thuật.
    - Màn カテゴリーの管理 (quản lý nhóm tài năng), tức M-13 trong [AG], chờ 確認47.
 
-   Dùng MCP hay cách khác để làm là việc của khâu thiết kế, chưa nên ghi vào danh sách yêu cầu.
+   Cập nhật 17/11: Q&A No.45 đã đóng. Khách muốn có màn chỉ thị, nhưng màn này xếp là CR-18 (thay đổi ngoài báo giá); nhóm tài năng là CR-17. Cả hai **chưa làm** cho tới khi khách trả lời Q&A No.50. Đợt đầu điều chỉnh AI qua ChatGPT (MCP) như báo giá.
 5. **6-2 ở EP01 và 8-2 ở EP06 phụ thuộc nhau.** Theo [YK2] §6-1, 6-2 hướng dẫn lần lượt: thêm vào màn hình chính → cho phép thông báo → đăng ký thanh toán → kết nối mạng xã hội. Bước thanh toán gọi 1-1 (EP08), bước kết nối gọi 8-2 (EP06). Có thể làm EP01 trước, nhưng 6-2 chỉ hoàn tất khi đã có 1-1 và 8-2.
 
 ### 1.2. Những phần chung chưa thuộc chức năng nào trong 54 chức năng
@@ -168,12 +168,14 @@ Gồm C-01〜C-06 ở mục 1.2 và phần lõi kỹ thuật.
 
 | Nội dung | Màn hình [AG] | Lý do |
 |---|---|---|
-| Quản lý nhóm tài năng (カテゴリー) và lọc danh sách theo nhóm | M-13 | Chờ 確認47 |
-| Chỉ thị cho AI theo toàn bộ, theo nhóm, theo từng tài năng | M-14, M-15 | Chờ 確認6. [YK2] ghi chỉ thị theo nhóm cần kiểm tra kỹ thuật |
-| Quản lý gửi ảnh hoặc tạo video thay tài năng | M-08 (khung đỏ) | Chờ 確認27 |
+| Quản lý nhóm tài năng (カテゴリー) và lọc danh sách theo nhóm | M-13 | CR-17, chờ Q&A No.50 |
+| Chỉ thị cho AI theo toàn bộ, theo nhóm, theo từng tài năng | M-14, M-15 | CR-18, chờ Q&A No.50. [YK2] ghi chỉ thị theo nhóm cần kiểm tra kỹ thuật |
+| Duyệt theo quản lý phụ trách nhóm; nhiều tài khoản trên một mạng; sửa chữ trực tiếp; màn thử thách; video tự làm thành bản nháp mỗi ngày; hội thoại riêng tư | — | CR-19〜CR-24, chờ Q&A No.50 (No.7 cho hội thoại riêng tư) |
 | Nội dung cụ thể của 8-4 (chống khóa tài khoản) | — | [YK2] §6-10, §9-5: quyết định sau khi xem quy định từng mạng |
 
-Nếu khách đồng ý, nhóm tài năng và chỉ thị cho AI nên vào EP02, cùng chỗ với dữ liệu cho AI. Phần gửi thay vào EP05.
+Nếu khách đồng ý, nhóm tài năng và chỉ thị cho AI nên vào EP02, cùng chỗ với dữ liệu cho AI.
+
+Cập nhật 17/11: quản lý gửi ảnh và tạo video thay tài năng **đã chốt làm ở đợt đầu** (CR-09), thuộc EP05 (6-3, 5-1); phí video tính cho tài năng đó.
 
 ## 4. Thứ tự phát triển đề xuất
 

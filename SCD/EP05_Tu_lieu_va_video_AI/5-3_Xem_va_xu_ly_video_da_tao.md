@@ -1,74 +1,67 @@
 # 5-3 Xem và xử lý video đã tạo
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-8 |
+| Mục [YK2] | §6-8, chức năng 5-3 |
 | Màn hình [AG] | T-12 |
 | Tên trong mã nguồn | Video Review |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ | ✅ | ✅ | ✅ không có | ⚠ đội đề xuất | ⚠ 5-1, 5-4 |
 
 ## Mục đích
 
-Xem video đã tạo, chọn dùng hoặc tạo lại
-
-## Tác nhân
-
-Tài năng
-
-## Đầu vào
-
-Video đã tạo
-
-## Điều kiện trước
-
-Video đã tạo xong
+Tài năng phát video đã tạo trong ứng dụng, rồi chọn dùng cho bài, tạo lại, hoặc không dùng (§6-8 chức năng 5-3).
 
 ## Luồng chính
 
-1. Tài năng xem và chọn dùng cho bài, tạo lại (tính phí), hoặc bỏ
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Quyết định của tài năng
-- Kết quả mong đợi: Chỉ video tài năng chọn mới được đăng
+1. Mở T-12 từ thông báo "video đã xong" hoặc từ bản nháp.
+2. Phát video. Hiện tên chủ đề và loại, số lần tạo và phí tháng này (5-4).
+3. Ba nút:
+   - この動画を投稿に使う (dùng cho bài): gắn video vào bản nháp, về T-09.
+   - 作り直す（1回に数えます）(tạo lại, tính một lần): về T-11 với lựa chọn cũ.
+   - 使わない (không dùng): về T-07; video vẫn ở danh sách tư liệu (S05-09).
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Video tạo lỗi | T-12 hiện lý do và "không tính lần" | [AG] T-12, §6-8 |
+| Bản nháp đã chấp nhận trước khi video xong | Không gắn tự động; video vào danh sách tư liệu | [Đề xuất nội bộ] |
+| Dùng một video cho bản nháp khác về sau | Chọn ở thẻ 送ったもの (6-4), không tính lần thêm | S05-09 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Ba lựa chọn: dùng, tạo lại, không dùng | Chốt | §6-8 |
+| Tạo lại tính một lần | Chốt | §6-3 chức năng 5-4 |
+| Video không dùng vẫn được giữ | Đề xuất | S05-09 |
 
-## Dữ liệu
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho bấm この動画を投稿に使う, thì T-09 hiện video đó.
+2. Cho bấm 作り直す và xác nhận, thì số lần tháng này tăng 1.
+3. Cho bấm 使わない, thì video vẫn có ở 送ったもの với nhãn AI.
 
-## Tích hợp
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+5-1, 6-4, 4-1, 5-4.
 
-## Tiêu chí chấp nhận
+## Câu hỏi mở
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S05-09 | Video không dùng vẫn giữ và dùng lại được | Không | Như đề xuất |
 
-## Chỗ còn thiếu
-
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | Video bị bỏ có lưu không |
-| Kiểm chứng | — |
-| Đội | — |
-
-## Điểm chưa rõ (từ file 04)
-
-- video bị bỏ có được lưu lại không. Có giới hạn số lần tạo lại không.
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-8, 5-7, UC-06, UC-06 前提, 確認27, 31.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP05.
+- [YK2] §6-3 (5-4), §6-8 (5-3). [AG] trang 4 (T-12).

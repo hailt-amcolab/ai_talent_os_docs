@@ -1,0 +1,118 @@
+﻿case_id,nhom,muc_do,kieu_kiem_thu,tien_dieu_kien,thao_tac,ket_qua_bat_buoc,kiem_chung_provider,tham_chieu,trang_thai
+PROFILE-01,PROFILE,P1,Giả lập tích hợp,Chưa có profile,Gọi ensure hai lần liên tiếp,Một mapping active cùng username,POST lần đầu; GET xác minh; lần sau không tạo username mới,§8.1; U2,Chưa chạy
+PROFILE-02,PROFILE,P1,Giả lập tích hợp,Hai API cùng tạo một Talent,Chạy đồng thời hai ensure,Unique constraint giữ một mapping,409 được đọc lại và đối chiếu; không DELETE profile,§8.1; U2,Chưa chạy
+PROFILE-03,PROFILE,P1,Giả lập tích hợp,POST tạo profile đã thành công nhưng mất response,Giả lập timeout rồi khôi phục,"Mapping lấy lại đúng ID, không nhân bản",GET username cố định tìm thấy profile,§8.1; U2,Chưa chạy
+PROFILE-04,PROFILE,P1,Giả lập tích hợp,Gói đạt giới hạn profile,Provider trả 403,Incident quota; không OAuth,Không gọi start hoặc đổi username,§8.1; U2,Chưa chạy
+PROFILE-05,PROFILE,P1,Giả lập tích hợp,API key sai,Provider trả 401,"Incident tích hợp, không reauth Talent",Dừng mutation và không vòng retry vô hạn,§8.1; U2,Chưa chạy
+PROFILE-06,PROFILE,P1,Giả lập tích hợp,Profile cùng username ngoài mapping,Provider trả 409,Cần đối soát ownership,Không nhận mù hoặc xóa profile,§8.1; U2,Chưa chạy
+PROFILE-07,PROFILE,P1,Giả lập tích hợp,Profile bị xóa bên ngoài,GET trả 404,"Mapping lỗi, không hồi sinh lịch",Không tạo lại và gửi bài cũ,§8.1; U2,Chưa chạy
+CONNECT-01,CONNECT,P1,Giả lập tích hợp,Talent hợp lệ; chưa kết nối,Start và xác minh thành công từng SNS,Connected với ID/handle đã đọc lại,POST start và GET profile; không generate-jwt,"§8; U1,U2,U12",Chưa chạy
+CONNECT-02,CONNECT,P1,Giả lập tích hợp,Đang có kết nối tốt,Người dùng từ chối OAuth mới,Attempt cancelled; kết nối tốt không bị xóa,Không DELETE social,"§8; U1,U2,U12",Chưa chạy
+CONNECT-03,CONNECT,P1,Giả lập tích hợp,State hết hạn,Provider trả INVALID_STATE; bấm thử lại,Attempt mới và URL mới,Gọi start mới; không tái dùng URL cũ,"§8; U1,U2,U12",Chưa chạy
+CONNECT-04,CONNECT,P1,Giả lập tích hợp,OAuth hoàn tất nhưng tab đóng,"Mở app lại, chạy reconcile",Cập nhật kết nối thực tế,"GET profile, không bắt cấp quyền lại nếu đã tốt","§8; U1,U2,U12",Chưa chạy
+CONNECT-05,CONNECT,P1,Giả lập tích hợp,Chưa có kết nối,Gửi return success giả,Không connected khi provider không có tài khoản,Không tin query redirect,"§8; U1,U2,U12",Chưa chạy
+CONNECT-06,CONNECT,P1,Giả lập tích hợp,Callback success; GET lỗi,Provider GET timeout,"Verifying/202, có job reconcile",Không tạo OAuth mới tự động,"§8; U1,U2,U12",Chưa chạy
+CONNECT-07,CONNECT,P1,Giả lập tích hợp,Kết nối reauth_required,Nối lại cùng remote ID,Connected; không hồi sinh bài failed,"Cập nhật capability, không POST upload","§8; U1,U2,U12",Chưa chạy
+CONNECT-08,CONNECT,P1,Giả lập tích hợp,Đang nối ID A; còn lịch,OAuth trả ID B,"Replacement pending, chặn gửi và xử lý lịch A","Đối soát, không gắn lịch A sang B","§8; U1,U2,U12",Chưa chạy
+CONNECT-09,CONNECT,P1,Giả lập tích hợp,Hai tab cùng platform,Start tab hai khi attempt một còn hoạt động,Một attempt active; callback cũ không ghi đè,Không hai mutation nghiệp vụ không kiểm soát,"§8; U1,U2,U12",Chưa chạy
+CONNECT-10,CONNECT,P1,Giả lập tích hợp,SNS đã gắn Talent A,Talent B kết nối cùng ID,Incident dùng chung/di chuyển; giữ lịch sử A,Không giả định provider tự chặn,"§8; U1,U2,U12",Chưa chạy
+CONNECT-11,CONNECT,P1,Giả lập tích hợp,Webhook connected đến trước callback,Xử lý webhook rồi confirm,Một kết quả; không trùng thông báo,GET profile xác minh,"§8; U1,U2,U12",Chưa chạy
+CONNECT-12,CONNECT,P1,Giả lập tích hợp,Callback đến trước webhook,Confirm rồi xử lý webhook,Không tăng version tài khoản vô cớ,Không upload do event connected,"§8; U1,U2,U12",Chưa chạy
+CONNECT-13,CONNECT,P1,Giả lập tích hợp,Token mất quyền,Nhận reauth webhook và đối soát,"Reauth_required, incident dedupe",Không retry upload liên tục,"§8; U1,U2,U12",Chưa chạy
+CONNECT-14,CONNECT,P1,Giả lập tích hợp,Người dùng chọn facebook,Gọi start nội bộ,"422, không đổi DB",Không gọi provider,"§8; U1,U2,U12",Chưa chạy
+CONNECT-15,CONNECT,P1,Giả lập tích hợp,Session app hết hạn khi return,Confirm rồi đăng nhập lại,"Không lộ dữ liệu, reconcile sau đăng nhập",Không tái sử dụng state provider cũ,"§8; U1,U2,U12",Chưa chạy
+CONNECT-16,CONNECT,P1,Giả lập tích hợp,Attempt thuộc Talent khác,Gọi confirm với token đúng nhưng actor khác,"403/404, không đổi kết nối",Không xác nhận cho actor sai,"§8; U1,U2,U12",Chưa chạy
+CONNECT-17,CONNECT,P1,POC có tài khoản thử,Instagram personal,Thử kết nối,Hướng dẫn Business/Creator; không connected giả,POC loại tài khoản không phù hợp,"§8; U1,U2,U12",Chưa chạy
+CONNECT-18,CONNECT,P1,POC có tài khoản thử,YouTube có nhiều channel,Cấp quyền và xác minh channel,Hiển thị đúng ID và tên channel,POC OAuth không bịa endpoint chọn channel,"§8; U1,U2,U12",Chưa chạy
+CONNECT-19,CONNECT,P1,Giả lập tích hợp,TikTok private,Đọc settings và chuẩn bị ảnh,Không ép privacy public ngoài quyền,GET settings?profile=...,"§8; U1,U2,U12",Chưa chạy
+CONNECT-20,CONNECT,P1,Giả lập tích hợp,Cờ ngắt/thay tài khoản tắt,Gọi API disconnect/replacement,"403, không thực thi",Không DELETE social,"§8; U1,U2,U12",Chưa chạy
+PLANNING-01,PLANNING,P1,Giả lập tích hợp,Bài chỉ có ảnh; ba SNS connected,Schedule,YouTube skipped; chỉ hai delivery có submission,Không gửi youtube qua upload_photos,"§5,9.1; R1",Chưa chạy
+PLANNING-02,PLANNING,P1,Giả lập tích hợp,Video; chỉ Instagram connected,Schedule,Chỉ Instagram được gửi; lưu lý do hai SNS còn lại,Không gọi đích chưa nối,"§5,9.1; R1",Chưa chạy
+PLANNING-03,PLANNING,P1,Giả lập tích hợp,Không SNS nào connected,Schedule,422 không có đích,Không POST upload,"§5,9.1; R1",Chưa chạy
+PLANNING-04,PLANNING,P1,Giả lập tích hợp,Không có media,Adopt/schedule,422 thiếu media,Không gọi provider,"§5,9.1; R1",Chưa chạy
+PLANNING-05,PLANNING,P1,Giả lập tích hợp,Bài đang chờ duyệt,Worker chạy,Giữ local_pending,Không có lịch bên provider,"§5,9.1; R1",Chưa chạy
+PLANNING-06,PLANNING,P1,Giả lập tích hợp,Bài chưa duyệt đã quá giờ,Chạy deadline job,Hết hiệu lực; notification một lần,Không bỏ scheduled_date để đăng ngay,"§5,9.1; R1",Chưa chạy
+PLANNING-07,PLANNING,P1,Giả lập tích hợp,Version 1 đã duyệt; nội dung sửa thành v2,Job v1 chạy sau sửa,Không gửi v2 bằng quyền duyệt v1,Kiểm tra version trước HTTP,"§5,9.1; R1",Chưa chạy
+PLANNING-08,PLANNING,P1,Giả lập tích hợp,Hai Manager cùng quyết định duyệt,Approve và reject đồng thời,"Một quyết định theo policy đã chốt, một conflict",Không sinh hai đợt gửi,"§5,9.1; R1",Chưa chạy
+PLANNING-09,PLANNING,P1,Giả lập tích hợp,Kết quả kiểm duyệt từ cấm không đạt,Schedule,Blocked với lý do,Không POST upload,"§5,9.1; R1",Chưa chạy
+PLANNING-10,PLANNING,P1,Giả lập tích hợp,Ngày hẹn đã qua,Schedule,422 yêu cầu giờ tương lai,Không biến thành immediate,"§5,9.1; R1",Chưa chạy
+PLANNING-11,PLANNING,P1,Giả lập tích hợp,Cùng commandId/payload,Gửi hai lần,Cùng kết quả và cùng delivery,Không tạo submission thứ hai,"§5,9.1; R1",Chưa chạy
+PLANNING-12,PLANNING,P1,Giả lập tích hợp,Cùng commandId khác payload,Gửi lần hai,409 idempotency conflict,Không gửi payload mới,"§5,9.1; R1",Chưa chạy
+PLANNING-13,PLANNING,P1,Giả lập tích hợp,DB enqueue lỗi,Thực hiện transaction schedule,Rollback delivery/submission cùng enqueue,Không dữ liệu đã lưu nhưng mất job,"§5,9.1; R1",Chưa chạy
+PLANNING-14,PLANNING,P1,Giả lập tích hợp,Đã withdrawal,Job cũ còn trong queue,Chặn theo Talent status,Không POST upload,"§5,9.1; R1",Chưa chạy
+MEDIA-01,MEDIA,P1,Giả lập tích hợp,File đuôi mp4 nhưng MIME/nội dung sai,Validation,Từ chối và thông báo,Không gửi file chưa kiểm tra,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-02,MEDIA,P1,Giả lập tích hợp,URL media do client tùy ý,Schedule,Chỉ nhận media ID thuộc Talent,Không fetch URL private/SSRF,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-03,MEDIA,P1,Giả lập tích hợp,File OneDrive không truy cập được,Worker chuẩn bị file,"Lỗi media, không báo đã đăng",Không gửi thiếu file,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-04,MEDIA,P1,Giả lập tích hợp,URL tải tạm hết hạn,Provider không tải được,Không tự tạo submission mới; giữ lỗi thật,Khôi phục theo receipt/ledger,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-05,MEDIA,P1,POC có tài khoản thử,Video lớn,Worker upload file streaming,Bộ nhớ trong giới hạn; lease được gia hạn,POC thời gian upload và crash,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-06,MEDIA,P1,Giả lập tích hợp,Video do AI tạo,Xây payload cho ba SNS,Gắn nhãn từ ai_media,Không bỏ nhãn vì provider lỗi,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-07,MEDIA,P1,Giả lập tích hợp,Caption do AI viết nhưng media thật,Xây payload,Không tự đánh đồng caption với synthetic media,Theo provenance media,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-08,MEDIA,P1,Giả lập tích hợp,Caption vượt quy tắc SNS,Validate,"Lỗi rõ trường, không tự cắt",Không POST nội dung khác bản duyệt,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-09,MEDIA,P1,Giả lập tích hợp,Video dài hơn quyền TikTok,Validate settings,Chặn TikTok có lý do,Không tự đổi video hoặc privacy,"§9.2–9.3; U3,U4,U13",Chưa chạy
+MEDIA-10,MEDIA,P1,Giả lập tích hợp,"Cùng giờ UTC, múi giờ app khác",Schedule và hiển thị,Một instant thống nhất,Gửi UTC Z; không timezone diễn giải hai lần,"§9.2–9.3; U3,U4,U13",Chưa chạy
+SUBMIT-01,SUBMIT,P0,Giả lập tích hợp,Delivery ready,Provider trả 202/job_id,"Scheduled, chưa published",Lưu job_id rồi queue reconcile,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-02,SUBMIT,P0,Giả lập tích hợp,Gửi immediate trong POC,Provider trả request_id async,"Processing, chưa published",GET status bằng request_id,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-03,SUBMIT,P0,Giả lập tích hợp,"HTTP 200 top success, platform failed",Normalize,Failed platform; không published,Không dựa top-level success,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-04,SUBMIT,P0,Giả lập tích hợp,"Một SNS thành công, một thất bại",Nhận kết quả,Hai kết quả độc lập,Không gửi lại SNS thành công,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-05,SUBMIT,P0,Giả lập tích hợp,Provider nhận POST nhưng response mất,Worker timeout,"Unknown, giữ request/key/payload",Status/history/schedule trước POST lại,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-06,SUBMIT,P0,Giả lập tích hợp,"Provider nhận POST, worker chết trước DB commit",Restart worker,Khôi phục receipt; không generation mới,Đối soát cùng external_id/request_id,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-07,SUBMIT,P0,Giả lập tích hợp,Cửa sổ idempotency còn hiệu lực,Khôi phục cùng request sau kiểm tra,Cùng key và logical payload,Không tự đổi key,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-08,SUBMIT,P0,Giả lập tích hợp,Cửa sổ idempotency đã hết; chưa rõ kết quả,Retry job,"Incident/manual, không POST mới",Không trông chờ key cũ chống trùng vô hạn,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-09,SUBMIT,P0,Giả lập tích hợp,TikTok fallback inbox,Nhận success kèm fallback,Action_required; không live,Không tự upload lại,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-10,SUBMIT,P0,Giả lập tích hợp,TikTok ID về muộn,Webhook thiếu URL rồi polling có ID,Cập nhật ID/URL; không tạo bài mới,Đối soát dù không có webhook mới,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-11,SUBMIT,P0,Giả lập tích hợp,Unknown status hoặc JSON lỗi,Parse response,Unknown/drift và giữ evidence,Không mặc định thành công,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-12,SUBMIT,P0,Giả lập tích hợp,Provider status completed nhưng platform skipped,Normalize,"Skipped có lý do, tổng hợp đúng",Không ghi published cho skipped,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-13,SUBMIT,P0,Giả lập tích hợp,Provider báo failed no-activity chưa có result,Reconcile,Không tự coi chắc chắn chưa đăng,Không tự upload lại,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-14,SUBMIT,P0,Giả lập tích hợp,Provider báo retryable,Worker nhận status,Theo dõi; không thêm retry xuất bản app,Kiểm chứng chính sách provider Q06,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-15,SUBMIT,P0,Giả lập tích hợp,Bài lỗi đã xác nhận,Người dùng không thao tác,Không tự tạo generation mới,Không gọi retry-post,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-16,SUBMIT,P0,Giả lập tích hợp,Bài lỗi; actor chủ động đặt lại,Reschedule failed,"Generation mới, audit, chỉ platform lỗi",Kiểm tra approval/media/target hiện tại,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-17,SUBMIT,P0,Giả lập tích hợp,Bài unknown,Actor yêu cầu reschedule,409 cần đối soát trước,Không tạo bài có thể trùng,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+SUBMIT-18,SUBMIT,P0,Giả lập tích hợp,URL result là placeholder không phải HTTPS,Render UI,Hiển thị trạng thái không tạo link giả,Không sử dụng text như URL,"§9.4,10; U3,U6,U7,U10",Chưa chạy
+CANCEL-01,CANCEL,P0,Giả lập tích hợp,Delivery local chưa gửi,Manager cancel,"Cancelled, job cũ vô hiệu",Không cần DELETE provider,§11; U5; R1,Chưa chạy
+CANCEL-02,CANCEL,P0,Giả lập tích hợp,Provider đã nhận lịch,Manager cancel,Cancel_pending rồi xác minh cancelled,DELETE schedule job đúng ownership,§11; U5; R1,Chưa chạy
+CANCEL-03,CANCEL,P0,Giả lập tích hợp,"Đang submitting, chưa có job ID",Stop/cancel đồng thời,Giữ ý định hủy; receipt về thì hủy bù,Không bỏ mất yêu cầu hủy,§11; U5; R1,Chưa chạy
+CANCEL-04,CANCEL,P0,Giả lập tích hợp,DELETE trả 404,Xử lý hủy,"Đối soát status/history, không cancelled giả",GET để phân biệt đã chạy/sai ID,§11; U5; R1,Chưa chạy
+CANCEL-05,CANCEL,P0,Giả lập tích hợp,DELETE 200 nhưng bài đã live trong race,Đối soát sau hủy,Published + hủy không kịp + cảnh báo,Không tự xóa bài live,§11; U5; R1,Chưa chạy
+CANCEL-06,CANCEL,P0,Giả lập tích hợp,Global stop trong khi worker gửi,Commit epoch rồi trả receipt,Không gửi mới; lịch vừa tạo bị hủy bù,Kiểm tra epoch trước và sau HTTP,§11; U5; R1,Chưa chạy
+CANCEL-07,CANCEL,P0,Giả lập tích hợp,Talent stop; Talent khác còn hoạt động,Chạy các job,Chỉ Talent bị dừng bị chặn,Không hủy nhầm scope,§11; U5; R1,Chưa chạy
+CANCEL-08,CANCEL,P0,Giả lập tích hợp,Resume khi batch cancel chưa xong,Resume rồi job cancel cũ chạy,"Lịch cũ vẫn bị hủy, không hồi sinh",Không tạo lại lịch từ queue cũ,§11; U5; R1,Chưa chạy
+CANCEL-09,CANCEL,P0,Giả lập tích hợp,Có lịch provider không lưu đủ local,Quét schedule theo scope,"Gắn orphan để xử lý, không xóa lịch lạ mù",Phân trang và đối chiếu external_id,§11; U5; R1,Chưa chạy
+CANCEL-10,CANCEL,P0,Giả lập tích hợp,Manager chuyển Talent sang kết thúc,Xử lý sự kiện,"Chặn và hủy, giữ lịch sử",Không tự DELETE profile,§11; U5; R1,Chưa chạy
+CANCEL-11,CANCEL,P0,Giả lập tích hợp,Talent gọi admin cancel,Request,403 và audit nếu cần,Không DELETE schedule,§11; U5; R1,Chưa chạy
+CANCEL-12,CANCEL,P0,Giả lập tích hợp,Thay tài khoản khi còn lịch unknown,Xác nhận replacement,"Không mở gửi, operation unresolved",Không áp lịch vào tài khoản mới,§11; U5; R1,Chưa chạy
+WEBHOOK-01,WEBHOOK,P0,Giả lập tích hợp,Raw body và HMAC đúng,Nhận event,Inbox + enqueue commit trước 200,Không làm gọi ngoài dài trong HTTP,§12; U8,Chưa chạy
+WEBHOOK-02,WEBHOOK,P0,Giả lập tích hợp,Signature sai,Nhận event,"401, không ghi nghiệp vụ",Không gọi provider dựa event giả,§12; U8,Chưa chạy
+WEBHOOK-03,WEBHOOK,P0,Giả lập tích hợp,JSON parse rồi serialize làm đổi bytes,Kiểm thử signature,Verifier dùng raw bytes gốc,Không xác minh JSON đã đổi,§12; U8,Chưa chạy
+WEBHOOK-04,WEBHOOK,P0,Giả lập tích hợp,Timestamp quá cũ,Nhận replay,Từ chối theo cửa sổ,Không cập nhật trạng thái,§12; U8,Chưa chạy
+WEBHOOK-05,WEBHOOK,P0,Giả lập tích hợp,Cùng delivery ID cùng body,Provider retry,"200 idempotent, một inbox",Không notification trùng,§12; U8,Chưa chạy
+WEBHOOK-06,WEBHOOK,P0,Giả lập tích hợp,Redelivery mới ID khác cùng event,Xử lý hai lần,"Hai evidence, một tác động nghiệp vụ",Không gửi thông báo hai lần,§12; U8,Chưa chạy
+WEBHOOK-07,WEBHOOK,P0,Giả lập tích hợp,Cùng delivery ID khác body,Nhận lần hai,"Incident, không ghi đè",Không coi là duplicate bình thường,§12; U8,Chưa chạy
+WEBHOOK-08,WEBHOOK,P0,Giả lập tích hợp,Webhook đến trước receipt được lưu,Worker xử lý,Unmatched được mapping lại sau,Không bỏ event vì chưa thấy submission,§12; U8,Chưa chạy
+WEBHOOK-09,WEBHOOK,P0,Giả lập tích hợp,Failed cũ đến sau published,Xử lý event,Không lùi published,Reconcile nếu bằng chứng xung đột,§12; U8,Chưa chạy
+WEBHOOK-10,WEBHOOK,P0,Giả lập tích hợp,Disconnected cũ đến sau reconnect,Worker xử lý,"Đọc profile, không ghi mất kết nối giả",GET profile mới nhất,§12; U8,Chưa chạy
+WEBHOOK-11,WEBHOOK,P0,Giả lập tích hợp,Event hợp chữ ký nhưng thiếu trường,Nhận event,Quarantine bền vững rồi 200,Cảnh báo schema drift,§12; U8,Chưa chạy
+WEBHOOK-12,WEBHOOK,P0,Giả lập tích hợp,Route profile A nhưng body profile B,Nhận event,"Quarantine, không cập nhật A/B mù",Kiểm tra binding,§12; U8,Chưa chạy
+WEBHOOK-13,WEBHOOK,P0,Giả lập tích hợp,DB down trước insert inbox,Nhận event,"503, không 200 mất dữ liệu",Provider có thể giao lại,§12; U8,Chưa chạy
+WEBHOOK-14,WEBHOOK,P0,Giả lập tích hợp,Insert inbox thành công nhưng enqueue lỗi,Transaction abort,Không ACK thành công,Retry sẽ ghi cả inbox và queue,§12; U8,Chưa chạy
+WEBHOOK-15,WEBHOOK,P0,Giả lập tích hợp,Secret đang xoay,Gửi old/new signed events trong cửa sổ,Cả hai được xử lý theo chính sách,Bỏ old sau cửa sổ,§12; U8,Chưa chạy
+WEBHOOK-16,WEBHOOK,P0,Giả lập tích hợp,Webhook test hoặc event ngoài scope,Nhận event,Không tạo thông báo/bài nghiệp vụ,Không kích hoạt upload,§12; U8,Chưa chạy
+METRICS-01,METRICS,P1,Giả lập tích hợp,Một metric không được provider hỗ trợ,Đồng bộ,Null + unavailable_reason,Không ghi 0,§13; U9; R1,Chưa chạy
+METRICS-02,METRICS,P1,Giả lập tích hợp,Metric thực sự bằng 0,Đồng bộ,Lưu 0 hợp lệ,Không đổi thành null,§13; U9; R1,Chưa chạy
+METRICS-03,METRICS,P1,Giả lập tích hợp,"Một SNS lỗi, hai SNS tốt",Job metrics,Lưu hai snapshot tốt và lỗi riêng,Không rollback toàn batch,§13; U9; R1,Chưa chạy
+METRICS-04,METRICS,P1,Giả lập tích hợp,Cron cùng ngày chạy hai lần,Enqueue/consume,Không nhân bản snapshot nghiệp vụ,Khóa ngày và profile,§13; U9; R1,Chưa chạy
+METRICS-05,METRICS,P1,Giả lập tích hợp,Account đã đổi,Đọc dữ liệu lịch sử,Không trộn ID/version cũ và mới,Không cộng follower hai tài khoản,§13; U9; R1,Chưa chạy
+METRICS-06,METRICS,P1,Giả lập tích hợp,TikTok chưa có public ID,Đọc post metrics,"Chờ/thiếu dữ liệu, không bịa ID",Không dùng publish ID tạm như video ID,§13; U9; R1,Chưa chạy
+METRICS-07,METRICS,P1,Giả lập tích hợp,Cache chưa refresh,Đọc cached metrics,Giữ captured_at thật và stale,Không coi là số liệu hôm nay,§13; U9; R1,Chưa chạy
+METRICS-08,METRICS,P1,Giả lập tích hợp,OneDrive ghi lỗi sau DB commit,Retry export,Không gọi lại analytics vô hạn,Idempotent snapshot export,§13; U9; R1,Chưa chạy
+METRICS-09,METRICS,P1,Giả lập tích hợp,Profile impressions khác post views,Map metric,Giữ scope và định nghĩa,Không tráo reach/views/impressions,§13; U9; R1,Chưa chạy
+METRICS-10,METRICS,P1,Giả lập tích hợp,Không lấy được phản ứng theo giờ,Phân tích giờ đăng,Dùng phương án fallback theo requirement,Không bịa hourly breakdown,§13; U9; R1,Chưa chạy
+OPS-01,OPS,P0,Giả lập tích hợp,Talent A biết UUID của B,Đọc/schedule/confirm,403/404 không leak dữ liệu,Không gọi provider cho B,"§3.2,14,17",Chưa chạy
+OPS-02,OPS,P0,Giả lập tích hợp,Manager khác tenant,Hủy/dừng/đọc,403/404,Không mutation scope khác,"§3.2,14,17",Chưa chạy
+OPS-03,OPS,P0,Giả lập tích hợp,429 ngắn hạn có reset,Worker gọi API,"Delay theo reset, limiter chung",Không retry storm,"§3.2,14,17",Chưa chạy
+OPS-04,OPS,P0,Giả lập tích hợp,Hết quota tháng/lịch chờ,Nhận 429 quota,"Incident quota, không retry mỗi giây",Đọc loại lỗi trước retry,"§3.2,14,17",Chưa chạy
+OPS-05,OPS,P0,Giả lập tích hợp,Worker mất lease,Worker thứ hai nhận job,Ledger chống side effect trùng,Không tạo request ID mới,"§3.2,14,17",Chưa chạy
+OPS-06,OPS,P0,Giả lập tích hợp,Preview deployment,Chạy smoke/config checks,Không dùng production credential,Không nhận production webhook,"§3.2,14,17",Chưa chạy
+OPS-07,OPS,P0,Giả lập tích hợp,Provider downtime rồi hồi phục sau giờ đăng,Worker phục hồi,Không chuyển lịch quá hạn thành immediate,Cần quyết định người dùng,"§3.2,14,17",Chưa chạy
+OPS-08,OPS,P0,Giả lập tích hợp,Agent thêm log request thô,Kiểm tra redaction,Không lộ key/URL ký/token/email,Test sanitizer,"§3.2,14,17",Chưa chạy
+OPS-09,OPS,P0,Giả lập tích hợp,Payload job schemaVersion chưa hỗ trợ,Worker đọc,"Quarantine, không bỏ message",Cảnh báo lệch deploy,"§3.2,14,17",Chưa chạy
+OPS-10,OPS,P0,Giả lập tích hợp,VPS API/worker restart,Diễn tập,Không mất intent/inbox/receipt,Đối soát trước mutation,"§3.2,14,17",Chưa chạy

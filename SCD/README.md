@@ -17,7 +17,7 @@ Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩ
 ## 2. Hai loại file
 
 - **Bản khung:** sinh tự động từ file 04, file 16 và bảng đánh giá ở mục 5. Đã có tác nhân, đầu vào, luồng chính, chỗ còn thiếu, điểm chưa rõ. Còn trống: luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Đầu file có dòng "Bản khung".
-- **Bản đầy đủ:** do đội viết theo mẫu ở mục 4. Hiện đã viết đủ EP01, EP02, EP03. Mỗi module viết xong có thêm file `00_Cau_hoi_cho_khach.md` gom câu hỏi gửi khách (không xử lý 確認, chỉ nhắc mã).
+- **Bản đầy đủ:** do đội viết theo mẫu ở mục 4. **Đã viết đủ cả 10 module (EP01–EP10), không còn bản khung.** Mỗi module viết xong có thêm file `00_Cau_hoi_cho_khach.md` gom câu hỏi gửi khách (không xử lý 確認, chỉ nhắc mã).
 
 Script sinh bản khung là [gen_ban_khung.py](gen_ban_khung.py). Chạy ở thư mục gốc dự án: `python3 SCD/gen_ban_khung.py .`. Script **không ghi đè** file đã xóa dòng "Bản khung", nên chạy lại không làm mất phần viết tay. Script còn sinh lại bảng đánh giá vào `SCD/_bang_danh_gia.md.part`; muốn cập nhật mục 5 thì chép bảng đó vào đây. Mức sẵn sàng của từng chức năng sửa trong biến `M` của script.
 
@@ -121,6 +121,8 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP04 – Tạo nội dung bài đăng
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP04_Tao_noi_dung_bai_dang/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
 | 4-1 | [Tự tạo bản nháp](EP04_Tao_noi_dung_bai_dang/4-1_Tu_tao_ban_nhap.md) | 🔴 Đỏ | 確認15, 16, 24; A8; B1, B2, B3 | Nguồn tin tức (確認16) | Giới hạn độ dài chung cho 3 mạng |
@@ -131,10 +133,12 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP05 – Tư liệu và video AI
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP05_Tu_lieu_va_video_AI/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
 | 6-3 | [Gửi ảnh và video](EP05_Tu_lieu_va_video_AI/6-3_Gui_anh_va_video.md) | 🟡 Vàng | 確認27; C2 | — | Định dạng và dung lượng tối đa (§9-2) |
-| 6-4 | [Lưu tư liệu](EP05_Tu_lieu_va_video_AI/6-4_Luu_tu_lieu.md) | 🔴 Đỏ | 確認32; B4 | — | Thời gian giữ và cách xóa |
+| 6-4 | [Lưu tư liệu](EP05_Tu_lieu_va_video_AI/6-4_Luu_tu_lieu.md) | 🟡 Vàng | B4 (phần video tự làm); 確認32 | — | Thời gian giữ và cách xóa |
 | 6-5 | [Nhắc gửi tư liệu](EP05_Tu_lieu_va_video_AI/6-5_Nhac_gui_tu_lieu.md) | 🟡 Vàng | Nhiều bài trong ngày thì nhắc mấy lần | — | — |
 | 5-1 | [Tạo video](EP05_Tu_lieu_va_video_AI/5-1_Tao_video.md) | 🔴 Đỏ | 確認31; đơn giá; B9 | Tham số Kling, thời gian tạo | — |
 | 5-2 | [Định dạng video](EP05_Tu_lieu_va_video_AI/5-2_Dinh_dang_video.md) | 🟡 Vàng | — | Định dạng đăng được trên cả 3 mạng | — |
@@ -142,6 +146,8 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 | 5-5 | [Ghi rõ video do AI tạo](EP05_Tu_lieu_va_video_AI/5-5_Ghi_ro_video_do_AI_tao.md) | 🔴 Đỏ | C3 | Upload-Post có gắn được nhãn AI trên 3 mạng không | — |
 
 ### EP06 – Phê duyệt và đăng lên mạng xã hội
+
+Câu hỏi gửi khách và danh sách kiểm chứng Upload-Post: [00_Cau_hoi_cho_khach.md](EP06_Phe_duyet_va_dang_len_mang_xa_hoi/00_Cau_hoi_cho_khach.md).
 
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
@@ -157,6 +163,8 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP07 – Kết quả và phân tích
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP07_Ket_qua_va_phan_tich/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
 | 8-7 | [Lấy số liệu](EP07_Ket_qua_va_phan_tich/8-7_Lay_so_lieu.md) | 🔴 Đỏ | C5 | Upload-Post trả về những chỉ số nào (quyết định cấu trúc dữ liệu) | — |
@@ -168,6 +176,8 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP08 – Thu phí
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP08_Thu_phi/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
 | 1-1 | [Thu phí thuê bao tháng](EP08_Thu_phi/1-1_Thu_phi_thue_bao_thang.md) | 🔴 Đỏ | 確認48, 49, 50; mức phí; ngày chốt | Môi trường thử GMO, thu số tiền thay đổi | — |
@@ -177,6 +187,8 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP09 – Thông báo và nền tảng PWA
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP09_Thong_bao_va_nen_tang_PWA/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
 | 6-1 | [Tin nhắn trong ứng dụng và thông báo đẩy](EP09_Thong_bao_va_nen_tang_PWA/6-1_Tin_nhan_trong_ung_dung_va_thong_bao_day.md) | 🟡 Vàng | C6; 確認12 | Web Push trên iOS 16.4 trở lên | — |
@@ -185,9 +197,11 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 
 ### EP10 – Nền tảng chung và quản trị hệ thống
 
+Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP10_Nen_tang_chung_va_quan_tri_he_thong/00_Cau_hoi_cho_khach.md).
+
 | Mã | Chức năng | Mức | Khách | Kiểm chứng | Đội |
 |---|---|---|---|---|---|
-| C-01 | [Bộ trạng thái](EP10_Nen_tang_chung_va_quan_tri_he_thong/C-01_Bo_trang_thai.md) | 🔴 Đỏ | §5-1 ghi sẽ viết ở bản cuối; A3 | — | Đội viết nháp sơ đồ trạng thái rồi gửi khách duyệt |
+| C-01 | [Bộ trạng thái](EP10_Nen_tang_chung_va_quan_tri_he_thong/C-01_Bo_trang_thai.md) | 🟡 Vàng | Trạng thái bài đăng đã có trong hình 5-1; còn S10-01, A3, S01-01 | — | Đội viết nháp sơ đồ trạng thái rồi gửi khách duyệt |
 | C-02 | [Cài đặt do quản lý tự chỉnh](EP10_Nen_tang_chung_va_quan_tri_he_thong/C-02_Cai_dat_do_quan_ly_tu_chinh.md) | 🟢 Xanh | — | — | — |
 | C-03 | [Nhật ký thao tác và xử lý](EP10_Nen_tang_chung_va_quan_tri_he_thong/C-03_Nhat_ky_thao_tac_va_xu_ly.md) | 🟡 Vàng | Thời gian giữ (§9-4) | — | — |
 | C-04 | [Xử lý khi dịch vụ ngoài lỗi](EP10_Nen_tang_chung_va_quan_tri_he_thong/C-04_Xu_ly_khi_dich_vu_ngoai_loi.md) | 🟡 Vàng | — | — | Cách xử lý cho từng dịch vụ |
@@ -198,15 +212,15 @@ Câu hỏi gửi khách của module: [00_Cau_hoi_cho_khach.md](EP03_Huan_luyen_
 | Mức | Số chức năng (trong 54) |
 |---|---|
 | 🟢 Xanh | 2 (1-5, 6-6) |
-| 🟡 Vàng | 32 |
-| 🔴 Đỏ | 19 |
+| 🟡 Vàng | 33 |
+| 🔴 Đỏ | 18 |
 | Không làm | 1 (1-3) |
 
-- **Ít chức năng xanh không có nghĩa là chưa làm được gì.** 32 chức năng vàng giao agent được ngay khi đặc tả ghi rõ giả định.
+- **Ít chức năng xanh không có nghĩa là chưa làm được gì.** 33 chức năng vàng giao agent được ngay khi đặc tả ghi rõ giả định.
 - **Các chức năng đỏ dồn vào ba chỗ:**
   - **Upload-Post:** 8-2, 8-7, 8-9, 5-5, 7-7. Nên kiểm chứng Upload-Post càng sớm càng tốt.
   - **Thu phí:** 1-1, 5-4. Chờ 確認48–51 và đơn giá.
   - **Luồng bản nháp và đăng bài:** 4-1, 4-3, 8-5. Chờ B1 (giờ đăng quyết lúc nào) và 確認30.
-- **C-01 (bộ trạng thái) là điểm nghẽn chung** của 7-3, 7-2, 7-7, 8-5. Đội nên viết nháp sơ đồ trạng thái ngay rồi gửi khách duyệt.
+- **C-01 (bộ trạng thái) đã viết:** 6 trạng thái bài đăng lấy từ hình 5-1 của [YK2]; các bộ khác là đề xuất, gửi khách duyệt qua S10-01, A3, S01-01.
 
 Thứ tự viết đầy đủ: theo thứ tự phát triển ở file 16 mục 4, trong mỗi module để chức năng đỏ sau cùng.

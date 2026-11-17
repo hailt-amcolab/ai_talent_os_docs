@@ -1,5 +1,14 @@
 # Yêu cầu phi chức năng
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- Chi phí video trình chiếu: nay ghép ảnh ở máy chủ, không trả phí cho dịch vụ tạo video; chi phí là CPU của VPS (CR-04). Con số 2–18 yên dựa trên cách tính cũ.
+- Màn quản trị dùng chủ yếu trên PC nhưng phải dễ xem trên điện thoại (Q&A No.33).
+- Khóa sau 5 lần sai làm ở BE; gọi thẳng Supabase Auth không bị đếm (rủi ro RT12 đã chấp nhận).
+
+
 Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được nêu tương đối đầy đủ. Các nhóm còn lại chủ yếu ghi "設計の中で決め、最終版に書きます" (sẽ quyết khi thiết kế và ghi vào bản cuối). Nguồn chính là [YK2] mục 9 (hiệu năng, vận hành, nhật ký), 10 (bảo mật), 11 (điều kiện tiền đề và ràng buộc), 12 (nghiệm thu) và phần 前提 (tiền đề) của các UC. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với v1:** quy mô ban đầu rõ hơn (khoảng 30 người, thêm 10 mỗi tháng). Màn hình quản trị phải dễ xem trên điện thoại. Màn hình đăng ký công khai và email trở thành điểm bảo mật và tính sẵn sàng mới. Việc đồng ý về dữ liệu của tài năng thuộc công ty đã rõ (ủy thác khi ký hợp đồng).

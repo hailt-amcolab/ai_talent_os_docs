@@ -1,74 +1,69 @@
 # 6-7 Số liệu và mức đạt cho tài năng
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP07 – Kết quả và phân tích |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-11 |
-| Màn hình [AG] | T-06, T-13 |
+| Mục [YK2] | §6-11, chức năng 6-7; UC-09 |
+| Màn hình [AG] | T-06 (người theo dõi, 続けて投稿), T-13 (số liệu từng bài) |
 | Tên trong mã nguồn | Talent Performance View |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được; [AG] thiếu chỗ hiện diễn biến người theo dõi (S07-05) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ✅ | ⚠ 確認22 | ✅ | ⚠ S07-05 | ✅ | ⚠ đội đề xuất | ⚠ 8-7 |
 
 ## Mục đích
 
-Cho tài năng xem kết quả, số ngày đăng liên tục, mức đạt mục tiêu
-
-## Tác nhân
-
-Tài năng
-
-## Đầu vào
-
-Số liệu từng bài, số ngày đăng liên tục, lịch sử số người theo dõi, mục tiêu
-
-## Điều kiện trước
-
-Tài năng đã đăng nhập
+Ứng dụng tài năng hiện: số liệu từng bài, số ngày đăng liên tục, diễn biến số người theo dõi, còn bao nhiêu tới mục tiêu (§6-11 chức năng 6-7). Chỉ số liệu của chính mình, không xếp hạng (giả định 確認40).
 
 ## Luồng chính
 
-1. Hiển thị số liệu từng bài, số ngày đăng liên tục, diễn biến số người theo dõi và phần còn thiếu so với mục tiêu. Chỉ số liệu của chính mình, không có xếp hạng giữa các tài năng ⚠ (確認40)
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Màn hình số liệu trong ứng dụng
-- Kết quả mong đợi: Tài năng tự theo dõi được kết quả của mình
+1. **T-13 (số liệu từng bài):** mỗi bài đã đăng hiện lượt xem, lượt thích, bình luận (cộng cả các mạng); chạm vào thì thấy từng mạng (S07-09).
+2. **T-06:** "続けて投稿 N日" (số ngày đăng liên tục); khối người theo dõi và mục tiêu (3-10).
+3. **Diễn biến người theo dõi:** chạm vào một mạng ở T-06 thì mở biểu đồ đường 30 ngày (S07-05).
+4. **Còn bao nhiêu tới mục tiêu:** hiện dưới từng mạng ("あと 6,900人").
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Bài mới đăng chưa có số liệu | Hiện "—" và "số liệu cập nhật vào sáng mai" | S07-02 |
+| Bài đăng ngoài hệ thống | Hiện trong T-13 với nhãn "SNS から投稿" | UC-09 |
+| Mỗi mạng gọi "lượt xem" khác nhau | Cộng theo chỉ số tương ứng; giải thích ở màn chi tiết từng mạng | S07-09 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Ngày đăng liên tục: ngày có ít nhất 1 bài thành công; một ngày không đăng thì tính lại | Giả định (確認22) | — |
+| Chỉ dữ liệu của mình, không xếp hạng | Giả định (確認40) | 1-5 |
+| Bài ngoài hệ thống cũng tính | Chốt | UC-09 |
 
-## Dữ liệu
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho bài có IG 800 lượt xem, TT 440, thì T-13 hiện 1,240 và chạm vào thấy từng mạng.
+2. Cho tài năng đăng 5 ngày liền, thì T-06 hiện 続けて投稿 5日.
+3. Cho chạm vào Instagram ở T-06, thì thấy biểu đồ 30 ngày.
+4. Tài năng A không gọi được API số liệu của tài năng B.
 
-## Tích hợp
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+8-7, 8-3, 3-10, 2-4.
 
-## Tiêu chí chấp nhận
+## Câu hỏi mở
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Các 確認 liên quan (không xử lý ở đây): 確認22, 40.
 
-## Chỗ còn thiếu
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S07-05 | Biểu đồ diễn biến người theo dõi | Không | Chạm vào mạng ở T-06 |
+| S07-09 | T-13 cộng số liệu các mạng | Không | Như đề xuất |
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認22, 40 |
-| Kiểm chứng | — |
-| Đội | — |
-
-## Điểm chưa rõ (từ file 04)
-
-- màn hình quản trị xem tổng hợp nhiều tài năng thế nào, "sẽ quyết khi xem màn hình thật" (UC-10). "Số người theo dõi gộp" (別紙B số 20) là tổng cả 3 mạng hay hiển thị từng mạng.
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP07: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-11, UC-08, UC-09, UC-09 前提, 確認30, 40.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP07.
+- [YK2] §6-11 (6-7), UC-09, 確認22, 40. [AG] trang 3 (T-06), trang 5 (T-13).

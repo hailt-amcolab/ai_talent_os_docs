@@ -1,5 +1,14 @@
 # Quy tắc nghiệp vụ
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- BR-G01: video trình chiếu ghép ảnh ở máy chủ (CR-04). BR-G05 (video tự làm dùng theo thứ tự): CR-23, chưa làm. BR-C06 (sửa qua AI): giữ; sửa chữ trực tiếp là CR-21.
+- Câu 20 (nguồn chỉ dẫn cho AI): màn chỉ dẫn là CR-18, chưa làm. Hiện chỉ dẫn đi qua ChatGPT và file OneDrive (御見積書 前提条件 A4, Q&A No.45).
+- Báo tăng người theo dõi ở mốc 25%, 50%, 75% mục tiêu (Q&A No.14).
+
+
 Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở mục 5 業務ルール (quy tắc nghiệp vụ) của [YK2]. Phần còn lại nằm rải rác ở mục 3, 4 (phần 前提 – tiền đề của từng UC), 6, 7, 9, 10, 11 và 14. Cuối tab có 10 điểm mâu thuẫn và 20 quy tắc còn thiếu. Tab này đã viết lại theo bản yêu cầu v2.
 
 **Cách đọc:**

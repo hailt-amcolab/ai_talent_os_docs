@@ -1,5 +1,15 @@
 # Yêu cầu chức năng theo module
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- 3-5: không có trần, không tự dừng (Q&A No.17). 3-7: báo tăng người theo dõi ở mốc 25%, 50%, 75% mục tiêu; đạt mục tiêu báo tài năng và quản lý (Q&A No.14, No.42).
+- 4-1: có tìm tin tức, 1 lần mỗi ngày (CR-05). 4-2: sửa chữ trực tiếp là CR-21, chưa làm. 4-4: màn sửa của quản lý ở mức tối thiểu (CR-06).
+- 5-1: video trình chiếu ghép ảnh ở máy chủ, không dùng Kling (CR-04); quản lý tạo video thay tài năng, phí tính cho tài năng đó (CR-09). 6-4: phần video tự làm thành bản nháp mỗi ngày là CR-23, chưa làm.
+- Đề xuất chưa có mã chức năng (màn chỉ dẫn cho AI, nhóm tài năng, thử thách): CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50.
+
+
 54 chức năng được chia thành 12 module, theo đúng 12 nhóm ở mục 6 của [YK2]. Mỗi chức năng được phân tích theo 6 mục: tác nhân, đầu vào, điều kiện, luồng xử lý chính, đầu ra và kết quả mong đợi. Tab này đã viết lại theo bản yêu cầu v2. Mã và số chức năng không đổi, nhưng nội dung của 1-4, 1-2, 1-3, 2-2, 3-7, 4-1, 4-2, 7-2, 7-4, 7-5, 8-4 và 6-8 đã đổi.
 
 **Cách đọc:**

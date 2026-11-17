@@ -89,3 +89,9 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 
 - [YK2] §5-6, §6-4 (2-1), §7-5, §9-2, §9-3, UC-01 前提.
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 4. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 6.
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.22 (đã chốt): file đọc lỗi định dạng hoặc thiếu thông tin là lỗi trong thiết kế của mình. **Hiện tình trạng đọc file ở màn chi tiết tài năng** (lần đọc gần nhất, thành công hay lỗi, file nào lỗi). Tài năng chưa có thông tin thì AIコーチ không đưa bản nháp ([YK2] UC-01 前提). Đóng S02-07.
+- Mẫu file (ひな形) do khách (FutureCore) đưa; S02-04 không cần đề xuất mẫu của mình.
+- Q&A No.54 (đang hỏi): có thể thêm nút "đã đăng ký xong" ở màn chi tiết tài năng thay cho việc tự kiểm tra file. Chờ trả lời.

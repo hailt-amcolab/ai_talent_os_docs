@@ -1,74 +1,73 @@
 # 6-5 Nhắc gửi tư liệu
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 中 (trung bình) |
-| Mục [YK2] | 6-7 |
-| Màn hình [AG] | T-14 |
+| Mục [YK2] | §6-7, chức năng 6-5; §5-2; 別紙A (写真・動画の催促) |
+| Màn hình [AG] | T-14 (thông báo), M-17 (giờ nhắc) |
 | Tên trong mã nguồn | Media Reminder |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được khi đã có giờ đăng dự kiến (B1) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ tham số | ✅ | ✅ | ✅ Web Push | ⚠ đội đề xuất | ❌ B1 (giờ đăng) |
 
 ## Mục đích
 
-Nhắc gửi tư liệu
-
-## Tác nhân
-
-Xử lý tự động
-
-## Đầu vào
-
-Giờ đăng, tình trạng đã có tư liệu chưa, giờ nhắc đã cài đặt
-
-## Điều kiện trước
-
-Trước giờ đăng 2 tiếng (mặc định) mà chưa có tư liệu
+2 giờ trước giờ đăng (mặc định), tài năng chưa gửi ảnh hoặc video thì nhận lời nhắc. Mỗi ngày một lần; quản lý đổi được mốc giờ (§6-7 chức năng 6-5).
 
 ## Luồng chính
 
-1. Gửi nhắc một lần mỗi ngày
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Thông báo nhắc
-- Kết quả mong đợi: Tài năng gửi tư liệu kịp giờ
+1. Mỗi ngày, lấy giờ đăng dự kiến của tài năng (B1) trừ mốc nhắc (mặc định 2 giờ) để có giờ nhắc.
+2. Đến giờ nhắc: tài năng ở 利用中 mà hôm nay chưa có bản nháp nào gắn ảnh hoặc video thì gửi thông báo 写真・動画の催促 (ứng dụng và thông báo đẩy).
+3. Nếu khách đồng ý S04-03: cũng nhắc khi đã có tư liệu nhưng chưa chấp nhận, cùng loại thông báo, câu chữ khác.
+4. Ghi đã nhắc để không nhắc lần hai trong ngày.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Đã có bài được hẹn giờ hôm nay | Không nhắc | [Đề xuất nội bộ] |
+| Tài khoản công ty | Không nhắc | S05-04 |
+| Tài năng đang bị dừng đăng tự động, hoặc dừng toàn bộ | Không nhắc | S05-04 |
+| Giờ nhắc đã qua khi quản lý đổi mốc | Không gửi bù trong ngày | [Đề xuất nội bộ] |
+| Gửi thông báo đẩy lỗi | Vẫn có trong danh sách thông báo của ứng dụng (6-1) | §11 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Mốc nhắc | 2 giờ trước giờ đăng | Tham số (M-17) | §5-2, §6-7 |
+| Số lần | 1 lần mỗi ngày | Chốt | §6-7 |
 
 ## Dữ liệu
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`reminder_log`: `talent_id`, `date`, `kind` (`media`, `adopt`), `sent_at`.
 
-## Tích hợp
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho giờ đăng 19:00, chưa có tư liệu, thì 17:00 tài năng nhận đúng một lời nhắc.
+2. Cho đã gửi ảnh lúc 16:00, thì 17:00 không nhắc (trừ khi S04-03 được đồng ý và chưa chấp nhận).
+3. Cho quản lý đổi mốc thành 3 giờ, thì hôm sau nhắc lúc 16:00.
+4. Cho tài khoản công ty, thì không có lời nhắc.
 
-## Tiêu chí chấp nhận
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+B1 / 8-1 (giờ đăng dự kiến), 6-1 (thông báo), C-02 (cài đặt).
 
-## Chỗ còn thiếu
+## Câu hỏi mở
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | Nhiều bài trong ngày thì nhắc mấy lần |
-| Kiểm chứng | — |
-| Đội | — |
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| B1 | Giờ đăng chốt lúc nào | Có | Chốt mỗi sáng |
+| S04-03 | Nhắc khi chưa chấp nhận | Không | Chưa làm tới khi khách đồng ý |
+| S05-04 | Không nhắc tài khoản công ty và tài năng đang dừng | Không | Như đề xuất |
 
-## Điểm chưa rõ (từ file 04)
-
-- giờ đăng do AI chọn (8-1), nên giờ nhắc thay đổi theo từng tài năng. Có nhiều bài trong ngày thì nhắc cho từng bài hay một lần.
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-7, UC-05, UC-06, 確認27, 32.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP05.
+- [YK2] §5-2, §6-7 (6-5), §11, 別紙A. [AG] trang 10 (M-17).

@@ -45,14 +45,19 @@ Mỗi tài năng có một thư mục riêng trên OneDrive để chứa hồ s�
   共通/                          ← thư mục chung (UC-02 前提)
     ノウハウ.md                  ← kiến thức nghề
     アルゴリズム対策.md           ← chỉ dẫn thuật toán
+    AIへの指示.md                ← giọng văn, chỉ thị chung (S03-01)
   タレント/
     <mã tài năng>_<tên>/
+      _system/identity.json      ← hệ thống ghi, không đưa cho AI
       プロフィール.md             ← hồ sơ; ChatGPT ghi (2-3)
       目標.md                    ← mục tiêu; hệ thống ghi (2-4)
       AIメモ.md                  ← AIコーチ tự ghi (3-2, §7-5)
-      実績/                      ← kết quả; hệ thống ghi (8-8)
-      素材/                      ← ảnh, video (6-4)
+      実績/                      ← kết quả; hệ thống ghi (8-8): サマリー.md, YYYY-MM.csv, snapshots/
+      素材/                      ← ảnh, video (6-4): originals/, AI生成/, derivatives/
+      添付/                      ← tệp đính kèm của quản lý
 ```
+
+Cây này thống nhất với `agent_spec/onedrive-agent-spec` (bản 1.1, `FOLDER_MANIFEST.example.json`). Hệ thống tìm thư mục theo mã của Microsoft Graph, không theo tên.
 
 Tên thư mục và file dùng tiếng Nhật vì quản lý của アデッソ đọc. Thư mục chung do đội tạo một lần khi triển khai (S02-08).
 

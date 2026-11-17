@@ -108,3 +108,8 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 
 - [YK2] §5-6, §6-4 (7-1), §9-2, UC-10, UC-01 前提, 確認2, 41, 42, 44, 47.
 - [AG] trang 7 (M-06, M-07), trang 8 (M-09), trang 11.
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.22: màn chi tiết tài năng có thêm ô **tình trạng đọc file OneDrive** (xem 2-1).
+- Q&A No.7 (đang hỏi, CR-24): nếu khách chọn hội thoại riêng tư thì quản lý chỉ thấy phần được chia sẻ, phải làm lại phần xem hội thoại. Chờ trả lời trước khi làm phần hội thoại của màn này.

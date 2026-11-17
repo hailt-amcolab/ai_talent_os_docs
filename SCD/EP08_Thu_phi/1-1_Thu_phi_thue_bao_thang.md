@@ -1,79 +1,124 @@
 # 1-1 Thu phí thuê bao tháng
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP08 – Thu phí |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-3 |
-| Màn hình [AG] | T-04, T-15 |
+| Mục [YK2] | §6-3, chức năng 1-1; §5-4 (hình 5-3); UC-11, UC-11 前提 (tiền đề); §8 |
+| Màn hình [AG] | T-04 (bước 3), T-15 (ご利用とお支払い); M-02 (支払いの失敗), M-10 |
 | Tên trong mã nguồn | Monthly Subscription Billing |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🔴 Đỏ – chưa biết GMO có thu được số tiền thay đổi mỗi tháng không (chờ 確認49), chưa có mức phí, ngày chốt, ngày thu (S08-01, S08-02) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ⚠ S08-02 | ⚠ S08-03 | ❌ S08-01, S08-02 | ⚠ đội đề xuất | ✅ | ❌ GMO chưa kiểm chứng | ⚠ đội đề xuất | ⚠ 5-4 |
 
 ## Mục đích
 
-Thu phí hằng tháng qua GMO. Thu lỗi thì báo, không tự khóa. Tài năng đổi được cách thanh toán; lịch sử xem ở trang của bên thanh toán
+Thu phí tháng của tài năng qua GMO Payment Gateway (thanh toán qua nhà mạng hoặc thẻ). Hóa đơn tháng = phí tháng + số lần tạo video × đơn giá (hình 5-3). Thu lỗi thì báo tài năng và quản lý, không tự dừng sử dụng. Tài năng đổi được cách thanh toán; xem lịch sử ở trang của GMO (§6-3 chức năng 1-1).
 
-## Tác nhân
+## Tác nhân và quyền
 
-Tài năng, hệ thống, cổng thanh toán
-
-## Đầu vào
-
-Phương thức thanh toán (cước nhà mạng hoặc thẻ), nhập trên màn hình của cổng thanh toán
-
-## Điều kiện trước
-
-Mọi tài năng (trừ tài khoản công ty). Đến ngày chốt sổ
+- Tài năng: đăng ký và đổi cách thanh toán trên trang của GMO; xem số tiền dự kiến ở T-15.
+- Hệ thống: tính tiền, gửi yêu cầu thu, nhận kết quả.
+- Quản lý: nhận báo thu lỗi, quyết có dừng sử dụng không (UC-11).
+- Tài khoản công ty: không bị thu (1-2).
 
 ## Luồng chính
 
-1. Tài năng đăng ký phương thức thanh toán trên màn hình của cổng thanh toán.
-2. Đến ngày chốt sổ, hệ thống tính số tiền và gửi cho cổng thanh toán để thu.
-3. Thu lỗi thì báo tài năng và quản lý, không tự dừng sử dụng.
-4. Tài năng đổi được phương thức thanh toán trong ứng dụng.
-5. Tài năng xem lịch sử hóa đơn bằng cách chuyển qua trang của cổng thanh toán
+**A. Đăng ký thanh toán (6-2 bước 3)**
+1. Tài năng bấm 決済代行会社の画面を開く (mở trang của công ty thanh toán), chọn thanh toán qua nhà mạng hoặc thẻ trên trang của GMO. Hệ thống **không bao giờ nhận thông tin thẻ** (§10-2).
+2. GMO báo kết quả về điểm nhận của hệ thống (file 18, câu I5). Thành công thì phát sự kiện "đã đăng ký thanh toán": tài năng sang 利用中 (S01-01), tạo thư mục (2-2), đăng ký Upload-Post (8-2).
+3. Thu ngay phí tháng đầu, trọn tháng dù bắt đầu giữa tháng (§5-4; giả định 確認48).
 
-## Đầu ra và kết quả sau
+**B. Thu hằng tháng (S08-02)**
+4. Ngày 1 mỗi tháng: tính cho từng tài năng ở 利用中 = phí tháng này + số lần tạo video tháng trước × đơn giá đã lưu ở từng lần (5-4).
+5. Gửi yêu cầu thu sang GMO. Lưu hóa đơn tháng ở trạng thái "đang thu".
+6. Nhận kết quả: thành công thì "đã thu"; lỗi thì "thu lỗi" và sang luồng C.
 
-- Đầu ra: Yêu cầu thu tiền, kết quả thu, thông báo khi thu lỗi
-- Kết quả mong đợi: Mỗi tháng thu được phí thuê bao. Tháng bắt đầu giữa chừng vẫn thu trọn tháng ⚠ (確認48). Hệ thống không lưu thông tin thẻ
+**C. Thu lỗi**
+7. Báo tài năng (支払いの失敗: ứng dụng và thông báo đẩy) và mọi quản lý (M-02). Không tự dừng (§6-3).
+8. Thu lại khi tài năng đổi cách thanh toán, và tự thu lại một lần sau 3 ngày (S08-03).
+9. Quản lý muốn dừng thì chuyển tài năng sang 利用終了 (B7 phương án A).
+
+**D. Tài năng tự xem, tự đổi (T-15)**
+10. Số tiền dự kiến tháng này (phí tháng, phí video, tổng), nút 支払い方法を変える (đổi cách thanh toán), 請求の履歴を見る (xem lịch sử), cả hai mở trang của GMO.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| GMO không thu được số tiền thay đổi qua nhà mạng | Thu phí tháng bằng thu định kỳ cố định; phí video thu riêng một lần mỗi tháng | S08-04 (phương án dự phòng); chờ 確認49 |
+| Tài năng hủy ở trang GMO | Bước 3 của hướng dẫn chưa xong; AIコーチ chưa dùng được | 6-2 |
+| Kết quả từ GMO đến hai lần | Xử lý một lần (khóa theo mã giao dịch) | [Đề xuất nội bộ] |
+| Tài năng chuyển sang 利用終了 giữa tháng | Không thu tháng sau; tháng này đã thu trọn (giả định 確認50). Phí video tháng đó thu vào lần thu cuối | S08-05 |
+| GMO ngừng dịch vụ | Không đăng ký thanh toán mới được; lần thu tháng dời tới khi GMO chạy lại | §9-3 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Hóa đơn tháng | Phí tháng + số lần tạo video × đơn giá | Chốt | §5-4 (hình 5-3) |
+| Phí tháng | Theo hợp đồng giữa アデッソ và tài năng | ❌ chưa có số | Hình 5-3, §2-3, S08-01 |
+| Cách thanh toán | Qua nhà mạng hoặc thẻ, một công ty thanh toán | Chốt | §5-4 |
+| Tháng đầu thu trọn | — | Chốt | §5-4 |
+| Ngày chốt và ngày thu | Ngày 1 hằng tháng | Đề xuất | S08-02 |
+| Thu lỗi không tự dừng | — | Chốt | §6-3 |
+| Không giữ thông tin thẻ | — | Chốt | §10-2 |
 
-## Dữ liệu
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+- `billing_accounts`: `talent_id`, `gmo_member_id`, `method` (`carrier`, `card`), `registered_at`, `monthly_fee_jpy` (S08-01).
+- `invoices`: `talent_id`, `month`, `subscription_jpy`, `video_count`, `video_jpy`, `total_jpy`, `status` (theo C-01: `pending`, `charging`, `paid`, `failed`), `gmo_order_id`, `attempts`, `updated_at`.
+
+## Màn hình
+
+T-04 bước 3; T-15 ([AG] trang 5); M-02 (支払いの失敗); M-10 (phí tháng của tài năng nếu S08-01 chọn mỗi người một mức).
 
 ## Tích hợp
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+GMO Payment Gateway: đăng ký thành viên và cách thanh toán qua trang của GMO, thu định kỳ hoặc thu theo lần, nhận kết quả. Kiểm chứng trên môi trường thử của GMO (§12-4).
 
-## Tiêu chí chấp nhận
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho tài năng đăng ký thẻ trên trang GMO, thì tài năng sang 利用中 và hệ thống không lưu số thẻ ở đâu cả.
+2. Cho ngày 1, tài năng có 3 lần tạo video tháng trước, đơn giá 500 yên, phí tháng 3.000 yên, thì yêu cầu thu là 4.500 yên.
+3. Cho thu lỗi, thì tài năng và mọi quản lý được báo, tài năng vẫn dùng được.
+4. Cho tài năng đổi thẻ sau khi thu lỗi, thì hệ thống thu lại ngay.
+5. Cho tài khoản công ty, thì không có hóa đơn.
 
-## Chỗ còn thiếu
+## Ngoài phạm vi của chức năng này
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認48, 49, 50; mức phí; ngày chốt |
-| Kiểm chứng | Môi trường thử GMO, thu số tiền thay đổi |
-| Đội | — |
+- Màn lịch sử hóa đơn trong ứng dụng: xem ở trang của GMO (UC-11 前提). Hoàn tiền, giảm giá: không có trong [YK2].
+- Nội dung điều khoản sử dụng, cách hiện phí, thông tin theo luật bán hàng (特定商取引法): アデッソ quyết (§11).
 
-## Điểm chưa rõ (từ file 04)
+## Phụ thuộc
 
-- ngày chốt sổ, ngày thu tiền và mức phí tháng chưa có. Cổng thanh toán có thu được số tiền thay đổi theo tháng không (確認49). Thu lỗi thì có thu lại không, sau bao lâu. Phí tháng đầu tính từ lúc đăng ký thanh toán hay từ lúc có bản nháp đầu tiên.
-- rời đi giữa tháng thì đề xuất thu trọn tháng đó (確認50). Phí video đã phát sinh trong tháng đó cũng thu chung?
+6-2, 5-4, 7-3, 2-2, 8-2, 7-4, 6-1, câu I5 (file 18).
+
+## Câu hỏi mở
+
+Các 確認 liên quan (không xử lý ở đây): 確認48, 49, 50.
+
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S08-01 | Phí tháng: một mức chung hay mỗi tài năng một mức | Có | Một mức chung là tham số |
+| S08-02 | Ngày chốt, ngày thu | Có | Ngày 1 hằng tháng |
+| S08-03 | Thu lại khi lỗi | Không | Khi đổi cách thanh toán và sau 3 ngày |
+| S08-04 | Dự phòng nếu GMO không thu được số tiền thay đổi | Không | Tách hai lần thu |
+| S08-05 | Phí video của tháng ngừng | Không | Thu ở lần thu cuối |
+| B7 | Thu lỗi thì dừng thế nào | Không | Phương án A |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 5-4, 6-3 (1-1, 1-2, 1-3, 5-4), UC-11, UC-12 前提, 確認48–51.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP08.
+- [YK2] §2-3, §5-4 (hình 5-3), §6-3 (1-1), §8, §10-2, §11, §12-4, UC-11, UC-11 前提, 確認48–50.
+- [AG] trang 2 (T-04), trang 5 (T-15). [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) câu I5.
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.46 (đã chốt): tháng đầu thu đủ 1 tháng; thu lỗi thì báo tài năng và quản lý, không tự dừng.
+- Q&A No.49, No.53 (đang hỏi): đề xuất thu cùng ngày cuối tháng; tính phí từ ngày đăng ký thanh toán.

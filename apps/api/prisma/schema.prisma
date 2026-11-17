@@ -1,0 +1,509 @@
+// Schema của BE, sinh bằng `prisma db pull` từ migration (database-design/04). Chỉ Prisma Migrate thay đổi cấu trúc.
+// Schema "auth" và "storage" do Supabase tự quản, không khai báo ở đây. CHECK, trigger, RLS và chỉ mục theo biểu thức
+// chỉ có trong SQL của migration. Không khai báo khóa ngoại sang schema auth (lỗi P4002); cách tạo migration mới xem apps/api/PRISMA.md.
+
+generator client {
+  provider               = "prisma-client"
+  output                 = "../src/generated/prisma"
+  previewFeatures        = ["partialIndexes"]
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
+  moduleFormat           = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model activity_logs {
+  id               BigInt    @id(map: "pk_activity_logs") @default(autoincrement())
+  actor_type       String
+  actor_manager_id String?   @db.Uuid
+  actor_talent_id  String?   @db.Uuid
+  action           String
+  target_type      String?
+  target_id        String?
+  result           String?
+  details          Json?
+  occurred_at      DateTime  @default(now()) @db.Timestamptz(6)
+  managers         managers? @relation(fields: [actor_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_activity_logs_actor_manager_id")
+  talents          talents?  @relation(fields: [actor_talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_activity_logs_actor_talent_id")
+
+  @@index([actor_manager_id], map: "idx_activity_logs_actor_manager_id", where: raw("(actor_manager_id IS NOT NULL)"))
+  @@index([actor_talent_id], map: "idx_activity_logs_actor_talent_id", where: raw("(actor_talent_id IS NOT NULL)"))
+  @@index([occurred_at(sort: Desc)], map: "idx_activity_logs_occurred_at")
+  @@index([target_type, target_id, occurred_at(sort: Desc)], map: "idx_activity_logs_target")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ai_usage_events {
+  id            BigInt   @id(map: "pk_ai_usage_events") @default(autoincrement())
+  talent_id     String   @db.Uuid
+  occurred_at   DateTime @default(now()) @db.Timestamptz(6)
+  model         String
+  input_tokens  Int      @default(0)
+  output_tokens Int      @default(0)
+  cost_amount   Decimal  @db.Decimal(14, 6)
+  cost_currency String   @db.Char(3)
+  talents       talents  @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_ai_usage_events_talent_id")
+
+  @@index([talent_id, occurred_at], map: "idx_ai_usage_events_talent_id_occurred_at")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model billing_accounts {
+  id                  String   @id(map: "pk_billing_accounts") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id           String   @unique(map: "uq_billing_accounts_talent_id") @db.Uuid
+  provider_member_ref String   @unique(map: "uq_billing_accounts_provider_member_ref")
+  registered_at       DateTime @db.Timestamptz(6)
+  created_at          DateTime @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime @default(now()) @db.Timestamptz(6)
+  talents             talents  @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_billing_accounts_talent_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model coach_messages {
+  id                    BigInt                  @id(map: "pk_coach_messages") @default(autoincrement())
+  talent_id             String                  @db.Uuid
+  sender                String
+  body                  String
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  talents               talents                 @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_coach_messages_talent_id")
+  manager_notifications manager_notifications[]
+
+  @@index([talent_id, id(sort: Desc)], map: "idx_coach_messages_talent_id_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model follower_goals {
+  id                    String    @id(map: "pk_follower_goals") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id             String    @db.Uuid
+  platform              String
+  target_followers      Int       @default(10000)
+  deadline_on           DateTime? @db.Date
+  achieved_at           DateTime? @db.Timestamptz(6)
+  updated_by_manager_id String?   @db.Uuid
+  created_at            DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime  @default(now()) @db.Timestamptz(6)
+  talents               talents   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_follower_goals_talent_id")
+  managers              managers? @relation(fields: [updated_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_follower_goals_updated_by_manager_id")
+
+  @@unique([talent_id, platform], map: "uq_follower_goals_talent_id_platform")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model follower_snapshots {
+  id                BigInt          @id(map: "pk_follower_snapshots") @default(autoincrement())
+  social_account_id String          @db.Uuid
+  captured_on       DateTime        @db.Date
+  follower_count    Int
+  captured_at       DateTime        @default(now()) @db.Timestamptz(6)
+  social_accounts   social_accounts @relation(fields: [social_account_id], references: [id], onUpdate: NoAction, map: "fk_follower_snapshots_social_account_id")
+
+  @@unique([social_account_id, captured_on], map: "uq_follower_snapshots_social_account_id_captured_on")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model manager_notifications {
+  id                    String               @id(map: "pk_manager_notifications") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  kind                  String
+  talent_id             String?              @db.Uuid
+  talent_application_id String?              @db.Uuid
+  post_id               String?              @db.Uuid
+  coach_message_id      BigInt?
+  event_key             String               @unique(map: "uq_manager_notifications_event_key")
+  handled_at            DateTime?            @db.Timestamptz(6)
+  handled_by_manager_id String?              @db.Uuid
+  created_at            DateTime             @default(now()) @db.Timestamptz(6)
+  coach_messages        coach_messages?      @relation(fields: [coach_message_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_manager_notifications_coach_message_id")
+  managers              managers?            @relation(fields: [handled_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_manager_notifications_handled_by_manager_id")
+  posts                 posts?               @relation(fields: [post_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_manager_notifications_post_id")
+  talent_applications   talent_applications? @relation(fields: [talent_application_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_manager_notifications_talent_application_id")
+  talents               talents?             @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_manager_notifications_talent_id")
+
+  @@index([coach_message_id], map: "idx_manager_notifications_coach_message_id")
+  @@index([kind, created_at(sort: Desc)], map: "idx_manager_notifications_kind_created_at")
+  @@index([post_id], map: "idx_manager_notifications_post_id")
+  @@index([talent_application_id], map: "idx_manager_notifications_talent_application_id")
+  @@index([talent_id], map: "idx_manager_notifications_talent_id")
+  @@index([created_at(sort: Desc)], map: "idx_manager_notifications_unhandled", where: raw("(handled_at IS NULL)"))
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model manager_view_logs {
+  id         BigInt   @id(map: "pk_manager_view_logs") @default(autoincrement())
+  manager_id String   @db.Uuid
+  talent_id  String   @db.Uuid
+  screen     String
+  viewed_at  DateTime @default(now()) @db.Timestamptz(6)
+  managers   managers @relation(fields: [manager_id], references: [id], onUpdate: NoAction, map: "fk_manager_view_logs_manager_id")
+  talents    talents  @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_manager_view_logs_talent_id")
+
+  @@index([manager_id], map: "idx_manager_view_logs_manager_id")
+  @@index([talent_id, viewed_at(sort: Desc)], map: "idx_manager_view_logs_talent_id_viewed_at")
+  @@index([viewed_at(sort: Desc)], map: "idx_manager_view_logs_viewed_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model managers {
+  id                      String                    @id(map: "pk_managers") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auth_user_id            String                    @unique(map: "uq_managers_auth_user_id") @db.Uuid
+  is_active               Boolean                   @default(true)
+  created_by_manager_id   String?                   @db.Uuid
+  deactivated_at          DateTime?                 @db.Timestamptz(6)
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  activity_logs           activity_logs[]
+  follower_goals          follower_goals[]
+  manager_notifications   manager_notifications[]
+  manager_view_logs       manager_view_logs[]
+  managers                managers?                 @relation("managersTomanagers", fields: [created_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_managers_created_by_manager_id")
+  other_managers          managers[]                @relation("managersTomanagers")
+  media_assets            media_assets[]
+  ng_words                ng_words[]
+  post_approval_decisions post_approval_decisions[]
+  posts                   posts[]
+  system_settings         system_settings[]
+  talent_applications     talent_applications[]
+  talents                 talents[]
+  video_generations       video_generations[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model media_assets {
+  id                      String                    @id(map: "pk_media_assets") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id               String                    @db.Uuid
+  kind                    String
+  source                  String
+  uploaded_by_manager_id  String?                   @db.Uuid
+  mime_type               String
+  size_bytes              BigInt
+  onedrive_item_id        String?                   @unique(map: "uq_media_assets_onedrive_item_id")
+  temp_object_path        String?
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  talents                 talents                   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_media_assets_talent_id")
+  managers                managers?                 @relation(fields: [uploaded_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_media_assets_uploaded_by_manager_id")
+  post_media              post_media[]
+  video_generation_inputs video_generation_inputs[]
+  video_generations       video_generations?
+
+  @@index([talent_id, created_at(sort: Desc)], map: "idx_media_assets_talent_id_created_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model ng_words {
+  id                    String    @id(map: "pk_ng_words") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  word                  String
+  created_by_manager_id String?   @db.Uuid
+  created_at            DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime  @default(now()) @db.Timestamptz(6)
+  managers              managers? @relation(fields: [created_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ng_words_created_by_manager_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model post_approval_decisions {
+  id         String   @id(map: "pk_post_approval_decisions") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id    String   @db.Uuid
+  manager_id String   @db.Uuid
+  decision   String
+  reason     String?
+  decided_at DateTime @default(now()) @db.Timestamptz(6)
+  managers   managers @relation(fields: [manager_id], references: [id], onUpdate: NoAction, map: "fk_post_approval_decisions_manager_id")
+  posts      posts    @relation(fields: [post_id], references: [id], onUpdate: NoAction, map: "fk_post_approval_decisions_post_id")
+
+  @@index([manager_id], map: "idx_post_approval_decisions_manager_id")
+  @@index([post_id, decided_at(sort: Desc)], map: "idx_post_approval_decisions_post_id_decided_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model post_deliveries {
+  id                        String                  @id(map: "pk_post_deliveries") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id                   String                  @db.Uuid
+  platform                  String
+  social_account_id         String                  @db.Uuid
+  provider_state            String                  @default("not_submitted")
+  provider_state_changed_at DateTime                @default(now()) @db.Timestamptz(6)
+  provider_job_ref          String?
+  failure_reason            String?
+  external_post_ref         String?
+  published_at              DateTime?               @db.Timestamptz(6)
+  created_at                DateTime                @default(now()) @db.Timestamptz(6)
+  updated_at                DateTime                @default(now()) @db.Timestamptz(6)
+  posts                     posts                   @relation(fields: [post_id], references: [id], onUpdate: NoAction, map: "fk_post_deliveries_post_id")
+  social_accounts           social_accounts         @relation(fields: [social_account_id], references: [id], onUpdate: NoAction, map: "fk_post_deliveries_social_account_id")
+  post_metric_snapshots     post_metric_snapshots[]
+
+  @@unique([post_id, platform], map: "uq_post_deliveries_post_id_platform")
+  @@index([provider_state_changed_at], map: "idx_post_deliveries_needs_attention", where: raw("(provider_state = ANY (ARRAY['submit_failed'::text, 'cancel_requested'::text, 'cancel_failed'::text, 'publish_failed'::text]))"))
+  @@index([social_account_id, published_at(sort: Desc)], map: "idx_post_deliveries_social_account_id_published_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model post_media {
+  post_id        String       @db.Uuid
+  media_asset_id String       @db.Uuid
+  position       Int          @db.SmallInt
+  media_assets   media_assets @relation(fields: [media_asset_id], references: [id], onUpdate: NoAction, map: "fk_post_media_media_asset_id")
+  posts          posts        @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_post_media_post_id")
+
+  @@id([post_id, media_asset_id], map: "pk_post_media")
+  @@unique([post_id, position], map: "uq_post_media_post_id_position")
+  @@index([media_asset_id], map: "idx_post_media_media_asset_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model post_metric_snapshots {
+  id               BigInt          @id(map: "pk_post_metric_snapshots") @default(autoincrement())
+  post_delivery_id String          @db.Uuid
+  captured_on      DateTime        @db.Date
+  metrics          Json
+  captured_at      DateTime        @default(now()) @db.Timestamptz(6)
+  post_deliveries  post_deliveries @relation(fields: [post_delivery_id], references: [id], onUpdate: NoAction, map: "fk_post_metric_snapshots_post_delivery_id")
+
+  @@unique([post_delivery_id, captured_on], map: "uq_post_metric_snapshots_post_delivery_id_captured_on")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model posts {
+  id                      String                    @id(map: "pk_posts") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id               String                    @db.Uuid
+  theme_suggestion_id     String?                   @db.Uuid
+  revised_from_post_id    String?                   @db.Uuid
+  status                  String                    @default("draft")
+  caption                 String
+  hashtags                String[]                  @default([])
+  shot_guide              String?
+  video_script            String?
+  scheduled_at            DateTime?                 @db.Timestamptz(6)
+  adopted_at              DateTime?                 @db.Timestamptz(6)
+  adopted_by_manager_id   String?                   @db.Uuid
+  approval_requested_at   DateTime?                 @db.Timestamptz(6)
+  ng_detected_at          DateTime?                 @db.Timestamptz(6)
+  ng_detection_reason     String?
+  cancel_reason           String?
+  cancelled_at            DateTime?                 @db.Timestamptz(6)
+  version                 Int                       @default(1)
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  manager_notifications   manager_notifications[]
+  post_approval_decisions post_approval_decisions[]
+  post_deliveries         post_deliveries[]
+  post_media              post_media[]
+  managers                managers?                 @relation(fields: [adopted_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_posts_adopted_by_manager_id")
+  posts                   posts?                    @relation("postsToposts", fields: [revised_from_post_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_posts_revised_from_post_id")
+  other_posts             posts[]                   @relation("postsToposts")
+  talents                 talents                   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_posts_talent_id")
+  theme_suggestions       theme_suggestions?        @relation(fields: [theme_suggestion_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_posts_theme_suggestion_id")
+
+  @@index([ng_detected_at], map: "idx_posts_ng_detected_at", where: raw("(ng_detected_at IS NOT NULL)"))
+  @@index([revised_from_post_id], map: "idx_posts_revised_from_post_id")
+  @@index([scheduled_at], map: "idx_posts_scheduled_at", where: raw("(status = ANY (ARRAY['awaiting_approval'::text, 'scheduled'::text]))"))
+  @@index([talent_id, created_at(sort: Desc)], map: "idx_posts_talent_id_created_at")
+  @@index([talent_id, status], map: "idx_posts_talent_id_status")
+  @@index([theme_suggestion_id], map: "idx_posts_theme_suggestion_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model push_subscriptions {
+  id              String    @id(map: "pk_push_subscriptions") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id       String    @db.Uuid
+  endpoint        String    @unique(map: "uq_push_subscriptions_endpoint")
+  p256dh_key      String
+  auth_secret     String
+  is_active       Boolean   @default(true)
+  last_success_at DateTime? @db.Timestamptz(6)
+  deactivated_at  DateTime? @db.Timestamptz(6)
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime  @default(now()) @db.Timestamptz(6)
+  talents         talents   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_push_subscriptions_talent_id")
+
+  @@index([talent_id], map: "idx_push_subscriptions_talent_id", where: raw("is_active"))
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model social_accounts {
+  id                   String               @id(map: "pk_social_accounts") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id            String               @db.Uuid
+  platform             String
+  external_account_ref String?
+  status               String               @default("connected")
+  connected_at         DateTime             @default(now()) @db.Timestamptz(6)
+  disconnected_at      DateTime?            @db.Timestamptz(6)
+  created_at           DateTime             @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime             @default(now()) @db.Timestamptz(6)
+  follower_snapshots   follower_snapshots[]
+  post_deliveries      post_deliveries[]
+  talents              talents              @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_social_accounts_talent_id")
+
+  @@index([talent_id, platform], map: "idx_social_accounts_talent_id_platform")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model system_settings {
+  id                          Int       @id(map: "pk_system_settings") @default(1) @db.SmallInt
+  morning_message_time        DateTime  @default(dbgenerated("'08:00:00'::time without time zone")) @db.Time(6)
+  media_reminder_hours_before Int       @default(2) @db.SmallInt
+  coach_inactivity_days       Int       @default(3) @db.SmallInt
+  manager_inactivity_days     Int       @default(7) @db.SmallInt
+  weekly_review_weekday       Int       @default(1) @db.SmallInt
+  is_auto_posting_paused      Boolean   @default(false)
+  updated_by_manager_id       String?   @db.Uuid
+  updated_at                  DateTime  @default(now()) @db.Timestamptz(6)
+  managers                    managers? @relation(fields: [updated_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_system_settings_updated_by_manager_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model talent_applications {
+  id                    String                  @id(map: "pk_talent_applications") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  display_name          String
+  email                 String
+  birth_date            DateTime                @db.Date
+  status                String                  @default("pending")
+  decided_by_manager_id String?                 @db.Uuid
+  decided_at            DateTime?               @db.Timestamptz(6)
+  version               Int                     @default(1)
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime                @default(now()) @db.Timestamptz(6)
+  manager_notifications manager_notifications[]
+  managers              managers?               @relation(fields: [decided_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_talent_applications_decided_by_manager_id")
+  talents               talents?
+
+  @@index([status, created_at(sort: Desc)], map: "idx_talent_applications_status_created_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model talent_notifications {
+  id          String    @id(map: "pk_talent_notifications") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id   String    @db.Uuid
+  kind        String
+  title       String
+  body        String
+  target_path String?
+  event_key   String
+  read_at     DateTime? @db.Timestamptz(6)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  talents     talents   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_talent_notifications_talent_id")
+
+  @@unique([talent_id, event_key], map: "uq_talent_notifications_talent_id_event_key")
+  @@index([talent_id, created_at(sort: Desc)], map: "idx_talent_notifications_talent_id_created_at")
+  @@index([talent_id], map: "idx_talent_notifications_unread", where: raw("(read_at IS NULL)"))
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model talents {
+  id                            String                  @id(map: "pk_talents") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auth_user_id                  String                  @unique(map: "uq_talents_auth_user_id") @db.Uuid
+  account_type                  String
+  display_name                  String
+  birth_date                    DateTime?               @db.Date
+  status                        String                  @default("before_use")
+  is_approval_required          Boolean                 @default(false)
+  is_auto_posting_paused        Boolean                 @default(false)
+  application_id                String?                 @unique(map: "uq_talents_application_id") @db.Uuid
+  created_by_manager_id         String?                 @db.Uuid
+  onedrive_folder_id            String?                 @unique(map: "uq_talents_onedrive_folder_id")
+  onedrive_folder_created_at    DateTime?               @db.Timestamptz(6)
+  posting_service_profile_ref   String?                 @unique(map: "uq_talents_posting_service_profile_ref")
+  posting_service_registered_at DateTime?               @db.Timestamptz(6)
+  status_changed_at             DateTime                @default(now()) @db.Timestamptz(6)
+  version                       Int                     @default(1)
+  created_at                    DateTime                @default(now()) @db.Timestamptz(6)
+  updated_at                    DateTime                @default(now()) @db.Timestamptz(6)
+  activity_logs                 activity_logs[]
+  ai_usage_events               ai_usage_events[]
+  billing_accounts              billing_accounts?
+  coach_messages                coach_messages[]
+  follower_goals                follower_goals[]
+  manager_notifications         manager_notifications[]
+  manager_view_logs             manager_view_logs[]
+  media_assets                  media_assets[]
+  posts                         posts[]
+  push_subscriptions            push_subscriptions[]
+  social_accounts               social_accounts[]
+  talent_notifications          talent_notifications[]
+  talent_applications           talent_applications?    @relation(fields: [application_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_talents_application_id")
+  managers                      managers?               @relation(fields: [created_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_talents_created_by_manager_id")
+  theme_suggestions             theme_suggestions[]
+  video_generations             video_generations[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model theme_suggestions {
+  id           String    @id(map: "pk_theme_suggestions") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id    String    @db.Uuid
+  suggested_on DateTime  @db.Date
+  position     Int       @db.SmallInt
+  content      String
+  selected_at  DateTime? @db.Timestamptz(6)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  posts        posts[]
+  talents      talents   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_theme_suggestions_talent_id")
+
+  @@unique([talent_id, suggested_on, position], map: "uq_theme_suggestions_talent_id_suggested_on_position")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model video_generation_inputs {
+  video_generation_id String            @db.Uuid
+  media_asset_id      String            @db.Uuid
+  position            Int               @db.SmallInt
+  media_assets        media_assets      @relation(fields: [media_asset_id], references: [id], onUpdate: NoAction, map: "fk_video_generation_inputs_media_asset_id")
+  video_generations   video_generations @relation(fields: [video_generation_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_video_generation_inputs_video_generation_id")
+
+  @@id([video_generation_id, media_asset_id], map: "pk_video_generation_inputs")
+  @@unique([video_generation_id, position], map: "uq_video_generation_inputs_video_generation_id_position")
+  @@index([media_asset_id], map: "idx_video_generation_inputs_media_asset_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model video_generations {
+  id                      String                    @id(map: "pk_video_generations") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talent_id               String                    @db.Uuid
+  video_type              String
+  status                  String                    @default("requested")
+  is_counted              Boolean                   @default(true)
+  requested_by_manager_id String?                   @db.Uuid
+  idempotency_key         String                    @unique(map: "uq_video_generations_idempotency_key")
+  provider_job_ref        String?
+  result_media_asset_id   String?                   @unique(map: "uq_video_generations_result_media_asset_id") @db.Uuid
+  failure_reason          String?
+  requested_at            DateTime                  @default(now()) @db.Timestamptz(6)
+  completed_at            DateTime?                 @db.Timestamptz(6)
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  video_generation_inputs video_generation_inputs[]
+  managers                managers?                 @relation(fields: [requested_by_manager_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_video_generations_requested_by_manager_id")
+  media_assets            media_assets?             @relation(fields: [result_media_asset_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_video_generations_result_media_asset_id")
+  talents                 talents                   @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_video_generations_talent_id")
+
+  @@index([requested_at], map: "idx_video_generations_in_progress", where: raw("(status = ANY (ARRAY['requested'::text, 'processing'::text]))"))
+  @@index([talent_id, requested_at], map: "idx_video_generations_talent_id_requested_at")
+}

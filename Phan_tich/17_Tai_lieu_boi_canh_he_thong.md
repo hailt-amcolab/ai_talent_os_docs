@@ -92,7 +92,7 @@ Mọi dịch vụ ngoài đều do アデッソ ký hợp đồng đứng tên m
 | fal.ai (Kling) | Tạo video từ ảnh hoặc video | Hai chiều | Đã kiểm thử: chi phí thấp, video người Nhật đẹp | EP05 |
 | GMO Payment Gateway | Thu phí qua nhà mạng và thẻ | Hai chiều | Thu được số tiền thay đổi mỗi tháng hay không: chờ 確認49 (mục cần xác nhận số 49). Hệ thống không giữ thông tin thẻ | EP08 |
 | Microsoft 365 / OneDrive | Lưu thông tin tài năng, kiến thức nghề, kết quả, ảnh, video | Hai chiều | Dùng Microsoft 365 hiện có của アデッソ | EP02, EP05, EP07 |
-| ChatGPT | Quản lý trò chuyện để nhập thông tin tài năng vào OneDrive | Không nối trực tiếp với hệ thống | Khoảng 5 người dùng. Phía ChatGPT ai thiết lập: câu hỏi C4 | EP02 |
+| ChatGPT | Quản lý trò chuyện để nhập thông tin tài năng vào OneDrive | Qua MCP (御見積書 前提条件 A4, Q&A No.45); cách ghi vào OneDrive chưa chứng minh (S02-01, rủi ro RT02) | Khoảng 5 người dùng. Phía ChatGPT ai thiết lập: câu hỏi C4 | EP02 |
 | Thông báo đẩy | Gửi thông báo về điện thoại tài năng | Ra | Chưa chọn cơ chế (§8): câu hỏi C6 | EP09 |
 | Dịch vụ gửi thư | Thư mật khẩu tạm, thư từ chối, thư đặt lại mật khẩu | Ra | Chức năng 1-4 cần dịch vụ này nhưng §8 không có: câu hỏi C1 | EP01 |
 | Vercel, Supabase, Xserver VPS | Chạy hệ thống | — | Dùng tài khoản アデッソ đang có, Vercel và Supabase phải lên gói trả phí | EP10 |
@@ -135,6 +135,8 @@ Quản lý sửa file trong OneDrive thì AIコーチ áp dụng **từ sáng h�
 
 **Trong phạm vi:** chức năng của 9 hạng mục lớn trong SOW (bản mô tả phạm vi công việc), tức 54 chức năng ở [YK2] chương 6 [YK2] §1-3, 別紙C (phụ lục C). Các chức năng này được chia module ở file 16.
 
+**Cập nhật 17/11 (Q&A bản 15/11):** quản lý làm thay tài năng (確認27) đã chốt làm ở đợt đầu (CR-09); không làm OTP qua email; xác thực hai bước chỉ dùng ứng dụng xác thực, SMS chờ bàn (S01-11).
+
 **Ngoài phạm vi:**
 - Những mục SOW "4.2 作業対象外" (ngoài phạm vi công việc) [YK2] §1-3.
 - Chức năng để xem xét sau [YK2] §13: X (Twitter), phát trực tiếp, bảng xếp hạng, hội thoại bằng giọng nói, trả lời bình luận, đăng nhập chung với hệ thống hiện có, chạy AI trên máy chủ riêng…
@@ -142,9 +144,9 @@ Quản lý sửa file trong OneDrive thì AIコーチ áp dụng **từ sáng h�
 - Lưu bằng chứng đồng ý của phụ huynh [YK2] §10-3.
 
 **Chưa rõ, chưa xếp vào hai nhóm trên:**
-- Quản lý nhóm tài năng (確認47).
-- Chỉ thị cho AI theo nhóm (確認6).
-- Quản lý làm thay tài năng (確認27).
+- Quản lý nhóm tài năng (確認47, nay là CR-17).
+- Chỉ thị cho AI theo nhóm (確認6, nay là CR-18).
+- Các thay đổi khác ngoài báo giá CR-19〜CR-25 (xem `19_Doi_chieu_QA_bao_gia.md` mục 3). Tất cả chờ Q&A No.50.
 - Nội dung chống khóa tài khoản (§9-5).
 
 Chi tiết ở file 16 mục 3.

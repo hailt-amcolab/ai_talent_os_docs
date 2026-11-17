@@ -1,0 +1,85 @@
+{
+  "createdDate": "2026-11-17",
+  "sources": [
+    {
+      "name": "AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "ca47360360dea6c7519564e255f6bc13c4487be3517020bdf900858fbcc28f54",
+      "kind": "secondary",
+      "revision": "draft",
+      "use": "Q&A số 45 (御見積書 前提条件A4: MCP)"
+    },
+    {
+      "name": "アプリ画面案_AI育成OS.pdf",
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181",
+      "kind": "primary",
+      "revision": "2026-11-12",
+      "use": "Mã màn hình T-01〜T-15 dùng chung"
+    },
+    {
+      "name": "AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "kind": "primary",
+      "revision": "v2",
+      "use": "Nguồn yêu cầu chính từ bản 1.1"
+    },
+    {
+      "name": "AI育成OS_概要要件定義書.docx",
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16",
+      "kind": "superseded",
+      "revision": "v1",
+      "use": "Đã bị v2 thay thế; chỉ để truy vết"
+    },
+    {
+      "name": "★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559",
+      "kind": "original_recovered",
+      "revision": "PDF supplied",
+      "use": "Requirements/UI reference; see spec source table"
+    },
+    {
+      "name": "★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab",
+      "kind": "original_recovered",
+      "revision": "PDF supplied",
+      "use": "Requirements/UI reference; see spec source table"
+    },
+    {
+      "name": "画面遷移図と画面案_AI育成OS.pdf",
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea",
+      "kind": "original_recovered",
+      "revision": "PDF supplied",
+      "use": "Requirements/UI reference; see spec source table"
+    },
+    {
+      "name": "要件説明資料_AI育成OS.pdf",
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae",
+      "kind": "original_recovered",
+      "revision": "PDF supplied",
+      "use": "Requirements/UI reference; see spec source table"
+    },
+    {
+      "name": "upload_post_spec.md",
+      "sha256": "67badc273dd71f2aac4463828bed0892946d72f602ce205b71af7e606de70a4e",
+      "kind": "prior_design_secondary",
+      "revision": "v1",
+      "use": "Integration contract; not official replacement requirements"
+    },
+    {
+      "name": "ONEDRIVE_IMPLEMENTATION_SPEC_VI.md",
+      "sha256": "9aab587082fb92f21b9e3d3367a20af383f21e2a4acfb6d967bc08d0e401800e",
+      "kind": "prior_design_secondary",
+      "revision": "v1",
+      "use": "Integration contract; not official replacement requirements"
+    }
+  ],
+  "unavailable": [],
+  "technicalReferences": [
+    "https://nextjs.org/docs/app/guides/progressive-web-apps",
+    "https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+    "https://developer.mozilla.org/en-US/docs/Web/API/PushManager/subscribe",
+    "https://supabase.com/docs/guides/auth/server-side/creating-a-client?queryGroups=framework&framework=nextjs"
+  ],
+  "note": "No original customer files or credentials included in ZIP.",
+  "revision": "1.1 (17/11/2026): đối chiếu lại với v2, [AG], SCD"
+}

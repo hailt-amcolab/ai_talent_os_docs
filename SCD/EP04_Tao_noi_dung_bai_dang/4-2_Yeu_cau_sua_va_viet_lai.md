@@ -1,71 +1,87 @@
 # 4-2 Yêu cầu sửa và viết lại
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP04 – Tạo nội dung bài đăng |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-6 |
-| Màn hình [AG] | T-09 |
+| Mục [YK2] | §6-6, chức năng 4-2; UC-05 |
+| Màn hình [AG] | T-09 (nút 直しを依頼), T-08 |
 | Tên trong mã nguồn | Draft Revision |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ | ⚠ đội đề xuất | ✅ | ✅ OpenAI | ⚠ đội đề xuất | ⚠ 4-1 |
 
 ## Mục đích
 
-Yêu cầu sửa và tạo lại bản nháp
+Tài năng nói điểm muốn sửa trong hội thoại, AI viết lại bản nháp. Tài năng cũng có thể đưa câu chữ muốn dùng để AI viết lại theo (§6-6 chức năng 4-2).
 
-## Tác nhân
+## Tác nhân và quyền
 
-Tài năng, huấn luyện viên AI
-
-## Đầu vào
-
-Điểm muốn sửa, hoặc câu chữ tài năng muốn dùng (nói trong hội thoại)
-
-## Điều kiện trước
-
-Đã có bản nháp
+- Tài năng: yêu cầu sửa bản nháp của mình. Không sửa chữ trực tiếp (giả định theo 確認28).
 
 ## Luồng chính
 
-1. Tài năng nói điểm muốn sửa thì AI viết lại.
-2. Hoặc tài năng đưa câu chữ muốn dùng để AI viết lại. Tài năng không tự sửa trực tiếp ⚠ (確認28)
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Bản nháp đã sửa
-- Kết quả mong đợi: Bản nháp đúng ý tài năng. Không giới hạn số lần viết lại ⚠ (確認29), mỗi lần tốn khoảng 0,2–3 yên
+1. Ở T-09 bấm 直しを依頼 (nhờ sửa), mở T-08 với bản nháp đang xem làm ngữ cảnh. Hoặc tài năng nói thẳng trong T-08 về bản nháp gần nhất.
+2. Tài năng nói điểm muốn sửa, hoặc dán câu chữ muốn dùng.
+3. AI viết lại theo yêu cầu, giữ loại bài, giữ giới hạn độ dài (4-1), tránh từ cấm.
+4. Lưu thành **phiên bản mới** của cùng bản nháp. T-09 luôn hiện phiên bản mới nhất.
+5. Tin trả lời trong T-08 có nút 投稿案を見る.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Bản nháp đã được chấp nhận (đã hẹn giờ hoặc chờ duyệt) | Không sửa được. Báo "bài đã chấp nhận; muốn đổi thì liên hệ quản lý để hủy" | S04-09; 7-2 (chỉ quản lý hủy được) |
+| Yêu cầu không rõ là sửa bản nháp nào (có nhiều bản nháp) | AI hỏi lại, hoặc dùng bản nháp tài năng mở gần nhất | [Đề xuất nội bộ] |
+| Câu chữ tài năng đưa vào có từ cấm | Vẫn viết lại; việc chặn xảy ra ở bước chấp nhận (4-4) | §6-6 chức năng 4-4 |
+| OpenAI lỗi | Như 3-4: báo lỗi, cho gửi lại | §6-5 |
+| Muốn quay về phiên bản cũ | Tài năng nói trong hội thoại, AI lấy lại phiên bản đó thành phiên bản mới | [Đề xuất nội bộ] |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Số lần viết lại | Không giới hạn | Giả định (確認29) | — |
+| Chi phí mỗi lần | Khoảng 0,2–3 yên | Tham khảo | 確認29 |
+| Tài năng không sửa trực tiếp | — | Giả định (確認28) | — |
 
-## Dữ liệu
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`draft_versions`: `draft_id`, `version`, `caption`, `hashtags[]`, `youtube_title`, `shot_guide`, `video_script`, `instruction` (yêu cầu sửa của tài năng), `created_at`. `drafts` trỏ tới phiên bản mới nhất.
 
-## Tích hợp
+## Màn hình
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+T-09: nút 直しを依頼. T-08: hội thoại sửa.
 
-## Tiêu chí chấp nhận
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho tài năng nói "もっと短く", thì phiên bản mới ngắn hơn phiên bản trước và T-09 hiện phiên bản mới.
+2. Cho tài năng dán câu "今日も頑張りました", thì chú thích mới có câu đó.
+3. Cho bản nháp đã chấp nhận, khi tài năng nhờ sửa, thì không có phiên bản mới và có câu giải thích.
+4. Cho 3 lần sửa, thì có 3 phiên bản mới, đều lưu lại.
 
-## Chỗ còn thiếu
+## Phụ thuộc
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認28, 29 |
-| Kiểm chứng | — |
-| Đội | — |
+4-1, 3-4, 3-1.
+
+## Câu hỏi mở
+
+Các 確認 liên quan (không xử lý ở đây): 確認28, 29.
+
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S04-09 | Sau khi chấp nhận thì không sửa được | Không | Như đề xuất |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-6, 5-3, UC-05, UC-05 前提, 確認15, 16, 24–30.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP04.
+- [YK2] §6-6 (4-2), §6-10 (7-2), UC-05, 確認28, 29. [AG] trang 4 (T-09).
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.39, CR-21: tài năng sửa chữ trực tiếp là thay đổi ngoài báo giá, **chưa làm** tới khi khách quyết (No.50). Giữ cách sửa qua AI.

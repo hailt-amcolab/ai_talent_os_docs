@@ -1,5 +1,14 @@
 # Yêu cầu giao diện và trải nghiệm người dùng
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- M-10 (nhóm tài năng) và M-11 (chỉ dẫn cho AI) của thiết kế khách, tức M-13〜M-15 của [AG]: CR-17, CR-18, chưa làm. Bộ mã màn hình chuẩn và người làm 画面定義書 còn hỏi (Q&A No.30, No.68).
+- M-01: chỉ dùng ứng dụng xác thực; phương án SMS trong [TK-M] chờ bàn với khách (S01-11).
+- Ô "目標%" chung trong thiết kế khách sẽ chỉnh theo từng mạng khi làm định nghĩa màn hình (Q&A No.14). L-05: phần video tự làm thành bản nháp là CR-23.
+
+
 Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn cứ để làm lại 画面定義書 (bản định nghĩa màn hình). Những chỗ thiết kế còn sót từ bản cũ (LINE, lượt video miễn phí, hạn mức tiền video, không có bước trả lại bài, quyền riêng để dừng đăng tự động) sẽ sửa theo [YK2]. V2 còn thêm luồng tự đăng ký, nên cả hai bộ thiết kế đều thiếu màn đăng ký và màn duyệt đơn. Tab này đã viết lại theo bản yêu cầu v2.
 
 | Ký hiệu | Tài liệu | Ngày | Mã màn hình | Vai trò theo v2 |

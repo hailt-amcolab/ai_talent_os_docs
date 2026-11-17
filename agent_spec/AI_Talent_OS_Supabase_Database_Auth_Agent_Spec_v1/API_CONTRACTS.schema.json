@@ -1,0 +1,706 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-talent-os.invalid/supabase-auth/v1.2",
+  "title": "Proposed internal schemas validate by named $defs",
+  "$defs": {
+    "Command": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "commandId"
+      ],
+      "additionalProperties": false
+    },
+    "ApplicationCreate": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "termsVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptedTerms": {
+          "const": true
+        }
+      },
+      "required": [
+        "displayName",
+        "email",
+        "dateOfBirth",
+        "termsVersion",
+        "acceptedTerms"
+      ],
+      "additionalProperties": false
+    },
+    "ApplicationDecision": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approve",
+            "reject"
+          ]
+        },
+        "approvalRequired": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "commandId",
+        "expectedVersion",
+        "decision"
+      ],
+      "additionalProperties": false
+    },
+    "PasswordLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "password": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "PasswordSet": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 256,
+          "pattern": "^(?=.*[A-Za-z])(?=.*[0-9]).+$"
+        },
+        "confirmation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "confirmation"
+      ],
+      "additionalProperties": false
+    },
+    "EmailOnly": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "CodeVerify": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[0-9]{6}$"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "additionalProperties": false
+    },
+    "MfaEnroll": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TotpEnrollInput"
+        },
+        {
+          "$ref": "#/$defs/SmsEnrollInput"
+        }
+      ]
+    },
+    "MfaChallenge": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TotpChallengeInput"
+        },
+        {
+          "$ref": "#/$defs/SmsChallengeInput"
+        }
+      ]
+    },
+    "BoundChallenge": {
+      "type": "object",
+      "properties": {
+        "challengeRef": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "sendAttemptId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "method": {
+          "const": "phone_sms"
+        },
+        "channel": {
+          "const": "sms"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resendAfterSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maskedPhone": {
+          "type": "string",
+          "minLength": 3
+        }
+      },
+      "required": [
+        "challengeRef",
+        "sendAttemptId",
+        "method",
+        "channel",
+        "expiresAt",
+        "resendAfterSeconds",
+        "maskedPhone"
+      ],
+      "additionalProperties": false
+    },
+    "RecoveryRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "MfaResetDecision": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "caseId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedSecurityVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "commandId",
+        "caseId",
+        "expectedSecurityVersion",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "EmailChange": {
+      "type": "object",
+      "properties": {
+        "newEmail": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "newEmail",
+        "expectedVersion"
+      ],
+      "additionalProperties": false
+    },
+    "Logout": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": [
+            "local",
+            "global",
+            "others"
+          ]
+        }
+      },
+      "required": [
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "AccessStateCommand": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "commandId",
+        "expectedVersion",
+        "enabled",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "AuthNextState": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "anonymous",
+            "password_change_required",
+            "enrollment_required",
+            "mfa_required",
+            "onboarding",
+            "ready",
+            "disabled"
+          ]
+        },
+        "actorId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "currentAal": {
+          "type": "string",
+          "enum": [
+            "aal1",
+            "aal2"
+          ]
+        },
+        "nextAal": {
+          "type": "string",
+          "enum": [
+            "aal1",
+            "aal2"
+          ]
+        },
+        "allowedNextRoute": {
+          "type": "string",
+          "pattern": "^/(?!/)[A-Za-z0-9/_-]*$"
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "allowedMfaMethods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "totp",
+              "phone_sms"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "preferredMfaMethod": {
+          "type": "string",
+          "enum": [
+            "totp",
+            "phone_sms"
+          ]
+        }
+      },
+      "required": [
+        "state",
+        "allowedNextRoute",
+        "requestId"
+      ],
+      "additionalProperties": false
+    },
+    "Operation": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "running",
+            "completed",
+            "failed",
+            "unknown"
+          ]
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "operationId",
+        "status",
+        "requestId"
+      ],
+      "additionalProperties": false
+    },
+    "PhoneEnrollment": {
+      "type": "object",
+      "properties": {
+        "factorId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "factorType": {
+          "const": "phone"
+        },
+        "status": {
+          "const": "unverified"
+        },
+        "maskedPhone": {
+          "type": "string",
+          "minLength": 3
+        },
+        "method": {
+          "const": "phone_sms"
+        }
+      },
+      "required": [
+        "factorId",
+        "factorType",
+        "status",
+        "maskedPhone",
+        "method"
+      ],
+      "additionalProperties": false
+    },
+    "SmsResend": {
+      "type": "object",
+      "properties": {
+        "sendRequestId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "sendRequestId"
+      ],
+      "additionalProperties": false
+    },
+    "SmsDispatchStatus": {
+      "type": "object",
+      "properties": {
+        "sendAttemptId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "reserved",
+            "dispatching",
+            "accepted",
+            "dispatch_unknown",
+            "send_failed",
+            "expired",
+            "superseded",
+            "verified"
+          ]
+        },
+        "challengeRef": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resendAfterSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "errorCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sendAttemptId",
+        "state",
+        "resendAfterSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "TotpEnrollInput": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "const": "totp"
+        },
+        "friendlyName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "additionalProperties": false
+    },
+    "SmsEnrollInput": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "const": "phone_sms"
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\+[1-9][0-9]{1,14}$",
+          "description": "E.164 shape only; real validation/approved phone/country checks server-side"
+        },
+        "friendlyName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "method",
+        "phone"
+      ],
+      "additionalProperties": false
+    },
+    "TotpEnrollment": {
+      "type": "object",
+      "properties": {
+        "factorId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "method": {
+          "const": "totp"
+        },
+        "status": {
+          "const": "unverified"
+        },
+        "qrCodeSvg": {
+          "type": "string",
+          "minLength": 1
+        },
+        "secret": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "factorId",
+        "method",
+        "status",
+        "qrCodeSvg",
+        "secret"
+      ],
+      "additionalProperties": false
+    },
+    "MfaEnrollmentResponse": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TotpEnrollment"
+        },
+        {
+          "$ref": "#/$defs/PhoneEnrollment"
+        }
+      ]
+    },
+    "TotpChallengeInput": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "const": "totp"
+        },
+        "factorId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "login",
+            "enrollment",
+            "factor_change"
+          ]
+        }
+      },
+      "required": [
+        "method",
+        "factorId",
+        "purpose"
+      ],
+      "additionalProperties": false
+    },
+    "SmsChallengeInput": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "const": "phone_sms"
+        },
+        "factorId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "login",
+            "enrollment",
+            "factor_change"
+          ]
+        },
+        "sendRequestId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "method",
+        "factorId",
+        "purpose",
+        "sendRequestId"
+      ],
+      "additionalProperties": false
+    },
+    "TotpChallenge": {
+      "type": "object",
+      "properties": {
+        "challengeRef": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "method": {
+          "const": "totp"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "challengeRef",
+        "method",
+        "expiresAt"
+      ],
+      "additionalProperties": false
+    },
+    "MfaChallengeResponse": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TotpChallenge"
+        },
+        {
+          "$ref": "#/$defs/BoundChallenge"
+        },
+        {
+          "$ref": "#/$defs/SmsDispatchStatus"
+        }
+      ]
+    },
+    "MfaPolicy": {
+      "type": "object",
+      "properties": {
+        "allowedMethods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "totp",
+              "phone_sms"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "preferredMethod": {
+          "type": "string",
+          "enum": [
+            "totp",
+            "phone_sms"
+          ]
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "allowedMethods",
+        "preferredMethod",
+        "policyVersion"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,70 +1,65 @@
 # 8-9 Lấy khung giờ tương tác
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP07 – Kết quả và phân tích |
 | 優先順位 (ưu tiên) | 低 (thấp) |
-| Mục [YK2] | 6-11 |
-| Màn hình [AG] | — |
+| Mục [YK2] | §6-11, chức năng 8-9; §12-3 |
+| Màn hình [AG] | Không có |
 | Tên trong mã nguồn | Engagement Time Collection |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🔴 Đỏ – phụ thuộc hoàn toàn vào việc Upload-Post có số liệu theo khung giờ không. Mức 低 nên không bắt buộc lúc chạy thật (§12-3) |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ⚠ | ✅ | ✅ | ❌ | ✅ | ❌ kiểm chứng | ⚠ | ⚠ 8-7 |
 
 ## Mục đích
 
-Lấy khung giờ bài được xem và được tương tác
-
-## Tác nhân
-
-Xử lý tự động, Upload-Post
-
-## Đầu vào
-
-Khung giờ bài được xem và được tương tác
-
-## Điều kiện trước
-
-Upload-Post có cung cấp số liệu này
+Lấy khung giờ bài được xem và được tương tác, trong phạm vi Upload-Post có, làm đầu vào cho 8-1 (§6-11 chức năng 8-9).
 
 ## Luồng chính
 
-1. Lấy về trong phạm vi Upload-Post cung cấp
+1. Mỗi ngày, cùng lần chạy với 8-7, gọi `GET /api/uploadposts/best-times` cho từng tài năng và từng mạng (`timezone=Asia/Tokyo`). Lưu `by_hour` và `by_day_hour` kèm `confidence`, `sample`, `warnings`.
+2. Với TikTok, lấy thêm `activity_by_hour` từ `GET /api/uploadposts/audience` (giờ người theo dõi hoạt động).
+3. Với YouTube, Upload-Post không có chiều giờ: chỉ lưu `by_day`, để trống giờ.
 
-## Đầu ra và kết quả sau
+Đã đọc trang riêng của hai endpoint ngày 17/11/2026 (bộ Upload-Post §13.2a). Vì đã có nguồn dữ liệu, chức năng này **làm được**; không còn phương án bỏ.
 
-- Đầu ra: Số liệu theo khung giờ
-- Kết quả mong đợi: Đầu vào cho 8-1
-
-## Luồng lỗi và trường hợp biên
-
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Điều kiện của nguồn dữ liệu:
+- Instagram cần ≥ 100 người theo dõi và quyền insights.
+- TikTok cần tài khoản Business.
+- Nếu không đủ điều kiện, Upload-Post tự dùng các bài đã đăng (cần ≥ 10 bài) hoặc lịch sử đăng qua Upload-Post. Khi đó độ tin cậy thấp.
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Loại | Nguồn |
+|---|---|---|
+| Chỉ lấy trong phạm vi Upload-Post có | Chốt | §6-11 |
+| Mức 低: lúc chạy thật chỉ cam kết chức năng 高 và 中 | Chốt | §12-3 |
 
-## Dữ liệu
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`engagement_by_hour`: `talent_id`, `platform`, `date`, `day_of_week`, `hour` (null với YouTube), `score`, `source` (audience_activity / account_posts / upload_post_history), `confidence`, `sample_size`, `warnings`.
 
-## Tích hợp
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Sau lần chạy, mỗi tài năng có dữ liệu của từng mạng đã kết nối. Instagram và TikTok có theo giờ; YouTube chỉ có theo ngày.
+2. Upload-Post trả `quota_exceeded` hoặc `daily_limit_reached`: giữ dữ liệu hôm trước, ghi lỗi, không thử lại trong ngày.
 
-## Tiêu chí chấp nhận
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+8-7, kiểm chứng Upload-Post (EP06, mục 9).
 
-## Chỗ còn thiếu
+## Câu hỏi mở
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | — |
-| Kiểm chứng | Upload-Post có số liệu theo khung giờ không |
-| Đội | — |
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S07-08 | Không có số liệu theo giờ thì không làm 8-9 | Không | Như đề xuất |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP07: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-11, UC-08, UC-09, UC-09 前提, 確認30, 40.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP07.
+- [YK2] §6-11 (8-9), §12-3.

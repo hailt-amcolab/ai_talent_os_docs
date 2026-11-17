@@ -51,6 +51,7 @@ Agent viết mã theo giả định trong cột "Đề xuất". Các giá trị 
 | S01-07 | 1-6 | Quản lý mất điện thoại xác thực thì làm sao? | Một quản lý khác xóa đăng ký xác thực của người đó ở M-18. Lần đăng nhập sau người đó đăng ký lại | Trong phạm vi: thuộc việc quản lý quản lý của 1-6 |
 | S01-08 | 1-6 | Quản lý mới nhận mật khẩu thế nào? Ai tạo các quản lý đầu tiên? | Thêm ở M-18 thì hệ thống gửi thư mời đặt mật khẩu. Các quản lý đầu tiên do đội tạo khi triển khai, theo danh sách (tên, email) khách gửi | Trong phạm vi: 1-6 |
 | S01-09 | 7-6 | Giữ nhật ký xem bao lâu? | Bằng thời gian giữ dữ liệu ở 確認55, ít nhất 1 năm | Trong phạm vi: §9-4 |
+| S01-11 | 1-6 | Ngoài ứng dụng xác thực 6 số, có cần xác thực hai bước bằng SMS không? | Không làm ở đợt đầu; chỉ dùng ứng dụng xác thực theo [YK2] §6-2 và [AG] M-01. Nếu cần SMS thì có thêm phí add-on của Supabase (75 USD/tháng cho project đầu) và phí từng tin, cần báo giá riêng | Trong phạm vi: 1-6 dùng ứng dụng xác thực. SMS là thay đổi |
 | B13 | 1-4, 6-8 | Đăng nhập xong mở màn nào trước? | T-07 ホーム (trang chủ), khớp chức năng 6-8 | Trong phạm vi |
 
 ## 4. Thứ khách phải cung cấp
@@ -85,6 +86,7 @@ Các câu mới (S01-xx) và các câu đội đề xuất (A3, B7, B13, C1).
 | S01-08 | マネージャーを追加すると、AI育成OS が、パスワードを設定するための案内のメールを送ります。最初のマネージャーは、アデッソ様からいただく一覧（お名前・メールアドレス）をもとに、弊社が登録します。この想定でよろしいでしょうか。 |
 | S01-09 | 閲覧の記録を残す期間は、退会したタレントの情報を残す期間（確認55）と同じとし、少なくとも1年間とする想定でよろしいでしょうか。 |
 | S01-10 | タレントのアプリの申し込み画面に表示する利用規約の本文（またはリンク先）を、受入テストの開始前にご提供いただけますでしょうか。 |
+| S01-11 | マネージャーの二段階認証は、要件定義書 6-2「1-6」のとおり、認証アプリ（6桁の番号、初回はQRコードで登録）で作ります。SMS で番号を受け取る方式も必要でしょうか。必要な場合は、Supabase の追加料金（最初のプロジェクトで月75米ドル）と SMS の送信料金が別にかかるため、別途お見積りとなります。 |
 | B13 | タレントがアプリを開いたときに最初に表示する画面は、「ホーム」（今日やることが分かる画面）とする想定でよろしいでしょうか（6-12「6-8」）。画面案では「マイページ」になっています。 |
 | C1 | 承認・拒否・パスワードの再設定などのメールを送るため、メール送信サービスのご契約（アデッソ様のご名義）と、送信に使うドメインの DNS の設定をお願いできますでしょうか。要件定義書8章の外部サービスの一覧には含まれていません。 |
 
@@ -98,3 +100,19 @@ Các câu mới (S01-xx) và các câu đội đề xuất (A3, B7, B13, C1).
 | 1-6 | 🟡 | 🟢 |
 | 7-3 | 🔴 | 🟡 khi có A3, S01-01, S01-02; 🟢 khi có thêm 確認55 |
 | 7-6 | 🟡 | 🟢 |
+
+## Đối chiếu với file Q&A (bản ngày 15/11/2026)
+
+Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã gửi thì **không gửi lại**; câu đã chốt thì làm theo. Chi tiết ở `Phan_tich/19_Doi_chieu_QA_bao_gia.md`.
+
+| Mã | Tiêu đề | Q&A | Tình trạng |
+|---|---|---|---|
+| A3 | Tên và số lượng trạng thái của tài năng | No.10 | Đã chốt trong Q&A |
+| B7 | Thu tiền thất bại thì "dừng sử dụng" là gì | No.46, No.63 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| B11 | Đơn bị từ chối và đổi thông tin cơ bản | No.65 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-01 | Lúc nào chuyển 利用前 sang 利用中 | No.52 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-02 | Quay lại 利用中 thì thu phí từ khi nào | No.64 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-05 | Hạn mật khẩu tạm | No.65, No.25 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-06 | Gửi lại đơn và đổi email | No.65 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-07 | Mất điện thoại xác thực | No.67 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
+| S01-09 | Thời gian giữ nhật ký xem | No.29 | Việc nội bộ (theo Q&A) |

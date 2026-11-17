@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-talent-os.example/spec/onedrive-contracts-v1",
+  "title": "Hợp đồng nội bộ đề xuất; không phải Graph/OpenAI API chính thức",
+  "description": "Validate đúng $defs theo route/tool. Quyền, scope, timezone IANA, unique platforms, endAt>=startAt và hạn mức sản phẩm phải kiểm tra trong use case.",
+  "$defs": {
+    "EventsFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "events": {
+          "type": "array",
+          "maxItems": 500,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "startAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "endAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "timezone": {
+                "type": "string",
+                "minLength": 1
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "startAt",
+              "timezone"
+            ]
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "events"
+      ]
+    },
+    "GoalsExport": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "talentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "sourceVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "goals": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "platform": {
+                "enum": [
+                  "tiktok",
+                  "instagram",
+                  "youtube"
+                ]
+              },
+              "followersTarget": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "deadline": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            },
+            "required": [
+              "platform",
+              "followersTarget",
+              "deadline"
+            ]
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "talentId",
+        "sourceVersion",
+        "generatedAt",
+        "goals"
+      ]
+    },
+    "ContextManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "snapshotId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "orgId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "talentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "policyVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "documentId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "revisionId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "scope": {
+                "enum": [
+                  "talent",
+                  "common"
+                ]
+              }
+            },
+            "required": [
+              "documentId",
+              "revisionId",
+              "sha256",
+              "scope"
+            ]
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "snapshotId",
+        "orgId",
+        "talentId",
+        "capturedAt",
+        "policyVersion",
+        "documents"
+      ]
+    },
+    "DocumentProposalRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevisionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "proposedText": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "documentId",
+        "expectedRevisionId",
+        "proposedText",
+        "commandId"
+      ]
+    },
+    "ProposalApprovalRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedContentHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "expectedContentHash",
+        "commandId"
+      ]
+    },
+    "CommitRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "commandId"
+      ]
+    },
+    "UploadStartRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checksum": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "fileName",
+        "size",
+        "mime",
+        "commandId"
+      ]
+    },
+    "StorageOperationView": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "provisioning",
+            "partial",
+            "proposed",
+            "approved",
+            "writing",
+            "verifying",
+            "committed",
+            "ready",
+            "conflict",
+            "blocked",
+            "unknown",
+            "expired",
+            "quarantined"
+          ]
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "errorCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "operationId",
+        "state",
+        "resourceId",
+        "errorCode"
+      ]
+    },
+    "StorageJob": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "orgId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "kind": {
+          "enum": [
+            "od_provision",
+            "od_import",
+            "od_export",
+            "od_upload_verify",
+            "od_reconcile",
+            "od_build_context",
+            "od_subscription_renew",
+            "od_cleanup"
+          ]
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "commandId",
+        "orgId",
+        "resourceId",
+        "kind",
+        "correlationId"
+      ]
+    },
+    "McpPrepareUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "talent_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "document_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "proposed_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "command_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "talent_id",
+        "document_id",
+        "expected_revision_id",
+        "proposed_text",
+        "command_id"
+      ]
+    },
+    "McpFetchDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "talent_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "document_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "talent_id",
+        "document_id"
+      ]
+    },
+    "McpCommitUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "proposal_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "command_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "proposal_id",
+        "command_id"
+      ]
+    }
+  }
+}

@@ -1,76 +1,103 @@
 # 6-4 Lưu tư liệu
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 高 (cao) |
-| Mục [YK2] | 6-7 |
-| Màn hình [AG] | T-10 |
+| Mục [YK2] | §6-7, chức năng 6-4; §7-2; UC-06 |
+| Màn hình [AG] | T-10 (thẻ 送ったもの), T-07 (nút 自分で作った動画を保存する), T-06 (ô 素材) |
 | Tên trong mã nguồn | Media Storage & Reuse |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🟡 Vàng – phần lưu và dùng lại làm được ngay. Phần "video tự làm thành bản nháp mỗi ngày" chờ 確認32 và B4, tách riêng |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ⚠ B4 | ⚠ đội đề xuất | ⚠ thời gian giữ bản tạm | ⚠ đội đề xuất | ✅ | ⚠ S02-02 | ⚠ đội đề xuất | ⚠ 6-3, 2-2 |
 
 ## Mục đích
 
-Lưu tư liệu để dùng lại
-
-## Tác nhân
-
-Xử lý tự động, tài năng
-
-## Đầu vào
-
-Tư liệu đã gửi
-
-## Điều kiện trước
-
-—
+Lưu ảnh, video đã gửi vào thư mục OneDrive của tài năng. Tài năng xem danh sách trong ứng dụng và dùng lại về sau. Video tự làm được lưu thì mỗi ngày lấy một cái, theo thứ tự lưu, làm thành bản nháp (§6-7 chức năng 6-4).
 
 ## Luồng chính
 
-1. Lưu vào thư mục tài năng trên OneDrive.
-2. Tài năng xem danh sách và dùng lại sau.
-3. Video tự làm thì mỗi ngày dùng một cái theo thứ tự lưu để làm bản nháp ⚠ (確認32)
+**A. Lưu**
+1. Nhận việc từ 6-3 (và từ 5-1 với video AI). Chép tệp từ Supabase Storage sang `素材/` trong thư mục tài năng (2-2), tên theo ngày và mã tư liệu.
+2. Tạo ảnh thu nhỏ cho danh sách. Ghi `onedrive_item_id`.
 
-## Đầu ra và kết quả sau
+**B. Dùng lại**
+3. Thẻ 送ったもの ở T-10 liệt kê tư liệu mới nhất trước, có nhãn "AI" cho video AI và "自作" cho video tự làm.
+4. Chọn tư liệu cũ để gắn vào bản nháp đang mở (như 6-3 bước 4), không phải tải lên lại.
 
-- Đầu ra: Danh sách tư liệu
-- Kết quả mong đợi: Tư liệu được giữ và dùng lại được. Video tự làm tự động thành bản nháp, không mất phí
+**C. Video tự làm thành bản nháp (chờ 確認32, B4)**
+5. Lô buổi sáng: nếu hàng chờ video tự làm còn video chưa dùng, lấy video lưu sớm nhất, gọi AI viết chú thích và hashtag (4-1), tạo một bản nháp gắn sẵn video. Hiện cạnh 3 chủ đề như một lựa chọn thêm (B4).
+6. Bản nháp này vẫn phải được chấp nhận (4-3) mới đăng. Không mất phí tạo video (UC-06 前提).
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Chép sang OneDrive lỗi | Thử lại qua hàng đợi; trong lúc đó dùng bản trên Supabase | §9-3 |
+| Bản tạm trên Supabase | Xóa sau khi đã lưu OneDrive và bài dùng nó đã đăng xong 7 ngày | S05-03, C2 |
+| Dùng lại tư liệu đã lâu, bản tạm đã xóa | Lấy lại từ OneDrive về Supabase khi cần đăng | [Đề xuất nội bộ] |
+| Tài năng muốn xóa tư liệu | Không có trong ứng dụng; quản lý xóa trong OneDrive (S05-02) | S05-02 |
+| Video tự làm trong hàng chờ bị dùng tay trước | Bỏ khỏi hàng chờ | [Đề xuất nội bộ] |
+| Hết video tự làm | Không tạo bản nháp thêm; chỉ 3 chủ đề | B4 |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Nơi lưu chính thức | OneDrive, thư mục tài năng | Chốt | §6-7, §7-2 |
+| Ai xem được | Tài năng đó và quản lý | Chốt | §7-2 |
+| Video tự làm | 1 video mỗi ngày, theo thứ tự lưu | Giả định (確認32) | §6-7 |
+| Giữ bản tạm trên Supabase | 7 ngày sau khi đăng | Tham số | S05-03 |
+| Giữ tư liệu sau khi tài năng ngừng | Theo 確認55 | Chưa rõ | §7-3 |
 
-## Dữ liệu
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`media` (6-3) thêm `thumbnail_path`, `temp_deleted_at`. `self_made_queue`: `talent_id`, `media_id`, `saved_at`, `used_at`.
+
+## Màn hình
+
+T-10 thẻ 送ったもの; T-07 nút 自分で作った動画を保存する; T-06 ô 素材.
 
 ## Tích hợp
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Microsoft Graph (ghi tệp lớn bằng phiên tải lên nhiều phần). Worker tạo ảnh thu nhỏ.
 
-## Tiêu chí chấp nhận
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho ảnh vừa gửi, thì trong vài phút có tệp trong `素材/` của tài năng trên OneDrive.
+2. Cho chọn ảnh cũ ở 送ったもの, thì gắn vào bản nháp mà không tải lên lại.
+3. Cho 2 video tự làm đã lưu, thì sáng mai có bản nháp với video lưu trước, sáng kia với video lưu sau.
+4. Cho bản nháp từ video tự làm, thì không tăng số lần tạo video.
+5. Tài năng B không thấy tư liệu của tài năng A.
 
-## Chỗ còn thiếu
+## Ngoài phạm vi của chức năng này
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認32; B4 |
-| Kiểm chứng | — |
-| Đội | Thời gian giữ và cách xóa |
+- Tài năng xóa tư liệu trong ứng dụng (S05-02). Chỉnh sửa tư liệu.
 
-## Điểm chưa rõ (từ file 04)
+## Phụ thuộc
 
-- tổng dung lượng lưu, thời gian lưu và cách xóa tư liệu chưa có. Video tự làm dùng mỗi ngày một cái thì có thay bản nháp từ chủ đề gợi ý không, hay là thêm một bài.
+6-3, 2-2 (thư mục), 4-1, 2-1 (lô buổi sáng), S02-02 (quyền Microsoft Graph).
+
+## Câu hỏi mở
+
+Các 確認 liên quan (không xử lý ở đây): 確認32, 55.
+
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| B4 | Video tự làm hiện thêm cạnh 3 chủ đề, vẫn phải chấp nhận | Có (phần C) | Như B4 |
+| C2, S05-03 | Nơi lưu tạm và thời gian giữ | Không | Như đề xuất |
+| S05-02 | Tài năng không xóa tư liệu trong ứng dụng | Không | Như đề xuất |
+
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-7, UC-05, UC-06, 確認27, 32.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP05.
+- [YK2] §6-7 (6-4), §7-2, §7-3, UC-06, UC-06 前提, 確認32, 55. [AG] trang 3 (T-06, T-07), trang 4 (T-10).
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.37, CR-23: phần **video tự làm được lưu và mỗi ngày 1 video tự thành bản nháp** là thay đổi ngoài báo giá, **chưa làm** tới khi khách quyết (No.50). Phần lưu và xem lại tư liệu vẫn làm.

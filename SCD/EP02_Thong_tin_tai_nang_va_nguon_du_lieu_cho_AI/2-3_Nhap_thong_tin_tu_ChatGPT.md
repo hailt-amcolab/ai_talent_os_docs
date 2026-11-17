@@ -30,9 +30,11 @@ Quản lý trò chuyện với ChatGPT để nhập và sửa thông tin tài n�
 
 | Phương án | Cách làm | Ưu | Nhược |
 |---|---|---|---|
-| **A (đề xuất)** | Một công cụ dùng chung trên ChatGPT (GPT tùy chỉnh có Action, hoặc connector MCP) gọi API ghi của hệ thống. Quản lý gọi tên tài năng trong hội thoại | Không phải tạo dự án cho từng tài năng; biết quản lý nào ghi; kiểm soát định dạng | Phải xem gói ChatGPT của khách có cho dùng không. Khác với cách tả trong UC-01 前提 |
+| **A (đề xuất)** | Một connector **MCP** dùng chung trên ChatGPT gọi API ghi của hệ thống (dự phòng: GPT tùy chỉnh có Action). Quản lý gọi tên tài năng trong hội thoại | Không phải tạo dự án cho từng tài năng; biết quản lý nào ghi; kiểm soát định dạng | Phải xem gói ChatGPT của khách có cho dùng không. Khác với cách tả trong UC-01 前提 |
 | B | Mỗi tài năng một dự án ChatGPT như [YK2], cộng thêm công cụ ghi của A | Đúng như [YK2] | Thêm việc tạo dự án cho mỗi tài năng (100–1.000 người) mà không có lợi gì thêm |
 | C (dự phòng) | ChatGPT chỉ soạn nội dung theo mẫu; quản lý tự dán vào file trên OneDrive | Không cần tích hợp | Dễ sai định dạng; không ai xác nhận "tài năng nào" |
+
+**Căn cứ MCP:** 御見積書 (bản báo giá) 前提条件A4 「マネージャーはChatGPT(MCP)経由でAIを調整」, trích ở file Q&A câu số 45. Theo [YK2] §1, báo giá đứng trên [YK2] khi mâu thuẫn, nên MCP có căn cứ hợp đồng; câu 45 chưa có trả lời về phạm vi chính xác. Thiết kế máy chủ MCP chi tiết ở `agent_spec/onedrive-agent-spec/ONEDRIVE_IMPLEMENTATION_SPEC_VI.md` §14.
 
 Cả ba đều là cách làm của 2-3, không thêm chức năng, nên đều **trong phạm vi**. Phương án A đổi tiền đề của UC-01 nên cần khách đồng ý (S02-01). Câu này chi tiết hóa câu C4 ở file 15.
 
@@ -76,7 +78,7 @@ Không có màn trong hệ thống. Quản lý xem kết quả ở M-07.
 
 ## Tích hợp
 
-- **ChatGPT:** GPT tùy chỉnh có Action, hoặc connector MCP. Cách nào dùng được tùy gói ChatGPT của khách. Phải kiểm chứng (S02-01).
+- **ChatGPT:** connector MCP (theo báo giá); dự phòng GPT tùy chỉnh có Action. Gói ChatGPT của khách có cho connector MCP tự làm ghi dữ liệu không thì phải kiểm chứng (S02-01).
 - **API của hệ thống:** `tìm tài năng`, `đọc hồ sơ`, `xem trước`, `ghi`. Xác thực bằng OAuth với tài khoản quản lý, để biết ai ghi và để quản lý bị vô hiệu hóa (1-6) không ghi được nữa.
 - **Microsoft Graph:** ghi file có kiểm tra phiên bản.
 

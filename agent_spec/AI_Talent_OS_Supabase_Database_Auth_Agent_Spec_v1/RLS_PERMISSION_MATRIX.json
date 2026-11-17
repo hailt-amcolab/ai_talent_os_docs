@@ -1,0 +1,49 @@
+{
+  "classification": "proposed_default_deny",
+  "resource": "public.talent_preferences core sample",
+  "roles": [
+    {
+      "actor": "anonymous",
+      "select": false,
+      "write": false
+    },
+    {
+      "actor": "Talent owner, full app session",
+      "select": true,
+      "write": false
+    },
+    {
+      "actor": "Talent other owner/org",
+      "select": false,
+      "write": false
+    },
+    {
+      "actor": "Manager aal1",
+      "select": false,
+      "write": false
+    },
+    {
+      "actor": "Manager aal2 direct Data API",
+      "select": false,
+      "write": false,
+      "note": "Use audited BFF for Manager domain data"
+    },
+    {
+      "actor": "disabled/revoked/temp/recovery restricted",
+      "select": false,
+      "write": false
+    },
+    {
+      "actor": "BFF reviewed service repository",
+      "select": "Explicit server authorization + tenant filter + Manager view audit",
+      "write": "Validated command transaction only; service_role/SQL may bypass RLS"
+    },
+    {
+      "actor": "worker",
+      "select": "Least privilege domain role",
+      "write": "Recheck state + fencing/idempotency"
+    }
+  ],
+  "privateSchema": "not exposed; no anon/auth table privileges; helper execute only",
+  "source": "Spec §5 and sql/0001_core_reference.sql"
+}

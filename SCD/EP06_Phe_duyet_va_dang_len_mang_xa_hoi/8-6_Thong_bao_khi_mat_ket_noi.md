@@ -1,70 +1,67 @@
 # 8-6 Thông báo khi mất kết nối
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
 | 優先順位 (ưu tiên) | 中 (trung bình) |
-| Mục [YK2] | 6-10 |
-| Màn hình [AG] | T-05, T-14, M-02 |
+| Mục [YK2] | §6-10, chức năng 8-6; 別紙A (SNS の接続切れ) |
+| Màn hình [AG] | T-05 (接続切れ), T-14; M-02, M-06, M-08 (biểu tượng đỏ) |
 | Tên trong mã nguồn | SNS Disconnection Notification |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được; cách Upload-Post báo mất kết nối phải kiểm chứng |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ⚠ đội đề xuất | ✅ | ✅ | ✅ | ⚠ kiểm chứng | ⚠ đội đề xuất | ⚠ 8-2 |
 
 ## Mục đích
 
-Báo mất kết nối mạng xã hội
-
-## Tác nhân
-
-Xử lý tự động
-
-## Đầu vào
-
-Trạng thái kết nối từ Upload-Post
-
-## Điều kiện trước
-
-Kết nối bị mất
+Kết nối với một mạng bị mất thì báo tài năng kết nối lại, và hiện trên màn hình quản trị (§6-10 chức năng 8-6).
 
 ## Luồng chính
 
-1. Báo tài năng kết nối lại, đồng thời hiện trên màn hình quản trị
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Thông báo
-- Kết quả mong đợi: Tài năng kết nối lại trước giờ đăng tiếp theo
+1. Phát hiện mất kết nối (S06-08): khi Upload-Post báo (webhook nếu có), khi kiểm tra hằng ngày cùng lúc lấy kết quả (8-7), và ngay trước khi gửi lịch đăng.
+2. Trạng thái mạng chuyển sang `disconnected` (8-2).
+3. Báo tài năng **một lần cho mỗi lần mất**: thông báo SNS の接続切れ, mở vào T-05.
+4. Màn hình quản trị: biểu tượng đỏ ở M-06, M-08; thông báo ở M-02 ([AG] M-02 có loại này; 7-4 trong [YK2] thiếu, xem A6).
+5. Tài năng kết nối lại ở T-05 (8-2), trạng thái về `connected`.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
-
-## Quy tắc và giá trị
-
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| Mất rồi có lại, rồi mất tiếp | Mỗi lần mất báo một lần | [Đề xuất nội bộ] |
+| Mất kết nối trước giờ đăng | Bài vẫn đăng các mạng còn lại; mạng mất ghi lỗi (8-5) | §6-10 |
 
 ## Dữ liệu
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`sns_connections` (8-2) thêm `disconnected_at`, `notified_at`.
 
-## Tích hợp
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho YouTube mất kết nối, thì tài năng nhận đúng một thông báo, T-05 hiện 接続切れ, M-06 có biểu tượng YouTube màu đỏ.
+2. Cho kết nối lại thành công, thì biểu tượng về màu xanh.
 
-## Tiêu chí chấp nhận
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+8-2, 8-7, 7-4, 6-1.
 
-## Chỗ còn thiếu
+## Câu hỏi mở
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | — |
-| Kiểm chứng | Upload-Post báo mất kết nối bằng cách nào |
-| Đội | — |
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S06-08 | Phát hiện mất kết nối lúc nào | Không | Hằng ngày và trước mỗi lần đăng |
+| A6 | 7-4 thiếu loại "mất kết nối" | Không | Theo [AG] M-02 |
+
+Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và kiểm tra phạm vi của cả EP06: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-10, UC-03 前提, UC-08, UC-08 前提, UC-12 前提, 確認9–11, 37, 38, 52.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP06.
+- [YK2] §6-10 (8-6), §6-12 (7-4), 別紙A. [AG] trang 3 (T-05), trang 5 (T-14), trang 6 (M-02).
+
+## Bổ sung từ tài liệu Upload-Post (17/11/2026)
+
+- Các lỗi mất kết nối của Upload-Post chủ yếu là chuỗi chữ ("session has expired", "Token expired and refresh failed"…), chỉ TikTok có mã `tiktok_reconnect_required`. Phân loại theo mẫu chuỗi đã kiểm trong POC.
+- **Instagram `account_checkpoint_required`:** chủ tài khoản phải mở Instagram để xử lý cảnh báo bảo mật; kết nối lại không giải quyết được. Câu thông báo cho tài năng phải khác với câu "kết nối lại".
+- Chi tiết: bộ Upload-Post §8.4a (U26).

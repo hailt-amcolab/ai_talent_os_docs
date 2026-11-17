@@ -1,0 +1,45 @@
+{
+  "name": "talent-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --watch src/server.ts",
+    "build": "prisma generate && tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test 'src/**/*.test.ts'",
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "db:check": "node --env-file-if-exists=.env src/infra/database/check.ts",
+    "db:migrate": "prisma migrate deploy",
+    "db:status": "prisma migrate status",
+    "db:studio": "prisma studio",
+    "predev": "prisma generate",
+    "pretypecheck": "prisma generate",
+    "pretest": "prisma generate",
+    "prebuild": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.8",
+    "@hono/zod-openapi": "^1.6.3",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "dotenv": "^18.0.10",
+    "hono": "^4.13.19",
+    "pg": "^8.23.1",
+    "pm2": "^7.1.2",
+    "web-push": "^3.6.7",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "@types/web-push": "^3.6.4",
+    "prisma": "7.10.1",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,49 +1,61 @@
 # C-02 Cài đặt do quản lý tự chỉnh
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP10 – Nền tảng chung và quản trị hệ thống |
-| 優先順位 (ưu tiên) | — |
-| Mục [YK2] | §5-6 |
-| Màn hình [AG] | M-17, M-10 |
-| Tên trong mã nguồn | — |
-| Mức sẵn sàng | 🟢 Xanh |
+| Mã | C-02 (mã nội bộ) |
+| Mục [YK2] | §5-2, §5-6; §6-6 chức năng 4-4 |
+| Màn hình [AG] | M-17 (全体の設定), M-10 (cài đặt từng tài năng) |
+| Mức sẵn sàng | 🟢 Xanh – giao agent được |
 
 ## Mục đích
 
-Các giá trị quản lý tự chỉnh, không cần sửa mã: giờ nhắn buổi sáng, giờ nhắc, số ngày không đăng, danh sách từ cấm, cài đặt từng tài năng
+Những giá trị quản lý tự đổi trên màn hình quản trị mà không cần sửa mã (§5-6), cùng các tham số kỹ thuật chỉ đội vận hành đổi.
 
-## Luồng lỗi và trường hợp biên
+## 1. Quản lý đổi trên màn hình [Chốt, §5-6]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Cài đặt | Mặc định | Màn | Dùng ở |
+|---|---|---|---|
+| Giờ AIコーチ nhắn buổi sáng | 8:00 | M-17 | 3-4 |
+| Nhắc gửi tư liệu, trước giờ đăng | 2 giờ | M-17 | 6-5 |
+| Số ngày không đăng thì AIコーチ hỏi han | 3 | M-17 | 3-9 |
+| Số ngày không đăng thì báo quản lý | 7 | M-17 | 3-9 |
+| Ngày gửi tổng kết tuần | Thứ Hai | M-17 | 3-8 |
+| Danh sách từ cấm | Mẫu của đội | M-17 | 4-4 |
+| Dừng toàn bộ đăng tự động | Đang chạy | M-16 | 7-5 |
+| Có duyệt bài (từng tài năng) | Tắt | M-10 | 7-7 |
+| Dừng đăng tự động (từng tài năng) | Đang chạy | M-10 | 7-5 |
+| Mục tiêu người theo dõi (từng tài năng) | 10.000 mỗi mạng | M-10 | 2-4 |
+| Đơn giá tạo video | Chưa có | M-17 (đề xuất S08-06) | 5-4 |
+| Phí tháng (nếu mỗi tài năng một mức) | Chưa có | M-10 (đề xuất S08-01) | 1-1 |
 
-## Quy tắc và giá trị
+## 2. Tham số kỹ thuật (không có trên màn hình) [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Ví dụ: giờ bắt đầu lô buổi sáng (5:00), giờ lấy số liệu (4:00), các giới hạn chống khóa tài khoản (8-4), giới hạn tệp (6-3), thời gian giữ thông báo và bản tạm, mô hình OpenAI. Lưu trong bảng cấu hình, đổi bởi đội vận hành, có nhật ký.
 
-## Dữ liệu
+## Luồng chính
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Quản lý sửa ở M-17 hoặc M-10, bấm 保存する (lưu).
+2. Kiểm tra giá trị (giờ hợp lệ, số nguyên dương, mốc 2 lớn hơn mốc 1).
+3. Lưu, ghi nhật ký thao tác (C-03): ai, giá trị cũ, giá trị mới.
+4. Áp dụng từ lần chạy tiếp theo của việc liên quan; không gửi bù trong ngày (3-9, 6-5).
 
-## Tích hợp
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho đổi giờ nhắn buổi sáng thành 9:00, thì hôm sau tin buổi sáng đến lúc 9:00.
+2. Cho nhập mốc báo quản lý nhỏ hơn mốc hỏi han, thì không lưu được.
+3. Mỗi lần lưu có một dòng nhật ký với giá trị cũ và mới.
 
-## Tiêu chí chấp nhận
+## Dữ liệu [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`settings`: `key`, `value`, `scope` (`ui`, `ops`), `updated_by`, `updated_at`. Cài đặt từng tài năng nằm ở `talents` và `talent_goals`.
 
-## Chỗ còn thiếu
-
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | — |
-| Kiểm chứng | — |
-| Đội | — |
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] §5-6; file 16 mục 1.2
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP10.
+- [YK2] §5-2, §5-6, §6-6 (4-4), §6-10 (7-5). [AG] trang 8 (M-10), trang 9 (M-16), trang 10 (M-17).
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.41, CR-07 (đã chốt): màn cài đặt chung có giờ nhắn, giờ nhắc, số ngày không đăng, danh sách từ cấm. Q&A No.2, No.62: thêm **đơn giá video**. Q&A No.25 (đang hỏi): giờ nhắn buổi sáng chung hay theo từng tài năng; [YK2] 5-2 là chung.

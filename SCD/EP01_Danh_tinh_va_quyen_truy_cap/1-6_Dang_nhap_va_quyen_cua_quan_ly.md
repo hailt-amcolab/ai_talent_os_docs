@@ -61,7 +61,7 @@ Chỉ quản lý vào được màn hình quản trị, bằng đăng nhập hai
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Đăng nhập hai bước | TOTP (mã dùng một lần theo thời gian) 6 số, không dùng tin nhắn SMS | Chốt (SMS: [SM] trang 28) | §6-2, §10-1 |
+| Đăng nhập hai bước | TOTP (mã dùng một lần theo thời gian) 6 số, không dùng tin nhắn SMS ở đợt đầu; SMS chờ bàn với khách (S01-11) | Chốt (SMS: [SM] trang 28) | §6-2, §10-1 |
 | Quy tắc mật khẩu và khóa khi sai | Giống tài năng (1-4) | Tham số | §6-2 |
 | Hết phiên khi không thao tác | 30 phút | Tham số | §6-2 |
 | Số loại quyền | 1 | Chốt | §6-2 |
@@ -117,3 +117,8 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 - [YK2] §3-2, §3-3, §6-2 (1-6), §10-1, UC-13, UC-13 前提, 確認41. [SM] trang 28 (TOTP qua Supabase Auth MFA, không dùng SMS).
 - [AG] trang 6 (M-01), trang 10 (M-18).
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 2. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 7.
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.5, CR-13 (đã chốt): một loại quản lý.
+- Q&A No.67 (đang hỏi): mất thiết bị xác thực 2 bước thì quản lý khác đặt lại; không cho tự vô hiệu hóa mình và vô hiệu hóa quản lý cuối cùng.

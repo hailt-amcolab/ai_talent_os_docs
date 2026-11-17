@@ -1,5 +1,15 @@
 # Báo cáo phân tích dự án AI育成OS
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Các mục "màn chỉ dẫn cho AI và nhóm tài năng có làm không" ở phần câu hỏi và R12 chuyển sang câu này.
+- Đã chốt (Q&A): tự đăng ký và quản lý duyệt (No.11, CR-01, làm ở đợt đầu, không thu thêm); 3 chủ đề mỗi sáng (No.9); lưu ảnh, video ở OneDrive (No.8, CR-10); trả lại kèm lý do (No.35); hai loại video, video trình chiếu ghép ở máy chủ (No.36, CR-04); AI tìm tin tức 1 lần mỗi ngày (No.38, CR-05); quản lý gửi tư liệu và tạo video thay tài năng (CR-09); một loại quản lý (No.5); không trần phí AI (No.17); không tự đăng lại (No.15).
+- Quyết định nội bộ: xác thực hai bước của quản lý chỉ làm ứng dụng xác thực (TOTP); SMS chờ bàn với khách (S01-11); không làm OTP qua email; khóa 5 lần sai làm ở BE.
+- Rủi ro kỹ thuật cập nhật ở file 20 (RT01–RT12) thay phần rủi ro kỹ thuật của báo cáo này.
+
+
 2026-11-13 · hoahn-hocnao
 
 AI育成OS có phạm vi rõ (54 chức năng), nhưng chưa đủ điều kiện để thiết kế chi tiết. Bản yêu cầu v2 đổi hẳn cách bắt đầu dùng (tài năng tự đăng ký, quản lý duyệt) và bỏ loại tài năng miễn phí. Sáu việc cần chốt trước đợt kiểm thử nghiệm thu (giữa tháng 1/2027) là:

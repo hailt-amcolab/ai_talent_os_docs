@@ -123,3 +123,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 
 - [YK2] §5-2, §5-5, §6-5 (3-4), §7-2, §13, UC-04, UC-04 前提, 別紙A, 確認14, 15, 18, 20–23.
 - [AG] trang 3 (T-07, T-08), trang 8 (M-09).
+
+## Cập nhật theo Q&A (bản ngày 15/11/2026)
+
+- Q&A No.7 (đang hỏi, CR-24): nếu khách chọn hội thoại riêng tư thì quản lý không xem toàn bộ hội thoại. Chờ trả lời.

@@ -1,0 +1,17 @@
+{
+  "created_on": "2026-11-16",
+  "status": "Tài liệu thiết kế; chưa kiểm thử live",
+  "local_sources": [
+    {
+      "name": "AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "bytes": 9780674
+    },
+    {
+      "name": "AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "ca47360360dea6c7519564e255f6bc13c4487be3517020bdf900858fbcc28f54",
+      "bytes": 117960
+    }
+  ],
+  "note": "Không đóng gói tài liệu gốc hoặc thông tin xác thực. Nguồn web và phạm vi tham chiếu nằm trong mục 0.1 của spec."
+}

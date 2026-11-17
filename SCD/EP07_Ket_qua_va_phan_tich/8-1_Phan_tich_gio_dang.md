@@ -1,76 +1,79 @@
 # 8-1 Phân tích giờ đăng
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP07 – Kết quả và phân tích |
 | 優先順位 (ưu tiên) | 中 (trung bình) |
-| Mục [YK2] | 6-11 |
-| Màn hình [AG] | — |
+| Mục [YK2] | §6-11, chức năng 8-1; §5-2; UC-08 |
+| Màn hình [AG] | Không có màn riêng; giờ đăng hiện ở T-07, T-09 |
 | Tên trong mã nguồn | Posting Time Analysis |
-| Mức sẵn sàng | 🔴 Đỏ |
+| Mức sẵn sàng | 🔴 Đỏ – chưa định nghĩa "đủ số liệu" và cách chọn giờ (S07-06); chưa biết Upload-Post có số liệu theo khung giờ không |
+
+## Đánh giá
+
+| R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
+|---|---|---|---|---|---|---|---|---|
+| ✅ | ⚠ S07-06 | ⚠ | ❌ S07-06 | ✅ | ✅ | ⚠ 8-9 | ⚠ đội đề xuất | ⚠ 8-7 |
 
 ## Mục đích
 
-Chọn giờ đăng: lúc đầu theo chỉ dẫn thuật toán của công ty, đủ dữ liệu thì theo khung giờ phản hồi tốt
+Khi chưa đủ số liệu, đăng theo giờ trong chỉ dẫn thuật toán của アデッソ. Khi đủ, chọn giờ đăng cho từng tài năng theo khung giờ được tương tác tốt (§6-11 chức năng 8-1, §5-2). Upload-Post không cho số liệu thì giữ giờ theo chỉ dẫn (UC-08).
 
-## Tác nhân
+## Luồng chính (đề xuất S07-06)
 
-Xử lý tự động, huấn luyện viên AI
-
-## Đầu vào
-
-Số liệu theo khung giờ, chỉ dẫn thuật toán của アデッソ
-
-## Điều kiện trước
-
-—
-
-## Luồng chính
-
-1. Khi chưa đủ số liệu thì dùng giờ theo chỉ dẫn của アデッソ.
-2. Đủ số liệu thì chọn giờ theo khung giờ được tương tác tốt của từng tài năng.
-3. Upload-Post không cho số liệu theo giờ thì giữ giờ theo chỉ dẫn (UC-08)
-
-## Đầu ra và kết quả sau
-
-- Đầu ra: Giờ đăng cho từng tài năng. Tài năng không đổi được ⚠ (確認30)
-- Kết quả mong đợi: Bài được đăng vào giờ có nhiều tương tác hơn
+1. Mỗi sáng (cùng lô buổi sáng), chốt giờ đăng dự kiến của ngày cho từng tài năng (B1).
+2. Thứ tự ưu tiên:
+   1. giờ riêng ghi trong `個別の指示` của tài năng (S07-07);
+   2. nếu **đủ số liệu**: khung giờ có mức tương tác trung bình cao nhất trong các bài của chính tài năng;
+   3. nếu chưa đủ: giờ trong `共通/アルゴリズム対策.md` (theo thứ trong tuần nếu có).
+3. **Đủ số liệu** = ít nhất 20 bài đã đăng, ở ít nhất 3 khung giờ khác nhau (tham số).
+4. **Mức tương tác** = (thích + bình luận) / lượt xem, tính trên các bài của tài năng, nhóm theo khung giờ đăng 1 giờ. Nếu 8-9 có số liệu theo khung giờ thì dùng thêm.
+5. Áp dụng 8-4: rải ±10 phút, cách bài trước ít nhất 3 giờ.
 
 ## Luồng lỗi và trường hợp biên
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Tình huống | Xử lý | Nguồn |
+|---|---|---|
+| File chỉ dẫn không ghi giờ | Dùng giờ mặc định 19:00 (tham số) | [Đề xuất nội bộ] |
+| Các khung giờ chênh nhau rất ít | Giữ giờ theo chỉ dẫn | [Đề xuất nội bộ] |
+| Upload-Post không có lượt xem | Không đủ số liệu, giữ giờ theo chỉ dẫn | UC-08 |
+| Upload-Post có Best Time to Post (đọc trang riêng 17/11) | Độ tin cậy trung bình hoặc cao: dùng `best_times` của 8-9. Độ tin cậy thấp, hoặc YouTube (không có giờ): so giờ đăng các bài của tài năng, rồi chỉ thị thuật toán | Bộ Upload-Post §13.2a |
 
 ## Quy tắc và giá trị
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Quy tắc | Giá trị | Loại | Nguồn |
+|---|---|---|---|
+| Chưa đủ số liệu thì theo chỉ dẫn của アデッソ | — | Chốt | §5-2, §6-11 |
+| Ngưỡng "đủ số liệu" | 20 bài, 3 khung giờ | Tham số | S07-06 |
+| Tài năng không đổi giờ | — | Giả định (確認30) | — |
+| Quản lý không có màn đổi giờ | Ghi giờ riêng trong hồ sơ | Đề xuất | S07-07 |
 
 ## Dữ liệu
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+`daily_post_plans` (4-1) thêm `time_source` (`talent_instruction`, `data`, `agency_rule`, `default`).
 
-## Tích hợp
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho tài năng mới, chỉ dẫn ghi "19:00–21:00", thì giờ dự kiến nằm trong khoảng đó.
+2. Cho 25 bài, bài 12:00 có mức tương tác cao nhất rõ rệt, thì giờ dự kiến quanh 12:00.
+3. Cho `個別の指示` ghi "毎日20時に投稿", thì giờ dự kiến quanh 20:00.
 
-## Tiêu chí chấp nhận
+## Phụ thuộc
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+8-7, 8-9 (không bắt buộc), 4-1 (B1), 8-4.
 
-## Chỗ còn thiếu
+## Câu hỏi mở
 
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | 確認30; B1; thế nào là đủ số liệu |
-| Kiểm chứng | Có số liệu theo khung giờ không |
-| Đội | — |
+Các 確認 liên quan (không xử lý ở đây): 確認30.
 
-## Điểm chưa rõ (từ file 04)
+| Mã | Nội dung | Chặn? | Giả định tạm dùng |
+|---|---|---|---|
+| S07-06 | "Đủ số liệu" và cách chọn giờ | Có | Như trên |
+| S07-07 | Giờ riêng qua hồ sơ, không có màn đổi giờ | Không | Như đề xuất |
+| B1 | Giờ đăng chốt mỗi sáng | Có | Như B1 |
 
-- thế nào là "đủ số liệu". 8-1 là 中 (trung bình) nhưng nguồn dữ liệu của nó là 8-9 lại là 低 (thấp), mức ưu tiên không khớp. Quản lý có được đổi giờ đăng không.
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP07: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] 6-11, UC-08, UC-09, UC-09 前提, 確認30, 40.
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP07.
+- [YK2] §5-2, §6-11 (8-1), UC-08, 確認30. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B1.

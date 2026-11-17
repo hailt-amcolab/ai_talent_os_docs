@@ -82,7 +82,7 @@ Các 確認 liên quan (không xử lý ở đây): 確認6–8.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
-| S03-01 | Chỉ thị giọng văn đặt ở `共通/AIへの指示.md` và mục `個別の指示` | Không | Như đề xuất |
+| S03-01 | Chỉ thị giọng văn đặt ở `共通/AIへの指示.md` và mục `個別の指示`; quản lý viết qua ChatGPT (MCP) theo báo giá, Q&A câu 45 | Không | Như đề xuất |
 
 Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 

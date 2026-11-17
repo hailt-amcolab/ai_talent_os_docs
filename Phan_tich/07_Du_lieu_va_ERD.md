@@ -1,5 +1,13 @@
 # Dữ liệu và ERD sơ bộ
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- NHOM_TAI_NANG và quan hệ tài năng – nhóm: CR-17, chưa làm. Thứ tự video tự làm: CR-23, chưa làm. Cấu trúc cơ sở dữ liệu sẽ dựng lại sau, file này chỉ là phân tích.
+- LAN_TAO_VIDEO: video trình chiếu ghép ở máy chủ, không gọi fal.ai (CR-04). Tính lượt lúc gửi yêu cầu, lỗi phía dịch vụ không tính (Q&A No.1).
+
+
 Hệ thống cần quản lý 27 entity, nằm ở 3 nơi lưu: cơ sở dữ liệu của hệ thống, OneDrive và các dịch vụ ngoài. Trong đó 3 entity chỉ cần nếu khách chấp nhận đề xuất mới của v2 (thử thách, chỉ dẫn cho AI, nhóm tài năng). [YK2] chỉ mô tả dữ liệu ở mức nghiệp vụ (mục 7 データ要件 – yêu cầu dữ liệu), nên cấu trúc bảng, khóa và kiểu dữ liệu ở đây đều là đề xuất của mình. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với bản theo v1:** bỏ entity đường dẫn mời (LOI_MOI), thêm đơn đăng ký (DON_DANG_KY). Bỏ thuộc tính có trả phí, thay bằng loại tài khoản (tài năng / công ty). Thêm ngày sinh và cờ dừng đăng tự động cho từng tài năng. Thêm 3 entity đề xuất: THU_THACH, CHI_DAN_AI, NHOM_TAI_NANG.

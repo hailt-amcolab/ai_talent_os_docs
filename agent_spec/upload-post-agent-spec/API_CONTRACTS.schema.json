@@ -1,0 +1,509 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-talent-os.example/spec/upload-post-contracts-v1",
+  "title": "Hợp đồng nội bộ đề xuất; KHÔNG phải OpenAPI của Upload-Post",
+  "description": "TK 16/11/2026. Xác minh semantic bằng use case; format UUID/date-time cần validator bật format assertion. Không dùng để parse nguyên response provider.",
+  "$defs": {
+    "StartConnectionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    },
+    "StartConnectionResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attemptId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "authorizationUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "attemptId",
+        "authorizationUrl",
+        "expiresAt"
+      ]
+    },
+    "ConfirmConnectionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "returnToken": {
+          "type": "string",
+          "minLength": 32
+        },
+        "providerOutcome": {
+          "type": "string",
+          "enum": [
+            "success",
+            "cancelled",
+            "error"
+          ]
+        },
+        "providerPlatform": {
+          "type": "string",
+          "enum": [
+            "tiktok",
+            "instagram",
+            "youtube"
+          ]
+        }
+      },
+      "required": [
+        "returnToken"
+      ]
+    },
+    "ConnectionView": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": [
+            "tiktok",
+            "instagram",
+            "youtube"
+          ]
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "disconnected",
+            "connecting",
+            "connected",
+            "reauth_required",
+            "replacement_pending",
+            "disconnecting",
+            "unknown"
+          ]
+        },
+        "accountId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "handle": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "verifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "platform",
+        "state",
+        "accountId",
+        "handle",
+        "displayName",
+        "version",
+        "stale",
+        "verifiedAt"
+      ]
+    },
+    "DisconnectRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "expectedVersion",
+        "reason"
+      ]
+    },
+    "ReplacementRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expectedAccountId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "expectedVersion",
+        "expectedAccountId"
+      ]
+    },
+    "ScheduleRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "postVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scheduledAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "postVersion",
+        "scheduledAt",
+        "timezone",
+        "commandId"
+      ]
+    },
+    "ScheduleResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deliveryIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "minItems": 1,
+          "maxItems": 3
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "deliveryIds",
+        "commandId"
+      ]
+    },
+    "CancelRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "expectedVersion",
+        "reason",
+        "commandId"
+      ]
+    },
+    "RescheduleFailedRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "failedDeliveryIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "scheduledAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "failedDeliveryIds",
+        "scheduledAt",
+        "commandId"
+      ]
+    },
+    "PublishingControlRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": [
+            "global",
+            "talent"
+          ]
+        },
+        "talentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "stopped": {
+          "type": "boolean"
+        },
+        "commandId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "scope",
+        "stopped",
+        "commandId"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "const": "talent"
+              }
+            },
+            "required": [
+              "scope"
+            ]
+          },
+          "then": {
+            "required": [
+              "talentId"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "talentId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "OperationResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "processing",
+            "completed",
+            "unresolved"
+          ]
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unresolved": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "operationId",
+        "state",
+        "total",
+        "completed",
+        "unresolved"
+      ]
+    },
+    "QueueMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "jobId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "up_profile_sync",
+            "up_connection_reconcile",
+            "up_submit",
+            "up_cancel",
+            "up_reconcile",
+            "up_webhook",
+            "up_metrics"
+          ]
+        },
+        "resourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "notBefore": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "jobId",
+        "kind",
+        "resourceId",
+        "correlationId"
+      ]
+    },
+    "NormalizedProviderObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "submissionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "platform": {
+          "type": "string",
+          "enum": [
+            "tiktok",
+            "instagram",
+            "youtube"
+          ]
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "processing",
+            "published",
+            "failed",
+            "skipped",
+            "action_required",
+            "unknown"
+          ]
+        },
+        "requestId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "jobId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "platformPostId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publishId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "providerStatus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "providerTime": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "receivedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "submissionId",
+        "platform",
+        "outcome",
+        "requestId",
+        "jobId",
+        "platformPostId",
+        "publishId",
+        "postUrl",
+        "providerStatus",
+        "providerTime",
+        "receivedAt",
+        "warnings"
+      ]
+    }
+  }
+}

@@ -1,5 +1,12 @@
 # Cập nhật theo bản yêu cầu v2
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- Dòng 27 (thông báo theo mốc người theo dõi): mốc 25%, 50%, 75% mục tiêu (Q&A No.14). N9 (màn chỉ dẫn AI, nhóm tài năng): CR-17, CR-18.
+
+
 Bản v2 của 概要要件定義書 (bản định nghĩa yêu cầu tổng quát) thay đổi 3 điểm lớn:
 
 - Tài năng **tự đăng ký trên ứng dụng** và quản lý duyệt, thay cho việc quản lý đăng ký hộ.

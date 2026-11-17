@@ -1,5 +1,16 @@
 # Tích hợp hệ thống bên ngoài
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- Nguồn tin tức: dùng chức năng tìm web của AI (OpenAI), 1 lần mỗi ngày, chung cho mọi tài năng (CR-05).
+- fal.ai chỉ dùng cho video ngắn; video trình chiếu ghép ảnh ở máy chủ (CR-04).
+- OneDrive: lưu ảnh, video (CR-10); dịch vụ ngoài lấy tệp từ bản tạm trên Supabase Storage (phương án B của Q&A No.8). Quyền Microsoft Graph: các trang tài liệu chỉ ghi quyền toàn tenant, quyền Selected phải thử (bộ OneDrive §4.2).
+- Upload-Post: có Best Time to Post và Audience Insights (số người theo dõi TikTok); bộ Upload-Post §13.2a.
+- OpenAI: không trần chi phí (Q&A No.17). Xác thực hai bước: chỉ TOTP; SMS chờ bàn (S01-11).
+
+
 Hệ thống cần tích hợp với 6 dịch vụ mà [YK2] đã nêu tên, chạy trên 3 nền tảng hạ tầng, và cần thêm ít nhất 3 dịch vụ tài liệu chưa nêu tên. V2 làm dịch vụ gửi email trở thành bắt buộc (kết quả đăng ký, mật khẩu tạm), cho hủy bài qua Upload-Post từ màn hình quản trị, và cho biết phí Upload-Post tính theo số tài năng. Tab này đã viết lại theo bản yêu cầu v2.
 
 **Cách đọc:**

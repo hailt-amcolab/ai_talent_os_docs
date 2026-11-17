@@ -1,0 +1,72 @@
+{
+  "CoachMessageCreate": {
+    "commandId": "a8fd7dc4-e773-4355-8434-4787e3eaa895",
+    "clientMessageId": "fca678ac-16b7-4ac9-a50b-30a0c9c33428",
+    "threadId": "thread-demo",
+    "text": "Gợi ý nội dung hôm nay cho tôi."
+  },
+  "DraftCreate": {
+    "commandId": "a8fd7dc4-e773-4355-8434-4787e3eaa895",
+    "source": "own_idea",
+    "idea": "Hậu trường buổi luyện tập"
+  },
+  "DraftAdopt": {
+    "commandId": "a8fd7dc4-e773-4355-8434-4787e3eaa895",
+    "expectedVersion": 2,
+    "revisionId": "revision-demo"
+  },
+  "VideoQuote": {
+    "quoteId": "quote-demo",
+    "inputDigest": "digest-demo",
+    "price": {
+      "amountMinor": "500",
+      "currency": "JPY"
+    },
+    "priceMode": "estimated",
+    "expiresAt": "2026-11-17T12:00:00Z",
+    "policyVersion": "v1",
+    "estimatedDurationSeconds": 20,
+    "pricingTermsId": "terms-demo"
+  },
+  "UploadSession": {
+    "sessionId": "session-demo",
+    "assetId": "asset-demo",
+    "state": "uploading",
+    "acknowledgedBytes": 0,
+    "totalBytes": 100000,
+    "chunkSizeBytes": 10000,
+    "expiresAt": "2026-11-17T12:00:00Z",
+    "transport": {
+      "protocol": "tus",
+      "endpoint": "https://example-project.supabase.co/storage/v1/upload/resumable",
+      "bucket": "talent-media",
+      "objectName": "talents/00000000-0000-0000-0000-000000000000/originals/asset-demo.mp4"
+    }
+  },
+  "Notification": {
+    "id": "notification-demo",
+    "kind": "video_ready",
+    "title": "Video đã sẵn sàng",
+    "body": "Mở ứng dụng để xem chi tiết.",
+    "target": {
+      "kind": "video",
+      "resourceId": "video-demo"
+    },
+    "createdAt": "2026-11-17T11:00:00Z",
+    "readAt": null
+  },
+  "Metric": {
+    "key": "views",
+    "value": null,
+    "unit": "count",
+    "freshness": "unavailable",
+    "unavailableReason": "PROVIDER_NOT_SUPPORTED",
+    "collectedAt": null
+  },
+  "Operation": {
+    "operationId": "operation-demo",
+    "status": "accepted",
+    "statusUrl": "/api/v1/operations/operation-demo",
+    "updatedAt": "2026-11-17T11:00:00Z"
+  }
+}

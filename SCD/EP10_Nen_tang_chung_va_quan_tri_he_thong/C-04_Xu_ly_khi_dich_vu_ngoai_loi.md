@@ -1,49 +1,46 @@
 # C-04 Xử lý khi dịch vụ ngoài lỗi
 
-> **Bản khung:** sinh tự động từ [file 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md), [file 16](../../Phan_tich/16_Chia_module_phat_trien.md) và bảng đánh giá trong [README](../README.md). Chưa đủ để giao agent: còn thiếu luồng lỗi, quy tắc và giá trị, dữ liệu, tích hợp, tiêu chí chấp nhận. Khi viết đầy đủ thì xóa dòng này.
-
 | Mục | Giá trị |
 |---|---|
 | Module | EP10 – Nền tảng chung và quản trị hệ thống |
-| 優先順位 (ưu tiên) | — |
-| Mục [YK2] | §9-3 |
-| Màn hình [AG] | — |
-| Tên trong mã nguồn | — |
-| Mức sẵn sàng | 🟡 Vàng |
+| Mã | C-04 (mã nội bộ) |
+| Mục [YK2] | §9-3; §11 |
+| Mức sẵn sàng | 🟡 Vàng – giao agent được |
 
 ## Mục đích
 
-Khi dịch vụ bên ngoài lỗi: chỉ tắt chức năng đó và báo các bài đăng lỗi
+Dịch vụ ngoài lỗi thì chỉ dừng chức năng dùng dịch vụ đó, các chức năng khác vẫn chạy; đăng bài lỗi thì báo (§9-3).
 
-## Luồng lỗi và trường hợp biên
+## Cách xử lý theo từng dịch vụ [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+| Dịch vụ | Chức năng bị ảnh hưởng | Người dùng thấy | Hệ thống làm |
+|---|---|---|---|
+| OpenAI | Trò chuyện, tin buổi sáng, bản nháp, kiểm tra từ cấm | "AIコーチ đang bận, thử lại sau"; tin buổi sáng đến muộn | Thử lại; từ cấm thì không hẹn giờ (S04-06) |
+| Upload-Post | Kết nối, hẹn giờ, đăng, lấy số liệu | Bài "lỗi", thông báo đăng lỗi | Không tự đăng lại (8-5); số liệu lấy lại lần sau |
+| fal.ai | Tạo video | Nút tạo video tắt, "tạm thời không tạo được" | Trả lại lần đã tính |
+| GMO | Đăng ký thanh toán, thu phí | "tạm thời không đăng ký được" | Dời lần thu |
+| OneDrive (Microsoft Graph) | Đọc hồ sơ, lưu tư liệu, ghi kết quả | Không thấy gì (dùng bản gần nhất) | Dùng bản đọc gần nhất, thử lại |
+| Dịch vụ gửi thư | Thư duyệt, từ chối, đặt lại mật khẩu | Thư đến muộn | Thử lại qua hàng đợi |
+| Web Push | Thông báo đẩy | Vẫn có trong T-14 | Không thử lại nhiều |
 
-## Quy tắc và giá trị
+## Luồng chính
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Mọi lần gọi dịch vụ ngoài đi qua lớp gọi chung: đặt thời gian chờ, thử lại có giãn cách, ghi kết quả.
+2. Lỗi liên tục quá ngưỡng (ví dụ 5 lần trong 5 phút): đánh dấu dịch vụ "đang lỗi"; các màn liên quan hiện câu báo; ngừng gọi trong một khoảng ngắn rồi thử lại.
+3. Cảnh báo đội vận hành khi một dịch vụ "đang lỗi" quá 15 phút (file 18 mục 8).
 
-## Dữ liệu
+## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+1. Cho fal.ai ngừng, thì trò chuyện và đăng bài vẫn chạy, chỉ nút tạo video bị tắt.
+2. Cho OpenAI ngừng lúc 7:00, thì tin buổi sáng được gửi muộn khi OpenAI chạy lại, không mất.
+3. Cho OneDrive ngừng, thì tin buổi sáng dùng hồ sơ đọc lần trước.
 
-## Tích hợp
+## Ngoài phạm vi
 
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
+Cam kết dịch vụ ngoài luôn chạy (§11). Thay đổi của dịch vụ ngoài sau khi phát hành thuộc hợp đồng bảo trì (§11).
 
-## Tiêu chí chấp nhận
-
-⚠ Chưa viết. Đội viết khi làm chi tiết chức năng này (xem mẫu trong [README](../README.md#3-mẫu-đặc-tả-một-chức-năng)).
-
-## Chỗ còn thiếu
-
-| Ai phải lấp | Nội dung |
-|---|---|
-| Khách | — |
-| Kiểm chứng | — |
-| Đội | Cách xử lý cho từng dịch vụ |
+Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] §9-3; file 16 mục 1.2
-- Câu hỏi liên quan: [file 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP10.
+- [YK2] §9-3, §11. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 8.

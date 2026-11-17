@@ -1,5 +1,13 @@
 # AI育成OS (hệ thống đào tạo tài năng bằng AI) – Phân tích bối cảnh kinh doanh và các điểm chưa rõ
 
+## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
+
+Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
+
+- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Áp cho các dòng 確認6–8, 47 (màn chỉ dẫn AI, nhóm tài năng) và 確認41, 42 (riêng tư hội thoại: Q&A No.7 còn mở, CR-24).
+- Tin tức trong ngày (確認16): đã chốt làm (Q&A No.38, CR-05), dùng chức năng tìm web của AI, 1 lần mỗi ngày.
+
+
 2026-11-13 · hoahn-hocnao
 
 Tab này viết theo bản yêu cầu v2 (AI育成OS_概要要件定義書_v2.docx). Những gì đã đổi so với v1 nằm ở tab Cập nhật theo v2.
