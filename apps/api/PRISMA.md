@@ -1,54 +1,83 @@
 # Prisma và Supabase PostgreSQL
 
-Prisma ORM 7.10.1 với `@prisma/adapter-pg`. Mỗi tiến trình một client (một pool), tạo trong `src/container.ts`. Schema ở `prisma/schema.prisma`; **chỉ Prisma Migrate** thay đổi cấu trúc. Schema có 25 model, sinh bằng `prisma db pull` từ migration đầu (thiết kế ở `database-design/`).
+Prisma 7.10.1 + adapter-pg; mỗi tiến trình một pool. Baseline hiện hành: [scope đợt 1](../../database-design/10_confirmed_scope_and_remediation.md), SQL migration là nguồn thẩm quyền cho CHECK/trigger/ACL. `schema.prisma` có 31 bảng ứng dụng và projection id của `auth.users` do Supabase quản lý. Không sửa migration đã áp.
 
-## Kết nối
-
-`apps/api/.env` (không commit):
+## Kết nối và quyền
 
 ```dotenv
-DATABASE_URL="postgresql://postgres.PROJECT_REF:ENCODED_PASSWORD@POOLER_HOST:6543/postgres"   # runtime: transaction pooler
-DIRECT_URL="postgresql://postgres.PROJECT_REF:ENCODED_PASSWORD@POOLER_HOST:5432/postgres"     # migration: session pooler hoặc direct
+# LOGIN riêng, chỉ kế thừa talent_runtime. Kiểm cú pháp custom user pooler ở staging.
+DATABASE_URL="postgresql://talent_api.PROJECT_REF:ENCODED_RUNTIME_PASSWORD@POOLER_HOST:6543/postgres"
+# Owner chỉ cho migration, tuyệt đối không dùng trong process API/worker.
+DIRECT_URL="postgresql://postgres.PROJECT_REF:ENCODED_MIGRATION_PASSWORD@POOLER_HOST:5432/postgres"
 DATABASE_POOL_MAX=5
 ```
 
-Kết nối tới Supabase luôn kiểm CA và tên máy chủ; CA công khai ở `certs/supabase-ca.crt` (đổi bằng `DATABASE_CA_CERT`). Không đặt `rejectUnauthorized: false`. Migration không được dùng cổng 6543 (`src/infra/database/config.ts` chặn).
+Kết nối Supabase kiểm CA và hostname; không tắt verify. API startup kiểm capability và từ chối owner/role có thể nhận quyền elevated. `db:check` chỉ kiểm reachability, không chứng nhận an toàn của role hay Auth guard.
 
-## Lệnh (trong `apps/api`)
-
-| Lệnh | Việc |
-|---|---|
-| `npm run db:check` | Chỉ thử kết nối (`{"connected":true}`), không in URL hay mật khẩu |
-| `npm run db:status` | Xem migration nào chưa áp dụng |
-| `npm run db:migrate` | `prisma migrate deploy` qua `DIRECT_URL` |
-| `npx prisma migrate dev --name <tên>` | Tạo migration mới từ schema (chỉ trên DB phát triển) |
-| `npm run prisma:generate` | Sinh client vào `src/generated/prisma` (không commit; dev/build/test tự chạy) |
-
-## Migration
-
-Đã áp lên Supabase dev ngày 17/11/2026:
-
-| Migration | Nội dung |
-|---|---|
-| `20261117000000_init` | 25 bảng theo `database-design/04` §2: CHECK, chỉ mục, trigger `updated_at`, trigger chỉ thêm cho 2 bảng nhật ký, khóa ngoại tới `auth.users` (có điều kiện), RLS và thu hồi quyền, một dòng `system_settings` |
-| `20261117000100_lock_prisma_migrations` | Bật RLS, thu hồi quyền `anon`, `authenticated` ở `_prisma_migrations` (Supabase cấp sẵn cho mọi bảng mới) |
-| `20261117000200_auth_ref_by_trigger` | IR-03 đổi sang cách (c): bỏ 2 khóa ngoại tới `auth.users`, thay bằng trigger chặn xóa người dùng Auth còn được `managers`, `talents` tham chiếu; bỏ quyền mặc định của `anon`, `authenticated` ở `public`; trigger sự kiện tự bật RLS cho mọi bảng mới trong `public` |
-
-**Tạo migration mới** (quy trình Prisma bình thường, chạy thẳng trên Supabase dev):
-
-1. Sửa model trong `schema.prisma`.
-2. `npx prisma migrate dev --create-only --name <tên>`: Prisma tự tạo DB tạm trên cùng máy chủ để sinh SQL.
-3. Thêm tay vào SQL những gì Prisma không diễn đạt được: CHECK, trigger `updated_at` (`CREATE TRIGGER trg_<bảng>_updated_at BEFORE UPDATE ON <bảng> FOR EACH ROW EXECUTE FUNCTION set_updated_at();`), chỉ mục theo biểu thức. Không xóa những thứ này khỏi các migration cũ.
-4. `npx prisma migrate dev` (áp lên dev và sinh client). Môi trường khác dùng `npm run db:migrate`.
-
-RLS và quyền **không cần viết tay** nữa: bảng mới trong `public` tự bật RLS (trigger sự kiện `evt_enable_rls_on_new_table`) và không có quyền cho `anon`, `authenticated` (quyền mặc định đã bỏ). Kiểm sau khi áp:
+Migration tạo hai nhóm **NOLOGIN** `talent_runtime`, `talent_dispatcher`; không tạo mật khẩu. Operator cấp LOGIN riêng bằng secret manager, ví dụ cấu trúc quyền:
 
 ```sql
-SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND NOT rowsecurity;                                -- phải rỗng
-SELECT table_name FROM information_schema.role_table_grants
- WHERE table_schema = 'public' AND grantee IN ('anon', 'authenticated');                                          -- phải rỗng
+-- Chạy bằng operator; tạo LOGIN/mật khẩu bằng cơ chế secret của môi trường.
+-- talent_api phải NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS,
+-- không sở hữu object và không là member của owner/postgres/service_role.
+GRANT CONNECT ON DATABASE postgres TO talent_api;
+GRANT talent_runtime TO talent_api;
 ```
 
-**Tham chiếu tới người dùng Auth** (`managers.auth_user_id`, `talents.auth_user_id`) không có khóa ngoại: BE tạo người dùng Auth trước rồi ghi đúng `id` được trả về; trigger `trg_auth_users_block_referenced_delete` chặn xóa người dùng Auth còn được tham chiếu. Không thêm khóa ngoại sang schema `auth`: Prisma sẽ báo lỗi P4002 và `migrate dev`, `db pull` ngừng chạy.
+Tên database thực tế có thể khác postgres. Không cấp runtime cho migration owner để cố vượt startup check. Không tạo policy end-user cho anon/authenticated. Backend policy true chỉ dành cho role BE có DML allowlist; mọi service vẫn cần guard từ verified JWT và owner predicate. Runtime không TRUNCATE/DDL, log chỉ SELECT/INSERT, không truy cập bảng DEFERRED. Worker integrations chưa được mở; talent_dispatcher chỉ quản lý outbox lease và đọc operation.
 
-Không tạo policy cho `anon`, `authenticated`. BE kết nối bằng role của Postgres (owner), không bị RLS chặn. Nguồn: [Supabase + Prisma](https://supabase.com/docs/guides/database/prisma), [SSL](https://supabase.com/docs/guides/platform/ssl-enforcement).
+## Lịch sử migration
+
+| Migration | Nội dung | Tình trạng |
+|---|---|---|
+| 20261117000000_init | 25 bảng, CHECK/index/trigger/RLS, settings seed | Lịch sử đã áp theo tài liệu cũ |
+| 20261117000100_lock_prisma_migrations | Khóa quyền migration metadata | Lịch sử đã áp theo tài liệu cũ |
+| 20261117000200_auth_ref_by_trigger | Từng bỏ FK Auth, thêm delete trigger và RLS event trigger | Được thay cách bảo vệ Auth bởi migration tiếp |
+| 20261117000300_confirmed_scope_foundation | FK Auth thật, ownership FK kép, session/principal, operation/outbox, invariant và version, role allowlist, gate phần chưa chốt | **Đã áp Supabase; xem database-design/12_supabase_deployment.md** |
+
+Migration mới có preflight từ chối active publishing/video hoặc dữ liệu không đạt constraint; không tự xóa/sửa dữ liệu cũ. Phải dry-run và xử lý lỗi theo nghiệp vụ trước apply. Xem checklist cutover, backup/restore và giới hạn lock trong scope document.
+
+## Auth external table và Prisma shadow
+
+`prisma.config.ts` bật **preview** externalTables; `tools/prisma-safe.ts` đọc catalog tất cả bảng/view/enum trong schema Auth và truyền danh mục external đầy đủ vào Prisma. initShadowDb tạo stub `auth.users(id)` chỉ trong shadow. Prisma schema dùng public/app_private/auth; chỉ khai báo projection id cho Auth, không import toàn bộ Supabase schemas.
+
+FK thật bảo vệ chiều INSERT/UPDATE/DELETE và đồng thời; không quay lại trigger một chiều để né tooling. Prisma không được CREATE/ALTER/DROP Auth tables. Review SQL diff mỗi lần và thử với Supabase staging trước production. Không chạy `prisma db push` hoặc `migrate reset` trên Supabase dùng chung.
+
+Chỉ đánh dấu auth.users external là chưa đủ: bảng Auth khác có thể bị Prisma đề xuất DROP. Vì vậy config chặn schema planning trực tiếp không có inventory; dùng `npm run db:dev`, `npm run db:diff` hoặc `npm run db:pull`. db:pull chỉ --print, không ghi đè projection schema đã review. Không commit thêm bảng/enum Auth thành đối tượng Prisma quản lý. db push/migrate reset bị chặn trong config. Khi introspect FK kép có subset UNIQUE, Prisma có thể suy reverse relation một-một rồi validate đòi compound UNIQUE dư; giữ reverse relation dạng array cho FK kép, tính duy nhất thực do key đơn hiện có bảo vệ. Không thêm index trùng chỉ để thỏa lỗi suy luận của introspection.
+
+## Phát triển và kiểm chứng
+
+```sh
+npm run prisma:validate
+npm run typecheck
+npm test
+npm run db:status
+npm run db:migrate
+```
+
+`db:migrate` = migrate deploy qua DIRECT_URL. Để tạo migration: sửa model, `npm run db:dev -- --create-only --name <ten>`, review SQL, thêm CHECK/trigger/ACL/index biểu thức mà Prisma không diễn đạt, rồi mới apply dev. RLS event trigger và default privileges không thay thế việc kiểm catalog và grants; default privileges phụ thuộc role tạo object.
+
+Local Postgres sạch cần role anon/authenticated và stub Auth trước replay. Compose local-db mount `prisma/local/bootstrap.sql` vào initdb cho volume mới. Volume cũ chỉ bootstrap thủ công khi xác định rõ là local/test. **Không chạy bootstrap trên Supabase.** Nó không thay thế test Auth/MFA/Storage thật.
+
+Integration suite chỉ chạy khi có **TEST_DATABASE_URL trỏ disposable DB đã replay migration**, không đọc DATABASE_URL/.env. Cần migration owner vì test kiểm cả dữ liệu sai/ACL và fixtures. Các test concurrency tạo rồi dọn fixture; SQL regression rollback toàn bộ. Không dùng database shared/prod.
+
+```sh
+# Điền URL disposable, không commit secret.
+TEST_DATABASE_URL='postgresql://.../talent_disposable' npm test
+# SQL có thể chạy độc lập (cùng disposable DB):
+psql "$TEST_DATABASE_URL" -v ON_ERROR_STOP=1 -f prisma/tests/confirmed-scope.sql
+```
+
+Test tối thiểu gồm orphan Auth và delete/provision đồng thời, FK ownership/platform, application approved, CAS hai writer, outbox rollback/SKIP LOCKED/lease fencing, ACL và gate DEFERRED. Không coi mock Auth hoặc test Postgres local là bằng chứng đầy đủ cho Supabase thật.
+
+Nguồn: [Prisma external tables](https://www.prisma.io/docs/orm/v7/prisma-schema/data-model/externally-managed-tables), [Supabase Prisma](https://supabase.com/docs/guides/database/prisma).
+
+## Project hiện tại
+
+Đã áp foundation migration và xác minh trên Supabase; apps/api/.env dùng LOGIN talent_api qua pooler 6543, DIRECT_URL giữ migration owner. Xem [báo cáo triển khai](../../database-design/12_supabase_deployment.md). Không sao chép credential dev sang môi trường khác; mỗi môi trường tạo LOGIN/secret riêng.
+
+## Auth/PWA demo 18/11/2026
+
+Migration `20261118000000_auth_pwa_demo` thêm 5 bảng private và session-owner binding cho push; tổng 36 bảng app (không tính `_prisma_migrations`/provider Auth). Đã replay local, dry-run rollback và deploy Supabase dev, diff không drift. Xem [hợp đồng](../../agent_spec/auth-pwa-demo/IMPLEMENTATION.md) và [evidence](../../agent_spec/auth-pwa-demo/VALIDATION.md). Các SQL reference cũ không thay thế migration hiện hành.
+
+Scope demo đã thu gọn: migration `20261118000100_technology_demo` thêm 2 bảng tech private, tổng 38 bảng app. Code hiện hành không ghi thêm application/Manager/Talent và không dùng worker. Lịch sử migration cũ được giữ nguyên.

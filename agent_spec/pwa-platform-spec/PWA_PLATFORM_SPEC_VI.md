@@ -1,3 +1,5 @@
+> Bổ sung triển khai demo 18/11/2026: [hợp đồng đã kiểm chứng](../auth-pwa-demo/IMPLEMENTATION.md), [AC](../auth-pwa-demo/AC.md), [test/evidence](../auth-pwa-demo/VALIDATION.md). Trong scope demo, Bearer theo TECH_STACK và PWA scope `/pwa/` ưu tiên hơn ví dụ cookie SSR/root scope cũ bên dưới. Các ca cũ không tự được chuyển thành PASS.
+
 # Đặc tả nền tảng PWA cho ứng dụng tài năng
 
 Bản 1.0 · 17/11/2026 · Dành cho lập trình viên và AI coding agent.

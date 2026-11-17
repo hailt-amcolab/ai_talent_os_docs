@@ -1,5 +1,7 @@
 # 05. Từ điển dữ liệu
 
+> **Cập nhật 17/11/2026:** Từ điển bổ sung và scope hiện hành ở [10](10_confirmed_scope_and_remediation.md); Prisma schema phản ánh cột/FK mới. Bảng pending còn tồn tại không có nghĩa được phép triển khai.
+
 Bản 1.0 · 17/11/2026 · Bước 5. Khớp với DDL ở `04_database_schema.md`. Cột "Yêu cầu" dùng mã ở `01_confirmed_requirements.md`; "KT" là cột hoặc ràng buộc kỹ thuật, không có yêu cầu nghiệp vụ riêng.
 
 Viết tắt: PK khóa chính, FK khóa ngoại, UQ duy nhất, CK CHECK. Mọi khóa ngoại là ON DELETE RESTRICT, trừ khi ghi khác.
@@ -332,3 +334,23 @@ Cả bảng: trigger chặn UPDATE và DELETE (BR-14).
 | occurred_at | timestamptz | Không | now() | | | R10-04 |
 
 Cả bảng: trigger chặn UPDATE và DELETE (chỉ thêm).
+
+## Bổ sung hiện hành — migration 20261117000300
+
+| Bảng/cột thay đổi | Kiểu và ý nghĩa | Ràng buộc hiện hành |
+|---|---|---|
+| managers.principal_kind | text, manager | Cố định bằng CHECK; FK kép auth_principals |
+| talents.principal_kind | text, talent (kể cả office) | CHECK + FK kép; một Auth identity không đóng hai vai trò |
+| talents.application_status | text, approved | Cố định bằng CHECK; FK kép tới application id/status; office có application_id NULL |
+| billing_accounts.account_type | text, talent | CHECK + FK kép talent/id/type; chưa mở ghi billing |
+| post_media.talent_id | uuid NOT NULL | Backfill từ post; FK kép cả post và media |
+| video_generation_inputs.talent_id | uuid NOT NULL | Backfill từ video; FK kép video và input; chưa mở ghi video |
+| post_deliveries.talent_id | uuid NOT NULL | Backfill từ post; FK kép post và account/id/owner/platform; chưa mở ghi delivery |
+| auth_principals.* | identity, kind, must_change_password, security_version, timestamps | FK Auth thật; default restricted; version dương |
+| auth_session_registry.* | session/user, purpose, version snapshot, auth_time/expiry, activity, password/MFA proof, revoke | Origin/expiry/version bất biến; revoke không gỡ; proof tuple đầy đủ hoặc NULL hết |
+| auth_challenges.* | challenge id/provider id, session/user, factor, purpose, state, attempts/expiry/verify time | FK kép registry; verified có timestamp; không secret |
+| password_lock_state.* | user, số lần sai, blocked_until, last_failed_at, updated_at | PK/FK principal; counters không âm; ngưỡng do policy server |
+| domain_operations.* | id, operation_key, actor/kind/subject, hash, state/step/provider ref/version/error | UNIQUE key; partial UNIQUE application.provision; hash không secret; CAS version |
+| outbox_events.* | operation/generation/type, state, attempts, available_at, lease token/expiry, error | UNIQUE operation/generation/type; leased có đủ token/expiry, trạng thái khác không giữ lease |
+
+Tên đầy đủ, nullability và index ở Prisma schema và migration; contract Auth/outbox, dữ liệu cấm lưu và scope ở tài liệu `10`. Không dùng dictionary cũ để kết luận `auth_user_id` chỉ có delete trigger hoặc chưa có FK ownership. app_private không mở cho Data API client.

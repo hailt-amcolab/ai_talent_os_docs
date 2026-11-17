@@ -1,5 +1,7 @@
 # 08. Review độc lập
 
+> **Cập nhật 17/11/2026:** Kết luận và tình trạng sửa dưới đây là lịch sử trước review 09. Baseline hiện hành: [10](10_confirmed_scope_and_remediation.md). FK Auth đã được khôi phục; EP06/EP08 và các phần Open bị chặn ghi, không bắt đầu bằng quy tắc tạm.
+
 Bản 1.0 · 17/11/2026 · Vai trò: kiến trúc sư DB chính, review độc lập bộ `01`–`07`. Không mặc định thiết kế trước là đúng; đối chiếu lại với [YK2], [QA] và cách triển khai bằng Prisma trên Supabase. Không sửa các tệp `01`–`07` trong lần review này.
 
 Mức: **CRITICAL** (mất tiền, mất dữ liệu, sai nghiệp vụ không sửa được) · **HIGH** (phải sửa trước khi làm module liên quan) · **MEDIUM** (sửa trong lúc làm module) · **LOW** (cải thiện).

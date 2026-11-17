@@ -5,8 +5,11 @@ import { secureHeaders } from 'hono/secure-headers'
 import { bodyLimit } from 'hono/body-limit'
 import { requestId } from 'hono/request-id'
 import type { AppDeps } from '../container.ts'
+import { requireOrigin } from './auth.ts'
 import { AppError } from '../core/errors.ts'
 import { systemModule } from '../modules/system/routes.ts'
+import { authModule } from '../modules/auth/routes.ts'
+import { pwaModule } from '../modules/pwa/routes.ts'
 
 // Dựng ứng dụng HTTP từ phụ thuộc đã tạo sẵn. Tách khỏi server.ts để kiểm thử bằng app.request() không cần mở cổng.
 // Thêm module mới: tạo src/modules/<tên>/ rồi gắn ở mục "Modules" bên dưới.
@@ -30,10 +33,15 @@ export function createApp(deps: AppDeps) {
     exposeHeaders: ['X-Request-Id'],
     maxAge: 600,
   }))
+  app.use('/api/*', async (c, next) => { c.header('Cache-Control', 'no-store'); requireOrigin(c, deps.env.CORS_ORIGINS); await next() })
   app.use('/api/*', bodyLimit({ maxSize: 64 * 1024 }))
 
   // Modules
   app.route('/', systemModule(deps))
+  if (deps.env.ENABLE_AUTH_DEMO && deps.auth && deps.pwa) {
+    app.route('/', authModule(deps))
+    app.route('/', pwaModule(deps))
+  }
 
   // Tài liệu API để FE sinh client. Không bật ở production để không lộ danh sách API.
   if (deps.env.NODE_ENV !== 'production') {
@@ -46,8 +54,8 @@ export function createApp(deps: AppDeps) {
     const requestId = c.get('requestId')
     if (err instanceof AppError) return c.json({ error: { code: err.code, requestId } }, err.status)
     if (err instanceof HTTPException) return c.json({ error: { code: 'HTTP_' + err.status, requestId } }, err.status)
-    // Chỉ ghi message, không ghi body request (có thể chứa mật khẩu, token).
-    console.error(JSON.stringify({ level: 'error', requestId, message: err.message }))
+    // Chỉ ghi code cố định, không ghi Error.message/body (có thể chứa mật khẩu, token).
+    console.error(JSON.stringify({ level: 'error', requestId, code: 'UNEXPECTED_ERROR' }))
     return c.json({ error: { code: 'INTERNAL', requestId } }, 500)
   })
 

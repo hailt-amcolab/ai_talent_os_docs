@@ -1,14 +1,23 @@
-// Chạy trên trình duyệt trước khi ứng dụng tương tác được (Next.js instrumentation-client).
-// 1) Đăng ký service worker. 2) Giữ sự kiện beforeinstallprompt của Android, vì nó có thể bắn trước khi React gắn xong.
 import { rememberInstallPrompt } from '@/lib/pwa/install-prompt'
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', { scope: '/', updateViaCache: 'none' }).catch(() => {
-    // không chặn ứng dụng nếu đăng ký lỗi; ứng dụng vẫn chạy như web thường
-  })
+  void (async () => {
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    let legacy = false
+    for (const reg of registrations) {
+      if (reg.scope === location.origin + '/' && [reg.active, reg.waiting, reg.installing].some(w => w?.scriptURL === location.origin + '/sw.js')) {
+        legacy = true
+        await reg.unregister()
+      }
+    }
+    if (legacy) {
+      for (const key of await caches.keys()) if (key.startsWith('talent-static-')) await caches.delete(key)
+      if (navigator.serviceWorker.controller && !location.pathname.startsWith('/pwa/')) { location.reload(); return }
+    }
+    await navigator.serviceWorker.register('/sw.js', { scope: '/pwa/', updateViaCache: 'none' })
+  })().catch(() => {})
 }
-
-window.addEventListener('beforeinstallprompt', (e) => {
+window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault()
   rememberInstallPrompt(e as BeforeInstallPromptEvent)
 })

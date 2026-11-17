@@ -1,5 +1,7 @@
 # 04. Schema vật lý
 
+> **Cập nhật 17/11/2026:** DDL dưới đây là baseline lịch sử. Trạng thái hiện hành = ba migration cũ + `20261117000300_confirmed_scope_foundation`; contract và scope ở [10](10_confirmed_scope_and_remediation.md). Không chạy lại DDL này như schema đầy đủ; đã áp migration mới lên Supabase dự án, xem [12](12_supabase_deployment.md).
+
 Bản 1.0 · 17/11/2026 · Bước 4. **Đã triển khai ngày 17/11/2026**: SQL dưới đây (kèm trigger `updated_at`, RLS, dòng `system_settings` viết đầy đủ) là migration `apps/api/prisma/migrations/20261117000000_init`, cộng phần đổi IR-03 ở `20261117000200_auth_ref_by_trigger`, đã áp lên Supabase dev. Từ nay mọi thay đổi đi bằng migration mới (`apps/api/PRISMA.md`); sửa schema thì cập nhật cả tài liệu này cho khớp.
 
 ## 1. Quy ước

@@ -1,4 +1,8 @@
+> Demo 18/11/2026 đã bổ sung Auth/TOTP/PWA theo kiến trúc này. Đọc [IMPLEMENTATION](auth-pwa-demo/IMPLEMENTATION.md) và [kết quả/thay đổi cần thiết](auth-pwa-demo/SOURCE_GAPS.md) trước các ví dụ Auth cũ. `@supabase/supabase-js` 2.119.0 đã dùng cho session và adapter Auth; demo công nghệ không dùng worker; self-registration và Web Push đồng bộ, không triển khai workflow nghiệp vụ.
+
 # Tech stack và cấu trúc dự án
+
+> Cập nhật scope DB: `database-design/10_confirmed_scope_and_remediation.md` và `apps/api/PRISMA.md` ưu tiên hơn các mô tả DB cũ dưới đây. Migration mới thêm 6 bảng app_private, khôi phục FK Auth thật qua Prisma externalTables, tách runtime role, chặn phần chưa chốt; đã áp và kiểm chứng Supabase dự án, xem `database-design/12_supabase_deployment.md`.
 
 Bản 1.0 · 17/11/2026 · Dành cho lập trình viên và AI coding agent. **Đọc trước khi thêm mã vào `apps/`.**
 

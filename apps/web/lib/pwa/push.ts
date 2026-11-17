@@ -22,7 +22,7 @@ export type SubscribeResult =
 
 export async function currentSubscription(): Promise<PushSubscription | null> {
   if (!('serviceWorker' in navigator) || !('Notification' in window) || Notification.permission !== 'granted') return null
-  const reg = await navigator.serviceWorker.getRegistration()
+  const reg = await navigator.serviceWorker.getRegistration('/pwa/')
   return (await reg?.pushManager.getSubscription()) ?? null
 }
 

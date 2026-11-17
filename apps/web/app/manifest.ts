@@ -8,11 +8,11 @@ export default function manifest(): MetadataRoute.Manifest {
     name: APP.name,
     short_name: APP.shortName,
     description: APP.description,
-    start_url: '/home', // B13
-    scope: '/',
+    start_url: '/pwa/home', // B13
+    scope: '/pwa/',
     display: 'standalone',
     orientation: 'portrait',
-    lang: 'en',
+    lang: 'ja',
     background_color: APP.backgroundColor,
     theme_color: APP.themeColor,
     icons: [

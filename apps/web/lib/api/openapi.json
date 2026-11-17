@@ -1,0 +1,1009 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AI育成OS API",
+    "version": "0.1.0"
+  },
+  "components": {
+    "schemas": {
+      "Health": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "database": {
+            "type": "string",
+            "enum": [
+              "up",
+              "down"
+            ]
+          }
+        },
+        "required": [
+          "ok",
+          "database"
+        ]
+      },
+      "RegistrationResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "signed_in",
+              "confirmation_required"
+            ]
+          },
+          "session": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "access_token": {
+                "type": "string"
+              },
+              "refresh_token": {
+                "type": "string"
+              },
+              "expires_at": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "access_token",
+              "refresh_token",
+              "expires_at"
+            ]
+          },
+          "auth": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuthNextState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "session",
+          "auth"
+        ]
+      },
+      "AuthNextState": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string"
+          },
+          "currentAal": {
+            "type": "string",
+            "enum": [
+              "aal1",
+              "aal2"
+            ]
+          },
+          "totpEnabled": {
+            "type": "boolean"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "mfa_required"
+            ]
+          },
+          "allowedNextRoute": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId",
+          "email",
+          "currentAal",
+          "totpEnabled",
+          "state",
+          "allowedNextRoute"
+        ]
+      },
+      "AuthSessionResult": {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string"
+              },
+              "refresh_token": {
+                "type": "string"
+              },
+              "expires_at": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "access_token",
+              "refresh_token",
+              "expires_at"
+            ]
+          },
+          "auth": {
+            "$ref": "#/components/schemas/AuthNextState"
+          }
+        },
+        "required": [
+          "session",
+          "auth"
+        ]
+      },
+      "MfaOptions": {
+        "type": "object",
+        "properties": {
+          "factors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "factorId": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "factorId",
+                "status"
+              ]
+            }
+          },
+          "enrollmentAllowed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "factors",
+          "enrollmentAllowed"
+        ]
+      },
+      "TotpEnrollment": {
+        "type": "object",
+        "properties": {
+          "factorId": {
+            "type": "string"
+          },
+          "qr": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "factorId",
+          "qr",
+          "secret"
+        ]
+      },
+      "PushSubscription": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string",
+            "maxLength": 2048,
+            "format": "uri"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "keys": {
+            "type": "object",
+            "properties": {
+              "p256dh": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{87}$"
+              },
+              "auth": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{22}$"
+              }
+            },
+            "required": [
+              "p256dh",
+              "auth"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "endpoint",
+          "keys"
+        ],
+        "additionalProperties": false
+      },
+      "PushDeviceList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "current": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "label",
+                "updatedAt",
+                "current"
+              ]
+            }
+          },
+          "configured": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "items",
+          "configured"
+        ]
+      },
+      "PushTestResult": {
+        "type": "object",
+        "properties": {
+          "targeted": {
+            "type": "number"
+          },
+          "accepted": {
+            "type": "number"
+          },
+          "gone": {
+            "type": "number"
+          },
+          "failed": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "targeted",
+          "accepted",
+          "gone",
+          "failed"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Kiểm tiến trình và kết nối DB (Docker healthcheck dùng)",
+        "responses": {
+          "200": {
+            "description": "Sẵn sàng",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Không kết nối được DB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "maxLength": 254,
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "maxLength": 256,
+                    "pattern": "[A-Za-z]"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "maxLength": 254,
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/state": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthNextState"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/mfa/options": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MfaOptions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/mfa/enroll": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotpEnrollment"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/mfa/challenges": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "factorId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "challengeRef": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "expiresAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "challengeRef",
+                    "expiresAt"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/mfa/challenges/{id}/verify": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "code": {
+                    "type": "string",
+                    "pattern": "^\\d{6}$"
+                  }
+                },
+                "required": [
+                  "factorId",
+                  "code"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/mfa/factors/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pending factor removed"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "Session revoked"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/me/push-subscriptions": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushSubscription"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "active": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "active"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      },
+      "delete": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "endpoint"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Disabled"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/me/push-subscriptions/state": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "endpoint"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "active": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "active"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/me/push-devices": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PushDeviceList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/push-test": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recipientUserId": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "recipientUserId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PushTestResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Provider unavailable"
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { APP } from '@/lib/config'
-import { UpdateBanner } from '@/components/pwa/UpdateBanner'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -20,7 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <body>
         {children}
-        <UpdateBanner />
       </body>
     </html>
   )

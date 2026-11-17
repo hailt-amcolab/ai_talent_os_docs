@@ -1,5 +1,7 @@
 # 03. ERD khái niệm và logic
 
+> **Cập nhật 17/11/2026:** ERD này là bản trước remediation. Mô hình hiện hành xem [10](10_confirmed_scope_and_remediation.md) và Prisma schema: FK Auth thật, auth_principals/session, ownership FK kép, operation/outbox. Các quan hệ một chiều trigger Auth ở §4 đã bị thay thế.
+
 Bản 1.0 · 17/11/2026 · Bước 3. Tên bảng và cột theo `04_database_schema.md`; mã R, BR, U theo `01_confirmed_requirements.md`.
 
 ## 1. ERD khái niệm
@@ -191,3 +193,24 @@ Chi tiết đủ cột của 25 bảng ở `04_database_schema.md`. Sơ đồ ch
 | Quy tắc tạm `posts.status` theo từng mạng (IR-02, chờ [QA] No.51) | `failed` khi có ít nhất một mạng `publish_failed`; `published` khi mọi mạng đã gửi đều `published`; `cancelled` khi đã yêu cầu hủy (mạng nào `cancel_failed` thì báo quản lý để xử lý tay) | Quy tắc tạm, ghi vào đặc tả; đổi quy tắc không phải chuyển dữ liệu |
 | `social_accounts.status` | `connected`, `disconnected` | R06-09, [YK2] §6-10 8-6 |
 | `video_generations.status` | `requested`, `processing`, `succeeded`, `failed` | R05-06〜R05-09. [YK2] §5-1 nói trạng thái video sẽ ghi ở bản cuối; đây là bản tối thiểu |
+
+## 6. ERD bổ sung hiện hành — scope đợt 1
+
+```mermaid
+erDiagram
+  AUTH_USERS ||--o| AUTH_PRINCIPALS : "id, FK thật"
+  AUTH_PRINCIPALS ||--o| MANAGERS : "auth_user_id + kind manager"
+  AUTH_PRINCIPALS ||--o| TALENTS : "auth_user_id + kind talent"
+  AUTH_PRINCIPALS ||--o{ AUTH_SESSION_REGISTRY : "auth_user_id"
+  AUTH_PRINCIPALS ||--o| PASSWORD_LOCK_STATE : "auth_user_id"
+  AUTH_SESSION_REGISTRY ||--o{ AUTH_CHALLENGES : "session_id + auth_user_id"
+  AUTH_PRINCIPALS o|--o{ DOMAIN_OPERATIONS : "actor"
+  TALENT_APPLICATIONS o|--o| DOMAIN_OPERATIONS : "application.provision"
+  TALENTS o|--o{ DOMAIN_OPERATIONS : "talent_id"
+  DOMAIN_OPERATIONS ||--o{ OUTBOX_EVENTS : "operation + generation + event_type"
+  TALENT_APPLICATIONS o|--o| TALENTS : "id + approved status"
+  POSTS ||--o{ POST_MEDIA : "post_id + talent_id"
+  MEDIA_ASSETS ||--o{ POST_MEDIA : "media_id + talent_id"
+```
+
+Các quan hệ ownership bổ sung cũng bảo vệ theme/revised post, video input/result, delivery account/platform và subject của manager notification. Kind chỉ cho identity đóng một vai trò; không bắt buộc mỗi principal phải có domain row ngay trong lúc provisioning. Bảng phiên/operation/outbox đặt ở app_private, không expose Data API. Xem `10` để phân biệt bảng có trong DB với chức năng được mở; EP06/EP08 chưa mở.

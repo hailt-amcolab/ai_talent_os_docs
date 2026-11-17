@@ -1,5 +1,7 @@
 # 07. Review thiết kế cơ sở dữ liệu
 
+> **Cập nhật 17/11/2026:** Kết luận sẵn sàng dưới đây đã được thay thế bởi review [09](09_principal_independent_review.md), rồi remediation giới hạn phạm vi [10](10_confirmed_scope_and_remediation.md). Không bắt đầu EP06/EP08 bằng quy tắc tạm.
+
 Bản 1.0 · 17/11/2026 · Bước 7. Review bộ `01`–`06`. SQL ở `04` **chưa được chạy thử** trên DB nào (đề bài không cho chạy SQL); cú pháp và ràng buộc mới được kiểm bằng mắt.
 
 ## 1. Kết quả theo 10 tiêu chí

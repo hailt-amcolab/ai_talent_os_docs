@@ -15,6 +15,7 @@ services:
       - '127.0.0.1:5433:5432'
     volumes:
       - pg_data:/var/lib/postgresql/data
+      - ./apps/api/prisma/local/bootstrap.sql:/docker-entrypoint-initdb.d/010-auth-stub.sql:ro
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U talent -d talent']
       interval: 5s
@@ -37,7 +38,7 @@ services:
     env_file: ./apps/api/.env
     restart: unless-stopped
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${APP_ENV:-production}
       PORT: '8080'
       DIRECT_URL: '' # không cần ở runtime
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
@@ -53,14 +54,17 @@ services:
     build:
       context: ./apps/web
       args:
-        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8080}
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL-http://localhost:8080}
         NEXT_PUBLIC_VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+        NEXT_PUBLIC_SUPABASE_URL: ${PUBLIC_SUPABASE_URL:-}
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${PUBLIC_SUPABASE_PUBLISHABLE_KEY:-}
     restart: unless-stopped
     depends_on:
       api:
         condition: service_healthy
     ports:
       - '127.0.0.1:3000:3000'
+
 
 volumes:
   pg_data:

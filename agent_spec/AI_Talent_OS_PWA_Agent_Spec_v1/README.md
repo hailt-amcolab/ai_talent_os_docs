@@ -1,3 +1,5 @@
+> Bổ sung triển khai demo 18/11/2026: [hợp đồng đã kiểm chứng](../auth-pwa-demo/IMPLEMENTATION.md), [AC](../auth-pwa-demo/AC.md), [test/evidence](../auth-pwa-demo/VALIDATION.md). Trong scope demo, Bearer theo TECH_STACK và PWA scope `/pwa/` ưu tiên hơn ví dụ cookie SSR/root scope cũ bên dưới. Các ca cũ không tự được chuyển thành PASS.
+
 # AI Talent OS — Bộ triển khai Talent PWA v1
 
 > **17/11/2026:** phần nền tảng PWA (cài lên màn hình chính, thông báo đẩy, service worker, cập nhật phiên bản) nay ở [`../pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md`](../pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md). Các tính năng nghiệp vụ F01–F20 của bộ này đã có trong `SCD/`; bộ này chỉ còn dùng để tham khảo.

@@ -1,3 +1,5 @@
+> Bổ sung triển khai demo 18/11/2026: [hợp đồng đã kiểm chứng](../auth-pwa-demo/IMPLEMENTATION.md), [AC](../auth-pwa-demo/AC.md), [test/evidence](../auth-pwa-demo/VALIDATION.md). Trong scope demo, Bearer theo TECH_STACK và PWA scope `/pwa/` ưu tiên hơn ví dụ cookie SSR/root scope cũ bên dưới. Các ca cũ không tự được chuyển thành PASS.
+
 # Supabase Database và Auth với Authenticator và SMS
 
 Phiên bản1.3 ngày17/11/2026. **Quyết định:** đợt đầu chỉ code Authenticator TOTP; SMS giữ đặc tả để bàn với khách, chưa code; không làm OTP qua email; khóa 5 lần sai mật khẩu làm ở BE (AU05). **Authenticator TOTP6 số/QR là phương án mặc định. SMS được giữ như tùy chọn cấu hình.** Manager chỉ cần một MFA đã verified và được policy cho phép; không bắt cả hai trong một lần login.
@@ -17,6 +19,6 @@ Phiên bản1.3 ngày17/11/2026. **Quyết định:** đợt đầu chỉ code A
 
 ## Giao việc cho coding agent
 
-Đọc policy trước. Code cả totp và phone_sms qua adapters; TOTP mặc định, SMS chỉ enabled khi policy/provider cho phép. Không xóa TOTP hoặc ép phone proof sau TOTP. Enroll/challenge phân nhánh method; verify lấy method/factor từ server. Mỗi admin use case kiểm JWT, role, registry, idle và proof thuộc allowedMethods. Không auto-enroll hoặc fallback email/password-only khi mất yếu tố. Không log QR/secret/code/token; QR chỉ hiển thị một lần. Giữ limiter/cooldown/budget của SMS và không gửi tin thật từ ví dụ.
+Đọc policy trước. Đợt đầu chỉ code TOTP qua adapter; chưa triển khai phone_sms. Tài liệu SMS chỉ để thảo luận và phải được duyệt riêng trước khi triển khai. Không xóa TOTP hoặc ép phone proof sau TOTP. Enroll/challenge phân nhánh method; verify lấy method/factor từ server. Mỗi admin use case kiểm JWT, role, registry, idle và proof thuộc allowedMethods. Không auto-enroll hoặc fallback email/password-only khi mất yếu tố. Không log QR/secret/code/token; QR chỉ hiển thị một lần. Giữ limiter/cooldown/budget của SMS và không gửi tin thật từ ví dụ.
 
 Đoạn trích người dùng nói SMS sẽ trao đổi ở giai đoạn yêu cầu; có spec/SDK SMS không đồng nghĩa đã bật production hoặc khách duyệt chi phí. BảnZIP giữ tên v1, nội dung là1.2. Chưa chạy Supabase/Auth/SMTP/SMS integration.

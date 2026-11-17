@@ -1,0 +1,54 @@
+{
+  "security": {
+    "tables": 38,
+    "rls_missing": 0,
+    "browser_grants": 0
+  },
+  "runtime": [
+    {
+      "rolname": "talent_api",
+      "rolsuper": false,
+      "rolbypassrls": false
+    },
+    {
+      "rolname": "talent_runtime",
+      "rolsuper": false,
+      "rolbypassrls": false
+    }
+  ],
+  "fixtures": {
+    "active_managers": 1,
+    "active_test_managers": 0,
+    "active_test_talents": 0
+  },
+  "operator": {
+    "operator_verified_factors": 0
+  },
+  "versions": [
+    {
+      "migration_name": "20261117000000_init",
+      "checksum": "2eb2e29825df23873ddf439432a27d369e6f0d2f25a5c8881f8549e6f4ea0953"
+    },
+    {
+      "migration_name": "20261117000100_lock_prisma_migrations",
+      "checksum": "a655cf5ec71d3bbdbd8343a56d1d60281ac90a7041d8201df07ef611285a3d4d"
+    },
+    {
+      "migration_name": "20261117000200_auth_ref_by_trigger",
+      "checksum": "09e2ad15aeeb3b1d18243b2229e24533b787604be876f384a9c23cc50add5eae"
+    },
+    {
+      "migration_name": "20261117000300_confirmed_scope_foundation",
+      "checksum": "5e0020bc6a1f73e3c7bac39a2fbc59af88691fdbe04d5f2c68d2c4c223037808"
+    },
+    {
+      "migration_name": "20261118000000_auth_pwa_demo",
+      "checksum": "1bc2a0f8e913d30a17ce42491f7a88e9ce1f277cbc542c05775ca693495e5714"
+    },
+    {
+      "migration_name": "20261118000100_technology_demo",
+      "checksum": "3897718c0debc9c85d0d51737ee7d47967c63e5e2a57424b57f99c7cd84a8cc7"
+    }
+  ],
+  "scope": "technology only"
+}

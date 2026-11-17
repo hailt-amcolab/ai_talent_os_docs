@@ -1,5 +1,7 @@
 # 06. Đánh giá khả năng mở rộng
 
+> **Cập nhật 17/11/2026:** Cập nhật sau independent review: [10](10_confirmed_scope_and_remediation.md) thay thế các nhận định rủi ro thấp khi thêm billing/giá/approval; phải giữ snapshot lịch sử, revision, rollout và gate. Không coi thêm cột là tự khôi phục được dữ liệu quá khứ.
+
 Bản 1.0 · 17/11/2026 · Bước 6. Đánh giá schema ở `04_database_schema.md` trước các thay đổi yêu cầu có thể xảy ra. Không thêm cột hay bảng dự phòng; chỉ ghi nơi sẽ đổi và mức rủi ro.
 
 Mức rủi ro migration:
@@ -21,9 +23,9 @@ Mức rủi ro migration:
 
 | Mã | Nếu khách chốt… | Bảng bị ảnh hưởng | Thay đổi schema có thể có | Rủi ro |
 |---|---|---|---|---|
-| U-01 | Chu kỳ thu, ngày chốt, công ty thanh toán | Mới: hóa đơn tháng, kết quả thu tiền | Thêm bảng hóa đơn (theo tài năng và kỳ thu) và bảng lần thu tiền; liên kết lượt tạo video vào kỳ thu. Không phải sửa bảng hiện có, nhờ `video_generations` đã có `is_counted`, `requested_at` | Thấp |
-| U-02 | Đơn giá video và cách tính khi đổi giá | `video_generations`, `system_settings` hoặc bảng giá mới | Thêm cột đơn giá lúc yêu cầu (P-03); nếu giá có lịch sử thì thêm bảng giá có ngày hiệu lực | Thấp |
-| U-03 | Bài xin duyệt lại là **cùng bài** ([QA] No.58) | `posts`, `post_approval_decisions` | Không đổi cấu trúc: thêm đường chuyển awaiting_approval → draft ở tầng dịch vụ; lịch sử quyết định đã chứa nhiều dòng | Thấp |
+| U-01 | Chu kỳ thu, ngày chốt, công ty thanh toán | Mới: hóa đơn tháng, kết quả thu tiền | Thêm bảng hóa đơn (theo tài năng và kỳ thu) và bảng lần thu tiền; liên kết lượt tạo video vào kỳ thu. Cần snapshot giá/kỳ và dữ liệu bất biến trước khi phát sinh usage tính tiền; boolean hiện tại không bảo đảm tái tính lịch sử | Cao trước khi mở EP08 |
+| U-02 | Đơn giá video và cách tính khi đổi giá | `video_generations`, `system_settings` hoặc bảng giá mới | Snapshot giá/rule ở thời điểm yêu cầu; dữ liệu đã phát sinh không thể suy giá cũ từ giá mới | Cao nếu đã có usage |
+| U-03 | Bài xin duyệt lại là **cùng bài** ([QA] No.58) | `posts`, `post_approval_decisions` | Phải có request/round gắn content revision, một quyết định hiệu lực mỗi request | Trung bình |
 | U-03 | Bài xin duyệt lại là **bài mới** (C-01 hiện tại) | `posts` | Thêm giá trị `returned` vào CHECK `cancel_reason` (P-06) | Thấp |
 | U-04 | Danh sách 8 trạng thái của [QA] No.51 | `posts.status` | Thêm giá trị vào CHECK. Nếu tách trạng thái 差し戻し (trả lại) hoặc NGワードで保留 (giữ lại vì từ cấm) ra riêng thì phải chuyển dữ liệu từ cờ `ng_detected_at` hoặc từ `post_approval_decisions` sang trạng thái | Trung bình |
 | U-05 | **Một** tài khoản mỗi mạng | `social_accounts` | Thêm chỉ mục UNIQUE có điều kiện (P-01). Phải kiểm dữ liệu cũ không có hai tài khoản đang kết nối | Trung bình |

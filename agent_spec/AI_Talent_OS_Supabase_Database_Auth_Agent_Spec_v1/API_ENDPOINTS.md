@@ -1,3 +1,5 @@
+> Bổ sung triển khai demo 18/11/2026: [hợp đồng đã kiểm chứng](../auth-pwa-demo/IMPLEMENTATION.md), [AC](../auth-pwa-demo/AC.md), [test/evidence](../auth-pwa-demo/VALIDATION.md). Trong scope demo, Bearer theo TECH_STACK và PWA scope `/pwa/` ưu tiên hơn ví dụ cookie SSR/root scope cũ bên dưới. Các ca cũ không tự được chuyển thành PASS.
+
 # Hợp đồng API nội bộ Supabase Auth
 
 Prefix /api/v1. Đây là API ứng dụng NEW trừ bootstrap/operations REUSE. Không là đường dẫn REST trực tiếp của Supabase. Error envelope theo spec §8. Auth response no-store, không JSON raw tokens; SDK/SSR adapter cập nhật cookie. Origin/CSRF cho mutation; public endpoints có limiter.

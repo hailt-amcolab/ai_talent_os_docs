@@ -1,5 +1,7 @@
 # 02. Danh mục thực thể
 
+> **Cập nhật 17/11/2026:** Bổ sung hiện hành: tài liệu [10](10_confirmed_scope_and_remediation.md) thêm 6 bảng app_private và giới hạn scope; các bảng pending cũ được giữ nhưng chặn ghi. Không tự tạo ba follower goals khi provision đợt 1.
+
 Bản 1.0 · 17/11/2026 · Bước 2. Mã yêu cầu (R…, BR…) và mã điểm chưa rõ (U…) theo `01_confirmed_requirements.md`.
 
 ## 1. Ranh giới dữ liệu
@@ -104,3 +106,16 @@ Kiểu dữ liệu, giá trị mặc định và ràng buộc chi tiết ở `04
 | Hàng đợi video tự làm thành bản nháp | PENDING | CR-23 | U-13 |
 | Khung giờ tương tác (8-9) | NOT STARTED | Ưu tiên thấp | R07-06 |
 | Biện pháp chống khóa tài khoản | UNKNOWN | Nội dung chưa quyết | R06-15 |
+
+## 6. Inventory bổ sung sau remediation (đợt 1)
+
+| Bảng mới (schema app_private) | Vai trò | Quan hệ |
+|---|---|---|
+| auth_principals | Danh tính ứng dụng, bắt đổi mật khẩu, security version | PK/FK Auth user, kind manager/talent; domain dùng FK kép |
+| auth_session_registry | Phiên và proof server-owned, restricted/full/revoked | N:1 principal; session_id lấy từ JWT đã verify |
+| auth_challenges | Challenge gắn đúng session/user/factor/purpose | FK kép registry |
+| password_lock_state | Counter/blocked_until dùng chung các process | 0..1:1 principal |
+| domain_operations | Command/provisioning có idempotency và trạng thái unknown | Actor, application hoặc talent; một provisioning/application |
+| outbox_events | Ý định gọi dịch vụ ngoài, lease và generation | N:1 operation; unique operation/generation/type |
+
+Tổng: 31 bảng ứng dụng, cộng projection Auth external. Không tạo organizations, billing invoice, delivery attempts hoặc SMS tables khi chưa chốt phạm vi. Operation/outbox là dữ liệu kỹ thuật bắt buộc để domain transaction không mất side effect sau crash, không tiếp tục loại ra khỏi thiết kế như §4 cũ. Các bảng pending giữ nguyên để bảo toàn lịch sử nhưng bị chặn ghi theo tài liệu `10`.

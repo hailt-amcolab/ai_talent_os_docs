@@ -15,5 +15,5 @@ export function isAllowedPushEndpoint(endpoint: string): boolean {
   } catch {
     return false
   }
-  return url.protocol === 'https:' && url.port === '' && ALLOWED_HOSTS.some((re) => re.test(url.hostname))
+  return url.protocol === 'https:' && url.port === '' && !url.username && !url.password && !url.hash && ALLOWED_HOSTS.some((re) => re.test(url.hostname))
 }

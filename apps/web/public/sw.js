@@ -1,82 +1,45 @@
-// Service worker của ứng dụng tài năng. Đặc tả: agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md §5.3, §6.4
-// Chỉ lưu tệp công khai không đổi. Mọi API và trang đã đăng nhập đi thẳng ra mạng.
-const VERSION = 'v3' // tăng khi đổi danh sách tệp lưu sẵn
+// Talent PWA only. Never cache API, auth responses, RSC, QR or private HTML.
+const VERSION = 'v5'
 const CACHE = `talent-static-${VERSION}`
-
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['/offline'])))
+const OFFLINE = '/pwa/offline'
+self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll([OFFLINE]))) })
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('talent-static-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()))
 })
-
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k.startsWith('talent-static-') && k !== CACHE).map((k) => caches.delete(k))),
-    ).then(() => self.clients.claim()),
-  )
-})
-
-self.addEventListener('fetch', (e) => {
-  const req = e.request
-  if (req.method !== 'GET') return
-  const url = new URL(req.url)
-  if (url.origin !== location.origin) return
-
+self.addEventListener('fetch', e => {
+  const req = e.request, url = new URL(req.url)
+  if (req.method !== 'GET' || url.origin !== location.origin || req.headers.has('Authorization') || req.headers.has('RSC') || url.searchParams.has('_rsc')) return
   if (req.mode === 'navigate') {
-    // không lưu HTML; mất mạng thì trả trang /offline chung
-    e.respondWith(fetch(req).catch(() => caches.match('/offline')))
-    return
-  }
-  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/')) {
-    e.respondWith(
-      caches.match(req).then(
-        (hit) =>
-          hit ||
-          fetch(req).then((res) => {
-            if (res.ok) {
-              const copy = res.clone()
-              caches.open(CACHE).then((c) => c.put(req, copy))
-            }
-            return res
-          }),
-      ),
-    )
+    if (!url.pathname.startsWith('/pwa/')) return
+    e.respondWith(fetch(req).catch(() => caches.match(OFFLINE)))
+  } else if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/')) {
+    e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => {
+      if (res.ok) { const copy = res.clone(); e.waitUntil(caches.open(CACHE).then(c => c.put(req, copy))) }
+      return res
+    })))
   }
 })
-
-self.addEventListener('message', (e) => {
-  if (e.data === 'SKIP_WAITING') self.skipWaiting()
-})
-
-// Mỗi lần nhận push PHẢI hiện thông báo, nếu không Safari thu hồi đăng ký (§6.4).
-self.addEventListener('push', (e) => {
+self.addEventListener('message', e => { if (e.data === 'SKIP_WAITING') self.skipWaiting() })
+self.addEventListener('push', e => {
   let d = {}
-  try { d = e.data ? e.data.json() : {} } catch { d = { body: e.data ? e.data.text() : '' } }
+  try { d = e.data ? e.data.json() : {} } catch {}
+  if (!d || typeof d !== 'object') d = {}
   const jobs = [
-    self.clients.matchAll({ type: 'window' }).then((clients) => clients.forEach((client) => client.postMessage({ type: 'NOTIFICATION_RECEIVED' }))),
-    self.registration.showNotification(d.title || 'お知らせ', {
-      body: d.body || '',
-      icon: '/icons/icon-192.png',
-      badge: '/icons/badge-72.png',
-      tag: d.tag,
-      data: { url: d.url || '/home' },
-    }),
+    self.registration.showNotification(typeof d.title === 'string' ? d.title : 'お知らせ', { body: typeof d.body === 'string' ? d.body : '', icon: '/icons/icon-192.png', badge: '/icons/badge-72.png', tag: typeof d.tag === 'string' ? d.tag : undefined, data: { url: d.url } }),
+    self.clients.matchAll({ type: 'window' }).then(list => list.forEach(c => c.postMessage({ type: 'NOTIFICATION_RECEIVED' }))),
   ]
-  if (typeof d.badgeCount === 'number' && self.navigator.setAppBadge) {
-    jobs.push(d.badgeCount > 0 ? self.navigator.setAppBadge(d.badgeCount) : self.navigator.clearAppBadge())
-  }
+  if (Number.isInteger(d.badgeCount) && d.badgeCount >= 0 && self.navigator.setAppBadge) jobs.push(d.badgeCount > 0 ? self.navigator.setAppBadge(d.badgeCount) : self.navigator.clearAppBadge())
   e.waitUntil(Promise.all(jobs))
 })
-
-self.addEventListener('notificationclick', (e) => {
+self.addEventListener('notificationclick', e => {
   e.notification.close()
-  const raw = new URL((e.notification.data && e.notification.data.url) || '/home', location.origin)
-  const target = raw.origin === location.origin ? raw.href : location.origin + '/home' // chỉ mở trong ứng dụng
-  e.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
-      for (const c of list) {
-        if ('focus' in c) return c.navigate(target).then(() => c.focus())
-      }
-      return self.clients.openWindow(target)
-    }),
-  )
+  let target = location.origin + '/pwa/home'
+  try { const url = new URL(e.notification.data?.url || target, location.origin); if (url.origin === location.origin && url.pathname.startsWith('/pwa/')) target = url.href } catch {}
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(async list => {
+    for (const c of list) {
+      const url = new URL(c.url)
+      if (url.origin === location.origin && url.pathname.startsWith('/pwa/') && 'focus' in c) { await c.navigate(target); return c.focus() }
+    }
+    return self.clients.openWindow(target)
+  }))
 })

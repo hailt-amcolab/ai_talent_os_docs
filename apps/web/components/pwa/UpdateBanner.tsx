@@ -11,14 +11,16 @@ export function UpdateBanner() {
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return
     let reloading = false
+    let hadController = !!navigator.serviceWorker.controller
     const onControllerChange = () => {
+      if (!hadController) { hadController = true; return }
       if (reloading) return
       reloading = true
       location.reload()
     }
     navigator.serviceWorker.addEventListener('controllerchange', onControllerChange)
 
-    navigator.serviceWorker.getRegistration().then((reg) => {
+    navigator.serviceWorker.getRegistration('/pwa/').then((reg) => {
       if (!reg) return
       if (reg.waiting && navigator.serviceWorker.controller) setWaiting(reg.waiting)
       reg.addEventListener('updatefound', () => {
