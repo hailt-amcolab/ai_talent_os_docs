@@ -81,4 +81,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP07: 
 
 ## Nguồn
 
-- [YK2] §6-11 (8-7), §9-3, UC-09, UC-09 前提. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) C5. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 6.
+- [YK2] §6-11 (8-7), §9-3, UC-09, UC-09 前提. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) C5. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 6.

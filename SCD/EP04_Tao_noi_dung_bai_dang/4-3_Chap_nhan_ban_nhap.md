@@ -112,4 +112,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 ## Nguồn
 
 - [YK2] §5-2, §5-3, §6-6 (4-3), §6-10 (7-2, 7-5, 8-3), UC-05, 確認25, 26, 30, 33.
-- [AG] trang 4 (T-09). [File 13](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md) Q1. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B1, B6.
+- [AG] trang 4 (T-09). [File 13](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md) Q1. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) B1, B6.

@@ -75,7 +75,7 @@ fal.ai (Kling): gửi theo hàng đợi, nhận kết quả qua webhook. Phải 
 1. Cho tài năng xác nhận tạo ショート動画, thì số lần trong tháng tăng 1 ngay và có việc ở hàng đợi.
 2. Cho fal.ai trả lỗi, thì tài năng thấy lý do và số lần trở về như trước.
 3. Cho tạo xong khi tài năng đã đóng ứng dụng, thì có thông báo; mở thông báo vào T-12.
-4. Cho quản lý tạo thay, thì lần tạo tính cho tài năng và ghi người yêu cầu là quản lý.
+4. Cho Manager yêu cầu tạo thay, chỉ cho tài khoản công ty; đếm lượt phục vụ quyết toán nội bộ, không lập phí phải thu cho Talent thường. Yêu cầu làm thay Talent thường bị từ chối theo GJ xác nhận27/QA No.43; nơi thao tác office còn chờ No.66, không tự khẳng định màn quản trị đã chốt.
 5. Cho fal.ai ngừng, thì nút tạo bị tắt và các màn khác vẫn dùng được.
 
 ## Ngoài phạm vi của chức năng này
@@ -109,7 +109,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 ## Nguồn
 
 - [YK2] §5-7, §6-3 (5-4), §6-8 (5-1), §9-3, UC-06, UC-06 前提, 確認27, 31.
-- [AG] trang 4 (T-11, T-12), trang 5 (T-14), trang 7 (M-08). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A6, B8, B9.
+- [AG] trang 4 (T-11, T-12), trang 5 (T-14), trang 7 (M-08). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A6, B8, B9.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

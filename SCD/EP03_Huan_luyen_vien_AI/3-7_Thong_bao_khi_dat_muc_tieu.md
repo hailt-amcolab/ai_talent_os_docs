@@ -23,7 +23,7 @@ Số người theo dõi một mạng đạt mục tiêu thì báo cả tài năn
 
 1. Sau mỗi lần lấy số liệu (8-7), so số người theo dõi từng mạng với mục tiêu (2-4).
 2. Mạng nào vừa đạt (lần trước chưa đạt, lần này đạt): tạo thông báo 目標の達成 cho tài năng (ứng dụng và thông báo đẩy) và cho mọi quản lý (M-02). Mỗi mạng, mỗi giá trị mục tiêu chỉ báo một lần.
-3. Người theo dõi tăng nhưng chưa đạt: không gửi thông báo riêng; tin buổi sáng nhắc còn bao xa tới mục tiêu (§5-5, A7).
+3. Người theo dõi tăng chưa đạt mục tiêu: theo QA No.14, giữ thông báo mốc25/50/75% của từng mạng theo đề xuất AMCOLAB để khách xác nhận trên màn thật; không bỏ loại thông báo riêng. Gộp nhiều mốc/đổi goal/dữ liệu muộn chờ L23-09, không tự coi đã chốt.
 4. Thử thách: trong lô buổi sáng, AI đánh giá đã hoàn thành chưa dựa trên số liệu hệ thống đưa vào (chuỗi ngày đăng, số bài, mức tăng người theo dõi) (B12). Hoàn thành thì tin buổi sáng có lời chúc mừng, kèm thông báo 達成のお祝い.
 
 ## Luồng lỗi và trường hợp biên
@@ -41,7 +41,7 @@ Số người theo dõi một mạng đạt mục tiêu thì báo cả tài năn
 |---|---|---|
 | Báo cả tài năng và quản lý khi đạt mục tiêu một mạng | Chốt | §6-5, 別紙A |
 | Thử thách hoàn thành: AIコーチ chúc mừng trong ứng dụng | Chốt | §6-5 |
-| Bỏ loại thông báo riêng フォロワーの増加 | Đề xuất | A7 |
+| Giữ thông báo tăng follower theo mốc25/50/75% từng mạng | Đề xuất từ QA No.14, cần xác nhận trên màn thật | QA No.14; L23-09 |
 
 ## Dữ liệu [Đề xuất nội bộ]
 
@@ -64,14 +64,14 @@ Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
-| A7 | Gộp フォロワーの増加 vào 目標の達成 | Không | Gộp |
+| A7/L23-09 | Phân biệt tăng follower theo mốc với đạt mục tiêu; đồng bộ màn/AC và quy tắc báo lặp | Chặn phần chưa rõ của thông báo mốc | Không gộp/bỏ mặc định |
 | B12 | AI đánh giá thử thách từ số liệu | Không | Như B12 |
 
 Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).
 
 ## Nguồn
 
-- [YK2] §5-5, §6-5 (3-7), 別紙A, 確認5, 39. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A7, B12.
+- [YK2] §5-5, §6-5 (3-7), 別紙A, 確認5, 39. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A7, B12.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

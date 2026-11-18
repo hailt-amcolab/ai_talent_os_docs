@@ -116,7 +116,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 ## Nguồn
 
 - [YK2] §5-3, §6-6 (4-4), §11, UC-02 前提, UC-05, UC-05 前提, 確認4.
-- [AG] trang 8 (M-11), trang 10 (M-17). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B5.
+- [AG] trang 8 (M-11), trang 10 (M-17). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) B5.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

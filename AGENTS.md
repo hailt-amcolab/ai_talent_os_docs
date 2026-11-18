@@ -1,5 +1,8 @@
 # Repository Guidelines
 
+## Authoritative requirement sources
+Read [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md) before requirement analysis, workflow reviews, customer questions, or specification changes. The user designated exactly nine original sources in that catalog. `Phan_tich/`, `SCD/`, `agent_spec/`, database design documents, this file, and `CLAUDE.md` are derived material or internal guidance, not independent evidence of customer approval. Cite original document sections, PDF pages, or workbook sheet/No./cells. Keep source files unchanged; distinguish source proposals, customer decisions, internal design choices, and commercial approval. Newer explicit decisions supersede older statements only for the same subject; unresolved conflicts stay open. Never infer confirmed requirements from application code or demos.
+
 ## Project Structure & Module Organization
 Full stack, layers and conventions: `agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md` (read it before adding code).
 - `apps/web/`: Next.js 16 App Router PWA, **frontend only** (no API routes, no server actions). Routes in `app/`, components in `components/<feature>/`, browser code in `lib/` (`lib/api/client.ts` is the only way to call the BE; `lib/pwa/` platform code; `lib/messages.ts` holds all Japanese UI text), service worker in `public/sw.js`.

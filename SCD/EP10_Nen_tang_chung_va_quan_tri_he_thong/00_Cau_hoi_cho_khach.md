@@ -4,7 +4,7 @@ File này gom các điểm còn mở của EP10 (C-01 đến C-06) và **8 câu 
 
 Các 確認 liên quan, chỉ ghi lại: 確認45 (C-05), 確認55 (C-03: thời gian giữ dữ liệu).
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (mã S10-xx, I1–I8).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (mã S10-xx, I1–I8).
 
 ## 1. Kiểm tra phạm vi
 

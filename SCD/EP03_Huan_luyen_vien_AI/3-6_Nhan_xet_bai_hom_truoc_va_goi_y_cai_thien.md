@@ -68,4 +68,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 
 ## Nguồn
 
-- [YK2] §6-5 (3-6), 別紙A. [AG] trang 3. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) C5.
+- [YK2] §6-5 (3-6), 別紙A. [AG] trang 3. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) C5.

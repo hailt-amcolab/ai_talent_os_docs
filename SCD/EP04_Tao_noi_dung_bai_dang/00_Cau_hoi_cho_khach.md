@@ -4,7 +4,7 @@ File này gom các điểm còn mở của 5 chức năng EP04 (4-1, 4-2, 4-3, 4
 
 Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認15, 16, 24 (4-1); 確認28, 29 (4-2); 確認25, 26, 30, 33 (4-3); 確認4 (4-4). Trong đó 確認16 (tin tức trong ngày) quyết định 4-1 có cần nguồn tin tức không.
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S04-xx); File 13 = [13_Qua_gio_dang_chua_chap_nhan.md](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (các câu mới đã thêm với mã S04-xx); File 13 = [13_Qua_gio_dang_chua_chap_nhan.md](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md).
 
 ## 1. Kiểm tra phạm vi
 

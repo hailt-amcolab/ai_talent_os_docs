@@ -81,7 +81,7 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 ## Nguồn
 
-- [YK2] §3-1, §6-10 (9-1), §12-5, UC-12, UC-12 前提, 確認27, 52. [AG] trang 7 (M-06), trang 8 (M-12). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A1, A2, B10.
+- [YK2] §3-1, §6-10 (9-1), §12-5, UC-12, UC-12 前提, 確認27, 52. [AG] trang 7 (M-06), trang 8 (M-12). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A1, A2, B10.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

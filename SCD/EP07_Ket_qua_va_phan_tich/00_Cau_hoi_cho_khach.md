@@ -6,7 +6,7 @@ Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `P
 
 Việc phải kiểm chứng trên Upload-Post (chỉ số lấy được, số liệu theo khung giờ) nằm ở danh sách kiểm chứng của [EP06](../EP06_Phe_duyet_va_dang_len_mang_xa_hoi/00_Cau_hoi_cho_khach.md), mục 9.
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S07-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (các câu mới đã thêm với mã S07-xx).
 
 ## 1. Kiểm tra phạm vi
 

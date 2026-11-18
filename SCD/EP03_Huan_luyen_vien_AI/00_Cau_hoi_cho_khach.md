@@ -4,7 +4,7 @@ File này gom các điểm còn mở của 9 chức năng EP03 (3-1 đến 3-9) 
 
 Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認14, 15, 18, 20–23 (3-4); 確認17, 23 (3-3); 確認19, 43 (3-9); 確認5, 39 (3-7); 確認6–8 (chỉ thị cho AI, 3-1). Không câu 確認 nào trong số này chặn việc viết mã, vì chỉ đổi nội dung lời nhắc hoặc giá trị tham số.
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S03-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (các câu mới đã thêm với mã S03-xx).
 
 ## 1. Kiểm tra phạm vi
 

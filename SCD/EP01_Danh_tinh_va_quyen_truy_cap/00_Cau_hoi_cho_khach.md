@@ -7,7 +7,7 @@ Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `P
 Nguồn:
 - [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2).
 - [AG] = `アプリ画面案_AI育成OS.pdf` (phương án màn hình ứng dụng).
-- File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv). Các câu mới ở đây đã thêm vào file 15 với mã S01-xx.
+- File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx). Các câu mới ở đây đã thêm vào file 15 với mã S01-xx.
 
 ## 1. Nguyên tắc kiểm tra phạm vi
 

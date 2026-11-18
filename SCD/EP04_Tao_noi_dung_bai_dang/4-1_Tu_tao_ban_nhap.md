@@ -123,7 +123,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 ## Nguồn
 
 - [YK2] §5-3, §6-6 (4-1), §9-3, UC-01 前提, UC-05, UC-05 前提, 確認15, 16, 24, 28–30.
-- [AG] trang 3 (T-07, T-08), trang 4 (T-09). [File 13](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A8, B1, B2, B3.
+- [AG] trang 3 (T-07, T-08), trang 4 (T-09). [File 13](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A8, B1, B2, B3.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

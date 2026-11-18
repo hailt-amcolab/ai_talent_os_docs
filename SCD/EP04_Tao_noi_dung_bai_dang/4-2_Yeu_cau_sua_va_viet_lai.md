@@ -62,7 +62,8 @@ T-09: nút 直しを依頼. T-08: hội thoại sửa.
 1. Cho tài năng nói "もっと短く", thì phiên bản mới ngắn hơn phiên bản trước và T-09 hiện phiên bản mới.
 2. Cho tài năng dán câu "今日も頑張りました", thì chú thích mới có câu đó.
 3. Cho bản nháp đã chấp nhận, khi tài năng nhờ sửa, thì không có phiên bản mới và có câu giải thích.
-4. Cho 3 lần sửa, thì có 3 phiên bản mới, đều lưu lại.
+4. Cho bản nháp đã có 2 lần AI viết lại được tính hợp lệ, khi yêu cầu AI viết lại lần thứ3, thì không gọi tạo bản viết lại mới và báo đã hết lượt; tài năng vẫn được tự sửa chữ theo quyết định17/11. Cách tính lượt khi lỗi/thử lại đang chờ làm rõ ở L23-01 (sheet Chi_tiet: câu về cách đếm rewrite), không dùng AC này để tự quyết cách đếm.
+5. Cho tài năng tự sửa chữ, thì lưu bản sửa và không coi thao tác sửa tay đó là một lần AI viết lại.
 
 ## Phụ thuộc
 

@@ -6,7 +6,7 @@ Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `P
 
 Lưu ý: việc quản lý gửi ảnh, video thay tài năng **đã có trong [YK2]** §6-7 chức năng 6-3. [KS] 確認27 đã trả lời: quản lý chỉ làm thay cho tài khoản công ty.
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S05-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (các câu mới đã thêm với mã S05-xx).
 
 ## 1. Kiểm tra phạm vi
 

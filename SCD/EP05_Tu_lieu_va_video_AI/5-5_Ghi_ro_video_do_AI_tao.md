@@ -68,4 +68,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 
 ## Nguồn
 
-- [YK2] §5-7, §6-8 (5-5), §11, UC-06 前提. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) C3.
+- [YK2] §5-7, §6-8 (5-5), §11, UC-06 前提. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) C3.

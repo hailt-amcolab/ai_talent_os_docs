@@ -75,7 +75,7 @@ Supabase Storage (đường dẫn ký sẵn, tải tiếp được). Worker đ�
 1. Cho ảnh 25 MB, thì không gửi được và có lý do.
 2. Cho video 200 MB, mất mạng ở 50%, thì khi có mạng lại tải tiếp từ chỗ đứt.
 3. Cho chọn 3 ảnh và gửi, thì T-09 hiện 3 ảnh theo đúng thứ tự đã chọn.
-4. Cho quản lý gửi ảnh thay tài năng A ở M-08, thì ảnh gắn vào bản nháp của A và ghi người gửi là quản lý.
+4. Cho Manager gửi ảnh thay, chỉ chấp nhận owner là tài khoản công ty và ghi người thực hiện nếu đi qua phiên Manager; không cho gửi thay Talent thường theo GJ xác nhận27/QA No.43. Nơi thao tác office (app hay quản trị) chờ No.66.
 5. Không có yêu cầu tải lên nào đi qua hàm của Vercel với tệp lớn hơn 4 MB.
 
 ## Ngoài phạm vi của chức năng này
@@ -101,9 +101,9 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 ## Nguồn
 
 - [YK2] §6-7 (6-3), §9-3, UC-05, 確認26, 27. [AG] trang 4 (T-10), trang 7 (M-08).
-- [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B2, C2.
+- [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) B2, C2.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- CR-09 (đã chốt làm ở SP1): quản lý gửi ảnh, video thay từ màn quản trị, dùng cùng luồng tải lên của tài năng; theo [KS] 確認27 chỉ cho tài khoản công ty.
+- Quyền làm thay theo GJ xác nhận27/QA No.43 chỉ dành tài khoản công ty. CR-09 cũ không còn là căn cứ cho Manager gửi thay Talent thường; thao tác office từ quản trị hay app còn No.66, không chốt hộ màn từ CR cũ.
 - Q&A No.8, CR-10 (đã chốt): ảnh, video lưu ở OneDrive. Thiết kế tải lên Supabase Storage rồi chuyển sang OneDrive, fal.ai và Upload-Post lấy tệp từ bản tạm, chính là phương án B của CR-10. Không cần liên kết công khai của OneDrive.

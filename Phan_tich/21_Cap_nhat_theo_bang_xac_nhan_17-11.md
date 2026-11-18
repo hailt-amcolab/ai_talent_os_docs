@@ -132,7 +132,7 @@ Mục 1, 2, 3 thay đổi lớn vòng lặp hằng ngày đang mô tả ở [YK2
 
 Các quyết định ở mục 2 và 3 được **sửa thẳng vào đúng chỗ** trong từng tài liệu (câu, bảng quy tắc, sơ đồ), kèm nguồn `[KS] 確認N`; không có mục "cập nhật" nối thêm ở cuối tệp. Tệp này là nơi duy nhất giữ lịch sử thay đổi.
 
-- `15_Cau_hoi_lam_ro_luong.csv`: cột "Trạng thái" của 56 dòng 確認 và các dòng gắn CR-21, CR-22, CR-23.
+- `15_Cau_hoi_lam_ro_luong.xlsx`: cột "Trạng thái" của 56 dòng 確認 và các dòng gắn CR-21, CR-22, CR-23.
 - `19_Doi_chieu_QA_bao_gia.md`: ghi chú ở đầu mục 3 (danh sách CR).
 - `Phan_tich/00`–`11`, `13`, `14`, `16`, `17`, `18`, `20`: sửa tại chỗ. Ví dụ: tệp 06 vẽ lại Workflow 2 với hai nhánh 自動投稿 / 要確認, bỏ cạnh 利用終了 → 利用中 ở Workflow 7; tệp 07 thêm entity `KHOANG_DANG_TU_DONG`. `12` (lịch sử v1→v2) giữ nguyên. Từ 18/11/2026, bản cục bộ của 00–12 là bản chính, không đồng bộ với Claude Doc nữa.
 - SCD: sửa tại chỗ trong các tệp chức năng bị ảnh hưởng và cột trạng thái trong `00_Cau_hoi_cho_khach.md` (chỉ trạng thái, không đề xuất câu trả lời).

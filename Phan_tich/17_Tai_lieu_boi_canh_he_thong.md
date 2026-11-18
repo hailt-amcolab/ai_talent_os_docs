@@ -1,6 +1,6 @@
 # Tài liệu bối cảnh hệ thống (SCD) – AI育成OS
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2). [AG] = `アプリ画面案_AI育成OS.pdf` (phương án màn hình ứng dụng). File 15 = bảng câu hỏi [15_Cau_hoi_lam_ro_luong.csv](15_Cau_hoi_lam_ro_luong.csv). File 16 = [16_Chia_module_phat_trien.md](16_Chia_module_phat_trien.md).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2). [AG] = `アプリ画面案_AI育成OS.pdf` (phương án màn hình ứng dụng). File 15 = bảng câu hỏi [15_Cau_hoi_lam_ro_luong.xlsx](15_Cau_hoi_lam_ro_luong.xlsx). File 16 = [16_Chia_module_phat_trien.md](16_Chia_module_phat_trien.md).
 
 Tài liệu này nhìn hệ thống **từ bên ngoài**: hệ thống là gì, ai dùng, nối với dịch vụ nào, ranh giới ở đâu. Nó không mô tả bên trong hệ thống.
 - Bên trong chia thành module nào: xem file 16.

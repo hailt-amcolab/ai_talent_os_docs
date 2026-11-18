@@ -4,7 +4,7 @@ File này gom các điểm còn mở của EP08 (1-1, 1-2, 1-3, 5-4) mà **chưa
 
 Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認48, 50 (1-1: tháng đầu và tháng ngừng); **確認49 (1-1, 5-4: GMO có thu được số tiền thay đổi mỗi tháng không; chặn chạy thật)**; 確認51 (5-4).
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (hình 5-3: hóa đơn tháng = phí tháng theo hợp đồng + số lần tạo video × đơn giá); [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (mã S08-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (hình 5-3: hóa đơn tháng = phí tháng theo hợp đồng + số lần tạo video × đơn giá); [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (mã S08-xx).
 
 ## 1. Kiểm tra phạm vi
 

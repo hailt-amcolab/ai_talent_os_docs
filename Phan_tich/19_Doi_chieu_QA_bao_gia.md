@@ -154,7 +154,7 @@ AMCOLAB đã gửi các câu này cho khách. Câu nào trùng thì **không h�
    - màn thử thách và yếu tố trò chơi (CR-22);
    - **video tự làm, mỗi ngày 1 video thành bản nháp (CR-23):** 6-4 phần tự đưa vào bản nháp, PWA D08 và cờ `selfMadeVideoDaily`;
    - hội thoại riêng tư (CR-24): không làm, Q&A No.7 đã đóng.
-2. **Sửa SCD** (đã làm, mỗi file có mục "Cập nhật theo Q&A 15/11"): 2-1, 7-1 (tình trạng đọc file), 3-3 (quy tắc tài năng vị thành niên), 3-5 (không trần), 3-7 (mốc 25/50/75%), 4-1 (tìm tin tức), 4-4 (màn sửa tối thiểu), 5-1, 5-2 (video trình chiếu ghép ảnh ở máy chủ), 6-3 (quản lý gửi thay, phí tính cho tài năng), 6-4 (video tự làm chờ CR-23), 7-7 và C-01 (No.58 khác hướng). Bảng câu hỏi `15_Cau_hoi_lam_ro_luong.csv` có thêm cột "Q&A AMCOLAB".
+2. **Sửa SCD** (đã làm, mỗi file có mục "Cập nhật theo Q&A 15/11"): 2-1, 7-1 (tình trạng đọc file), 3-3 (quy tắc tài năng vị thành niên), 3-5 (không trần), 3-7 (mốc 25/50/75%), 4-1 (tìm tin tức), 4-4 (màn sửa tối thiểu), 5-1, 5-2 (video trình chiếu ghép ảnh ở máy chủ), 6-3 (quản lý gửi thay, phí tính cho tài năng), 6-4 (video tự làm chờ CR-23), 7-7 và C-01 (No.58 khác hướng). Bảng câu hỏi `15_Cau_hoi_lam_ro_luong.xlsx` có thêm cột "Q&A AMCOLAB".
 3. **Việc cần làm với người phụ trách file Q&A:**
    - Đưa hình 5-1 (đã lấy ra từ tệp v2) để đóng No.51.
    - Thống nhất No.58: bài bị trả lại là cùng một bài hay bài mới.

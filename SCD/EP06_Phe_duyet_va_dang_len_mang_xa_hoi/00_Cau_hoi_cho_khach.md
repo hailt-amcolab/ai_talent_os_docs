@@ -4,7 +4,7 @@ File này gom các điểm còn mở của 9 chức năng EP06 (7-7, 8-2, 8-3, 8
 
 Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認33–36 (7-7, trong đó 35 và 36 chặn phần trả lại và quá hạn); 確認9–11 (8-2); 確認37 (8-4); 確認30, 38 (8-5); 確認52 (9-1, 7-7).
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S06-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (các câu mới đã thêm với mã S06-xx).
 
 ## 1. Kiểm tra phạm vi
 

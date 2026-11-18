@@ -76,7 +76,7 @@ Mục nào chưa có thông tin thì ghi **⚠ chưa rõ** kèm mã câu hỏi. 
 
 ## 5. Bảng đánh giá
 
-Đánh giá ban đầu, dựa trên file 04 (điểm chưa rõ của từng module), [file 15](../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) và [AG]. Kiểm tra lại khi viết đầy đủ từng file.
+Đánh giá ban đầu, dựa trên file 04 (điểm chưa rõ của từng module), [file 15](../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) và [AG]. Kiểm tra lại khi viết đầy đủ từng file.
 
 ### EP01 – Danh tính và quyền truy cập
 

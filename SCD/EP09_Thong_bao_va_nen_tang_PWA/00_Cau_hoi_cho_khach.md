@@ -6,7 +6,7 @@ Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `P
 
 Danh mục đầy đủ các loại thông báo nằm ở [C-05](../EP10_Nen_tang_chung_va_quan_tri_he_thong/C-05_Danh_muc_thong_bao.md).
 
-Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (mã S09-xx).
+Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.xlsx](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) (mã S09-xx).
 
 ## 1. Kiểm tra phạm vi
 

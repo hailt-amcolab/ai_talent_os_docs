@@ -1,5 +1,9 @@
 # Tiếp tục công việc – bàn giao phiên 16/11/2026
 
+## Quy ước nguồn mới nhất theo người dùng
+
+Đọc [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md): chỉ9 tệp được liệt kê là nguồn gốc; các tệp phân tích/SCD/guide là dẫn xuất. Xem [đối chiếu26](Phan_tich/26_Doi_chieu_9_nguon_va_cau_hoi_khach.md) và workbook15: `Luong`203, `Chi_tiet`64, `Gui_khach`52 quyết định còn mở, `Noi_bo`33 việc. Các thông tin cũ bên dưới phải kiểm lại với nguồn gốc; không xin lại bảng KS đã có, không coi CR-24 riêng tư/CR-25 màn hình vẫn chờ khi No.7/68 đã Close. Không có phản hồi khách mới; các sửa SCD chỉ đồng bộ quyết định đã có.
+
 File này để mở lại công việc ở máy khác hoặc phiên Claude Code mới. Đọc cùng [CLAUDE.md](CLAUDE.md). Mở phiên mới thì nói: "đọc TIEP_TUC.md rồi làm tiếp".
 
 ## 1. Đã làm xong trong phiên này
@@ -7,7 +11,7 @@ File này để mở lại công việc ở máy khác hoặc phiên Claude Code
 | Việc | Kết quả |
 |---|---|
 | Kiểm tra phương án màn hình mới [AG] (`アプリ画面案_AI育成OS.pdf`) | Sửa [file 14](Phan_tich/14_Phan_tich_Phuong_an_man_hinh_ung_dung.md); thêm mục 8 vào [file 10](Phan_tich/10_Giao_dien.md) (bảng đối chiếu 3 bộ mã màn hình); cập nhật file 00, 11 |
-| Bảng câu hỏi tổng | [15_Cau_hoi_lam_ro_luong.csv](Phan_tich/15_Cau_hoi_lam_ro_luong.csv): 172 dòng = 確認1–56, A1–A10, B1–B13, C1–C6, I1–I8, S01–S10. Có cột Module |
+| Bảng câu hỏi tổng | [15_Cau_hoi_lam_ro_luong.xlsx](Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx): 172 dòng = 確認1–56, A1–A10, B1–B13, C1–C6, I1–I8, S01–S10. Có cột Module |
 | Chia module phát triển | [16_Chia_module_phat_trien.md](Phan_tich/16_Chia_module_phat_trien.md): EP01–EP10 |
 | Bối cảnh hệ thống (SCD mức hệ thống) | [17_Tai_lieu_boi_canh_he_thong.md](Phan_tich/17_Tai_lieu_boi_canh_he_thong.md) |
 | Mã nguồn | `apps/web` (Next.js 16, PWA, chỉ giao diện) và `apps/api` (Hono, PM2, Docker Compose, Caddy; có API `POST /api/v1/dev/push-test`). Quyết định tách FE và BE ghi ở đầu file 18 |

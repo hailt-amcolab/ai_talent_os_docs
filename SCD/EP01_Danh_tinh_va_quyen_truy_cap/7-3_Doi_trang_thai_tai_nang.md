@@ -126,4 +126,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 
 - [YK2] §5-1, §6-2 (7-3), §7-3, §9-4, UC-13, 確認50, 53–56.
 - [AG] trang 8 (M-10).
-- [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 2. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A3.
+- [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 2. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A3.

@@ -23,7 +23,7 @@ Ký hiệu kênh: **Ứng dụng** = T-14 cộng thông báo đẩy nếu đư�
 | 3 | 写真・動画の催促 (nhắc gửi tư liệu) | Tài năng | Giờ nhắc, chưa có tư liệu | Ứng dụng | T-10 | 6-5 |
 | 4 | 承認の結果 (kết quả duyệt) | Tài năng | Được duyệt hoặc bị trả lại | Ứng dụng | T-13 | 7-7 |
 | 5 | 翌日・週次の振り返り (nhận xét hôm qua, tổng kết tuần) | Tài năng | Sáng sau ngày đăng; ngày tổng kết | Ứng dụng | T-08 | 3-6, 3-8 |
-| 6 | フォロワーの増加 (người theo dõi tăng) | Tài năng | "Theo điều kiện đã định" | Ứng dụng | T-06 | 3-7 — **đề xuất bỏ (A7)** |
+| 6 | フォロワーの増加 (người theo dõi tăng) | Tài năng | "Theo điều kiện đã định" | Ứng dụng | T-06 | 3-7 — **giữ mốc25/50/75% theo đề xuất QA No.14, khách xác nhận trên màn**; L23-09 theo dõi phần còn thiếu |
 | 7 | 投稿がない日の声かけ (hỏi han khi không đăng) | Tài năng | Đủ mốc 1 | Ứng dụng | T-08 | 3-9 |
 | 8 | 投稿の失敗 (đăng lỗi) | Tài năng, quản lý | Đăng lỗi | Ứng dụng; Quản trị | T-13; M-08 | 8-5 |
 | 9 | SNS の接続切れ (mất kết nối) | Tài năng, quản lý | Mất kết nối | Ứng dụng; Quản trị | T-05; M-07 | 8-6 |
@@ -62,4 +62,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 
 ## Nguồn
 
-- [YK2] §6-13, 別紙A, 確認45. [AG] trang 5 (T-14), trang 6 (M-02). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A6, A7.
+- [YK2] §6-13, 別紙A, 確認45. [AG] trang 5 (T-14), trang 6 (M-02). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A6, A7.

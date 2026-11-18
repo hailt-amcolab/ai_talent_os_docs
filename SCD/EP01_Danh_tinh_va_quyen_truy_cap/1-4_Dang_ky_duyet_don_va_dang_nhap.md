@@ -161,7 +161,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 
 - [YK2] §6-1 (1-4), §6-4 (2-2: không gửi đơn bằng email đã dùng), §3-2, §3-3, UC-01, UC-01 前提, UC-03, UC-13 前提, 確認1, 2, 13.
 - [AG] trang 2 (T-01 đến T-04), trang 6 (M-01 đến M-04).
-- [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 1. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4 và 7. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv), lọc cột Module = EP01.
+- [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 1. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4 và 7. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx), lọc cột Module = EP01.
 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 

@@ -113,4 +113,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 ## Nguồn
 
 - [YK2] §6-4 (2-3), §7-1, §7-5, §8 (ChatGPT, khoảng 5 người dùng), UC-01 前提, UC-02 前提, 確認5–8.
-- [AG] trang 7 (M-07). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) C4. [File 11](../../Phan_tich/11_Edge_case_va_rui_ro.md) rủi ro T2.
+- [AG] trang 7 (M-07). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) C4. [File 11](../../Phan_tich/11_Edge_case_va_rui_ro.md) rủi ro T2.

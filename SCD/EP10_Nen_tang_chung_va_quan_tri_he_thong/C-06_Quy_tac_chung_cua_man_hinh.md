@@ -38,4 +38,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 
 ## Nguồn
 
-- [YK2] §6-14, §9-1. [AG] trang 1 (danh sách màn), trang 11. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A10.
+- [YK2] §6-14, §9-1. [AG] trang 1 (danh sách màn), trang 11. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A10.

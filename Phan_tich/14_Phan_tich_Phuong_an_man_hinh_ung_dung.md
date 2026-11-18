@@ -183,4 +183,4 @@ Bảng 3 cột: nội dung trong thiết kế của khách, nội dung trong [AG
 - Dùng [AG] làm căn cứ chính cho phần màn hình thay cho [TK-T], [TK-M] khi hai bên khác nhau, vì [AG] đã sửa theo [YK2] (đúng nguyên tắc [YK2] 6-14).
 - Các mục chữ đỏ 【要確認】 trùng với các 確認 đang chờ khách trả lời. Khi khách trả lời, cập nhật luôn màn hình tương ứng.
 - Tab Giao diện (file 10) đã có bảng đối chiếu ba bộ mã ([TK], [SD], [AG]) và tình trạng 17 điểm thiếu sau khi có [AG] (mục 8). Khi chốt được điểm 3.2 số 1 thì viết lại các bảng của file 10 theo mã [AG].
-- Các câu hỏi phát sinh từ [AG] đã đưa vào bảng câu hỏi `15_Cau_hoi_lam_ro_luong.csv` (A1, A3, A6, A10, B1, B2, B5, B9, B13).
+- Các câu hỏi phát sinh từ [AG] đã đưa vào bảng câu hỏi `15_Cau_hoi_lam_ro_luong.xlsx` (A1, A3, A6, A10, B1, B2, B5, B9, B13).
