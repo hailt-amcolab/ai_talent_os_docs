@@ -31,7 +31,7 @@ Thu phí tháng của tài năng qua GMO Payment Gateway (thanh toán qua nhà m
 **A. Đăng ký thanh toán (6-2 bước 3)**
 1. Tài năng bấm 決済代行会社の画面を開く (mở trang của công ty thanh toán), chọn thanh toán qua nhà mạng hoặc thẻ trên trang của GMO. Hệ thống **không bao giờ nhận thông tin thẻ** (§10-2).
 2. GMO báo kết quả về điểm nhận của hệ thống (file 18, câu I5). Thành công thì phát sự kiện "đã đăng ký thanh toán": tài năng sang 利用中 (S01-01), tạo thư mục (2-2), đăng ký Upload-Post (8-2).
-3. Thu ngay phí tháng đầu, trọn tháng dù bắt đầu giữa tháng (§5-4; giả định 確認48).
+3. Thu ngay phí của kỳ đầu. Kỳ thu là một tháng tính từ ngày đăng ký (ví dụ đăng ký 17/11 thì kỳ đầu đến 16/12; §5-4, [KS] 確認48). アデッソ hỏi đơn vị thanh toán có làm được không.
 
 **B. Thu hằng tháng (S08-02)**
 4. Ngày 1 mỗi tháng: tính cho từng tài năng ở 利用中 = phí tháng này + số lần tạo video tháng trước × đơn giá đã lưu ở từng lần (5-4).
@@ -53,7 +53,7 @@ Thu phí tháng của tài năng qua GMO Payment Gateway (thanh toán qua nhà m
 | GMO không thu được số tiền thay đổi qua nhà mạng | Thu phí tháng bằng thu định kỳ cố định; phí video thu riêng một lần mỗi tháng | S08-04 (phương án dự phòng); chờ 確認49 |
 | Tài năng hủy ở trang GMO | Bước 3 của hướng dẫn chưa xong; AIコーチ chưa dùng được | 6-2 |
 | Kết quả từ GMO đến hai lần | Xử lý một lần (khóa theo mã giao dịch) | [Đề xuất nội bộ] |
-| Tài năng chuyển sang 利用終了 giữa tháng | Không thu tháng sau; tháng này đã thu trọn (giả định 確認50). Phí video tháng đó thu vào lần thu cuối | S08-05 |
+| Tài năng chuyển sang 利用終了 giữa tháng | Không thu tháng sau; tháng này đã thu trọn (khách ghi đồng ý ở 確認50, chưa chốt). Phí video tháng đó thu vào lần thu cuối | S08-05 |
 | GMO ngừng dịch vụ | Không đăng ký thanh toán mới được; lần thu tháng dời tới khi GMO chạy lại | §9-3 |
 
 ## Quy tắc và giá trị
@@ -100,7 +100,7 @@ GMO Payment Gateway: đăng ký thành viên và cách thanh toán qua trang c�
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認48, 49, 50.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認48, 49, 50.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -118,7 +118,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: 
 - [YK2] §2-3, §5-4 (hình 5-3), §6-3 (1-1), §8, §10-2, §11, §12-4, UC-11, UC-11 前提, 確認48–50.
 - [AG] trang 2 (T-04), trang 5 (T-15). [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) câu I5.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.46 (đã chốt): tháng đầu thu đủ 1 tháng; thu lỗi thì báo tài năng và quản lý, không tự dừng.
-- Q&A No.49, No.53 (đang hỏi): đề xuất thu cùng ngày cuối tháng; tính phí từ ngày đăng ký thanh toán.
+- Q&A No.49, No.53 (đang hỏi): đề xuất cũ "thu cùng ngày cuối tháng" **trái** với [KS] 確認48 (kỳ một tháng tính từ ngày đăng ký); làm theo [KS]. Phần "tính phí từ ngày đăng ký thanh toán" vẫn khớp.

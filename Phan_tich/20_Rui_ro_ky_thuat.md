@@ -71,7 +71,7 @@ Mốc POC (thử nghiệm kỹ thuật) đề xuất: **xong trước 01/12/2026
 1. POC P02 (quyền Graph) và POC ghi qua MCP.
 2. Chốt mẫu file sớm (khách đưa mẫu, Q&A No.22).
 3. Màn chi tiết tài năng hiện tình trạng đọc file (Q&A No.22).
-4. Luôn đối soát trước đợt 8:00, không chỉ dựa vào thông báo thay đổi.
+4. Luôn đối soát trước đợt khung sáng (8:00), không chỉ dựa vào thông báo thay đổi.
 
 **Phương án dự phòng.** Nếu quyền Selected không đủ, đề nghị khách tạo một site SharePoint riêng cho hệ thống để quyền rộng chỉ áp trên site đó. Nếu ChatGPT không ghi được, cho quản lý nhập thông tin trong màn quản trị; đây là thay đổi phạm vi, phải báo khách.
 
@@ -94,16 +94,16 @@ Mốc POC (thử nghiệm kỹ thuật) đề xuất: **xong trước 01/12/2026
 
 **Mô tả.**
 - Kiểm tra từ cấm bằng AI theo ngữ cảnh thì không ổn định; khách đã chấp nhận có thể bỏ sót (Q&A No.13).
-- Nhận ra chuyện sức khỏe hoặc muốn nghỉ để báo quản lý cũng dựa vào AI. Có tài năng vị thành niên, nên một lần bỏ sót có thể thành vấn đề lớn. Quy tắc cho vị thành niên do khách viết vào file chỉ thị (Q&A No.18).
-- Đợt 8:00 cho 100 rồi 1.000 tài năng sẽ chạm giới hạn tốc độ và chi phí của OpenAI. Tìm tin tức mỗi sáng (CR-05) làm phí tăng thêm.
+- Nhận ra chuyện sức khỏe hoặc muốn nghỉ để báo quản lý cũng dựa vào AI. Có tài năng vị thành niên, nên một lần bỏ sót có thể thành vấn đề lớn. Nhãn dưới 18 tuổi chỉ để tham khảo ([KS] 確認2). Quy tắc cho vị thành niên do khách viết vào file chỉ thị (Q&A No.18).
+- Các đợt trước khung sáng (8:00), trưa, tối ([KS] 確認18) cho 100 rồi 1.000 tài năng sẽ chạm giới hạn tốc độ và chi phí của OpenAI; gửi ba khung giúp rải tải nhưng tăng số đợt. Tìm tin tức mỗi sáng (CR-05) làm phí tăng thêm.
 - Đổi prompt hoặc đổi model có thể làm chất lượng thay đổi mà không ai biết.
 
-**Dấu hiệu xảy ra.** Bài dính từ cấm vẫn được hẹn giờ; đợt sáng chưa xong lúc 8:00; phí AI tháng vượt dự tính.
+**Dấu hiệu xảy ra.** Bài dính từ cấm vẫn được hẹn giờ; đợt trước khung giờ chưa xong khi tới giờ nhắn; phí AI tháng vượt dự tính.
 
 **Cách giảm.**
 1. Kiểm từ cấm hai lớp: so khớp chuỗi với danh sách trước, AI theo ngữ cảnh sau. Lớp so khớp không thay đổi quy tắc của [YK2]; nó chỉ chặn thêm các trường hợp chắc chắn.
 2. Lập bộ câu thử cố định (từ cấm, chuyện sức khỏe, câu ngoài chủ đề, tài năng vị thành niên). Chạy lại mỗi khi đổi prompt hoặc model.
-3. Đợt sáng chạy qua hàng đợi, chia nhiều đợt nhỏ và bắt đầu sớm hơn 8:00. Tin nhắn chỉ gửi lúc 8:00.
+3. Mỗi đợt chạy qua hàng đợi, chia nhiều đợt nhỏ và bắt đầu sớm hơn giờ của khung. Tin nhắn chỉ gửi khi tới giờ của khung.
 4. Tổng hợp phí AI theo tài năng và theo tháng (3-5), có cảnh báo nội bộ khi vượt ngưỡng. Không tự dừng AI (Q&A No.17).
 
 ### RT05. Tạo video
@@ -167,7 +167,7 @@ Các điểm chưa thống nhất:
 
 **Mô tả.**
 - Còn khoảng 2 tháng phát triển trước UAT giữa tháng 1/2027.
-- 34 câu Q&A còn mở; CR-17〜CR-25 chờ khách quyết (Q&A No.50).
+- 34 câu Q&A còn mở; theo bảng xác nhận 17/11, CR-17, 18, 19, 21 làm, CR-20 không làm, CR-23 còn chờ khách (Q&A No.50); CR-24 không làm (No.7), CR-25 không cần (No.68).
 - Chưa rõ ai làm 画面定義書 (tài liệu định nghĩa màn hình) (No.68); chưa chọn bộ mã màn hình chuẩn (No.30).
 - Nhiều thứ do khách cung cấp nằm trên đường găng (critical path – chuỗi việc quyết định ngày xong): tenant Microsoft 365, hợp đồng GMO, tài khoản Upload-Post, tên miền gửi email, mẫu file, danh sách từ cấm, file chỉ thị cho AI.
 
@@ -175,7 +175,7 @@ Các điểm chưa thống nhất:
 1. Làm trước các phần không phụ thuộc khách: đăng nhập (TOTP), khung PWA, máy trạng thái, hàng đợi.
 2. Lập danh sách thứ khách phải cung cấp, mỗi thứ có hạn chót; PM theo dõi hằng tuần.
 3. Gom các POC vào 2 tuần đầu.
-4. Không giao agent các chức năng CR-17〜CR-25 cho tới khi có trả lời No.50.
+4. Không giao agent chức năng CR-23 cho tới khi có trả lời No.50. CR-17, 18, 19, 21 giao được (tệp 21).
 
 ### RT10. Ảnh hưởng ứng dụng tin nhắn Instagram đang chạy
 
@@ -203,14 +203,14 @@ Các điểm chưa thống nhất:
 - có khai báo nội dung quảng cáo và câu đồng ý về nhạc;
 - **để người dùng sửa được chữ soạn sẵn trước khi đăng.**
 
-TikTok cũng không chấp nhận công cụ nội bộ để một nhóm đăng lên các tài khoản do nhóm đó quản lý. Hệ thống lại để AI viết chú thích, hẹn giờ tự động và chỉ cho sửa qua AI (sửa trực tiếp là CR-21). Nếu TikTok coi cách dùng này là vi phạm, bài có thể bị xóa hoặc tài khoản bị khóa. Nguồn: TikTok Content Sharing Guidelines, tra 17/11/2026 (bộ Upload-Post §8.4a).
+TikTok cũng không chấp nhận công cụ nội bộ để một nhóm đăng lên các tài khoản do nhóm đó quản lý. Hệ thống lại để AI viết chú thích, hẹn giờ tự động và cho tài năng sửa chữ trực tiếp (CR-21, đã chốt làm theo [KS] 確認28). Nếu TikTok coi cách dùng này là vi phạm, bài có thể bị xóa hoặc tài khoản bị khóa. Nguồn: TikTok Content Sharing Guidelines, tra 17/11/2026 (bộ Upload-Post §8.4a).
 
 Tài liệu Upload-Post (trang đăng lên TikTok, tra 17/11) cho biết họ dùng ứng dụng TikTok đã được duyệt, có tham số `privacy_level`, `disable_comment`, `disable_duet`, `disable_stitch`, `is_aigc`, nhưng **không nhắc tới các quy định giao diện này**. Vì vậy vẫn chưa rõ trách nhiệm thuộc về ai.
 
 **Cách giảm.**
 1. Trong POC, hỏi Upload-Post họ tuân thủ quy định này thế nào và mình phải hiện gì trong ứng dụng.
 2. Nếu bắt buộc, thêm vào bước 採用 (chấp nhận, 4-3) cho bài có TikTok: chọn quyền riêng tư, bật hoặc tắt bình luận, khai báo quảng cáo, câu đồng ý. Việc này làm tăng phạm vi màn T-09 và phải báo khách.
-3. Nếu TikTok bắt buộc cho sửa chữ trực tiếp thì CR-21 không còn là tùy chọn; báo khách khi trả lời Q&A No.50.
+3. Tài năng sửa chữ trực tiếp đã có (CR-21, [KS] 確認28), nên yêu cầu "người dùng tự soạn được nội dung" của TikTok được đáp ứng một phần; vẫn cần kiểm với điều khoản TikTok.
 
 ## 4. Kế hoạch POC đề xuất
 

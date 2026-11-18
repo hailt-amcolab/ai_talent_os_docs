@@ -2,9 +2,9 @@
 
 File này gom các điểm còn mở của 7 chức năng EP05 (6-3, 6-4, 6-5, 5-1, 5-2, 5-3, 5-5) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認26, 27 (6-3, 5-1: quản lý gửi và tạo video thay); 確認31 (5-1: hai loại video); 確認32 (6-4: video tự làm); 確認55 (6-4: giữ tư liệu sau khi ngừng).
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認26, 27 (6-3, 5-1: quản lý gửi và tạo video thay); 確認31 (5-1: hai loại video); 確認32 (6-4: video tự làm); 確認55 (6-4: giữ tư liệu sau khi ngừng).
 
-Lưu ý: việc quản lý gửi ảnh, video thay tài năng **đã có trong [YK2]** §6-7 chức năng 6-3. 確認27 chỉ hỏi áp dụng cho bài nào.
+Lưu ý: việc quản lý gửi ảnh, video thay tài năng **đã có trong [YK2]** §6-7 chức năng 6-3. [KS] 確認27 đã trả lời: quản lý chỉ làm thay cho tài khoản công ty.
 
 Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S05-xx).
 
@@ -83,7 +83,7 @@ Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã g�
 
 | Mã | Tiêu đề | Q&A | Tình trạng |
 |---|---|---|---|
-| B4 | Video tự làm và chủ đề hằng ngày | No.37, CR-23 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); chưa làm tới khi khách quyết (No.50) |
+| B4 | Video tự làm và chủ đề hằng ngày | No.37, CR-23 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); chưa làm tới khi khách quyết (No.50); [KS] 確認32 vẫn chưa trả lời |
 | B8 | Quản lý tạo video thay cho tài năng thì ai trả tiền | CR-09 | Đã chốt trong Q&A: phí tính vào hóa đơn của tài năng |
 | C2 | Nơi lưu tạm ảnh và video | No.8, CR-10 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); thiết kế dùng Supabase Storage làm nơi lưu tạm (phương án B) |
 | S05-03 | Giữ bản tạm trên Supabase | No.8, CR-10 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |

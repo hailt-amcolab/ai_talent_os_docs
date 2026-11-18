@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "AI育成OS API",
+    "title": "AI Talent OS API",
     "version": "0.1.0"
   },
   "components": {
@@ -292,6 +292,169 @@
           "accepted",
           "gone",
           "failed"
+        ]
+      },
+      "OneDriveConnection": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "none",
+              "app",
+              "delegated"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_configured",
+              "shared",
+              "not_connected",
+              "connected",
+              "reconnect_required"
+            ]
+          },
+          "account": {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string"
+              },
+              "driveType": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "displayName",
+              "driveType"
+            ]
+          },
+          "connectedAt": {
+            "type": "string"
+          },
+          "canManage": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "mode",
+          "status",
+          "canManage"
+        ]
+      },
+      "OneDriveConnectStart": {
+        "type": "object",
+        "properties": {
+          "authorizeUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "authorizeUrl"
+        ]
+      },
+      "TalentFolderList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TalentFolder"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "TalentFolder": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DriveItem"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "displayName"
+            ]
+          }
+        ]
+      },
+      "DriveItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "eTag": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "modifiedAt": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "folder",
+              "file"
+            ]
+          },
+          "mimeType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "eTag",
+          "size",
+          "modifiedAt",
+          "kind"
+        ]
+      },
+      "DriveItemList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DriveItem"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "DriveText": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DriveItem"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content"
+            ]
+          }
         ]
       }
     },
@@ -1000,6 +1163,712 @@
           },
           "503": {
             "description": "Provider unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/connection": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneDriveConnection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Disconnected; stored tokens deleted"
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/connection/start": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneDriveConnectStart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/connection/callback": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 200
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  }
+                },
+                "required": [
+                  "state",
+                  "code"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneDriveConnection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/talents": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TalentFolderList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "displayName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                },
+                "required": [
+                  "displayName"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TalentFolder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/items/{id}/children": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveItemList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/items/{id}": {
+      "patch": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "eTag": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  }
+                },
+                "required": [
+                  "name",
+                  "eTag"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "eTag": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  }
+                },
+                "required": [
+                  "eTag"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Moved to the recycle bin"
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/onedrive/items/{id}/text": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveText"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "content": {
+                    "type": "string",
+                    "maxLength": 60000
+                  }
+                },
+                "required": [
+                  "name",
+                  "content"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9!_.-]{1,200}$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "maxLength": 60000
+                  },
+                  "eTag": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  }
+                },
+                "required": [
+                  "content",
+                  "eTag"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "OAuth state or code rejected"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "OneDrive denied access"
+          },
+          "404": {
+            "description": "Not found or outside the demo tree"
+          },
+          "409": {
+            "description": "Name taken, eTag mismatch, not connected or reconnect required"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "502": {
+            "description": "OneDrive permission"
+          },
+          "503": {
+            "description": "OneDrive unavailable or not configured"
           }
         }
       }

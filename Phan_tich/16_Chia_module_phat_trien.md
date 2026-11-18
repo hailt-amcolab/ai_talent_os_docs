@@ -37,9 +37,9 @@ Cách chia này giữ ranh giới nhóm của [YK2], nên dễ đối chiếu v�
 3. **8-4 không phải "kiểm soát tần suất đăng".** [YK2] §6-10 gọi chức năng này là 凍結対策 (biện pháp chống khóa tài khoản) và ghi "何を制限するかは、各 SNS の規約と事例を確認して決めます" (giới hạn gì sẽ quyết định sau khi xem quy định và các trường hợp thực tế của từng mạng xã hội). Chưa có nội dung cụ thể nên xếp vào mục 3 "chưa rõ".
 4. **Ghi chú ở EP02 nhắc "AI Instructions qua MCP". [YK2] và [AG] không có chữ MCP, nhưng 御見積書 (bản báo giá) 前提条件A4 「マネージャーはChatGPT(MCP)経由でAIを調整」, trích ở file Q&A câu số 45.** Báo giá đứng trên [YK2] khi mâu thuẫn ([YK2] §1), nên MCP có căn cứ hợp đồng. Hai màn liên quan là:
    - Màn AIへの指示 (chỉ thị cho AI), tức M-14 và M-15 trong [AG], chờ 確認6 (mục cần xác nhận số 6). [YK2] ghi rằng chỉ thị theo nhóm cần kiểm tra kỹ thuật.
-   - Màn カテゴリーの管理 (quản lý nhóm tài năng), tức M-13 trong [AG], chờ 確認47.
+   - Màn カテゴリーの管理 (quản lý nhóm tài năng), tức M-13 trong [AG]: làm (CR-17, [KS] 確認47).
 
-   Cập nhật 17/11: Q&A No.45 đã đóng. Khách muốn có màn chỉ thị, nhưng màn này xếp là CR-18 (thay đổi ngoài báo giá); nhóm tài năng là CR-17. Cả hai **chưa làm** cho tới khi khách trả lời Q&A No.50. Đợt đầu điều chỉnh AI qua ChatGPT (MCP) như báo giá.
+   Cập nhật 17/11: Q&A No.45 đã đóng. Màn chỉ thị (CR-18) và nhóm tài năng (CR-17) **làm** theo bảng xác nhận 17/11 ([KS] 確認6–8, 47). Ngoài màn này, quản lý vẫn điều chỉnh AI qua ChatGPT (MCP) như báo giá.
 5. **6-2 ở EP01 và 8-2 ở EP06 phụ thuộc nhau.** Theo [YK2] §6-1, 6-2 hướng dẫn lần lượt: thêm vào màn hình chính → cho phép thông báo → đăng ký thanh toán → kết nối mạng xã hội. Bước thanh toán gọi 1-1 (EP08), bước kết nối gọi 8-2 (EP06). Có thể làm EP01 trước, nhưng 6-2 chỉ hoàn tất khi đã có 1-1 và 8-2.
 
 ### 1.2. Những phần chung chưa thuộc chức năng nào trong 54 chức năng
@@ -91,7 +91,7 @@ Còn thiếu: [AG] chưa có màn đặt lại mật khẩu, dù 1-4 yêu cầu 
 | 3-3 | Giới hạn chủ đề hội thoại; chuyện sức khỏe hoặc ý định nghỉ thì báo quản lý | Topic Restriction & Escalation | 高 | 6-5 | — |
 | 3-9 | Nhắc tài năng lâu không đăng | Inactive Talent Reminder | 中 | 6-5 | T-14, M-02 |
 | 3-2 | Tự cải thiện đề xuất dựa trên dữ liệu | AI Self-improvement | 高 | 6-5 | — |
-| 3-6 | Tổng kết hôm qua và đề xuất cải thiện (8:00 sáng) | Daily Review | 高 | 6-5 | T-07, T-08 |
+| 3-6 | Tổng kết hôm qua và đề xuất cải thiện (khung sáng, mặc định 8:00) | Daily Review | 高 | 6-5 | T-07, T-08 |
 | 3-8 | Tổng kết hằng tuần (thứ Hai) | Weekly Review | 中 | 6-5 | T-08 |
 | 3-7 | Báo số người theo dõi tăng và báo đạt mục tiêu | Follower Growth Notification | 中 | 6-5 | T-14, M-02 |
 | 3-5 | Theo dõi chi phí AI, tách riêng phí tháng ChatGPT và phí AI mà huấn luyện viên dùng | AI Cost Tracking | 中 | 6-5 | Chưa thấy màn trong [AG] |
@@ -110,7 +110,7 @@ Còn thiếu: [AG] chưa có màn đặt lại mật khẩu, dù 1-4 yêu cầu 
 
 | Mã | Tên | Tên tiếng Anh | 優先順位 | Mục [YK2] | Màn hình [AG] |
 |---|---|---|---|---|---|
-| 6-3 | Gửi ảnh và video | Media Upload | 高 | 6-7 | T-10 (nút gửi thay tài năng ở M-08 đang chờ 確認27) |
+| 6-3 | Gửi ảnh và video | Media Upload | 高 | 6-7 | T-10 (nút gửi thay ở M-08 chỉ cho tài khoản công ty, [KS] 確認27) |
 | 6-4 | Lưu tư liệu để dùng lại | Media Storage & Reuse | 高 | 6-7 | T-10 |
 | 6-5 | Nhắc gửi tư liệu | Media Reminder | 中 | 6-7 | T-14 |
 | 5-1 | Tạo video bằng AI (Kling qua fal.ai) | AI Video Generation | 高 | 6-8 | T-11 |
@@ -168,9 +168,11 @@ Gồm C-01〜C-06 ở mục 1.2 và phần lõi kỹ thuật.
 
 | Nội dung | Màn hình [AG] | Lý do |
 |---|---|---|
-| Quản lý nhóm tài năng (カテゴリー) và lọc danh sách theo nhóm | M-13 | CR-17, chờ Q&A No.50 |
-| Chỉ thị cho AI theo toàn bộ, theo nhóm, theo từng tài năng | M-14, M-15 | CR-18, chờ Q&A No.50. [YK2] ghi chỉ thị theo nhóm cần kiểm tra kỹ thuật |
-| Duyệt theo quản lý phụ trách nhóm; nhiều tài khoản trên một mạng; sửa chữ trực tiếp; màn thử thách; video tự làm thành bản nháp mỗi ngày; hội thoại riêng tư | — | CR-19〜CR-24, chờ Q&A No.50 (No.7 cho hội thoại riêng tư) |
+| Quản lý nhóm tài năng (カテゴリー) và lọc danh sách theo nhóm | M-13 | CR-17, làm ([KS] 確認47) |
+| Chỉ thị cho AI theo toàn bộ, theo nhóm, theo từng tài năng | M-14, M-15 | CR-18, làm ([KS] 確認6–8). [YK2] ghi chỉ thị theo nhóm cần kiểm tra kỹ thuật |
+| Duyệt theo nhóm hoặc quản lý phụ trách; sửa chữ trực tiếp | — | CR-19, CR-21: làm ([KS] 確認34, 28) |
+| Thử thách | — | CR-22: hướng đã chốt ([KS] 確認5), chờ khái niệm アデッソ viết |
+| Video tự làm thành bản nháp mỗi ngày; hội thoại riêng tư | — | CR-23: chờ khách (Q&A No.50). CR-24: không làm, quản lý xem toàn bộ hội thoại (Q&A No.7 đóng 17/11). Nhiều tài khoản trên một mạng (CR-20): không làm ([KS] 確認10) |
 | Nội dung cụ thể của 8-4 (chống khóa tài khoản) | — | [YK2] §6-10, §9-5: quyết định sau khi xem quy định từng mạng |
 
 Nếu khách đồng ý, nhóm tài năng và chỉ thị cho AI nên vào EP02, cùng chỗ với dữ liệu cho AI.
@@ -184,7 +186,7 @@ Thứ tự dưới đây dựa trên phụ thuộc giữa các chức năng, kh�
 1. EP10 (khung dự án, bộ trạng thái, cài đặt) và EP01 (đăng nhập, phân quyền). Mọi module khác đều cần hai phần này.
 2. EP02 (thư mục, dữ liệu tài năng). EP03 và EP04 cần dữ liệu này.
 3. EP09 (PWA, thông báo). Phần lớn các module sau đều gửi thông báo.
-4. EP03 và EP04, làm song song: vòng hằng ngày gồm đề xuất lúc 8:00 rồi tạo bản nháp.
+4. EP03 và EP04, làm song song: vòng 要確認 (đề xuất theo khung giờ và nhịp ở chỉ thị cho AI, rồi tạo bản nháp) và khoảng 自動投稿 (tự soạn, tự đăng trong khoảng tài năng đặt) ([KS] 確認14, 18, 25).
 5. EP05 và EP06 (tư liệu, duyệt, đăng bài). EP06 cần kết nối Upload-Post (8-2).
 6. EP07 (lấy kết quả, ghi ngược vào thư mục). Chỉ có dữ liệu thật sau khi EP06 chạy.
 7. EP08 (thu phí qua GMO). Có thể làm song song từ bước 3. Riêng 6-2 (EP01) chỉ hoàn tất khi 1-1 xong.

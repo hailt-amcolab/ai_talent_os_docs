@@ -5,7 +5,7 @@
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 高 (cao) |
 | Mục [YK2] | §6-8, chức năng 5-1; §5-7; UC-06, UC-06 前提 |
-| Màn hình [AG] | T-11 (tạo video), T-12 (xem), T-14 (thông báo xong); M-08 (nút 動画を作る, khung đỏ chờ 確認27) |
+| Màn hình [AG] | T-11 (tạo video), T-12 (xem), T-14 (thông báo xong); M-08 (nút 動画を作る, chỉ cho tài khoản công ty, [KS] 確認27) |
 | Tên trong mã nguồn | AI Video Generation |
 | Mức sẵn sàng | 🔴 Đỏ – chưa rõ cách làm video trình chiếu ảnh (S05-05), chưa có đơn giá, chưa kiểm chứng tham số và thời gian tạo của Kling |
 
@@ -22,7 +22,7 @@ Tài năng chọn loại video (ショート動画: người trong ảnh chuyể
 ## Tác nhân và quyền
 
 - Tài năng: tạo video cho bài của mình.
-- Quản lý: tạo thay ở M-08 (UC-06; áp dụng cho bài nào chờ 確認27). Lần tạo vẫn tính cho tài năng đó (B8).
+- Quản lý: tạo thay ở M-08, **chỉ cho tài khoản công ty** ([KS] 確認27); số lần vẫn đếm cho tài khoản đó, phí do アデッソ quyết toán nội bộ.
 
 ## Luồng chính
 
@@ -89,7 +89,9 @@ fal.ai (Kling): gửi theo hàng đợi, nhận kết quả qua webhook. Phải 
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認27, 31.
+Video do AI tạo hoặc AI chỉnh phải ghi nhãn theo điều khoản mạng xã hội khi đăng ([KS] 前提 UC-06-3).
+
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認27, 31.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -109,8 +111,8 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 - [YK2] §5-7, §6-3 (5-4), §6-8 (5-1), §9-3, UC-06, UC-06 前提, 確認27, 31.
 - [AG] trang 4 (T-11, T-12), trang 5 (T-14), trang 7 (M-08). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A6, B8, B9.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.36, CR-04 (đã chốt): hai loại video. **Video trình chiếu ảnh làm ở máy chủ bằng cách ghép ảnh, không gọi thêm dịch vụ AI** (không qua fal.ai). Video ngắn vẫn qua Kling. Đóng S05-05.
-- CR-09 (đã chốt làm ở SP1): quản lý tạo video thay tài năng từ màn quản trị, gọi cùng luồng với tài năng; phí tính vào hóa đơn của tài năng đó. Đóng B8.
+- CR-09 (đã chốt làm ở SP1): quản lý tạo video thay từ màn quản trị, gọi cùng luồng với tài năng. **Bảng xác nhận 17/11 ([KS] 確認27) thu hẹp: chỉ làm thay cho tài khoản công ty**, nên phần "phí tính vào hóa đơn của tài năng" không còn dùng. Đóng B8.
 - Q&A No.2, No.62: đơn giá video là một giá trị cài đặt ở màn quản trị.

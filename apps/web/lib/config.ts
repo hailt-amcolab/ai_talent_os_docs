@@ -2,9 +2,9 @@
 // ponytail: tên, mô tả, màu là giá trị tạm; thay khi khách gửi tên, logo, màu của ứng dụng アデッソ (C-06),
 // rồi chạy lại `npm run icons` hoặc chép logo thật vào public/icons/.
 export const APP = {
-  name: 'AI育成OS',
-  shortName: 'AI育成OS',
-  description: 'タレントのSNS投稿をAIコーチがサポートします',
+  name: 'AI Talent OS',
+  shortName: 'AI Talent OS',
+  description: 'An AI coach that supports talents with their social media posts',
   themeColor: '#f9a8c9',
   backgroundColor: '#ffffff',
 }

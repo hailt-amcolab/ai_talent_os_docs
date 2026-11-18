@@ -45,7 +45,7 @@ Khi chưa đủ số liệu, đăng theo giờ trong chỉ dẫn thuật toán c
 |---|---|---|---|
 | Chưa đủ số liệu thì theo chỉ dẫn của アデッソ | — | Chốt | §5-2, §6-11 |
 | Ngưỡng "đủ số liệu" | 20 bài, 3 khung giờ | Tham số | S07-06 |
-| Tài năng không đổi giờ | — | Giả định (確認30) | — |
+| Tài năng không đổi giờ | AI quyết giờ theo khung giờ hiệu quả アデッソ viết trong chỉ thị cho AI | Chốt ([KS] 確認30) | — |
 | Quản lý không có màn đổi giờ | Ghi giờ riêng trong hồ sơ | Đề xuất | S07-07 |
 
 ## Dữ liệu
@@ -64,7 +64,7 @@ Khi chưa đủ số liệu, đăng theo giờ trong chỉ dẫn thuật toán c
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認30.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認30.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

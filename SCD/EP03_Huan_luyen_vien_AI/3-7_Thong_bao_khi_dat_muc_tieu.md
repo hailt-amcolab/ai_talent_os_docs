@@ -60,7 +60,7 @@ Số người theo dõi một mạng đạt mục tiêu thì báo cả tài năn
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認5, 39.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認5, 39.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -73,7 +73,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 
 - [YK2] §5-5, §6-5 (3-7), 別紙A, 確認5, 39. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A7, B12.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.14 (AMCOLAB chốt, khách xem trên màn thật): thông báo "tăng người theo dõi" ([YK2] 別紙A) gửi khi đạt **25%, 50%, 75% mục tiêu** của từng mạng. Mỗi mốc chỉ gửi một lần cho mỗi mục tiêu.
 - Q&A No.42, CR-08 (đã chốt): đạt mục tiêu thì báo cả tài năng và quản lý.

@@ -47,7 +47,7 @@ Hệ thống (worker, lô buổi sáng).
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Đọc trước giờ nhắn | Giờ nhắn mặc định 8:00 | Tham số | §5-6, §6-4 |
+| Đọc trước giờ nhắn | Khung sáng mặc định 8:00; trưa, tối theo [KS] 確認18 (giờ chưa có) | Tham số | §5-6, §6-4 |
 | Giờ bắt đầu lô | 5:00 | Tham số [Đề xuất nội bộ] | — |
 | Giới hạn độ dài mỗi file | 20.000 ký tự | Tham số [Đề xuất nội bộ] | — |
 | Nội dung sửa đến hôm trước dùng cho hôm nay | — | Chốt | §6-4 |
@@ -90,7 +90,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 - [YK2] §5-6, §6-4 (2-1), §7-5, §9-2, §9-3, UC-01 前提.
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 4. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 6.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.22 (đã chốt): file đọc lỗi định dạng hoặc thiếu thông tin là lỗi trong thiết kế của mình. **Hiện tình trạng đọc file ở màn chi tiết tài năng** (lần đọc gần nhất, thành công hay lỗi, file nào lỗi). Tài năng chưa có thông tin thì AIコーチ không đưa bản nháp ([YK2] UC-01 前提). Đóng S02-07.
 - Mẫu file (ひな形) do khách (FutureCore) đưa; S02-04 không cần đề xuất mẫu của mình.

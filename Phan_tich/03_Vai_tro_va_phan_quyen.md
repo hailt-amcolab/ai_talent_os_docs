@@ -1,14 +1,5 @@
 # Vai trò người dùng và phân quyền
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- Một loại quản lý, mọi quản lý dừng được đăng tự động toàn bộ (Q&A No.5, CR-13). Không có người duyệt chỉ định (CR-14).
-- Nhóm tài năng và duyệt theo nhóm: CR-17, CR-19, chưa làm. Quản lý xem toàn bộ hội thoại: Q&A No.7 còn mở; nếu khách chọn riêng tư thì là CR-24.
-- Khôi phục tài khoản quản lý: Q&A No.67 đang hỏi (quản lý khác đặt lại xác thực hai bước; không cho vô hiệu hóa quản lý cuối cùng).
-
-
 Tab này đã viết lại theo bản yêu cầu v2. [YK2] = AI育成OS_概要要件定義書_v2.docx. Số 確認 (mục cần xác nhận) theo đánh số của v2. **So với v1:** thêm vai trò người đăng ký (chưa duyệt), bỏ vai trò tài năng miễn phí, quản lý có thêm quyền duyệt đơn, tạo tài khoản công ty, hủy bài trên màn hình quản trị và dừng đăng tự động theo từng tài năng.
 
 ## 1. Danh sách vai trò
@@ -19,7 +10,7 @@ Tài liệu định nghĩa ba loại người dùng: tài năng, tài khoản c�
 | --- | --- | --- | --- | --- |
 | Người đăng ký (chưa duyệt) | Người dùng | Mở ứng dụng tài năng từ đường dẫn, gửi đơn (tên, email, ngày sinh, đồng ý điều khoản). Chưa đăng nhập được | Có thể là người thuộc công ty hoặc ngoài công ty ⚠ | UC-01, 6-1 (1-4), 確認1 |
 | Tài năng (タレント) | Người dùng | Ứng dụng tài năng (PWA – ứng dụng web cài lên màn hình chính), email và mật khẩu, giữ đăng nhập 30 ngày | Đơn đã được duyệt. Tất cả đều trả phí, phải đăng ký thanh toán mới dùng được huấn luyện viên AI | 3-1, 5-4, 6-1 (1-4), UC-03 前提 |
-| Quản lý (マネージャー) | Người dùng | Màn hình quản trị (chủ yếu trên máy tính, dễ xem trên điện thoại), đăng nhập hai bước, tự đăng xuất sau 30 phút không thao tác. Ngoài ra dùng ChatGPT project để nhập thông tin tài năng | Chỉ có một mức quyền, mọi quản lý làm được như nhau. Khoảng 5 người, không trả phí | 3-1, 6-2 (1-6), 6-4 (2-3), 9-1, UC-10 前提 |
+| Quản lý (マネージャー) | Người dùng | Màn hình quản trị (chủ yếu trên máy tính; trên điện thoại đọc được, màn duyệt và màn chỉ dẫn cho AI thao tác được, [KS] 前提 UC-10-1), đăng nhập hai bước, tự đăng xuất sau 30 phút không thao tác. Ngoài ra dùng ChatGPT project để nhập thông tin tài năng | Chỉ có một mức quyền, mọi quản lý làm được như nhau. Khoảng 5 người, không trả phí | 3-1, 6-2 (1-6), 6-4 (2-3), 9-1, UC-10 前提  Một loại quản lý, mọi quản lý dừng được đăng tự động toàn bộ (Q&A No.5, CR-13). Người duyệt chỉ định (CR-14) bị cắt, nhưng yêu cầu duyệt gửi theo nhóm hoặc quản lý phụ trách ([KS] 確認34, CR-19) |
 | Tài khoản công ty (事務所アカウント) | Tài khoản do quản lý tạo và vận hành | Quản lý đăng nhập ứng dụng tài năng bằng mã của từng tài khoản công ty (UC-12 前提). ⚠ Chức năng 9-1 lại nói thao tác trên màn hình quản trị | Không thu phí tháng, không đăng ký thanh toán. Không duyệt bài ⚠ | 3-1, UC-12 前提, 6-10 (9-1), 確認52 |
 | Huấn luyện viên AI (AIコーチ) | Tác nhân hệ thống | Không đăng nhập. Mỗi tài năng có một huấn luyện viên, chỉ được dùng dữ liệu của tài năng đó | Đọc và ghi dữ liệu thay mặt hệ thống. Chưa có hồ sơ thì chưa đưa bản nháp | 5-5, 6-1 (1-5), 6-5, UC-01 前提 |
 | Xử lý tự động của hệ thống | Tác nhân hệ thống | Chạy theo lịch hoặc theo sự kiện: gửi email, xử lý buổi sáng, đăng bài, lấy số liệu, thu phí | Tài liệu không đặt tên vai trò này, nhưng các chức năng tự động cần quyền riêng | 6-1 (1-4), 6-4 (2-2), 6-10, 6-11, 6-3 |
@@ -29,7 +20,7 @@ Tài liệu định nghĩa ba loại người dùng: tài năng, tài khoản c�
 - **アデッソ (công ty khách hàng):** quyết định duyệt đơn, soạn điều khoản sử dụng, quản lý tài khoản các dịch vụ ngoài. Tài năng thuộc công ty đã ủy thác việc xử lý dữ liệu cá nhân và quyền hình ảnh khi ký hợp đồng ([YK2] 2-3, 8, 10-3).
 - **Dịch vụ ngoài:** OpenAI, Upload-Post, fal.ai (Kling), cổng thanh toán (GMO), Microsoft 365 (OneDrive), ChatGPT, dịch vụ gửi email (chưa chọn) ([YK2] 8, 7-2).
 
-**Người vị thành niên** không phải một vai trò riêng. Hệ thống tính từ ngày sinh và hiển thị trên màn hình quản trị để tham khảo ⚠ ([YK2] 3-1, 確認2).
+**Người dưới 18 tuổi** không phải một vai trò riêng. Hệ thống tính từ ngày sinh và hiện nhãn dưới 18 tuổi trên màn hình quản trị để tham khảo ([YK2] 3-1, [KS] 確認2).
 
 ## 2. Trách nhiệm và chức năng sử dụng
 
@@ -64,18 +55,18 @@ Quản lý có toàn quyền trên mọi tài năng. Tài năng chỉ thao tác 
 | **Thông tin tài năng và cài đặt** |  |  |  |  |  |  |  |
 | Nhập hoặc sửa hồ sơ, mục tiêu, thử thách | Không | Không | Có (qua ChatGPT project và màn hình quản trị) | – | Chỉ ghi thêm vào file bộ nhớ | – | 3-2, 2-3, 2-4, UC-02 前提 |
 | Sửa kinh nghiệm đăng bài, chỉ dẫn cho AI, giọng điệu | Không | Không | Có (file OneDrive. Màn hình riêng ⚠) | – | Chỉ đọc | – | 7-1, 7-5, 確認6, 7, 8 |
-| Tạo và gán nhóm tài năng | Không | Không | Có ⚠ | – | – | – | 確認47 |
+| Tạo và gán nhóm tài năng, gán quản lý phụ trách | Không | Không | Có | – | – | – | [KS] 確認47, 34 |
 | Đăng ký danh sách từ cấm | Không | Không | Có | – | Chỉ dùng để kiểm tra | – | 4-4, 5-6, UC-02 前提 |
 | Đổi cài đặt chung (giờ nhắn tin, giờ nhắc, số ngày không đăng) | Không | Không | Có | – | – | – | 5-6 |
 | Bật hoặc tắt duyệt bài cho từng tài năng | Không | Không | Có (khi duyệt đơn và về sau) | – | – | – | 5-6, 2-2, 7-7 |
 | Đổi loại tài khoản | Không | Không | Không (không còn phân loại trả phí / miễn phí) | – | – | – | 5-4, 1-2, 1-3 |
 | **Hội thoại và bài đăng** |  |  |  |  |  |  |  |
-| Trò chuyện với huấn luyện viên AI | Không | Của mình (sau khi thanh toán, không giới hạn số lần ⚠) | ⚠ thay tài năng: chưa rõ | Có | Trả lời, chủ động nhắn | – | 3-4, UC-12, 確認23 |
+| Trò chuyện với huấn luyện viên AI | Không | Của mình (sau khi thanh toán; số lần chưa giới hạn, khách muốn đặt giới hạn, chưa chốt, 確認23) | ⚠ thay tài năng: chưa rõ | Có | Trả lời, chủ động nhắn | – | 3-4, UC-12, 確認23 |
 | Chọn chủ đề, nhờ AI viết lại, 採用 | Không | Của mình | Chỉ với tài khoản công ty | Có | Tạo và viết lại bản nháp | – | 3-2, 4-1 đến 4-3 |
-| Tự sửa chú thích, hashtag | Không | Không ⚠ | Chỉ khi bài dính từ cấm | ⚠ | – | – | 4-2, 4-4, 確認28 |
-| Gửi ảnh, video, yêu cầu tạo video | Không | Của mình | Có, thay tài năng ⚠ | Có | – | Gọi fal.ai, đếm số lần | 3-2, 6-3, 5-1, 確認27 |
+| Tự sửa chú thích, hashtag | Không | Có, bản nháp của mình ([KS] 確認28) | Chỉ khi bài dính từ cấm | Nhờ AI viết lại tối đa 2 lần ([KS] 確認29) | – | – | 4-2, 4-4, [KS] 確認28, 29 |
+| Gửi ảnh, video, yêu cầu tạo video | Không | Của mình | Chỉ cho tài khoản công ty ([KS] 確認27) | Có | – | Gọi fal.ai, đếm số lần | 3-2, 6-3, 5-1, [KS] 確認27 |
 | Gửi yêu cầu duyệt bài, gửi lại sau khi bị trả lại | Không | Của mình (nếu được bật duyệt) ⚠ | – | Không duyệt ⚠ | – | – | 4-3, 確認33, 35, 52 |
-| Duyệt hoặc trả lại bài | Không | Không | Có, người bấm trước quyết ⚠ | – | – | Quá giờ chưa duyệt thì hủy lịch ⚠ | 3-2, 7-7, 確認34, 36 |
+| Duyệt hoặc trả lại bài | Không | Không | Có: quản lý của nhóm hoặc quản lý phụ trách nhận yêu cầu, người bấm trước quyết ([KS] 確認34) | – | – | Quá giờ chưa duyệt thì hủy lịch ⚠ | 3-2, 7-7, 確認34, 36 |
 | Hủy bài đã hẹn giờ | Không | Không | Có, trên màn hình quản trị | ⚠ | – | Khi dừng đăng tự động, khi tài năng kết thúc | 3-2, 7-2, 7-5, UC-08 前提 |
 | Đổi giờ đăng | Không | Không ⚠ | ⚠ chưa nêu | ⚠ | – | AI chọn giờ | 8-1, 確認30 |
 | Đăng bài lên mạng xã hội | Không | Không trực tiếp | Không trực tiếp | Không trực tiếp | Không | Có (đúng giờ, lên mạng đã kết nối) | 8-3, 8-4 |
@@ -88,7 +79,7 @@ Quản lý có toàn quyền trên mọi tài năng. Tài năng chỉ thao tác 
 | Quyết định dừng sử dụng khi thanh toán lỗi | Không | Không | Có ⚠ | – | – | Không tự dừng | 1-1, 確認48 |
 | **Theo dõi** |  |  |  |  |  |  |  |
 | Xem số liệu, số người theo dõi, mức đạt mục tiêu | Không | Chỉ của mình, không xếp hạng ⚠ | Mọi tài năng ⚠ | Có | Đọc để nhận xét | Lấy và ghi số liệu | 3-10, 6-7, 8-7, 8-8, 確認40, 41 |
-| Xem thông báo | Nhận email kết quả | Của mình (trong ứng dụng và thông báo đẩy) | Mọi thông báo dành cho quản lý, chỉ trên màn hình quản trị ⚠. Đánh dấu đã xử lý ⚠ | Có | – | Gửi thông báo | 6-1, 7-4, 確認41, 45, 46 |
+| Xem thông báo | Nhận email kết quả | Của mình (trong ứng dụng và thông báo đẩy) | Mọi thông báo dành cho quản lý trên màn hình quản trị; yêu cầu duyệt chỉ tới quản lý của nhóm hoặc phụ trách ([KS] 確認34). Email: khách muốn thêm, chưa chốt (確認45). Đánh dấu đã xử lý ⚠ | Có | – | Gửi thông báo | 6-1, 7-4, 確認41, 45, 46 |
 | Xem chi phí AI theo tài năng | Không | Không | Có | – | – | Tổng hợp | 3-5 |
 | Xem nhật ký việc quản lý xem thông tin | Không | Không | Có (không sửa được) | – | – | Ghi nhật ký | 7-6, 確認44 |
 | Xem nhật ký thao tác và nhật ký xử lý | Không | Không | ⚠ | – | – | Ghi nhật ký | 9-4 |
@@ -110,7 +101,7 @@ Mục 7-2 của [YK2] quy định ai được xem từng loại dữ liệu. Cá
 | Kinh nghiệm đăng bài, chỉ dẫn thuật toán, chỉ dẫn cho AI | OneDrive (và cơ sở dữ liệu nếu làm màn hình chỉ dẫn ⚠) | – | – | Đ, G | Đ | OpenAI | 7-1, 7-2, 確認6 |
 | Số liệu bài đăng, số người theo dõi | OneDrive (ghi lại từ Upload-Post) | Đ | – (không xếp hạng ⚠) | Đ | Đ | Upload-Post (nguồn số liệu) | 6-7, 7-2, 8-7, 8-8, 確認40 |
 | Ảnh và video | OneDrive | Đ, G | – | Đ, G (gửi thay tài năng ⚠) | ⚠ không được nêu | Upload-Post (khi đăng), fal.ai (khi tạo video) | 6-3, 6-4, 7-2 |
-| Bản nháp bài đăng | Hệ thống | Đ. Sửa qua AI | – | Đ, G (khi dính từ cấm), duyệt | Đ, G | OpenAI, Upload-Post | 3-2, 4-1 đến 4-4, 7-7, 確認28 |
+| Bản nháp bài đăng | Hệ thống | Đ, G (tự sửa chữ, [KS] 確認28). Sửa qua AI tối đa 2 lần | – | Đ, G (khi dính từ cấm), duyệt | Đ, G | OpenAI, Upload-Post | 3-2, 4-1 đến 4-4, 7-7, 確認28 |
 | Hội thoại với huấn luyện viên AI | Hệ thống | Đ, G | – | Đ (toàn bộ ⚠) | Đ, G | OpenAI | 3-2, 7-2, 確認42 |
 | Thông tin thẻ, thanh toán, lịch sử hóa đơn | Cổng thanh toán (hệ thống không lưu thẻ) | Đ, G (qua trang của cổng thanh toán) | – | ⚠ trạng thái thanh toán | – | GMO | 1-1, 7-2, 10-2 |
 | Số lần tạo video và phí trong tháng | Hệ thống | Đ | – | Đ | – | Cổng thanh toán (số tiền) | 5-4 |
@@ -129,20 +120,20 @@ Có 20 điểm. Nhóm A chờ khách trả lời 確認. Nhóm B và C là nhữ
 
 | STT | 確認 | Đề xuất hiện tại | Câu hỏi cần làm rõ | Nguồn [YK2] |
 | --- | --- | --- | --- | --- |
-| 1 | 41, 47 | Mọi quản lý xem được mọi tài năng, mọi quản lý nhận mọi thông báo. Nhóm tài năng dùng để lọc | Khi lên 1.000 tài năng có cần giới hạn theo quản lý phụ trách không? Nhóm tài năng có dùng để phân quyền không? | 3-2, 3-3, UC-10 |
-| 2 | 42, 13 | Quản lý đọc toàn bộ hội thoại. Lần đầu mở ứng dụng, tài năng bấm nút xác nhận đã biết | Có cần lưu lại việc tài năng đã bấm xác nhận không? Với người vị thành niên có cần thêm phụ huynh xác nhận không? | 3-2, UC-03 |
+| 1 | 41, 47 | Mọi quản lý xem được mọi tài năng. Yêu cầu duyệt gửi theo nhóm hoặc quản lý phụ trách ([KS] 確認34); khách muốn chia cả nơi nhận thông báo khác theo người phụ trách (ý kiến ở 確認41, chưa chốt). Nhóm tài năng dùng để lọc và chia yêu cầu duyệt ([KS] 確認47) | Khi lên 1.000 tài năng có cần giới hạn theo quản lý phụ trách không? Nhóm tài năng có dùng để phân quyền không? | 3-2, 3-3, UC-10 |
+| 2 | 42, 13 | Quản lý đọc toàn bộ hội thoại. (Q&A No.7 đóng 17/11: quản lý xem toàn bộ hội thoại; không làm CR-24.) Lần đầu mở ứng dụng, tài năng bấm nút xác nhận đã biết | Có cần lưu lại việc tài năng đã bấm xác nhận không? Với người vị thành niên có cần thêm phụ huynh xác nhận không? | 3-2, UC-03 |
 | 3 | 27 | Quản lý gửi ảnh và tạo video thay tài năng | Chỉ cho tài khoản công ty hay cho mọi tài năng? Phí video tính vào ai? | UC-05, 6-3 |
 | 4 | 52 | Tài khoản công ty không cần duyệt | Một quản lý tạo và đăng bài mà không ai kiểm tra chéo, có chấp nhận được không? Mục 7-4 lại ghi có duyệt | UC-12, 7-4 |
-| 5 | 34 | Quản lý bấm trước thì quyết | Có ghi lại ai đã duyệt không? Hai quản lý bấm gần như cùng lúc thì sao? | UC-07, 9-4 |
+| 5 | 34 | Quản lý của nhóm hoặc phụ trách nhận yêu cầu; bấm trước thì quyết ([KS]) | Có ghi lại ai đã duyệt không? Hai quản lý bấm gần như cùng lúc thì sao? | UC-07, 9-4 |
 | 6 | 48 | Thanh toán lỗi thì quản lý quyết có dừng sử dụng không | "Dừng sử dụng" là đổi sang 利用終了 (đã kết thúc) hay có trạng thái tạm khóa riêng? | UC-11, 6-3 (1-1) |
 | 7 | 9, 11 | Tài năng tự kết nối mạng xã hội, không bắt buộc đủ 3 mạng. Quản lý chỉ xem trạng thái | Với tài khoản công ty thì ai kết nối? Tài năng có tự ngắt kết nối được không? | UC-03, 8-2 |
-| 8 | 1, 2 | Người ngoài công ty đăng ký cùng luồng. Vị thành niên tính từ ngày sinh, chỉ để tham khảo | Người ngoài công ty và người vị thành niên có bị giới hạn quyền nào không (ví dụ thanh toán qua cước nhà mạng, tạo video có phí)? Ai lấy đồng ý của họ? | UC-01, 10-3 |
+| 8 | 1, 2 | Người ngoài công ty đăng ký cùng luồng. Nhãn dưới 18 tuổi tính từ ngày sinh, chỉ để tham khảo ([KS] 確認2) | Người ngoài công ty và người vị thành niên có bị giới hạn quyền nào không (ví dụ thanh toán qua cước nhà mạng, tạo video có phí)? Ai lấy đồng ý của họ? | UC-01, 10-3 |
 
 ### B. Quyền của quản lý tài liệu chưa nói tới
 
 | STT | Điểm chưa rõ | Căn cứ [YK2] |
 | --- | --- | --- |
-| 9 | **Không có vai trò quản trị cao hơn:** mọi quản lý đều thêm và vô hiệu hóa được quản lý khác. Có chặn việc vô hiệu hóa quản lý cuối cùng không? Ai tạo quản lý đầu tiên? | 6-2 (1-6) |
+| 9 | **Không có vai trò quản trị cao hơn:** mọi quản lý đều thêm và vô hiệu hóa được quản lý khác. Có chặn việc vô hiệu hóa quản lý cuối cùng không? Ai tạo quản lý đầu tiên?  Q&A No.67 đang hỏi: quản lý khác đặt lại xác thực hai bước; không cho vô hiệu hóa quản lý cuối cùng. | 6-2 (1-6) |
 | 10 | **Hai quản lý cùng xử lý một đơn đăng ký:** quy tắc "người bấm trước quyết" chỉ nói cho duyệt bài. Duyệt đơn thì sao? Đơn đã từ chối có được đổi thành duyệt không? | UC-01, 確認34 |
 | 11 | **Quản lý trò chuyện với AI thay tài năng:** bảng ở mục 3-2 chỉ cho quản lý 採用 bản nháp của tài khoản công ty | 3-2 |
 | 12 | **Quản lý sửa bản nháp của tài năng:** tài liệu chỉ cho sửa khi bài dính từ cấm. Khi duyệt bài, quản lý có được sửa không? Sau khi quản lý sửa, tài năng có phải xác nhận lại không? | 6-6 (4-4), 6-9 (7-7) |
@@ -150,7 +141,7 @@ Có 20 điểm. Nhóm A chờ khách trả lời 確認. Nhóm B và C là nhữ
 | 14 | **Quyền trên OneDrive nằm ngoài hệ thống:** việc quản lý xem file hồ sơ trực tiếp trên OneDrive không được ghi vào nhật ký xem (7-6) | 7-2, 7-5, 7-6 |
 | 15 | **Quyền của ChatGPT project:** mỗi tài năng một project. Ai được vào project nào? Tài khoản ChatGPT dùng chung hay riêng từng quản lý? Việc ghi qua ChatGPT có nằm trong nhật ký thao tác không? | 6-4 (2-3), UC-01 前提, 9-4 |
 | 16 | **Ai được xem nhật ký thao tác và nhật ký xử lý:** mục 9-4 yêu cầu ghi, nhưng không có chức năng nào để xem | 9-4 |
-| 17 | **Tài năng đã kết thúc sử dụng:** quản lý còn được xem và xuất dữ liệu không? Hết thời gian giữ thì ai xóa? | 7-3, UC-13, 確認55 |
+| 17 | **Tài năng đã kết thúc sử dụng:** quản lý còn được xem và xuất dữ liệu không? Hết 6 tháng thì hệ thống tự xóa, không khôi phục ([KS] 確認55). | 7-3, UC-13 |
 
 ### C. Quyền của tài năng, người đăng ký và hệ thống tài liệu chưa nói tới
 

@@ -74,6 +74,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 
 - [YK2] §5-5, §6-5 (3-5). [AG] trang 8 (M-10).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.17, CR-16 (đã chốt): phí AI tổng hợp theo tài năng và theo tháng, hiện ở màn quản trị; **không có trần, không tự dừng**. Đóng S03-08.

@@ -1,14 +1,6 @@
 # Dữ liệu và ERD sơ bộ
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- NHOM_TAI_NANG và quan hệ tài năng – nhóm: CR-17, chưa làm. Thứ tự video tự làm: CR-23, chưa làm. Cấu trúc cơ sở dữ liệu sẽ dựng lại sau, file này chỉ là phân tích.
-- LAN_TAO_VIDEO: video trình chiếu ghép ở máy chủ, không gọi fal.ai (CR-04). Tính lượt lúc gửi yêu cầu, lỗi phía dịch vụ không tính (Q&A No.1).
-
-
-Hệ thống cần quản lý 27 entity, nằm ở 3 nơi lưu: cơ sở dữ liệu của hệ thống, OneDrive và các dịch vụ ngoài. Trong đó 3 entity chỉ cần nếu khách chấp nhận đề xuất mới của v2 (thử thách, chỉ dẫn cho AI, nhóm tài năng). [YK2] chỉ mô tả dữ liệu ở mức nghiệp vụ (mục 7 データ要件 – yêu cầu dữ liệu), nên cấu trúc bảng, khóa và kiểu dữ liệu ở đây đều là đề xuất của mình. Tab này đã viết lại theo bản yêu cầu v2.
+Hệ thống cần quản lý 28 entity, nằm ở 3 nơi lưu: cơ sở dữ liệu của hệ thống, OneDrive và các dịch vụ ngoài. Trong đó thử thách, chỉ dẫn cho AI, nhóm tài năng là chức năng khách đã quyết làm ngày 17/11 ([KS]), và KHOANG_DANG_TU_DONG mới thêm cho cách đăng 自動投稿. Cấu trúc bảng thật nằm ở `database-design/`; tệp này chỉ là phân tích nghiệp vụ. [YK2] chỉ mô tả dữ liệu ở mức nghiệp vụ (mục 7 データ要件 – yêu cầu dữ liệu), nên cấu trúc bảng, khóa và kiểu dữ liệu ở đây đều là đề xuất của mình. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với bản theo v1:** bỏ entity đường dẫn mời (LOI_MOI), thêm đơn đăng ký (DON_DANG_KY). Bỏ thuộc tính có trả phí, thay bằng loại tài khoản (tài năng / công ty). Thêm ngày sinh và cờ dừng đăng tự động cho từng tài năng. Thêm 3 entity đề xuất: THU_THACH, CHI_DAN_AI, NHOM_TAI_NANG.
 
@@ -23,7 +15,7 @@ Hệ thống cần quản lý 27 entity, nằm ở 3 nơi lưu: cơ sở dữ li
 
 | Nơi lưu | Dữ liệu | Ai được xem | Trạng thái | Nguồn [YK2] |
 | --- | --- | --- | --- | --- |
-| OneDrive, thư mục riêng của từng tài năng | Hồ sơ, mục tiêu, チャレンジ (thử thách) ⚠, kinh nghiệm đăng bài riêng, số liệu, ngày riêng, file bộ nhớ do AI ghi, ảnh và video. Thư mục tạo khi tài năng đăng ký thanh toán xong, được gắn với ChatGPT project của tài năng | Quản lý, AI (chỉ tài năng đó). Ảnh và video thì tài năng và quản lý xem | Đã xác nhận | 7-1, 7-2, 7-5, UC-01 前提, 確認5 |
+| OneDrive, thư mục riêng của từng tài năng | Hồ sơ, mục tiêu, kinh nghiệm đăng bài riêng, số liệu, ngày riêng, file bộ nhớ do AI ghi, ảnh và video. Thư mục tạo khi tài năng đăng ký thanh toán xong, được gắn với ChatGPT project của tài năng | Quản lý, AI (chỉ tài năng đó). Ảnh và video thì tài năng và quản lý xem | Đã xác nhận | 7-1, 7-2, 7-5, UC-01 前提, 確認5 |
 | OneDrive, thư mục chung | Kinh nghiệm đăng bài, chỉ dẫn thuật toán, chỉ dẫn cho AI. Bên phát triển gửi mẫu định dạng file | Quản lý, AI | Đã xác nhận | 7-1, 6-4 (2-1), UC-02 前提 |
 | Cơ sở dữ liệu của hệ thống (Supabase theo dự kiến) | Hội thoại với AI | Tài năng, quản lý | Đã xác nhận | 7-2, 8 |
 | Cơ sở dữ liệu của hệ thống | Đơn đăng ký, tài khoản, bài đăng, duyệt, thông báo, hóa đơn, cài đặt, nhật ký, từ cấm (quản lý đăng ký trên màn hình quản trị) | Theo từng loại | Giả định: tài liệu không nói nơi lưu, nhưng các chức năng cần | 6, 9-4, UC-02 前提 |
@@ -52,21 +44,22 @@ Trong cột thuộc tính, phần trước dấu "|| Giả định:" là đã x�
 | HO_SO_TAI_NANG | Các file trong thư mục riêng của tài năng | OneDrive | Profile, định hướng, sở thích, sở trường, mục tiêu tương lai (văn bản tự do). Ngày riêng. Kế hoạch nội dung. Kinh nghiệm riêng cho tài năng. File bộ nhớ do AI ghi. File số liệu \|\| Giả định: tên và định dạng từng file, lần sửa cuối | Có | 7-1, 7-5, UC-02 前提, 6-5 (3-2), 6-11 (8-8) |
 | TAI_LIEU_CHUNG | Các file trong thư mục chung | OneDrive | Kinh nghiệm đăng bài, chỉ dẫn thuật toán, chỉ dẫn cho AI (giọng điệu) | Có | 7-1, 7-5, UC-02 前提 |
 | MUC_TIEU | Mục tiêu số người theo dõi | Cơ sở dữ liệu và OneDrive (xem mâu thuẫn ở mục 1) | Tài năng, mạng xã hội, số người mục tiêu (mặc định 10.000 ⚠), hạn đạt \|\| Giả định: ngày đạt, đã báo đạt mục tiêu chưa | Có | 6-4 (2-4), UC-02 前提, 確認3, 39 |
-| THU_THACH (mới, ⚠) | チャレンジ: mục tiêu nhỏ có thời hạn và số lần, ví dụ đăng 7 ngày liền | Đề xuất: trong file thông tin tài năng trên OneDrive ⚠ | Nội dung, thời hạn, số lần \|\| Giả định: tiến độ, đã hoàn thành chưa. Nếu cần hiển thị tiến độ trên ứng dụng thì phải có bản trong cơ sở dữ liệu | Có (đề xuất) | UC-02 前提, 確認5, 14, 39 |
+| THU_THACH (mới) | チャレンジ: mục tiêu nhỏ có thời hạn và số lần, ví dụ đăng 7 ngày liền. AI đề xuất, tài năng nhận hoặc từ chối, không cần duyệt ([KS] 確認5) | Đề xuất: cơ sở dữ liệu (cần lưu trạng thái đề xuất / đã nhận / đã từ chối) | Nội dung, thời hạn, số lần, người đề xuất (AI / quản lý qua chỉ thị), trạng thái, lúc đề xuất lại \|\| Giả định: tiến độ, đã hoàn thành chưa | Có (đề xuất) | UC-02 前提, 確認5, 14, 39 |
 | TIN_NHAN | Từng tin nhắn trong hội thoại với AI | Cơ sở dữ liệu | Tài năng, người gửi (tài năng / AI), nội dung chữ (tài năng gửi tối đa 1.000 ký tự), thời điểm \|\| Giả định: loại tin (trả lời / tin sáng / nhắc / tổng kết tuần / chúc mừng), có phải chuyện nghiêm trọng không, số token AI đã dùng | Có | 6-5 (3-4), 7-2, UC-04 前提 |
-| CHU_DE_GOI_Y | 3 chủ đề gợi ý mỗi sáng | Cơ sở dữ liệu | Tài năng, ngày, nội dung \|\| Giả định: thứ tự (1–3), nguồn gợi ý (sở thích / bài cũ / tin tức / chỉ dẫn công ty), đã được chọn chưa | Có | 5-3, 6-6 (4-1), 確認15 |
+| CHU_DE_GOI_Y | 3 chủ đề gợi ý mỗi lần đề xuất (cách đăng 要確認; nhịp theo chỉ thị cho AI, [KS] 確認14) | Cơ sở dữ liệu | Tài năng, ngày, nội dung \|\| Giả định: thứ tự (1–3), nguồn gợi ý (sở thích / bài cũ / tin tức / chỉ dẫn công ty), đã được chọn chưa | Có | 5-3, 6-6 (4-1), 確認15 |
 | CHI_DAN_AI (mới, ⚠) | Chỉ dẫn nhập trên màn hình "AIへの指示" (chỉ dẫn cho AI) | Đề xuất: cơ sở dữ liệu | Phạm vi (toàn bộ / nhóm / tài năng), nội dung chỉ dẫn, lịch sử phiên bản (quay lại bản cũ được) \|\| Giả định: người sửa, thời điểm có hiệu lực | Có (đề xuất) | 確認6, 7, 8 |
-| NHOM_TAI_NANG (mới, ⚠) | Nhóm tài năng (カテゴリー), ví dụ người mẫu, diễn viên, ca sĩ | Đề xuất: cơ sở dữ liệu | Tên, màu, thứ tự. Một tài năng thuộc nhiều nhóm (cần bảng trung gian) | Có (đề xuất) | 確認47 |
+| NHOM_TAI_NANG (mới) | Nhóm tài năng (カテゴリー), ví dụ người mẫu, diễn viên, ca sĩ. Làm theo [KS] 確認47 | Cơ sở dữ liệu | Tên, màu, thứ tự, quản lý phụ trách nhận yêu cầu duyệt ([KS] 確認34). Một tài năng thuộc nhiều nhóm (cần bảng trung gian) | Có | [KS] 確認47, 34 |
 
 ### 2.3 Bài đăng, tư liệu, video
 
 | Entity | Ý nghĩa | Nơi lưu | Thuộc tính chính | Entity có trong tài liệu? | Nguồn [YK2] |
 | --- | --- | --- | --- | --- | --- |
 | BAI_DANG | Một bài, từ bản nháp đến khi đăng xong. Mỗi ngày có thể có nhiều bài | Cơ sở dữ liệu | Tài năng, chủ đề, chú thích, hashtag, hướng dẫn chụp, kịch bản (nếu là video), có gửi duyệt không, giờ đăng, trạng thái (6 trạng thái, chưa liệt kê) \|\| Giả định: gộp bản nháp và bài đã hẹn vào một entity, thời điểm 採用, kết quả kiểm tra từ cấm và lý do, mã bài trên Upload-Post, tiêu đề YouTube, lý do hủy | Có | 5-1, 5-3, 6-6, 6-10 (7-2, 8-3) |
+| KHOANG_DANG_TU_DONG (mới) | Một khoảng 自動投稿 (đăng tự động): tài năng chọn chủ đề, tải tư liệu, đặt thời gian; hệ thống tự soạn và đăng trong khoảng ([KS] 確認19, 25) | Cơ sở dữ liệu | Tài năng, chủ đề, ngày bắt đầu, ngày kết thúc (ví dụ 1–2 tuần), tư liệu dùng, trạng thái \|\| Chưa rõ: nhịp đăng trong khoảng, xử lý khi hết tư liệu, có duyệt không | Có (mới) | [KS] 確認25 |
 | KET_QUA_DANG | Kết quả đăng trên từng mạng xã hội | Cơ sở dữ liệu | Bài đăng, mạng xã hội, thành công hay lỗi, lý do lỗi \|\| Giả định: mã bài trên mạng xã hội, thời điểm đăng thực tế, đã gắn nhãn AI chưa | Có | 5-1, 6-10 (8-3, 8-5) |
 | YEU_CAU_DUYET | Mỗi lần gửi duyệt một bài | Cơ sở dữ liệu | Bài đăng, kết quả (duyệt / trả lại / hủy do quá giờ ⚠), lý do trả lại (bắt buộc khi trả lại), quản lý đã quyết ⚠. Một bài có thể gửi lại nhiều lần ⚠ \|\| Giả định: thời điểm gửi và xử lý | Có | 6-9 (7-7), 確認34, 35, 36 |
-| TU_LIEU | Ảnh hoặc video gốc | File trên OneDrive, thông tin trên cơ sở dữ liệu | Tài năng, loại (ảnh / video), người gửi (tài năng / quản lý ⚠), video tự làm hay không, thứ tự lưu (với video tự làm ⚠) \|\| Giả định: đường dẫn file, dung lượng, định dạng, đã dùng cho bài nào, do AI tạo hay không | Có | 6-7 (6-3, 6-4), 確認27, 32 |
-| LAN_TAO_VIDEO | Mỗi lần yêu cầu AI tạo video | Cơ sở dữ liệu | Tài năng hoặc tài khoản công ty, loại (video ngắn / video trình chiếu ảnh ⚠), ảnh gốc, đơn giá lúc xác nhận, có tính lần không (lỗi thì không tính), kết quả (dùng / tạo lại / bỏ), video kết quả \|\| Giả định: người yêu cầu (tài năng / quản lý), mã việc trên fal.ai, tháng tính | Có | 5-4, 5-7, 6-8, 6-3 (5-4), UC-12 前提, 確認31 |
+| TU_LIEU | Ảnh hoặc video gốc | File trên OneDrive, thông tin trên cơ sở dữ liệu | Tài năng, loại (ảnh / video), người gửi (tài năng; quản lý chỉ với tài khoản công ty, [KS] 確認27), thuộc khoảng 自動投稿 nào ([KS] 確認25), video tự làm hay không, thứ tự lưu (với video tự làm: CR-23, chưa làm) \|\| Giả định: đường dẫn file, dung lượng, định dạng, đã dùng cho bài nào, do AI tạo hay không | Có | 6-7 (6-3, 6-4), 確認27, 32 |
+| LAN_TAO_VIDEO | Mỗi lần yêu cầu AI tạo video | Cơ sở dữ liệu | Tài năng hoặc tài khoản công ty, loại (video ngắn / video trình chiếu ảnh ⚠), ảnh gốc, đơn giá lúc xác nhận, có tính lần không (lỗi thì không tính), kết quả (dùng / tạo lại / bỏ), video kết quả \|\| Giả định: người yêu cầu (tài năng / quản lý), mã việc trên fal.ai, tháng tính | Có | 5-4, 5-7, 6-8, 6-3 (5-4), UC-12 前提, 確認31  Video trình chiếu ghép ở máy chủ, không gọi fal.ai (CR-04). Tính lượt lúc gửi yêu cầu, lỗi phía dịch vụ không tính (Q&A No.1). |
 | TU_CAM | Danh sách từ cấm chung, quản lý đăng ký trên màn hình quản trị | Cơ sở dữ liệu | Từ hoặc cách nói \|\| Giả định: nhóm (vi phạm quy định mạng xã hội / gây hiểu lầm / công ty không dùng), người sửa cuối | Có | 6-6 (4-4), UC-02 前提, 確認4 |
 
 ### 2.4 Mạng xã hội và số liệu
@@ -350,7 +343,7 @@ erDiagram
 | Tài năng – thư mục OneDrive | 1 – 0..1 (chỉ có sau khi thanh toán) | Xác nhận | UC-01 前提, 6-4 (2-2) |
 | Tài năng – kết nối mạng xã hội | 1 – 0..3 (mỗi mạng một tài khoản, không bắt buộc đủ) | Xác nhận ⚠ | 6-10 (8-2), 確認10, 11 |
 | Tài năng – mục tiêu | 1 – tối đa 3 (mỗi mạng một mục tiêu) | Xác nhận | 6-4 (2-4) |
-| Tài năng – chủ đề gợi ý | 1 – nhiều (3 mỗi ngày) | Xác nhận ⚠ | 5-3, 確認15 |
+| Tài năng – chủ đề gợi ý | 1 – nhiều (3 mỗi lần đề xuất) | Xác nhận ⚠ | 5-3, 確認15 |
 | Tài năng – bài đăng | 1 – nhiều, mỗi ngày bao nhiêu cũng được | Xác nhận | 5-3, UC-05 前提 |
 | Chủ đề gợi ý – bài đăng | 0..1 – nhiều. Bài có thể đến từ chủ đề tài năng tự nói hoặc video tự làm | Giả định | 5-3, UC-06 |
 | Bài đăng – kết quả đăng | 1 – tối đa 3 | Xác nhận | 6-10 (8-3) |
@@ -359,9 +352,9 @@ erDiagram
 | Lần tạo video – tư liệu | Nhiều ảnh gốc, một video kết quả | Giả định (số ảnh gốc chưa có) | 6-8 (5-1) |
 | Tài năng – hóa đơn tháng | 1 – nhiều. Tài khoản công ty không có hóa đơn | Xác nhận | 5-4, UC-12 前提 |
 | Hóa đơn – lần tạo video | 1 – nhiều | Giả định (tài liệu chỉ nói cộng gộp) | 5-4 |
-| Quản lý – tài năng | Không có phân công. Mọi quản lý đều thấy mọi tài năng | Xác nhận ⚠ | 3-3, 確認41 |
+| Quản lý – tài năng | Mọi quản lý thấy mọi tài năng. Có quản lý phụ trách (theo nhóm hoặc theo từng tài năng) để nhận yêu cầu duyệt | Chốt ([KS] 確認34; ý kiến khách ở 確認41) | 3-3, [KS] 確認34, 41 |
 | Thông báo cho quản lý – quản lý | Một thông báo dùng chung cho mọi quản lý, ghi lại ai đã xử lý | Giả định | 3-3, 6-12 (7-4), 確認46 |
-| Tài năng – nhóm tài năng | Nhiều – nhiều | Đề xuất, đang hỏi khách | 確認47 |
+| Tài năng – nhóm tài năng | Nhiều – nhiều | Chốt làm ([KS] 確認47) | [KS] 確認47 |
 | Chỉ dẫn cho AI – phạm vi | Mỗi chỉ dẫn áp cho toàn bộ, một nhóm hoặc một tài năng. Ưu tiên tài năng > nhóm > toàn bộ | Đề xuất, đang hỏi khách | 確認6 |
 
 ## 4. Ràng buộc dữ liệu
@@ -395,13 +388,13 @@ Có 20 ràng buộc lấy từ quy tắc nghiệp vụ. Mã BR trỏ tới tab "
 
 - Mỗi truy vấn dữ liệu từ phía tài năng và AI đều lọc theo mã tài năng (bảo mật theo dòng). Dùng để đảm bảo BR-H01 – không lộ dữ liệu giữa các tài năng.
 - Khóa bản ghi khi duyệt để đảm bảo "quản lý bấm trước thắng" (BR-D07), áp dụng cho cả duyệt đơn đăng ký.
-- Không xóa hẳn tài năng khi còn trong thời gian giữ dữ liệu. Chỉ đánh dấu trạng thái 利用終了 (đã kết thúc).
+- Không xóa hẳn tài năng khi còn trong thời gian giữ dữ liệu: chỉ đánh dấu trạng thái 利用終了 (đã kết thúc). Đủ 6 tháng kể từ lúc 利用終了 thì tự xóa, không khôi phục ([KS] 確認55).
 - Lưu đơn giá tại thời điểm tài năng xác nhận vào từng lần tạo video, để đổi đơn giá về sau không làm sai hóa đơn cũ.
 - Ngày sinh là dữ liệu nhạy cảm: chỉ gửi tuổi hoặc cờ vị thành niên cho AI, không gửi ngày sinh đầy đủ.
 
 ## 5. Vòng đời dữ liệu
 
-Phần tạo và cập nhật dữ liệu đã rõ nhờ các chức năng. Phần lưu trữ và xóa vẫn gần như chưa có. [YK2] chỉ nói dữ liệu tài năng đã rời đi được giữ 一定の期間 (một khoảng thời gian nhất định), và đang hỏi khách có quy định nào không (確認55). Thời gian lưu nhật ký và sao lưu "sẽ quyết khi thiết kế" (7-3, 9-3, 9-4).
+Phần tạo và cập nhật dữ liệu đã rõ nhờ các chức năng. Phần lưu trữ và xóa vẫn gần như chưa có. Dữ liệu tài năng đã rời đi giữ 6 tháng rồi tự xóa, không khôi phục ([KS] 確認55). Thời gian lưu nhật ký và sao lưu "sẽ quyết khi thiết kế" (7-3, 9-3, 9-4).
 
 ```mermaid
 flowchart LR
@@ -410,17 +403,17 @@ flowchart LR
   A1 -- "Duyệt" --> A["Tài khoản 利用前<br/>thanh toán xong thì tạo thư mục"]
   A --> B["Đang dùng<br/>dữ liệu phát sinh mỗi ngày"]
   B --> C["Kết thúc<br/>利用終了: hủy bài đã hẹn, dừng thu phí, chặn đăng nhập"]
-  C --> D["⚠ Giữ lại<br/>一定の期間 – bao lâu? (確認55)"]
-  D --> E["⚠ Xóa<br/>ai xóa, xóa những gì, ở đâu?"]
-  C -- "Quản lý cho dùng lại (確認56)" --> B
+  C --> D["Giữ 6 tháng<br/>([KS] 確認55)"]
+  D --> E["Tự xóa, không khôi phục<br/>⚠ xóa những gì, ở đâu (hội thoại? nhật ký?)"]
+  C -. "Không quay lại 利用中 ([KS] 確認56)" .-> X["—"]
   classDef unclear stroke:#d9480f,stroke-width:2px,stroke-dasharray:5 5
-  class R,D,E unclear
+  class R,E unclear
 ```
 
 | Dữ liệu | Tạo | Cập nhật | Lưu trữ và xóa | Xác nhận hay giả định |
 | --- | --- | --- | --- | --- |
 | Đơn đăng ký | Người dùng gửi trên ứng dụng | Quản lý duyệt hoặc từ chối | Đơn bị từ chối hoặc chờ quá lâu giữ bao lâu? | Chưa có |
-| Tài năng, hồ sơ, mục tiêu | Duyệt đơn thì có tài khoản. Thanh toán xong thì có thư mục. Quản lý nhập hồ sơ qua ChatGPT | Quản lý sửa bất cứ lúc nào, có tác dụng từ sáng hôm sau | Sau khi kết thúc thì giữ 一定の期間 rồi xóa ⚠ | Thời gian giữ: đang hỏi (確認55) |
+| Tài năng, hồ sơ, mục tiêu | Duyệt đơn thì có tài khoản. Thanh toán xong thì có thư mục. Quản lý nhập hồ sơ qua ChatGPT | Quản lý sửa bất cứ lúc nào, có tác dụng từ sáng hôm sau | Sau khi kết thúc thì giữ 6 tháng rồi tự xóa, không khôi phục | Chốt ([KS] 確認55) |
 | File bộ nhớ do AI ghi | AI ghi sau mỗi lần trò chuyện | AI ghi thêm, quản lý có thể sửa | Như hồ sơ. File lớn dần theo thời gian | Chưa có cách thu gọn |
 | Tin nhắn | Tài năng và AI | Không sửa (giả định) | Xem lại được toàn bộ, kể cả khi đổi điện thoại. Thời gian lưu chưa có | Xem lại: xác nhận. Lưu: chưa có |
 | Chủ đề gợi ý, bản nháp | AI mỗi sáng và khi tài năng yêu cầu | AI viết lại theo yêu cầu của tài năng | Bản nháp không 採用 có hết hiệu lực cuối ngày không? | Chưa có |
@@ -445,10 +438,10 @@ Có 13 điểm. 7 điểm đầu ảnh hưởng tới cấu trúc ERD, nên cầ
 | 4 | **6 trạng thái của bài đăng:** giả định gộp bản nháp và bài đã hẹn vào một bảng BAI_DANG có cột trạng thái. V2 cho tạo không giới hạn bản nháp nên bảng này sẽ lớn nhanh | Miền giá trị của cột trạng thái. Có tách bản nháp ra bảng riêng hay không | 5-1, 5-3 |
 | 5 | **Bài đăng và tư liệu là quan hệ nhiều – nhiều:** một bài được kèm bao nhiêu ảnh, và tư liệu có dùng lại cho nhiều bài không? | Cần bảng trung gian BAI_DANG_TU_LIEU | 6-7 (6-3, 6-4) |
 | 6 | **Thông báo cho quản lý:** một bản ghi dùng chung cho mọi quản lý, hay mỗi quản lý một bản ghi? "Đã xử lý" tính chung hay tính riêng từng người? | Cấu trúc THONG_BAO | 3-3, 6-12 (7-4), 確認46 |
-| 7 | **Chỉ dẫn cho AI, nhóm tài năng, thử thách:** có làm không. Nếu làm, chỉ dẫn nằm trong cơ sở dữ liệu hay vẫn là file OneDrive, và ưu tiên thế nào so với ChatGPT project. Thử thách nằm trong file hay cơ sở dữ liệu | Thêm CHI_DAN_AI, NHOM_TAI_NANG, THU_THACH và bảng trung gian tài năng – nhóm | 確認5, 6, 7, 8, 47 |
+| 7 | **Chỉ dẫn cho AI, nhóm tài năng, thử thách:** đã chốt làm ([KS] 確認5, 6–8, 47). Chỉ dẫn nằm trong cơ sở dữ liệu hay vẫn là file OneDrive, và ưu tiên thế nào so với ChatGPT project. Thử thách nằm trong file hay cơ sở dữ liệu | Thêm CHI_DAN_AI, NHOM_TAI_NANG, THU_THACH và bảng trung gian tài năng – nhóm | 確認5, 6, 7, 8, 47 |
 | 8 | **Các chỉ số của bài đăng:** phụ thuộc Upload-Post, chưa kiểm chứng với tài khoản thật | Các cột của SO_LIEU_BAI (tạm lưu dạng JSON) | 6-11 (8-7), UC-09 前提 |
 | 9 | **Thiết bị nhận thông báo đẩy:** công nghệ chưa chọn. Có thể cần bảng lưu đăng ký nhận thông báo theo từng thiết bị | Có thể thêm một entity | 8, 6-12 (6-1) |
 | 10 | **Cấu trúc file trên OneDrive:** tên file, định dạng, cách AI ghi thêm vào file bộ nhớ mà không ghi đè phần quản lý đã sửa. Bên phát triển sẽ gửi mẫu file kinh nghiệm đăng bài | HO_SO_TAI_NANG, TAI_LIEU_CHUNG | 7-5, 6-5 (3-2), UC-02 前提 |
-| 11 | **Thời gian giữ và xóa** cho từng loại dữ liệu (mục 5), kể cả đơn bị từ chối | Thiết kế việc xóa tự động và lưu trữ | 7-3, 9-3, 9-4, 確認55 |
+| 11 | **Thời gian giữ và xóa** cho từng loại dữ liệu (mục 5), kể cả đơn bị từ chối. Tài năng rời đi: 6 tháng ([KS] 確認55) | Thiết kế việc xóa tự động và lưu trữ | 7-3, 9-3, 9-4, [KS] 確認55 |
 | 12 | **Dữ liệu cá nhân gửi cho dịch vụ ngoài:** gửi những trường nào cho OpenAI, Upload-Post, fal.ai, cổng thanh toán? V2 thêm ngày sinh để AI biết tuổi, nên cần quyết gửi ngày sinh hay chỉ tuổi | Cần đánh dấu trường nhạy cảm | 10-2, 10-3, UC-01 前提 |
 | 13 | **Mã tài năng trên Upload-Post được tạo lúc nào:** khi duyệt đơn, khi thanh toán, hay khi bấm kết nối | Thời điểm có giá trị của cột ma_upload_post | 6-10 (8-2), UC-01 |

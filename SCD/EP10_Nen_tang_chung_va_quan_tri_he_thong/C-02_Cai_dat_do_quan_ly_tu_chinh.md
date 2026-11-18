@@ -16,7 +16,7 @@ Những giá trị quản lý tự đổi trên màn hình quản trị mà khô
 
 | Cài đặt | Mặc định | Màn | Dùng ở |
 |---|---|---|---|
-| Giờ AIコーチ nhắn buổi sáng | 8:00 | M-17 | 3-4 |
+| Giờ AIコーチ nhắn theo khung | Sáng 8:00; trưa, tối chưa có giờ ([KS] 確認18; Q&A No.73 đề xuất 12 giờ và 20 giờ) | M-17 | 3-4 |
 | Nhắc gửi tư liệu, trước giờ đăng | 2 giờ | M-17 | 6-5 |
 | Số ngày không đăng thì AIコーチ hỏi han | 3 | M-17 | 3-9 |
 | Số ngày không đăng thì báo quản lý | 7 | M-17 | 3-9 |
@@ -56,6 +56,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 
 - [YK2] §5-2, §5-6, §6-6 (4-4), §6-10 (7-5). [AG] trang 8 (M-10), trang 9 (M-16), trang 10 (M-17).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- Q&A No.41, CR-07 (đã chốt): màn cài đặt chung có giờ nhắn, giờ nhắc, số ngày không đăng, danh sách từ cấm. Q&A No.2, No.62: thêm **đơn giá video**. Q&A No.25 (đang hỏi): giờ nhắn buổi sáng chung hay theo từng tài năng; [YK2] 5-2 là chung.
+- Q&A No.41, CR-07 (đã chốt): màn cài đặt chung có giờ nhắn, giờ nhắc, số ngày không đăng, danh sách từ cấm. Q&A No.2, No.62: thêm **đơn giá video**. Q&A No.25: giờ nhắn chung theo khung sáng, trưa, tối; đổi theo từng tài năng xem xét sau khi vận hành ([KS] 確認18).

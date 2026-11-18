@@ -17,7 +17,7 @@
 
 ## Mục đích
 
-Mỗi sáng tạo 3 chủ đề gợi ý cho từng tài năng. Tài năng chọn chủ đề (hoặc tự nói chủ đề), AI viết bản nháp: chú thích, hashtag, hướng dẫn chụp; nếu là video thì thêm kịch bản. Tài năng cần bao nhiêu bản nháp thì tạo bấy nhiêu (§6-6 chức năng 4-1, §5-3).
+Theo nhịp đề xuất trong chỉ thị cho AI (hằng ngày, vài ngày một lần hay mỗi tuần, [KS] 確認14, 15), tạo 3 chủ đề gợi ý cho tài năng dùng cách đăng 要確認. Với cách 自動投稿, tài năng chọn chủ đề một lần khi bắt đầu khoảng đăng, hệ thống tự viết các bài trong khoảng ([KS] 確認25). Tài năng chọn chủ đề (hoặc tự nói chủ đề), AI viết bản nháp: chú thích, hashtag, hướng dẫn chụp; nếu là video thì thêm kịch bản. Tài năng cần bao nhiêu bản nháp thì tạo bấy nhiêu (§6-6 chức năng 4-1, §5-3).
 
 ## Tác nhân và quyền
 
@@ -57,7 +57,9 @@ Mỗi sáng tạo 3 chủ đề gợi ý cho từng tài năng. Tài năng chọ
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Số chủ đề mỗi sáng | 3 | Chốt (chờ 確認15) | §6-6 |
+| Số chủ đề mỗi lần đề xuất | 3 | Chốt | §6-6 |
+| Nhịp đề xuất | Hằng ngày, vài ngày một lần hoặc mỗi tuần, theo chỉ thị cho AI | Chốt ([KS] 確認14, 15); cách làm FutureCore đề xuất sau | — |
+| Nhờ AI viết lại | Tối đa 2 lần mỗi bản nháp (4-2) | Chốt ([KS] 確認29) | — |
 | Nội dung bản nháp | Chú thích, hashtag, hướng dẫn chụp; video thêm kịch bản | Chốt (chờ 確認24) | §6-6, §5-3 |
 | Một nội dung cho cả 3 mạng | — | Chốt | UC-05 前提 |
 | Tiêu đề cho YouTube | Tối đa 100 ký tự | Đề xuất | B3 |
@@ -85,7 +87,7 @@ Mỗi sáng tạo 3 chủ đề gợi ý cho từng tài năng. Tài năng chọ
 
 ## Tiêu chí chấp nhận [Đề xuất nội bộ]
 
-1. Cho tài năng ở 利用中 có hồ sơ, thì 8:00 có đúng 3 chủ đề ở T-07.
+1. Cho tài năng ở 利用中 có hồ sơ, dùng cách đăng 要確認, thì tới lượt đề xuất (khung sáng, mặc định 8:00) có đúng 3 chủ đề ở T-07.
 2. Cho `共通/ノウハウ.md` ghi "thứ Hai đăng về luyện tập", thì thứ Hai có ít nhất một chủ đề về luyện tập.
 3. Cho tài năng chọn chủ đề 1, loại ảnh, thì bản nháp có chú thích, hashtag, hướng dẫn chụp, tiêu đề YouTube, không có kịch bản.
 4. Cho loại video, thì bản nháp có thêm kịch bản.
@@ -96,7 +98,7 @@ Mỗi sáng tạo 3 chủ đề gợi ý cho từng tài năng. Tài năng chọ
 ## Ngoài phạm vi của chức năng này
 
 - Gửi ảnh, video (6-3), tạo video AI (5-1), chấp nhận (4-3), chọn giờ đăng (8-1).
-- Tài năng tự sửa chữ trực tiếp: không có (4-2, 確認28).
+- Tài năng tự sửa chữ trực tiếp: có (4-2, [KS] 確認28).
 
 ## Phụ thuộc
 
@@ -104,7 +106,7 @@ Mỗi sáng tạo 3 chủ đề gợi ý cho từng tài năng. Tài năng chọ
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認15, 16, 24, 28, 29, 30.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認15, 16, 24, 28, 29, 30.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -123,7 +125,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 - [YK2] §5-3, §6-6 (4-1), §9-3, UC-01 前提, UC-05, UC-05 前提, 確認15, 16, 24, 28–30.
 - [AG] trang 3 (T-07, T-08), trang 4 (T-09). [File 13](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A8, B1, B2, B3.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.38, CR-05 (đã chốt làm ở SP1): chủ đề buổi sáng có tính tới tin tức và chuyện xã hội trong ngày. **Dùng chức năng tìm web của AI, tìm 1 lần mỗi ngày** (chung cho mọi tài năng, hoặc theo nhóm khi có nhóm), rồi dùng kết quả cho mọi tài năng để giảm phí. Phí tìm web đưa vào ước tính phí AI hằng tháng.
-- Q&A No.55 (đang hỏi): chủ đề hết hạn khi có 3 chủ đề mới sáng hôm sau.
+- Q&A No.55 (đang hỏi): chủ đề hết hạn khi có 3 chủ đề mới ở lượt đề xuất sau.

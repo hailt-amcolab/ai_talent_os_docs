@@ -59,6 +59,7 @@ export class AuthService {
     if (verified.userId !== a.userId || verified.sessionId !== a.sessionId || verified.aal !== 'aal2') throw new AppError('MFA_PROOF_INVALID', 401)
     return { session, auth: await this.state(session.access_token) }
   }
+  async limit(key: string, perMinute: number) { await this.repo.rateLimit(key, perMinute) }
   async limitPush(a: DemoIdentity, recipient: string) { await this.repo.rateLimit('push:' + a.userId, 5); await this.repo.rateLimit('push-recipient:' + recipient, 10) }
   async logout(token: string) {
     const a = await this.provider.verifyToken(token)

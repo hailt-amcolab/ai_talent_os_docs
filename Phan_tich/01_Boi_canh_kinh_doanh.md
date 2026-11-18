@@ -1,13 +1,5 @@
 # AI育成OS (hệ thống đào tạo tài năng bằng AI) – Phân tích bối cảnh kinh doanh và các điểm chưa rõ
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Áp cho các dòng 確認6–8, 47 (màn chỉ dẫn AI, nhóm tài năng) và 確認41, 42 (riêng tư hội thoại: Q&A No.7 còn mở, CR-24).
-- Tin tức trong ngày (確認16): đã chốt làm (Q&A No.38, CR-05), dùng chức năng tìm web của AI, 1 lần mỗi ngày.
-
-
 2026-11-13 · hoahn-hocnao
 
 Tab này viết theo bản yêu cầu v2 (AI育成OS_概要要件定義書_v2.docx). Những gì đã đổi so với v1 nằm ở tab Cập nhật theo v2.
@@ -65,7 +57,7 @@ Người dùng thật là tài năng và quản lý. Huấn luyện viên AI đ�
 | --- | --- | --- | --- |
 | Tài năng | Bắt đầu khoảng 30, mỗi tháng thêm 10, sớm khoảng 100. Mục tiêu 200–300, tương lai 1.000 | Điện thoại iPhone, Android (PWA – ứng dụng web cài lên màn hình chính) | Tự đăng ký trên ứng dụng, được quản lý duyệt. Tất cả đều trả phí. Có cả người vị thành niên: hệ thống tính từ ngày sinh và hiện để tham khảo |
 | 事務所アカウント (tài khoản công ty) | Chưa nêu | Quản lý đăng nhập vào | Quản lý tạo trên màn hình quản trị. Dùng chức năng như tài năng. Không tính phí tháng |
-| Quản lý | Khoảng 5 | Máy tính là chính, điện thoại vẫn đọc được (管理画面 – màn hình quản trị), và ChatGPT | Một loại quyền, xem được mọi tài năng (⚠ 確認41), đăng nhập hai bước. Không trả phí |
+| Quản lý | Khoảng 5 | Máy tính là chính; trên điện thoại đọc được, màn duyệt và màn chỉ dẫn cho AI thao tác được ([KS] 前提 UC-10-1) (管理画面 – màn hình quản trị), và ChatGPT | Một loại quyền, xem được mọi tài năng (⚠ 確認41), đăng nhập hai bước. Không trả phí |
 | Huấn luyện viên AI (AIコーチ) | Mỗi tài năng một huấn luyện viên | Không áp dụng | Nhắn tin theo lịch, gợi ý chủ đề, viết bản nháp, phân tích kết quả. Chỉ làm việc khi quản lý đã nhập hồ sơ tài năng |
 
 Chưa rõ: [YK2] không nói rõ người ngoài công ty có được đăng ký không. 確認2 chỉ nói "với tài năng thuộc công ty, アデッソ tự biết tuổi", ngụ ý có thể có người không thuộc công ty.
@@ -110,10 +102,10 @@ Có 56 mục 確認 (mục cần xác nhận) đang chờ khách trả lời, 11
 
 | 確認 | Nội dung | Ảnh hưởng | Nguồn [YK2] |
 | --- | --- | --- | --- |
-| 1, 2 | Đồng ý điều khoản trên ứng dụng; tuổi tính từ ngày sinh chỉ để tham khảo | Người vị thành niên và người ngoài công ty tự đăng ký | UC-01, 3-1 |
-| 6–8, 47 | Màn hình chỉ dẫn AI, thử chỉ dẫn, nhóm tài năng (theo thiết kế của khách) | Phạm vi có thể nở thêm, chưa có mã chức năng | UC-02, 6-13 |
-| 16 | Đưa tin tức trong ngày vào gợi ý chủ đề | Lấy tin từ nguồn nào, chi phí bao nhiêu | UC-04, 6-5 |
-| 18 | Mọi tài năng nhận tin buổi sáng trong cùng khung 8 giờ | Tải tăng đột biến lúc xử lý buổi sáng | UC-04, 9-2 |
+| 1, 2 | Đồng ý điều khoản trên ứng dụng; tuổi tính từ ngày sinh chỉ để tham khảo, nhãn dưới 18 tuổi ([KS] 確認2) | Người vị thành niên và người ngoài công ty tự đăng ký | UC-01, 3-1 |
+| 6–8, 47 | Màn hình chỉ dẫn AI, thử chỉ dẫn, nhóm tài năng (theo thiết kế của khách) | Đã chốt làm (CR-17, CR-18, [KS] 確認6–8, 47); ảnh hưởng báo giá chưa rõ | UC-02, 6-13 |
+| 16 | Đưa tin tức trong ngày vào gợi ý chủ đề | Đã chốt: chức năng tìm web của AI, 1 lần mỗi ngày (Q&A No.38, CR-05) | UC-04, 6-5 |
+| 18 | Tin gửi theo khung sáng, trưa, tối ([KS] 確認18) | Tải tăng đột biến lúc xử lý buổi sáng | UC-04, 9-2 |
 | 23, 29 | Không giới hạn số lần trò chuyện và viết lại bản nháp | Chi phí AI không có trần | UC-04, UC-05 |
 | 27 | Quản lý gửi ảnh và tạo video thay tài năng | Phí video tính vào hóa đơn của ai | UC-05 |
 | 30 | Tài năng không đổi được giờ đăng | Luồng đăng lại sau khi lỗi | UC-05, 6-10 |
@@ -123,7 +115,7 @@ Có 56 mục 確認 (mục cần xác nhận) đang chờ khách trả lời, 11
 | 45 | Thông báo cho quản lý chỉ hiện trên màn hình quản trị, kể cả việc gấp | Việc gấp ngoài giờ làm có thể bị bỏ lỡ | UC-10, 6-12 |
 | 48–51 | Cách tính phí tháng đầu, tháng rời đi; hóa đơn = phí cố định + phí video | Mô hình thu phí và cổng thanh toán | UC-11, 6-3 |
 | 52 | Bài của tài khoản công ty không cần duyệt | Mâu thuẫn với chức năng 7-4 | UC-12 |
-| 53–56 | Rời đi qua quản lý, khóa đăng nhập, thời gian giữ dữ liệu, cho quay lại | Trạng thái tài năng và dữ liệu | UC-13 |
+| 53–56 | Rời đi qua quản lý, khóa đăng nhập; giữ dữ liệu 6 tháng rồi tự xóa; không cho quay lại ([KS] 確認55, 56) | Trạng thái tài năng và dữ liệu | UC-13 |
 
 ### B. Tài liệu ghi "sẽ quyết khi thiết kế hoặc ở bản cuối"
 
@@ -141,7 +133,7 @@ Có 56 mục 確認 (mục cần xác nhận) đang chờ khách trả lời, 11
 | Cách kiểm tra bản quyền nội dung và hình ảnh | mục 11 |
 | Ngày bắt đầu kiểm thử nghiệm thu, môi trường kiểm thử, cách kiểm thử thanh toán | mục 12-4, 14-1 |
 
-Giá phí tháng và đơn giá video giờ nằm trong 確認49 (nhóm A). Thời gian giữ dữ liệu sau khi rời đi giờ nằm trong 確認55.
+Giá phí tháng và đơn giá video giờ nằm trong 確認49 (nhóm A). Dữ liệu sau khi rời đi giữ 6 tháng rồi tự xóa ([KS] 確認55).
 
 ### C. Điểm mình phát hiện khi phân tích (tài liệu chưa nêu)
 
@@ -149,10 +141,10 @@ Giá phí tháng và đơn giá video giờ nằm trong 確認49 (nhóm A). Th�
 | --- | --- | --- |
 | 1 | **Tài liệu cũ chưa cập nhật:** [SM] vẫn mô tả tài năng dùng qua LINE và n8n. Việc này đã bỏ trong cuộc họp 20/10/2026, chuyển sang PWA. Đừng dùng [SM] làm căn cứ cho giao diện tài năng | [SM] trang 3, 9, 19 ↔ [YK2] 別紙B (phụ lục B) số 17 |
 | 2 | **Trạng thái tài năng không thống nhất:** chức năng 7-3 dùng 利用前 (trước khi dùng), 利用中 (đang dùng), 利用終了 (đã kết thúc); UC-13 và 確認53–56 dùng 退会 (rời khỏi hệ thống) | [YK2] 6-2 (chức năng 7-3) ↔ UC-13 |
-| 3 | **Màn hình trong thiết kế chưa có mã chức năng:** M-10 (nhóm tài năng) và M-11 (chỉ dẫn AI) mới chỉ là đề xuất trong 確認6–8, 47 | [TK-M] ↔ [YK2] 6, 6-13 |
+| 3 | **Màn hình trong thiết kế chưa có mã chức năng:** M-10 (nhóm tài năng) và M-11 (chỉ dẫn AI) đã được khách quyết làm ([KS] 確認6–8, 47) nhưng vẫn chưa có mã chức năng; trước đây là đề xuất trong 確認6–8, 47 | [TK-M] ↔ [YK2] 6, 6-13 |
 | 4 | **Luồng nhập hồ sơ bằng ChatGPT:** mỗi tài năng một ChatGPT project liên kết thư mục OneDrive. Chưa nói hệ thống đọc dữ liệu từ đâu, xác thực thế nào | [YK2] UC-01 前提, 6-4 (chức năng 2-3), 7-5 |
 | 5 | **OneDrive là nơi lưu dữ liệu chính cho AI:** có thể chạm giới hạn tốc độ của Microsoft khi xử lý buổi sáng cho nhiều người. Ranh giới dữ liệu giữa cơ sở dữ liệu và OneDrive chưa rõ | [YK2] 6-4 (chức năng 2-1), 6-5, 9-2 |
-| 6 | **Chi phí AI không có trần:** giới hạn 1.000 ký tự mỗi tin, không giới hạn số tin và số lần viết lại. Chỉ yêu cầu tổng hợp chi phí | [YK2] 6-5 (chức năng 3-4, 3-5), 確認23, 29 |
+| 6 | **Chi phí AI không có trần:** giới hạn 1.000 ký tự mỗi tin, không giới hạn số tin (khách muốn đặt giới hạn, chưa chốt, 確認23), viết lại tối đa 2 lần ([KS] 確認29). Chỉ yêu cầu tổng hợp chi phí | [YK2] 6-5 (chức năng 3-4, 3-5), 確認23, 29 |
 | 7 | **Mục tiêu thiếu chỉ số:** "duy trì đăng bài" và "có thêm việc" không có chỉ số đo | [YK2] 2-1 |
 | 8 | **Thời điểm đăng ký với Upload-Post:** chức năng 8-2 và UC-01 nói khác nhau. Phí Upload-Post tăng theo số tài năng đã đăng ký | [YK2] 6-10 (chức năng 8-2), UC-01, 8 |
 | 9 | **Khoảng trống sau khi thanh toán:** tài năng đã trả tiền nhưng huấn luyện viên chưa hoạt động cho tới khi quản lý nhập hồ sơ. Không có hạn cho quản lý | [YK2] UC-01 前提 |

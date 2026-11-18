@@ -10,7 +10,8 @@ module.exports = {
       instances: Number(process.env.API_INSTANCES || 1),
       max_memory_restart: '512M',
       kill_timeout: 10000, // khớp thời gian chờ đóng server trong src/server.ts
-      env: { NODE_ENV: 'production' },
+      // Lấy theo môi trường (compose: APP_ENV); không đặt thì production.
+      env: { NODE_ENV: process.env.NODE_ENV || 'production' },
     },
     // Worker (đợt AI 8:00, video, Upload-Post, gửi push theo lịch): thêm app thứ hai script 'dist/worker.js',
     // exec_mode 'fork', instances 1. Xem agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md mục 4.

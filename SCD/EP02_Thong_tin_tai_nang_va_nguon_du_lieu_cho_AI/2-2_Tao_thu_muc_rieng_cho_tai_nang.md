@@ -57,7 +57,7 @@ Mỗi tài năng có một thư mục riêng trên OneDrive để chứa hồ s�
       添付/                      ← tệp đính kèm của quản lý
 ```
 
-Cây này thống nhất với `agent_spec/onedrive-agent-spec` (bản 1.1, `FOLDER_MANIFEST.example.json`). Hệ thống tìm thư mục theo mã của Microsoft Graph, không theo tên.
+Cây này thống nhất với `agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md` §2 (bản 2.0); cách tạo thư mục có thể chạy lại ở §7.1. Hệ thống tìm thư mục theo mã của Microsoft Graph, không theo tên.
 
 Tên thư mục và file dùng tiếng Nhật vì quản lý của アデッソ đọc. Thư mục chung do đội tạo một lần khi triển khai (S02-08).
 
@@ -69,7 +69,7 @@ Tên thư mục và file dùng tiếng Nhật vì quản lý của アデッソ 
 | Sự kiện thanh toán tới hai lần | Bước 2 bỏ qua, không tạo thư mục thứ hai | [Đề xuất nội bộ] |
 | Tài năng đổi tên sau này | Không đổi tên thư mục. Hệ thống tìm thư mục theo mã, không theo tên | [Đề xuất nội bộ] |
 | Quản lý đổi tên hoặc chuyển thư mục trên OneDrive | Vẫn chạy vì dùng mã thư mục. Lỡ xóa thư mục thì M-07 hiện "không tìm thấy thư mục" | [Đề xuất nội bộ] |
-| Tài năng chuyển sang 利用終了 (đã ngừng) | Giữ thư mục. Thời gian giữ theo 確認55 | §7-3 |
+| Tài năng chuyển sang 利用終了 (đã ngừng) | Giữ thư mục 6 tháng, rồi việc chạy định kỳ xóa thư mục, không khôi phục (`agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md` §7.7) | §7-3, [KS] 確認55 |
 
 ## Quy tắc và giá trị
 
@@ -112,7 +112,7 @@ Không có màn riêng. M-06 và M-07 hiện trạng thái thư mục và liên 
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認55 (giữ thư mục bao lâu sau khi ngừng).
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認55 (giữ thư mục bao lâu sau khi ngừng).
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

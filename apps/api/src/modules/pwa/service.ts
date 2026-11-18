@@ -52,7 +52,7 @@ export class PwaService {
     for (let i = 0; i < devices.length; i += 5) await Promise.all(devices.slice(i, i + 5).map(async d => {
       const active = await this.db.$queryRaw<Array<{ active: boolean }>>`SELECT p.is_active AND s.revoked_at IS NULL AS active FROM app_private.tech_demo_push_subscriptions p JOIN app_private.tech_demo_sessions s ON s.session_id=p.session_id WHERE p.id=${d.id}::uuid AND p.auth_user_id=${recipientUserId}::uuid`
       if (!active[0]?.active) { result.failed++; return }
-      const sent = isAllowedPushEndpoint(d.endpoint) ? await this.sender(this.vapid!, { endpoint: d.endpoint, keys: { p256dh: d.p256dh_key, auth: d.auth_secret } }, { title: 'PWA テスト通知', body: '別の端末から送信したテスト通知です。', url: '/pwa/home', tag }) : { outcome: 'gone' as const }
+      const sent = isAllowedPushEndpoint(d.endpoint) ? await this.sender(this.vapid!, { endpoint: d.endpoint, keys: { p256dh: d.p256dh_key, auth: d.auth_secret } }, { title: 'PWA test notification', body: 'A test notification sent from another device.', url: '/pwa/home', tag }) : { outcome: 'gone' as const }
       if (sent.outcome === 'sent') result.accepted++
       else if (sent.outcome === 'gone') {
         result.gone++

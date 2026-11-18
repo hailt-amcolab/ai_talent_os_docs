@@ -79,7 +79,7 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - [YK2] §5-6, §6-10 (7-5), UC-08 前提. [AG] trang 8 (M-10), trang 9 (M-16).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.60 (đang hỏi): khi đang dừng, AI vẫn chạy, tài năng vẫn chấp nhận được, bài ở trạng thái giữ lại; mở lại thì hẹn giờ nếu còn kịp.
 - Q&A No.61 (đang hỏi): báo tài năng khi bài bị hủy; bài bị hủy về lại bản nháp.

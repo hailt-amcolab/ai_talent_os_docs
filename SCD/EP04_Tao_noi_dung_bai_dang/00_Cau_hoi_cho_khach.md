@@ -2,7 +2,7 @@
 
 File này gom các điểm còn mở của 5 chức năng EP04 (4-1, 4-2, 4-3, 4-4, 6-6) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認15, 16, 24 (4-1); 確認28, 29 (4-2); 確認25, 26, 30, 33 (4-3); 確認4 (4-4). Trong đó 確認16 (tin tức trong ngày) quyết định 4-1 có cần nguồn tin tức không.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認15, 16, 24 (4-1); 確認28, 29 (4-2); 確認25, 26, 30, 33 (4-3); 確認4 (4-4). Trong đó 確認16 (tin tức trong ngày) quyết định 4-1 có cần nguồn tin tức không.
 
 Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S04-xx); File 13 = [13_Qua_gio_dang_chua_chap_nhan.md](../../Phan_tich/13_Qua_gio_dang_chua_chap_nhan.md).
 
@@ -85,4 +85,4 @@ Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã g�
 | S04-02 | Bản nháp chưa dùng giữ bao lâu | No.55 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
 | S04-04 | Nhiều bài chấp nhận trong ngày | No.56 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
 | S04-08 | Nút 予約しない ở M-11 | No.57, CR-06 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
-| S04-09 | Không sửa sau khi chấp nhận | No.39, CR-21 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); sửa chữ trực tiếp chưa làm |
+| S04-09 | Không sửa sau khi chấp nhận | No.39, CR-21 | Sửa chữ trực tiếp **làm** ([KS] 確認28); sửa sau khi chấp nhận: vẫn chờ khách |

@@ -2,7 +2,7 @@
 
 File này gom các điểm còn mở của EP09 (6-1, 7-4, 6-8) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認12 (6-1); 確認45, 46, 47 (7-4). Không câu nào trong số này chặn việc viết mã.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認12 (6-1); 確認45, 46, 47 (7-4). Không câu nào trong số này chặn việc viết mã.
 
 Danh mục đầy đủ các loại thông báo nằm ở [C-05](../EP10_Nen_tang_chung_va_quan_tri_he_thong/C-05_Danh_muc_thong_bao.md).
 
@@ -14,7 +14,7 @@ Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ�
 |---|---|
 | Thư điện tử hoặc thông báo đẩy cho quản lý | 別紙A: thông báo quản lý chỉ ở danh sách trên màn hình quản trị |
 | Giờ yên lặng, tắt từng loại thông báo | Không có trong [YK2] |
-| Lọc thông báo theo nhóm tài năng | Chờ 確認47 |
+| Lọc thông báo theo nhóm tài năng | Làm ([KS] 確認47) |
 | Ứng dụng trên kho ứng dụng | §6-12: dùng PWA |
 
 ## 2. Câu phải có trả lời trước khi viết mã

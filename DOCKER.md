@@ -4,7 +4,7 @@ Chạy ở thư mục gốc, cần Docker và Compose v2. Gồm `migrate` (Prism
 
 ## Lần đầu
 
-DB đợt 1 có migration sửa bảo mật và chặn phần chưa chốt: đọc [scope](database-design/10_confirmed_scope_and_remediation.md) trước khi nâng cấp. `DATABASE_URL` phải là LOGIN riêng kế thừa `talent_runtime`; `DIRECT_URL` là migration owner. Sau migrate, operator cấp capability cho LOGIN trước khi khởi động API. API từ chối dùng owner làm runtime. Không dùng cùng credential cho hai URL.
+DB đợt 1 có migration sửa bảo mật và chặn phần chưa chốt: đọc [phạm vi và quy tắc DB](database-design/07_implementation_scope_and_rules.md) trước khi nâng cấp. `DATABASE_URL` phải là LOGIN riêng kế thừa `talent_runtime`; `DIRECT_URL` là migration owner. Sau migrate, operator cấp capability cho LOGIN trước khi khởi động API. API từ chối dùng owner làm runtime. Không dùng cùng credential cho hai URL.
 
 ```bash
 cp .env.example .env                  # giá trị dùng chung: URL API cho trình duyệt, CORS, khóa công khai VAPID
@@ -39,4 +39,4 @@ docker compose down               # không dùng -v nếu muốn giữ volume pg
 
 ## Demo công nghệ trên thiết bị khác
 
-Demo hiện hành không cần worker/duyệt đơn. Xem [runbook](agent_spec/auth-pwa-demo/RUNBOOK.md): API_URL rỗng + gateway local3090 + một HTTPS tunnel cho cả FE/BE; thêm origin tunnel vào CORS và restart API. Hướng dẫn hai tunnel phía trên vẫn dùng được nếu API_URL là URL BE riêng. `DEMO_AUTO_CONFIRM_EMAIL=true` chỉ dev và cần secret key BE để self-register dùng ngay, không SMTP.
+Demo hiện hành không cần worker/duyệt đơn. Cách thử trên máy thật: [hướng dẫn PWA §7](agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md): API_URL rỗng + gateway local3090 + một HTTPS tunnel cho cả FE/BE; thêm origin tunnel vào CORS và restart API. Hướng dẫn hai tunnel phía trên vẫn dùng được nếu API_URL là URL BE riêng. `DEMO_AUTO_CONFIRM_EMAIL=true` chỉ dev và cần secret key BE để self-register dùng ngay, không SMTP.

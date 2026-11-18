@@ -1,6 +1,6 @@
 # Prisma và Supabase PostgreSQL
 
-Prisma 7.10.1 + adapter-pg; mỗi tiến trình một pool. Baseline hiện hành: [scope đợt 1](../../database-design/10_confirmed_scope_and_remediation.md), SQL migration là nguồn thẩm quyền cho CHECK/trigger/ACL. `schema.prisma` có 31 bảng ứng dụng và projection id của `auth.users` do Supabase quản lý. Không sửa migration đã áp.
+Prisma 7.10.1 + adapter-pg; mỗi tiến trình một pool. Baseline hiện hành: [phạm vi và quy tắc DB](../../database-design/07_implementation_scope_and_rules.md), [từ điển dữ liệu](../../database-design/05_data_dictionary.md), SQL migration là nguồn thẩm quyền cho CHECK/trigger/ACL. `schema.prisma` có 31 bảng ứng dụng và projection id của `auth.users` do Supabase quản lý. Không sửa migration đã áp.
 
 ## Kết nối và quyền
 
@@ -33,7 +33,7 @@ Tên database thực tế có thể khác postgres. Không cấp runtime cho mig
 | 20261117000000_init | 25 bảng, CHECK/index/trigger/RLS, settings seed | Lịch sử đã áp theo tài liệu cũ |
 | 20261117000100_lock_prisma_migrations | Khóa quyền migration metadata | Lịch sử đã áp theo tài liệu cũ |
 | 20261117000200_auth_ref_by_trigger | Từng bỏ FK Auth, thêm delete trigger và RLS event trigger | Được thay cách bảo vệ Auth bởi migration tiếp |
-| 20261117000300_confirmed_scope_foundation | FK Auth thật, ownership FK kép, session/principal, operation/outbox, invariant và version, role allowlist, gate phần chưa chốt | **Đã áp Supabase; xem database-design/12_supabase_deployment.md** |
+| 20261117000300_confirmed_scope_foundation | FK Auth thật, ownership FK kép, session/principal, operation/outbox, invariant và version, role allowlist, gate phần chưa chốt | **Đã áp Supabase dev 17/11/2026** |
 
 Migration mới có preflight từ chối active publishing/video hoặc dữ liệu không đạt constraint; không tự xóa/sửa dữ liệu cũ. Phải dry-run và xử lý lỗi theo nghiệp vụ trước apply. Xem checklist cutover, backup/restore và giới hạn lock trong scope document.
 
@@ -74,10 +74,10 @@ Nguồn: [Prisma external tables](https://www.prisma.io/docs/orm/v7/prisma-schem
 
 ## Project hiện tại
 
-Đã áp foundation migration và xác minh trên Supabase; apps/api/.env dùng LOGIN talent_api qua pooler 6543, DIRECT_URL giữ migration owner. Xem [báo cáo triển khai](../../database-design/12_supabase_deployment.md). Không sao chép credential dev sang môi trường khác; mỗi môi trường tạo LOGIN/secret riêng.
+Đã áp foundation migration và xác minh trên Supabase; apps/api/.env dùng LOGIN talent_api qua pooler 6543, DIRECT_URL giữ migration owner. Không sao chép credential dev sang môi trường khác; mỗi môi trường tạo LOGIN/secret riêng.
 
 ## Auth/PWA demo 18/11/2026
 
-Migration `20261118000000_auth_pwa_demo` thêm 5 bảng private và session-owner binding cho push; tổng 36 bảng app (không tính `_prisma_migrations`/provider Auth). Đã replay local, dry-run rollback và deploy Supabase dev, diff không drift. Xem [hợp đồng](../../agent_spec/auth-pwa-demo/IMPLEMENTATION.md) và [evidence](../../agent_spec/auth-pwa-demo/VALIDATION.md). Các SQL reference cũ không thay thế migration hiện hành.
+Migration `20261118000000_auth_pwa_demo` thêm 5 bảng private và session-owner binding cho push; tổng 36 bảng app (không tính `_prisma_migrations`/provider Auth). Đã replay local, dry-run rollback và deploy Supabase dev, diff không drift. Cách dùng các bảng Auth và push cho tính năng thật: [hướng dẫn Supabase DB + Auth](../../agent_spec/supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md) §5.4. Các SQL reference cũ không thay thế migration hiện hành.
 
 Scope demo đã thu gọn: migration `20261118000100_technology_demo` thêm 2 bảng tech private, tổng 38 bảng app. Code hiện hành không ghi thêm application/Manager/Talent và không dùng worker. Lịch sử migration cũ được giữ nguyên.

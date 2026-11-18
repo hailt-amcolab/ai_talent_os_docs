@@ -25,7 +25,7 @@ self.addEventListener('push', e => {
   try { d = e.data ? e.data.json() : {} } catch {}
   if (!d || typeof d !== 'object') d = {}
   const jobs = [
-    self.registration.showNotification(typeof d.title === 'string' ? d.title : 'お知らせ', { body: typeof d.body === 'string' ? d.body : '', icon: '/icons/icon-192.png', badge: '/icons/badge-72.png', tag: typeof d.tag === 'string' ? d.tag : undefined, data: { url: d.url } }),
+    self.registration.showNotification(typeof d.title === 'string' ? d.title : 'Notification', { body: typeof d.body === 'string' ? d.body : '', icon: '/icons/icon-192.png', badge: '/icons/badge-72.png', tag: typeof d.tag === 'string' ? d.tag : undefined, data: { url: d.url } }),
     self.clients.matchAll({ type: 'window' }).then(list => list.forEach(c => c.postMessage({ type: 'NOTIFICATION_RECEIVED' }))),
   ]
   if (Number.isInteger(d.badgeCount) && d.badgeCount >= 0 && self.navigator.setAppBadge) jobs.push(d.badgeCount > 0 ? self.navigator.setAppBadge(d.badgeCount) : self.navigator.clearAppBadge())

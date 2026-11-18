@@ -65,7 +65,7 @@ T-13 (失敗 và lý do), T-14 (thông báo), M-02, M-08 (biểu tượng đỏ,
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認30, 38.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認30, 38.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -78,7 +78,7 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - [YK2] §6-10 (8-5), 別紙A, 確認30, 38. [AG] trang 5 (T-13, T-14), trang 7 (M-08). [File 14](../../Phan_tich/14_Phan_tich_Phuong_an_man_hinh_ung_dung.md) §3.2 điểm 9.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.15, CR-15 (đã chốt): không tự đăng lại.
 - Q&A No.59 (đang hỏi): nút "予約し直す" ở cả ứng dụng tài năng và màn quản trị; chỉ đăng lại mạng bị lỗi; giờ mới do AI chọn.

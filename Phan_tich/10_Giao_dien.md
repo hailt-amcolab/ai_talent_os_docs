@@ -1,21 +1,12 @@
 # Yêu cầu giao diện và trải nghiệm người dùng
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- M-10 (nhóm tài năng) và M-11 (chỉ dẫn cho AI) của thiết kế khách, tức M-13〜M-15 của [AG]: CR-17, CR-18, chưa làm. Bộ mã màn hình chuẩn và người làm 画面定義書 còn hỏi (Q&A No.30, No.68).
-- M-01: chỉ dùng ứng dụng xác thực; phương án SMS trong [TK-M] chờ bàn với khách (S01-11).
-- Ô "目標%" chung trong thiết kế khách sẽ chỉnh theo từng mạng khi làm định nghĩa màn hình (Q&A No.14). L-05: phần video tự làm thành bản nháp là CR-23.
-
-
-Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn cứ để làm lại 画面定義書 (bản định nghĩa màn hình). Những chỗ thiết kế còn sót từ bản cũ (LINE, lượt video miễn phí, hạn mức tiền video, không có bước trả lại bài, quyền riêng để dừng đăng tự động) sẽ sửa theo [YK2]. V2 còn thêm luồng tự đăng ký, nên cả hai bộ thiết kế đều thiếu màn đăng ký và màn duyệt đơn. Tab này đã viết lại theo bản yêu cầu v2.
+Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn cứ để làm lại 画面定義書 (bản định nghĩa màn hình). Những chỗ thiết kế còn sót từ bản cũ (LINE, lượt video miễn phí, hạn mức tiền video, không có bước trả lại bài, quyền riêng để dừng đăng tự động) sẽ sửa theo [YK2]. V2 còn thêm luồng tự đăng ký, nên cả hai bộ thiết kế đều thiếu màn đăng ký và màn duyệt đơn. Mã màn hình chuẩn là mã T/M của [AG]; trang 1 của [AG] có bảng đối chiếu với mã L/M của thiết kế khách, L-08 ngoài phạm vi (Q&A No.30, đóng 17/11). 画面定義書 do FutureCore làm, dự kiến gửi sáng 20/11 (Q&A No.68; biên bản họp 17/11, việc số 5). Tab này đã viết lại theo bản yêu cầu v2.
 
 | Ký hiệu | Tài liệu | Ngày | Mã màn hình | Vai trò theo v2 |
 | --- | --- | --- | --- | --- |
 | [YK2] | AI育成OS_概要要件定義書_v2.docx | Trang bìa ghi 13/11/2026 | Không có mã màn hình | Yêu cầu. Thắng khi mâu thuẫn với thiết kế (6-14) |
 | [TK-T] | Thiết kế ứng dụng tài năng, phiên bản dễ thương | 11/2026 | L-00…L-09 và Trang của tôi | Căn cứ thiết kế: giống Instagram, Trang của tôi là trung tâm, nhân vật モモ (Momo) (6-14) |
-| [TK-M] | Thiết kế màn hình quản trị cho máy tính và điện thoại, có nhóm tài năng và chỉ dẫn cho AI | 11/2026 | M-01…M-11 | Căn cứ thiết kế. Phần nhóm tài năng và chỉ dẫn cho AI đang hỏi khách (確認6, 7, 8, 47) |
+| [TK-M] | Thiết kế màn hình quản trị cho máy tính và điện thoại, có nhóm tài năng và chỉ dẫn cho AI | 11/2026 | M-01…M-11 | Căn cứ thiết kế. Phần nhóm tài năng và chỉ dẫn cho AI: khách quyết làm ([KS] 確認6–8, 47) |
 | [SD] | 画面遷移図と画面案 (sơ đồ chuyển màn hình và phương án màn hình) của FutureCore | 11/11/2026 | T-01…T-12, M-01…M-10 | Bản cũ, làm theo một bản yêu cầu cũ hơn. Chỉ dùng để đối chiếu mã chức năng |
 | [AG] | アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng) của FutureCore | 12/11/2026 | T-01…T-15, M-01…M-19 | Mới nhất: giữ phong cách của [TK], sửa nội dung theo [YK2]. Phân tích chi tiết ở file 14; đối chiếu với tab này ở mục 8 |
 
@@ -44,8 +35,8 @@ Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn
 | Trang của tôi, L-03 | T-03 | Màn hình chính | Việc cần làm hôm nay, tỷ lệ đạt mục tiêu, số người theo dõi từng mạng, số ngày đăng liên tục, tiến độ thử thách ⚠ | 6-8, 6-7 | Theo hướng Trang của tôi của [TK-T] (6-14). Hiển thị 2 bản nháp mỗi ngày nay không trái [YK2], vì số bản nháp không giới hạn (5-3) |
 | L-00 | T-04 | Trò chuyện với AI | Tin nhắn sáng, nhiệm vụ mỗi ngày, chúc mừng, trả lời. Nút "xem bản nháp" và "gửi ảnh, video". Nhập chữ tối đa 1.000 ký tự. Xem lại lịch sử | 3-4, 3-3 | Chưa có hồ sơ thì chưa có bản nháp (UC-01 前提) |
 | L-03 (phần bản nháp), L-07 | T-05 | Danh sách bản nháp | Bản nháp hôm nay và các bài trước với trạng thái | 4-1 | — |
-| L-04 | T-06 | Chi tiết bản nháp | Xem chú thích, hashtag, kịch bản, giờ đăng (chỉ xem, tài năng không đổi được ⚠). Nút 採用 (chấp nhận), nhờ AI viết lại (sang trò chuyện), gửi ảnh, tạo video. Lựa chọn "gửi quản lý duyệt" chỉ hiện với tài năng được cài duyệt bài | 4-2, 4-3 | Tài năng không tự sửa chữ ⚠ (確認28), nên thiết kế không có ô sửa là đúng. 確認30 |
-| L-05 | T-07 | Gửi ảnh, video | Chọn nhiều file hoặc chụp ngay, xem trước, gửi. Gửi video tự làm | 6-3, 6-4 | ⚠ Dung lượng tối đa chưa có |
+| L-04 | T-06 | Chi tiết bản nháp | Xem chú thích, hashtag, kịch bản, giờ đăng (giờ đăng chỉ xem, tài năng không đổi được, 確認30). Tài năng tự sửa chữ được ([KS] 確認28). Nút 採用 (chấp nhận, chỉ với cách đăng 要確認), nhờ AI viết lại tối đa 2 lần ([KS] 確認29), gửi ảnh, tạo video. Lựa chọn "gửi quản lý duyệt" chỉ hiện với tài năng được cài duyệt bài | 4-2, 4-3 | Tài năng không tự sửa chữ ⚠ (確認28), nên thiết kế không có ô sửa là đúng. 確認30 |
+| L-05 | T-07 | Gửi ảnh, video | Chọn nhiều file hoặc chụp ngay, xem trước, gửi. Gửi video tự làm (phần video tự làm thành bản nháp là CR-23, chờ khách) | 6-3, 6-4 | ⚠ Dung lượng tối đa chưa có |
 | (mới) | T-08 | Tạo video | Chọn loại video và ảnh gốc, hiện độ dài dự kiến và đơn giá kèm ghi chú số tiền thực thu có thể khác, xác nhận. Báo được đóng ứng dụng trong lúc chờ | 5-1, 5-4 | ⚠ [TK-T] chỉ có nút "tạo video" ở L-04. UC-06 前提 |
 | L-06 | T-09 | Xem video đã tạo | Xem video, chọn dùng, tạo lại hoặc bỏ. Ghi rõ video do AI tạo | 5-3, 5-5 | ⚠ [TK-T] hiển thị lượt miễn phí và "tài khoản miễn phí". [YK2] 6-14 nói rõ sẽ sửa |
 | L-04 (nằm trong) | T-10 | Xem trước bài đăng | Ảnh hoặc video cùng chú thích trên một màn | 6-6 | — |
@@ -60,26 +51,26 @@ Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn
 
 | [TK-M] | [SD] | Màn hình | Chức năng trên màn | Mã chức năng [YK2] | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
-| M-01 | M-01 | Đăng nhập (hai bước) | Email, mật khẩu, mã 6 số từ ứng dụng xác thực. Lần đầu quét mã QR | 1-6 | ⚠ [TK-M] còn để ngỏ phương án gửi mã qua SMS. [YK2] chỉ nói ứng dụng xác thực |
-| M-02 | M-06 | Danh sách thông báo | 8 loại, kể cả "có người đăng ký". Lọc theo loại, theo đã xử lý, theo nhóm ⚠. Đánh dấu 対応済み (đã xử lý) ⚠. Bấm thì mở màn liên quan | 7-4 | ⚠ [TK-M] có loại "bị chặn trên LINE" (sẽ sửa theo 6-14) và "bài đăng trễ" (không có trong 7-4). 確認45, 46, 47 |
+| M-01 | M-01 | Đăng nhập (hai bước) | Email, mật khẩu, mã 6 số từ ứng dụng xác thực. Lần đầu quét mã QR. Chỉ dùng ứng dụng xác thực; phương án SMS trong [TK-M] chờ bàn với khách (S01-11) | 1-6 | ⚠ [TK-M] còn để ngỏ phương án gửi mã qua SMS. [YK2] chỉ nói ứng dụng xác thực |
+| M-02 | M-06 | Danh sách thông báo | 8 loại, kể cả "có người đăng ký". Lọc theo loại, theo đã xử lý, theo nhóm ([KS] 確認47). Đánh dấu 対応済み (đã xử lý); khách muốn thêm ô 「未対応」 (chưa xử lý), chưa chốt (確認46). Bấm thì mở màn liên quan | 7-4 | ⚠ [TK-M] có loại "bị chặn trên LINE" (sẽ sửa theo 6-14) và "bài đăng trễ" (không có trong 7-4). 確認45, 46, 47 |
 | (mới) | (không có) | Duyệt đơn đăng ký | Danh sách đơn, xem tên, email, ngày sinh, tuổi. Duyệt (cài luôn có dùng duyệt bài hay không) hoặc từ chối | 1-4, 2-2 | ⚠ Cả hai bộ thiết kế thiếu. UC-01 |
-| M-03 + M-04 | M-05 | Duyệt bài | Danh sách chờ duyệt (hạn duyệt, kết quả kiểm tra từ cấm). Xem bài, duyệt hoặc trả lại kèm lý do. Quản lý bấm trước thì quyết ⚠ | 7-7 | ⚠ [TK-M] M-04 ghi "không có thao tác trả lại". [YK2] 6-14 nói rõ sẽ sửa. 確認34, 35 |
-| M-05 | M-02 | Danh sách tài năng | Tìm theo họ tên, lọc theo trạng thái, số ngày không đăng bài, nhóm ⚠. Hiện tài năng và tài khoản công ty | 7-1, 3-5 | [SD] ghi "tài năng mình phụ trách", trái 確認41. [TK-M] đúng |
-| M-06 (tab thông tin) | M-03 | Chi tiết tài năng | Hồ sơ, mục tiêu và hạn, mức đạt, trạng thái kết nối mạng xã hội, hội thoại với AI, tuổi (từ ngày sinh). Nhập mục tiêu. Ghi nhật ký xem | 2-4, 7-1, 7-6 | ⚠ [TK-M] cho hồ sơ "chỉ xem, sửa bằng file" (đúng với cách nhập qua ChatGPT), nhưng không có ô nhập mục tiêu, trái 2-4. 確認2 |
+| M-03 + M-04 | M-05 | Duyệt bài | Danh sách chờ duyệt (hạn duyệt, kết quả kiểm tra từ cấm). Xem bài, duyệt hoặc trả lại kèm lý do. Yêu cầu tới quản lý của nhóm hoặc phụ trách, người bấm trước quyết ([KS] 確認34). Thao tác được trên điện thoại ([KS] 前提 UC-10-1) | 7-7 | ⚠ [TK-M] M-04 ghi "không có thao tác trả lại". [YK2] 6-14 nói rõ sẽ sửa. 確認34, 35 |
+| M-05 | M-02 | Danh sách tài năng | Tìm theo họ tên, lọc theo trạng thái, số ngày không đăng bài, nhóm ([KS] 確認47). Hiện tài năng và tài khoản công ty | 7-1, 3-5 | [SD] ghi "tài năng mình phụ trách", trái 確認41. [TK-M] đúng |
+| M-06 (tab thông tin) | M-03 | Chi tiết tài năng | Hồ sơ, mục tiêu và hạn, mức đạt, (ô 「目標%」 chung trong thiết kế khách chỉnh theo từng mạng, Q&A No.14), trạng thái kết nối mạng xã hội, hội thoại với AI, nhãn dưới 18 tuổi (từ ngày sinh, [KS] 確認2). Nhập mục tiêu. Ghi nhật ký xem | 2-4, 7-1, 7-6 | ⚠ [TK-M] cho hồ sơ "chỉ xem, sửa bằng file" (đúng với cách nhập qua ChatGPT), nhưng không có ô nhập mục tiêu, trái 2-4. 確認2 |
 | M-06 (tab bài đăng) | M-04 | Bài đăng của tài năng | Lọc theo đã hẹn, chờ duyệt, đã đăng, lỗi. Hủy bài đã hẹn. Sửa bài dính từ cấm | 7-2, 4-4 | Nút hủy bài của [TK-M] nay đúng với [YK2] 7-2. ⚠ Chưa có thao tác đặt lịch lại sau khi đăng lỗi |
 | M-06 (tab cài đặt) | M-07 | Cài đặt tài năng | Trạng thái, dùng duyệt bài hay không, dừng hoặc chạy lại đăng tự động của tài năng. Hiện màn xác nhận trước khi đổi | 7-3, 7-5, 7-7 | Không còn lựa chọn trả phí / miễn phí (5-4). 確認53–56 |
 | M-07 | M-09 | Dừng đăng tự động toàn bộ, cài đặt chung | Dừng hoặc chạy lại, dừng thì hủy luôn bài đã hẹn. Lịch sử dừng. Đổi giờ nhắn tin, giờ nhắc, số ngày | 7-5, 5-6 | Việc hủy bài khi dừng của [TK-M] nay đúng với [YK2]. ⚠ "Chỉ quản lý có quyền dừng" sẽ sửa theo 6-14. [TK-M] chưa có phần cài đặt chung |
 | M-08 | (không có) | Quản lý tài khoản quản lý | Thêm, sửa, vô hiệu hóa quản lý | 1-6 | ⚠ Cột "quyền dừng đăng tự động" sẽ bỏ theo 6-14 |
 | M-09 | M-10 | Nhật ký xem | Ngày giờ, quản lý, màn hình đã xem, tài năng. Lọc theo khoảng thời gian và tài năng | 7-6 | 確認44 |
-| M-10 | (không có) | Nhóm tài năng | Tạo nhóm (tên, màu, thứ tự), một tài năng thuộc nhiều nhóm | Chưa có mã | ⚠ Đề xuất trong 確認47 |
-| M-11 | (không có) | Chỉ dẫn cho AI | Chọn phạm vi (toàn bộ / nhóm / tài năng), viết chỉ dẫn, chèn mẫu câu, chạy thử với một tài năng, lưu, xem lịch sử và quay lại bản cũ | Chưa có mã | ⚠ Đề xuất trong 確認6, 7, 8. Phần theo nhóm cần kiểm chứng kỹ thuật |
+| M-10 | (không có) | Nhóm tài năng | Tạo nhóm (tên, màu, thứ tự), một tài năng thuộc nhiều nhóm | Chưa có mã | Làm (CR-17, [KS] 確認47) |
+| M-11 | (không có) | Chỉ dẫn cho AI | Chọn phạm vi (toàn bộ / nhóm / tài năng), viết chỉ dẫn (không có nút mẫu câu 「書き出しの部品」), chạy thử 「試してみる」 (khách muốn ghi 「確認」) với một tài năng, lưu 「保存」 (khách muốn ghi 「指示」), xem lịch sử và quay lại bản cũ | Chưa có mã | Làm (CR-18, [KS] 確認6–8) |
 | (mới) | M-08 | Tài khoản công ty | Tạo tài khoản công ty. Xem số lần tạo video để quyết toán nội bộ | 1-2, 9-1, 5-4 | ⚠ [TK-M] thiếu. [SD] M-08 cho quản lý chỉ dẫn và duyệt, trái 確認52. Cách đăng bài (ứng dụng hay màn hình quản trị) chưa thống nhất |
 
 **Chức năng của quản lý chưa có màn hình trong cả hai bộ tài liệu:**
 
 - Duyệt đơn đăng ký (1-4) và tạo tài khoản công ty (1-2).
 - Đăng ký danh sách từ cấm (4-4, UC-02 前提).
-- Gửi ảnh, video hoặc tạo video thay tài năng (6-3, 確認27).
+- Gửi ảnh, video hoặc tạo video thay cho tài khoản công ty (6-3, [KS] 確認27).
 - Xem số lần tạo video và phí của từng tài năng và tài khoản công ty (5-4).
 
 ## 3. Điều hướng
@@ -177,7 +168,7 @@ Các quy tắc dưới đây lấy từ [YK2]. Các con số đều là 弊社�
 | Trống: sáng nay chưa có bản nháp (xử lý buổi sáng trễ hoặc lỗi) | Trang của tôi, L-03 | Chưa có | Hiển thị gì |
 | Trống: tài năng mới chưa có bài, chưa có số liệu | Trang của tôi, L-07 | Chưa có | Hiển thị gì |
 | Trống: chưa kết nối mạng xã hội, hoặc kết nối thiếu mạng | L-02, Trang của tôi | Có hiển thị trạng thái kết nối (8-2). Vẫn dùng được ⚠ (確認11) | Có nhắc tài năng kết nối không |
-| Trống: không có thông báo, không có bài chờ duyệt, không có đơn chờ duyệt | Danh sách thông báo, M-02, M-03 | Thông báo đã xử lý rời khỏi danh sách ⚠ (確認46) | — |
+| Trống: không có thông báo, không có bài chờ duyệt, không có đơn chờ duyệt | Danh sách thông báo, M-02, M-03 | Thông báo đã xử lý rời khỏi danh sách (確認46; khách muốn thêm ô 「未対応」, chưa chốt) | — |
 | Lỗi: dịch vụ AI không dùng được | L-00 | Báo trên màn hình và cho gửi lại sau (3-4) | Câu chữ thông báo |
 | Lỗi: tạo video thất bại | Tạo video, L-06 | Báo lý do, không tính phí (5-1) | Có nút thử lại không |
 | Lỗi: bài dính từ cấm | L-04 | Báo lý do cho tài năng (4-4) | Sau đó tài năng làm gì tiếp |
@@ -204,7 +195,7 @@ Có 17 điểm, chia 3 nhóm. So với bản theo v1, 5 điểm không còn là 
 | --- | --- | --- | --- |
 | 5 | Tài năng tự bấm "hủy đăng ký" | [TK-T] L-09 | UC-13: tài năng báo quản lý, quản lý chuyển trạng thái (確認53) |
 | 6 | Không có ô nhập mục tiêu | [TK-M] M-06 | 2-4, UC-02 前提: quản lý nhập mục tiêu và hạn trên màn hình quản trị |
-| 7 | "Tài năng mình phụ trách" | [SD] M-02 | 確認41: mọi quản lý xem mọi tài năng |
+| 7 | "Tài năng mình phụ trách" | [SD] M-02 | Mọi quản lý xem mọi tài năng; có quản lý phụ trách để nhận yêu cầu duyệt ([KS] 確認34, ý kiến ở 確認41) |
 | 8 | Quản lý ra chỉ dẫn và duyệt bài của tài khoản công ty | [SD] M-08 | 確認52: không duyệt. Chính [YK2] cũng chưa thống nhất (9-1 và UC-12 前提) |
 | 9 | Thứ tự hướng dẫn lần đầu: kết nối trước, thanh toán sau | [SD] T-02 | 6-2: thanh toán trước, kết nối sau |
 | 10 | Phương án gửi mã xác thực qua SMS | [TK-M] M-01 | 6-2 (1-6): ứng dụng xác thực |
@@ -288,13 +279,13 @@ Cùng một mã có thể chỉ màn khác nhau trong ba tài liệu (ví dụ M
 | 4 | Đã thể hiện: bỏ LINE, còn 9 loại thông báo khớp 別紙A | M-02 |
 | 5 | Đã thể hiện: bỏ nút hủy, ghi "muốn ngừng thì báo quản lý". Vẫn chờ 確認53 | T-15 |
 | 6 | Đã thể hiện: nhập mục tiêu từng mạng và hạn | M-10 |
-| 7 | Đã thể hiện: mọi quản lý xem mọi tài năng. Vẫn chờ 確認41 | M-06 |
+| 7 | Đã thể hiện: mọi quản lý xem mọi tài năng. Cần thêm quản lý phụ trách cho yêu cầu duyệt ([KS] 確認34) | M-06 |
 | 8 | Đã chọn theo UC-12: tài khoản công ty đăng nhập ứng dụng tài năng, không duyệt. [YK2] 9-1 vẫn nói khác (câu A1, A2 trong file 15) | M-12 |
 | 9 | Đã thể hiện: thanh toán trước, kết nối sau | T-04 |
 | 10 | Đã thể hiện: chỉ dùng ứng dụng xác thực | M-01 |
 | 11 | Gần đủ: có đăng ký, đặt mật khẩu, xác nhận quản lý xem hội thoại (gộp vào T-03). "Đã gửi đơn" là dòng chữ trên T-01. **Còn thiếu màn đặt lại mật khẩu** | T-01, T-02, T-03 |
 | 12 | Đã thể hiện | T-11, T-14 |
-| 13 | Đã thể hiện: duyệt đơn, tạo tài khoản công ty, từ cấm (trong cài đặt chung), gửi ảnh và tạo video thay tài năng (khung đỏ, chờ 確認27), số lần video và chi phí AI, cài đặt chung, nút 予約し直す (đặt lịch lại) | M-03, M-08, M-10, M-12, M-17 |
+| 13 | Đã thể hiện: duyệt đơn, tạo tài khoản công ty, từ cấm (trong cài đặt chung), gửi ảnh và tạo video thay tài năng (khung đỏ; [KS] 確認27: chỉ cho tài khoản công ty), số lần video và chi phí AI, cài đặt chung, nút 予約し直す (đặt lịch lại) | M-03, M-08, M-10, M-12, M-17 |
 | 14 | Vẫn chờ: [AG] giữ nguyên M-13〜M-15 kèm 【要確認】 (cần xác nhận) | M-13, M-14, M-15 |
 | 15 | Vẫn mở: [AG] chỉ dùng モモ, không nói chọn nhân vật | — |
 | 16 | Vẫn mở, nay có ba bộ mã (mục 8.1) | Trang 1 |

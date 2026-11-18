@@ -1,15 +1,5 @@
 # Báo cáo phân tích dự án AI育成OS
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Các mục "màn chỉ dẫn cho AI và nhóm tài năng có làm không" ở phần câu hỏi và R12 chuyển sang câu này.
-- Đã chốt (Q&A): tự đăng ký và quản lý duyệt (No.11, CR-01, làm ở đợt đầu, không thu thêm); 3 chủ đề mỗi sáng (No.9); lưu ảnh, video ở OneDrive (No.8, CR-10); trả lại kèm lý do (No.35); hai loại video, video trình chiếu ghép ở máy chủ (No.36, CR-04); AI tìm tin tức 1 lần mỗi ngày (No.38, CR-05); quản lý gửi tư liệu và tạo video thay tài năng (CR-09); một loại quản lý (No.5); không trần phí AI (No.17); không tự đăng lại (No.15).
-- Quyết định nội bộ: xác thực hai bước của quản lý chỉ làm ứng dụng xác thực (TOTP); SMS chờ bàn với khách (S01-11); không làm OTP qua email; khóa 5 lần sai làm ở BE.
-- Rủi ro kỹ thuật cập nhật ở file 20 (RT01–RT12) thay phần rủi ro kỹ thuật của báo cáo này.
-
-
 2026-11-13 · hoahn-hocnao
 
 AI育成OS có phạm vi rõ (54 chức năng), nhưng chưa đủ điều kiện để thiết kế chi tiết. Bản yêu cầu v2 đổi hẳn cách bắt đầu dùng (tài năng tự đăng ký, quản lý duyệt) và bỏ loại tài năng miễn phí. Sáu việc cần chốt trước đợt kiểm thử nghiệm thu (giữa tháng 1/2027) là:
@@ -19,14 +9,21 @@ AI育成OS có phạm vi rõ (54 chức năng), nhưng chưa đủ điều kiệ
 3. Các khả năng thực tế của Upload-Post, và đăng ký tài năng với Upload-Post vào lúc nào.
 4. Tiêu chí nghiệm thu.
 5. Đồng ý về dữ liệu cá nhân và đồng ý của phụ huynh khi người ngoài công ty tự đăng ký.
-6. Màn hình chỉ dẫn cho AI và nhóm tài năng có nằm trong phạm vi không (確認6, 7, 8, 47).
+6. Ảnh hưởng tới báo giá và lịch của các chức năng khách vừa quyết làm ngày 17/11: nhóm tài năng, màn chỉ dẫn cho AI, duyệt theo nhóm, tài năng sửa chữ, hai cách đăng 自動投稿 / 要確認 ([KS], tệp 21).
+
+**Các quyết định đã chốt** (chi tiết: tệp 19 cho Q&A 15/11, tệp 21 cho bảng xác nhận 17/11):
+
+- Q&A 15/11: tự đăng ký và quản lý duyệt (No.11, CR-01, làm ở đợt đầu, không thu thêm); 3 chủ đề mỗi lần đề xuất (No.9); lưu ảnh, video ở OneDrive (No.8, CR-10); trả lại kèm lý do (No.35); hai loại video, video trình chiếu ghép ở máy chủ (No.36, CR-04); AI tìm tin tức 1 lần mỗi ngày (No.38, CR-05); quản lý gửi tư liệu và tạo video thay (CR-09, nay chỉ cho tài khoản công ty theo [KS] 確認27); một loại quản lý (No.5); không trần phí AI (No.17); không tự đăng lại (No.15).
+- Bảng xác nhận 17/11: CR-17 (nhóm tài năng: M-10 thiết kế khách = M-13 [AG]), CR-18 (màn chỉ thị cho AI: M-11 thiết kế khách = M-14, M-15 [AG]), CR-19 (duyệt theo nhóm hoặc quản lý phụ trách) và CR-21 (tài năng sửa chữ trực tiếp) **làm**; CR-20 (nhiều tài khoản trên một mạng) **không làm**; CR-22 (thử thách) đã chốt hướng, chờ khái niệm アデッソ viết; CR-23 (video tự làm thành bản nháp mỗi ngày) vẫn chờ khách (Q&A No.50); CR-24 (hội thoại riêng tư) **không làm** vì quản lý xem toàn bộ hội thoại (Q&A No.7 đóng 17/11); CR-25 **không cần** vì 画面定義書 do FutureCore làm (Q&A No.68 đóng 17/11). Ảnh hưởng tới báo giá và lịch của các CR nay làm: chưa rõ ([KS], tệp 21). Việc mới: hai cách đăng 自動投稿 / 要確認, nhịp đề xuất chỉnh qua chỉ thị cho AI, khung giờ sáng/trưa/tối, màn nhập thông tin tài năng (chờ Q&A No.74), xóa dữ liệu tài năng rời đi sau 6 tháng, chu kỳ thu phí từ ngày đăng ký.
+- Quyết định nội bộ: xác thực hai bước của quản lý chỉ làm ứng dụng xác thực (TOTP); SMS chờ bàn với khách (S01-11); không làm OTP qua email; khóa 5 lần sai làm ở BE.
+- Rủi ro kỹ thuật: xem tệp 20 (RT01–RT12), thay phần rủi ro kỹ thuật của báo cáo này.
 
 Báo cáo này tổng hợp các tab phân tích, đã viết lại theo bản yêu cầu v2. Mỗi mục ghi tab chi tiết để tra cứu. Danh sách đầy đủ các thay đổi so với v1 nằm ở tab "Cập nhật theo v2".
 
 **Cách đọc nhãn:**
 
 - **[Xác nhận]:** có trong tài liệu gốc. Nguồn ghi theo mục của [YK2] (概要要件定義書 – bản định nghĩa yêu cầu khái quát, bản v2), hoặc theo trang của [SM], [SD], [TK-T], [TK-M], [AG] (xem mục "Tài liệu nguồn" ở cuối tab). 前提 là phần tiền đề ở cuối mỗi UC.
-- **[Xác nhận ⚠]:** có trong tài liệu nhưng còn kèm 確認 (mục cần xác nhận). Đây là đề xuất của FutureCore, khách chưa trả lời. Số 確認 theo đánh số của v2 (1–56).
+- **[Xác nhận ⚠]:** có trong tài liệu, kèm 確認 (mục cần xác nhận) là đề xuất của FutureCore. Khách đã trả lời trong bảng xác nhận 17/11; chỗ đã chốt ghi `[KS] 確認N`, chỗ khách đồng ý giả định giữ ⚠ (tệp 21). Số 確認 theo đánh số của v2 (1–56).
 - **[Đề xuất]:** đề xuất kỹ thuật của mình để các chức năng đã xác nhận chạy được. Không phải yêu cầu mới.
 - **[Giả định]:** mình suy ra khi tài liệu im lặng. Cần khách xác nhận trước khi dùng.
 
@@ -60,10 +57,10 @@ Bảng dưới liệt kê đủ 54 chức năng theo thứ tự trong [YK2] mụ
 | 3. Thu phí ([YK2] 6-3) | **1-1** Thu phí thuê bao tháng (高): qua cước nhà mạng hoặc thẻ<br>**1-2** Loại tài khoản (高): tài năng trả phí hoặc tài khoản công ty không tính phí<br>**1-3** Đổi loại (中): không còn việc để làm vì v2 bỏ loại miễn phí<br>**5-4** Đếm số lần tạo video và thu gộp với phí tháng (高) | 4 |
 | 4. Thông tin tài năng ([YK2] 6-4) | **2-2** Tạo thư mục riêng cho tài năng (高): tạo trên OneDrive khi đăng ký thanh toán xong<br>**2-3** Nhập thông tin từ ChatGPT (高): quản lý nhập hồ sơ qua ChatGPT project của từng tài năng<br>**2-4** Đăng ký mục tiêu (高): số người theo dõi, hạn đạt<br>**2-1** Đọc thông tin tài năng (高): huấn luyện viên AI đọc mỗi sáng<br>**7-1** Xem thông tin tài năng (高): trên màn hình quản trị | 5 |
 | 5. Huấn luyện viên AI – lõi ([YK2] 6-5) | **3-1** Hiểu tài năng và thuật toán (高)<br>**3-4** Trò chuyện với huấn luyện viên AI (高): tối đa 1.000 ký tự mỗi tin<br>**3-3** Giới hạn chủ đề trò chuyện (高): chuyện sức khỏe, rời công ty thì báo quản lý<br>**3-9** Nhắc tài năng lâu không đăng bài (中): mặc định 3 ngày nhắn tài năng, 7 ngày báo quản lý<br>**3-2** Tự cải thiện (高)<br>**3-6** Nhận xét bài hôm trước và gợi ý cải thiện (高)<br>**3-8** Tổng kết tuần (中)<br>**3-7** Thông báo khi đạt mục tiêu (中)<br>**3-5** Quản lý chi phí AI (中) | 9 |
-| 6. Bản nháp ([YK2] 6-6) | **4-1** Tự tạo bản nháp (高): 3 chủ đề mỗi sáng, chú thích, hashtag, hướng dẫn chụp, kịch bản video<br>**4-2** Yêu cầu sửa và viết lại (高): không giới hạn số lần (⚠ 確認29)<br>**4-3** 採用 – chấp nhận bản nháp (高): bắt buộc có ảnh hoặc video, chọn có gửi duyệt không<br>**4-4** Phát hiện từ cấm (高)<br>**6-6** Xem trước bài đăng (中) | 5 |
+| 6. Bản nháp ([YK2] 6-6) | **4-1** Tự tạo bản nháp (高): 3 chủ đề mỗi lần đề xuất, chú thích, hashtag, hướng dẫn chụp, kịch bản video<br>**4-2** Yêu cầu sửa và viết lại (高): nhờ AI tối đa 2 lần, tài năng tự sửa chữ được ([KS] 確認28, 29)<br>**4-3** 採用 – chấp nhận bản nháp (高): bắt buộc có ảnh hoặc video, chọn có gửi duyệt không; chỉ áp cho 要確認, còn 自動投稿 tự đăng trong khoảng tài năng đặt ([KS] 確認25)<br>**4-4** Phát hiện từ cấm (高)<br>**6-6** Xem trước bài đăng (中) | 5 |
 | 7. Tư liệu ([YK2] 6-7) | **6-3** Gửi ảnh và video (高): tài năng gửi, quản lý cũng gửi thay được<br>**6-4** Lưu tư liệu (高): lưu vào thư mục OneDrive, video tự làm dùng mỗi ngày 1 cái<br>**6-5** Nhắc gửi tư liệu (中): trước giờ đăng 2 tiếng, 1 lần mỗi ngày | 3 |
 | 8. Video ([YK2] 6-8) | **5-1** Tạo video (高): từ ảnh, qua Kling<br>**5-2** Định dạng video (高): video ngắn dọc<br>**5-3** Xem và xử lý video đã tạo (高): dùng, tạo lại hoặc bỏ<br>**5-5** Ghi rõ video do AI tạo (高) | 4 |
-| 9. Duyệt bài ([YK2] 6-9) | **7-7** Duyệt bài đăng (高): bật theo từng tài năng; tài năng tự chọn gửi duyệt; duyệt hoặc trả lại có lý do; quá giờ chưa duyệt thì không đăng (⚠ 確認34–36) | 1 |
+| 9. Duyệt bài ([YK2] 6-9) | **7-7** Duyệt bài đăng (高): bật theo từng tài năng; tài năng tự chọn gửi duyệt; yêu cầu gửi quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34); duyệt hoặc trả lại có lý do; quá giờ chưa duyệt thì không đăng (確認35, 36) | 1 |
 | 10. Đăng bài hẹn giờ ([YK2] 6-10) | **8-2** Kết nối dịch vụ đăng bài (高): đăng ký tài năng với Upload-Post<br>**8-3** Đăng lên 3 mạng xã hội (高): cùng ảnh hoặc video và chú thích<br>**8-4** Chống bị khóa tài khoản (高)<br>**8-5** Thông báo khi đăng lỗi (高)<br>**8-6** Thông báo khi mất kết nối (中)<br>**7-5** Dừng đăng tự động, toàn bộ hoặc từng tài năng (高): dừng thì hủy cả bài đã hẹn<br>**7-2** Xem và hủy bài đăng (高): trên màn hình quản trị<br>**9-1** Đăng bài bằng tài khoản công ty (中) | 8 |
 | 11. Số liệu ([YK2] 6-11) | **8-7** Lấy số liệu (高): từ Upload-Post<br>**8-8** Ghi số liệu vào file (高): vào thư mục OneDrive của tài năng<br>**3-10** Hiển thị số người theo dõi (高)<br>**6-7** Số liệu và mức đạt cho tài năng (高)<br>**8-1** Phân tích giờ đăng (中): chọn giờ đăng cho từng tài năng<br>**8-9** Lấy khung giờ tương tác (低) | 6 |
 | 12. Thông báo và nền tảng ([YK2] 6-12) | **6-1** Tin nhắn trong ứng dụng và thông báo đẩy (高)<br>**7-4** Danh sách thông báo cho quản lý (高)<br>**6-8** Nền tảng PWA – ứng dụng web cài lên màn hình chính (高) | 3 |
@@ -106,7 +103,7 @@ Workflow cốt lõi là vòng đăng bài hằng ngày, các workflow khác nố
 ```mermaid
 flowchart LR
   R["Gửi đơn, quản lý duyệt<br/>thanh toán, nhập hồ sơ"] --> A
-  A["8:00 tin nhắn sáng<br/>3 chủ đề gợi ý"] --> B["Tài năng chọn hoặc nói chủ đề<br/>AI viết bản nháp"]
+  A["Tin nhắn theo khung sáng (8:00), trưa, tối<br/>chủ đề gợi ý (cách đăng 要確認)"] --> B["Tài năng chọn hoặc nói chủ đề<br/>AI viết bản nháp"]
   B --> C["Gửi ảnh, video<br/>hoặc tạo video AI"]
   C --> D["採用<br/>kiểm tra từ cấm"]
   D --> E{"Cần duyệt?"}
@@ -121,10 +118,10 @@ flowchart LR
 | --- | --- | --- | --- |
 | Đăng ký và bắt đầu sử dụng | Tài năng tự đăng ký, quản lý duyệt, email mật khẩu tạm. Thanh toán xong mới có thư mục. Quản lý nhập hồ sơ rồi AI mới đưa bản nháp | Lúc đăng ký với Upload-Post. Quản lý biết lúc nào cần nhập hồ sơ. Đồng ý của người ngoài công ty | UC-01–03 |
 | Đăng bài hằng ngày | Bản nháp không giới hạn. Chỉ đăng khi đã 採用, có tư liệu, và đăng tự động đang bật. Đăng lỗi thì không tự đăng lại | Hẹn giờ lại khi tài năng không đổi được giờ. Biện pháp chống khóa tài khoản | UC-04, 05, 08, 6-10 |
-| Duyệt bài và từ cấm | Duyệt chỉ áp dụng cho bài công việc. Quản lý bấm trước thì quyết, trả lại thì gửi lại được, quá giờ thì hủy lịch [Xác nhận ⚠] | Ai đặt lịch sau khi quản lý sửa bài dính từ cấm | UC-07, 5-3, 7-7, 確認34–36 |
+| Duyệt bài và từ cấm | Duyệt chỉ áp dụng cho bài công việc. Yêu cầu gửi quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34), ai bấm trước thì quyết, trả lại thì gửi lại được, quá giờ thì hủy lịch [Xác nhận ⚠] | Ai đặt lịch sau khi quản lý sửa bài dính từ cấm | UC-07, 5-3, 7-7, 確認34–36 |
 | Trạng thái bài đăng | Tài liệu nói có 6 trạng thái nhưng không liệt kê. Ghép từ các chức năng ra 8 trạng thái [Giả định] | Danh sách chính thức | 5-1 |
 | Thu phí hằng tháng | Mọi tài năng trả phí tháng cộng phí video. Thu lỗi thì không tự dừng, quản lý quyết. Rời đi giữa tháng vẫn thu trọn tháng [Xác nhận ⚠] | Ngày chốt sổ. Thu lại khi lỗi. Phí tháng đầu tính từ lúc nào | UC-11, 5-4, 確認48–50 |
-| Nhắc nhở và báo quản lý | 3 ngày không đăng thì AI hỏi han, 7 ngày thì báo quản lý. Quản lý góp ý qua chỉ dẫn cho AI [Xác nhận ⚠] | Tiêu chí nhận biết chuyện nghiêm trọng, xử lý khẩn cấp | UC-04, UC-10, 3-3, 3-9, 確認43 |
+| Nhắc nhở và báo quản lý | 3 ngày không đăng thì AI hỏi han, 7 ngày thì báo quản lý (số ngày xác nhận lại, [KS] 確認19). Quản lý góp ý qua chỉ dẫn cho AI [Xác nhận ⚠] | Tiêu chí nhận biết chuyện nghiêm trọng, xử lý khẩn cấp | UC-04, UC-10, 3-3, 3-9, 確認43 |
 
 Chi tiết: tab "Workflow" (11 workflow, 15 luồng chưa rõ), tab "Quy tắc nghiệp vụ" (71 quy tắc).
 
@@ -143,7 +140,7 @@ Mình đề xuất 27 entity [Đề xuất], trong đó 3 entity chỉ cần n�
 | Dịch vụ | Vai trò | Mức rõ ràng |
 | --- | --- | --- |
 | Upload-Post | Đăng bài, hủy lịch, số liệu, cho tài năng tự kết nối tài khoản | Phí theo tháng, tính theo số tài năng đã đăng ký (UC-08 前提). Các khả năng và thời điểm đăng ký tài năng chưa rõ |
-| OpenAI API | Huấn luyện viên AI, bản nháp, kiểm tra từ cấm | Rõ về mục đích. Không giới hạn số lần trò chuyện và viết lại [Xác nhận ⚠] 確認23, 29, nên chưa có trần chi phí |
+| OpenAI API | Huấn luyện viên AI, bản nháp, kiểm tra từ cấm | Rõ về mục đích. Viết lại tối đa 2 lần ([KS] 確認29); trò chuyện: khách muốn đặt giới hạn, chưa chốt (確認23), nên chưa có trần chi phí |
 | ChatGPT | Quản lý tạo một project cho mỗi tài năng, nhập hồ sơ | Chưa có cơ chế ghi vào OneDrive. Làm tay cho từng tài năng (UC-01 前提) |
 | Microsoft 365 / OneDrive | Lưu trữ | Chưa nêu cách kết nối và xác thực |
 | fal.ai (Kling) | Tạo video | Gửi qua API ([SM] tr.9) |
@@ -227,9 +224,9 @@ Chi tiết: tab "Tích hợp", tab "Yêu cầu phi chức năng" (viết theo v1
 | 3 | Cơ chế ChatGPT project → OneDrive cho từng tài năng | 6-4 (2-3), UC-01 前提 |
 | 4 | Cách đặt lịch lại sau khi đăng lỗi | 6-10 (8-5), 確認30 |
 | 5 | Các con số còn chờ: dung lượng file, giới hạn độ dài chú thích, đơn giá video, phí tháng, ngày chốt sổ. Biện pháp chống khóa tài khoản | 5-4, 6-7, 6-10 (8-4), 9-2 |
-| 6 | Sao lưu, khung giờ hoạt động, thời gian lưu nhật ký và dữ liệu | 7-3, 9-3, 9-4, 確認55 |
+| 6 | Sao lưu, khung giờ hoạt động, thời gian lưu nhật ký. Dữ liệu tài năng rời đi: 6 tháng rồi tự xóa ([KS] 確認55) | 7-3, 9-3, 9-4 |
 | 7 | Dịch vụ thông báo đẩy, dịch vụ gửi email, nguồn tin tức | 8, 6-1 (1-4), 確認16 |
-| 8 | Quy tắc thu phí khi thu tiền lỗi, khi dùng lại sau 退会, và phí tháng đầu tính từ lúc nào | 5-4, 6-3, 確認48 |
+| 8 | Quy tắc thu phí khi thu tiền lỗi. Chu kỳ một tháng tính từ ngày đăng ký ([KS] 確認48, chờ đơn vị thanh toán); 退会 không quay lại nên không có "dùng lại" ([KS] 確認56) | 5-4, 6-3 |
 | 9 | Tiêu chí nhận biết chuyện nghiêm trọng và cách xử lý khẩn cấp | 6-5 (3-3), 確認17 |
 | 10 | Chỉ số đo mục tiêu duy trì đăng bài | 2-1 |
 | 11 (mới) | Đồng ý về dữ liệu cá nhân, quyền hình ảnh và đồng ý của phụ huynh khi người ngoài công ty tự đăng ký | 2-3, 10-3, 確認1 |
@@ -272,7 +269,7 @@ V2 đã giải quyết 3 mâu thuẫn của v1: chuyển loại trả phí / mi�
 | R10 | Tài năng không dùng đều, chưa có chỉ số đo | Cao | 2-1 |
 | R11 (mới) | Người ngoài công ty tự đăng ký mà không có hợp đồng: thiếu đồng ý về dữ liệu, quyền hình ảnh, đồng ý của phụ huynh | Cao (pháp lý) | 2-3, 10-3, 確認1 |
 | R12 (mới) | Phạm vi phình ra nếu nhận màn hình chỉ dẫn cho AI và nhóm tài năng mà không bàn chi phí, lịch | Cao | 確認6, 7, 8, 47, 14-3 |
-| R13 (mới) | Chi phí AI không có trần do không giới hạn trò chuyện và viết lại bản nháp | Trung bình | 確認23, 29, 6-5 (3-5) |
+| R13 (mới) | Chi phí AI không có trần: viết lại đã giới hạn 2 lần ([KS] 確認29), nhưng trò chuyện chưa giới hạn (確認23) | Trung bình | 6-5 (3-5) |
 | T1 | Upload-Post là công ty mới, các khả năng chưa kiểm chứng. Thời điểm đăng ký tài năng chưa rõ, mà phí tính theo số tài năng | Cao | 8, 6-10 (8-2), UC-08 前提, [SM] tr.39 |
 | T2 | Luồng ChatGPT project → OneDrive chưa có cơ chế, và phải làm tay cho từng tài năng (thêm 10 người mỗi tháng) | Cao | 6-4 (2-3), UC-01 前提, 2-2 |
 | T3 | Xử lý buổi sáng bị giới hạn tốc độ khi tăng số tài năng | Cao | 9-2, 確認18 |
@@ -336,20 +333,20 @@ flowchart LR
 ### Hỏi trước khi thiết kế chi tiết
 
 - [ ] Đặt lịch lại sau khi đăng lỗi: ai làm, khi tài năng không đổi được giờ? (確認30, 6-10 chức năng 8-5)
-- [ ] Duyệt bài: quản lý bấm trước thì quyết, trả lại thì gửi lại, quá giờ thì hủy lịch. Bài dính từ cấm sau khi sửa thì ai đặt lịch? (確認34, 35, 36, 5-3)
+- [ ] Duyệt bài: gửi quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34), ai bấm trước thì quyết, trả lại thì gửi lại, quá giờ thì hủy lịch. Bài dính từ cấm sau khi sửa thì ai đặt lịch? (確認34, 35, 36, 5-3)
 - [ ] Tài khoản công ty thao tác từ ứng dụng hay màn hình quản trị, có duyệt bài không? (確認52, UC-12, 9-1, 7-4)
 - [ ] Ai chuyển tài năng sang 利用中 (đang dùng), và lúc nào? Dùng tên 利用終了 hay 退会? (6-2 chức năng 7-3, 確認53–56)
-- [ ] Thu phí: tháng đầu tính từ lúc nào, rời đi giữa tháng, thu tiền lỗi, quản lý tạo video thay tài năng thì ai trả? (確認27, 48, 50)
-- [ ] Chọn cách gửi thông báo đẩy và dịch vụ gửi email. Quản lý có cần thông báo ngoài màn hình quản trị không? (8, 確認45)
-- [ ] Giờ bắt đầu xử lý buổi sáng và mức trễ cho phép. Quy mô cần đáp ứng khi vận hành chính thức. (9-2, 確認18)
+- [ ] Thu phí: chu kỳ tính từ ngày đăng ký ([KS] 確認48, chờ đơn vị thanh toán); rời đi giữa tháng (khách muốn thu đủ tháng, chưa chốt, 確認50); thu tiền lỗi. Quản lý chỉ làm thay cho tài khoản công ty ([KS] 確認27).
+- [ ] Chọn cách gửi thông báo đẩy và dịch vụ gửi email. Quản lý có cần thông báo ngoài màn hình quản trị không? Khách muốn thêm email, chưa chốt (8, 確認45)
+- [ ] Tin gửi theo khung sáng, trưa, tối ([KS] 確認18): giờ của từng khung, giờ bắt đầu xử lý và mức trễ cho phép. Quy mô cần đáp ứng khi vận hành chính thức. (9-2, 確認18)
 - [ ] Biện pháp chống khóa tài khoản, dung lượng file, độ dài chú thích, đơn giá video, phí tháng. (確認37, 5-4, 6-7, 9-2)
-- [ ] Sao lưu, khung giờ hoạt động, thời gian lưu dữ liệu và nhật ký. (7-3, 9-3, 9-4, 確認55)
+- [ ] Sao lưu, khung giờ hoạt động, thời gian lưu nhật ký (7-3, 9-3, 9-4). Dữ liệu tài năng rời đi đã chốt: 6 tháng rồi tự xóa ([KS] 確認55).
 
 ### Hỏi để chốt chính sách
 
 - [ ] Tiêu chí nhận biết chuyện nghiêm trọng, kênh liên hệ ngoài giờ làm việc, cách AI trả lời khi có dấu hiệu tự hại. (確認17, 6-5 chức năng 3-3)
-- [ ] Không giới hạn trò chuyện và viết lại thì có cần mức trần chi phí AI cho mỗi tài năng không? (確認23, 29, 6-5 chức năng 3-5)
-- [ ] Chỉ số đo mục tiêu duy trì đăng bài, và loại チャレンジ (thử thách) muốn có. (2-1, 確認5)
+- [ ] Viết lại đã giới hạn 2 lần ([KS] 確認29), trò chuyện chưa giới hạn (確認23): có cần mức trần chi phí AI cho mỗi tài năng không? (6-5 chức năng 3-5)
+- [ ] Chỉ số đo mục tiêu duy trì đăng bài, và khái niệm チャレンジ (thử thách) mà アデッソ sẽ viết (2-1, [KS] 確認5).
 
 Danh sách đầy đủ: tab "Cập nhật theo v2" (10 điểm mới trong v2), "Quy tắc nghiệp vụ" (20 quy tắc còn thiếu), "Workflow" (15 luồng chưa rõ), "Dữ liệu và ERD" (13 điểm), và các tab viết theo v1: "Edge case và rủi ro", "Yêu cầu phi chức năng", "Tích hợp", "Vai trò và phân quyền".
 

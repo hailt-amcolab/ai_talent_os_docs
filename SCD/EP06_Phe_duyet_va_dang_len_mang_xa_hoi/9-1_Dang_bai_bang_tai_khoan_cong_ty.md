@@ -68,7 +68,7 @@
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認27, 52.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認27, 52.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -83,7 +83,7 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - [YK2] §3-1, §6-10 (9-1), §12-5, UC-12, UC-12 前提, 確認27, 52. [AG] trang 7 (M-06), trang 8 (M-12). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) A1, A2, B10.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.20 (đã chốt): quản lý đăng nhập lại từng tài khoản công ty; thông tin nhập qua ChatGPT; không duyệt.
 - Q&A No.66 (đang hỏi): quản lý nhập email khi tạo; hiện trong danh sách tài năng với nhãn 事務所; dùng chung 3 trạng thái.

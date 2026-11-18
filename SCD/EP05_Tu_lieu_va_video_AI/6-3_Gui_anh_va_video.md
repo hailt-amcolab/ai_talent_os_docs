@@ -5,7 +5,7 @@
 | Module | EP05 – Tư liệu và video AI |
 | 優先順位 (ưu tiên) | 高 (cao) |
 | Mục [YK2] | §6-7, chức năng 6-3; UC-05 |
-| Màn hình [AG] | T-10 (gửi), T-09 (bản nháp đã gắn tư liệu), M-08 (nút 写真・動画を送る, khung đỏ chờ 確認27) |
+| Màn hình [AG] | T-10 (gửi), T-09 (bản nháp đã gắn tư liệu), M-08 (nút 写真・動画を送る, chỉ cho tài khoản công ty, [KS] 確認27) |
 | Tên trong mã nguồn | Media Upload |
 | Mức sẵn sàng | 🟡 Vàng – giao agent được. Định dạng, dung lượng là tham số (S05-01); cách tải qua nơi lưu tạm chờ khách đồng ý (C2) |
 
@@ -13,7 +13,7 @@
 
 | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
 |---|---|---|---|---|---|---|---|---|
-| ✅ | ✅ | ✅ | ⚠ S05-01 | ⚠ đội đề xuất | ⚠ M-08 chờ 確認27 | ⚠ C2 | ⚠ đội đề xuất | ⚠ 4-1, 6-4 |
+| ✅ | ✅ | ✅ | ⚠ S05-01 | ⚠ đội đề xuất | ✅ M-08 chỉ cho tài khoản công ty ([KS] 確認27) | ⚠ C2 | ⚠ đội đề xuất | ⚠ 4-1, 6-4 |
 
 ## Mục đích
 
@@ -22,7 +22,7 @@ Tài năng chọn ảnh, video trong máy hoặc chụp ngay rồi gửi. Quá d
 ## Tác nhân và quyền
 
 - Tài năng: gửi cho bản nháp của mình.
-- Quản lý: chọn tài năng rồi gửi ở M-08 (§6-7). Áp dụng cho bài nào chờ 確認27.
+- Quản lý: gửi ở M-08 (§6-7), **chỉ cho tài khoản công ty** ([KS] 確認27).
 
 ## Luồng chính
 
@@ -88,7 +88,7 @@ Supabase Storage (đường dẫn ký sẵn, tải tiếp được). Worker đ�
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認26, 27.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認26, 27.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -103,7 +103,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 - [YK2] §6-7 (6-3), §9-3, UC-05, 確認26, 27. [AG] trang 4 (T-10), trang 7 (M-08).
 - [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B2, C2.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- CR-09 (đã chốt làm ở SP1): quản lý gửi ảnh, video thay tài năng từ màn quản trị, dùng cùng luồng tải lên của tài năng.
+- CR-09 (đã chốt làm ở SP1): quản lý gửi ảnh, video thay từ màn quản trị, dùng cùng luồng tải lên của tài năng; theo [KS] 確認27 chỉ cho tài khoản công ty.
 - Q&A No.8, CR-10 (đã chốt): ảnh, video lưu ở OneDrive. Thiết kế tải lên Supabase Storage rồi chuyển sang OneDrive, fal.ai và Upload-Post lấy tệp từ bản tạm, chính là phương án B của CR-10. Không cần liên kết công khai của OneDrive.

@@ -2,7 +2,7 @@
 
 File này gom các điểm còn mở của 5 chức năng EP02 (2-2, 2-3, 2-4, 2-1, 7-1) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認2 (7-1), 確認3 (2-4), 確認5 (2-3, 2-4), 確認6–8 (màn chỉ thị cho AI, chưa thuộc chức năng nào), 確認41, 42, 44 (7-1), 確認47 (lọc theo nhóm ở 7-1), 確認55 (giữ thư mục sau khi ngừng). Không câu 確認 nào trong số này chặn việc viết mã EP02.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認2 (7-1), 確認3 (2-4), 確認5 (2-3, 2-4), 確認6–8 (màn chỉ thị cho AI, chưa thuộc chức năng nào), 確認41, 42, 44 (7-1), 確認47 (lọc theo nhóm ở 7-1), 確認55 (giữ thư mục sau khi ngừng). Không câu 確認 nào trong số này chặn việc viết mã EP02.
 
 Nguồn:
 - [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2).
@@ -78,7 +78,7 @@ Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã g�
 | Mã | Tiêu đề | Q&A | Tình trạng |
 |---|---|---|---|
 | B11 | Đơn bị từ chối và đổi thông tin cơ bản | No.65 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
-| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); màn thử thách chưa làm tới khi khách quyết |
+| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã chốt hướng 17/11 ([KS] 確認5): AI đề xuất, tài năng nhận/từ chối, không duyệt; màn thử thách chờ khái niệm アデッソ viết |
 | S02-04 | Mẫu file hồ sơ | No.22 | Đã chốt trong Q&A: mẫu file do khách đưa |
 | S02-05 | Hạn đạt và nơi lưu mục tiêu | No.14 | Đã chốt trong Q&A: mục tiêu từng mạng, có hạn |
 | S02-07 | Đọc OneDrive lỗi buổi sáng | No.22 | Đã chốt trong Q&A: hiện tình trạng đọc ở chi tiết tài năng |

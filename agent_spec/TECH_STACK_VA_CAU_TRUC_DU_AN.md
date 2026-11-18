@@ -1,8 +1,8 @@
-> Demo 18/11/2026 đã bổ sung Auth/TOTP/PWA theo kiến trúc này. Đọc [IMPLEMENTATION](auth-pwa-demo/IMPLEMENTATION.md) và [kết quả/thay đổi cần thiết](auth-pwa-demo/SOURCE_GAPS.md) trước các ví dụ Auth cũ. `@supabase/supabase-js` 2.119.0 đã dùng cho session và adapter Auth; demo công nghệ không dùng worker; self-registration và Web Push đồng bộ, không triển khai workflow nghiệp vụ.
+> Demo 18/11/2026 đã bổ sung Auth/TOTP/PWA theo kiến trúc này. Hướng dẫn tích hợp cho agent: [Supabase DB + Auth](supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md), [PWA + Web Push](pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md) (mỗi thư mục kèm `CA_KIEM_THU_VI.md`). `@supabase/supabase-js` 2.119.0 đã dùng cho session và adapter Auth; demo công nghệ không dùng worker; self-registration và Web Push đồng bộ, không triển khai workflow nghiệp vụ.
 
 # Tech stack và cấu trúc dự án
 
-> Cập nhật scope DB: `database-design/10_confirmed_scope_and_remediation.md` và `apps/api/PRISMA.md` ưu tiên hơn các mô tả DB cũ dưới đây. Migration mới thêm 6 bảng app_private, khôi phục FK Auth thật qua Prisma externalTables, tách runtime role, chặn phần chưa chốt; đã áp và kiểm chứng Supabase dự án, xem `database-design/12_supabase_deployment.md`.
+> Cập nhật scope DB: `database-design/07_implementation_scope_and_rules.md`, `database-design/05_data_dictionary.md` và `apps/api/PRISMA.md` ưu tiên hơn các mô tả DB cũ dưới đây. Migration mới thêm 6 bảng app_private, khôi phục FK Auth thật qua Prisma externalTables, tách runtime role, chặn phần chưa chốt; đã áp và kiểm chứng trên Supabase dev ngày 17/11/2026.
 
 Bản 1.0 · 17/11/2026 · Dành cho lập trình viên và AI coding agent. **Đọc trước khi thêm mã vào `apps/`.**
 
@@ -10,8 +10,8 @@ Tài liệu này mô tả codebase **base** (khung) sau lần tối ưu ngày 17
 
 Căn cứ quyết định:
 - Tách FE và BE: khối "Quyết định ngày 17/11/2026" ở đầu `Phan_tich/18_Ha_tang_he_thong.md`.
-- Xác thực: `agent_spec/AI_Talent_OS_Supabase_Database_Auth_Agent_Spec_v1/` (bản 1.3).
-- PWA: `agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md`.
+- DB và xác thực: `agent_spec/supabase-db-auth-spec/` (bản 2.0: hướng dẫn tích hợp + ca kiểm thử).
+- PWA và thông báo đẩy: `agent_spec/pwa-platform-spec/` (bản 2.0: hướng dẫn tích hợp + ca kiểm thử).
 
 Ký hiệu trạng thái: **[Đang dùng]** đã có trong mã; **[Dự kiến]** đã chọn nhưng chưa đưa vào mã; **[Chưa chốt]** còn chờ quyết định.
 
@@ -250,7 +250,7 @@ Ngày 17/11/2026 đã gỡ các tính năng thử và **không giữ bản lưu*
 - API gửi thử push.
 - Proxy cùng origin của FE (`app/api/*`), vì FE không còn có API.
 
-Đã xóa toàn bộ bảng thử và lịch sử migration cũ trên Supabase dev. Ngày 17/11/2026 đã áp migration theo `database-design/04` (25 bảng, xem `apps/api/PRISMA.md`). Các schema Supabase tự quản (`auth`, `storage`…) không bị đụng tới. Hai người dùng do demo đăng nhập tạo trong Supabase Auth cũng đã xóa; project dev hiện không có người dùng nào.
+Đã xóa toàn bộ bảng thử và lịch sử migration cũ trên Supabase dev. Ngày 17/11/2026 đã áp migration (25 bảng ban đầu, xem `apps/api/PRISMA.md`). Các schema Supabase tự quản (`auth`, `storage`…) không bị đụng tới. Hai người dùng do demo đăng nhập tạo trong Supabase Auth cũng đã xóa; project dev hiện không có người dùng nào.
 
 Tính năng thông báo (6-1) và đăng nhập (EP01) sẽ làm lại theo đặc tả (bộ PWA, bộ Supabase) và mẫu module ở 4.3. Phần dùng lại được vẫn nằm trong base: `infra/push` (gửi push, đã thử gửi thật tới FCM), `infra/database` (TLS và cấu hình pool cho Supabase), `lib/pwa/*` (đăng ký push và cài đặt phía trình duyệt).
 

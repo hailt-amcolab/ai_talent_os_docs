@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { APP } from '@/lib/config'
 
-// Đặc tả: agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md §3
+// Đặc tả: agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md §2
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/', // không đổi sau khi phát hành
@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: '/pwa/',
     display: 'standalone',
     orientation: 'portrait',
-    lang: 'ja',
+    lang: 'en',
     background_color: APP.backgroundColor,
     theme_color: APP.themeColor,
     icons: [

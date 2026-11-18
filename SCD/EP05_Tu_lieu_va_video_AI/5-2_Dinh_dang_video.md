@@ -60,6 +60,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 
 - [YK2] §5-7, §6-8 (5-2), UC-06.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.36, CR-04 (đã chốt): video trình chiếu ảnh là bản tối thiểu, ghép ảnh ở máy chủ (worker), không dùng thêm dịch vụ AI.

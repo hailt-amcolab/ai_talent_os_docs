@@ -1,12 +1,5 @@
 # Cập nhật theo bản yêu cầu v2
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- Dòng 27 (thông báo theo mốc người theo dõi): mốc 25%, 50%, 75% mục tiêu (Q&A No.14). N9 (màn chỉ dẫn AI, nhóm tài năng): CR-17, CR-18.
-
-
 Bản v2 của 概要要件定義書 (bản định nghĩa yêu cầu tổng quát) thay đổi 3 điểm lớn:
 
 - Tài năng **tự đăng ký trên ứng dụng** và quản lý duyệt, thay cho việc quản lý đăng ký hộ.
@@ -53,7 +46,7 @@ Ký hiệu cột "Tab bị ảnh hưởng": 01 Bối cảnh, 02 Phạm vi, 03 Va
 | 24 | Dừng toàn bộ đăng tự động | Bài đến giờ khi đang dừng thì bỏ qua, chạy lại cũng không đăng bù | Khi dừng: không đặt lịch mới và hủy luôn các bài đã đặt lịch. Chạy lại cũng không đăng các bài đã hủy | 6-10 (7-5), UC-08 前提 | 04, 05, 06 |
 | 25 | Dừng đăng tự động theo từng tài năng | Không có | Chức năng mới: quản lý dừng hoặc chạy lại cho từng tài năng, cách xử lý như dừng toàn bộ | 3-2, 5-6, 6-10 (7-5) | 02, 03, 04, 05, 07, 10 |
 | 26 | Phí Upload-Post | Không nêu | Trả theo tháng, tính theo số tài năng đã đăng ký, không tính theo số bài | UC-08 前提 | 08, 09 |
-| 27 | Thông báo khi đạt mốc người theo dõi | Báo tài năng ở từng mốc, báo cả quản lý khi đạt mục tiêu | Chỉ báo tài năng và quản lý khi đạt mục tiêu | 6-5 (3-7), 確認39 | 04, 05 |
+| 27 | Thông báo khi đạt mốc người theo dõi | Báo tài năng ở từng mốc, báo cả quản lý khi đạt mục tiêu | Chỉ báo tài năng và quản lý khi đạt mục tiêu | 6-5 (3-7), 確認39 | 04, 05  Cập nhật: mốc 25%, 50%, 75% mục tiêu (Q&A No.14). |
 | 28 | Quản lý góp ý cho tài năng | Qua kênh liên lạc hiện có, không qua hệ thống | Hỏi khách: quản lý ghi vào chỉ dẫn cho AI, huấn luyện viên AI chuyển lời. Chuyện nghiêm trọng hoặc gấp thì quản lý liên hệ trực tiếp | 確認43 | 01, 03, 06 |
 | 29 | Thông báo cho quản lý | Chỉ trên màn hình quản trị | Như cũ, nay hỏi lại rõ. Thông báo đã xử lý thì đánh dấu "対応済み" (đã xử lý) và biến khỏi danh sách | 確認45, 確認46 | 04, 10 |
 | 30 | Màn hình quản trị trên điện thoại | Mở được nhưng không tối ưu | Chủ yếu dùng trên máy tính, nhưng thiết kế dễ xem trên trình duyệt điện thoại. Mâu thuẫn với thiết kế [TK-M] đã được giải quyết | UC-10 前提, 9-1 | 09, 10, 11 |
@@ -93,7 +86,7 @@ Ký hiệu cột "Tab bị ảnh hưởng": 01 Bối cảnh, 02 Phạm vi, 03 Va
 | N6 | Khoảng trống sau khi thanh toán | Thư mục được tạo khi thanh toán xong. Sau đó quản lý mới tạo ChatGPT project và nhập hồ sơ. Trong thời gian đó tài năng đã trả phí nhưng huấn luyện viên AI chưa đưa bản nháp. Thông báo cho quản lý biết lúc nào cần nhập hồ sơ? Phí tháng đầu tính từ lúc nào? | UC-01 前提, 確認48 | Trung bình |
 | N7 | Tài năng đặt lịch lại sau khi đăng lỗi | 8-5 ghi "tài năng hoặc quản lý đặt lịch lại", nhưng 確認30 đề xuất tài năng không đổi được giờ đăng | 6-10 (8-5), 確認30 | Trung bình |
 | N8 | Tên chức năng còn sót | 1-2 "有償と無償の区分" (phân loại trả phí / miễn phí) và 1-3 "区分の変更" (đổi loại) vẫn còn tên trong danh sách chức năng, dù nội dung nói không còn phân loại | 6-3 | Thấp |
-| N9 | Màn hình chỉ dẫn cho AI và nhóm tài năng chưa có trong danh sách chức năng | 確認6, 7, 8, 47 mô tả chức năng mới, nhưng chưa có mã chức năng hay mức ưu tiên ở mục 6. Chưa rõ có trong phạm vi không | UC-02, UC-10, mục 6 | Cao (phạm vi, chi phí) |
+| N9 | Màn hình chỉ dẫn cho AI và nhóm tài năng chưa có trong danh sách chức năng | 確認6, 7, 8, 47 mô tả chức năng mới, nhưng chưa có mã chức năng hay mức ưu tiên ở mục 6. Chưa rõ có trong phạm vi không | UC-02, UC-10, mục 6 | Cao (phạm vi, chi phí)  Nay làm: CR-17, CR-18 ([KS] 確認6–8, 47). |
 | N10 | Hình 4-1 (bảng đối chiếu chức năng với UC) | Là hình ảnh nên không trích được chữ. Cần xem trực tiếp trong file | 4 | — |
 
 ## 4. Bảng đổi số 確認 từ v1 sang v2

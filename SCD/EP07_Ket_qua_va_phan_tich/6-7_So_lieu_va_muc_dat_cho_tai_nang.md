@@ -38,7 +38,7 @@
 
 | Quy tắc | Loại | Nguồn |
 |---|---|---|
-| Ngày đăng liên tục: ngày có ít nhất 1 bài thành công; một ngày không đăng thì tính lại | Giả định (確認22) | — |
+| Ngày đăng liên tục: ngày có ít nhất 1 bài thành công; một ngày không đăng thì tính lại | Giả định; khách quyết khi vận hành ([KS] 確認22) | — |
 | Chỉ dữ liệu của mình, không xếp hạng | Giả định (確認40) | 1-5 |
 | Bài ngoài hệ thống cũng tính | Chốt | UC-09 |
 
@@ -55,7 +55,7 @@
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認22, 40.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認22, 40.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

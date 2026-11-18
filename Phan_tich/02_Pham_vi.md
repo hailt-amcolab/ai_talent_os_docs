@@ -1,17 +1,8 @@
 # Phạm vi dự án: Trong phạm vi / Ngoài phạm vi / Chưa rõ
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- Trong phạm vi, đã chốt: tự đăng ký (CR-01); 3 chủ đề (CR-02); trả lại kèm lý do (CR-03); hai loại video, video trình chiếu ghép ảnh ở máy chủ, không dùng Kling (CR-04); tìm tin tức (CR-05); màn sửa bài dính từ cấm tối thiểu (CR-06); màn cài đặt chung (CR-07); thông báo đạt mục tiêu và thu tiền lỗi (CR-08); quản lý gửi thay tài năng (CR-09); lưu OneDrive (CR-10).
-- Bị cắt so với báo giá (không làm): phân loại trả phí/miễn phí, trần tháng tạo video, hai loại quản lý, người duyệt chỉ định, tự đăng lại, trần phí AI (CR-11〜CR-16).
-- CR-17〜CR-25 (nhóm tài năng M-10, màn chỉ thị cho AI M-11, duyệt theo nhóm, nhiều tài khoản trên một mạng, sửa chữ trực tiếp, màn thử thách, video tự làm thành bản nháp mỗi ngày, hội thoại riêng tư, AMCOLAB làm 画面定義書) là thay đổi ngoài báo giá, **chưa làm** tới khi khách trả lời Q&A No.50. Dòng 6-4 "mỗi ngày dùng một video tự làm" thuộc CR-23; dòng 確認47 thuộc CR-17.
-
-
 Tab này đã viết lại theo bản yêu cầu v2. [YK2] = AI育成OS_概要要件定義書_v2.docx. Số 確認 (mục cần xác nhận) theo đánh số của v2. 前提 là phần tiền đề ở cuối mỗi UC.
 
-**Thay đổi phạm vi chính so với v1:** tài năng tự đăng ký trên ứng dụng chuyển từ "ngoài phạm vi" vào "trong phạm vi". Người ngoài công ty không còn là mục để sau mà dùng chung luồng đăng ký (⚠ 確認1). Loại tài năng miễn phí bị bỏ. Hủy bài trên màn hình quản trị và dừng đăng theo từng tài năng vào phạm vi. Màn hình chỉ dẫn cho AI và nhóm tài năng vẫn chưa rõ.
+**Thay đổi phạm vi chính so với v1:** tài năng tự đăng ký trên ứng dụng chuyển từ "ngoài phạm vi" vào "trong phạm vi". Người ngoài công ty không còn là mục để sau mà dùng chung luồng đăng ký (⚠ 確認1). Loại tài năng miễn phí bị bỏ. Hủy bài trên màn hình quản trị và dừng đăng theo từng tài năng vào phạm vi. Màn hình chỉ dẫn cho AI và nhóm tài năng: khách quyết làm ngày 17/11 ([KS] 確認6–8, 47).
 
 ## 1. Căn cứ và cách phân loại
 
@@ -33,6 +24,10 @@ Phạm vi dự án gồm 54 chức năng, chia thành 9 nhóm lớn theo SOW (b�
 - Khi vận hành chính thức (cuối tháng 2/2027) chỉ cam kết các chức năng 高 và 中. Mức ưu tiên hiện là đề xuất của FutureCore, khách chưa quyết (mục 14-4).
 
 ## 2. Trong phạm vi: 54 chức năng
+
+**Đã chốt thêm:** tự đăng ký (CR-01); 3 chủ đề (CR-02; nhịp đề xuất chỉnh qua chỉ thị cho AI, [KS] 確認14); trả lại kèm lý do (CR-03); hai loại video, video trình chiếu ghép ảnh ở máy chủ, không dùng Kling (CR-04); tìm tin tức (CR-05); màn sửa bài dính từ cấm tối thiểu (CR-06); màn cài đặt chung (CR-07); thông báo đạt mục tiêu và thu tiền lỗi (CR-08); quản lý gửi thay (CR-09, chỉ cho tài khoản công ty theo [KS] 確認27); lưu OneDrive (CR-10). Theo bảng xác nhận 17/11: CR-17 (nhóm tài năng: M-10 thiết kế khách = M-13 [AG]), CR-18 (màn chỉ thị cho AI: M-11 thiết kế khách = M-14, M-15 [AG]), CR-19 (duyệt theo nhóm hoặc quản lý phụ trách) và CR-21 (tài năng sửa chữ trực tiếp) **làm**; CR-20 (nhiều tài khoản trên một mạng) **không làm**; CR-22 (thử thách) đã chốt hướng, chờ khái niệm アデッソ viết; CR-23 (video tự làm thành bản nháp mỗi ngày) vẫn chờ khách (Q&A No.50); CR-24 (hội thoại riêng tư) **không làm** vì quản lý xem toàn bộ hội thoại (Q&A No.7 đóng 17/11); CR-25 **không cần** vì 画面定義書 do FutureCore làm (Q&A No.68 đóng 17/11). Ảnh hưởng tới báo giá và lịch của các CR nay làm: chưa rõ ([KS], tệp 21).
+
+**Việc mới theo bảng xác nhận 17/11** (chưa có mã chức năng; tệp 21 §3): hai cách đăng 自動投稿 / 要確認; nhịp đề xuất chỉnh qua chỉ thị cho AI; màn nhập thông tin tài năng cho AI (chờ Q&A No.74); gửi tin theo khung sáng, trưa, tối; tự xóa dữ liệu tài năng rời đi sau 6 tháng; chu kỳ thu phí từ ngày đăng ký.
 
 Tổng cộng có 54 chức năng: 42 高 (cao), 11 中 (trung bình), 1 低 (thấp, chức năng 8-9). Mã và số chức năng không đổi so với v1. Cột cuối ghi 確認 liên quan theo số của v2.
 
@@ -58,7 +53,7 @@ Tổng cộng có 54 chức năng: 42 高 (cao), 11 中 (trung bình), 1 低 (th
 | 3-8 | Tổng kết tuần | 3 | 中 (trung bình) | 6-5 |  |
 | 3-9 | Nhắc tài năng lâu không đăng bài (sau 3 ngày), báo quản lý (sau 7 ngày) | 3 | 中 (trung bình) | 6-5 | ⚠ 19 |
 | 3-10 | Hiển thị số người theo dõi và tiến độ so với mục tiêu | 3 | 高 (cao) | 6-11 |  |
-| 4-1 | Tự tạo 3 chủ đề gợi ý và bản nháp (tài năng yêu cầu bao nhiêu tạo bấy nhiêu) | 4. Bản nháp bài đăng | 高 (cao) | 6-6 | ⚠ 15, 16, 24 |
+| 4-1 | Tự tạo chủ đề gợi ý (3 mỗi lần đề xuất) và bản nháp; nhờ AI viết lại tối đa 2 lần ([KS] 確認29) | 4. Bản nháp bài đăng | 高 (cao) | 6-6 | ⚠ 15, 16, 24 |
 | 4-2 | Yêu cầu AI sửa và viết lại | 4 | 高 (cao) | 6-6 | ⚠ 28, 29 |
 | 4-3 | 採用 (chấp nhận bản nháp), chọn có gửi quản lý duyệt hay không | 4 | 高 (cao) | 6-6 | ⚠ 25, 26, 33 |
 | 4-4 | Phát hiện từ cấm. Quản lý đăng ký danh sách | 4 | 高 (cao) | 6-6 | ⚠ 4 |
@@ -114,6 +109,8 @@ Nguồn: [YK2] mục 6 (nội dung từng chức năng), 別紙C (phụ lục C,
 | Ước tính chi phí vận hành | Chi phí dịch vụ ngoài và máy chủ hằng tháng, kể cả bảng giá Upload-Post theo số tài năng (sẽ gửi riêng) | 8, 9-2, UC-08 前提 |
 
 ## 4. Ngoài phạm vi
+
+**Bị cắt so với báo giá (không làm):** phân loại trả phí/miễn phí, trần tháng tạo video, hai loại quản lý, người duyệt chỉ định, tự đăng lại, trần phí AI (CR-11〜CR-16). Riêng việc gửi yêu cầu duyệt theo nhóm hoặc quản lý phụ trách nay làm theo CR-19 ([KS] 確認34). Nhiều tài khoản trên một mạng (CR-20): không làm ([KS] 確認10).
 
 ### 4.1 Đã chốt loại trừ
 
@@ -171,24 +168,24 @@ Các mục dưới đây chưa được xếp vào "trong phạm vi" hay "ngoài
 
 ### 5.2 Phạm vi phụ thuộc câu trả lời của khách
 
-| 確認 | Đề xuất của FutureCore | Nếu khách không đồng ý | Mục trong [YK2] |
-| --- | --- | --- | --- |
-| 1 | Người ngoài công ty đăng ký theo cùng luồng với người thuộc công ty | Thêm thủ tục riêng cho người ngoài công ty (hợp đồng, đồng ý) | UC-01 |
-| 6, 7, 8 | Màn hình chỉ dẫn cho AI: phạm vi toàn bộ / nhóm / tài năng, chạy thử, lịch sử phiên bản, mẫu câu. Phần theo nhóm cần kiểm chứng kỹ thuật | Nếu khách muốn: thêm màn hình mới, cần bàn chi phí và lịch (14-3). Nếu không: giữ cách chỉ dẫn qua ChatGPT và OneDrive | UC-02 |
-| 47 | Nhóm tài năng: tạo nhóm, một tài năng nhiều nhóm, lọc theo nhóm | Như trên | UC-10 |
-| 5 | チャレンジ (thử thách) do quản lý ghi qua ChatGPT vào file của tài năng | Nếu AI tự đề xuất thử thách thì thêm logic | UC-02 |
-| 11 | Kết nối thiếu mạng vẫn dùng được, chỉ đăng lên mạng đã kết nối | Chặn sử dụng cho tới khi kết nối đủ | UC-03 |
-| 10 | Mỗi mạng một tài khoản | Hỗ trợ nhiều tài khoản | UC-03, 6-10 (8-2) |
-| 23, 29 | Không giới hạn số lần trò chuyện và viết lại bản nháp. Hạn chế chuyện riêng tư | Thêm giới hạn và cảnh báo | UC-04, UC-05 |
-| 27 | Quản lý gửi ảnh và tạo video thay tài năng. Chưa rõ cho tài năng hay chỉ tài khoản công ty | Nếu cho cả tài năng thì phí video tính vào hóa đơn của tài năng | UC-05 |
-| 28 | Tài năng không tự sửa bản nháp, chỉ nhờ AI viết lại | Thêm chức năng sửa tay | UC-05 |
-| 30 | Tài năng không đổi được giờ đăng | Thêm chức năng đổi giờ | UC-05 |
-| 33 | Chỉ bài công việc cần khách hàng cho phép mới cần duyệt. AI không tự xác định | Thêm phân loại bằng AI hoặc mở rộng loại bài cần duyệt | UC-07 |
-| 37 | Không giới hạn số bài mỗi ngày vì lý do chi phí | Giữ giới hạn số bài | UC-08 |
-| 43 | Quản lý góp ý qua chỉ dẫn cho AI, huấn luyện viên AI chuyển lời | Thêm chức năng nhắn tin trực tiếp từ quản lý | UC-10 |
-| 45 | Thông báo cho quản lý chỉ hiện trên màn hình quản trị | Thêm email hoặc thông báo điện thoại cho quản lý | UC-10 |
-| 52 | Tài khoản công ty không duyệt bài | Thêm luồng duyệt cho 9-1 | UC-12 |
-| 20 | Khách còn ý tưởng tạo động lực nào khác không (câu hỏi mở) | Phạm vi có thể tăng, cần đối chiếu với SOW (14-3) | UC-04 |
+| 確認 | Đề xuất của FutureCore | Nếu khách không đồng ý | Mục trong [YK2] | Khách trả lời 17/11 ([KS]) |
+| --- | --- | --- | --- | --- |
+| 1 | Người ngoài công ty đăng ký theo cùng luồng với người thuộc công ty | Thêm thủ tục riêng cho người ngoài công ty (hợp đồng, đồng ý) | UC-01 | Đồng ý giả định |
+| 6, 7, 8 | Màn hình chỉ dẫn cho AI: phạm vi toàn bộ / nhóm / tài năng, chạy thử, lịch sử phiên bản, mẫu câu. Phần theo nhóm cần kiểm chứng kỹ thuật | Nếu khách muốn: thêm màn hình mới, cần bàn chi phí và lịch (14-3). Nếu không: giữ cách chỉ dẫn qua ChatGPT và OneDrive | UC-02 | **Làm** màn chỉ dẫn (CR-18); không có nút mẫu câu; cần thêm màn nhập thông tin tài năng (確認8) |
+| 47 | Nhóm tài năng: tạo nhóm, một tài năng nhiều nhóm, lọc theo nhóm | Như trên | UC-10 | **Làm** (CR-17) |
+| 5 | チャレンジ (thử thách) do quản lý ghi qua ChatGPT vào file của tài năng | Nếu AI tự đề xuất thử thách thì thêm logic | UC-02 | AI đề xuất thử thách theo tình hình, quản lý đề xuất qua chỉ thị AI, tài năng nhận/từ chối, không duyệt; chờ khái niệm アデッソ viết |
+| 11 | Kết nối thiếu mạng vẫn dùng được, chỉ đăng lên mạng đã kết nối | Chặn sử dụng cho tới khi kết nối đủ | UC-03 | Đồng ý: thiếu mạng vẫn dùng được |
+| 10 | Mỗi mạng một tài khoản | Hỗ trợ nhiều tài khoản | UC-03, 6-10 (8-2) | Mỗi mạng một tài khoản; tài khoản nhóm (ユニット) coi là tài khoản công ty (CR-20 không làm) |
+| 23, 29 | Không giới hạn số lần trò chuyện và viết lại bản nháp. Hạn chế chuyện riêng tư | Thêm giới hạn và cảnh báo | UC-04, UC-05 | Trò chuyện: khách ghi "đặt giới hạn", chưa chốt (確認23). Viết lại: **tối đa 2 lần** (確認29) |
+| 27 | Quản lý gửi ảnh và tạo video thay tài năng. Chưa rõ cho tài năng hay chỉ tài khoản công ty | Nếu cho cả tài năng thì phí video tính vào hóa đơn của tài năng | UC-05 | Chỉ tài khoản công ty |
+| 28 | Tài năng không tự sửa bản nháp, chỉ nhờ AI viết lại | Thêm chức năng sửa tay | UC-05 | **Tài năng tự sửa được** (CR-21) |
+| 30 | Tài năng không đổi được giờ đăng | Thêm chức năng đổi giờ | UC-05 | Đồng ý: AI quyết giờ theo chỉ thị của アデッソ |
+| 33 | Chỉ bài công việc cần khách hàng cho phép mới cần duyệt. AI không tự xác định | Thêm phân loại bằng AI hoặc mở rộng loại bài cần duyệt | UC-07 | Khách ghi: bài về công việc tài năng tham gia; chưa chốt |
+| 37 | Không giới hạn số bài mỗi ngày vì lý do chi phí | Giữ giới hạn số bài | UC-08 | Đồng ý: không giới hạn |
+| 43 | Quản lý góp ý qua chỉ dẫn cho AI, huấn luyện viên AI chuyển lời | Thêm chức năng nhắn tin trực tiếp từ quản lý | UC-10 | Đồng ý; tin nhắn trực tiếp để giai đoạn sau |
+| 45 | Thông báo cho quản lý chỉ hiện trên màn hình quản trị | Thêm email hoặc thông báo điện thoại cho quản lý | UC-10 | Khách ghi: thêm email; chưa chốt |
+| 52 | Tài khoản công ty không duyệt bài | Thêm luồng duyệt cho 9-1 | UC-12 | Đồng ý giả định |
+| 20 | Khách còn ý tưởng tạo động lực nào khác không (câu hỏi mở) | Phạm vi có thể tăng, cần đối chiếu với SOW (14-3) | UC-04 | Đồng ý giả định (không thêm ý tưởng) |
 
 Các 確認 khác (đánh dấu ⚠ ở mục 2) chỉ thay đổi chi tiết bên trong một chức năng đã thuộc phạm vi.
 
@@ -201,7 +198,7 @@ Các 確認 khác (đánh dấu ⚠ ở mục 2) chỉ thay đổi chi tiết b�
 | Nhật ký thao tác và nhật ký xử lý | Mục 9-4 yêu cầu ghi lại, nhưng chỉ có chức năng xem nhật ký xem (7-6) | 9-4, 6-2 (7-6) |
 | Gửi email (kết quả đăng ký, mật khẩu tạm, đặt lại mật khẩu) | Chắc chắn cần nhưng mục 8 chưa có dịch vụ gửi email | 6-1 (1-4), 8 |
 | Báo quản lý khi tài năng thanh toán xong và cần nhập hồ sơ | Luồng UC-01 cần nhưng 7-4 không có loại thông báo này | UC-01 前提, 6-12 (7-4) |
-| Xóa dữ liệu sau khi tài năng rời, xóa đơn bị từ chối | Chỉ ghi giữ lại 一定の期間 (một khoảng thời gian nhất định) | 7-3, 確認55 |
+| Xóa đơn bị từ chối | Chưa có quy định. (Xóa dữ liệu tài năng rời đi đã chốt: 6 tháng rồi tự xóa, [KS] 確認55; nay thuộc phạm vi, chưa có mã chức năng) | 7-3 |
 | Cách kiểm tra bản quyền nội dung và tư liệu | Ghi "sẽ viết trong bản cuối" | 11 |
 
 ### 5.4 Phạm vi có điều kiện

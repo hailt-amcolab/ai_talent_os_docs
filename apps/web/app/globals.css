@@ -56,3 +56,8 @@ a { color: #214bc1; text-underline-offset: 4px; }
 input { min-height: 44px; background: #fff; color: #18263b; }
 input:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #92b5ff; outline-offset: 3px; }
 time { color: #65748c; font-size: 13px; }
+textarea { display: block; width: 100%; box-sizing: border-box; font: inherit; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px; }
+.drive-list { list-style: none; padding: 0; }
+.drive-list li { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid #eef1f5; }
+.drive-list li > :first-child { flex: 1 1 12rem; text-align: left; overflow-wrap: anywhere; }
+.drive-path { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }

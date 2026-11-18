@@ -121,7 +121,7 @@ Quản lý sửa file trong OneDrive thì AIコーチ áp dụng **từ sáng h�
 |---|---|---|
 | Thiết bị | Tài năng dùng iPhone hoặc Android. Muốn nhận thông báo đẩy trên iPhone cần iOS 16.4 trở lên. Màn hình quản trị dùng trình duyệt máy tính là chính, trên điện thoại vẫn phải dễ xem | §9-1 |
 | Quy mô | Bắt đầu khoảng 30 tài năng, thêm 10 người mỗi tháng, sắp tới khoảng 100. Mục tiêu 200–300, sau này 1.000 | §9-2 |
-| Thời gian | Việc buổi sáng (đọc dữ liệu, tạo bản nháp) phải xong trước giờ nhắn (mặc định 8:00) | §9-2, §5-2 |
+| Thời gian | Việc trước giờ nhắn (đọc dữ liệu, tạo bản nháp) phải xong trước mỗi khung sáng (mặc định 8:00), trưa, tối ([KS] 確認18) | §9-2, §5-2 |
 | Môi trường | Có môi trường thật và môi trường thử | §9-1 |
 | Khi lỗi | Dịch vụ ngoài lỗi thì chỉ dừng chức năng đó, chức năng khác vẫn chạy; đăng lỗi thì báo | §9-3 |
 | Nhật ký | Ghi lượt xem, thao tác và kết quả xử lý (đăng bài, lấy kết quả, tạo video, thu phí) | §9-4 |
@@ -135,7 +135,7 @@ Quản lý sửa file trong OneDrive thì AIコーチ áp dụng **từ sáng h�
 
 **Trong phạm vi:** chức năng của 9 hạng mục lớn trong SOW (bản mô tả phạm vi công việc), tức 54 chức năng ở [YK2] chương 6 [YK2] §1-3, 別紙C (phụ lục C). Các chức năng này được chia module ở file 16.
 
-**Cập nhật 17/11 (Q&A bản 15/11):** quản lý làm thay tài năng (確認27) đã chốt làm ở đợt đầu (CR-09); không làm OTP qua email; xác thực hai bước chỉ dùng ứng dụng xác thực, SMS chờ bàn (S01-11).
+**Cập nhật 17/11 (Q&A bản 15/11):** quản lý làm thay đã chốt làm ở đợt đầu (CR-09), và chỉ cho tài khoản công ty ([KS] 確認27); không làm OTP qua email; xác thực hai bước chỉ dùng ứng dụng xác thực, SMS chờ bàn (S01-11).
 
 **Ngoài phạm vi:**
 - Những mục SOW "4.2 作業対象外" (ngoài phạm vi công việc) [YK2] §1-3.
@@ -144,9 +144,7 @@ Quản lý sửa file trong OneDrive thì AIコーチ áp dụng **từ sáng h�
 - Lưu bằng chứng đồng ý của phụ huynh [YK2] §10-3.
 
 **Chưa rõ, chưa xếp vào hai nhóm trên:**
-- Quản lý nhóm tài năng (確認47, nay là CR-17).
-- Chỉ thị cho AI theo nhóm (確認6, nay là CR-18).
-- Các thay đổi khác ngoài báo giá CR-19〜CR-25 (xem `19_Doi_chieu_QA_bao_gia.md` mục 3). Tất cả chờ Q&A No.50.
+- Thay đổi ngoài báo giá còn chờ khách: CR-23 (video tự làm). CR-24 (hội thoại riêng tư) không làm (Q&A No.7); CR-25 không cần, 画面定義書 do FutureCore làm (Q&A No.68). CR-17, 18, 19, 21 đã chuyển vào phạm vi theo bảng xác nhận 17/11 (tệp 21); CR-20 không làm.
 - Nội dung chống khóa tài khoản (§9-5).
 
 Chi tiết ở file 16 mục 3.

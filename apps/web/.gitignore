@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ảnh/kết quả của e2e
+/e2e/results/

@@ -1,4 +1,4 @@
-// Current contracts: agent_spec/auth-pwa-demo/IMPLEMENTATION.md.
+// Hướng dẫn dùng các bảng Auth/push: agent_spec/supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md §5.4.
 // Provider Auth projection is external; SQL owns CHECK/trigger/ACL.
 generator client {
   provider               = "prisma-client"
@@ -599,6 +599,8 @@ model auth_users {
   id              String           @id @db.Uuid
   auth_principals auth_principals?
   tech_demo_sessions tech_demo_sessions[]
+  tech_demo_onedrive_connections tech_demo_onedrive_connections[]
+  tech_demo_onedrive_oauth_states tech_demo_onedrive_oauth_states[]
   managers        managers?
   talents         talents?
 
@@ -830,5 +832,35 @@ model tech_demo_push_subscriptions {
   session tech_demo_sessions @relation(fields: [session_id,auth_user_id], references: [session_id,auth_user_id], onDelete: Cascade, onUpdate: NoAction)
   @@index([auth_user_id], map: "idx_tech_push_owner", where: raw("is_active"))
   @@index([session_id,auth_user_id], map: "idx_tech_push_session")
+  @@schema("app_private")
+}
+
+/// Technology POC only: the one main OneDrive connection (slot 'primary'; tokens sealed by the BE).
+model tech_demo_onedrive_connections {
+  slot String @id
+  connected_by String? @db.Uuid
+  ms_account_id String
+  display_name String?
+  drive_id String
+  drive_type String
+  status String
+  token_box Bytes?
+  access_expires_at DateTime? @db.Timestamptz(6)
+  version Int @default(1)
+  connected_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  user auth_users? @relation(fields: [connected_by], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  @@schema("app_private")
+}
+/// Technology POC only: single-use OAuth state + PKCE verifier.
+model tech_demo_onedrive_oauth_states {
+  state_hash Bytes @id
+  auth_user_id String @db.Uuid
+  session_id String @db.Uuid
+  verifier_box Bytes
+  expires_at DateTime @db.Timestamptz(6)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  user auth_users @relation(fields: [auth_user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  @@index([auth_user_id], map: "idx_tech_onedrive_states_user")
   @@schema("app_private")
 }

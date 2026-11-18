@@ -19,6 +19,8 @@
 
 Tài năng bấm "採用" (chấp nhận) trên bản nháp đã có ảnh hoặc video. Hệ thống kiểm tra từ cấm rồi hẹn giờ đăng, hoặc chuyển sang chờ duyệt nếu tài năng xin duyệt (§6-6 chức năng 4-3, §5-3).
 
+Chức năng này áp cho cách đăng **要確認** (xác nhận trước khi đăng). Cách **自動投稿** (đăng tự động: chọn chủ đề, tải tư liệu, đặt khoảng thời gian, hệ thống tự soạn và tự đăng) không có bước chấp nhận từng bài ([KS] 確認19, 25). Luồng chi tiết của 自動投稿 (duyệt, từ cấm, hết tư liệu, hết khoảng) **chưa có đặc tả**: [Chưa rõ], đang hỏi ở Q&A No.70, 71, 77; cần một SCD riêng khi có trả lời.
+
 ## Tác nhân và quyền
 
 - Tài năng: chấp nhận bản nháp của mình. Chỉ tài năng được cài dùng duyệt bài mới thấy ô xin duyệt (7-7).
@@ -54,8 +56,8 @@ Tài năng bấm "採用" (chấp nhận) trên bản nháp đã có ảnh hoặ
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
 | Phải có ảnh hoặc video | — | Chốt | §6-6 |
-| Chỉ bài đã chấp nhận mới được đăng | — | Giả định (確認25) | — |
-| Giờ đăng do hệ thống quyết | — | Giả định (確認30) | §5-2 |
+| Chỉ bài đã chấp nhận mới được đăng | Với cách đăng 要確認. Cách 自動投稿 không có bước chấp nhận từng bài, hệ thống tự đăng trong khoảng tài năng đặt | Chốt ([KS] 確認19, 25) | — |
+| Giờ đăng do hệ thống quyết | AI chọn theo khung giờ hiệu quả アデッソ viết trong chỉ thị cho AI | Chốt ([KS] 確認30) | §5-2 |
 | Thời gian chờ khi chấp nhận trễ | 15 phút | Tham số | S04-01 |
 | Giờ chặn cuối ngày | 22:00 | Tham số | S04-01 |
 | Khoảng cách giữa hai bài trong ngày | 3 giờ | Tham số | S04-04 |
@@ -77,7 +79,7 @@ Upload-Post: hẹn giờ qua chức năng 8-3. Chống hẹn trùng: khóa theo 
 1. Cho bản nháp chưa có ảnh, video, thì nút 採用 không bấm được.
 2. Cho tài năng không được cài duyệt bài, thì không thấy ô xin duyệt.
 3. Cho bản nháp sạch, không xin duyệt, đăng tự động đang chạy, thì bài ở "đã hẹn giờ" với giờ đăng dự kiến của ngày và có lịch bên Upload-Post.
-4. Cho có xin duyệt, thì bài ở "chờ duyệt" và mọi quản lý có thông báo 承認の依頼.
+4. Cho có xin duyệt, thì bài ở "chờ duyệt" và quản lý của nhóm hoặc quản lý phụ trách có thông báo 承認の依頼 ([KS] 確認34).
 5. Cho chú thích có từ cấm, thì bài không được hẹn giờ và tài năng thấy lý do.
 6. Cho chấp nhận lúc 20:00 khi giờ dự kiến là 19:00, thì bài được hẹn khoảng 20:15.
 7. Cho đăng tự động đang dừng, thì bài ở "đã chấp nhận, chưa hẹn giờ".
@@ -93,7 +95,7 @@ Upload-Post: hẹn giờ qua chức năng 8-3. Chống hẹn trùng: khóa theo 
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認25, 26, 30, 33.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認25, 26, 30, 33.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

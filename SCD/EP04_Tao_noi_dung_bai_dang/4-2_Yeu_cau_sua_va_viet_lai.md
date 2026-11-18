@@ -21,7 +21,7 @@ Tài năng nói điểm muốn sửa trong hội thoại, AI viết lại bản 
 
 ## Tác nhân và quyền
 
-- Tài năng: yêu cầu sửa bản nháp của mình. Không sửa chữ trực tiếp (giả định theo 確認28).
+- Tài năng: yêu cầu sửa bản nháp của mình. Sửa chữ trực tiếp được ([KS] 確認28), hoặc nhờ AI viết lại tối đa 2 lần ([KS] 確認29).
 
 ## Luồng chính
 
@@ -45,9 +45,9 @@ Tài năng nói điểm muốn sửa trong hội thoại, AI viết lại bản 
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Số lần viết lại | Không giới hạn | Giả định (確認29) | — |
+| Số lần nhờ AI viết lại | Tối đa 2 lần mỗi bản nháp. 要確認 mà 2 lần vẫn không hợp thì hôm đó không đăng, trừ khi tài năng tự sửa rồi đăng | Chốt ([KS] 確認29) | — |
 | Chi phí mỗi lần | Khoảng 0,2–3 yên | Tham khảo | 確認29 |
-| Tài năng không sửa trực tiếp | — | Giả định (確認28) | — |
+| Tài năng sửa chữ trực tiếp | Được, ở màn bản nháp (T-09) | Chốt ([KS] 確認28) | — |
 
 ## Dữ liệu [Đề xuất nội bộ]
 
@@ -70,7 +70,7 @@ T-09: nút 直しを依頼. T-08: hội thoại sửa.
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認28, 29.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認28, 29.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -82,6 +82,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 
 - [YK2] §6-6 (4-2), §6-10 (7-2), UC-05, 確認28, 29. [AG] trang 4 (T-09).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- Q&A No.39, CR-21: tài năng sửa chữ trực tiếp là thay đổi ngoài báo giá, **chưa làm** tới khi khách quyết (No.50). Giữ cách sửa qua AI.
+- Q&A No.39, CR-21: tài năng sửa chữ trực tiếp **làm** ([KS] 確認28).

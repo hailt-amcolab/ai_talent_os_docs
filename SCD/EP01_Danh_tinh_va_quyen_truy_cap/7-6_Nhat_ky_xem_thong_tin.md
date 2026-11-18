@@ -89,6 +89,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 - [AG] trang 10 (M-19), trang 8 (M-09). File 14 (M-19 đổi bộ lọc).
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 2.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.21 (đã chốt): lọc theo khoảng thời gian và tài năng. Q&A No.29: thời gian giữ nhật ký do mình thiết kế, không hỏi khách.

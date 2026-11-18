@@ -1,6 +1,6 @@
 # talent-web: ứng dụng tài năng (PWA)
 
-Next.js 16 (App Router), **chỉ có giao diện**: không route API, không server action. Gọi BE qua `lib/api/client.ts` (`NEXT_PUBLIC_API_URL`). Base hiện có nền tảng PWA: manifest, service worker, hướng dẫn cài, bật thông báo đẩy trên máy, báo bản mới, trang mất mạng. Kiến trúc và quy ước: [agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md](../../agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md); PWA: [agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md](../../agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md).
+Next.js 16 (App Router), **chỉ có giao diện**: không route API, không server action. Gọi BE qua `lib/api/client.ts` (`NEXT_PUBLIC_API_URL`). Base hiện có nền tảng PWA: manifest, service worker, hướng dẫn cài, bật thông báo đẩy trên máy, báo bản mới, trang mất mạng. Kiến trúc và quy ước: [agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md](../../agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md); PWA: [agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md](../../agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md).
 
 Next.js 16 khác bản cũ: đọc `node_modules/next/dist/docs/` trước khi viết mã (xem `AGENTS.md`).
 

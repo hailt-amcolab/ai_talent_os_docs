@@ -74,7 +74,7 @@ C-05 (danh mục), 6-8 (service worker), 6-2 (đăng ký).
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認12, 38, 39.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認12, 38, 39.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -88,4 +88,4 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP09: 
 
 - [YK2] §6-12 (6-1), §6-13, §9-1, §11, 別紙A, 確認12. [AG] trang 5 (T-14). [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 4.
 
-Đặc tả kỹ thuật thông báo đẩy (VAPID, xin quyền, nhận và bấm thông báo, mã lỗi khi gửi): [`agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md`](../../agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md) mục 6.
+Đặc tả kỹ thuật thông báo đẩy (VAPID, xin quyền, nhận và bấm thông báo, mã lỗi khi gửi): [`agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md`](../../agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md) mục 5–6.

@@ -13,6 +13,8 @@ Một nơi duy nhất định nghĩa trạng thái và cách chuyển trạng th
 
 ## 1. Bài đăng – theo hình 5-1 [Chốt]
 
+> **[Chưa rõ] Cách đăng 自動投稿** ([KS] 確認19, 25): bài được hệ thống tự soạn và tự đăng trong khoảng tài năng đặt, không qua bước chấp nhận. Bộ trạng thái dưới đây mới mô tả cách 要確認; trạng thái của bài trong khoảng 自動投稿 (có qua "chờ duyệt", "dính từ cấm" không) chưa thiết kế; chờ Q&A No.70, 71 rồi cập nhật danh sách trạng thái (Q&A No.51).
+
 ```mermaid
 stateDiagram-v2
   [*] --> 投稿案
@@ -52,11 +54,10 @@ stateDiagram-v2
   [*] --> 利用前: マネージャーが申し込みを承認（1-4）
   利用前 --> 利用中: 支払い方法の登録が完了（S01-01）
   利用中 --> 利用終了: マネージャーが切り替え（7-3）
-  利用終了 --> 利用中: マネージャーが戻す（確認56）
   利用前 --> 利用終了: マネージャーが切り替え
 ```
 
-Tài khoản công ty tạo ra là 利用中 ngay. 退会 (UC-13) = 利用終了 (A3).
+Tài khoản công ty tạo ra là 利用中 ngay. 退会 (UC-13) = 利用終了 (A3). 利用終了 không quay lại 利用中 được ([KS] 確認56); đủ 6 tháng thì dữ liệu tự xóa ([KS] 確認55).
 
 ## 3. Đơn đăng ký [Đề xuất]
 
@@ -103,7 +104,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 
 - [YK2] §5-1 (hình 5-1), §6-2 (7-3), UC-13. Các đặc tả liên quan trong SCD/EP01–EP08.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.51 (đang hỏi): người hỏi tạm ghép 8 trạng thái vì không xem được hình 5-1. **Hình 5-1 có trong tệp v2 dạng ảnh**, mục 1 ở trên lấy từ hình đó; nên đưa hình vào câu trả lời.
 - Q&A No.58: đề xuất "bài xin duyệt lại là cùng một bài" khác dòng "Bị trả lại" ở mục 1 (sang 取り消し, chấp nhận lại thành bài mới). Phải thống nhất.

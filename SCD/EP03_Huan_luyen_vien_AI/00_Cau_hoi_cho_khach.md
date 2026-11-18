@@ -2,7 +2,7 @@
 
 File này gom các điểm còn mở của 9 chức năng EP03 (3-1 đến 3-9) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認14, 15, 18, 20–23 (3-4); 確認17, 23 (3-3); 確認19, 43 (3-9); 確認5, 39 (3-7); 確認6–8 (chỉ thị cho AI, 3-1). Không câu 確認 nào trong số này chặn việc viết mã, vì chỉ đổi nội dung lời nhắc hoặc giá trị tham số.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認14, 15, 18, 20–23 (3-4); 確認17, 23 (3-3); 確認19, 43 (3-9); 確認5, 39 (3-7); 確認6–8 (chỉ thị cho AI, 3-1). Không câu 確認 nào trong số này chặn việc viết mã, vì chỉ đổi nội dung lời nhắc hoặc giá trị tham số.
 
 Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`; File 15 = [15_Cau_hoi_lam_ro_luong.csv](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) (các câu mới đã thêm với mã S03-xx).
 
@@ -21,7 +21,7 @@ Cùng nguyên tắc với EP01: đề xuất chỉ được là cách làm của
 | Màn tổng chi phí AI của cả công ty, mức trần chi phí | 3-5 chỉ yêu cầu tổng theo tài năng và theo tháng; [AG] chỉ có dòng ở M-10 |
 | Màn quản lý nhiệm vụ hằng ngày, màn nhập thử thách | Nhiệm vụ do AI viết trong tin buổi sáng (UC-04). Thử thách viết trong hồ sơ (B12) |
 
-**Chi phí cần lưu ý (trong phạm vi nhưng nên báo khách):** không giới hạn số lần nhắn (theo giả định của 確認23) thì phí OpenAI không có trần. 3-5 cho thấy phí theo từng tài năng để khách theo dõi.
+**Chi phí cần lưu ý (trong phạm vi nhưng nên báo khách):** không giới hạn số lần nhắn (theo giả định của 確認23; khách ghi muốn đặt giới hạn, chưa chốt) thì phí OpenAI không có trần. 3-5 cho thấy phí theo từng tài năng để khách theo dõi.
 
 ## 2. Câu phải có trả lời trước khi viết mã
 
@@ -92,7 +92,7 @@ Các câu dưới đây đã có trong `AI-Talent-OS_Q&A表.xlsx`. Câu đã g�
 | Mã | Tiêu đề | Q&A | Tình trạng |
 |---|---|---|---|
 | B10 | Huấn luyện viên AI với tài khoản văn phòng | No.66 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |
-| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại); màn thử thách chưa làm tới khi khách quyết |
+| B12 | Thử thách và hạn mục tiêu | CR-22 | Đã chốt hướng 17/11 ([KS] 確認5): AI đề xuất, tài năng nhận/từ chối, không duyệt; màn thử thách chờ khái niệm アデッソ viết |
 | S03-02 | Dấu hiệu tự hại, nguy hiểm | No.18 | Đã chốt trong Q&A một phần: quy tắc cho tài năng vị thành niên nằm trong file chỉ thị do khách viết |
 | S03-03 | Câu từ chối cố định | No.18 | Đã chốt trong Q&A một phần: câu từ chối do khách viết vào file chỉ thị |
 | S03-05 | Ngày đang dừng đăng tự động | No.60 | Đã có trong Q&A, chờ khách trả lời (không hỏi lại) |

@@ -101,7 +101,7 @@ Không có màn trong hệ thống. Quản lý xem kết quả ở M-07.
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認5 (チャレンジ, tức thử thách, do ai nhập), 確認6–8 (màn chỉ thị cho AI).
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認5 (チャレンジ, tức thử thách, do ai nhập), 確認6–8 (màn chỉ thị cho AI).
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

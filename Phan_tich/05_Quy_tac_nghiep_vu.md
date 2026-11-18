@@ -1,14 +1,5 @@
 # Quy tắc nghiệp vụ
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- BR-G01: video trình chiếu ghép ảnh ở máy chủ (CR-04). BR-G05 (video tự làm dùng theo thứ tự): CR-23, chưa làm. BR-C06 (sửa qua AI): giữ; sửa chữ trực tiếp là CR-21.
-- Câu 20 (nguồn chỉ dẫn cho AI): màn chỉ dẫn là CR-18, chưa làm. Hiện chỉ dẫn đi qua ChatGPT và file OneDrive (御見積書 前提条件 A4, Q&A No.45).
-- Báo tăng người theo dõi ở mốc 25%, 50%, 75% mục tiêu (Q&A No.14).
-
-
 Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở mục 5 業務ルール (quy tắc nghiệp vụ) của [YK2]. Phần còn lại nằm rải rác ở mục 3, 4 (phần 前提 – tiền đề của từng UC), 6, 7, 9, 10, 11 và 14. Cuối tab có 10 điểm mâu thuẫn và 20 quy tắc còn thiếu. Tab này đã viết lại theo bản yêu cầu v2.
 
 **Cách đọc:**
@@ -46,16 +37,16 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | BR-A07 | Mọi lần quản lý xem thông tin tài năng đều được ghi lại | Quản lý mở màn hình thông tin, hội thoại hoặc số liệu | Ghi ngày giờ, quản lý, tài năng | Nhật ký không sửa được | — | 3-2, 6-2 (7-6), 確認44 |
 | BR-A08 | Trạng thái tài năng và hậu quả khi kết thúc | Quản lý đổi trạng thái (có bước xác nhận) | Khi chuyển sang 利用終了 (đã kết thúc): dừng nhắn tin, dừng thu phí, hủy bài đã hẹn, chặn đăng nhập ⚠. Dữ liệu giữ lại một thời gian | 3 trạng thái: 利用前 (trước khi dùng), 利用中 (đang dùng), 利用終了 | Chuyển từ 利用終了 về 利用中 được ⚠ | 6-2 (7-3), UC-13, 7-3, 確認53–56 |
 | BR-A09 | Tài khoản công ty là một loại tài khoản riêng | Quản lý đăng bài cho công ty | Quản lý tạo trên màn hình quản trị. Hệ thống tạo thư mục ngay lúc đó. Quản lý đăng nhập bằng mã của tài khoản công ty và dùng như tài năng | Có nhiều tài khoản thì đăng nhập lại cho từng tài khoản | Không duyệt bài ⚠. Không thu phí tháng, không đăng ký thanh toán | 3-1, UC-12 前提, 6-4 (2-2), 確認52 |
-| BR-A10 (mới) | Vị thành niên được tính từ ngày sinh | Khi có đơn đăng ký | Hệ thống tính từ ngày sinh và hiện trên màn hình quản trị để tham khảo ⚠. Huấn luyện viên AI dùng ngày sinh để biết tuổi | Chỉ để tham khảo | — | 3-1, UC-01 前提, 確認2 |
+| BR-A10 (mới) | Nhãn dưới 18 tuổi tính từ ngày sinh | Khi có đơn đăng ký | Hệ thống tính từ ngày sinh và hiện nhãn **dưới 18 tuổi** trên màn hình quản trị để tham khảo ([KS] 確認2: không dùng mốc 未成年 (vị thành niên) theo luật, vì livestream TikTok cần 18 tuổi trở lên). Huấn luyện viên AI dùng ngày sinh để biết tuổi | Chỉ để tham khảo | — | 3-1, UC-01 前提, 確認2 |
 | BR-A11 (mới) | Loại tài khoản không đổi được | Mọi tài khoản | Có hai loại: tài năng (đăng ký qua ứng dụng, có trả phí) và tài khoản công ty (quản lý tạo, không thu phí). Tài năng không tự chọn hay đổi loại | Không chuyển qua lại giữa hai loại | Tài khoản công ty muốn trả phí thì đăng ký mới như tài năng | 5-4, 6-3 (1-2, 1-3) |
 
 ## B. Thời gian và cài đặt
 
 | Mã | Quy tắc | Điều kiện áp dụng | Cách xử lý | Giới hạn | Ngoại lệ | Nguồn [YK2] |
 | --- | --- | --- | --- | --- | --- | --- |
-| BR-B01 | Giờ nhắn tin buổi sáng | Mỗi ngày, kể cả cuối tuần và ngày lễ ⚠, mọi tài năng đang dùng | Mọi tài năng nhận trong cùng một khung giờ. Xử lý buổi sáng phải xong trước giờ này | Mặc định 8:00 ⚠. Gửi cùng một lúc cho mọi người hay không sẽ quyết sau khi thử tải | — | 5-2, 9-2, 確認18, 21 |
+| BR-B01 | Giờ nhắn tin buổi sáng | Mỗi ngày, kể cả cuối tuần và ngày lễ ⚠, mọi tài năng đang dùng | Tin gửi theo khung sáng, trưa, tối ([KS] 確認18); đổi giờ theo từng tài năng xem xét sau khi vận hành. Xử lý buổi sáng phải xong trước giờ này | Mặc định 8:00 ⚠. Gửi cùng một lúc cho mọi người hay không sẽ quyết sau khi thử tải | — | 5-2, 9-2, 確認18, 21 |
 | BR-B02 | Nhắc gửi tư liệu | Chưa có ảnh hoặc video trước giờ đăng | Gửi lời nhắc | Mặc định trước giờ đăng 2 tiếng. Tối đa 1 lần mỗi ngày | — | 5-2, 6-7 (6-5) |
-| BR-B03 | Ngưỡng số ngày không đăng bài | Số ngày liên tục không đăng bài | Đủ ngưỡng thứ nhất thì AI hỏi han tài năng. Đủ ngưỡng thứ hai thì báo quản lý | Mặc định 3 ngày và 7 ngày ⚠ | Bài tài năng tự đăng ngoài hệ thống vẫn tính là có đăng, nếu Upload-Post đọc được | 5-2, 6-5 (3-9), UC-09, 確認19 |
+| BR-B03 | Ngưỡng số ngày không đăng bài | Số ngày liên tục không đăng bài | Đủ ngưỡng thứ nhất thì AI hỏi han tài năng. Đủ ngưỡng thứ hai thì báo quản lý | Mặc định 3 ngày và 7 ngày; xác nhận lại ([KS] 確認19). Chỉ áp cho cách đăng 要確認 | Bài tài năng tự đăng ngoài hệ thống vẫn tính là có đăng, nếu Upload-Post đọc được | 5-2, 6-5 (3-9), UC-09, 確認19 |
 | BR-B04 | Ngày tổng kết tuần | Mỗi tuần | Gửi bản tổng kết tuần và còn bao nhiêu tới mục tiêu | Mặc định thứ Hai | — | 5-2, 6-5 (3-8), 確認14 |
 | BR-B05 | Các giá trị quản lý được tự đổi, không cần lập trình | Quản lý đổi trên màn hình quản trị hoặc sửa file trên OneDrive | Theo từng tài năng: có dùng duyệt bài không, dừng hoặc chạy lại đăng tự động, mục tiêu và hạn. Chung cho tất cả: từ cấm, giờ nhắn tin, giờ nhắc, ngưỡng số ngày, dừng toàn bộ đăng tự động. Qua file: giọng điệu, hồ sơ, ngày riêng, kế hoạch nội dung, kinh nghiệm đăng bài, チャレンジ (thử thách) ⚠ | Sửa file thì có tác dụng từ sáng hôm sau | Chỉ quản lý đổi được hồ sơ và mục tiêu. Tài năng không đổi được | 5-6, 7-5, UC-02 前提, UC-04 前提, 確認5 |
 
@@ -63,12 +54,12 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 
 | Mã | Quy tắc | Điều kiện áp dụng | Cách xử lý | Giới hạn | Ngoại lệ | Nguồn [YK2] |
 | --- | --- | --- | --- | --- | --- | --- |
-| BR-C01 | Mỗi sáng có 3 chủ đề gợi ý | Mỗi ngày, mỗi tài năng | Tạo từ: định hướng, sở thích, sở trường, bài cũ được tương tác tốt, thông tin quản lý ghi trong file, tin tức trong ngày ⚠ | Đúng 3 chủ đề ⚠ | Tài năng có thể không chọn mà tự nói chủ đề muốn đăng | 5-3, 確認15, 16 |
+| BR-C01 | Mỗi lần đề xuất có 3 chủ đề gợi ý | Cách đăng 要確認; nhịp (hằng ngày, vài ngày, mỗi tuần) theo chỉ thị cho AI ([KS] 確認14, 15) | Tạo từ: định hướng, sở thích, sở trường, bài cũ được tương tác tốt, thông tin quản lý ghi trong file, tin tức trong ngày ⚠ | Đúng 3 chủ đề ⚠ | Tài năng có thể không chọn mà tự nói chủ đề muốn đăng | 5-3, 確認15, 16 |
 | BR-C02 | Chỉ dẫn của công ty được ưu tiên hơn gợi ý của AI | Khi アデッソ có chỉ dẫn, ví dụ chủ đề theo thứ trong tuần | Theo chỉ dẫn của công ty | — | — | 5-3, 6-5 (3-1) |
 | BR-C03 | Nội dung của bản nháp | Khi tài năng đã chọn chủ đề | Chú thích, hashtag, hướng dẫn chụp (ví dụ: một ảnh nghiêng mặt lúc tập). Thêm kịch bản nếu là video | Độ dài và số hashtag phải nằm trong giới hạn của cả 3 mạng xã hội | — | 5-3, 6-6 (4-1), 確認24 |
 | BR-C04 | Số bản nháp mỗi ngày | Mỗi tài năng | Tài năng yêu cầu bao nhiêu thì AI tạo bấy nhiêu | Không có con số cố định. V1 là 1 bài mỗi ngày | — | 5-3, UC-05 前提 |
-| BR-C05 | Chỉ đăng bài đã 採用 (chấp nhận) và có ảnh hoặc video | Mọi bài | Không 採用 thì không đăng ⚠. Không có ảnh hay video thì không 採用 được, vì cả 3 mạng xã hội đều không đăng chữ suông ⚠ | — | Video tự làm đã lưu thì AI tự làm bản nháp, mỗi ngày một cái theo thứ tự lưu ⚠, nhưng tài năng vẫn phải 採用 | 6-6 (4-3), UC-05, UC-06, 確認25, 26, 32 |
-| BR-C06 | Bản nháp sửa qua AI | Trước khi 採用 | Tài năng nói điểm muốn sửa hoặc đưa câu chữ muốn dùng để AI viết lại. Không tự sửa trực tiếp ⚠ | Không giới hạn số lần viết lại ⚠. Mỗi lần tạo bản nháp tốn khoảng 0,2–3 yên | — | 6-6 (4-2), 確認28, 29 |
+| BR-C05 | Chỉ đăng bài có ảnh hoặc video; ở 要確認 phải 採用 (chấp nhận) | Mọi bài | 要確認: không 採用 thì không đăng. 自動投稿: hệ thống tự soạn và tự đăng trong khoảng tài năng đặt, dùng tư liệu đã tải lên ([KS] 確認19, 25). Không có ảnh hay video thì không 採用 được, vì cả 3 mạng xã hội đều không đăng chữ suông ⚠ | — | Video tự làm đã lưu thì AI tự làm bản nháp, mỗi ngày một cái theo thứ tự lưu ⚠, nhưng tài năng vẫn phải 採用 | 6-6 (4-3), UC-05, UC-06, 確認25, 26, 32 |
+| BR-C06 | Bản nháp sửa qua AI hoặc tài năng tự sửa | Trước khi 採用 | Tài năng nói điểm muốn sửa hoặc đưa câu chữ muốn dùng để AI viết lại, hoặc tự sửa chữ trực tiếp ([KS] 確認28) | Nhờ AI viết lại tối đa 2 lần; 要確認 mà 2 lần vẫn không hợp thì hôm đó không đăng, trừ khi tài năng tự sửa ([KS] 確認29). Mỗi lần tạo bản nháp tốn khoảng 0,2–3 yên | — | 6-6 (4-2), [KS] 確認28, 29 |
 | BR-C07 (mới) | Chưa có hồ sơ thì chưa có bản nháp | Tài năng mới | Huấn luyện viên AI không đưa bản nháp cho tới khi quản lý nhập thông tin tài năng | — | — | UC-01 前提 |
 
 ## D. Duyệt bài và từ cấm
@@ -81,7 +72,7 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | BR-D04 | Trả lại bài phải kèm lý do, tài năng được gửi lại | Quản lý trả lại bài | Bắt buộc nhập lý do. Tài năng thấy lý do, nhờ AI sửa rồi gửi duyệt lại ⚠ | — | — | 6-9 (7-7), 確認35 |
 | BR-D05 | Bài có từ cấm không được đăng | Khi 採用. AI kiểm tra chú thích và hashtag, xét cả ngữ cảnh | Không hẹn giờ, báo lý do cho tài năng, báo quản lý. Quản lý sửa trên màn hình quản trị | AI có thể bỏ sót | — | 5-3, 6-6 (4-4), UC-05 前提, 11 |
 | BR-D06 | Danh sách từ cấm dùng chung cho mọi tài năng | Luôn áp dụng | Một danh sách duy nhất. FutureCore soạn bản mẫu, アデッソ xem lại, quản lý đăng ký trên màn hình quản trị | Bản mẫu gồm cách nói vi phạm quy định của mạng xã hội và cách nói dễ gây hiểu lầm. Cách nói công ty không dùng thì アデッソ gửi thêm ⚠ | Muốn có từ cấm riêng cho từng tài năng thì アデッソ tự sửa | UC-02 前提, 6-6 (4-4), 11, 確認4 |
-| BR-D07 (mới) | Quản lý bấm trước thì quyết | Bài chờ duyệt, nhiều quản lý cùng nhận yêu cầu | Kết quả của quản lý bấm "duyệt" hoặc "không duyệt" đầu tiên là kết quả cuối ⚠ | — | — | 確認34 |
+| BR-D07 (mới) | Quản lý bấm trước thì quyết | Bài chờ duyệt; yêu cầu gửi tới quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34) | Kết quả của quản lý bấm "duyệt" hoặc "không duyệt" đầu tiên là kết quả cuối ⚠ | — | — | 確認34 |
 
 ## E. Đăng bài
 
@@ -104,7 +95,7 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | --- | --- | --- | --- | --- | --- | --- |
 | BR-F01 | Hóa đơn tháng = phí thuê bao + phí tạo video | Mọi tài năng, mỗi tháng | Hệ thống tính tổng rồi gửi cho cổng thanh toán thu | Ngày chốt sổ và ngày thu tiền quyết sau khi chọn cổng thanh toán. Cổng có thu được số tiền đổi theo tháng không ⚠ | Quản lý và tài khoản công ty không bị thu phí tháng | 5-4, UC-11, 6-3 (1-1, 5-4), 確認49 |
 | BR-F02 | Phí video tính từ lần đầu tiên | Mỗi lần tài năng xác nhận giá và gửi yêu cầu tạo | Tính một lần, tạo lại cũng tính | Không có lượt miễn phí. Không có mức trần hằng tháng | Dịch vụ tạo video lỗi thì không tính | 5-4, 6-3 (5-4), UC-06 前提, 別紙B số 12, 14 |
-| BR-F03 | Tháng đầu thu trọn tháng | Bắt đầu dùng giữa tháng | Thu đủ phí tháng đầu ⚠ | — | — | 5-4, 確認48 |
+| BR-F03 | Tháng đầu thu trọn tháng | Bắt đầu dùng giữa tháng | Thu đủ phí tháng đầu; chu kỳ một tháng tính từ ngày đăng ký ([KS] 確認48, chờ đơn vị thanh toán) | — | — | 5-4, 確認48 |
 | BR-F04 | Không có loại miễn phí | Mọi người đăng ký qua ứng dụng | Đều là tài năng có trả phí. Không chuyển sang miễn phí | Chức năng 1-3 (đổi loại) không dùng nữa | Tài khoản công ty (xem BR-A11) | 5-4, 6-3 (1-2, 1-3), UC-11 前提 |
 | BR-F05 | Tài năng phải đăng ký thanh toán mới dùng được huấn luyện viên AI | Lần đầu dùng | Đăng ký qua màn hình của cổng thanh toán. Đăng ký xong thì hệ thống tạo thư mục OneDrive | 2 cách: cước nhà mạng và thẻ. Kết nối với một cổng thanh toán duy nhất. Hệ thống không lưu thông tin thẻ | Tài khoản công ty không phải đăng ký | UC-03 前提, UC-01 前提, 6-1 (6-2), 6-4 (2-2) |
 | BR-F06 | Thanh toán lỗi thì không tự dừng sử dụng | Cổng thanh toán thu lỗi | Báo tài năng và quản lý. Quản lý quyết có dừng sử dụng không ⚠ | — | — | 6-3 (1-1), UC-11, 確認48 |
@@ -117,11 +108,11 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 
 | Mã | Quy tắc | Điều kiện áp dụng | Cách xử lý | Giới hạn | Ngoại lệ | Nguồn [YK2] |
 | --- | --- | --- | --- | --- | --- | --- |
-| BR-G01 | Hai loại video AI | Khi tạo video | Tài năng chọn video ngắn (người trong ảnh chuyển động, khung dọc) hoặc video trình chiếu nhiều ảnh ⚠ | Chỉ 2 loại | — | 5-7, 確認31 |
-| BR-G02 | Video AI được tạo từ ảnh tài năng chụp | Khi tạo video | Dùng ảnh của tài năng | — | Quản lý có thể tạo thay, nhưng chưa rõ cho tài năng hay chỉ cho tài khoản công ty ⚠ | 5-7, UC-06, 確認27 |
+| BR-G01 | Hai loại video AI | Khi tạo video | Tài năng chọn video ngắn (người trong ảnh chuyển động, khung dọc) hoặc video trình chiếu nhiều ảnh ⚠ | Chỉ 2 loại | — | 5-7, 確認31  Video trình chiếu ghép ảnh ở máy chủ (CR-04). |
+| BR-G02 | Video AI được tạo từ ảnh tài năng chụp | Khi tạo video | Dùng ảnh của tài năng | — | Quản lý chỉ tạo thay cho tài khoản công ty ([KS] 確認27) | 5-7, UC-06, [KS] 確認27 |
 | BR-G03 | Video dọc dùng chung cho 3 mạng xã hội | Mọi video | Tạo video dọc. YouTube cũng dùng dạng video ngắn | Độ dài tùy nội dung | — | 5-7, UC-06 |
 | BR-G04 | Video do AI tạo phải ghi rõ | Khi đăng video AI | Gắn nhãn theo quy định của từng mạng xã hội | — | — | 5-7, 6-8 (5-5), UC-06 前提 |
-| BR-G05 | Video tự làm được dùng theo thứ tự, không tính phí | Tài năng lưu video tự làm | Mỗi ngày một video theo thứ tự lưu, AI thêm chú thích và hashtag thành bản nháp ⚠ | 1 video mỗi ngày | — | UC-06, 6-7 (6-4), 確認32 |
+| BR-G05 | Video tự làm được dùng theo thứ tự, không tính phí | Tài năng lưu video tự làm | Mỗi ngày một video theo thứ tự lưu, AI thêm chú thích và hashtag thành bản nháp ⚠ | 1 video mỗi ngày | — | UC-06, 6-7 (6-4), 確認32  CR-23, chưa làm. |
 | BR-G06 (mới) | Không cần mở ứng dụng khi đang tạo video | Trong lúc AI tạo video | Tài năng được đóng ứng dụng. Xong thì hệ thống báo | — | — | UC-06 前提, 6-8 (5-1) |
 
 ## H. Huấn luyện viên AI
@@ -131,11 +122,11 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | BR-H01 | Chỉ dùng dữ liệu của chính tài năng | Mọi câu trả lời và bản nháp | Dùng hồ sơ, mục tiêu, kinh nghiệm đăng bài, hội thoại và số liệu. Chỉ dùng thư mục của tài năng đó | — | Thư mục chung vẫn được đọc (xem mâu thuẫn M3) | 5-5, 6-1 (1-5), 6-4 (2-1) |
 | BR-H02 | Giới hạn chủ đề trò chuyện | Mỗi tin nhắn của tài năng | Trả lời chuyện đăng bài, mạng xã hội, hoạt động nghệ thuật, lời chào và chuyện ngắn. Nhờ viết văn hay làm video không liên quan thì từ chối và đưa về chuyện đăng bài. Chuyện riêng tư không liên quan thì hạn chế ⚠ | Mỗi tin tối đa 1.000 ký tự | — | 5-5, 6-5 (3-3, 3-4), 確認23 |
 | BR-H03 | Chuyện nghiêm trọng phải báo quản lý | Tài năng nói về sức khỏe hoặc muốn rời công ty | Vẫn tiếp tục trò chuyện và báo quản lý ⚠. Quản lý liên hệ trực tiếp ngoài hệ thống | — | — | 5-5, 6-5 (3-3), 確認17, 43 |
-| BR-H04 | Nhắc lại kết quả để giữ động lực | Khi đăng bài, khi người theo dõi tăng, mỗi sáng, mỗi tuần | Báo số ngày đăng liên tục và còn bao nhiêu tới mục tiêu. Giao nhiệm vụ mỗi ngày và chúc mừng khi hoàn thành. Báo tiến độ và chúc mừng khi hoàn thành チャレンジ (thử thách) ⚠. Đạt mục tiêu số người theo dõi thì báo cả tài năng và quản lý ⚠ | Không còn báo theo từng mốc, chỉ báo khi đạt mục tiêu | — | 5-5, UC-04, 6-5 (3-7), 確認14, 20, 39 |
+| BR-H04 | Nhắc lại kết quả để giữ động lực | Khi đăng bài, khi người theo dõi tăng, mỗi sáng, mỗi tuần | Báo số ngày đăng liên tục và còn bao nhiêu tới mục tiêu. Giao nhiệm vụ mỗi ngày và chúc mừng khi hoàn thành. Báo tiến độ và chúc mừng khi hoàn thành チャレンジ (thử thách) ⚠. Đạt mục tiêu số người theo dõi thì báo cả tài năng và quản lý ⚠ | Không còn báo theo từng mốc, chỉ báo khi đạt mục tiêu | — | 5-5, UC-04, 6-5 (3-7), 確認14, 20, 39  Báo tăng người theo dõi ở mốc 25%, 50%, 75% mục tiêu (Q&A No.14). |
 | BR-H05 | Giọng điệu và chi phí AI | Khi cài đặt, khi tổng hợp chi phí | Giọng điệu ghi trong chỉ dẫn cho AI, quản lý đổi bằng file. Chi phí AI tách riêng khỏi phí ChatGPT | — | — | 5-5, 7-5, UC-04 前提 |
-| BR-H06 (mới) | Không giới hạn số lần trò chuyện | Mỗi tài năng | Tài năng nhắn bao nhiêu cũng được ⚠ | — | — | 確認23 |
+| BR-H06 (mới) | Không giới hạn số lần trò chuyện | Mỗi tài năng | Tài năng nhắn bao nhiêu cũng được ⚠ (khách ghi muốn đặt giới hạn, chưa chốt; 確認23) | — | — | 確認23 |
 | BR-H07 (mới) | Thứ tự ưu tiên của chỉ dẫn cho AI | Khi có chỉ dẫn cho tài năng, cho nhóm và cho toàn bộ trùng nội dung | Ưu tiên chỉ dẫn cho tài năng, rồi cho nhóm, rồi cho toàn bộ. Luôn kiểm tra từ cấm ⚠ | Chỉ dẫn theo nhóm cần kiểm chứng kỹ thuật | — | 確認6, 47 |
-| BR-H08 (mới) | Cách đếm số ngày đăng liên tục | Mỗi ngày | Ngày có ít nhất 1 bài thì tính. Một ngày không đăng thì đếm lại từ 1 ⚠ | — | — | 確認22 |
+| BR-H08 (mới) | Cách đếm số ngày đăng liên tục | Mỗi ngày | Ngày có ít nhất 1 bài thì tính. Một ngày không đăng thì đếm lại từ 1 ⚠ (quyết khi vận hành, [KS] 確認22) | — | — | 確認22 |
 
 ## I. Dữ liệu và bảo mật
 
@@ -144,7 +135,7 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | BR-I01 | Nơi lưu và người được xem | Mọi dữ liệu | Hồ sơ, mục tiêu, kinh nghiệm đăng bài, số liệu: OneDrive, quản lý và AI xem. Ảnh và video: OneDrive, tài năng và quản lý xem. Hội thoại: trong hệ thống, tài năng và quản lý xem. Thanh toán: cổng thanh toán giữ | Hệ thống không lưu thông tin thẻ | — | 7-2, 10-2, UC-03 前提 |
 | BR-I02 | Bảo vệ dữ liệu | Luôn áp dụng | Mã hóa đường truyền và dữ liệu lưu. Khóa kết nối dịch vụ ngoài không hiện ra. Chỉ gửi cho AI phần thông tin cần thiết và cài đặt không cho AI dùng dữ liệu để huấn luyện | — | — | 10-2, 8 |
 | BR-I03 | Đồng ý về dữ liệu cá nhân và quyền hình ảnh | Trước khi gửi dữ liệu tài năng cho dịch vụ ngoài | Tài năng thuộc công ty đã ủy thác việc xử lý dữ liệu cá nhân và 肖像権 (quyền hình ảnh) khi ký hợp đồng. Người vị thành niên thì アデッソ lấy đồng ý của phụ huynh khi ký hợp đồng | Hệ thống không lưu bằng chứng đồng ý | ⚠ Người ngoài công ty tự đăng ký thì không có hợp đồng. Tài liệu chưa nói xử lý thế nào | 2-3, 5-5, 10-3, UC-03 前提 |
-| BR-I04 | Giữ dữ liệu, ghi nhật ký, dùng dữ liệu khi kiểm thử | Tài năng rời đi. Thao tác và xử lý của hệ thống. Giai đoạn phát triển | Dữ liệu tài năng rời đi được giữ 一定の期間 (một khoảng thời gian nhất định). Ghi nhật ký xem, thao tác và xử lý. Khi phát triển, cơ bản dùng dữ liệu giả | Thời gian lưu chưa có, đang hỏi khách ⚠ | Muốn dùng dữ liệu thật của tài năng thì phải được アデッソ đồng ý bằng văn bản trước | 7-3, 9-4, 10-3, 確認55 |
+| BR-I04 | Giữ dữ liệu, ghi nhật ký, dùng dữ liệu khi kiểm thử | Tài năng rời đi. Thao tác và xử lý của hệ thống. Giai đoạn phát triển | Dữ liệu tài năng rời đi giữ **6 tháng** rồi tự xóa, không khôi phục ([KS] 確認55). Ghi nhật ký xem, thao tác và xử lý. Khi phát triển, cơ bản dùng dữ liệu giả | Thời gian lưu nhật ký chưa có | Muốn dùng dữ liệu thật của tài năng thì phải được アデッソ đồng ý bằng văn bản trước | 7-3, 9-4, 10-3, [KS] 確認55 |
 
 ## J. Quy tắc dự án
 
@@ -178,22 +169,22 @@ Có 20 tình huống nghiệp vụ chắc chắn sẽ xảy ra nhưng tài liệ
 | STT | Tình huống chưa có quy tắc | Căn cứ |
 | --- | --- | --- |
 | 1 | **Các trạng thái và cách chuyển trạng thái:** bài đăng có 6 trạng thái nhưng không liệt kê. Trạng thái của tài năng, đơn đăng ký, video, kết nối mạng xã hội và hóa đơn "sẽ viết ở bản cuối" | [YK2] 5-1 |
-| 2 | **Thời gian lưu và xóa dữ liệu:** 一定の期間 là bao lâu? Ai xóa? Ảnh, video, hội thoại và nhật ký lưu trong bao lâu? | [YK2] 7-3, 9-4, 確認55 |
-| 3 | **Thu phí khi trạng thái thay đổi:** phí tháng đầu tính từ lúc đăng ký thanh toán hay từ lúc có bản nháp đầu tiên. Quay lại từ 利用終了 (đã kết thúc) thì thu thế nào | [YK2] 5-4, 6-2 (7-3), UC-01 前提, 確認48, 56 |
+| 2 | **Thời gian lưu và xóa dữ liệu:** dữ liệu tài năng rời đi đã chốt 6 tháng rồi tự xóa ([KS] 確認55). Còn chưa rõ: hội thoại có thuộc "dữ liệu" phải xóa không, nhật ký và đơn bị từ chối lưu bao lâu | [YK2] 7-3, 9-4 |
+| 3 | **Thu phí khi trạng thái thay đổi:** phí tháng đầu tính từ lúc đăng ký thanh toán hay từ lúc có bản nháp đầu tiên. Chu kỳ đã chốt hướng: một tháng tính từ ngày đăng ký ([KS] 確認48). 利用終了 không quay lại được ([KS] 確認56) | [YK2] 5-4, 6-2 (7-3), UC-01 前提 |
 | 4 | **Khi thanh toán lỗi:** có thu lại không, sau bao lâu, được nợ bao lâu? "Dừng sử dụng" cụ thể là gì? | [YK2] 6-3 (1-1), 確認48 |
-| 5 | **Phí video khi quản lý tạo thay tài năng:** tính vào hóa đơn của tài năng hay quyết toán nội bộ | [YK2] 5-4, 確認27 |
+| 5 | **Phí video khi quản lý tạo thay:** đã rõ, quản lý chỉ làm thay cho tài khoản công ty, phí do アデッソ quyết toán nội bộ ([KS] 確認27) | [YK2] 5-4 |
 | 6 | **Bài bị trả lại:** giờ đăng có giữ nguyên khi gửi lại không? Được gửi lại bao nhiêu lần? Có kiểm tra từ cấm lại không? | [YK2] 6-9 (7-7), 確認35 |
 | 7 | **Bài dính từ cấm:** quản lý sửa xong thì ai hẹn giờ? Tài năng có phải xác nhận lại không? Không sửa kịp giờ đăng thì sao? | [YK2] 5-3, 6-6 (4-4), UC-05 前提 |
 | 8 | **Hẹn giờ lại sau khi đăng lỗi:** ai làm, khi tài năng không đổi được giờ. Chỉ một mạng lỗi thì đăng lại riêng mạng đó được không | [YK2] 6-10 (8-5), 確認30 |
 | 9 | **Biện pháp chống khóa tài khoản:** giới hạn gì, áp dụng ở bước nào, bài vượt giới hạn thì hoãn hay bỏ | [YK2] 6-10 (8-4), UC-08 前提, 確認37 |
 | 10 | **Giờ đăng:** thế nào là "đủ số liệu" để AI tự chọn giờ? Nhiều bài 採用 trong một ngày thì mỗi bài đăng giờ nào? Quản lý có được đổi giờ không? | [YK2] 5-2, 5-3, 6-11 (8-1), 確認30 |
-| 11 | **チャレンジ (thử thách):** ai đặt, đặt qua ChatGPT hay AI tự đề xuất, gồm những loại nào, tính hoàn thành ra sao | [YK2] UC-02 前提, 確認5, 14 |
+| 11 | **チャレンジ (thử thách):** AI đề xuất theo tình hình, quản lý cũng đề xuất qua chỉ thị cho AI, tài năng nhận hoặc từ chối, không cần duyệt ([KS] 確認5). Còn chờ khái niệm アデッソ viết: gồm những loại nào, tính hoàn thành ra sao | [YK2] UC-02 前提, [KS] 確認5 |
 | 12 | **Nhận biết chuyện nghiêm trọng:** tiêu chí là gì? Xử lý khẩn cấp khi có dấu hiệu tự hại hoặc nguy hiểm, nhất là với người vị thành niên? Thông báo chỉ hiện trên màn hình quản trị nên quản lý có thể không thấy kịp | [YK2] 5-5, 6-5 (3-3), 確認17, 45 |
-| 13 | **Mức trần chi phí AI:** v2 đề xuất không giới hạn số lần trò chuyện và viết lại bản nháp. Có mức trần chi phí cho mỗi tài năng, cảnh báo khi dùng bất thường không? | [YK2] 6-5 (3-4, 3-5), 確認23, 29 |
+| 13 | **Mức trần chi phí AI:** Viết lại đã giới hạn 2 lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt, 確認23). Có mức trần chi phí cho mỗi tài năng, cảnh báo khi dùng bất thường không? | [YK2] 6-5 (3-4, 3-5), 確認23, 29 |
 | 14 | **Nhiều người cùng thao tác một việc:** nhiều quản lý cùng đánh dấu đã xử lý một thông báo, cùng duyệt một đơn đăng ký. AI và quản lý cùng ghi một file trên OneDrive | [YK2] 3-3, 6-12 (7-4), 6-5 (3-2), 確認46 |
 | 15 | **Giới hạn cụ thể của nội dung bài:** độ dài chú thích và số hashtag tối đa chung cho 3 mạng xã hội, tiêu đề YouTube, số ảnh tối đa mỗi bài, định dạng và dung lượng tư liệu | [YK2] 5-3, 6-6 (4-1), 6-7 (6-3), 9-2 |
 | 16 | **Quyền đối với nội dung:** cách kiểm tra bài đăng và tư liệu có vi phạm quyền của bên thứ ba không, như nhạc, ảnh người khác, logo nhãn hàng. Ai gắn nhãn AI cho video tài năng tự làm bằng công cụ AI khác? | [YK2] 11, 5-7 |
 | 17 (mới) | **Xử lý đơn đăng ký:** đơn chờ duyệt quá lâu thì sao, đơn bị từ chối giữ bao lâu, người bị từ chối đăng ký lại bằng email đó được không, chặn đăng ký rác ra sao (đường dẫn ứng dụng có thể lộ ra ngoài). Thanh toán bỏ dở thì tài khoản xử lý thế nào | [YK2] UC-01, 6-4 (2-2) |
 | 18 (mới) | **Đồng ý của người ngoài công ty và người vị thành niên tự đăng ký:** đồng ý về dữ liệu cá nhân, quyền hình ảnh và đồng ý của phụ huynh được lấy khi nào, ai lấy. Điều khoản sử dụng có đủ thay cho hợp đồng không | [YK2] 2-3, 10-3, UC-03 前提, 確認1, 2 |
 | 19 (mới) | **Đăng ký và xóa tài năng trên Upload-Post:** lúc nào đăng ký, lúc nào xóa (khi 退会, khi bỏ thanh toán). Upload-Post tính phí theo số tài năng đã đăng ký | [YK2] 6-10 (8-2), UC-08 前提 |
-| 20 (mới) | **Nguồn chỉ dẫn cho AI:** khi có cả màn hình chỉ dẫn cho AI, ChatGPT project và file OneDrive thì nguồn nào được ưu tiên. Nhóm tài năng do ai tạo, một tài năng thuộc nhiều nhóm thì chỉ dẫn nhóm nào thắng | [YK2] UC-02 前提, 確認6, 7, 8, 47 |
+| 20 (mới) | **Nguồn chỉ dẫn cho AI:** màn chỉ dẫn là CR-18, **làm** ([KS] 確認6–8); chỉ dẫn còn đi qua ChatGPT (MCP) và file OneDrive (御見積書 前提条件 A4, Q&A No.45). khi có cả màn hình chỉ dẫn cho AI, ChatGPT project và file OneDrive thì nguồn nào được ưu tiên. Nhóm tài năng do ai tạo, một tài năng thuộc nhiều nhóm thì chỉ dẫn nhóm nào thắng | [YK2] UC-02 前提, 確認6, 7, 8, 47 |

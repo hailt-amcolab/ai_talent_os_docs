@@ -102,7 +102,7 @@ OpenAI qua lớp gọi chung (3-5).
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認4.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認4.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -118,7 +118,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 - [YK2] §5-3, §6-6 (4-4), §11, UC-02 前提, UC-05, UC-05 前提, 確認4.
 - [AG] trang 8 (M-11), trang 10 (M-17). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B5.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.40, CR-06 (đã chốt): màn của quản lý cho bài dính từ cấm là **màn tối thiểu: sửa chữ, hẹn giờ, hủy**.
 - Q&A No.57 (đang hỏi): kiểm tra từ cấm trước khi gửi duyệt; quản lý sửa xong bấm "予約する" thì coi như đã duyệt; quá giờ thì dời sang khung kế tiếp; báo tài năng là chữ đã được sửa.

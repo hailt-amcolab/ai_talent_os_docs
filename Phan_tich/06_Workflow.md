@@ -7,7 +7,7 @@ Có 11 workflow chính, dựng lại từ 13 tình huống sử dụng (UC-01 đ
 - [YK2] = AI育成OS_概要要件定義書_v2.docx. "前提" (tiền đề) là phần tiền đề mà v2 thêm vào cuối mỗi UC.
 - Sơ đồ luồng (flowchart) chia theo tác nhân. Sơ đồ trạng thái (state diagram) ghi điều kiện chuyển trên mũi tên.
 - **Ô viền đứt nét màu cam và ký hiệu ⚠** là bước hoặc nhánh tài liệu chưa nói rõ. Mình vẽ ra để thấy chỗ hổng, không phải đề xuất cách làm.
-- Bước dựa trên một 確認 là đề xuất của bên phát triển và đang chờ khách trả lời. Sơ đồ vẫn vẽ bước đó, kèm số 確認.
+- Khách đã trả lời các 確認 trong bảng xác nhận yêu cầu ngày 17/11/2026 ([KS], `要件定義確認シート_AI育成OS.xlsx`; tổng hợp ở tệp 21). Bước ghi `[KS] 確認N` là quyết định 17/11; bước chỉ ghi số 確認 là giả định khách đã đồng ý.
 
 | STT | Workflow | Tác nhân chính | Nguồn [YK2] |
 | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ Có 11 workflow chính, dựng lại từ 13 tình huống sử dụng (UC-01 đ
 | 8 | Nhắc nhở và báo quản lý | AI, quản lý | UC-04, UC-10, 6-5 (3-3, 3-9) |
 | 9 | Xử lý buổi sáng và số liệu | Hệ thống, Upload-Post, OneDrive, OpenAI | UC-09, 6-4 (2-1), 6-11 |
 | 10 | Kết nối mạng xã hội | Tài năng, hệ thống, Upload-Post | UC-03, 6-10 (8-2, 8-6) |
-| 11 | Chỉ dẫn cho AI (đang hỏi khách) | Quản lý, hệ thống | UC-02 前提, 確認6, 7, 8 |
+| 11 | Chỉ dẫn cho AI | Quản lý, hệ thống | UC-02 前提, [KS] 確認6, 7, 8 |
 
 **Tài khoản công ty (UC-12)** đi đúng workflow 2, chỉ khác 4 điểm:
 
@@ -97,15 +97,26 @@ Tài khoản công ty không đi luồng này. Quản lý tạo tài khoản tr�
 
 ## Workflow 2. Đăng bài hằng ngày (luồng cốt lõi)
 
-Mỗi ngày đi theo một vòng: tin nhắn buổi sáng, chọn chủ đề, viết bản nháp, gửi tư liệu, 採用 (chấp nhận), đặt lịch, đăng bài, sáng hôm sau nhận xét. Bài chỉ được đặt lịch khi đủ ba điều kiện: đã 採用, có tư liệu, và việc đăng tự động (toàn bộ và của tài năng đó) đang bật. Theo v2, tài năng yêu cầu bao nhiêu bản nháp thì AI tạo bấy nhiêu (5-3).
+Tài năng tự chọn một trong hai cách đăng bằng ô đánh dấu ([KS] 確認19, 25):
+
+- **要確認 (xác nhận trước khi đăng):** vòng quen thuộc: tin nhắn, chọn chủ đề, viết bản nháp, gửi tư liệu, 採用 (chấp nhận), đặt lịch, đăng bài, hôm sau nhận xét. Nhịp đề xuất (hằng ngày, vài ngày một lần, hay gộp mỗi tuần) chỉnh qua chỉ thị cho AI ([KS] 確認14, 15).
+- **自動投稿 (đăng tự động):** khi bắt đầu, tài năng chọn chủ đề, tải tư liệu lên và đặt khoảng thời gian (ví dụ 1–2 tuần). Trong khoảng đó hệ thống tự soạn và tự đăng, không có bước 採用 từng bài ([KS] 確認25).
+
+Ở cả hai cách, bài chỉ được đặt lịch khi có tư liệu và việc đăng tự động (toàn bộ và của tài năng đó, chức năng 7-5) đang bật. Ở 要確認, bài còn phải được 採用. Nhờ AI soạn lại tối đa 2 lần; tài năng tự sửa chữ được ([KS] 確認28, 29).
 
 ```mermaid
 flowchart TD
-  S0["⚠ Xử lý buổi sáng – Workflow 9<br/>giờ bắt đầu chưa có"] --> S1["AI: tin nhắn buổi sáng (mặc định 8:00)<br/>kết quả hôm qua, 3 chủ đề gợi ý,<br/>tiến độ チャレンジ nếu có"]
+  M0{"Cách đăng tài năng chọn<br/>([KS] 確認19)"}
+  M0 -- "自動投稿" --> A1["Bắt đầu khoảng đăng: chọn chủ đề,<br/>tải tư liệu, đặt khoảng (ví dụ 1–2 tuần)<br/>([KS] 確認25)"]
+  A1 --> A2["Hệ thống tự soạn bài trong khoảng<br/>theo nhịp ở chỉ thị cho AI"]
+  A2 --> A3["⚠ Duyệt, từ cấm, hết tư liệu giữa khoảng:<br/>chưa rõ"]
+  A3 --> S12
+  M0 -- "要確認" --> S0
+  S0["⚠ Xử lý trước giờ nhắn – Workflow 9<br/>giờ bắt đầu chưa có"] --> S1["AI: tin nhắn theo khung sáng (mặc định 8:00),<br/>trưa, tối ([KS] 確認18): kết quả hôm qua,<br/>chủ đề gợi ý theo nhịp ở chỉ thị cho AI (確認14),<br/>tiến độ チャレンジ nếu có"]
   S1 --> S2{"Tài năng phản hồi?"}
   S2 -- "Chọn chủ đề hoặc nói chủ đề muốn đăng" --> S3["AI viết bản nháp<br/>chú thích, hashtag, hướng dẫn chụp, kịch bản"]
   S2 -- "Không phản hồi" --> X1["Không đăng hôm nay<br/>cộng số ngày không đăng – Workflow 8"]
-  S3 --> S4["Tài năng nhờ AI viết lại<br/>không tự sửa, không giới hạn số lần (確認28, 29)"]
+  S3 --> S4["Tài năng tự sửa chữ, hoặc nhờ AI viết lại<br/>tối đa 2 lần ([KS] 確認28, 29)"]
   S4 --> S5{"Đã có ảnh hoặc video?"}
   S5 -- "Chưa, đến trước giờ đăng 2 tiếng" --> S6["Nhắc một lần"]
   S6 --> S7{"Gửi kịp?"}
@@ -128,15 +139,15 @@ flowchart TD
   S15 -- "Lỗi" --> S17["Báo tài năng, cảnh báo quản lý<br/>không tự đăng lại (確認38)"]
   S17 --> X4["⚠ Tài năng hoặc quản lý đặt lịch lại (8-5)<br/>nhưng tài năng không đổi được giờ"]
   S16 --> S18["Sáng hôm sau: lấy số liệu, nhận xét, cải thiện"]
-  S18 --> S1
+  S18 --> M0
   classDef unclear stroke:#d9480f,stroke-width:2px,stroke-dasharray:5 5
-  class S0,S13,X4 unclear
+  class S0,S13,X4,A3 unclear
 ```
 
 **Điều kiện ở các điểm rẽ nhánh:**
 
 - Huấn luyện viên AI chỉ đưa bản nháp khi quản lý đã nhập hồ sơ tài năng (UC-01 前提).
-- 採用 cần có ảnh hoặc video (6-6, chức năng 4-3). Không có tư liệu thì không đăng (確認26).
+- 採用 cần có ảnh hoặc video (6-6, chức năng 4-3). Ảnh do tài năng chuẩn bị; 自動投稿 dùng tư liệu đã tải lên lúc bắt đầu khoảng ([KS] 確認26).
 - Kiểm tra từ cấm chạy khi bấm 採用 (6-6, chức năng 4-4).
 - Chỉ tài năng được cài "dùng duyệt bài" mới thấy lựa chọn gửi duyệt (6-9, chức năng 7-7).
 - Đăng tự động bị dừng (toàn bộ hoặc riêng tài năng) thì không đặt lịch mới, và các bài đã đặt lịch bị hủy (6-10, chức năng 7-5).
@@ -145,11 +156,14 @@ flowchart TD
 
 **Luồng chưa rõ:**
 
-- Xử lý buổi sáng chưa có giờ bắt đầu. Giờ nhắn tin cho mọi người cùng lúc hay không sẽ quyết sau khi thử tải (確認18).
+- Xử lý trước giờ nhắn chưa có giờ bắt đầu. Tin gửi theo khung sáng, trưa, tối ([KS] 確認18); số lần gửi mỗi ngày và giờ cụ thể của từng khung chưa rõ. Đổi giờ theo từng tài năng: xem xét sau khi vận hành.
+- 自動投稿: đang hỏi ở Q&A No.70 (ảnh nào cho bài nào, dừng và đổi giữa khoảng, soạn trước hay soạn từng ngày, hết khoảng), No.71 (ô 自動投稿 / 要確認 có cùng là lựa chọn "自動投稿 hay 1回の投稿" khi bắt đầu đăng theo biên bản 17/11 không; bài công việc có qua duyệt không; kiểm tra từ cấm lúc nào; 要確認 chưa xác nhận tới giờ đăng thì sao) và No.77 (nút dừng toàn bộ có dừng cả khoảng 自動投稿 không). AMCOLAB đề xuất: ảnh dùng theo thứ tự tải lên, mỗi bài một ảnh, hết ảnh thì không đăng và báo tài năng; soạn trước một ngày.
+- 要確認 mà tài năng không gửi ảnh, video trong ngày thì xử lý thế nào: xác nhận sau ([KS] 確認26).
+- 要確認 mà soạn lại 2 lần vẫn không hợp: hôm đó không đăng, trừ khi tài năng tự sửa rồi đăng ([KS] 確認29).
 - Biện pháp chống khóa tài khoản chưa có (8-4). Con số 1 ảnh + 1 video mỗi ngày đã bị bỏ (確認37).
 - Đăng lỗi thì 8-5 cho "tài năng hoặc quản lý đặt lịch lại", nhưng 確認30 đề xuất tài năng không đổi được giờ đăng. Chỉ một mạng lỗi thì có đăng lại riêng mạng đó không?
 - Tài năng 採用 sau giờ đăng dự kiến thì bài đăng lúc nào.
-- Nhiều bản nháp được 採用 trong một ngày thì mỗi bài đăng giờ nào.
+- Nhiều bản nháp được 採用 trong một ngày thì mỗi bài đăng giờ nào (không giới hạn số bài mỗi ngày, [KS] 確認37).
 - Bản nháp không 採用 trong ngày thì hết hiệu lực hay giữ sang hôm sau.
 - Tài năng có biết trước giờ đăng để gửi tư liệu kịp không.
 
@@ -220,10 +234,10 @@ flowchart TD
   D -. "Không sửa kịp giờ đăng" .-> G["⚠ Chưa có quy tắc"]
   B -- "Không có" --> H{"Tài năng được cài dùng duyệt bài<br/>và chọn gửi duyệt?"}
   H -- Không --> S["Đã hẹn giờ"]
-  H -- Có --> I["Chờ duyệt<br/>báo mọi quản lý"]
-  I --> J{"Quản lý bấm trước thì quyết (確認34)"}
+  H -- Có --> I["Chờ duyệt<br/>báo quản lý của nhóm hoặc quản lý phụ trách<br/>([KS] 確認34)"]
+  I --> J{"Quản lý nhận yêu cầu bấm trước thì quyết"}
   J -- "Duyệt" --> S
-  J -- "Trả lại, nhập lý do" --> K["Tài năng đọc lý do<br/>nhờ AI sửa bản nháp"]
+  J -- "Trả lại, nhập lý do" --> K["Tài năng đọc lý do<br/>tự sửa hoặc nhờ AI sửa bản nháp"]
   K --> I
   I -- "Đến giờ đăng chưa duyệt" --> M["Hủy lịch, báo tài năng và quản lý<br/>muốn đăng thì 採用 lại (確認36)"]
   F --> S
@@ -236,13 +250,14 @@ flowchart TD
 | Kiểm tra từ cấm | AI | Mọi lần 採用. Xét chú thích và hashtag theo danh sách từ cấm chung. Có thể bỏ sót | 6-6 (4-4), UC-02 前提 |
 | Sửa bài dính từ cấm | Quản lý | Sau khi nhận thông báo, sửa trên màn hình quản trị | 5-3, UC-05 前提 |
 | Gửi duyệt | Tài năng | Chỉ bài công việc cần khách hàng cho phép. AI không tự xác định | 5-3, UC-07 前提, 確認33 |
-| Duyệt hoặc trả lại | Quản lý bấm trước | Trước giờ đăng. Trả lại thì bắt buộc có lý do | 6-9 (7-7), 確認34, 確認35 |
+| Duyệt hoặc trả lại | Quản lý của nhóm (カテゴリー) hoặc quản lý phụ trách; ai bấm trước thì quyết | Trước giờ đăng. Trả lại thì bắt buộc có lý do | 6-9 (7-7), [KS] 確認34, 確認35 |
 | Quá giờ chưa duyệt | Hệ thống | Hủy lịch. Tài năng 採用 lại nếu muốn đăng | 5-3, 確認36 |
 
 **Luồng chưa rõ:**
 
 - Sau khi quản lý sửa bài dính từ cấm, ai đặt lịch. Nếu bài đó cũng cần duyệt thì có phải duyệt tiếp không.
-- Có nhắc quản lý khi bài chờ duyệt sắp đến giờ không. Thông báo chỉ hiện trên màn hình quản trị (確認45).
+- Có nhắc quản lý khi bài chờ duyệt sắp đến giờ không. Thông báo hiện trên màn hình quản trị (確認45); khách muốn thêm email nhưng chưa chốt.
+- Yêu cầu duyệt: cách nào (theo nhóm hay theo quản lý phụ trách từng tài năng) và khi chưa có người phụ trách thì gửi ai: chờ Q&A No.6; AMCOLAB đề xuất lấy quản lý phụ trách từng tài năng làm cơ bản (có trong báo giá No.42, 前提条件A9).
 - Quản lý có được sửa nội dung khi duyệt, hay chỉ được duyệt hoặc trả lại.
 - Gửi lại sau khi bị trả lại có giới hạn số lần không, và có kiểm tra từ cấm lại không.
 
@@ -328,12 +343,13 @@ stateDiagram-v2
   [*] --> Before : Quản lý tạo tài khoản công ty
   Before --> Active : ⚠ Ai chuyển, lúc nào?
   Active --> Ended : Tài năng xin ngừng, quản lý chuyển
-  Ended --> Active : Quản lý cho dùng lại (確認56)
   Before --> Ended : ⚠ Có được không?
   note right of Ended
     Dừng nhắn tin, dừng thu phí, hủy bài đã hẹn,
     chặn đăng nhập (確認54).
-    Thời gian giữ dữ liệu: đang hỏi khách (確認55)
+    Không quay lại 利用中 được ([KS] 確認56).
+    Dữ liệu giữ 6 tháng rồi tự xóa,
+    không khôi phục ([KS] 確認55)
   end note
 ```
 
@@ -344,21 +360,23 @@ stateDiagram-v2
 | Tạo tài khoản công ty | — | Quản lý | Tạo thư mục OneDrive | UC-01 前提, 6-4 (2-2) |
 | 利用前 → 利用中 | ⚠ chưa nêu | ⚠ | — | 6-2 (7-3) |
 | 利用中 → 利用終了 | Tài năng xin ngừng với quản lý. Quản lý xác nhận | Quản lý | Dừng nhắn tin, dừng thu phí, hủy bài đã hẹn, chặn đăng nhập | 6-2 (7-3), UC-13, 確認53, 確認54 |
-| 利用終了 → 利用中 | Quản lý xác nhận | Quản lý | ⚠ Có thu phí lại, bật lại nhắn tin, cần kết nối lại mạng xã hội không? | 6-2 (7-3), 確認56 |
+| 利用終了 → 利用中 | **Không cho phép** | — | — | [KS] 確認56 |
+| 利用終了 + 6 tháng | Đủ 6 tháng kể từ lúc chuyển sang 利用終了 | Hệ thống | Tự xóa dữ liệu của tài năng; xóa xong không khôi phục. Xóa gì và có cho đăng ký lại trong 6 tháng không: chờ Q&A No.69 (AMCOLAB đề xuất: không cho đăng ký lại bằng email cũ trong 6 tháng; xóa bài đăng, hội thoại, số liệu trong DB, thư mục OneDrive, kết nối mạng xã hội) | [KS] 確認55 |
 
 **Luồng chưa rõ:** đơn chờ duyệt và đơn bị từ chối chưa được [YK2] gọi là trạng thái. Mình vẽ ra vì hệ thống phải lưu đơn. Chưa có bảng chuyển trạng thái đầy đủ (5-1 nói "sẽ viết ở bản cuối"). Chưa có trạng thái tạm khóa, dù thanh toán lỗi có thể cần. Tên 利用終了 và 退会 chưa thống nhất.
 
 ## Workflow 8. Nhắc nhở và báo quản lý
 
-Hai loại tình huống được chuyển cho con người: tài năng lâu không đăng bài, và tài năng kể chuyện nghiêm trọng. Thông báo cho quản lý chỉ hiện trên màn hình quản trị (確認45). V2 đổi cách góp ý: quản lý ghi vào chỉ dẫn cho AI để huấn luyện viên AI chuyển lời, chỉ liên hệ trực tiếp khi nghiêm trọng hoặc gấp (確認43).
+Hai loại tình huống được chuyển cho con người: tài năng lâu không đăng bài, và tài năng kể chuyện nghiêm trọng. Thông báo cho quản lý hiện trên màn hình quản trị (確認45; khách muốn thêm email, chưa chốt). Góp ý của quản lý ghi vào chỉ dẫn cho AI để huấn luyện viên AI chuyển lời; tin nhắn trực tiếp từ quản lý tới tài năng trong hệ thống để giai đoạn sau, chỉ liên hệ ngoài hệ thống khi nghiêm trọng hoặc gấp ([KS] 確認43).
 
 ```mermaid
 flowchart TD
   subgraph N1["Lâu không đăng bài"]
     A["Mỗi ngày đếm số ngày liên tục không đăng<br/>tính cả bài tự đăng ngoài hệ thống nếu Upload-Post đọc được"]
-    A --> B{"Đủ ngưỡng thứ nhất?<br/>(mặc định 3 ngày, 確認19)"}
+    A --> B{"Đủ ngưỡng thứ nhất?<br/>(3 ngày theo [YK2]; xác nhận lại, [KS] 確認19)"}
     B -- Có --> C["AI nhắn hỏi han tài năng"]
-    C --> D{"Đủ ngưỡng thứ hai?<br/>(mặc định 7 ngày)"}
+    C --> D{"Đủ ngưỡng thứ hai?<br/>(7 ngày theo [YK2]; xác nhận lại)"}
+    A0["Chỉ áp cho 要確認: 自動投稿 không có ngày trống<br/>(ý kiến khách ở [KS] 確認19)"] -.-> A
     D -- Có --> E["Báo quản lý"]
     D -- "Không, đăng lại" --> R["Đặt lại bộ đếm"]
     C2["⚠ Sau khi đủ 3 ngày, AI có nhắn lại mỗi ngày không?"]
@@ -381,7 +399,7 @@ flowchart TD
   class C2,G,J,M unclear
 ```
 
-Nguồn: [YK2] UC-04, UC-10, 5-2, 6-5 (chức năng 3-3, 3-9), 6-12 (chức năng 7-4), 確認17, 19, 43, 45, 46.
+Nguồn: [YK2] UC-04, UC-10, 5-2, 6-5 (chức năng 3-3, 3-9), 6-12 (chức năng 7-4), 確認17, 45, 46; [KS] 確認19, 43.
 
 **Luồng chưa rõ:** góp ý ghi vào chỉ dẫn cho AI thì đến sáng hôm sau tài năng mới nhận (AI đọc chỉ dẫn mỗi sáng, 7-5). Có cần chuyển lời ngay trong ngày không?
 
@@ -440,9 +458,9 @@ Nguồn: [YK2] UC-03 前提, 6-10 (chức năng 8-2, 8-3, 8-6), 確認9, 10, 11.
 
 **Luồng chưa rõ:** thời điểm đăng ký tài năng với Upload-Post (8-2 còn ghi theo luồng cũ). Tài năng kết thúc sử dụng thì có ngắt kết nối và xóa khỏi Upload-Post không (Upload-Post tính phí theo số tài năng đã đăng ký). Ai kết nối cho tài khoản công ty. Kiểm tra loại tài khoản Instagram ở bước nào.
 
-## Workflow 11. Chỉ dẫn cho AI (đề xuất, đang hỏi khách)
+## Workflow 11. Chỉ dẫn cho AI
 
-Hiện tại quản lý chỉ dẫn cho huấn luyện viên AI qua ChatGPT project và file OneDrive (UC-02 前提). Bản thiết kế của khách có thêm màn hình "AIへの指示" (chỉ dẫn cho AI). [YK2] mô tả cách hiểu của bên phát triển trong 確認6, 7, 8 và ghi rõ phần theo nhóm tài năng "cần kiểm chứng kỹ thuật". Cả luồng này chưa được chốt và chưa có mã chức năng ở mục 6.
+Quản lý chỉ dẫn cho huấn luyện viên AI qua màn hình "AIへの指示" (chỉ dẫn cho AI; M-11 thiết kế khách = M-14, M-15 [AG]), qua ChatGPT project (MCP) và file OneDrive (UC-02 前提). Màn hình này **làm** theo bảng xác nhận 17/11 (CR-18; [KS] 確認6, 7, 8). Cách làm chỉ dẫn theo nhóm do FutureCore thiết kế ([KS] 確認6). Chức năng chưa có mã ở mục 6 của [YK2]. Ngoài ra [KS] 確認8 ghi cần **một màn riêng để nhập thông tin tài năng cho AI**; màn đó là gì đang hỏi ở Q&A No.74 (AMCOLAB đề xuất đợt 1 giữ cách nhập qua ChatGPT).
 
 ```mermaid
 flowchart TD
@@ -450,12 +468,12 @@ flowchart TD
   B -- "Toàn bộ" --> C
   B -- "Nhóm tài năng (確認47)" --> C
   B -- "Một tài năng" --> C
-  C["Viết chỉ dẫn<br/>có thể chèn mẫu câu: giọng điệu, chủ đề,<br/>giờ đăng, điều cần tránh, số lần nhắn (確認8)"] --> D["Bấm 試してみる (chạy thử) với một tài năng<br/>xem trước lời nhắn và bản nháp (確認7)"]
+  C["Viết chỉ dẫn<br/>không có nút mẫu câu 「書き出しの部品」 ([KS] 確認8)"] --> D["Bấm 「試してみる」 (chạy thử; khách muốn ghi là 「確認」, [KS] 確認7) với một tài năng<br/>xem trước lời nhắn và bản nháp (確認7)"]
   D --> E{"Ổn không?"}
   E -- "Chưa" --> C
-  E -- "Ổn" --> F["Lưu. Giữ lịch sử, quay lại bản cũ được"]
+  E -- "Ổn" --> F["Bấm 「保存」 (khách muốn ghi là 「指示」). Giữ lịch sử, quay lại bản cũ được"]
   F --> G["Sáng hôm sau AI dùng chỉ dẫn<br/>ưu tiên: tài năng, rồi nhóm, rồi toàn bộ<br/>luôn kiểm tra từ cấm (確認6)"]
-  B -.-> U["⚠ Chỉ dẫn theo nhóm cần kiểm chứng kỹ thuật"]
+  B -.-> U["⚠ Cách làm chỉ dẫn theo nhóm: FutureCore thiết kế ([KS] 確認6)"]
   G -.-> V["⚠ Quan hệ với ChatGPT project và file OneDrive:<br/>nguồn nào được ưu tiên?"]
   classDef unclear stroke:#d9480f,stroke-width:2px,stroke-dasharray:5 5
   class U,V unclear
@@ -463,14 +481,12 @@ flowchart TD
 
 **Luồng chưa rõ:**
 
-- Chức năng này có nằm trong phạm vi không. Nó chưa có mã chức năng hay mức ưu tiên ở mục 6.
 - Chỉ dẫn trên màn hình này và chỉ dẫn trong ChatGPT, OneDrive cùng tồn tại thì nguồn nào được ưu tiên.
-- Mẫu câu có cố định không, hay quản lý tự thêm được (確認8).
 - Góp ý của quản lý cho tài năng cũng đi qua đây (確認43). Vậy có cần lần chạy ngay, không chờ sáng hôm sau không.
 
 ## Tổng hợp các luồng chưa rõ
 
-Có 15 luồng chưa rõ, xếp theo mức ảnh hưởng. So với bản theo v1, v2 đã làm rõ 4 luồng: hủy bài (hủy từ màn hình quản trị), giới hạn số bài (đã bỏ con số), tài năng miễn phí (đã bỏ), và bước kiểm tra huấn luyện viên AI (đã bỏ). Duyệt bài, gửi lại và quá giờ đã có đề xuất nhưng còn chờ khách trả lời. Nhóm **Cao** làm sơ đồ trạng thái hoặc luồng cốt lõi chưa chốt được, nên cần hỏi khách trước khi thiết kế dữ liệu.
+Có 16 luồng chưa rõ, xếp theo mức ảnh hưởng (luồng 16 thêm theo bảng xác nhận 17/11). So với bản theo v1, v2 đã làm rõ 4 luồng: hủy bài (hủy từ màn hình quản trị), giới hạn số bài (đã bỏ con số), tài năng miễn phí (đã bỏ), và bước kiểm tra huấn luyện viên AI (đã bỏ). Duyệt bài, gửi lại và quá giờ đã có đề xuất nhưng còn chờ khách trả lời. Nhóm **Cao** làm sơ đồ trạng thái hoặc luồng cốt lõi chưa chốt được, nên cần hỏi khách trước khi thiết kế dữ liệu.
 
 | STT | Luồng chưa rõ | Workflow | Mức ảnh hưởng | Nguồn [YK2] |
 | --- | --- | --- | --- | --- |
@@ -482,10 +498,11 @@ Có 15 luồng chưa rõ, xếp theo mức ảnh hưởng. So với bản theo v
 | 6 | Bài bị chặn vì từ cấm: ai đặt lịch sau khi sửa, tài năng có xác nhận lại không, không sửa kịp thì sao | 3, 4 | Cao | 5-3, 6-6 (4-4) |
 | 7 | Ai chuyển tài năng từ 利用前 sang 利用中, và đơn chờ duyệt có phải trạng thái không | 1, 7 | Cao | 6-2 (7-3) |
 | 8 | Thanh toán lỗi: có thu lại không, hạn chót, dừng sử dụng bằng cách nào | 6, 7 | Cao | 6-3 (1-1), 確認48 |
-| 9 | Màn hình chỉ dẫn cho AI và nhóm tài năng có trong phạm vi không | 11 | Cao (phạm vi, chi phí) | 確認6, 7, 8, 47 |
+| 9 | Màn hình chỉ dẫn cho AI và nhóm tài năng: đã chốt làm ([KS]); còn chưa rõ ảnh hưởng báo giá và cách làm chỉ dẫn theo nhóm | 11 | Trung bình (chi phí) | [KS] 確認6, 7, 8, 47 |
 | 10 | Khoảng trống giữa thanh toán và lúc quản lý nhập hồ sơ. Phí tháng đầu tính từ lúc nào | 1, 6 | Trung bình | UC-01 前提, 確認48 |
 | 11 | Tài khoản công ty đăng bài từ ứng dụng hay từ màn hình quản trị, có duyệt không | 2 | Trung bình | UC-12, 6-10 (9-1), 7-4, 確認52 |
 | 12 | Tiêu chí nhận biết chuyện nghiêm trọng và cách xử lý khẩn cấp | 8 | Trung bình (nhưng rủi ro về an toàn con người cao) | 6-5 (3-3), 確認17 |
 | 13 | Quản lý biết có thông báo bằng cách nào khi không mở màn hình quản trị | 4, 8 | Trung bình | 6-12 (7-4), 確認45 |
 | 14 | Đơn bị từ chối: giữ bao lâu, đăng ký lại được không, chặn đăng ký rác | 1 | Trung bình | UC-01, 6-4 (2-2) |
 | 15 | Bản nháp không 採用 trong ngày, giờ đăng khi có nhiều bài, video tự làm so với bản nháp từ chủ đề, video bị bỏ | 2, 5 | Thấp | 5-3, 6-7 (6-4), 6-8 (5-3) |
+| 16 | 自動投稿: duyệt, từ cấm, hết tư liệu giữa khoảng, hết khoảng; 要確認 không gửi ảnh trong ngày | 2 | Cao | [KS] 確認25, 26 |

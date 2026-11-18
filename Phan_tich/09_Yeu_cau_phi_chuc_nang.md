@@ -1,14 +1,5 @@
 # Yêu cầu phi chức năng
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- Chi phí video trình chiếu: nay ghép ảnh ở máy chủ, không trả phí cho dịch vụ tạo video; chi phí là CPU của VPS (CR-04). Con số 2–18 yên dựa trên cách tính cũ.
-- Màn quản trị dùng chủ yếu trên PC nhưng phải dễ xem trên điện thoại (Q&A No.33).
-- Khóa sau 5 lần sai làm ở BE; gọi thẳng Supabase Auth không bị đếm (rủi ro RT12 đã chấp nhận).
-
-
 Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được nêu tương đối đầy đủ. Các nhóm còn lại chủ yếu ghi "設計の中で決め、最終版に書きます" (sẽ quyết khi thiết kế và ghi vào bản cuối). Nguồn chính là [YK2] mục 9 (hiệu năng, vận hành, nhật ký), 10 (bảo mật), 11 (điều kiện tiền đề và ràng buộc), 12 (nghiệm thu) và phần 前提 (tiền đề) của các UC. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với v1:** quy mô ban đầu rõ hơn (khoảng 30 người, thêm 10 mỗi tháng). Màn hình quản trị phải dễ xem trên điện thoại. Màn hình đăng ký công khai và email trở thành điểm bảo mật và tính sẵn sàng mới. Việc đồng ý về dữ liệu của tài năng thuộc công ty đã rõ (ủy thác khi ký hợp đồng).
@@ -34,12 +25,12 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Yêu cầu | Loại | Nguồn [YK2] |
 | --- | --- | --- |
 | Xử lý buổi sáng (đọc thông tin tài năng và số liệu, tạo bản nháp) phải xong trước giờ nhắn tin buổi sáng (mặc định trong khoảng 8 giờ) | Nêu rõ | 9-2, 5-2 |
-| Gửi cùng một lúc cho mọi tài năng hay không sẽ quyết sau khi thử tải | Nêu rõ (cách quyết), cần xác nhận (kết quả) | 確認18 |
+| Tin gửi theo khung sáng, trưa, tối; đổi giờ theo từng tài năng xem xét sau khi vận hành | Chốt | [KS] 確認18 |
 | Số tài năng dùng để kiểm tra yêu cầu trên sẽ quyết khi biết số tài năng bắt đầu dùng | Nêu rõ (cách kiểm tra), cần xác nhận (con số) | 9-2 |
 | Tạo video mất vài phút. Tài năng được đóng ứng dụng trong lúc chờ, xong thì được báo | Nêu rõ (chỉ là mô tả, không phải chỉ tiêu) | 6-8 (5-1), UC-06 前提, [SM] tr.9 |
 | Thông báo đẩy có thể đến trễ hoặc không đến, không đảm bảo | Nêu rõ (nằm ngoài cam kết) | 11 |
 | Số liệu lấy mỗi ngày một lần | Nêu rõ | 6-11 (8-7), UC-09 前提 |
-| Không giới hạn số lần trò chuyện và viết lại bản nháp, nên tải lên AI không có trần | Đề xuất trong 確認, cần xác nhận | 確認23, 29 |
+| Viết lại tối đa 2 lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt), nên tải lên AI chưa có trần | Một phần chốt | [KS] 確認29, 確認23 |
 | Thời gian phản hồi của màn hình, của câu trả lời từ AI, của việc tải ảnh và video lên | Cần xác nhận (tài liệu không nêu) | — |
 | Độ lệch cho phép giữa giờ hẹn và giờ bài thực sự xuất hiện trên mạng xã hội | Cần xác nhận | — |
 | Số người dùng đồng thời | Cần xác nhận | — |
@@ -51,7 +42,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Số tài năng: bắt đầu tối thiểu khoảng 30 người, mỗi tháng thêm 10, sớm lên khoảng 100. Mục tiêu 200–300, tương lai 1.000 | Nêu rõ | 2-2, 9-2, 12-6, UC-01 前提 |
 | Số quản lý: khoảng 5 | Nêu rõ | 2-2, 8 |
 | Chi phí dịch vụ ngoài hằng tháng khi số tài năng tăng sẽ được ước tính và gửi riêng. Phí Upload-Post tăng theo số tài năng đã đăng ký, không theo số bài | Nêu rõ (sẽ gửi sau) | 9-2, 8, UC-08 前提 |
-| Chi phí tham khảo mỗi bài: bài ảnh vài yên trở xuống, bài video trình chiếu ảnh khoảng 2–18 yên, cao hơn nếu ảnh cũng do AI tạo | Nêu rõ (ước tính trong 確認) | 確認37 |
+| Chi phí tham khảo mỗi bài: bài ảnh vài yên trở xuống, bài video trình chiếu ảnh khoảng 2–18 yên, cao hơn nếu ảnh cũng do AI tạo Nay video trình chiếu ghép ảnh ở máy chủ, không trả phí dịch vụ; con số 2–18 yên theo cách tính cũ (CR-04). | Nêu rõ (ước tính trong 確認) | 確認37 |
 | Upload-Post cần gói đủ cho số tài năng. Vercel và Supabase phải là gói trả phí | Nêu rõ | 8 |
 | Dung lượng tối đa của mỗi ảnh hoặc video, và tổng dung lượng lưu | Cần xác nhận ("sẽ quyết khi thiết kế") | 9-2, 6-7 (6-3) |
 | Phạm vi mở rộng sau này: suất cho công ty trong tập đoàn, người hâm mộ dùng, doanh nghiệp đối tác, X, TikTok Live | Nêu rõ là để sau, mức làm trong đợt này sẽ bàn | 13, UC-01 前提 |
@@ -78,7 +69,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Yêu cầu | Loại | Nguồn [YK2] |
 | --- | --- | --- |
 | Chỉ người được quản lý duyệt mới đăng nhập được, vì đường dẫn ứng dụng có thể lộ ra ngoài. Mật khẩu tạm gửi qua email | Nêu rõ | UC-01, 6-1 (1-4) |
-| Tài năng đăng nhập bằng email và mật khẩu. Mật khẩu ít nhất 8 ký tự, có cả chữ và số. Sai 5 lần thì khóa 15 phút. Giữ đăng nhập 30 ngày. Quên mật khẩu thì tự đặt lại qua email | Nêu rõ | 6-1 (1-4), UC-03 前提 |
+| Tài năng đăng nhập bằng email và mật khẩu. Mật khẩu ít nhất 8 ký tự, có cả chữ và số. Sai 5 lần thì khóa 15 phút. Giữ đăng nhập 30 ngày. Quên mật khẩu thì tự đặt lại qua email  Khóa 5 lần sai làm ở BE; gọi thẳng Supabase Auth không bị đếm (rủi ro RT12 đã chấp nhận). | Nêu rõ | 6-1 (1-4), UC-03 前提 |
 | Quản lý đăng nhập hai bước (mã 6 số từ ứng dụng xác thực). 30 phút không thao tác thì phải đăng nhập lại. Quản lý bị vô hiệu hóa thì không đăng nhập được | Nêu rõ | 6-2 (1-6), 10-1, UC-13 前提 |
 | Tài năng chỉ xem dữ liệu của mình. AI chỉ dùng thư mục của tài năng đang trò chuyện | Nêu rõ | 10-1, 6-1 (1-5) |
 | Mã hóa đường truyền và dữ liệu lưu trữ | Nêu rõ (chưa nêu chuẩn mã hóa) | 10-2 |
@@ -87,7 +78,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Không lưu thông tin thẻ, cổng thanh toán giữ | Nêu rõ | 10-2, UC-03 前提 |
 | Tài năng thuộc công ty đã ủy thác việc xử lý dữ liệu cá nhân và quyền hình ảnh khi ký hợp đồng. アデッソ lấy đồng ý của phụ huynh với người vị thành niên khi ký hợp đồng. Hệ thống không lưu bằng chứng đồng ý | Nêu rõ | 2-3, 10-3, UC-03 前提 |
 | Người đăng ký đồng ý điều khoản sử dụng trên màn hình đăng ký | Nêu rõ ⚠ (確認1) | UC-01 |
-| Ngày sinh là dữ liệu mới, dùng để AI biết tuổi và để xác định vị thành niên | Nêu rõ ⚠ (確認2) | UC-01 前提, 3-1 |
+| Ngày sinh là dữ liệu mới, dùng để AI biết tuổi và để hiện nhãn dưới 18 tuổi | Chốt ([KS] 確認2) | UC-01 前提, 3-1 |
 | Kiểm thử cơ bản dùng dữ liệu giả. Dùng dữ liệu thật thì phải có đồng ý bằng văn bản trước | Nêu rõ | 10-3 |
 | Lần đầu mở ứng dụng, báo tài năng biết quản lý đọc được hội thoại và cho bấm xác nhận. Ghi nhật ký mỗi lần quản lý xem thông tin | Nêu rõ ⚠ (確認13, 44) | 3-2 |
 | Biện pháp cho màn hình đăng ký công khai: chống đăng ký rác, xác minh email, giới hạn số lần gửi đơn | Cần xác nhận (tài liệu không nêu) | UC-01 |
@@ -106,7 +97,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Khôi phục dữ liệu: ai được yêu cầu, chấp nhận mất dữ liệu trong bao lâu, khôi phục trong bao lâu | Cần xác nhận (tài liệu không nêu) | — |
 | Dữ liệu trên OneDrive có được sao lưu riêng không, hay dựa vào Microsoft 365 của アデッソ | Cần xác nhận | 7-2 |
 | Dữ liệu nằm ở Upload-Post và cổng thanh toán (kể cả lịch sử hóa đơn) có cần lưu bản sao trong hệ thống không | Cần xác nhận | 8, 6-3 (1-1) |
-| Thời gian giữ dữ liệu của tài năng đã rời đi | Cần xác nhận (đang hỏi khách) | 7-3, 確認55 |
+| Dữ liệu của tài năng đã rời đi giữ 6 tháng rồi tự xóa, không khôi phục | Chốt | 7-3, [KS] 確認55 |
 
 ## 6. Nhật ký
 
@@ -141,7 +132,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Yêu cầu | Loại | Nguồn [YK2] |
 | --- | --- | --- |
 | Ứng dụng tài năng chạy trên iPhone và Android, cài từ trình duyệt. Thông báo đẩy trên iPhone cần iOS 16.4 trở lên | Nêu rõ | 9-1, UC-03 前提 |
-| Màn hình quản trị chủ yếu chạy trên trình duyệt máy tính, và phải dễ xem trên trình duyệt điện thoại. Mâu thuẫn với thiết kế [TK-M] đã được giải quyết | Nêu rõ | 9-1, UC-10 前提 |
+| Màn hình quản trị chủ yếu chạy trên trình duyệt máy tính, và phải dễ xem trên trình duyệt điện thoại. (Q&A No.33; màn duyệt và màn chỉnh chỉ dẫn cho AI thao tác được trên điện thoại, [KS] 前提 UC-10-1.) Mâu thuẫn với thiết kế [TK-M] đã được giải quyết | Nêu rõ | 9-1, UC-10 前提 |
 | Đổi điện thoại thì đăng nhập lại và dùng tiếp hội thoại và số liệu cũ | Nêu rõ | UC-13 前提, 6-1 (1-4) |
 | Danh sách hệ điều hành và trình duyệt được hỗ trợ | Cần xác nhận ("sẽ ghi ở bản cuối") | 9-1 |
 
@@ -150,12 +141,12 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 Có 12 câu hỏi, gom từ các dòng "Cần xác nhận" ở trên. Mức ưu tiên là đề xuất của mình, dựa trên việc câu trả lời ảnh hưởng tới kiến trúc đến đâu. Mình không đề xuất con số nào.
 
 - [ ] **(Cao)** Hệ thống cần đáp ứng bao nhiêu tài năng khi vận hành chính thức, và bao nhiêu sau một năm?
-- [ ] **(Cao)** Xử lý buổi sáng phải bắt đầu lúc nào, và được phép trễ bao lâu so với giờ nhắn tin? (確認18)
+- [ ] **(Cao)** Giờ cụ thể của các khung sáng, trưa, tối ([KS] 確認18); xử lý phải bắt đầu lúc nào và được phép trễ bao lâu so với giờ nhắn?
 - [ ] **(Cao)** Khung giờ hoạt động của hệ thống, và có cam kết tỷ lệ hoạt động hay thời gian khắc phục không?
 - [ ] **(Cao)** Sao lưu những dữ liệu nào, tần suất ra sao, giữ bao lâu? Chấp nhận mất dữ liệu trong khoảng bao lâu?
 - [ ] **(Cao)** Màn hình đăng ký công khai cần những biện pháp chống đăng ký rác nào? Đồng ý của người ngoài công ty được lấy thế nào? (確認1)
 - [ ] **(Cao)** Dung lượng tối đa của mỗi ảnh hoặc video và tổng dung lượng lưu trữ.
-- [ ] **(Trung bình)** Thời gian phản hồi mong muốn của màn hình và của câu trả lời từ AI. Có cần trần chi phí AI cho mỗi tài năng không? (確認23, 29)
+- [ ] **(Trung bình)** Thời gian phản hồi mong muốn của màn hình và của câu trả lời từ AI. Có cần trần chi phí AI cho mỗi tài năng không? (viết lại đã giới hạn 2 lần, [KS] 確認29; trò chuyện chưa, 確認23)
 - [ ] **(Trung bình)** Thời gian lưu từng loại nhật ký. Ai xem nhật ký thao tác và nhật ký xử lý.
 - [ ] **(Trung bình)** Có yêu cầu kiểm thử bảo mật, và có chuẩn bảo mật nào của アデッソ phải tuân theo không?
 - [ ] **(Trung bình)** Danh sách hệ điều hành và trình duyệt được hỗ trợ.

@@ -2,7 +2,7 @@
 
 File này gom các điểm còn mở của 6 chức năng EP07 (8-7, 8-8, 3-10, 6-7, 8-1, 8-9) mà **chưa có trong bảng 確認 (mục cần xác nhận) của khách**. Mỗi điểm có đề xuất của đội, kết quả kiểm tra phạm vi và bản tiếng Nhật để gửi.
 
-Các 確認 không xử lý ở đây, chỉ ghi lại để biết chức năng nào đang chờ: 確認22, 40 (6-7); 確認30 (8-1); 確認39 (đạt mục tiêu, thuộc 3-7 ở EP03).
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, xem `Phan_tich/21` và bảng cuối tệp này): 確認22, 40 (6-7); 確認30 (8-1); 確認39 (đạt mục tiêu, thuộc 3-7 ở EP03).
 
 Việc phải kiểm chứng trên Upload-Post (chỉ số lấy được, số liệu theo khung giờ) nằm ở danh sách kiểm chứng của [EP06](../EP06_Phe_duyet_va_dang_len_mang_xa_hoi/00_Cau_hoi_cho_khach.md), mục 9.
 

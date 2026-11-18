@@ -34,7 +34,7 @@
 | Đường dẫn hết hạn | Bấm lại để tạo đường dẫn mới | §6-10 |
 | Tạo hồ sơ trên Upload-Post lỗi | Thử lại qua hàng đợi; nút SNS をつなぐ tạm khóa, ghi "đang chuẩn bị" | §9-3 |
 | Instagram là tài khoản cá nhân | Upload-Post báo lỗi; hiện hướng dẫn chuyển sang tài khoản doanh nghiệp hoặc nhà sáng tạo | [AG] T-05 |
-| Kết nối 2 tài khoản cùng một mạng | Không cho; chỉ một tài khoản mỗi mạng | §6-10 (giả định 確認10) |
+| Kết nối 2 tài khoản cùng một mạng | Không cho; chỉ một tài khoản mỗi mạng | §6-10, [KS] 確認10 |
 | Chỉ nối 1–2 mạng | Vẫn dùng được; chỉ đăng lên mạng đã nối | 確認11 (giả định) |
 | Không đọc được trạng thái khi quay về | Hỏi lại định kỳ vài phút; nút "cập nhật" ở T-05 | [Đề xuất nội bộ] |
 
@@ -43,7 +43,7 @@
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
 | Hạn đường dẫn kết nối | 48 giờ | Chốt (giá trị của Upload-Post, kiểm chứng) | §6-10 |
-| Mỗi mạng một tài khoản | — | Giả định (確認10) | §6-10 |
+| Mỗi mạng một tài khoản; tài khoản của nhóm (ユニット) coi là tài khoản công ty | — | Chốt ([KS] 確認10) | §6-10 |
 | Phí Upload-Post theo số tài năng đã đăng ký | — | Chốt | UC-08 前提 |
 
 ## Dữ liệu [Đề xuất nội bộ]
@@ -71,7 +71,7 @@ Upload-Post: tạo và xóa hồ sơ, tạo đường dẫn kết nối, đọc 
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認9, 10, 11.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認9, 10, 11.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -84,6 +84,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - [YK2] §6-10 (8-2), §8, §9-3, UC-03, UC-08 前提, 確認9–11. [AG] trang 2 (T-04), trang 3 (T-05).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- Q&A No.23, CR-20: nhiều tài khoản trên một mạng chưa làm tới khi khách quyết. Giữ mỗi mạng một tài khoản.
+- Q&A No.23, CR-20: **không làm** ([KS] 確認10). Mỗi mạng một tài khoản; tài khoản của nhóm (ユニット) coi là tài khoản công ty.

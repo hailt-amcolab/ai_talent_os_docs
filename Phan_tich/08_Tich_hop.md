@@ -1,16 +1,5 @@
 # Tích hợp hệ thống bên ngoài
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này. File này xuất từ tab Claude Doc; **tab Claude Doc cũng cần thêm khối này**.
-
-- Nguồn tin tức: dùng chức năng tìm web của AI (OpenAI), 1 lần mỗi ngày, chung cho mọi tài năng (CR-05).
-- fal.ai chỉ dùng cho video ngắn; video trình chiếu ghép ảnh ở máy chủ (CR-04).
-- OneDrive: lưu ảnh, video (CR-10); dịch vụ ngoài lấy tệp từ bản tạm trên Supabase Storage (phương án B của Q&A No.8). Quyền Microsoft Graph: các trang tài liệu chỉ ghi quyền toàn tenant, quyền Selected phải thử (bộ OneDrive §4.2).
-- Upload-Post: có Best Time to Post và Audience Insights (số người theo dõi TikTok); bộ Upload-Post §13.2a.
-- OpenAI: không trần chi phí (Q&A No.17). Xác thực hai bước: chỉ TOTP; SMS chờ bàn (S01-11).
-
-
 Hệ thống cần tích hợp với 6 dịch vụ mà [YK2] đã nêu tên, chạy trên 3 nền tảng hạ tầng, và cần thêm ít nhất 3 dịch vụ tài liệu chưa nêu tên. V2 làm dịch vụ gửi email trở thành bắt buộc (kết quả đăng ký, mật khẩu tạm), cho hủy bài qua Upload-Post từ màn hình quản trị, và cho biết phí Upload-Post tính theo số tài năng. Tab này đã viết lại theo bản yêu cầu v2.
 
 **Cách đọc:**
@@ -87,6 +76,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 
 | Hạng mục | Nội dung |
 | --- | --- |
+| Đã chốt | Có Best Time to Post và Audience Insights (số người theo dõi TikTok); bộ Upload-Post §13.2a |
 | Mục đích | Xác nhận: đăng ký tài năng, tạo màn hình kết nối mạng xã hội, đăng bài hẹn giờ, hủy lịch khi quản lý hủy hoặc khi dừng đăng tự động, lấy số liệu từng bài và số người theo dõi (8, 6-10, 6-11, UC-08 前提) |
 | Dữ liệu gửi đi | Xác nhận: thông tin tài năng khi đăng ký, ảnh hoặc video, chú thích, hashtag, giờ đăng, lệnh hủy lịch. Giả định: tiêu đề YouTube, nhãn "do AI tạo" |
 | Dữ liệu nhận về | Xác nhận: đường dẫn kết nối (hạn 48 giờ), trạng thái kết nối, kết quả đăng trên từng mạng và lý do lỗi, số liệu bài trong phạm vi Upload-Post lấy được, số người theo dõi, khung giờ tương tác (nếu có). Cả bài tài năng tự đăng ngoài hệ thống (UC-09) |
@@ -100,6 +90,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 
 | Hạng mục | Nội dung |
 | --- | --- |
+| Đã chốt | Nguồn tin tức: chức năng tìm web của AI, 1 lần mỗi ngày, chung cho mọi tài năng (CR-05). Không trần chi phí (Q&A No.17) |
 | Mục đích | Xác nhận: trò chuyện với huấn luyện viên AI, tạo bản nháp, nhận xét (8). Theo chức năng còn có: kiểm tra từ cấm (4-4), nhận biết chuyện nghiêm trọng (3-3), ghi file bộ nhớ (3-2), chọn giờ đăng (8-1). Nếu làm màn hình chỉ dẫn cho AI thì có thêm lần gọi "chạy thử" ⚠ (確認7) |
 | Dữ liệu gửi đi | Xác nhận: chỉ phần thông tin cần cho hội thoại và bản nháp (10-2), gồm hồ sơ, mục tiêu, thử thách, kinh nghiệm đăng bài, chỉ dẫn, hội thoại, số liệu (3-1). V2 thêm ngày sinh để AI biết tuổi (UC-01 前提). Giả định: có gửi ảnh hay không thì chưa rõ |
 | Dữ liệu nhận về | Câu trả lời, chủ đề gợi ý, bản nháp, kết quả kiểm tra từ cấm. Giả định: số token đã dùng, để tính chi phí (3-5) |
@@ -107,7 +98,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 | API hoặc webhook | API tính phí theo mức dùng, ký riêng với gói ChatGPT ([SM] tr.38). Không cần webhook |
 | Xác thực | Giả định: khóa API của tổ chức アデッソ trên OpenAI. Xác nhận: cài đặt không cho dùng dữ liệu để huấn luyện (8, 10-2) |
 | Xử lý lỗi | Xác nhận: dịch vụ AI lỗi thì báo trên màn hình và cho gửi lại sau (3-4) |
-| Chưa rõ | V2 đề xuất không giới hạn trò chuyện và viết lại (確認23, 29), mỗi bản nháp tốn khoảng 0,2–3 yên, nên cần quyết có trần chi phí không. Lỗi trong xử lý buổi sáng thì sao. Giới hạn tốc độ khi gọi cho nhiều tài năng cùng giờ. Dùng mô hình nào. Tin tức lấy qua OpenAI hay nguồn khác (確認16) |
+| Chưa rõ | Viết lại tối đa 2 lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt, 確認23); mỗi bản nháp tốn khoảng 0,2–3 yên, nên cần quyết có trần chi phí không. Lỗi trong xử lý buổi sáng thì sao. Giới hạn tốc độ khi gọi cho nhiều tài năng cùng giờ. Dùng mô hình nào. Tin tức lấy qua OpenAI hay nguồn khác (確認16) |
 
 ## 5. ChatGPT (quản lý dùng để nhập hồ sơ)
 
@@ -124,6 +115,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 
 | Hạng mục | Nội dung |
 | --- | --- |
+| Đã chốt | Lưu ảnh, video (CR-10); dịch vụ ngoài lấy tệp từ bản tạm trên Supabase Storage (phương án B của Q&A No.8). Kết nối và quyền: `agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md` |
 | Mục đích | Xác nhận: lưu hồ sơ, mục tiêu, kinh nghiệm đăng bài, số liệu, ảnh và video. Dùng gói Microsoft 365 mà アデッソ đang có (8, 7-2) |
 | Dữ liệu gửi đi | Xác nhận: tạo thư mục khi tài năng thanh toán xong, hoặc khi quản lý tạo tài khoản công ty (2-2). Ghi số liệu (8-8), ghi file bộ nhớ của AI (3-2), lưu ảnh và video (6-4) |
 | Dữ liệu nhận về | Xác nhận: mỗi sáng đọc thư mục tài năng và thư mục chung (2-1). Hiển thị ảnh và video trong ứng dụng (6-4) |
@@ -137,6 +129,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 
 | Hạng mục | Nội dung |
 | --- | --- |
+| Đã chốt | Chỉ dùng cho video ngắn; video trình chiếu ghép ảnh ở máy chủ (CR-04) |
 | Mục đích | Xác nhận: tạo video ngắn hoặc video trình chiếu ảnh từ ảnh (8, 確認31) |
 | Dữ liệu gửi đi | Ảnh gốc, loại video. [SM] tr.9 có nói gửi cả kịch bản. Giả định: câu mô tả cho AI, tỉ lệ khung dọc |
 | Dữ liệu nhận về | Video đã tạo, hoặc lý do lỗi (5-1). Giả định: chi phí thực tế của lần tạo |
@@ -157,7 +150,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 | Hướng và thời điểm | Tài năng nhập thông tin trên màn hình của cổng lúc hướng dẫn lần đầu. Hệ thống gửi số tiền vào ngày chốt sổ. Ngày chốt sổ và ngày thu tiền sẽ quyết sau khi chọn cổng |
 | API hoặc webhook | Giả định: chuyển tài năng sang màn hình của cổng để đăng ký, dùng API để thu tiền, nhận thông báo kết quả từ cổng |
 | Xác thực | Giả định: mã cửa hàng và mật khẩu do cổng cấp cho アデッソ. Phải có môi trường kiểm thử riêng (12-4) |
-| Xử lý lỗi | Xác nhận: thu lỗi thì báo tài năng và quản lý, không tự dừng sử dụng. Quản lý quyết có dừng không ⚠ (確認48) |
+| Xử lý lỗi | Xác nhận: thu lỗi thì báo tài năng và quản lý, không tự dừng sử dụng. Quản lý quyết có dừng không ⚠. Chu kỳ một tháng tính từ ngày đăng ký ([KS] 確認48) |
 | Chưa rõ | **Rủi ro lớn nhất:** cổng thanh toán, nhất là cước nhà mạng, có thu được số tiền thay đổi hằng tháng không (確認49). Vì mọi tài năng phải thanh toán mới dùng được AI, cổng chưa sẵn sàng thì chặn cả luồng chính. Ngoài ra: có thu lại khi lỗi không. Tài năng vị thành niên dùng cước nhà mạng có bị giới hạn không. Rời đi giữa tháng thu trọn tháng ⚠ (確認50) |
 
 ## 9. Các tích hợp khác
@@ -184,7 +177,7 @@ Mức ưu tiên dưới đây là đề xuất của mình: **Gấp** là việc
 | 2 | Mã cửa hàng, thông tin xác thực của môi trường kiểm thử, tài liệu kết nối, cách kiểm thử thanh toán | Cổng thanh toán | Cao | 12-4 |
 | 3 | Tài khoản Upload-Post, bảng giá theo số tài năng, khóa API, logo để hiển thị trên màn hình kết nối ([SM] tr.39) | Upload-Post | Gấp | 8, UC-08 前提 |
 | 4 | Tài khoản Instagram (doanh nghiệp hoặc nhà sáng tạo), TikTok, YouTube dùng để kiểm thử | Upload-Post | Gấp | 12-4 |
-| 5 | Tổ chức và khóa API OpenAI, đã tắt việc dùng dữ liệu để huấn luyện. Mức chi tiêu tối đa hằng tháng (quan trọng hơn khi trò chuyện không giới hạn) | OpenAI | Cao | 8, 10-2, 確認23, 29 |
+| 5 | Tổ chức và khóa API OpenAI, đã tắt việc dùng dữ liệu để huấn luyện. Mức chi tiêu tối đa hằng tháng (quan trọng vì trò chuyện chưa giới hạn, 確認23) | OpenAI | Cao | 8, 10-2, 確認23, 29 |
 | 6 | Thông tin Microsoft 365: loại lưu trữ (OneDrive của ai, hay SharePoint), thư mục gốc. Quản trị viên đăng ký ứng dụng trong Microsoft Entra ID và cấp quyền | OneDrive | Gấp | 8, 7-2 |
 | 7 | Gói ChatGPT đang dùng, số tài khoản, dùng chung hay riêng. Cách gắn ChatGPT project với thư mục OneDrive | ChatGPT | Gấp | 8, 6-4 (2-3), UC-01 前提 |
 | 8 | Tài khoản fal.ai và khóa API. Mức chi tiêu tối đa. Đơn giá mỗi lần tạo video thu tài năng | fal.ai | Cao | 8, UC-06 前提 |
@@ -205,6 +198,6 @@ Mức ưu tiên dưới đây là đề xuất của mình: **Gấp** là việc
 | Đăng ký tài năng với Upload-Post quá sớm (ví dụ ngay khi có đơn) | Tốn phí cho người chưa thanh toán hoặc bị từ chối | UC-08 前提, 8-2 |
 | Luồng ChatGPT project → OneDrive chưa có cơ chế, lại làm tay cho từng tài năng | Chức năng 高 (cao) 2-3 không làm được, hoặc quản lý quá tải khi thêm 10 tài năng mỗi tháng | 6-4 (2-3), UC-01 前提, 2-2 |
 | Email không tới (vào thư rác, sai địa chỉ) | Người được duyệt không nhận mật khẩu tạm, không bắt đầu dùng được | 6-1 (1-4) |
-| OneDrive và OpenAI bị giới hạn tốc độ khi xử lý buổi sáng cho nhiều tài năng cùng giờ | Tin nhắn buổi sáng bị trễ | 9-2, 確認18 |
+| OneDrive và OpenAI bị giới hạn tốc độ khi xử lý cho nhiều tài năng cùng khung giờ (sáng, trưa, tối, [KS] 確認18) | Tin nhắn bị trễ | 9-2, [KS] 確認18 |
 | Chưa chọn cách gửi thông báo đẩy, và trên iPhone phải thêm ứng dụng vào màn hình chính | Huấn luyện viên AI mất tác dụng nếu tin nhắn không tới được tài năng | 8, 9-1, 11 |
 | Dịch vụ ngoài đổi đặc tả, giá hoặc điều khoản | Do hợp đồng bảo trì xử lý, nằm ngoài phạm vi dự án | 11 |

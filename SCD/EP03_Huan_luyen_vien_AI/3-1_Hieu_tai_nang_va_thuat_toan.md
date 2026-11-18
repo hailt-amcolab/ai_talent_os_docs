@@ -78,7 +78,7 @@ OpenAI: tắt việc dùng dữ liệu để huấn luyện (§8, §10-2). Mỗi
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認6–8.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認6–8.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

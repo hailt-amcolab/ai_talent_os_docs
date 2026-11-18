@@ -13,7 +13,7 @@
 
 | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
 |---|---|---|---|---|---|---|---|---|
-| ✅ | ✅ | ⚠ đội đề xuất | ⚠ S02-06 | ⚠ đội đề xuất | ⚠ lọc theo nhóm chờ 確認47 | ✅ | ⚠ đội đề xuất | ⚠ 3-10, 8-2, 8-7, 3-4 |
+| ✅ | ✅ | ⚠ đội đề xuất | ⚠ S02-06 | ⚠ đội đề xuất | ✅ lọc theo nhóm ([KS] 確認47) | ✅ | ⚠ đội đề xuất | ⚠ 3-10, 8-2, 8-7, 3-4 |
 
 ## Mục đích
 
@@ -33,7 +33,7 @@ Quản lý xem danh sách tài năng, tìm, lọc, rồi mở chi tiết: thông
 4. Nút ＋事務所アカウント sang M-12 (1-2). Bấm một dòng sang M-07.
 
 **Chi tiết – thông tin (M-07)**
-5. Tên và tuổi (kèm nhãn vị thành niên nếu có), các mục hồ sơ đọc từ `プロフィール.md` (S02-04), thử thách.
+5. Tên và tuổi (kèm nhãn dưới 18 tuổi nếu có, [KS] 確認2), các mục hồ sơ đọc từ `プロフィール.md` (S02-04), thử thách.
 6. Số người theo dõi và mục tiêu từng mạng, thanh tiến độ, mức tăng 7 ngày gần nhất, hạn đạt (dữ liệu của 3-10, 2-4).
 7. Trạng thái kết nối từng mạng (8-2). Trạng thái thư mục kèm liên kết (S02-03).
 8. Câu "nội dung do quản lý nhập qua ChatGPT; màn này không sửa được".
@@ -86,7 +86,7 @@ Microsoft Graph: đọc `プロフィール.md` khi mở M-07.
 ## Ngoài phạm vi của chức năng này
 
 - Sửa thông tin (2-3, qua ChatGPT). Sửa cài đặt (M-10: 2-4, 7-3, 7-5, 7-7). Tab bài đăng M-08 (7-2).
-- Lọc theo nhóm tài năng: chờ 確認47.
+- (Lọc theo nhóm tài năng nay **làm**: CR-17, [KS] 確認47; xem bộ lọc ở M-06.)
 
 ## Phụ thuộc
 
@@ -94,7 +94,7 @@ Microsoft Graph: đọc `プロフィール.md` khi mở M-07.
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認2 (nhãn vị thành niên), 確認41, 42 (xem mọi tài năng và hội thoại), 確認44 (nhật ký xem), 確認47 (lọc theo nhóm).
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認2 (nhãn dưới 18 tuổi), 確認41, 42 (xem mọi tài năng và hội thoại), 確認44 (nhật ký xem), 確認47 (lọc theo nhóm).
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -109,7 +109,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 - [YK2] §5-6, §6-4 (7-1), §9-2, UC-10, UC-01 前提, 確認2, 41, 42, 44, 47.
 - [AG] trang 7 (M-06, M-07), trang 8 (M-09), trang 11.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.22: màn chi tiết tài năng có thêm ô **tình trạng đọc file OneDrive** (xem 2-1).
-- Q&A No.7 (đang hỏi, CR-24): nếu khách chọn hội thoại riêng tư thì quản lý chỉ thấy phần được chia sẻ, phải làm lại phần xem hội thoại. Chờ trả lời trước khi làm phần hội thoại của màn này.
+- Q&A No.7 (đóng 17/11): quản lý xem toàn bộ hội thoại, tài năng được báo lần đầu mở ứng dụng (確認13, 42). Không làm hội thoại riêng tư (CR-24).

@@ -50,7 +50,7 @@ Ký hiệu kênh: **Ứng dụng** = T-14 cộng thông báo đẩy nếu đư�
 
 ## Quy tắc
 
-- Thông báo cho quản lý chỉ ở màn hình quản trị (giả định 確認45).
+- Thông báo cho quản lý chỉ ở màn hình quản trị (giả định 確認45; khách ghi muốn thêm email, chưa chốt).
 - Một số loại không tạo trùng khi đã có thông báo chưa xử lý của cùng tài năng (15: S03-10).
 - Câu chữ viết bằng tiếng Nhật, khách duyệt trên màn hình thật (§6-13).
 

@@ -4,12 +4,14 @@ import { cors } from 'hono/cors'
 import { secureHeaders } from 'hono/secure-headers'
 import { bodyLimit } from 'hono/body-limit'
 import { requestId } from 'hono/request-id'
+import { contextStorage } from 'hono/context-storage'
 import type { AppDeps } from '../container.ts'
 import { requireOrigin } from './auth.ts'
 import { AppError } from '../core/errors.ts'
 import { systemModule } from '../modules/system/routes.ts'
 import { authModule } from '../modules/auth/routes.ts'
 import { pwaModule } from '../modules/pwa/routes.ts'
+import { onedriveModule } from '../modules/onedrive/routes.ts'
 
 // Dựng ứng dụng HTTP từ phụ thuộc đã tạo sẵn. Tách khỏi server.ts để kiểm thử bằng app.request() không cần mở cổng.
 // Thêm module mới: tạo src/modules/<tên>/ rồi gắn ở mục "Modules" bên dưới.
@@ -25,27 +27,32 @@ export function createApp(deps: AppDeps) {
   })
 
   app.use('*', requestId())
+  app.use('*', contextStorage()) // lets infra logs carry the request ID (infra/onedrive/log.ts)
   app.use('*', secureHeaders())
   app.use('*', cors({
     origin: deps.env.CORS_ORIGINS,
     allowMethods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key'],
+    // ngrok-skip-browser-warning: FE gửi khi API nằm sau ngrok bản miễn phí (xem apps/web/lib/api/client.ts)
+    allowHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key', 'ngrok-skip-browser-warning'],
     exposeHeaders: ['X-Request-Id'],
     maxAge: 600,
   }))
   app.use('/api/*', async (c, next) => { c.header('Cache-Control', 'no-store'); requireOrigin(c, deps.env.CORS_ORIGINS); await next() })
-  app.use('/api/*', bodyLimit({ maxSize: 64 * 1024 }))
+  const jsonLimit = bodyLimit({ maxSize: 64 * 1024 })
+  // Media upload streams to OneDrive and enforces its own size cap (modules/onedrive/service.ts MEDIA_MAX).
+  app.use('/api/*', (c, next) => c.req.method === 'POST' && /^\/api\/v1\/dev\/onedrive\/items\/[^/]+\/media$/.test(c.req.path) ? next() : jsonLimit(c, next))
 
   // Modules
   app.route('/', systemModule(deps))
   if (deps.env.ENABLE_AUTH_DEMO && deps.auth && deps.pwa) {
     app.route('/', authModule(deps))
     app.route('/', pwaModule(deps))
+    app.route('/', onedriveModule(deps))
   }
 
   // Tài liệu API để FE sinh client. Không bật ở production để không lộ danh sách API.
   if (deps.env.NODE_ENV !== 'production') {
-    app.doc31('/openapi.json', { openapi: '3.1.0', info: { title: 'AI育成OS API', version: '0.1.0' } })
+    app.doc31('/openapi.json', { openapi: '3.1.0', info: { title: 'AI Talent OS API', version: '0.1.0' } })
   }
 
   app.notFound((c) => c.json({ error: { code: 'NOT_FOUND', requestId: c.get('requestId') } }, 404))

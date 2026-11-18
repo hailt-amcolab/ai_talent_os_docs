@@ -34,9 +34,9 @@ Tài năng nhắn tin với AIコーチ trong ứng dụng. Mỗi sáng AIコー
 4. Nếu tài năng chọn chủ đề (bấm "選ぶ" ở T-07 hoặc trả lời "1にします"), chuyển sang tạo bản nháp (4-1, EP04).
 
 **B. Tin nhắn buổi sáng**
-5. Lô buổi sáng (2-1) chuẩn bị nội dung trước. Đến giờ nhắn (mặc định 8:00, §5-2), gửi một tin nhắn gồm:
+5. Lô trước giờ nhắn (2-1) chuẩn bị nội dung. Tin gửi theo khung sáng (mặc định 8:00, §5-2), trưa, tối ([KS] 確認18; giờ và nội dung từng khung chờ Q&A No.73, AMCOLAB đề xuất sáng 8 giờ: kết quả hôm qua, chủ đề, nhiệm vụ; trưa 12 giờ: nhắc gửi ảnh; tối 20 giờ: hỏi han khi 3 ngày không đăng, báo đạt mục tiêu). Tin của khung sáng gồm:
    - kết quả hôm qua và điểm cải thiện (3-6);
-   - 3 chủ đề gợi ý (4-1);
+   - 3 chủ đề gợi ý (4-1), khi tài năng dùng cách đăng 要確認 và tới lượt đề xuất theo nhịp ở chỉ thị cho AI ([KS] 確認14, 19);
    - nhiệm vụ hôm nay và tiến độ thử thách (UC-04, T-07 "今日のミッション");
    - thứ Hai thêm tổng kết tuần (3-8, S03-06);
    - ngày thứ 3 không đăng thì thêm lời hỏi han (3-9).
@@ -66,9 +66,9 @@ Tài năng nhắn tin với AIコーチ trong ứng dụng. Mỗi sáng AIコー
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
 | Độ dài tối đa mỗi tin | 1.000 ký tự | Tham số | §6-5 |
-| Giờ tin nhắn buổi sáng | 8:00 | Tham số (M-17) | §5-2 |
-| Số lần nhắn mỗi ngày | Không giới hạn | Giả định (確認23) | — |
-| Ngày đăng liên tục | Ngày có ít nhất 1 bài đăng thành công; một ngày không đăng thì tính lại từ 1 | Giả định (確認22) | — |
+| Giờ tin nhắn | Khung sáng 8:00; trưa, tối chưa có giờ | Tham số (M-17) | §5-2, [KS] 確認18 |
+| Số lần nhắn mỗi ngày | Không giới hạn | Giả định (確認23); khách ghi muốn đặt giới hạn, chưa chốt | — |
+| Ngày đăng liên tục | Ngày có ít nhất 1 bài đăng thành công; một ngày không đăng thì tính lại từ 1 | Giả định; quyết khi vận hành ([KS] 確認22) | — |
 | Ngày tính theo | Giờ Nhật (JST), từ 0:00 đến 24:00 | [Đề xuất nội bộ] | — |
 
 ## Dữ liệu [Đề xuất nội bộ]
@@ -108,7 +108,7 @@ Tài năng nhắn tin với AIコーチ trong ứng dụng. Mỗi sáng AIコー
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認14, 15, 18, 20, 21, 22, 23.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認14, 15, 18, 20, 21, 22, 23.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -124,6 +124,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 - [YK2] §5-2, §5-5, §6-5 (3-4), §7-2, §13, UC-04, UC-04 前提, 別紙A, 確認14, 15, 18, 20–23.
 - [AG] trang 3 (T-07, T-08), trang 8 (M-09).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
-- Q&A No.7 (đang hỏi, CR-24): nếu khách chọn hội thoại riêng tư thì quản lý không xem toàn bộ hội thoại. Chờ trả lời.
+- Q&A No.7 (đóng 17/11): quản lý xem toàn bộ hội thoại, tài năng được báo lần đầu mở ứng dụng (確認13, 42). Không làm hội thoại riêng tư (CR-24).

@@ -1,8 +1,8 @@
 # 03. ERD khái niệm và logic
 
-> **Cập nhật 17/11/2026:** ERD này là bản trước remediation. Mô hình hiện hành xem [10](10_confirmed_scope_and_remediation.md) và Prisma schema: FK Auth thật, auth_principals/session, ownership FK kép, operation/outbox. Các quan hệ một chiều trigger Auth ở §4 đã bị thay thế.
+> **Cập nhật 18/11/2026:** §1–§2 là ERD 25 bảng nghiệp vụ; §6 là phần danh tính, phiên, tác động ra ngoài và thông báo đẩy (schema `app_private`). Đã cập nhật theo 6 migration hiện hành: khóa ngoại thật tới `auth.users`, khóa ngoại kép theo chủ (D-18), bảng chưa chốt bị chặn ghi (D-22, `07` §3).
 
-Bản 1.0 · 17/11/2026 · Bước 3. Tên bảng và cột theo `04_database_schema.md`; mã R, BR, U theo `01_confirmed_requirements.md`.
+Bản 1.1 · 18/11/2026 · Bước 3. Tên bảng và cột theo `05_data_dictionary.md`; mã R, BR, U theo `01_confirmed_requirements.md`.
 
 ## 1. ERD khái niệm
 
@@ -136,7 +136,7 @@ erDiagram
     uuid post_id FK
     text platform "UNIQUE cùng post_id"
     uuid social_account_id FK
-    text provider_state "8 giá trị, IR-01"
+    text provider_state "8 giá trị"
   }
   VIDEO_GENERATIONS {
     uuid id PK
@@ -148,7 +148,7 @@ erDiagram
   }
 ```
 
-Chi tiết đủ cột của 25 bảng ở `04_database_schema.md`. Sơ đồ chỉ ghi cột của 4 bảng trung tâm cho dễ đọc.
+Chi tiết đủ cột của 38 bảng ở `05_data_dictionary.md`. Sơ đồ chỉ ghi cột của 4 bảng trung tâm cho dễ đọc. Các bảng con còn có khóa ngoại kép (`id`, `talent_id`) tới bảng cha để bảo đảm cùng chủ (D-18); sơ đồ không vẽ lặp.
 
 ## 3. Quyết định khi chuẩn hóa
 
@@ -170,16 +170,23 @@ Chi tiết đủ cột của 25 bảng ở `04_database_schema.md`. Sơ đồ ch
 | D-14 | Số người theo dõi gắn với tài khoản mạng xã hội, không gắn thẳng với tài năng | Tài năng kết nối lại tài khoản khác thì lịch sử vẫn đúng tài khoản | 3NF |
 | D-15 | Cài đặt chung là một dòng có cột rõ kiểu, không dùng bảng khóa–giá trị | Số cài đặt ít và đã biết ([YK2] §5-6); có kiểu dữ liệu và DEFAULT rõ ràng | 3NF |
 | D-16 | Giá trị liệt kê (trạng thái, loại) dùng `text` + CHECK, không dùng kiểu ENUM của Postgres | Danh sách còn có thể đổi (U-04, U-06, U-11). Sửa CHECK dễ hơn bỏ giá trị khỏi ENUM | — |
+| D-17 | Bảng kỹ thuật (danh tính, phiên, operation, outbox, giới hạn tần suất) nằm ở schema riêng `app_private` | Không bao giờ mở qua Data API; tách khỏi dữ liệu nghiệp vụ để cấp quyền rõ ràng | — |
+| D-18 | Bảo đảm cùng chủ bằng khóa ngoại kép (`id`, `talent_id`): bảng cha có UNIQUE (`id`, `talent_id`), bảng con lặp `talent_id` | Kiểm ở tầng dịch vụ dễ lọt (gắn tư liệu, chủ đề, tài khoản mạng xã hội của người khác). Đánh đổi: lặp cột `talent_id` ở `post_media`, `video_generation_inputs`, `post_deliveries` | Phi chuẩn có chủ đích (lặp khóa) |
+| D-19 | Danh tính ứng dụng tách ra `auth_principals` (một vai trò mỗi người dùng Auth); `managers`/`talents` tham chiếu bằng khóa ngoại kép (`auth_user_id`, `principal_kind`) | Một người dùng không thể vừa là quản lý vừa là tài năng; cờ buộc đổi mật khẩu và `security_version` dùng chung cho cả hai vai trò | 3NF |
+| D-20 | Sổ phiên do BE cấp (`auth_session_registry`) thay vì chỉ tin JWT | Supabase không tự hết hạn phiên ở gói thường; JWT đã phát vẫn dùng được sau khi đăng xuất. Cần thu hồi tức thì, hạn tuyệt đối 30 ngày, thời gian chờ 30 phút của quản lý và bằng chứng TOTP theo từng phiên ([SUPA] §6) | — |
+| D-21 | Tác động ra ngoài ghi vào `domain_operations` + `outbox_events` trong cùng giao dịch với dữ liệu nghiệp vụ | Không mất việc gửi khi tiến trình chết sau khi ghi DB; chống gửi trùng bằng khóa idempotency và lease (`07` §4.4) | — |
+| D-22 | Bảng của luồng chưa chốt giữ lại nhưng chặn ghi bằng trigger, không xóa | Giữ thiết kế và dữ liệu cũ; không ai vô tình mở luồng chưa có quyết định của khách (`07` §3) | — |
+| D-23 | Khóa ngoại thật tới `auth.users`; Prisma coi bảng Auth là bảng bên ngoài | Thay cách dùng trigger chặn xóa (migration `000200`): khóa ngoại bảo vệ cả chiều thêm, sửa, xóa | — |
 
 ## 4. Kiểm tra quan hệ và phụ thuộc
 
 | Kiểm tra | Kết quả |
 |---|---|
 | Mọi bảng dữ liệu của tài năng đều có đường tới `talents` | Đúng: lọc được theo `talent_id`, trực tiếp hoặc qua bài, qua tài khoản mạng xã hội |
-| `post_deliveries.social_account_id` phải thuộc cùng tài năng với bài | Khóa ngoại đơn không diễn đạt được. Kiểm ở tầng dịch vụ (07, vấn đề M-02) |
-| `post_media`, `video_generation_inputs`: tư liệu phải cùng tài năng với bài hoặc lần tạo video | Như trên (07, M-02) |
+| `post_deliveries.social_account_id` phải thuộc cùng tài năng và đúng mạng với bài | DB ép: `fk_post_deliveries_account_scope` (`social_account_id`, `talent_id`, `platform`) và `fk_post_deliveries_owner` (D-18) |
+| `post_media`, `video_generation_inputs`, bản sửa, chủ đề, kết quả video, đối tượng của thông báo quản lý, máy nhận push: phải cùng tài năng | DB ép bằng khóa ngoại kép (`fk_*_owner`, D-18) |
 | Xóa tài năng | Không xóa: [YK2] §6-2 7-3 chuyển sang 利用終了 và §7-3 giữ dữ liệu. Mọi khóa ngoại tới `talents` dùng ON DELETE RESTRICT |
-| Xóa người dùng Auth | RESTRICT: không xóa được người dùng Auth khi còn tài năng hoặc quản lý gắn với nó |
+| Xóa người dùng Auth | Khóa ngoại thật, RESTRICT: không xóa được người dùng Auth khi còn `auth_principals`, tài năng hoặc quản lý gắn với nó (D-23) |
 | Chu trình khóa ngoại | Không có chu trình bắt buộc. `posts.revised_from_post_id` tự tham chiếu, cho phép NULL |
 
 ## 5. Vòng đời trạng thái dùng trong schema
@@ -189,28 +196,43 @@ Chi tiết đủ cột của 25 bảng ở `04_database_schema.md`. Sơ đồ ch
 | `talents.status` | `before_use` (利用前), `in_use` (利用中), `ended` (利用終了) | R01-11 |
 | `talent_applications.status` | `pending`, `approved`, `rejected` | R01-01 |
 | `posts.status` | `draft` (投稿案), `awaiting_approval` (承認待ち), `scheduled` (予約済み), `published` (投稿済み), `failed` (失敗), `cancelled` (取り消し) | R06-01. Đường chuyển theo hình 5-1 (sơ đồ ở `SCD/EP10…/C-01`); DB không chặn đường chuyển, tầng dịch vụ kiểm |
-| `post_deliveries.provider_state` | `not_submitted` → `submitted` / `submit_failed`; `submitted` → `cancel_requested` → `cancelled` / `cancel_failed`; `submitted` → `published` / `publish_failed`; `publish_failed` → `submitted` (hẹn lại, hình 5-1) | R06-03, R06-11〜R06-13, IR-01. Giá trị "bỏ qua" chờ U-06 |
-| Quy tắc tạm `posts.status` theo từng mạng (IR-02, chờ [QA] No.51) | `failed` khi có ít nhất một mạng `publish_failed`; `published` khi mọi mạng đã gửi đều `published`; `cancelled` khi đã yêu cầu hủy (mạng nào `cancel_failed` thì báo quản lý để xử lý tay) | Quy tắc tạm, ghi vào đặc tả; đổi quy tắc không phải chuyển dữ liệu |
+| `post_deliveries.provider_state` | `not_submitted` → `submitted` / `submit_failed`; `submitted` → `cancel_requested` → `cancelled` / `cancel_failed`; `submitted` → `published` / `publish_failed`; `publish_failed` → `submitted` (hẹn lại, hình 5-1) | R06-03, R06-11〜R06-13. Bảng đang chặn ghi; vòng đời này phải xem lại khi thiết kế lại luồng đăng (`07` §3). Giá trị "bỏ qua" chờ U-06 |
+| Cách tính `posts.status` từ kết quả từng mạng | **Chưa có**: không dùng quy tắc tạm (ví dụ "một mạng lỗi thì cả bài lỗi") cho tới khi [QA] No.51 đóng (`07` §2) | — |
+| `auth_session_registry.purpose` | `first_password`, `recovery`, `mfa_setup` → `full`; đã `revoked_at` thì không quay lại | [SUPA] §6.3, §7 |
+| `auth_challenges.state` | `pending` → `verified` / `expired` / `failed` | [SUPA] §7.4 |
+| `domain_operations.state` | `accepted` → `running` → `completed` / `failed` / `unknown` (đối soát) | `07` §4.4 |
+| `outbox_events.state` | `pending` → `leased` → `done` / `failed` / `unknown` | `07` §4.4 |
+| `push_deliveries.state` | `pending` → `sent` / `gone` / `failed` (tối đa 3 lần thử) | [PWA] §6.5 |
 | `social_accounts.status` | `connected`, `disconnected` | R06-09, [YK2] §6-10 8-6 |
 | `video_generations.status` | `requested`, `processing`, `succeeded`, `failed` | R05-06〜R05-09. [YK2] §5-1 nói trạng thái video sẽ ghi ở bản cuối; đây là bản tối thiểu |
 
-## 6. ERD bổ sung hiện hành — scope đợt 1
+## 6. ERD phần danh tính, phiên, tác động ra ngoài, thông báo đẩy
 
 ```mermaid
 erDiagram
-  AUTH_USERS ||--o| AUTH_PRINCIPALS : "id, FK thật"
-  AUTH_PRINCIPALS ||--o| MANAGERS : "auth_user_id + kind manager"
-  AUTH_PRINCIPALS ||--o| TALENTS : "auth_user_id + kind talent"
-  AUTH_PRINCIPALS ||--o{ AUTH_SESSION_REGISTRY : "auth_user_id"
+  AUTH_USERS ||--o| AUTH_PRINCIPALS : "auth_user_id (khóa ngoại thật)"
+  AUTH_PRINCIPALS ||--o| MANAGERS : "auth_user_id + principal_kind='manager'"
+  AUTH_PRINCIPALS ||--o| TALENTS : "auth_user_id + principal_kind='talent'"
+  AUTH_PRINCIPALS ||--o| AUTH_LOGIN_IDENTIFIERS : "auth_user_id"
   AUTH_PRINCIPALS ||--o| PASSWORD_LOCK_STATE : "auth_user_id"
+  AUTH_PRINCIPALS ||--o{ AUTH_SESSION_REGISTRY : "auth_user_id"
   AUTH_SESSION_REGISTRY ||--o{ AUTH_CHALLENGES : "session_id + auth_user_id"
-  AUTH_PRINCIPALS o|--o{ DOMAIN_OPERATIONS : "actor"
-  TALENT_APPLICATIONS o|--o| DOMAIN_OPERATIONS : "application.provision"
+  AUTH_SESSION_REGISTRY ||--o| AUTH_MFA_ENROLLMENTS : "session_id + auth_user_id"
+  AUTH_SESSION_REGISTRY ||--o{ PUSH_SUBSCRIPTIONS : "owner_session_id + owner_auth_user_id"
+  TALENTS ||--o{ PUSH_SUBSCRIPTIONS : "talent_id + owner_auth_user_id"
+  TALENT_APPLICATIONS o|--o| TALENTS : "application_id + status='approved'"
+  AUTH_PRINCIPALS o|--o{ DOMAIN_OPERATIONS : "actor_auth_user_id"
+  TALENT_APPLICATIONS o|--o| DOMAIN_OPERATIONS : "application_id (một lệnh tạo tài khoản)"
   TALENTS o|--o{ DOMAIN_OPERATIONS : "talent_id"
-  DOMAIN_OPERATIONS ||--o{ OUTBOX_EVENTS : "operation + generation + event_type"
-  TALENT_APPLICATIONS o|--o| TALENTS : "id + approved status"
-  POSTS ||--o{ POST_MEDIA : "post_id + talent_id"
-  MEDIA_ASSETS ||--o{ POST_MEDIA : "media_id + talent_id"
+  TALENT_NOTIFICATIONS o|--o{ DOMAIN_OPERATIONS : "notification_id + talent_id"
+  DOMAIN_OPERATIONS ||--o{ OUTBOX_EVENTS : "operation_id (+ generation, event_type duy nhất)"
+  OUTBOX_EVENTS ||--o{ PUSH_DELIVERIES : "event_id"
+  PUSH_SUBSCRIPTIONS ||--o{ PUSH_DELIVERIES : "subscription_id"
 ```
 
-Các quan hệ ownership bổ sung cũng bảo vệ theme/revised post, video input/result, delivery account/platform và subject của manager notification. Kind chỉ cho identity đóng một vai trò; không bắt buộc mỗi principal phải có domain row ngay trong lúc provisioning. Bảng phiên/operation/outbox đặt ở app_private, không expose Data API. Xem `10` để phân biệt bảng có trong DB với chức năng được mở; EP06/EP08 chưa mở.
+- Một người dùng Auth đóng đúng một vai trò (D-19). `auth_principals` có thể tồn tại trước dòng `managers`/`talents` trong lúc tạo tài khoản.
+- Thu hồi phiên (trigger) tắt luôn các máy nhận push gắn với phiên đó; vô hiệu quản lý hoặc chuyển tài năng sang `ended` thì tăng `security_version` và thu hồi mọi phiên.
+- `auth_rate_buckets` không có quan hệ (khóa là chuỗi băm). Ba bảng demo (`tech_demo_*`, `demo_auth_deliveries`) không vẽ: không dùng cho tính năng thật.
+- Bảng có trong DB không có nghĩa luồng đã được mở: xem `07` §2–§3.
+
+Ký hiệu nguồn: [SUPA] = `agent_spec/supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md`; [PWA] = `agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md`.

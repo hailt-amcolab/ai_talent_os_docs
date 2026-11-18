@@ -62,7 +62,7 @@ Hiện đơn giá mỗi lần tạo video trên màn tạo video. Tính một l�
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認49, 51.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認49, 51.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -77,7 +77,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: 
 
 - [YK2] §5-4 (hình 5-3), §6-3 (5-4), UC-06 前提, 確認49, 51. [AG] trang 4 (T-11, T-12), trang 5 (T-15), trang 8 (M-10).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.1, No.3 (đã chốt): đếm lúc gửi yêu cầu, tạo lại cũng tính, lỗi phía dịch vụ không tính; không lượt miễn phí, không trần. CR-09: video quản lý tạo thay tính cho tài năng đó.
 - Q&A No.62 (đang hỏi): tính theo đơn giá tại lúc gửi yêu cầu; lượt lỗi trừ ngay khi dịch vụ báo lỗi.

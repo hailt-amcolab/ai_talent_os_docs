@@ -67,7 +67,7 @@ T-08 (lời hỏi han), T-14 (thông báo), M-02 (thông báo quản lý), M-06 
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認19, 43.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認19, 43.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|

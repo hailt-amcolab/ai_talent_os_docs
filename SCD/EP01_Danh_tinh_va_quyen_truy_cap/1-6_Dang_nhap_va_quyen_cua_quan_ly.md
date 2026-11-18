@@ -118,7 +118,7 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 - [AG] trang 6 (M-01), trang 10 (M-18).
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 2. [File 18](../../Phan_tich/18_Ha_tang_he_thong.md) mục 7.
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.5, CR-13 (đã chốt): một loại quản lý.
 - Q&A No.67 (đang hỏi): mất thiết bị xác thực 2 bước thì quản lý khác đặt lại; không cho tự vô hiệu hóa mình và vô hiệu hóa quản lý cuối cùng.

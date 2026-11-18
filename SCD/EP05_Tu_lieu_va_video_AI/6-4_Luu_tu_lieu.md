@@ -38,7 +38,7 @@ Lưu ảnh, video đã gửi vào thư mục OneDrive của tài năng. Tài nă
 | Tình huống | Xử lý | Nguồn |
 |---|---|---|
 | Chép sang OneDrive lỗi | Thử lại qua hàng đợi; trong lúc đó dùng bản trên Supabase | §9-3 |
-| Bản tạm trên Supabase | Xóa sau khi đã lưu OneDrive và bài dùng nó đã đăng xong 7 ngày | S05-03, C2 |
+| Bản tạm trên Supabase | Xóa sau khi đã lưu OneDrive và bài **cuối cùng** dùng nó đã đăng xong 7 ngày; tư liệu của khoảng 自動投稿 chưa hết thì không xóa | S05-03, C2, [KS] 確認25 |
 | Dùng lại tư liệu đã lâu, bản tạm đã xóa | Lấy lại từ OneDrive về Supabase khi cần đăng | [Đề xuất nội bộ] |
 | Tài năng muốn xóa tư liệu | Không có trong ứng dụng; quản lý xóa trong OneDrive (S05-02) | S05-02 |
 | Video tự làm trong hàng chờ bị dùng tay trước | Bỏ khỏi hàng chờ | [Đề xuất nội bộ] |
@@ -51,8 +51,8 @@ Lưu ảnh, video đã gửi vào thư mục OneDrive của tài năng. Tài nă
 | Nơi lưu chính thức | OneDrive, thư mục tài năng | Chốt | §6-7, §7-2 |
 | Ai xem được | Tài năng đó và quản lý | Chốt | §7-2 |
 | Video tự làm | 1 video mỗi ngày, theo thứ tự lưu | Giả định (確認32) | §6-7 |
-| Giữ bản tạm trên Supabase | 7 ngày sau khi đăng | Tham số | S05-03 |
-| Giữ tư liệu sau khi tài năng ngừng | Theo 確認55 | Chưa rõ | §7-3 |
+| Giữ bản tạm trên Supabase | 7 ngày sau khi bài cuối cùng dùng nó đăng xong | Tham số | S05-03, [KS] 確認25 |
+| Giữ tư liệu sau khi tài năng ngừng | 6 tháng rồi tự xóa, kể cả trên OneDrive, không khôi phục | Chốt | §7-3, [KS] 確認55 |
 
 ## Dữ liệu [Đề xuất nội bộ]
 
@@ -84,7 +84,7 @@ Microsoft Graph (ghi tệp lớn bằng phiên tải lên nhiều phần). Worke
 
 ## Câu hỏi mở
 
-Các 確認 liên quan (không xử lý ở đây): 確認32, 55.
+Các 確認 liên quan (trạng thái theo bảng xác nhận 17/11/2026, `Phan_tich/21`): 確認32, 55.
 
 | Mã | Nội dung | Chặn? | Giả định tạm dùng |
 |---|---|---|---|
@@ -98,6 +98,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 
 - [YK2] §6-7 (6-4), §7-2, §7-3, UC-06, UC-06 前提, 確認32, 55. [AG] trang 3 (T-06, T-07), trang 4 (T-10).
 
-## Cập nhật theo Q&A (bản ngày 15/11/2026)
+## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.37, CR-23: phần **video tự làm được lưu và mỗi ngày 1 video tự thành bản nháp** là thay đổi ngoài báo giá, **chưa làm** tới khi khách quyết (No.50). Phần lưu và xem lại tư liệu vẫn làm.

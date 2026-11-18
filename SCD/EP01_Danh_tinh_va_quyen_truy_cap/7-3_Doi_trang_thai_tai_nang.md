@@ -13,7 +13,7 @@
 
 | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 |
 |---|---|---|---|---|---|---|---|---|
-| ✅ | ⚠ thiếu bước 利用前 → 利用中 | ❌ | ❌ 確認55, 56 | ❌ C-01 | ⚠ 【要確認】 trên M-10 | ⚠ hủy lịch qua Upload-Post | ⚠ đội đề xuất | ❌ 1-1, 3-9, 7-2 |
+| ✅ | ⚠ thiếu bước 利用前 → 利用中 | ❌ | ✅ [KS] 確認55, 56 | ❌ C-01 | ⚠ 【要確認】 trên M-10 | ⚠ hủy lịch qua Upload-Post | ⚠ đội đề xuất | ❌ 1-1, 3-9, 7-2 |
 
 ## Mục đích
 
@@ -34,7 +34,7 @@ Quản lý đổi trạng thái sử dụng của tài năng. Khi chuyển sang 
 | (mới) | 利用前 | Quản lý duyệt đơn (1-4) | Rõ ([AG] M-03) |
 | 利用前 | 利用中 | ⚠ chưa rõ: tự động khi đăng ký thanh toán xong, hay quản lý chuyển tay sau khi nhập hồ sơ? | **Chặn** |
 | 利用中 | 利用終了 | Quản lý, có màn xác nhận | Rõ (確認53) |
-| 利用終了 | 利用中 | Quản lý | Giả định (確認56) |
+| 利用終了 | 利用中 | **Không cho phép** | Chốt ([KS] 確認56) |
 | 利用前 | 利用終了 | ⚠ chưa rõ | Chưa rõ |
 
 ## Luồng chính (đã rõ)
@@ -46,7 +46,7 @@ Quản lý đổi trạng thái sử dụng của tài năng. Khi chuyển sang 
    - dừng thu phí (1-1);
    - hủy mọi bài đã hẹn giờ, kể cả bên Upload-Post (7-2);
    - chặn đăng nhập (確認54);
-   - giữ dữ liệu một thời gian (§7-3, 確認55).
+   - giữ dữ liệu 6 tháng; hết 6 tháng thì việc chạy định kỳ tự xóa (DB, Supabase Storage, thư mục OneDrive), không khôi phục (§7-3, [KS] 確認55).
 4. Ghi nhật ký thao tác: ai đổi, từ đâu sang đâu, lúc nào (§9-4).
 
 ## Luồng lỗi và trường hợp biên
@@ -58,13 +58,13 @@ Quản lý đổi trạng thái sử dụng của tài năng. Khi chuyển sang 
 | Chuyển lại 利用中: thu phí lại từ khi nào | ⚠ chưa rõ (file 04) | Chặn phần thu phí |
 | Bài chờ duyệt, bản nháp chưa dùng khi ngừng | Đề xuất: hủy bài chờ duyệt, giữ bản nháp (S01-04) | Giả định |
 | Xóa đăng ký của tài năng trên Upload-Post (phí tính theo số tài năng) | Đề xuất: hủy đăng ký; quay lại thì kết nối lại (S01-03) | Giả định |
-| Ngừng giữa tháng thì tính phí thế nào | Đề xuất: thu trọn tháng (確認50) | Giả định |
+| Ngừng giữa tháng thì tính phí thế nào | Thu trọn tháng (khách ghi đồng ý ở 確認50, chưa chốt) | Giả định |
 
 ## Quy tắc và giá trị
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Thời gian giữ dữ liệu sau khi ngừng | ⚠ chưa có | Chặn phần xóa dữ liệu | §7-3, 確認55 |
+| Thời gian giữ dữ liệu sau khi ngừng | 6 tháng, rồi tự xóa, không khôi phục | Chốt | §7-3, [KS] 確認55 |
 | Có màn xác nhận trước khi đổi | Có | Chốt | §6-2 |
 
 ## Dữ liệu [Đề xuất nội bộ]
@@ -116,8 +116,8 @@ M-10: dòng ステータス (trạng thái) kèm nút 切り替える, câu gi�
 | B7 | Thu tiền lỗi thì dừng thế nào | Không | Phương án A: dùng 利用終了 |
 | 確認53 | Tài năng báo quản lý, quản lý đổi trạng thái | Không | Đúng như [YK2] |
 | 確認54 | Chuyển sang đã ngừng thì chặn đăng nhập ngay | Không | Đúng như [YK2] |
-| 確認55 | Giữ dữ liệu bao lâu sau khi ngừng | Có (phần xóa dữ liệu) | Chưa xóa gì |
-| 確認56 | Cho quay lại 利用中 | Không | Cho phép, chưa tự thu phí lại |
+| 確認55 | Giữ dữ liệu bao lâu sau khi ngừng | Không | Đã chốt ([KS]): 6 tháng rồi tự xóa |
+| 確認56 | Cho quay lại 利用中 | Không | Đã chốt ([KS]): không cho quay lại |
 | 確認50 | Ngừng giữa tháng thì tính phí thế nào | Có (phần thu phí) | Thu trọn tháng |
 
 Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: [00_Cau_hoi_cho_khach.md](00_Cau_hoi_cho_khach.md).

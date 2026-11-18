@@ -1,18 +1,18 @@
 # Đối chiếu file Q&A với [YK2] v2 và đặc tả – phạm vi theo bản báo giá
 
-Viết lại ngày 17/11/2026 theo bản `AI-Talent-OS_Q&A表.xlsx` mới nhất (đã đọc toàn bộ). Bản trước của file này dựa trên bản Q&A chưa có trả lời và đã bị thay thế.
+Viết lại ngày 17/11/2026 theo bản `AI-Talent-OS_Q&A表.xlsx` mới nhất (đã đọc toàn bộ). Cập nhật ngày 18/11/2026 theo bản Q&A có các trả lời ghi ngày 17/11 (sau buổi họp đọc bảng xác nhận) và câu mới No.69–77; biên bản họp ở `20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md`. Bản trước của file này dựa trên bản Q&A chưa có trả lời và đã bị thay thế.
 
 Ký hiệu nguồn:
 - [YK2] = `AI育成OS_概要要件定義書_v2.docx`; [AG] = `アプリ画面案_AI育成OS.pdf`.
 - **Q&A No.x** = dòng trong trang Q&A; **CR-xx** = dòng trong trang 追加要件 (yêu cầu bổ sung).
 - **Khách** trong file này = FutureCore, gọi là 貴社 (quý công ty) trong file Q&A; アデッソ là khách cuối.
-- **確認シート** (bảng xác nhận yêu cầu) = bảng 118 dòng mà khách đã gửi AMCOLAB, 85 dòng đã đánh dấu (Q&A No.28). **Thư mục dự án chưa có bảng này.**
+- **確認シート** (bảng xác nhận yêu cầu) = bảng 118 dòng mà khách đã gửi AMCOLAB, 85 dòng đã đánh dấu (Q&A No.28). Bảng đã có trong thư mục: `要件定義確認シート_AI育成OS.xlsx` (tổng hợp ở tệp 21).
 
 ## 1. File Q&A hiện có gì
 
 | Trang | Nội dung |
 |---|---|
-| Q&A | 67 câu: No.1–49 và No.51–68. **33 câu đã đóng (Close), 34 câu còn mở (Open)**. No.49 và No.51–68 là câu mới, chưa có trả lời |
+| Q&A | 76 câu: No.1–49 và No.51–77. **43 câu đã đóng (Close), 33 câu còn mở (Open)** (bản 17/11). No.69–77 là câu mới của AMCOLAB ngày 17/11, xin trả lời trước buổi họp 20/11 |
 | 保留 (tạm hoãn) | No.50: hỏi khách thứ tự ưu tiên của các chức năng ngoài báo giá, và chức năng nào cần ở giai đoạn 1. Còn mở |
 | 追加要件 (yêu cầu bổ sung) | 25 dòng CR-01〜CR-25: phân loại từng chức năng lệch báo giá (xem mục 3) |
 | デザインFB (góp ý thiết kế), お知らせ・メール文章 (câu chữ thông báo và thư) | Chỉ có dòng tiêu đề |
@@ -64,6 +64,14 @@ Câu đóng nào khớp với SCD hiện tại thì ghi "Khớp". Câu đóng n�
 
 ## 3. Trang 追加要件 (yêu cầu bổ sung): AMCOLAB đã phân loại
 
+> **Cập nhật 18/11/2026:** bảng xác nhận yêu cầu `要件定義確認シート_AI育成OS.xlsx` (quyết định 17/11/2026) đã quyết:
+> - **làm** CR-17 (nhóm tài năng, 確認47), CR-18 (màn chỉ thị cho AI, 確認6–8), CR-19 (duyệt theo nhóm hoặc người phụ trách, 確認34), CR-21 (tài năng sửa chữ, 確認28);
+> - **không làm** CR-20 (một tài khoản mỗi mạng, 確認10);
+> - CR-22 (thử thách) đã chốt hướng (確認5);
+> - CR-23 vẫn chờ; CR-24 không làm (Q&A No.7 đóng 17/11: quản lý xem toàn bộ hội thoại); CR-25 không cần (Q&A No.68 đóng 17/11: 画面定義書 do FutureCore làm).
+>
+> Các dòng "chưa làm tới khi khách quyết" bên dưới chỉ còn đúng cho CR-23. Chi tiết và việc mới (hai cách đăng 自動投稿 / 要確認…) ở [21_Cap_nhat_theo_bang_xac_nhan_17-11.md](21_Cap_nhat_theo_bang_xac_nhan_17-11.md).
+
 Cột "Kết luận" lấy từ cột CR判定 (đánh giá thay đổi) và cột ảnh hưởng ở giai đoạn SP1 (đợt phát triển đầu tiên).
 
 | Nhóm | Các CR | Kết luận | Việc của mình |
@@ -84,13 +92,13 @@ Cột "Kết luận" lấy từ cột CR判定 (đánh giá thay đổi) và c�
 | 2, 62 | Đơn giá video | Đơn giá là một giá trị cài đặt ở màn quản trị, phát triển tiếp không chờ. Khách báo giá trước UAT (kiểm thử chấp nhận). No.62 đề xuất: tính theo giá tại lúc gửi yêu cầu, lượt lỗi trừ ngay |
 | 4 | Công ty thanh toán và việc thu số tiền thay đổi hằng tháng | Chờ |
 | 6 | Duyệt theo quản lý phụ trách nhóm | Chuyển sang CR-19 |
-| 7 | Quản lý xem hội thoại hay hội thoại riêng tư | **Chờ khách quyết.** Nếu chọn riêng tư thì phải làm lại 7-1, 3-4 và nhật ký xem 7-6 (CR-24) |
+| 7 | Quản lý xem hội thoại hay hội thoại riêng tư | **Đã đóng 17/11:** quản lý xem toàn bộ hội thoại, tài năng được báo lần đầu mở ứng dụng (確認13, 42). Không làm CR-24 |
 | 8 | Lưu ở OneDrive (đã chốt). **Hỏi thêm:** tenant Microsoft 365 của アデッソ có cho tạo liên kết chia sẻ "mọi người có liên kết đều xem được" không. Nếu không thì dùng nơi lưu tạm trong lúc gửi (CR-10 phương án B) | Thiết kế hiện tại (tải lên Supabase Storage, fal.ai và Upload-Post lấy tệp từ bản tạm) **đã là phương án B**. Không cần liên kết công khai của OneDrive |
 | 23 | Nhiều tài khoản trên một mạng | Chuyển sang CR-20 |
 | 24 | Ứng dụng tin nhắn Instagram đang chạy | Trùng I1 |
 | 25 | Giờ nhắn buổi sáng chung hay theo từng tài năng. "URL mời hạn 7 ngày" đổi thành hạn mật khẩu tạm (No.65) | Trùng S07-07 (một phần) |
 | 29 | Thời gian giữ nhật ký và cách sao lưu do AMCOLAB thiết kế; chỉ hỏi khách thời gian giữ dữ liệu tài năng đã ngừng (確認55) | I8 và S01-09 thành việc nội bộ |
-| 30 | Bộ mã màn hình làm chuẩn | Chờ; 画面定義書 sẽ nộp sau |
+| 30 | Bộ mã màn hình làm chuẩn | **Đã đóng 17/11:** mã T/M của [AG] là chuẩn; trang 1 của [AG] có bảng đối chiếu với mã L/M; L-08 ngoài phạm vi |
 | 34 | Bản báo giá dùng chung, ngày bắt đầu UAT | Chờ |
 | 37, 39, 43, 44 | Video tự làm, sửa chữ trực tiếp, quản lý làm thay, nhóm tài năng | Chuyển sang CR-23, CR-21, CR-09 (đã chốt làm), CR-17 |
 
@@ -114,11 +122,29 @@ AMCOLAB đã gửi các câu này cho khách. Câu nào trùng thì **không h�
 | 61 | Báo tài năng khi bài bị hủy | Báo trong ứng dụng; bài bị hủy về lại bản nháp để chấp nhận lại | (A6) | Thêm loại thông báo vào C-05 nếu khách đồng ý |
 | 62 | Đơn giá video | Như No.2 | B9, S08-06 | — |
 | 63 | Trạng thái khi dừng vì thu tiền lỗi | Dùng 利用終了 ở giai đoạn 1, không thêm trạng thái | B7 | — |
-| 64 | Đưa 利用終了 về 利用中 | Giữ nguyên dữ liệu; tính tiền lại từ tháng đưa về; tài năng cũ không đăng ký lại mà nhờ quản lý | S01-02 | — |
+| 64 | Đưa 利用終了 về 利用中 | **Đã đóng 17/11:** không có thao tác đưa về ([KS] 確認56); đăng ký lại trong 6 tháng hỏi ở No.69 | (S01-02) | — |
 | 65 | Đăng ký lại, mật khẩu tạm | Email bị từ chối vẫn bị chặn, quản lý xóa đơn để người đó đăng ký lại; đơn chưa xử lý không hết hạn; **mật khẩu tạm hạn 7 ngày**, quản lý bấm gửi lại | S01-05, S01-06, B11 | — |
 | 66 | Chi tiết tài khoản công ty | Quản lý nhập email khi tạo; tự kết nối mạng khi đăng nhập; hiện trong danh sách tài năng với nhãn 事務所; dùng chung 3 trạng thái | (9-1, B10, S06-07 một phần) | — |
 | 67 | Khôi phục tài khoản quản lý | Tự đặt lại mật khẩu qua email; mất thiết bị xác thực 2 bước thì quản lý khác đặt lại; không cho tự vô hiệu hóa mình và vô hiệu hóa quản lý cuối cùng | S01-07 | — |
-| 68 | Ai làm 画面定義書 | Hỏi khách; nếu AMCOLAB làm thì là CR-25 | (A10) | — |
+| 68 | Ai làm 画面定義書 | **Đã đóng 17/11:** FutureCore làm, dự kiến gửi sáng 20/11 (biên bản, việc số 5); không cần CR-25 | (A10) | — |
+
+### 4.3. Thay đổi ngày 17/11 (sau buổi họp đọc bảng xác nhận)
+
+**Câu đã đóng thêm:** No.7, 23, 25, 29, 30, 39, 43, 44, 64, 68 (chi tiết ở các dòng tương ứng và ở tệp 21 §5). Các câu No.33, 39, 42, 44, 49 ghi rõ AMCOLAB sẽ báo ảnh hưởng phạm vi, giá và lịch trong 5 ngày làm việc trước khi làm (nhóm tài năng, sửa chữ trực tiếp, thông báo đạt mục tiêu và chưa thu được tiền, màn chỉ thị AI thao tác trên điện thoại, chu kỳ thu phí từ ngày đăng ký).
+
+**Câu mới, còn mở** (AMCOLAB hỏi FutureCore, xin trả lời trước buổi họp 20/11):
+
+| No. | Chủ đề | Đề xuất của AMCOLAB | Ảnh hưởng tới tài liệu của mình |
+|---|---|---|---|
+| 69 | Đăng ký lại trong 6 tháng sau khi 退会; xóa gì sau 6 tháng | A: không cho đăng ký lại bằng email cũ trong 6 tháng; xóa bài đăng, hội thoại, số liệu, thư mục OneDrive, kết nối mạng xã hội | 06 Workflow 7, SCD 7-3, DB P-18, OneDrive §7.7 |
+| 70 | Hoạt động trong khoảng đăng tự động | Ảnh dùng theo thứ tự tải lên, mỗi bài một ảnh; hết ảnh thì không đăng và báo tài năng; có nút dừng trong ứng dụng; soạn trước một ngày. Kèm 確認24: AI đọc ảnh để viết chú thích (tăng phí AI) | 06 Workflow 2, SCD 4-3, C-01, DB P-12, U-16 |
+| 71 | 自動投稿 / 要確認 và duyệt, từ cấm | Hỏi ô cài đặt và lựa chọn "自動投稿 / 1回の投稿" khi bắt đầu có phải một không; bài công việc vẫn qua duyệt; thời điểm kiểm từ cấm; 要確認 chưa xác nhận tới giờ đăng | như No.70 |
+| 72 | Xác định đạt thử thách; đếm ngày đăng liên tục | Chỉ tính thử thách đếm được bằng số; 6 trạng thái; mỗi lúc một thử thách; ngày đăng liên tục = ngày có ít nhất một bài trên một mạng | DB P-17, SCD 3-7, 6-7 |
+| 73 | Giờ và nội dung khung sáng, trưa, tối | Sáng 8 giờ, trưa 12 giờ, tối 20 giờ, đổi được ở cài đặt chung | SCD 3-4, C-02, DB P-14 |
+| 74 | "Màn nhập thông tin tài năng cho AI" (確認8) là gì | A: giữ nhập qua ChatGPT, màn quản trị chỉ hiển thị (đợt 1) | SCD 2-3, DB R02-09, OneDrive §7.6 |
+| 75 | Gửi thêm email cho quản lý | Chỉ 3 loại gấp (duyệt, từ cấm, chuyện nghiêm trọng), chỉ tiêu đề và liên kết | SCD 7-4, C-05 |
+| 76 | Cách hiểu các dòng bảng xác nhận có ý kiến nhưng không có quyết định (確認23, 24, 33, 39, 41, 46, 50) | Ví dụ 確認23: không giới hạn số lần nhắn, AI không trả lời chuyện riêng; 確認46: có công tắc "hiện cả đã xử lý" | CSV 15, SCD 3-3, 7-4 |
+| 77 | Nút dừng toàn bộ đăng tự động (前提 UC-08-6) | Dừng cả khoảng đăng tự động; mở lại thì tài năng tự bắt đầu lại | SCD 7-5 |
 
 ## 5. Ảnh hưởng tới các tài liệu của mình
 
@@ -127,7 +153,7 @@ AMCOLAB đã gửi các câu này cho khách. Câu nào trùng thì **không h�
    - nhiều tài khoản trên một mạng (CR-20), sửa chữ trực tiếp (CR-21);
    - màn thử thách và yếu tố trò chơi (CR-22);
    - **video tự làm, mỗi ngày 1 video thành bản nháp (CR-23):** 6-4 phần tự đưa vào bản nháp, PWA D08 và cờ `selfMadeVideoDaily`;
-   - hội thoại riêng tư (CR-24, chờ No.7).
+   - hội thoại riêng tư (CR-24): không làm, Q&A No.7 đã đóng.
 2. **Sửa SCD** (đã làm, mỗi file có mục "Cập nhật theo Q&A 15/11"): 2-1, 7-1 (tình trạng đọc file), 3-3 (quy tắc tài năng vị thành niên), 3-5 (không trần), 3-7 (mốc 25/50/75%), 4-1 (tìm tin tức), 4-4 (màn sửa tối thiểu), 5-1, 5-2 (video trình chiếu ghép ảnh ở máy chủ), 6-3 (quản lý gửi thay, phí tính cho tài năng), 6-4 (video tự làm chờ CR-23), 7-7 và C-01 (No.58 khác hướng). Bảng câu hỏi `15_Cau_hoi_lam_ro_luong.csv` có thêm cột "Q&A AMCOLAB".
 3. **Việc cần làm với người phụ trách file Q&A:**
    - Đưa hình 5-1 (đã lấy ra từ tệp v2) để đóng No.51.

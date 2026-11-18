@@ -139,7 +139,9 @@ Mọi giờ trong bảng là giá trị mặc định, quản lý đổi đượ
 
 | Việc | Khi chạy | Chạy ở | Nội dung | Chức năng |
 |---|---|---|---|---|
-| Lô buổi sáng | Trước giờ nhắn (mặc định 8:00). Đề xuất bắt đầu khoảng 5:00 | Worker | Mỗi tài năng: đọc OneDrive và kết quả hôm qua → gọi OpenAI → lưu lời tổng kết và 3 chủ đề → 8:00 gửi thông báo. Chạy song song có giới hạn, lỗi thì thử lại từng người, không dừng cả lô | 2-1, 3-6, 4-1 |
+| Lô trước giờ nhắn | Trước mỗi khung sáng (mặc định 8:00), trưa, tối ([KS] 確認18). Lô khung sáng đề xuất bắt đầu khoảng 5:00 | Worker | Mỗi tài năng: đọc OneDrive và kết quả hôm qua → gọi OpenAI → lưu lời tổng kết và 3 chủ đề → 8:00 gửi thông báo. Chạy song song có giới hạn, lỗi thì thử lại từng người, không dừng cả lô | 2-1, 3-6, 4-1 |
+| Khoảng 自動投稿 | Hằng ngày trong khoảng tài năng đặt ([KS] 確認25) | Worker | Tự soạn bài từ chủ đề và tư liệu của khoảng, kiểm tra từ cấm, hẹn giờ qua Upload-Post. Nhịp đăng, duyệt, hết tư liệu: chưa rõ |
+| Xóa dữ liệu tài năng rời đi | Mỗi ngày | Worker | Tài năng 利用終了 đủ 6 tháng: xóa dữ liệu trong DB, Supabase Storage, thư mục OneDrive; không khôi phục ([KS] 確認55) |
 | Nhắc trước giờ đăng | 2 giờ trước giờ đăng của từng bài | pg_cron → worker | Nhắc gửi tư liệu, chấp nhận bản nháp | 6-5 |
 | Hủy bài quá giờ chưa duyệt | Đến giờ đăng | pg_cron → worker | Không đăng, báo tài năng và quản lý | 7-7 |
 | Nhắc khi không đăng | Mỗi ngày | pg_cron → worker | 3 ngày không đăng thì AIコーチ nhắc tài năng; 7 ngày thì báo quản lý | 3-9 |

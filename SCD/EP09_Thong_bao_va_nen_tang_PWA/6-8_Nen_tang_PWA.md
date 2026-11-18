@@ -65,6 +65,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP09: 
 
 ## Nguồn
 
-- Đặc tả kỹ thuật: [`agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md`](../../agent_spec/pwa-platform-spec/PWA_PLATFORM_SPEC_VI.md) (manifest, service worker, cài đặt, thông báo đẩy, ca kiểm thử PW-01〜PW-18).
+- Đặc tả kỹ thuật: [`agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md`](../../agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md) (manifest, service worker, cài đặt, thông báo đẩy); ca kiểm thử PW-01〜PW-20 ở `CA_KIEM_THU_VI.md` cùng thư mục.
 
 - [YK2] §6-12 (6-8), §6-14, §9-1. [AG] trang 3 (menu dưới). [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.csv) B13.

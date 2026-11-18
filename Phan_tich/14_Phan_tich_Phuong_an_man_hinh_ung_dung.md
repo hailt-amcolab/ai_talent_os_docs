@@ -1,12 +1,5 @@
 # Phân tích tài liệu アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng)
 
-## Cập nhật ngày 17/11/2026 theo Q&A bản 15/11 và các quyết định nội bộ
-
-Chi tiết ở [19_Doi_chieu_QA_bao_gia.md](19_Doi_chieu_QA_bao_gia.md) (Q&A No.x, CR-xx) và [20_Rui_ro_ky_thuat.md](20_Rui_ro_ky_thuat.md). Nội dung bên dưới khối này chưa được viết lại; chỗ nào khác khối này thì làm theo khối này.
-
-- M-13 (nhóm tài năng), M-14 và M-15 (chỉ thị cho AI) của [AG]: CR-17, CR-18, chưa làm. M-11 của [AG] (bài dính từ cấm) làm ở mức tối thiểu: sửa chữ, hẹn giờ, hủy (CR-06).
-
-
 Viết ngày 16/11/2026. Ký hiệu nguồn trong file này:
 
 - **[AG]** = アプリ画面案_AI育成OS.pdf, 12 trang, ghi ngày tạo 12/11/2026, đơn vị tạo FutureCore Partners.
@@ -89,7 +82,7 @@ Lưu ý: file này phân tích theo phần chữ trích từ PDF. Ngày 16/11/20
 | --- | --- | --- |
 | **M-01** ログイン（二段階認証）(đăng nhập hai bước) | Bước 1 email và mật khẩu, bước 2 mã 6 số từ ứng dụng xác thực. Lần đầu quét mã QR. Không thao tác 30 phút thì phải đăng nhập lại | Chức năng 1-6 |
 | **M-02** お知らせ一覧 (danh sách thông báo) | Màn đầu tiên sau đăng nhập. 9 loại: đơn đăng ký, yêu cầu duyệt, dính từ cấm, đăng lỗi, nhiều ngày không đăng, chuyện nghiêm trọng, đạt mục tiêu, thanh toán lỗi, mất kết nối. Lọc theo loại, theo nhóm tài năng, hiện cả mục đã xử lý. Nút 対応済みにする (đánh dấu đã xử lý) | UC-10, chức năng 7-4, 別紙A; 確認45, 46, 47 |
-| **M-03** 申し込みの確認 (xem đơn đăng ký) | Tên, email, ngày sinh kèm tuổi và nhãn "vị thành niên (tham khảo)", thời điểm đăng ký, đã đồng ý điều khoản. Dặn "từ chối người lạ hoặc tài năng đã nghỉ". **Chọn bật chế độ duyệt bài ngay lúc duyệt đơn** (sau đổi ở M-10). Nút duyệt hoặc từ chối; email soạn sẵn, từ chối không ghi lý do. Duyệt xong tài năng vào danh sách với trạng thái 利用前 (trước khi dùng) | UC-01, chức năng 1-4, 2-2; 確認2 |
+| **M-03** 申し込みの確認 (xem đơn đăng ký) | Tên, email, ngày sinh kèm tuổi và nhãn "vị thành niên (tham khảo)" ([KS] 確認2: đổi thành nhãn dưới 18 tuổi), thời điểm đăng ký, đã đồng ý điều khoản. Dặn "từ chối người lạ hoặc tài năng đã nghỉ". **Chọn bật chế độ duyệt bài ngay lúc duyệt đơn** (sau đổi ở M-10). Nút duyệt hoặc từ chối; email soạn sẵn, từ chối không ghi lý do. Duyệt xong tài năng vào danh sách với trạng thái 利用前 (trước khi dùng) | UC-01, chức năng 1-4, 2-2; 確認2 |
 | **M-04** 承認待ち一覧 (danh sách chờ duyệt) | Bài tài năng gửi duyệt: thời điểm gửi, giờ đăng (cũng là hạn duyệt), mạng đăng, có dính từ cấm không. Ghi rõ "quá giờ đăng chưa duyệt thì không đăng" | UC-07, chức năng 7-7; 確認34 |
 
 ### Trang 7 – Màn hình quản trị: duyệt bài, danh sách tài năng, chi tiết tài năng
@@ -107,15 +100,15 @@ Lưu ý: file này phân tích theo phần chữ trích từ PDF. Ngày 16/11/20
 | --- | --- | --- |
 | **M-09** タレントの詳細（会話）(chi tiết – hội thoại) | Đọc hội thoại giữa tài năng và huấn luyện viên AI, chỉ xem. Ví dụ tài năng nói "dạo này hơi mệt", hệ thống ghi "đã báo là chuyện nghiêm trọng". Mở xem thì ghi nhật ký | UC-10, 3-2, chức năng 3-3; 確認42, 17, 43 |
 | **M-10** タレントの詳細（設定）(chi tiết – cài đặt) | Đổi trạng thái (利用前, 利用中, 利用終了 – trước khi dùng, đang dùng, đã kết thúc), bật/tắt duyệt bài, dừng hoặc chạy đăng tự động, mục tiêu người theo dõi từng mạng và hạn, gắn nhóm, số lần tạo video và chi phí AI tháng này. Chuyển sang "đã kết thúc" thì ngừng nhắn tin, ngừng thu phí, hủy bài đã hẹn, khóa đăng nhập | UC-13, 5-6, chức năng 7-3, 2-4, 7-5, 5-4, 3-5; 確認53, 54, 56, 47 |
-| **M-11** 使ってはいけない言葉が入っていた投稿の確認 (bài dính từ cấm) | Bài bị dừng vì có từ cấm. Hiện cụm từ bị phát hiện và lý do (ví dụ "chắc chắn giảm cân"). Quản lý **sửa được chú thích** rồi bấm 直して予約する (sửa và hẹn giờ, hẹn đúng giờ đăng đã định), hoặc 予約しない (không đăng). Lựa chọn 予約しない không có trong [YK2] 4-4. Màn này không nói có kiểm tra từ cấm lại sau khi sửa không, và tài năng có được báo nội dung đã sửa không | UC-05, 5-3, chức năng 4-4 |
+| **M-11** 使ってはいけない言葉が入っていた投稿の確認 (bài dính từ cấm) | Bài bị dừng vì có từ cấm. Hiện cụm từ bị phát hiện và lý do (ví dụ "chắc chắn giảm cân"). Quản lý **sửa được chú thích** rồi bấm 直して予約する (sửa và hẹn giờ, hẹn đúng giờ đăng đã định), hoặc 予約しない (không đăng). Lựa chọn 予約しない không có trong [YK2] 4-4. Màn này không nói có kiểm tra từ cấm lại sau khi sửa không, và tài năng có được báo nội dung đã sửa không | UC-05, 5-3, chức năng 4-4  Làm ở mức tối thiểu: sửa chữ, hẹn giờ, hủy (CR-06). |
 | **M-12** 事務所アカウントの作成 (tạo tài khoản công ty) | Nhập tên và email đăng nhập. Không thu phí tháng, không hướng dẫn thanh toán. Tạo xong là tạo thư mục OneDrive. Quản lý đăng nhập **ứng dụng tài năng** bằng tài khoản này để đăng bài. Số lần tạo video hiện ở danh sách và cài đặt; アデッソ tự quyết toán nội bộ | UC-12, 3-1, 5-4, chức năng 1-2, 9-1; 確認52 |
 
 ### Trang 9 – Màn hình quản trị: nhóm tài năng, chỉ dẫn AI, dừng toàn bộ
 
 | Màn hình | Nội dung | Nguồn [YK2] và 確認 |
 | --- | --- | --- |
-| **M-13** カテゴリーの管理 (quản lý nhóm tài năng) | Danh sách nhóm (người mẫu, diễn viên, idol, ca sĩ, người phát trực tiếp), số người, sửa/xóa, kéo để sắp thứ tự, thêm nhóm với tên và màu. Lấy từ thiết kế của khách, **chờ khách trả lời mới làm** | UC-10; 確認47 |
-| **M-14** AIへの指示（一覧）(danh sách chỉ dẫn AI) | Các chỉ dẫn theo phạm vi: toàn bộ, theo nhóm, theo tài năng; người sửa cuối, ngày sửa, bật/tắt. Quy tắc khi trùng: **tài năng > nhóm > toàn bộ**; luôn kiểm tra từ cấm | UC-02, 5-5, 7-5; 確認6 (cần kiểm chứng kỹ thuật) |
+| **M-13** カテゴリーの管理 (quản lý nhóm tài năng) | Danh sách nhóm (người mẫu, diễn viên, idol, ca sĩ, người phát trực tiếp), số người, sửa/xóa, kéo để sắp thứ tự, thêm nhóm với tên và màu. Lấy từ thiết kế của khách, **chờ khách trả lời mới làm** | UC-10; 確認47  Làm (CR-17, [KS] 確認47). |
+| **M-14** AIへの指示（一覧）(danh sách chỉ dẫn AI) | Các chỉ dẫn theo phạm vi: toàn bộ, theo nhóm, theo tài năng; người sửa cuối, ngày sửa, bật/tắt. Quy tắc khi trùng: **tài năng > nhóm > toàn bộ**; luôn kiểm tra từ cấm | UC-02, 5-5, 7-5; 確認6 (cần kiểm chứng kỹ thuật)  Làm (CR-18, [KS] 確認6–8). |
 | **M-15** AIへの指示（入力）(soạn chỉ dẫn AI) | Chọn phạm vi, viết chỉ dẫn (tối đa 1.000 ký tự; con số này [AG] tự đặt, [YK2] không có). Nút "phần mẫu" chèn sẵn: giọng điệu, chủ đề, số lần nhắn, giờ đăng, điều tránh. Nút 試してみる (chạy thử) xem trước câu trả lời trên một tài năng. Lưu, quay lại bản trước, lịch sử thay đổi | UC-02, UC-10, 5-5, 7-5; 確認7, 8 |
 | **M-16** すべての自動投稿の停止 (dừng toàn bộ đăng tự động) | Trạng thái hiện tại, nút dừng có hộp xác nhận: "không hẹn bài mới, hủy cả bài đã hẹn; bài đã hủy không đăng lại sau khi chạy lại". Lịch sử dừng và chạy lại kèm người thao tác. Mọi quản lý đều bấm được. Dừng theo từng tài năng làm ở M-10 | UC-08, 5-6, chức năng 7-5, 1-6 |
 
@@ -123,7 +116,7 @@ Lưu ý: file này phân tích theo phần chữ trích từ PDF. Ngày 16/11/20
 
 | Màn hình | Nội dung | Nguồn [YK2] và 確認 |
 | --- | --- | --- |
-| **M-17** 全体の設定 (cài đặt chung) | Giờ nhắn buổi sáng (8:00), mốc nhắc gửi ảnh (2 giờ trước giờ đăng), số ngày không đăng để AI nhắn (3) và để báo quản lý (7), ngày tổng kết tuần (thứ Hai). Danh sách từ cấm dùng chung (ví dụ "chắc chắn có lãi", "chắc chắn khỏi bệnh"), FutureCore đưa mẫu, khách tự xem lại | 5-2, 5-6, chức năng 4-4, 3-9, 6-5; 確認18, 19, 4 |
+| **M-17** 全体の設定 (cài đặt chung) | Giờ nhắn buổi sáng (8:00; [KS] 確認18: gửi theo khung sáng, trưa, tối), mốc nhắc gửi ảnh (2 giờ trước giờ đăng), số ngày không đăng để AI nhắn (3) và để báo quản lý (7), ngày tổng kết tuần (thứ Hai). Danh sách từ cấm dùng chung (ví dụ "chắc chắn có lãi", "chắc chắn khỏi bệnh"), FutureCore đưa mẫu, khách tự xem lại | 5-2, 5-6, chức năng 4-4, 3-9, 6-5; 確認18, 19, 4 |
 | **M-18** マネージャーの管理 (quản lý tài khoản quản lý) | Thêm quản lý (tên, email), vô hiệu hóa. Vô hiệu hóa thì không đăng nhập được, không nhận thông báo; dữ liệu tài năng không đổi. Một loại quyền, ai cũng làm được mọi việc | UC-13, chức năng 1-6 |
 | **M-19** 閲覧の記録 (nhật ký xem) | Ai xem màn nào của tài năng nào, lúc nào. Lọc theo khoảng ngày và tài năng. Ghi tự động, không sửa được | 3-2, chức năng 7-6; 確認44 |
 
@@ -165,7 +158,7 @@ Bảng 3 cột: nội dung trong thiết kế của khách, nội dung trong [AG
 
 1. **Giờ đăng hiện trước khi chấp nhận** (T-07: "giờ đăng 19:00 – gửi ảnh thì chấp nhận được"; T-14: nhắc lúc 17:00 cho bài 19:00). Tức là giờ đăng được chọn từ trước, nhờ vậy mốc nhắc "2 giờ trước giờ đăng" ở [YK2] 5-2 mới tính được. Cần ghi điều này vào [YK2] (câu B1 trong file 15).
 2. **Bật chế độ duyệt bài ngay khi duyệt đơn đăng ký** (M-03), sau đổi được ở M-10.
-3. **Quản lý sửa được chú thích bài dính từ cấm** (M-11), còn tài năng thì không tự sửa chữ (確認28).
+3. **Quản lý sửa được chú thích bài dính từ cấm** (M-11), và tài năng cũng tự sửa chữ bản nháp được ([KS] 確認28).
 4. **Thứ tự ưu tiên chỉ dẫn AI: tài năng > nhóm > toàn bộ** (M-14). Đây là đề xuất trong 確認6, trả lời một phần cho xung đột D9 ở tab Edge case.
 5. **Tài khoản công ty đăng nhập ứng dụng tài năng** để đăng bài (M-12), không đăng từ màn hình quản trị.
 
