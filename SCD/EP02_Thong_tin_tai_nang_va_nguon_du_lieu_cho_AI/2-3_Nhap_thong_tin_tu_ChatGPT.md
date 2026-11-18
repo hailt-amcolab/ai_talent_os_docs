@@ -34,7 +34,7 @@ Quản lý trò chuyện với ChatGPT để nhập và sửa thông tin tài n�
 | B | Mỗi tài năng một dự án ChatGPT như [YK2], cộng thêm công cụ ghi của A | Đúng như [YK2] | Thêm việc tạo dự án cho mỗi tài năng (100–1.000 người) mà không có lợi gì thêm |
 | C (dự phòng) | ChatGPT chỉ soạn nội dung theo mẫu; quản lý tự dán vào file trên OneDrive | Không cần tích hợp | Dễ sai định dạng; không ai xác nhận "tài năng nào" |
 
-**Căn cứ MCP:** 御見積書 (bản báo giá) 前提条件A4 「マネージャーはChatGPT(MCP)経由でAIを調整」, trích ở file Q&A câu số 45. Theo [YK2] §1, báo giá đứng trên [YK2] khi mâu thuẫn, nên MCP có căn cứ hợp đồng; câu 45 chưa có trả lời về phạm vi chính xác. Thiết kế máy chủ MCP chi tiết ở `agent_spec/onedrive-agent-spec/ONEDRIVE_IMPLEMENTATION_SPEC_VI.md` §14.
+**Căn cứ MCP:** 御見積書 (bản báo giá) 前提条件A4 「マネージャーはChatGPT(MCP)経由でAIを調整」, trích ở file Q&A câu số 45. Theo [YK2] §1, báo giá đứng trên [YK2] khi mâu thuẫn, nên MCP có căn cứ hợp đồng; câu 45 chưa có trả lời về phạm vi chính xác. Thiết kế máy chủ MCP đề xuất ở [bộ đặc tả ChatGPT → MCP](../../agent_spec/chatgpt-mcp-spec/README.md); chưa triển khai/kiểm chứng và không thay các quyết định còn chờ khách.
 
 Cả ba đều là cách làm của 2-3, không thêm chức năng, nên đều **trong phạm vi**. Phương án A đổi tiền đề của UC-01 nên cần khách đồng ý (S02-01). Câu này chi tiết hóa câu C4 ở file 15.
 
@@ -52,7 +52,7 @@ Cả ba đều là cách làm của 2-3, không thêm chức năng, nên đều 
 
 | Tình huống | Xử lý | Nguồn |
 |---|---|---|
-| Quản lý chưa xác nhận mà ChatGPT gọi "ghi" | API ghi đòi mã xem trước còn hạn (ví dụ 10 phút) do bước 4 cấp. Không có mã thì từ chối | [Đề xuất nội bộ], §6-4 (xác nhận trước khi ghi) |
+| Quản lý chưa xác nhận mà ChatGPT gọi "ghi" | API ghi đòi proposal còn hạn và approval người dùng được BE xác minh, gắn đúng Manager/client/Talent/nội dung/eTag. Mã xem trước hoặc `confirmed:true` từ mô hình không phải bằng chứng xác nhận. UX xác nhận độc lập còn cần thống nhất với khách | [Đề xuất nội bộ], §6-4 (xác nhận trước khi ghi) |
 | File bị sửa bởi người khác giữa bước 4 và 6 | So sánh phiên bản file (eTag). Khác thì báo và làm lại bước 4 | [Đề xuất nội bộ] |
 | Tên tài năng không tìm thấy hoặc trùng | Trả danh sách gợi ý, không ghi | [Đề xuất nội bộ] |
 | Tài năng chưa có thư mục (2-2 chưa xong) | Từ chối, báo "chưa có thư mục" | UC-01 前提 |

@@ -1,5 +1,7 @@
 > Demo 18/11/2026 đã bổ sung Auth/TOTP/PWA theo kiến trúc này. Hướng dẫn tích hợp cho agent: [Supabase DB + Auth](supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md), [PWA + Web Push](pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md) (mỗi thư mục kèm `CA_KIEM_THU_VI.md`). `@supabase/supabase-js` 2.119.0 đã dùng cho session và adapter Auth; demo công nghệ không dùng worker; self-registration và Web Push đồng bộ, không triển khai workflow nghiệp vụ.
 
+> Đặc tả mới 19/11/2026: [ChatGPT → MCP](chatgpt-mcp-spec/README.md) (OAuth, tools, approval, concurrency, AC). Đây là tài liệu đề xuất; MCP chưa được triển khai hoặc kiểm chứng.
+
 # Tech stack và cấu trúc dự án
 
 > Cập nhật scope DB: `database-design/07_implementation_scope_and_rules.md`, `database-design/05_data_dictionary.md` và `apps/api/PRISMA.md` ưu tiên hơn các mô tả DB cũ dưới đây. Migration mới thêm 6 bảng app_private, khôi phục FK Auth thật qua Prisma externalTables, tách runtime role, chặn phần chưa chốt; đã áp và kiểm chứng trên Supabase dev ngày 17/11/2026.

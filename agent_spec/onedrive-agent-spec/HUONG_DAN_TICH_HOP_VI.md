@@ -394,6 +394,8 @@ Chi tiết:
 
 ### 7.6. ChatGPT ghi thông tin qua MCP (SCD 2-3) [Chưa rõ, K5]
 
+Đặc tả triển khai riêng: [ChatGPT → MCP](../chatgpt-mcp-spec/README.md). Preview token không chứng minh người dùng đã đồng ý; cần approval độc lập và CAS/reconciliation theo bộ này. Chưa kiểm chứng OAuth/ChatGPT hoặc chốt template/UX thì chưa bật ghi.
+
 Máy chủ MCP của hệ thống dùng **cùng** adapter và kết nối ở BE. ChatGPT không cầm token Microsoft, và không ai cần biết mật khẩu tài khoản dịch vụ.
 
 Ghi tệp phải qua đề xuất có xác nhận: quản lý thấy nội dung và đích (tài năng nào, tệp nào), xác nhận xong mới ghi bằng `If-Match`. Phạm vi lấy từ quyền của quản lý trong DB, không theo tên Project trong ChatGPT. Chỉ bật khi đã thử gói ChatGPT của khách (P09 cũ). Chi tiết ở SCD 2-3.
