@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "docs/requirement-review/gate-approval-2026-11-19/approval.json",
+      "sha256": "7765c74d4c2ae8c2b23a51beb7b5507ac8347623c85f9674734bff3886cc978c"
+    },
+    {
+      "path": "docs/requirement-review/gate-approval-2026-11-19/STATUS.md",
+      "sha256": "12e7784cdf4a87044f8001bf90aae0f41ed69ca7a9f87f97183abd3f60007271"
+    },
+    {
+      "path": "docs/requirement-review/gate-approval-2026-11-19/input-manifest.json",
+      "sha256": "60a1a2e00783876e828473cb8c3cefd835abbda3492bcdb5b00f3b6494430ea3"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+path,sha256,authority,purpose
+agent_spec/chatgpt-mcp-spec/HUONG_DAN_TICH_HOP_VI.md,f327fbdaa23446b4b9bd78f7e65b529bbb1ec50102fb61634ace94b8172466c8,INTERNAL_DESIGN_ONLY; không phải khách xác nhận,Đối chiếu thiết kế đã có; còn thiếu kiểm chứng không đồng nghĩa chưa thiết kế
+agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md,ac1a3cf55b529ae635e1f6a276cf9953c282af25232d3e88678c33a0bde05a8c,INTERNAL_DESIGN_ONLY; không phải khách xác nhận,Đối chiếu thiết kế đã có; còn thiếu kiểm chứng không đồng nghĩa chưa thiết kế
+agent_spec/upload-post-agent-spec/HUONG_DAN_TICH_HOP_VI.md,181dde4f964f67444ceab2d0d21c26dae790e6cdb0dc5e5a6c479a2b7205aa82,INTERNAL_DESIGN_ONLY; không phải khách xác nhận,Đối chiếu thiết kế đã có; còn thiếu kiểm chứng không đồng nghĩa chưa thiết kế

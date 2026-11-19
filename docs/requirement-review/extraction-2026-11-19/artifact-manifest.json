@@ -1,0 +1,70 @@
+{
+  "created_at": "2026-11-19T10:52:19+07:00",
+  "purpose": "Phiên bản đầu ra Requirement Extraction để reviewer kiểm lại; không phải baseline APPROVED",
+  "files": [
+    {
+      "path": "docs/requirement-review/registers/requirements.csv",
+      "sha256": "281a855367746d22a386bffc498635a956af69abfbd6bec541430a7b12812917"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-rules.csv",
+      "sha256": "7abf2342a0c7af5fd2e515ff925eb2ae026b16c3553502411c6659c9c50f2841"
+    },
+    {
+      "path": "docs/requirement-review/registers/evidence.csv",
+      "sha256": "dccbc5df21400f63461ab7c31600c19271af63688ff1b7467fb9964564723b59"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "sha256": "4b6bdfda4c51b004948b4bc96c709ac672b86bd2b052487f0783a8dff2915919"
+    },
+    {
+      "path": "docs/requirement-review/DATA_MODEL.md",
+      "sha256": "0266873a607a86ec6d8594ce25873b89b0dc3557b971ef9219104480a2146080"
+    },
+    {
+      "path": "docs/requirement-review/validate.py",
+      "sha256": "8670da22b2eba0ffeba9793961eb5f31f18110a5c26909c06fd3ddc53b8a5c03"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/MISSING_INFORMATION.md",
+      "sha256": "b6f28598d1114f7d97e546c586531da411e558e53059fe883daacbf8340a9e32"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/README.md",
+      "sha256": "fd506ee34d9ab0ea77e738d221054eb1e4a262592650050de6fab0c4ce1b8c96"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/TRACEABILITY_REPORT.md",
+      "sha256": "06466b5b3a72b2c932fb6578179c0291bf5e3f42e21090626b422ad232a99fc8"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/VALIDATION.md",
+      "sha256": "428145363f67e79f7321a153a88229e3ae1dcc77e42ca5a9d1d001ec48c989ec"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/counts.json",
+      "sha256": "e7e2080bfd9a81f02ad5c74e2240abf96c23878ac9b1c2fe13bc41e753cc71dc"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/existing-open-items.csv",
+      "sha256": "b5d8d47813013c374544e5a4520405460b21dd8b52ccdcd18e5129b1d589ed2d"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/missing-information.csv",
+      "sha256": "5da558de24b5219c4616367db950ba032495f6629293ef1a2063e46c83ac133f"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/source-coverage.csv",
+      "sha256": "1badd6427cab137b46b5968956bbd3ec01df5db1f866384abf31d6296b42043b"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/source-snapshot.json",
+      "sha256": "540733f161155fa1678b1f034b71dab714ba54accda4e77a744853aa1a7db378"
+    },
+    {
+      "path": "docs/requirement-review/extraction-2026-11-19/validate_extraction.py",
+      "sha256": "f5226ea15ebe6003d702d5d17c1a09f054510345a64d12dd8a96f27e67ce64e0"
+    }
+  ]
+}

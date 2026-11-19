@@ -1,0 +1,21 @@
+{
+  "requirements": 175,
+  "business_rules": 90,
+  "flows": 30,
+  "steps_including_branches": 281,
+  "transitions": 64,
+  "findings": 47,
+  "current_qa": 36,
+  "historical_qa_v3": 44,
+  "legacy_evidence": 513,
+  "reopened_source_references": 519,
+  "source_files": 12,
+  "extraction_source_units": 319,
+  "requirement_flow_links": 222,
+  "rule_flow_links": 90,
+  "unresolved_source_refs": [],
+  "semantic_boundary": "So sánh toàn bộ tập record hiện hữu; không chứng nhận mọi yêu cầu nguyên tử có thể trích từ từng pixel nguồn, không kiểm code/SCD hay vận hành tích hợp.",
+  "unique_branch_from_values": 83,
+  "scenario_checks": 219,
+  "visual_checks": 47
+}

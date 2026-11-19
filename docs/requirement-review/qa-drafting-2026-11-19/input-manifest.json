@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-11-19T04:48:23+00:00",
+  "internal_evidence_id": "IE-QAD-0001",
+  "eligible_finding_count": 0,
+  "g5_run_id": "GATE-0005",
+  "g5_result": "BLOCKED",
+  "inputs": [
+    {
+      "path": "docs/requirement-review/registers/reviews.csv",
+      "sha256": "79c354eceb052f29e9626daa75c43718c6e404a2d687ea199dd849772f01a218"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/review-results.csv",
+      "sha256": "c2885a898ba49da5242d3cc94b7fa9aaf6a2721d7ca17ad081cbce739f88fb7f"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/source-snapshot.json",
+      "sha256": "457c590d57fbb18729cc4e6f3d57ea36bc5e4e236a1dd286841aa9e6a7f0fa9a"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/artifact-manifest.json",
+      "sha256": "3c3e71ec09d1e26e994eb846fbf014468f169ef4f2a8df6668836bdb8ca2353a"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "fdce620f71d7543cfae5d20217d7e4ba3465e99630add3c2be782f3a3c6280ce"
+    },
+    {
+      "path": "docs/requirement-review/QUALITY_GATES.md",
+      "sha256": "615a12e7790e5de0340e5a4237a4da5cab40ed6bd4c717dca0e415004600a344"
+    }
+  ]
+}

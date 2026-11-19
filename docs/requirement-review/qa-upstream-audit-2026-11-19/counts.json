@@ -1,0 +1,11 @@
+{
+  "qa_ids_traced": 44,
+  "case_groups": 13,
+  "source_readings": 68,
+  "confirmed_fix_records": 5,
+  "context_requirement_count": 61,
+  "context_business_rule_count": 66,
+  "screen_reference_rows_checked": 91,
+  "screen_metadata_errors": 4,
+  "scope_warning": "Context linkage counts are not counts of wrong records; not a full semantic re-audit of175REQ/90BR/30flows."
+}

@@ -1,0 +1,47 @@
+# Repository Guidelines
+
+## Authoritative requirement sources
+Read [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md) before requirement analysis, workflow reviews, customer questions, or specification changes. The user designated `source_requiments/` as the source folder on 2026-11-19: initial documents in `base/`, dated deliveries, and living logs in `Q&A/`. Use the current catalog (12 files at this snapshot), not the superseded nine-file limit. Folder dates are not automatically document or approval dates. Include the 2026-11-18 screen definitions: `[SD-T18]` has T-01–T-16 and `[SD-M18]` has M-01–M-20; screen IDs differ from `[AG]`, so always cite the document/version and page. New screen descriptions and `要確認` notes do not automatically close existing Q&A. `Phan_tich/`, `SCD/`, `agent_spec/`, database designs, this file, and `CLAUDE.md` are derived material, not customer approval. Keep source files unchanged. Distinguish source proposals, customer decisions, internal design, and commercial approval; newer explicit decisions supersede older statements only on the same subject. Keep unresolved conflicts open and never infer confirmed requirements from code or demos.
+
+## Project Structure & Module Organization
+Full stack, layers and conventions: `agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md` (read it before adding code).
+- `apps/web/`: Next.js 16 App Router PWA, **frontend only** (no API routes, no server actions). Routes in `app/`, components in `components/<feature>/`, browser code in `lib/` (`lib/api/client.ts` is the only way to call the BE; `lib/pwa/` platform code; `lib/messages.ts` holds all Japanese UI text), service worker in `public/sw.js`.
+- `apps/api/`: Hono + TypeScript BE. `src/config/` env, `src/core/` shared errors, `src/infra/` adapters (database, push), `src/modules/<feature>/` routes + service, `src/http/app.ts` builds the app, `src/container.ts` is the composition root. Prisma schema/migrations in `apps/api/prisma/` (see `apps/api/PRISMA.md`). Root `docker-compose.yml` runs migrate + api + web without Caddy (see `DOCKER.md`).
+- `SCD/`: feature specifications organized by EP01–EP10; `Phan_tich/`: project analysis; `agent_spec/`: implementation specifications. Consult relevant documents before changing behavior.
+
+## Build, Test, and Development Commands
+Use Node.js 22.18+ and run commands inside the relevant app directory; each app has its own npm lockfile, with no root package scripts.
+
+- `npm ci`: install dependencies from the app's lockfile.
+- `npm run dev`: start the web app on port 3000 or API on port 8080.
+- `npm run dev:https` (web): enable HTTPS for local PWA and push testing.
+- `npm run build` followed by `npm start`: compile and run the production app.
+- `npm test`: run the app's unit tests.
+- `npm run lint` (web): run Next.js ESLint rules; `npm run typecheck` (API): check TypeScript without emitting files.
+- `npm run icons` (web): regenerate placeholder icons.
+
+## Coding Style & Naming Conventions
+Use strict TypeScript, two-space indentation, and surrounding file conventions; application code generally uses single quotes and omits semicolons. Name React components in PascalCase (`PushToggle.tsx`), utilities in lowercase or kebab-case (`push-client.ts`), and functions in camelCase. API relative imports include `.ts`; web imports can use `@/`. No dedicated formatter is configured.
+
+## Testing Guidelines
+Tests use `node:test` and `node:assert/strict`. API tests match `src/**/*.test.ts`; web tests match `lib/*.test.ts`. Integration tests against PostgreSQL are added per module once the schema exists (`TEST_DATABASE_URL`). Cover changed behavior and relevant failure paths; no numeric coverage threshold is configured. For PWA changes, also verify installation, offline behavior, updates, and notifications on real devices over HTTPS.
+
+## Commit & Pull Request Guidelines
+History currently contains two descriptive documentation commits, including Vietnamese text; no enforced commit format is evident. Use concise, action-oriented subjects. PRs should explain behavior changes, link relevant issues or specifications, list validation commands and results, and include screenshots for UI changes.
+
+## Configuration & Agent Instructions
+Copy each app's `.env.example` to `.env` (API) or `.env.local` (web). Keep VAPID public keys aligned and private keys out of commits; disable `ENABLE_PUSH_TEST` in production. Keep API endpoints in `apps/api`. Follow `apps/web/AGENTS.md` and read bundled Next.js documentation before editing web code.
+
+## Requirement Analysis & Verification
+
+For requirement quality work, use the repository skill [requirement-review](.agents/skills/requirement-review/SKILL.md) and the workflow in [docs/requirement-review/README.md](docs/requirement-review/README.md). Read its Source Register, data rules and G1–G8 before starting the requested stage. Workflow setup alone does not authorize business analysis or Customer Q&A creation.
+
+- Every conclusion must trace to an exact source/version and locator. Re-open the original source before marking VERIFIED; record the evidence, hash, checker and date. VERIFIED is not customer approval.
+- Do not invent requirements or resolve business conflicts on the customer's behalf. Keep unresolved points open with evidence and an owner.
+- Keep FACT, INFERENCE, ASSUMPTION and PROPOSAL separate. Internal analysis, SCD, technical specs, code and demos cannot establish customer confirmation.
+- Check current QA (all five sheets), KS, GJ, screen definitions and existing internal tracking before raising a question. Never ask an answered question again; continue an open issue under its existing QA No. Preserve protected confirmation rows in workbook15.
+- Route technical design and provider checks to the team/provider. Ask the customer only for decisions requiring their authority about behavior, policy or scope.
+- All newly drafted Q&A must currently be in Vietnamese and understandable to a nontechnical reader. This applies over older handoff instructions asking for Japanese drafts; do not rewrite historical drafts merely to enforce it.
+- Reuse existing canonical analysis and tracking locations. Add metadata and links rather than duplicate their content; preserve old results and existing user changes.
+- G5 requires a reviewer other than the author and a recorded source-based review. Do not self-sign independent review or automatically delegate. Missing reviewer or evidence blocks the applicable gate.
+- Separate business, design, commercial and release approval. Source changes invalidate affected verification/gates until reassessed. SCD colors and configurable assumptions do not establish G8 readiness.

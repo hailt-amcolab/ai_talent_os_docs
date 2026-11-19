@@ -1,0 +1,202 @@
+{
+  "created_at": "2026-11-19T11:13:06+07:00",
+  "stage": "G3 prepared draft — chưa ký duyệt",
+  "files": [
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/BUSINESS_FLOW_SPECIFICATION.md",
+      "sha256": "31bd7edf1b5c9d46dcf7ed8132491e9a3bfc3c9bc038a02344afa27aa27748bf"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/FLOW_COVERAGE_REPORT.md",
+      "sha256": "4deb1e3e86d15dd2e66b3e8f9315b3d02efc34f47f827f3adb9ea11c8d173c18"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/FLOW_INDEX.md",
+      "sha256": "79a5c6d5b9ee99aa6b18297e105a3cc1fb308aeb09ef0b81d8682adf913eae95"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/README.md",
+      "sha256": "8d29f9530684571fdf77bbd093c8e6c0a0b5aca667d879f7a9c12571b8fdb877"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/STATE_TRANSITION_TABLES.md",
+      "sha256": "05dde1918eee46f5cd96ab1a392ba0b5816d3f64435721d418834d666ae7fe94"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/VALIDATION.md",
+      "sha256": "dccc92fc1c24c4849d6580c0052b136b05b32cb0e01fb17b436e3f2aa31eea4b"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/counts.json",
+      "sha256": "5ee45bd4ac39a98878317ddc39b160ad1af279b932a071e838ca461c49a653a4"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flow-evidence.csv",
+      "sha256": "399b4a1273103660fa51afc81d56c8066c40930cb5d7229845fd6c18ce3a2886"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flow-gaps.csv",
+      "sha256": "432cf9a1906c36c06e15576bf50d11384fb2e1842ae3b915bdbbab53b34b9d7c"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0001.md",
+      "sha256": "e4a4cc309f198d3d62a68f4bc6dc1cc3d5d255708a221281395a5b939a2e1240"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0002.md",
+      "sha256": "a970d61a6b3651655e1d8e58f5016220498657aa37c9af24f01797c92e2874ce"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0003.md",
+      "sha256": "868575fbec2fbf8dbccf83ed7a30c0d8c84a335d580805c73ec6a47b77c90489"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0004.md",
+      "sha256": "d978f91ccb1740225589f73b058aaa7b43352f74c18a8f10bdd389baa4c4fea0"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0005.md",
+      "sha256": "119abb79f512c211040927194773320cf0b72f004f707ee85b32fdf4f1ca2614"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0006.md",
+      "sha256": "1326bf397231beba0c6bb2f29577e2b2d5b6fd1a7fc240be0a68238416c2fd3d"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0007.md",
+      "sha256": "0380b792bfcc711542d450fa56fd61b8138c1f22a0025a6311e9b54ffeba030a"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0008.md",
+      "sha256": "aa7803e5964072c6927ddcf0edc357c33f7c85107c7ba5a6bd9e75a989417d7a"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0009.md",
+      "sha256": "5d91cfaf29c15ab16db9691bc014623cfed23a513428bbc524a10b2aecc52234"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0010.md",
+      "sha256": "69e37e4041c2b155a97a532fd02744a4e89244455a1414dc33427ca151266525"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0011.md",
+      "sha256": "3e2cbde177e42453a8adb762cac918bf802e95f568905525af21a39636e0b26d"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0012.md",
+      "sha256": "4b5d5a0755e7eed21ea00e2590f7c0030a95fd506629bbdd1fdb887a44a6bdca"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0013.md",
+      "sha256": "08437b13b96190e4a69cacd74bf192b7a9d74c719beee98e9ca72e2b941a1599"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0014.md",
+      "sha256": "432dbcdd334b229f6dbdce84e25c605ca45f116205d5e1776f8f296fdc14399c"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0015.md",
+      "sha256": "746793b6a7dfb213c2261240ef3f2cdd12391897222f1dee57c8a393e3641314"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0016.md",
+      "sha256": "5713de42b4190a043616100d30d6a046af7cf2f7562825388da46a5a3b244e0b"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0017.md",
+      "sha256": "1b34c360de30cc2648be16772b571f99111a46d427a5fe772cbada14dd6afedd"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0018.md",
+      "sha256": "f16adcc9e632f19fce533e44976c9fa93420b5a0984eed26ae81699343415a4b"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0019.md",
+      "sha256": "6f9cd0ee590a3adc21b66f10a6e79c82f25f8532ac4cab232099aa51272610eb"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0020.md",
+      "sha256": "0e8ddf1a1cc2626e14904767f54c091ff8c82ff03a0a585fcd6a0eb73ba5e8b3"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0021.md",
+      "sha256": "1ccb6c209bad565f15be464bad1796fd5d04632a6f4c2720c5d2d03bb96a17ef"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0022.md",
+      "sha256": "f544107239bfb7284a1b7089fe3574f24826b2005cfe2efe1393aff3e43f8914"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0023.md",
+      "sha256": "2ca6e59ada613d55612e84818d77946f94c4159fff4d94c1cbb58ac0fb2fc772"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0024.md",
+      "sha256": "be7f5e6eb1a19b544b0d6b12d70b0d9f1d346f39a55315e1cc2f58fbfea576e4"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0025.md",
+      "sha256": "cc6cb193f8ab85efbc6529f81e3457b53364286ca473996b052f110df9da8234"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0026.md",
+      "sha256": "d9c1f02d043149f9ecc75b122505d1388d1df547bdc992e5c0e924602523978c"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0027.md",
+      "sha256": "8bc8a5d1eeeb4a63f937e2fb51072da8221ec71e14dfb554f142113bcf7c5f45"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0028.md",
+      "sha256": "3371cad901b383fc8736e037c70f58e22c9405dd7674f3fc914e4f3eae7bc335"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0029.md",
+      "sha256": "e36dbef8c31071a1092153caaf2828a43556a472970d8a789e15efa957b7b08e"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/flows/FLOW-0030.md",
+      "sha256": "1421773d5a926b359660357141f05dea0da21b4494445cfc258cd62318d8e21e"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/legacy-scenario-map.csv",
+      "sha256": "8703f3fd4684a480b5ec6d9e5ab767437b1e12a77459a3774bb44ff093f041c1"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/requirement-flow-map.csv",
+      "sha256": "8237fa6a071ddeb5686919393d0d6c95c44f3bb00afd8b878fa7129c35b9992a"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/rule-flow-map.csv",
+      "sha256": "38c90c4d1abafed11b1dc126e237d46fba4ffff3dfe79e784578b07b844435b3"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/scenarios.csv",
+      "sha256": "673b21e1a3840df2c9d8e6ac89135e900c35055977159b4230c373cdd9c45570"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/source-flow-map.csv",
+      "sha256": "b25072b3f81bee2eb372c5221be4099ddce4c099f4670cd679375b1be828b054"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/source-snapshot.json",
+      "sha256": "d6a08e341c5d6a4d3710fc4c1833e1f8e18c8599e9fe67ff8f6bbfb18a78d685"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/state-transitions.csv",
+      "sha256": "b7319be8591d491750634b3c82e8fa3ee5853a9b26d30e69e2453d65ef1d1cd7"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/steps.csv",
+      "sha256": "20549fecb0f0eb535cd5fd30af6bb75af18a78c2035b2de6de439f1776b3cf61"
+    },
+    {
+      "path": "docs/requirement-review/flow-reconstruction-2026-11-19/validate_flows.py",
+      "sha256": "541c6c6f8ff2da68eca6fa98bc9610b158ced97f701d304180a867881ee12c51"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-flows.csv",
+      "sha256": "bbe2499604f57a6736983a3f0557da0a7f2b9b493d840d7db631299ddb132e14"
+    }
+  ]
+}

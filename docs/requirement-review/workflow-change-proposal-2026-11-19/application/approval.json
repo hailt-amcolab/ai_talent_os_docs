@@ -1,0 +1,56 @@
+{
+  "change_id": "WCP-0001",
+  "scope": "Workflow implementation only; no QA drafting, gate approval, reviewer signature, customer confirmation or external sending",
+  "approval_evidence": {
+    "kind": "user_message_in_current_conversation",
+    "verbatim": "có chấp thuận **WCP-0001**",
+    "identity_limit": "User acting as approving Tech Lead in this conversation; no personal name/signature invented"
+  },
+  "recorded_by": "Codex — workflow implementer",
+  "recorded_at": "2026-11-19T05:27:49+00:00",
+  "proposal_sha256": "0077cc15ee3e74000cea7df936db4e2d157b41623421d748de62dcb9dbc63d70",
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "bbf431701b40d0418bdf830c08dafe64744784681d7ccc6431da6127d504f5ed",
+      "after_sha256": "839d530cd19ebab81e8456f17c611d1d6649abef2bef9e7828cefa5bfa0e1f10",
+      "before_copy": "application/before/AGENTS.md.txt"
+    },
+    {
+      "path": "CLAUDE.md",
+      "before_sha256": "85c1d6f73297c0183efea7e03a34e1c0ff5fb963ca00de83de5c33d71320f729",
+      "after_sha256": "767092c03a8e82e523f7b59567b68f7e44f7dfdc117e7bb3c7f2308b115e71ab",
+      "before_copy": "application/before/CLAUDE.md.txt"
+    },
+    {
+      "path": ".agents/skills/requirement-review/SKILL.md",
+      "before_sha256": "fedf57fbd58c25df8f937ffc5e1f4bc10e9b06b004befe57ebfe3b69c49a5542",
+      "after_sha256": "a60cd95e1c081b12120a001a28e14e43134a3f84c12288c75eac1e15ddafc119",
+      "before_copy": "application/before/.agents/skills/requirement-review/SKILL.md.txt"
+    },
+    {
+      "path": "docs/requirement-review/QUALITY_GATES.md",
+      "before_sha256": "615a12e7790e5de0340e5a4237a4da5cab40ed6bd4c717dca0e415004600a344",
+      "after_sha256": "99dcf1c0e9290cd24f5398f5ddef331c957208e4e7dd227f3d6290b72c561613",
+      "before_copy": "application/before/docs/requirement-review/QUALITY_GATES.md.txt"
+    },
+    {
+      "path": "docs/requirement-review/DATA_MODEL.md",
+      "before_sha256": "0266873a607a86ec6d8594ce25873b89b0dc3557b971ef9219104480a2146080",
+      "after_sha256": "b45f591d7b462b6ec075d1c5694ef30e4ceff981f1650cf87f9c5070986da825",
+      "before_copy": "application/before/docs/requirement-review/DATA_MODEL.md.txt"
+    },
+    {
+      "path": "docs/requirement-review/RUNBOOK.md",
+      "before_sha256": "2e6dbca1170909eb091b2eebb666a59e4972bb200d99de8cf0b56d12b89b4ac7",
+      "after_sha256": "c69b43b9174358865493e2632abce2ceb91597a4a26e518242bdc3db60b030a1",
+      "before_copy": "application/before/docs/requirement-review/RUNBOOK.md.txt"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "before_sha256": "4b6bdfda4c51b004948b4bc96c709ac672b86bd2b052487f0783a8dff2915919",
+      "after_sha256": "a6bee2acc11de00bdfb73da22ffd848b8cd38abad12aeb03589c83b1554591bf",
+      "before_copy": "application/before/docs/requirement-review/README.md.txt"
+    }
+  ]
+}

@@ -76,7 +76,7 @@ Upload-Post là tích hợp quan trọng nhất: mọi bài đăng và mọi s�
 
 | Hạng mục | Nội dung |
 | --- | --- |
-| Đã chốt | Có Best Time to Post và Audience Insights (số người theo dõi TikTok); bộ Upload-Post §13.2a |
+| Đã chốt | Có Best Time to Post và Audience Insights (số người theo dõi TikTok); bộ Upload-Post §11 |
 | Mục đích | Xác nhận: đăng ký tài năng, tạo màn hình kết nối mạng xã hội, đăng bài hẹn giờ, hủy lịch khi quản lý hủy hoặc khi dừng đăng tự động, lấy số liệu từng bài và số người theo dõi (8, 6-10, 6-11, UC-08 前提) |
 | Dữ liệu gửi đi | Xác nhận: thông tin tài năng khi đăng ký, ảnh hoặc video, chú thích, hashtag, giờ đăng, lệnh hủy lịch. Giả định: tiêu đề YouTube, nhãn "do AI tạo" |
 | Dữ liệu nhận về | Xác nhận: đường dẫn kết nối (hạn 48 giờ), trạng thái kết nối, kết quả đăng trên từng mạng và lý do lỗi, số liệu bài trong phạm vi Upload-Post lấy được, số người theo dõi, khung giờ tương tác (nếu có). Cả bài tài năng tự đăng ngoài hệ thống (UC-09) |

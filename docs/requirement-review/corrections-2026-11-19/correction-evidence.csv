@@ -1,0 +1,1265 @@
+evidence_id,source_id,source_path,source_version,source_sha256,locator,original_excerpt,interpretation_vi,claim_supported,authority,counter_evidence,limits,verification_status,checked_by,checked_at
+EV-0517,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P615–P616, đếm mọi đoạn từ1","ステータスは、利用前・利用中・利用終了の3つです。
+マネージャーが、管理画面でタレントを選んで切り替えます。切り替える前に、確認の画面を出します。",Đối chiếu phạm vi sửa FV-001; không suy duyệt khách từ nội dung nguồn.,REQ-0020;TRANS-0009,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0518,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 13 từ1","  M-10     タレントの詳細（設定）                                                                                  タレントごとの設定は、ここで変えてね
+
+
+ 画面イメージ（パソコンで表示したとき）
+                                                                            1     この画面ですること
+                                                                            マネージャーが、タレントごとの設定を変える画面です。ステータス（利用前・利用中・利用終
+                                                                            了）、投稿の承認を使うか、自動投稿を止めるか、カテゴリー、フォロワー数の目標を設定しま
+                                                                            す。利用をやめるタレントは、マネージャーがステータスを切り替えます。
+                                                                            使う人    マネージャー（パソコン。スマートフォンでも表示できます）             使う場面   UC-13 利用をやめ
+                                                                            る、UC-02 タレントの情報を登録する
+
+                                                                            前後の画面
+
+                                                                                                                      M-07 タレントの詳細（情報）
+                                                                             M-07・M-08・         M-10 タレントの詳細（設
+                                                                                            ▶                    ▶    M-08 タレントの詳細（投稿）
+                                                                             M-09 のタブ           定）
+                                                                                                                      M-09 タレントの詳細（会話）
+
+                                                                            業務フロー        毎月の支払い（28ページ）      利用をやめる（31ページ）
+
+
+
+                                                                            2     項目の説明
+                                                                            No.   項目            種類    表示する内容・表示する条件         操作したときの動き
+
+                                                                             1    情報・投稿・会話・     選択    開いているタブを強調する          情報：M-07／投稿：M-08／
+                                                                                  設定のタブ                                     会話：M-09／設定：M-10 を
+                                                                                                                            開く
+
+                                                                             2    ステータス         ボタン   利用前／利用中／利用終了          「切り替える」を押すと、確
+                                                                                                                            認の後、ステータスを変え
+                                                                                                                            る。利用終了にすると、声か
+                                                                                                                            けと請求を止め、予約済みの
+                                                                                                                            投稿を取り消す。タレントは
+                                                                                                                            ログインできなくなる。利用
+                                                                                                                            終了にしたタレントは、利用
+                                                                                                                            中に戻せない
+スマートフォンで表示したとき                                                               3    投稿の承認を使う      選択    使う／使わない               切り替えると、タレントのア
+                       3    前提条件                                                                                            プリの投稿案の詳細（T-10）
+                                                                                                                            に、承認の依頼のチェックを
+                     ● 利用終了にしたタレントは、利用中に戻せません。
+                                                                                                                            表示する・表示しない
+                     ● 利用をやめたタレントの情報（投稿の実績、写真など）は、半年間残し、その後は自動で削除します。削除した
+                                                                             4    自動投稿          ボタン   動作中／停止中               「止める」を押すと、このタ
+                           情報は、元に戻せません。
+                                                                                                                            レントの自動投稿を止め、予
+                     ● フォロワー数の目標は、マネージャーがタレントごとに変えられます。                                                                     約済みの投稿を取り消す。止
+                     ● 【要確認】AIコーチの声かけを止める条件（利用終了のときのほかに、利用中のタレントについて一時的に止                                                   めている間は「再開する」を
+                           める場合があるか）を、今後確認します。                                                                              表示する
+
+                     ● 【要確認】（確認41）マネージャーごとの担当を登録する方法（カテゴリーごとか、タレントごとか）を、今    5    カテゴリー         選択    このタレントに付けたカテゴリー。複     「＋付ける」で、カテゴリー
+パソコンと同じ画面を、表示がずれ
+                           後確認します。                                                                    数付けられる                を付ける・外す
+ない形で表示します。
+                                                                             6    担当のマネージャー     選択    このタレントの担当のマネージャー      このタレントの担当のマネー
+                                                                                                                            ジャーを選ぶ
+
+                                                                             7    フォロワー数の目標     入力    SNS ごとの目標の人数（最初の値は1   「保存する」を押すと、すぐ
+                                                                                                      万人）、達成の期限             に反映する
+
+                                                                             8    今月のご利用        表示    今月の動画生成回数、動画生成の料      —
+                                                                                                      金、AI の利用料
+
+                                                                             9    AIコーチの声かけ     ボタン   止める条件が決まってから、表示する     「止める」を押すと、このタ
+                                                                                                      かを決める                 レントへの AIコーチの声かけ
+                                                                                                                            を止める
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                      13 / 34 ページ
+",Đối chiếu phạm vi sửa FV-001; không suy duyệt khách từ nội dung nguồn.,REQ-0020;TRANS-0009,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0519,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A52:I52; hàng vật lý,"A52: 52.0
+B52: アカウント
+C52: 利用前から利用中への切り替え
+D52: 46341.0
+E52: Câu hỏi: Talent chuyển từ 利用前 sang 利用中 khi nào? Ở 利用前, talent dùng được những gì?
+Vì sao cần hỏi: Trạng thái quyết định thời điểm AIコーチ bắt đầu nhắn tin, bắt đầu tính tiền và cách hiển thị trên danh sách talent.
+Tài liệu đang nói:
+- 概要要件定義書 改訂版 (7-3): có 3 trạng thái 利用前・利用中・利用終了, nhưng không ghi điều kiện chuyển 利用前 → 利用中.
+- UC-01, UC-03: sau 承認 → đăng nhập lần đầu → đăng ký thanh toán (tạo thư mục OneDrive, dùng được AIコーチ) → kết nối SNS.
+- UC-01 前提: manager chưa đăng ký thông tin talent thì AIコーチ chưa đưa 投稿案.
+Lựa chọn:
+- A: Tự chuyển sang 利用中 khi talent đăng ký thanh toán xong.
+- B: Tự chuyển khi manager đăng ký xong thông tin talent (cần cách nhận biết, xem câu 54).
+- C: Manager tự chuyển bằng tay trên màn quản lý.
+AMCOLAB đề xuất: A, khớp với UC-03 (đăng ký thanh toán xong mới dùng được AIコーチ).
+F52: 【確認事項】タレントの状態は、どの時点で「利用前」から「利用中」に切り替わりますか。また、「利用前」の間にタレントが使える機能をご教示ください。
+【確認の背景】状態により、AIコーチの声かけの開始、課金の開始、タレント一覧での表示が決まるためです。
+【現在の資料の記載】
+・概要要件定義書 改訂版(7-3):利用前・利用中・利用終了の3状態。利用前から利用中への切り替えの条件は記載なし。
+・UC-01、UC-03:承認 → 最初のログイン → 支払い方法の登録(タレント別フォルダの作成、AIコーチの利用開始)→ SNSの接続。
+・UC-01 前提:マネージャーがタレントの情報を登録するまでは、AIコーチは投稿案を出さない。
+【選択肢】
+・A:タレントが支払い方法の登録を終えた時点で、自動で利用中にする。
+・B:マネージャーがタレントの情報の登録を終えた時点で、自動で利用中にする(判定方法はNo.54)。
+・C:マネージャーが管理画面で手動で切り替える。
+【AMCOLABからのご提案】UC-03(支払い方法の登録後にAIコーチを利用)と一致するため、Aを提案いたします。
+I52: Open",Đối chiếu phạm vi sửa FV-001; không suy duyệt khách từ nội dung nguồn.,REQ-0020;TRANS-0009,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0520,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A53:I53; hàng vật lý,"A53: 53.0
+B53: 課金
+C53: 月額使用料の課金開始日
+D53: 46341.0
+E53: Câu hỏi: Tiền tháng (月額) tính từ ngày manager 承認, hay từ ngày talent đăng ký thanh toán? Talent đã được 承認 nhưng không đăng ký thanh toán thì xử lý thế nào?
+Vì sao cần hỏi: Quyết định tháng đầu tiên bị tính tiền và cách xử lý talent bỏ dở giữa chừng.
+Tài liệu đang nói:
+- 概要要件定義書 改訂版 (5-4): tháng đầu thu đủ một tháng dù bắt đầu giữa tháng; không ghi ngày bắt đầu tính.
+- UC-03: talent đăng ký thanh toán lúc đăng nhập lần đầu.
+Lựa chọn:
+- A: Tính từ ngày đăng ký thanh toán.
+- B: Tính từ ngày 承認.
+AMCOLAB đề xuất: A. Talent không đăng ký thanh toán thì giữ ở 利用前, không tính tiền, manager thấy được trong danh sách để liên lạc.
+F53: 【確認事項】月額使用料は、マネージャーが承認した日と、タレントが支払い方法を登録した日の、どちらから課金を始めますか。また、承認後に支払い方法を登録しないタレントは、どのように扱いますか。
+【確認の背景】最初に請求する月と、登録を途中でやめたタレントの扱いが決まるためです。
+【現在の資料の記載】
+・概要要件定義書 改訂版(5-4):月の途中で利用を始めた場合も、最初の月は1か月分をいただく。課金を始める日は記載なし。
+・UC-03:タレントは、最初のログインのときに支払い方法を登録する。
+【選択肢】
+・A:支払い方法を登録した日から課金する。
+・B:承認した日から課金する。
+【AMCOLABからのご提案】Aを提案いたします。支払い方法を登録しないタレントは利用前のままとし、課金せず、マネージャーがタレント一覧で確認して連絡できるようにします。
+G53: 【2026/11/17】議事録の例(11月17日に登録したら12月16日まで)にある「登録日」は、タレントが支払い方法を登録した日(弊社のご提案A)でよろしいでしょうか。
+H53: [17/11/2026] ""Ngày đăng ký"" trong ví dụ của biên bản (đăng ký 17/11 thì tới 16/12) có phải là ngày Talent đăng ký phương thức thanh toán (đề xuất A của AMCOLAB) không?
+I53: Open",Đối chiếu phạm vi sửa FV-001; không suy duyệt khách từ nội dung nguồn.,REQ-0020;TRANS-0009,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0521,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 33 từ1","  業務フロー           事務所アカウントで投稿する                                                                                   事務所の SNS で投稿するときの流れだよ
+
+
+ T-01   タレントのアプリの画面      M-01    管理画面の画面   外部のサービス   その作業でつなぐ、AI育成OS の外のサービス       点線の枠   分かれ道と補足
+
+
+  1     事務所アカウントを作り、投稿するまで
+
+                                              2                                                                       5
+
+
+                                                     事務所アカウントのフ                                                           決めた時刻に、SNS
+         AI育成OS                                      ォルダを作る                                                               に投稿する
+
+
+
+
+                     1                                                3                         4
+                                                                          事務所アカウントの                 SNS をつなぎ、投稿
+                            事務所アカウントを作
+                                                                          ID で、タレントのア               案を採用する。投稿の
+                            る
+         マネージャー                                                           プリにログインする                 前の承認は行わない
+                                M-12
+                                                                           T-02                     T-05   T-10
+
+
+
+
+         外部の                                               OneDrive                                  投稿サービス、SNS            投稿サービス、SNS
+         サービス
+
+
+
+  2     この業務フローの前提条件
+ ●    事務所アカウントは、月額使用料の課金の対象になりません。動画生成の料金は請求せず、アデッソ様の社内で清算                     ●   ユニットのアカウントは、事務所アカウントとして扱います。
+      していただきます。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                        33 / 34 ページ
+",Đối chiếu phạm vi sửa FV-002; không suy duyệt khách từ nội dung nguồn.,REQ-0092;REQ-0117;REQ-0118;REQ-0125,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0522,SD-T18,source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8,"SD-T18 bản18/11/2026, trang PDF 23 từ1","  業務フロー           自動投稿                                                                                       テーマと期間を決めて、おまかせで投稿する流れだよ
+
+
+ T-01   タレントのアプリの画面   M-01    管理画面の画面          外部のサービス   その作業でつなぐ、AI育成OS の外のサービス       点線の枠   分かれ道と補足
+
+
+  1     自動投稿を設定し、投稿するまで
+
+                  1                                                      3                                              5
+                         投稿の前の確認、テー                                           「投稿の前に確認」を
+                                                                                                                            投稿の状態と結果を見
+                         マ、写真・動画、期間                                           選んだタレントは、投
+                                                                                                                            る
+         タレント            を決める                                                 稿の内容を確かめる
+                                                                                                                            T-14
+                             T-08                                              T-10
+
+
+
+
+                                                  2                                                  4
+
+                                                                                                         投稿を予約し、決めた
+                                                         期間中の投稿の文章と
+         AI育成OS                                                                                          時刻に SNS に投稿す
+                                                         ハッシュタグを作る
+                                                                                                         る
+
+
+
+
+         外部の                        OneDrive                       AI                                     投稿サービス、SNS
+         サービス
+
+
+
+  2     この業務フローの前提条件
+ ●    自動投稿にするか、投稿の前に確認するかは、タレントが自分で設定します。                                          ●   【要確認】自動投稿の進め方（投稿案を出す頻度、期間中の投稿の本数、画面の項目）は、AIへの指示で調整できる形
+                                                                                       で、今後ご提案します。
+ ●    写真・動画は、タレントが用意します。文章とハッシュタグは、AI が作ります。
+
+
+
+
+AI育成OS 画面定義書（タレントのアプリ）                                                                                                                   23 / 28 ページ
+",Đối chiếu phạm vi sửa FV-002; không suy duyệt khách từ nội dung nguồn.,REQ-0092;REQ-0117;REQ-0118;REQ-0125,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0523,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 30 từ1","  業務フロー           AIコーチへの指示と設定                                                                                         モモへの指示を登録する流れだよ
+
+
+ T-01   タレントのアプリの画面      M-01    管理画面の画面   外部のサービス    その作業でつなぐ、AI育成OS の外のサービス          点線の枠   分かれ道と補足
+
+
+  1     指示と設定を登録し、AIコーチに反映するまで
+
+                                                                                                                              6
+                                                                                                                                  AIコーチの声か
+                                                                                                                                  けと投稿案を受け
+         タレント                                                                                                                     取る
+                                                                                                                                  T-09
+
+
+
+
+                                                                                                             5
+                                                                                                                 AIコーチが、指
+                                                                                                                 示と設定に基づい
+         AI育成OS                                                                                                  て、声かけと投稿
+                                                                                                                 案を作る
+
+
+
+
+                     1                      2                      3                          4
+                                                                          AIへの指示を書                声かけの時刻・日
+                            カテゴリーを作                                       き、試してから保
+                                                   タレントの情報を                                       数と、使ってはい
+                            り、タレントに付                                      存する
+                                                   入力する                                           けない言葉を設定
+         マネージャー             ける
+                                                     M-20                  M-14                   する
+                                M-13
+                                                                           M-15                   M-17
+
+
+
+
+         外部の                                    OneDrive、ChatGPT       OneDrive、ChatGPT                                  AI
+         サービス
+
+
+
+  2     この業務フローの前提条件
+ ●    指示は、全体・カテゴリー・タレントの3つの単位で登録します。内容が重なった場合は、タレントごと、カテゴリ                         ●   【要確認】カテゴリーごとの指示の作り方は、今後検討します。
+      ーごと、全体の順に優先します。                                                              ●   【要確認】タレントの情報として入力する項目（プロフィール、方向性、趣味・特技、将来の目標、口調）は、今後
+ ●    タレントの情報と指示の確認・変更は、管理画面と ChatGPT のどちらからでも行えます。OneDrive のファイル                      確認します。
+      は、直接変更しません。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                       30 / 34 ページ
+",Đối chiếu phạm vi sửa FV-002; không suy duyệt khách từ nội dung nguồn.,REQ-0092;REQ-0117;REQ-0118;REQ-0125,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0524,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P304–P304, đếm mọi đoạn từ1",タレントの Instagram・TikTok・YouTube のアカウントを投稿サービス（Upload-Post）につなぐ操作は、次の流れです。AI育成OS が、そのタレント専用の接続用の画面を出します。タレントが、その画面で、自分の Instagram・TikTok・YouTube にログインしてつなぎます。※Upload-Post は、現在想定している SNS 投稿サービスです。,Đối chiếu phạm vi sửa FV-003; không suy duyệt khách từ nội dung nguồn.,REQ-0078;BR-0060;FLOW-0004-M03,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0525,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P742–P743, đếm mọi đoạn từ1","タレントが、アプリで「SNS をつなぐ」を押すと、タレント専用の接続用の画面を出します。タレントが、Instagram・TikTok・YouTube に自分でログインしてつなぎます。
+接続用の画面の期限は48時間です。期限が切れた場合は、アプリから出し直せます。",Đối chiếu phạm vi sửa FV-003; không suy duyệt khách từ nội dung nguồn.,REQ-0078;BR-0060;FLOW-0004-M03,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0526,SD-T18,source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8,"SD-T18 bản18/11/2026, trang PDF 9 từ1","  T-05    SNS の接続                                                                   SNS をつなぐと、投稿できるようになるよ
+
+
+ 画面イメージ
+                         1       この画面ですること
+                         タレントが、Instagram・TikTok・YouTube の接続の状態を確かめ、つなぐ・つなぎ直す画面です。つなぐ操作は、タレント
+                         本人が行います。3つすべてをつながなくても利用を始められ、AI育成OS は、つないだ SNS だけに投稿します。
+                         使う人      タレント（スマートフォン）          使う場面    UC-03 タレントが利用を始める
+
+                         前後の画面
+
+                                                                                        Instagram・TikTok・YouTube のログインと許可の
+                             T-04 はじめに行うこと     T-06 マイページ
+                                                                 ▶   T-05 SNS の接続   ▶   画面（AI育成OS の外）
+                             T-15 お知らせ     T-16 ご利用とお支払い
+                                                                                        T-06 マイページ
+
+                         業務フロー           利用を始めるまで（21ページ）
+
+
+
+
+                         2       項目の説明
+                         No.     項目                 種類      表示する内容・表示する条件                      操作したときの動き
+
+                             1   SNS ごとの接続の状態       表示      Instagram・TikTok・YouTube のそれぞれにつ   —
+                                                            いて、接続済み・つながっていない・接続切れ
+
+                             2   「つなぐ」「つなぎ直す」       ボタン     つながっていない SNS には「つなぐ」、接続が           その SNS のログインと許可の画面を開く。
+                                                            切れた SNS には「つなぎ直す」を表示する             タレントが許可すると、この画面に戻り、
+                                                                                               状態が「接続済み」に変わる
+
+                             3   「マイページへ」           ボタン     常に表示                               T-06 マイページを開く
+
+
+
+
+                         3       前提条件
+                         ●   SNS をつなぐ操作は、タレント本人が、この画面から行います。
+                         ●   AI育成OS は、投稿サービスと API でつなぎます。投稿サービスの画面は開きません。「つなぐ」を押したときに開くのは、その SNS のログ
+                             インと許可の画面です。
+                         ●   1つの SNS につなげるアカウントは、1つです。ユニットのアカウントは、事務所アカウントとして扱います。
+                         ●   3つの SNS をすべてつながなくても、利用を始められます。AI育成OS は、つないだ SNS だけに投稿します。
+
+
+
+
+AI育成OS 画面定義書（タレントのアプリ）                                                                                                9 / 28 ページ
+",Đối chiếu phạm vi sửa FV-003; không suy duyệt khách từ nội dung nguồn.,REQ-0078;BR-0060;FLOW-0004-M03,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0527,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P774–P774, đếm mọi đoạn từ1",取り込んだ実績を、タレントのフォルダのファイルに書きます。AIコーチが、翌朝から読み込んで使います。,Đối chiếu phạm vi sửa FV-004; không suy duyệt khách từ nội dung nguồn.,REQ-0094;REQ-0169;FLOW-0021-M02;FLOW-0009-M05,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0528,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P821–P821, đếm mọi đoạn từ1",AIコーチは、OneDrive のフォルダにあるファイルを毎朝読み込んで使います。マネージャーがファイルの内容を書き換えると、開発を伴わずに、翌朝から AIコーチの動きに反映されます。,Đối chiếu phạm vi sửa FV-004; không suy duyệt khách từ nội dung nguồn.,REQ-0094;REQ-0169;FLOW-0021-M02;FLOW-0009-M05,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0529,KS,source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82,確認事項!A15:F15; hàng vật lý,"A15: 1
+B15: 前提 UC-02-3
+F15: AIコーチは、OneDrive のファイルに登録された内容を毎朝読み込み、その日の声かけと投稿案に使います。",Đối chiếu phạm vi sửa FV-004; không suy duyệt khách từ nội dung nguồn.,REQ-0094;REQ-0169;FLOW-0021-M02;FLOW-0009-M05,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0530,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 9 từ1","  M-06     タレント一覧                                                                                    タレントみんなの様子が、ひと目で分かるよ
+
+
+ 画面イメージ（パソコンで表示したとき）
+                                                                             1     この画面ですること
+                                                                             マネージャーが、タレント全員の状態をまとめて見る画面です。すべてのマネージャーが、すべ
+                                                                             てのタレントの情報を見られます。事務所アカウントも、同じ一覧に並びます。
+                                                                             使う人    マネージャー（パソコン。スマートフォンでも表示できます）            使う場面   UC-09 投稿の実
+                                                                             績を確かめる、UC-10 マネージャーがタレントの状況を確かめる
+
+                                                                             前後の画面
+
+                                                                             左のメニュー
+                                                                                                                           M-07 タレントの詳細（情報）
+                                                                             M-03 申し込みの確認            ▶   M-06 タレント一覧   ▶
+                                                                                                                           M-12 事務所アカウントの作成
+                                                                             M-12 事務所アカウントの作成
+
+                                                                             業務フロー      実績と目標を確かめる（26ページ）
+
+
+
+
+                                                                             2     項目の説明
+                                                                             No.   項目          種類    表示する内容・表示する条件          操作したときの動き
+
+                                                                              1    検索と絞り込み     選択    氏名での検索。ステータス、投稿        条件に合うタレントだけを
+                                                                                                     のない日数、カテゴリー、担当で        表示する
+                                                                                                     の絞り込み
+
+                                                                              2    タレントの一覧     ボタン   名前、ステータス（利用前・利用        行を押すと、M-07 を開く
+                                                                                                     中・利用終了）、投稿の承認を使
+                                                                                                     うか、自動投稿の状態、SNS ごと
+                                                                                                     の接続の状態、SNS ごとのフォロ
+                                                                                                     ワー数、最後の投稿、投稿のない
+                                                                                                     日数
+
+                                                                              3    「＋ 事務所アカウ   ボタン   常に表示                   M-12 事務所アカウントの
+スマートフォンで表示したとき
+                       3    前提条件                                                   ント」                                      作成を開く
+
+                     ●     すべてのマネージャーが、すべてのタレントの情報を見られます。
+                     ●     事務所アカウントも、同じ一覧に並びます。
+                     ●     【要確認】（確認41）マネージャーごとの担当を登録する方法（カテゴリーごとか、タレントごとか）
+                           を、今後確認します。
+
+
+
+パソコンと同じ画面を、表示がずれ
+ない形で表示します。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                      9 / 34 ページ
+",Đối chiếu phạm vi sửa FV-005; không suy duyệt khách từ nội dung nguồn.,REQ-0090;REQ-0092;BR-0069;FLOW-0024-M04;FLOW-0024-A01.01;FLOW-0024-E01.01;FLOW-0024-E02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0531,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 15 từ1","  M-12     事務所アカウントの作成                                                                       事務所の SNS で投稿するアカウントを作るよ
+
+
+ 画面イメージ（パソコンで表示したとき）
+                                                                     1     この画面ですること
+                                                                     マネージャーが、アデッソ様の事務所の SNS アカウントで投稿するためのアカウントを作る画面
+                                                                     です。事務所アカウントは、月額使用料の課金の対象になりません。投稿は、マネージャーが、
+                                                                     タレントのアプリに事務所アカウント用の ID でログインして行います。事務所アカウントの投
+                                                                     稿は、投稿の前の承認を行いません。
+                                                                     使う人    マネージャー（パソコン。スマートフォンでも表示できます）          使う場面   UC-12 事務所ア
+                                                                     カウントで投稿する
+                                                                     前後の画面
+
+                                                                     M-06 タレント一         M-12 事務所アカウント       M-06 タレント一覧（「事務所」の印を
+                                                                                    ▶                   ▶
+                                                                     覧                  の作成                 付けて並ぶ）
+
+                                                                     業務フロー        事務所アカウントで投稿する（33ページ）
+
+
+
+
+                                                                     2     項目の説明
+                                                                     No.   項目           種類    表示する内容・表示する条件       操作したときの動き
+
+                                                                      1    名前           入力    事務所アカウントの名前         —
+
+                                                                      2    ログイン用のメー     入力    タレントのアプリにログインする     —
+                                                                           ルアドレス              ためのメールアドレス
+
+                                                                      3    「作る」         ボタン   1・2 を入力したときに押せる     事務所アカウントを作り、
+                                                                                                                  OneDrive に事務所アカウ
+                                                                                                                  ントのフォルダを作る。
+                                                                                                                  M-06 に戻る
+
+                                                                      4    「やめる」        ボタン   常に表示                作らずに、M-06 に戻る
+
+
+スマートフォンで表示したとき
+                       3    前提条件
+                     ●     事務所アカウントは、月額使用料の課金の対象になりません。
+                     ●     事務所アカウントの投稿は、マネージャーが行います。投稿の前の承認は行いません。
+                     ●     動画生成の料金は請求せず、アデッソ様の社内で清算していただきます。
+                     ●     ユニットのアカウントは、事務所アカウントとして扱います。
+
+
+
+パソコンと同じ画面を、表示がずれ
+ない形で表示します。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                           15 / 34 ページ
+",Đối chiếu phạm vi sửa FV-005; không suy duyệt khách từ nội dung nguồn.,REQ-0090;REQ-0092;BR-0069;FLOW-0024-M04;FLOW-0024-A01.01;FLOW-0024-E01.01;FLOW-0024-E02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0532,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P767–P767, đếm mọi đoạn từ1",マネージャーが、管理画面で、投稿の指示を出し、写真・動画を送り、投稿案を確かめて採用します。投稿は、タレントの投稿と同じ流れで行います。,Đối chiếu phạm vi sửa FV-005; không suy duyệt khách từ nội dung nguồn.,REQ-0090;REQ-0092;BR-0069;FLOW-0024-M04;FLOW-0024-A01.01;FLOW-0024-E01.01;FLOW-0024-E02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0533,KS,source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82,確認事項!A109:F109; hàng vật lý,"A109: 1
+B109: 前提 UC-12-2
+F109: アデッソ様の事務所の SNS アカウント（事務所アカウント）への投稿も、タレントと同じ機能で行います。マネージャーが、AI育成OS のタレントのアプリに事務所アカウント用の ID でログインし、AIコーチと会話して投稿します。",Đối chiếu phạm vi sửa FV-005; không suy duyệt khách từ nội dung nguồn.,REQ-0090;REQ-0092;BR-0069;FLOW-0024-M04;FLOW-0024-A01.01;FLOW-0024-E01.01;FLOW-0024-E02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0534,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A66:I66; hàng vật lý,"A66: 66.0
+B66: アカウント
+C66: 事務所アカウントの詳細
+D66: 46341.0
+E66: Câu hỏi: ID đăng nhập của 事務所アカウント là email nào? Ai kết nối SNS? Tài khoản này có trạng thái (利用中・利用終了) và xóa được không? Có hiện trong danh sách talent không?
+Vì sao cần hỏi: Tài liệu chỉ ghi manager tạo và đăng nhập lại từng tài khoản; chưa đủ để thiết kế màn tạo và màn danh sách.
+Tài liệu đang nói:
+- 概要要件定義書 改訂版 (UC-12, 6-3 chức năng 1-2, 6-10 chức năng 9-1): manager tạo trên màn quản lý; đăng nhập app talent bằng ID riêng; không tính tiền tháng; không duyệt.
+AMCOLAB đề xuất: Manager nhập email khi tạo; manager kết nối SNS khi đăng nhập app; hiện trong danh sách talent với nhãn 事務所; dùng chung 3 trạng thái như talent.
+F66: 【確認事項】事務所アカウントのログインIDは、どのメールアドレスを使いますか。SNSの接続はどなたが行いますか。事務所アカウントにも状態(利用中・利用終了)があり、削除できますか。タレントの一覧に表示しますか。
+【確認の背景】資料には、マネージャーが作成し、事務所アカウントごとにログインし直して使うことのみが記載されており、作成と一覧の画面を設計するには情報が不足しているためです。
+【現在の資料の記載】
+・概要要件定義書 改訂版(UC-12、6-3 機能1-2、6-10 機能9-1):マネージャーが管理画面で作る。事務所アカウント用のIDでタレントのアプリにログインする。月額使用料の対象外。承認は行わない。
+【AMCOLABからのご提案】作成時にマネージャーがメールアドレスを入力し、SNSの接続はマネージャーがアプリにログインして行います。タレントの一覧に「事務所」の表示を付けて表示し、状態はタレントと同じ3つを使います。
+G66: 【2026/11/17】確認10により、ユニットのアカウントは事務所アカウントとして扱います。確認27により、マネージャーが代わりに投稿するのは事務所アカウントの投稿のみです。ログインIDのメールアドレス、SNSの接続を行う方、状態・削除、タレント一覧での表示は、引き続きご確認事項です。
+H66: [17/11/2026] Theo 確認10: tài khoản unit được coi là 事務所アカウント. Theo 確認27: Manager đăng thay chỉ cho bài của 事務所アカウント. Vẫn cần chốt: email đăng nhập, ai kết nối SNS, trạng thái / xoá, hiển thị trên danh sách Talent.
+I66: Open",Đối chiếu phạm vi sửa FV-005; không suy duyệt khách từ nội dung nguồn.,REQ-0090;REQ-0092;BR-0069;FLOW-0024-M04;FLOW-0024-A01.01;FLOW-0024-E01.01;FLOW-0024-E02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0535,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 23 từ1","  M-20     タレントの情報の入力                                                                                               タレントのことを、モモに教えてね
+
+
+ 画面イメージ（パソコンで表示したとき）
+                                                                                      1     この画面ですること
+                                                                                      マネージャーが、AIコーチに使わせるタレントの情報（プロフィール、方向性、趣味・特技、将
+                                                                                      来の目標、口調）を入力する画面です。入力した情報は、AIコーチが投稿案と声かけを作るとき
+                                                                                      に使います。
+                                                                                      使う人    マネージャー（パソコン。スマートフォンでも表示できます）        使う場面   UC-02 タレント
+                                                                                      の情報を登録する
+
+                                                                                      前後の画面
+
+                                                                                      M-07 タレントの詳細（情         M-20 タレントの情報の       M-07 タレントの詳細（情
+                                                                                                        ▶                    ▶
+                                                                                      報）                     入力                  報）
+
+                                                                                      業務フロー      利用を始めるまで（24ページ）     AIコーチへの指示と設定（30ページ）
+
+
+
+
+                                                                                      2     項目の説明
+                                                                                      No.   項目         種類    表示する内容・表示する条件       操作したときの動き
+
+                                                                                       1    タレントの情報    入力    プロフィール、方向性、趣味・特     —
+                                                                                                             技、将来の目標、口調（文体）。
+                                                                                                             名前は表示だけ
+
+                                                                                       2    「保存する」     ボタン   常に表示                入力した情報を登録し、
+                                                                                                                                 M-07 に戻る。変更の履歴
+                                                                                                                                 を残す
+
+                                                                                       3    「やめる」      ボタン   常に表示                登録せずに、M-07 に戻る
+
+                                                                                       4    変更の履歴      表示    変更した日、変更したマネージャ     —
+スマートフォンで表示したとき                                                                                               ー、変更の内容
+                       3    前提条件
+                     ●     タレントの情報は、OneDrive のタレントごとのフォルダに保存します。OneDrive のファイルは、直接変
+                           更しません。
+
+                     ●     情報の確認と変更は、ChatGPT からも行えます。
+                     ●     【要確認】入力する項目（プロフィール、方向性、趣味・特技、将来の目標、口調）は、今後確認します。
+
+
+パソコンと同じ画面を、表示がずれ
+ない形で表示します。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                          23 / 34 ページ
+",Đối chiếu phạm vi sửa FV-006; không suy duyệt khách từ nội dung nguồn.,FLOW-0006-E01.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0536,KS,source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82,確認事項!A27:J27; hàng vật lý,"A27: 0
+B27: 5.0
+E27: ご提案
+F27: タレントのチャレンジは、マネージャーが ChatGPT に指示して、そのタレントの情報のファイルに登録する前提でよいでしょうか。AIコーチがタレントの投稿の状況を見て、チャレンジをタレントに提案する形も考えられます。どのようなチャレンジを入れたいかも、あわせてお教えください。
+G27: チャレンジ機能は、単に毎日タスクを与えるのではなく、**タレントの成長段階・活動状況・SNSの実績・モチベーションに応じて、AIコーチが最適なタイミングでチャレンジを提案する仕組み**にすることが重要です。
+
+ENTAMAのAI育成OSでは、次のような設計を推奨します。
+
+## **1. どんな状況でチャレンジを提案するか**
+
+AIコーチがタレントの状況を分析し、必要なタイミングでチャレンジを提案します。
+
+| タレントの状況   | AIコーチの判断   | チャレンジ例       |
+| --------- | ---------- | ------------ |
+| 新規登録直後    | 活動習慣を作る    | 自己紹介動画を投稿    |
+| 投稿が止まっている | 活動再開が必要    | 15秒動画を1本投稿   |
+| 投稿が継続している | 次の成長段階へ    | 投稿内容の改善      |
+| フォロワーが停滞  | 新規ファン獲得が必要 | 新しいジャンルに挑戦   |
+| 再生数が伸びている | 成功パターンを強化  | 同じテーマで続編を投稿  |
+| 反応率が低い    | コンテンツ改善が必要 | 冒頭3秒を工夫する    |
+| フォロワーが増加  | 成長を加速させる   | ファンとの交流に挑戦   |
+| 活動意欲が低下   | モチベーション回復  | 簡単な達成型ミッション  |
+| 目標達成が近い   | 最後の後押し     | 目標達成カウントダウン  |
+| 長期間活動が順調  | 新しい能力を育成   | ライブ配信やコラボに挑戦 |
+
+## **2. チャレンジを提案するタイミング**
+
+常にチャレンジを出すのではなく、タレントの状況に合わせて提案することが重要です。
+
+**① 朝：今日のチャレンジ**
+
+通常提案
+
+- 今日の目標を1つ提案
+- 前日の活動結果を反映
+- 無理なく達成できる内容にする
+
+**② 投稿が止まったとき**
+
+活動再開
+
+- 投稿間隔が通常より長くなった場合
+- 簡単なチャレンジから再開
+- 連続達成を目指す
+
+**③ 成果が出たとき**
+
+成長促進
+
+- 再生数やフォロワーが増加
+- 成功した投稿の分析
+- 次のレベルのチャレンジを提案
+
+**④ 成果が停滞したとき**
+
+改善提案
+
+- 投稿内容や反応率を分析
+- 新しい投稿方法を提案
+- 達成可能な小さな目標に変更
+
+**⑤ 目標達成時**
+
+次のステップ
+
+- お祝いメッセージ
+- 次の目標を提示
+- チャレンジの難易度を上げる
+
+## **3. AIコーチとマネージャーの双方向登録システム**
+
+**AIコーチ**
+
+通常の自動提案・個別最適化
+
+**マネージャー**
+
+独自の提案・追加・変更
+
+**共通チャレンジ管理**
+
+登録・編集・優先順位・期限・進捗・達成履歴
+
+**タレント**
+
+提案を受ける・実行する・報告する・達成する
+
+### **登録方法**
+
+**AIコーチの場合**
+
+- SNSデータや活動履歴から必要性を判断
+- 自動でチャレンジを作成
+- タレントに提案
+- 達成状況を確認して次の提案へ
+
+**マネージャーの場合**
+
+- 管理画面からチャレンジを新規作成
+- 対象タレントを指定
+- 目標・期限・内容を入力
+- 登録してタレントに通知
+- 必要に応じてAIコーチにフォローさせる
+
+マネージャーがAI提案を編集した場合は、その変更を優先し、AIが元の内容に戻さない仕組みが必要です。
+
+## **4. チャレンジの難易度を5段階にする**
+
+タレントの成長に合わせて、段階的に難易度を上げます。
+
+| レベル  | チャレンジ内容            |
+| ---- | ------------------ |
+| Lv.1 | 写真を1枚投稿する          |
+| Lv.2 | 15秒の動画を投稿する        |
+| Lv.3 | 反応の良い投稿を分析する       |
+| Lv.4 | 企画を考えて動画を制作する      |
+| Lv.5 | ライブ配信・コラボ・ファン獲得に挑戦 |
+
+いきなり難しい課題を与えず、達成率を見ながらレベルを調整します。
+
+## **5. AIコーチが判断するためのデータ**
+
+開発会社には、次の情報をAIコーチの判断材料にするよう指示してください。
+
+- 最終投稿日時
+- 投稿頻度
+- 投稿継続日数
+- フォロワー増減
+- 動画再生数
+- いいね・コメント・保存数
+- 投稿ごとの反応率
+- 過去のチャレンジ達成率
+- 未達成のチャレンジ数
+- タレントの目標と希望
+- 最近の活動状況や本人の申告
+
+なお、SNSデータが取得できない場合は、タレント本人の報告や活動記録を使って判断します。
+
+## **6. 開発会社への追加指示（重要）**
+
+### AIチャレンジ提案のタイミングと判断ロジックの追加
+
+チャレンジ機能について、AIコーチが単に毎日同じ課題を出すのではなく、タレントの状況を分析し、必要なタイミングで最適なチャレンジを提案する仕様にしてください。
+
+**1. チャレンジ提案の判断条件**
+
+以下の状況をAIが検知し、個別にチャレンジを提案してください。
+
+- 新規登録時：活動開始のための簡単な課題
+- 投稿が止まった時：活動再開のための課題
+- 投稿が継続している時：次の成長につながる課題
+- フォロワーが停滞している時：新しい投稿方法への挑戦
+- 再生数が伸びている時：成功パターンの継続・発展
+- 反応率が低い時：投稿内容の改善
+- フォロワーが増えている時：ファンとの交流強化
+- 活動意欲が低下している時：簡単に達成できる課題
+- 目標達成時：次のステップへの挑戦
+
+**2. 提案タイミング**
+
+朝の定期提案に加え、投稿停止、成果発生、目標達成などのイベントに応じて随時提案できるようにしてください。ただし、提案過多にならないよう、未完了課題数や本人の負担を考慮してください。
+
+**3. 難易度の個別調整**
+
+タレントの経験・実績・達成率に応じてチャレンジの難易度を5段階で調整してください。未達成が続く場合は難易度を下げ、達成が続く場合は少しずつ難易度を上げてください。
+
+**4. 双方向の登録・編集**
+
+通常はAIコーチが自動提案・登録します。一方で、マネージャーも管理画面から自由にチャレンジを登録・追加・編集・変更できるようにしてください。
+
+AIコーチはマネージャーが登録・変更した内容も認識し、タレントへの声かけや進捗フォローを行ってください。マネージャーによる変更内容はAIの自動提案より優先してください。
+
+**5. 個人別の最適化**
+
+100人のタレントがいる場合でも、それぞれのSNS実績、活動状況、目標、成長段階に応じて、100人それぞれに異なるチャレンジを提案できる仕組みにしてください。
+
+目的は、タレントに課題を与えることではなく、AIコーチが一人ひとりの成長を把握し、最適なタイミングで行動を促し、継続的な成長につなげることです。
+
+**私が特に重視するのは、AIが「今、このタレントには何をさせるべきか」を判断することです。**
+
+例えば、投稿が止まっている人に毎日投稿を要求するのではなく、まず簡単な写真投稿から再開させる。一方、再生数が伸びている人には、さらに成長するための動画企画を提案する。
+
+この個別判断ができれば、AIコーチは単なる投稿管理ツールではなく、本当の意味でのタレント育成マネージャーになります。### AIチャレンジ提案のタイミングと判断ロジックの追加
+
+チャレンジ機能について、AIコーチが単に毎日同じ課題を出すのではなく、タレントの状況を分析し、必要なタイミングで最適なチャレンジを提案する仕様にしてください。
+
+**1. チャレンジ提案の判断条件**
+
+以下の状況をAIが検知し、個別にチャレンジを提案してください。
+
+- 新規登録時：活動開始のための簡単な課題
+- 投稿が止まった時：活動再開のための課題
+- 投稿が継続している時：次の成長につながる課題
+- フォロワーが停滞している時：新しい投稿方法への挑戦
+- 再生数が伸びている時：成功パターンの継続・発展
+- 反応率が低い時：投稿内容の改善
+- フォロワーが増えている時：ファンとの交流強化
+- 活動意欲が低下している時：簡単に達成できる課題
+- 目標達成時：次のステップへの挑戦
+
+**2. 提案タイミング**
+
+朝の定期提案に加え、投稿停止、成果発生、目標達成などのイベントに応じて随時提案できるようにしてください。ただし、提案過多にならないよう、未完了課題数や本人の負担を考慮してください。
+
+**3. 難易度の個別調整**
+
+タレントの経験・実績・達成率に応じてチャレンジの難易度を5段階で調整してください。未達成が続く場合は難易度を下げ、達成が続く場合は少しずつ難易度を上げてください。
+
+**4. 双方向の登録・編集**
+
+通常はAIコーチが自動提案・登録します。一方で、マネージャーも管理画面から自由にチャレンジを登録・追加・編集・変更できるようにしてください。
+
+AIコーチはマネージャーが登録・変更した内容も認識し、タレントへの声かけや進捗フォローを行ってください。マネージャーによる変更内容はAIの自動提案より優先してください。
+
+**5. 個人別の最適化**
+
+100人のタレントがいる場合でも、それぞれのSNS実績、活動状況、目標、成長段階に応じて、100人それぞれに異なるチャレンジを提案できる仕組みにしてください。
+
+目的は、タレントに課題を与えることではなく、AIコーチが一人ひとりの成長を把握し、最適なタイミングで行動を促し、継続的な成長につなげることです。
+H27: チャレンジ機能は、単に毎日タスクを与えるのではなく、**タレントの成長段階・活動状況・SNSの実績・モチベーションに応じて、AIコーチが最適なタイミングでチャレンジを提案する仕組み**にすることが重要です。
+
+ENTAMAのAI育成OSでは、次のような設計を推奨します。
+
+## **1. どんな状況でチャレンジを提案するか**
+
+AIコーチがタレントの状況を分析し、必要なタイミングでチャレンジを提案します。
+
+| タレントの状況   | AIコーチの判断   | チャレンジ例       |
+| --------- | ---------- | ------------ |
+| 新規登録直後    | 活動習慣を作る    | 自己紹介動画を投稿    |
+| 投稿が止まっている | 活動再開が必要    | 15秒動画を1本投稿   |
+| 投稿が継続している | 次の成長段階へ    | 投稿内容の改善      |
+| フォロワーが停滞  | 新規ファン獲得が必要 | 新しいジャンルに挑戦   |
+| 再生数が伸びている | 成功パターンを強化  | 同じテーマで続編を投稿  |
+| 反応率が低い    | コンテンツ改善が必要 | 冒頭3秒を工夫する    |
+| フォロワーが増加  | 成長を加速させる   | ファンとの交流に挑戦   |
+| 活動意欲が低下   | モチベーション回復  | 簡単な達成型ミッション  |
+| 目標達成が近い   | 最後の後押し     | 目標達成カウントダウン  |
+| 長期間活動が順調  | 新しい能力を育成   | ライブ配信やコラボに挑戦 |
+
+## **2. チャレンジを提案するタイミング**
+
+常にチャレンジを出すのではなく、タレントの状況に合わせて提案することが重要です。
+
+**① 朝：今日のチャレンジ**
+
+通常提案
+
+- 今日の目標を1つ提案
+- 前日の活動結果を反映
+- 無理なく達成できる内容にする
+
+**② 投稿が止まったとき**
+
+活動再開
+
+- 投稿間隔が通常より長くなった場合
+- 簡単なチャレンジから再開
+- 連続達成を目指す
+
+**③ 成果が出たとき**
+
+成長促進
+
+- 再生数やフォロワーが増加
+- 成功した投稿の分析
+- 次のレベルのチャレンジを提案
+
+**④ 成果が停滞したとき**
+
+改善提案
+
+- 投稿内容や反応率を分析
+- 新しい投稿方法を提案
+- 達成可能な小さな目標に変更
+
+**⑤ 目標達成時**
+
+次のステップ
+
+- お祝いメッセージ
+- 次の目標を提示
+- チャレンジの難易度を上げる
+
+## **3. AIコーチとマネージャーの双方向登録システム**
+
+**AIコーチ**
+
+通常の自動提案・個別最適化
+
+**マネージャー**
+
+独自の提案・追加・変更
+
+**共通チャレンジ管理**
+
+登録・編集・優先順位・期限・進捗・達成履歴
+
+**タレント**
+
+提案を受ける・実行する・報告する・達成する
+
+### **登録方法**
+
+**AIコーチの場合**
+
+- SNSデータや活動履歴から必要性を判断
+- 自動でチャレンジを作成
+- タレントに提案
+- 達成状況を確認して次の提案へ
+
+**マネージャーの場合**
+
+- 管理画面からチャレンジを新規作成
+- 対象タレントを指定
+- 目標・期限・内容を入力
+- 登録してタレントに通知
+- 必要に応じてAIコーチにフォローさせる
+
+マネージャーがAI提案を編集した場合は、その変更を優先し、AIが元の内容に戻さない仕組みが必要です。
+
+## **4. チャレンジの難易度を5段階にする**
+
+タレントの成長に合わせて、段階的に難易度を上げます。
+
+| レベル  | チャレンジ内容            |
+| ---- | ------------------ |
+| Lv.1 | 写真を1枚投稿する          |
+| Lv.2 | 15秒の動画を投稿する        |
+| Lv.3 | 反応の良い投稿を分析する       |
+| Lv.4 | 企画を考えて動画を制作する      |
+| Lv.5 | ライブ配信・コラボ・ファン獲得に挑戦 |
+
+いきなり難しい課題を与えず、達成率を見ながらレベルを調整します。
+
+## **5. AIコーチが判断するためのデータ**
+
+開発会社には、次の情報をAIコーチの判断材料にするよう指示してください。
+
+- 最終投稿日時
+- 投稿頻度
+- 投稿継続日数
+- フォロワー増減
+- 動画再生数
+- いいね・コメント・保存数
+- 投稿ごとの反応率
+- 過去のチャレンジ達成率
+- 未達成のチャレンジ数
+- タレントの目標と希望
+- 最近の活動状況や本人の申告
+
+なお、SNSデータが取得できない場合は、タレント本人の報告や活動記録を使って判断します。
+
+## **6. 開発会社への追加指示（重要）**
+
+### AIチャレンジ提案のタイミングと判断ロジックの追加
+
+チャレンジ機能について、AIコーチが単に毎日同じ課題を出すのではなく、タレントの状況を分析し、必要なタイミングで最適なチャレンジを提案する仕様にしてください。
+
+**1. チャレンジ提案の判断条件**
+
+以下の状況をAIが検知し、個別にチャレンジを提案してください。
+
+- 新規登録時：活動開始のための簡単な課題
+- 投稿が止まった時：活動再開のための課題
+- 投稿が継続している時：次の成長につながる課題
+- フォロワーが停滞している時：新しい投稿方法への挑戦
+- 再生数が伸びている時：成功パターンの継続・発展
+- 反応率が低い時：投稿内容の改善
+- フォロワーが増えている時：ファンとの交流強化
+- 活動意欲が低下している時：簡単に達成できる課題
+- 目標達成時：次のステップへの挑戦
+
+**2. 提案タイミング**
+
+朝の定期提案に加え、投稿停止、成果発生、目標達成などのイベントに応じて随時提案できるようにしてください。ただし、提案過多にならないよう、未完了課題数や本人の負担を考慮してください。
+
+**3. 難易度の個別調整**
+
+タレントの経験・実績・達成率に応じてチャレンジの難易度を5段階で調整してください。未達成が続く場合は難易度を下げ、達成が続く場合は少しずつ難易度を上げてください。
+
+**4. 双方向の登録・編集**
+
+通常はAIコーチが自動提案・登録します。一方で、マネージャーも管理画面から自由にチャレンジを登録・追加・編集・変更できるようにしてください。
+
+AIコーチはマネージャーが登録・変更した内容も認識し、タレントへの声かけや進捗フォローを行ってください。マネージャーによる変更内容はAIの自動提案より優先してください。
+
+**5. 個人別の最適化**
+
+100人のタレントがいる場合でも、それぞれのSNS実績、活動状況、目標、成長段階に応じて、100人それぞれに異なるチャレンジを提案できる仕組みにしてください。
+
+目的は、タレントに課題を与えることではなく、AIコーチが一人ひとりの成長を把握し、最適なタイミングで行動を促し、継続的な成長につなげることです。
+
+**私が特に重視するのは、AIが「今、このタレントには何をさせるべきか」を判断することです。**
+
+例えば、投稿が止まっている人に毎日投稿を要求するのではなく、まず簡単な写真投稿から再開させる。一方、再生数が伸びている人には、さらに成長するための動画企画を提案する。
+
+この個別判断ができれば、AIコーチは単なる投稿管理ツールではなく、本当の意味でのタレント育成マネージャーになります。
+I27: AIコーチが、タレントの状況（フォロワーが伸びているとき、伸び悩んでいるときなど）を見てチャレンジを提案します。マネージャーも、AI への指示を通してチャレンジを提案できます。タレントは、提案されたチャレンジを受けるか断るかを選べます。マネージャーの承認は不要です。いつ提案するかと、断られた後に再び提案する時期は、AI への指示で決めます。チャレンジの考え方と全体像は、アデッソ様に文章にして確認シートに書き込んでいただきます。
+J27: チャレンジの方法論と全体像うを明確にする",Đối chiếu phạm vi sửa FV-007; không suy duyệt khách từ nội dung nguồn.,REQ-0120,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0537,GJ,source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0,GJ 合意事項 (nội dung thống nhất) §2,"### 2. チャレンジ（確認5）
+
+- AI コーチが、タレントの状況（フォロワーが伸びているとき、伸び悩んでいるときなど）を見てチャレンジを提案する。マネージャーも、AI への指示を通してチャレンジを提案できる。
+- タレントは、提案されたチャレンジを受けるか断るかを選べる。マネージャーの承認は不要である。
+- 提案のきっかけ（いつ提案するか）と、断られた後に再び提案する時期は、AI への指示で決める必要がある。野中様が、チャレンジの考え方と全体像を文章にして確認シートに書き込む。
+",Đối chiếu phạm vi sửa FV-007; không suy duyệt khách từ nội dung nguồn.,REQ-0120,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0538,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,追加要件!A23:N23; hàng vật lý,"A23: CR-22
+B23: AIコーチ
+C23: チャレンジの進み具合の画面・ゲーム要素
+D23: チャレンジの進み具合を画面で管理する機能、経験値などのゲーム要素(確認5、確認20のご意見)。ファイルに書いてAIが読む形(UC-02)は範囲内。ランキングはSOW 4.2で範囲外。
+G23: 確認5、確認20
+H23: Màn theo dõi tiến độ チャレンジ và yếu tố trò chơi (điểm kinh nghiệm). Ghi チャレンジ vào file cho AI đọc thì nằm trong scope.
+I23: CR
+J23: CR
+K23: 御見積書・SOWの範囲外。優先順位と第1期の要否は別途ご相談。
+N23: お客様のご判断まで着手しない",Đối chiếu phạm vi sửa FV-007; không suy duyệt khách từ nội dung nguồn.,REQ-0120,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0539,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P949–P953, đếm mọi đoạn từ1","アデッソ様からいただいたご要望のうち、次の機能は、進め方をご相談しながら決めます。
+投稿を続ける意欲を高める：ランキングとご褒美（全体の中でだれが伸びているかを見られるようにする）、音声での会話（後から追加し、使う人が課金して使う形）
+対象を広げる：X（旧 Twitter）、TikTok のライブ配信、系列の会社の枠、ファンの利用、取引先の企業の SNS 運用、スポンサーとマーケティング事務所向けの機能
+機能を足す：コメント返信、連絡網、スケジュール管理、SNS 全体で流行しているものの収集、TikTok Shop など収益につながる機能
+仕組みを変える：現在お使いのシステムとの連携（ログインの共通化など）、ローカル環境や自社のサーバーでの AI の運用",Đối chiếu phạm vi sửa FV-008; không suy duyệt khách từ nội dung nguồn.,REQ-0159,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0540,KS,source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82,確認事項!A10:F10; hàng vật lý,"A10: 1
+B10: 前提 UC-01-9
+F10: 将来は、系列の会社の枠や、ファンの利用も考えています。今回どこまで作るかは、ご相談しながら決めます。",Đối chiếu phạm vi sửa FV-008; không suy duyệt khách từ nội dung nguồn.,REQ-0159,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0541,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"word/document.xml w:p P704–P705, đếm mọi đoạn từ1","投稿案を採用したときに、文章とハッシュタグに、一覧の言葉や、それにあたる表現が入っていないかを、AI が文脈も含めて確かめます。AI の判断のため、見逃される可能性があります。
+入っていた場合は、予約せず、タレントに理由を表示し、マネージャーにお知らせします。マネージャーが文章を直すと、予約できます。",Đối chiếu phạm vi sửa FV-009; không suy duyệt khách từ nội dung nguồn.,REQ-0057;BR-0044;FLOW-0013-M07;FLOW-0016-M05;FND-0003,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0542,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,"SD-M18 bản18/11/2026, trang PDF 29 từ1","  業務フロー           使ってはいけない言葉が見つかったとき                                                                             止まった投稿を直して予約する流れだよ
+
+
+ T-01   タレントのアプリの画面      M-01    管理画面の画面   外部のサービス   その作業でつなぐ、AI育成OS の外のサービス       点線の枠   分かれ道と補足
+
+
+  1     言葉が見つかってから、投稿するまで
+
+                     1
+
+                            投稿案を採用する
+         タレント                   T-10
+
+
+
+
+                                              2                      3                                              5
+
+                                                     使ってはいけない言葉
+                                                                          マネージャーに知らせ                                    決めた時刻に、SNS
+         AI育成OS                                      を確かめ、見つかった
+                                                                          る                                             に投稿する
+                                                     ら予約を止める
+
+
+
+
+                                                                                                4
+
+                                                                                                    文章を直して予約する
+         マネージャー                                                                                     M-11
+
+
+
+
+         外部の                                                   AI                                                        投稿サービス、SNS
+         サービス
+
+
+
+  2     この業務フローの前提条件
+ ●    使ってはいけない言葉は、AI が文脈も含めて確かめます。見逃される可能性があります。                               ●   使ってはいけない言葉の一覧は、マネージャーが全体の設定で登録します。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                    29 / 34 ページ
+",Đối chiếu phạm vi sửa FV-009; không suy duyệt khách từ nội dung nguồn.,REQ-0057;BR-0044;FLOW-0013-M07;FLOW-0016-M05;FND-0003,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0543,SD-T18,source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8,"SD-T18 bản18/11/2026, trang PDF 22 từ1","     業務フロー        毎日の投稿                                                                                                              テーマ選びから、投稿の結果を見るまでの流れだよ
+
+
+ T-01   タレントのアプリの画面   M-01   管理画面の画面   外部のサービス   その作業でつなぐ、AI育成OS の外のサービス              点線の枠        分かれ道と補足
+
+
+  1     前半：テーマを決めて、投稿案を採用するまで
+                                        2                                                            4                          5
+                                            テーマを選ぶ。自分で投稿し                                                                             投稿イメージを確かめ、採用
+                                                                                                          写真・動画を送る
+                                            たいテーマを伝えてもよい                                                                              する
+                                                                                                            T-11
+                                            T-07   T-09                                                                                T-10
+         タレント
+
+                                                                                                                                直したいとき：AIコーチへの依頼は2
+                                                                                                                                回までです。自分で書き直すこともで
+                                                                                                                                きます
+
+                  1                                                3                                                                                  6
+                      朝、前日の投稿の結果と、今
+                                                                          投稿案（文章・ハッシュタ                                                                     使ってはいけない言葉が入っ
+         AI育成OS       日のテーマの候補を3つ伝え
+                                                                          グ・何を撮るか）を作る                                                                      ていないかを確かめる
+                      る
+
+
+
+        外部の           AI、スマートフォンへの通知                                                         AI                      OneDrive                                            AI
+        サービス
+
+
+
+
+  2     後半：予約から、投稿の結果を見るまで
+                                                                                                                                11
+                                                                                                                                      投稿の状態と結果を見る
+                                                                                                                                       T-14   T-15
+         タレント
+
+                                                                                                                                投稿できなかったとき：「予約し直
+                                                                                                                                す」を押し、もう一度採用します
+
+
+                                        8                          9                                 10                                               12
+                                                                          決めた時刻に、SNS に投稿                  投稿できたこと、または投稿                                    投稿の実績を取り込み、翌朝
+         AI育成OS                             投稿を予約する
+                                                                          する                              できなかったことを知らせる                                    の声かけに使う
+
+
+
+                  7
+                      承認を依頼された仕事の投稿
+                      を、承認または差し戻す
+                      M-04   M-05
+         マネージャー
+
+                  タレントが承認を依頼しなかった投稿
+                  は、この作業を行いません
+
+
+        外部の                                               投稿サービス       Instagram・TikTok・YouTube               スマートフォンへの通知                                   投稿サービス、OneDrive
+        サービス
+
+
+
+
+  3     この業務フローの前提条件
+ ●    投稿の時刻は、アデッソ様が AIへの指示に書いた時間帯をもとに、AI が決めます。                                             ●     AIコーチへの直しの依頼が2回でも合わない日は、タレントが自分で書き直さない限り、投稿しません。
+ ●    写真・動画は、タレントが用意します。写真・動画が付いていない投稿案は、採用できません。                                           ●     投稿できなかった投稿は、自動では投稿し直しません。タレントまたはマネージャーが、予約し直します。
+                                                                                            ●     【要確認】投稿案を出す頻度（毎日、数日に1回、週1回）は、AIへの指示で変えられる形を基本にして、今後ご提案します。
+
+
+
+
+AI育成OS 画面定義書（タレントのアプリ）                                                                                                                                                 22 / 28 ページ
+",Đối chiếu phạm vi sửa FV-009; không suy duyệt khách từ nội dung nguồn.,REQ-0057;BR-0044;FLOW-0013-M07;FLOW-0016-M05;FND-0003,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0544,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A57:I57; hàng vật lý,"A57: 57.0
+B57: 投稿
+C57: 使ってはいけない言葉の検出後の流れ
+D57: 46341.0
+E57: Câu hỏi: Sau khi phát hiện từ cấm lúc 採用: manager sửa xong thì hệ thống tự đặt lịch hay ai bấm? Talent có cần xác nhận lại văn bản manager đã sửa không? Nếu đã quá giờ đăng thì sao? Bài vừa xin duyệt vừa có từ cấm thì xử lý theo thứ tự nào?
+Vì sao cần hỏi: Tài liệu chỉ ghi ""manager sửa thì đặt lịch được"", chưa đủ để thiết kế luồng.
+Tài liệu đang nói:
+- 概要要件定義書 改訂版 (6-6 chức năng 4-4): không đặt lịch, hiện lý do cho talent, báo manager; manager sửa văn bản thì đặt lịch được.
+- 確認シート (UC-05-3): manager xem và sửa ở màn quản lý.
+AMCOLAB đề xuất:
+- Kiểm từ cấm trước khi gửi yêu cầu duyệt.
+- Manager sửa xong bấm ""予約する"" để đặt lịch; với bài cần duyệt, việc manager sửa được coi là đã duyệt.
+- Quá giờ thì dời sang khung giờ tiếp theo.
+- Báo cho talent biết văn bản đã được sửa.
+F57: 【確認事項】採用時に使ってはいけない言葉が見つかった後の流れについて、ご確認させてください。マネージャーが直した後は、自動で予約しますか、それともどなたかが予約の操作をしますか。マネージャーが直した文章を、タレントがあらためて確認する必要はありますか。投稿の時刻を過ぎていた場合はどうしますか。承認を依頼した投稿に言葉が見つかった場合は、どちらを先に扱いますか。
+【確認の背景】資料には「マネージャーが文章を直すと、予約できます」とあり、流れを設計するには情報が不足しているためです。
+【現在の資料の記載】
+・概要要件定義書 改訂版(6-6 機能4-4):予約せず、タレントに理由を表示し、マネージャーにお知らせ。マネージャーが文章を直すと予約できる。
+・確認シート(UC-05-3):マネージャーが管理画面で確認して直す。
+【AMCOLABからのご提案】
+・承認の依頼を送る前に、使ってはいけない言葉を確かめる。
+・マネージャーが直した後、「予約する」を押して予約する。承認が必要な投稿は、マネージャーが直したことで承認済みとする。
+・投稿の時刻を過ぎていた場合は、次の時間帯に予約する。
+・文章を直したことを、タレントにお知らせする。
+G57: 【2026/11/17】確認28のご決定で、タレントが投稿文を自分で書き直せる形になったため、あわせてご確認させてください。使ってはいけない言葉で止まった投稿は、マネージャーだけが直す形か、タレントも直せる形か。
+H57: [17/11/2026] Vì 確認28 đã cho Talent tự sửa văn bản, xin chốt thêm: bài bị dừng do từ cấm thì chỉ Manager sửa, hay Talent cũng sửa được?
+I57: Open",Đối chiếu phạm vi sửa FV-009; không suy duyệt khách từ nội dung nguồn.,REQ-0057;BR-0044;FLOW-0013-M07;FLOW-0016-M05;FND-0003,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0545,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A71:I71; hàng vật lý,"A71: 71.0
+B71: 投稿
+C71: 自動投稿・要確認と、承認・使ってはいけない言葉の関係
+D71: 46343.0
+E71: Câu hỏi: (1) Thiết lập ""自動投稿 / 要確認"" và lựa chọn khi bắt đầu đăng ""đăng tự động / đăng 1 lần"" là một hay hai việc khác nhau? (2) Bài thuộc loại 仕事 cần khách hàng cho phép thì khi đăng tự động có qua Manager duyệt không? (3) Kiểm tra từ cấm thực hiện ở thời điểm nào, phát hiện thì xử lý ra sao? (4) Talent ""要確認"" chưa xác nhận mà tới giờ đăng thì sao?
+Vì sao cần hỏi: Quyết định bài đăng đi theo đường nào, trạng thái nào, và có nguy cơ bài chưa được phép bị đăng.
+Tài liệu đang nói:
+- Biên bản 17/11 (確認19・25・26): có đăng tự động và đăng có xác nhận, Talent tự chọn bằng ô ""自動投稿"" hoặc ""要確認"". Talent 要確認 thì xác nhận nội dung trước mỗi lần đăng; nếu NG thì AI tạo lại (tối đa 2 lần), vẫn không hợp thì hôm đó không đăng.
+- 概要要件定義書 (5-3, 6-6, 6-9): bài 仕事 xin Manager duyệt; kiểm tra từ cấm khi 採用.
+Cách hiểu của AMCOLAB:
+- ""要確認"" là luồng hiện tại (Talent xem rồi 採用). ""自動投稿"" là đăng không cần xác nhận từng bài.
+- Có thể ô thiết lập (自動投稿 / 要確認) và lựa chọn ""đăng tự động / đăng 1 lần"" là cùng một việc; hoặc là hai trục riêng. Xin cho biết đúng ý nào.
+AMCOLAB đề xuất:
+(2) Bài 仕事 vẫn qua Manager duyệt trước giờ đăng, kể cả đăng tự động (nếu không duyệt kịp thì không đăng).
+(3) Kiểm tra từ cấm ngay khi hệ thống tạo bài; phát hiện thì dừng bài đó và báo Manager (như hiện tại).
+(4) Talent 要確認 chưa xác nhận tới giờ đăng thì không đăng và báo Talent.
+Cần quý công ty phản hồi trước buổi họp 20/11 (thứ Sáu).
+F71: 【確認事項】①「自動投稿/要確認」の設定と、投稿を始めるときの「自動投稿/1回の投稿」の選択は、同じものでしょうか、別のものでしょうか。②クライアントの許可が必要な仕事の投稿は、自動投稿でもマネージャーの承認を経ますか。③使ってはいけない言葉の確認は、いつ行い、見つかったときはどうしますか。④「要確認」のタレントが確認しないまま投稿の時刻になったときは、どうしますか。
+【確認の背景】投稿がどの経路で、どの状態になるかを決めるためです。また、許可を得ていない投稿が出てしまうおそれがあるためです。
+【現在の資料の記載】
+・11月17日の議事録(確認19・25・26):自動投稿と、投稿の前にタレントが確認する確認投稿の両方を設け、タレントが「自動投稿」か「要確認」にチェックを入れて決める。要確認のタレントは、毎回、投稿の前に内容を確認する。NGの場合はAIが作り直し(2回まで)、2回でも合わない場合はその日は投稿しない。
+・概要要件定義書(5-3、6-6、6-9):仕事の投稿はマネージャーに承認を依頼する。使ってはいけない言葉の確認は、採用のときに行う。
+【弊社の理解】
+・「要確認」は、現在の流れ(タレントが内容を見て採用する)にあたります。「自動投稿」は、1本ずつの確認なしで投稿する形です。
+・設定のチェック(自動投稿/要確認)と、投稿を始めるときの選択(自動投稿/1回の投稿)は、同じものの可能性も、別の2つの項目の可能性もあります。どちらかをお知らせください。
+【AMCOLABからのご提案】
+②仕事の投稿は、自動投稿でも、投稿の時刻の前にマネージャーの承認を経ます(間に合わなければ投稿しません)。
+③使ってはいけない言葉は、システムが投稿を作る時点で確認し、見つかった投稿は止めて、マネージャーに知らせます(現在と同じ)。
+④「要確認」のタレントが、確認しないまま投稿の時刻になったときは、投稿せず、タレントにお知らせします。
+11月20日(金)のお打ち合わせまでにご回答をお願いいたします。
+I71: Open",Đối chiếu phạm vi sửa FV-009; không suy duyệt khách từ nội dung nguồn.,REQ-0057;BR-0044;FLOW-0013-M07;FLOW-0016-M05;FND-0003,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0546,GJ,source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0,GJ 合意事項 (nội dung thống nhất) §7,"### 7. そのほかの項目
+
+| 確認シートの項目                                            | 決まったこと                                                                                                                                                           |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 確認2 未成年の表示                                          | 未成年ではなく、18歳未満を表示の対象にする（TikTok のライブ配信が18歳以上のため）                                                                                      |
+| 確認3 フォロワー数の目標                                    | タレントごとにマネージャーが変えられる形で問題ない                                                                                                                     |
+| 確認4 使ってはいけない表現                                  | 今は思い当たる表現がないため、導入のときにご共有いただく                                                                                                               |
+| 確認6 指示の単位（全体・カテゴリー・タレント）              | この方向で進める。カテゴリーごとの指示をどう作るかは、弊社が検討する                                                                                                       |
+| 確認7 「試してみる」                                        | ご記入は文言の確認で、内容は問題ない                                                                                                                                   |
+| 確認8 書き出しの部品                                        | 「書き出しの部品」は必要ない（ご記入の「部品」は、口調、話題、方向性などの書き出しの内容の意味）。AI にタレントの情報を入れる画面は別に必要になる                                                                   |
+| 確認9 SNS のつなぎ込み                                      | タレント本人が行う                                                                                                                                                     |
+| 確認10 複数のアカウント                                     | 1つの SNS に複数のアカウントはつながない。ユニットのアカウントに投稿すると、その分の料金がタレントにかかるためである。ユニットのアカウントは会社のアカウントとして扱う |
+| 確認11・12 SNS をすべてつながない場合、通知を許可しない場合 | どちらもサービスを始められる前提で進める                                                                                                                               |
+| 確認22 続けて投稿した日数の数え方                           | 「続けて投稿した日数」は、タレントが1日に1本以上投稿した日を数え、投稿のない日があると1日目から数え直すかは、運用しながら決める                                                                                                                                                     |
+| 確認27 マネージャーの代わりの投稿                           | ご記入の「タレント、事務所アカウント両方」は取り下げ。マネージャーが代わりに投稿するのは、アデッソ様の事務所アカウントの投稿とする |
+| 確認28・29 投稿案の書き直し                                 | タレントが自分で書き直せる（AI の言い回しが丁寧すぎることがあるため）。AI への作り直しの依頼は2回まで                                                                  |
+| 確認34 承認の依頼の宛先                                     | カテゴリーごと、または担当マネージャーごとに知らせる形で対応する                                                                                                       |
+| 前提 UC-06-3 AI で作った動画の表示                          | SNS の規約で、AI で作った・加工した動画にはその旨の表示が必要である。表示する                                                                                          |
+| 確認37 1日の投稿本数                                        | 上限を設けない                                                                                                                                                         |
+| 確認43 マネージャーからタレントへの助言                     | マネージャーが AI に指示し、AI コーチがタレントに伝える。仕事の案内などの、マネージャーからタレントへの直接のメッセージは、今回は作らず、次のフェーズの段階とする |
+| 確認47 カテゴリーの機能                                     | 今回対応する                                                                                                                                                           |
+| 確認56 退会したタレントを「利用中」に戻す操作               | 管理画面で、退会したタレントのステータスを「利用中」に戻せなくてよい |
+
+---
+",Đối chiếu phạm vi sửa FV-010; không suy duyệt khách từ nội dung nguồn.,BR-0031;FLOW-0021-A02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0547,KS,source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82,確認事項!A55:I55; hàng vật lý,"A55: 0
+B55: 22.0
+E55: 想定の確認
+F55: AIコーチがタレントに伝える「続けて投稿した日数」は、タレントが1日に1本以上投稿した日を数え、投稿のない日があると1日目から数え直す前提でよいでしょうか。
+H55: 続けて投稿した日数の数え方
+I55: 続けて投稿した日数の数え方は、運用しながら決めます。",Đối chiếu phạm vi sửa FV-010; không suy duyệt khách từ nội dung nguồn.,BR-0031;FLOW-0021-A02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0548,SD-T18,source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8,"SD-T18 bản18/11/2026, trang PDF 10 từ1","  T-06    マイページ                                                               ここがあなたのお部屋！全部ここから行けるよ
+
+
+ 画面イメージ
+                         1       この画面ですること
+                         タレントが、自分のフォロワー数と目標、これまでの投稿をまとめて見る画面です。丸いボタンから、AIコーチとの会話、今
+                         日の投稿案、動画、投稿の予定、送った写真・動画へ移ります。
+                         使う人      タレント（スマートフォン）          使う場面   UC-09 投稿の実績を確かめる
+
+                         前後の画面
+
+                                                             T-05 SNS の接続   T-07 ホーム
+
+                                                             T-09 AIコーチとの会話    T-11 写真・動画の送付
+                             下のメニュー     ▶   T-06 マイページ   ▶
+                                                             T-12 動画の作成     T-14 投稿の予定と結果
+
+                                                             T-16 ご利用とお支払い
+
+                         下のメニュー       家の印：T-07 ホーム／吹き出しの印：T-09 AIコーチとの会話／プラスの印：T-11 写真・動画の送付／カレンダーの印：
+                         T-14 投稿の予定と結果／人の印：T-06 マイページ
+
+                         業務フロー        実績と目標を確かめる（25ページ）
+
+
+
+
+                         2       項目の説明
+                         No.     項目                種類     表示する内容・表示する条件                     操作したときの動き
+
+                             1   名前、投稿の本数、続けて      表示     ログインしているタレントの名前、これまでの投            —
+                                 投稿した日数                   稿の本数、続けて投稿した日数
+
+                             2   SNS ごとのフォロワー数と    表示     つないでいる SNS ごとのフォロワー数、目標の          —
+                                 目標                       人数、目標に対する割合の棒
+
+                             3   「SNS の接続」         ボタン    常に表示                              T-05 を開く
+
+                             4   「ご利用とお支払い」        ボタン    常に表示                              T-16 を開く
+
+                             5   丸いボタン（モモ・今日の      ボタン    常に表示                              モモ：T-09／今日の案：T-07／動画：T-12
+                                 案・動画・予定・素材）                                                ／予定：T-14／素材：T-11 を開く
+
+                             6   これまでの投稿           表示     投稿に使った写真・動画の一覧。承認待ち・予約            押した投稿の T-10 を開く
+                                                          済み・失敗の投稿には、状態の印を付ける
+
+
+
+
+                         3       前提条件
+                         ●   フォロワー数の目標は、SNS ごとに1万人を最初の値にします。マネージャーが、タレントごとに変えられます。
+                         ●   タレントが見られるのは、自分の数字と投稿だけです。
+                         ●   「続けて投稿した日数」の数え方は、運用しながら決めます。
+
+
+
+
+AI育成OS 画面定義書（タレントのアプリ）                                                                                             10 / 28 ページ
+",Đối chiếu phạm vi sửa FV-010; không suy duyệt khách từ nội dung nguồn.,BR-0031;FLOW-0021-A02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0549,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A72:I72; hàng vật lý,"A72: 72.0
+B72: 投稿
+C72: チャレンジの判定と連続投稿日数の数え方
+D72: 46343.0
+E72: Câu hỏi: (1) Hệ thống xác định ""đạt thử thách"" bằng cách nào? (2) Trạng thái của thử thách sau khi Talent nhận và thời hạn. (3) Cách đếm ""số ngày đăng liên tục"".
+Vì sao cần hỏi: Cần quy tắc rõ để lập trình; nếu để AI tự phán đoán thì kết quả khó kiểm tra.
+Tài liệu đang nói:
+- Biên bản 17/11 (確認5): AIコーチ đề xuất thử thách theo tình hình Talent; Manager cũng đề xuất được qua chỉ thị cho AI; Talent chọn nhận hoặc từ chối, không cần Manager duyệt. Thời điểm đề xuất và đề xuất lại sau khi bị từ chối do chỉ thị cho AI quyết. 野中様 sẽ viết ý tưởng và tổng quan thử thách vào 確認シート.
+- 確認22: cách đếm số ngày đăng liên tục sẽ quyết trong lúc vận hành.
+AMCOLAB đề xuất:
+(1) Chỉ xử lý thử thách mà hệ thống đếm được bằng số (số ngày đăng liên tục, số bài đăng, số follower tăng). Loại khác chỉ là lời nhắn của AIコーチ, không chúc mừng đạt.
+(2) Trạng thái: đề xuất / đã nhận / từ chối / đang thực hiện / đạt / hết hạn. Thời hạn do AIコーチ đặt khi đề xuất. Mỗi lần chỉ có một thử thách đang thực hiện.
+(3) Số ngày đăng liên tục: đếm ngày có ít nhất 1 bài đăng thành công lên SNS đã kết nối; có ngày không đăng thì quay về 1. Nếu muốn đổi thì quyết trong lúc vận hành (như đã nêu ở 確認22).
+Cần quý công ty phản hồi trước buổi họp 20/11 (thứ Sáu); phần (1)(2) có thể chờ tài liệu của 野中様.
+F72: 【確認事項】①チャレンジの達成を、システムはどのように判定しますか。②タレントが受けた後のチャレンジの状態と、期限。③「続けて投稿した日数」の数え方。
+【確認の背景】プログラムで作るためには、明確な決まりが必要です。AIの判断に任せる場合は、結果を確かめにくいためです。
+【現在の資料の記載】
+・11月17日の議事録(確認5):AIコーチがタレントの状況を見てチャレンジを提案する。マネージャーも、AIへの指示を通して提案できる。タレントは受けるか断るかを選べ、マネージャーの承認は不要。提案のきっかけと、断られた後に再び提案する時期は、AIへの指示で決める。野中様が、チャレンジの考え方と全体像を文章にして確認シートに書き込む。
+・確認22:「続けて投稿した日数」の数え方は、運用しながら決める。
+【AMCOLABからのご提案】
+①システムが数字で数えられるチャレンジ(続けて投稿した日数、投稿の本数、フォロワー数の増加)に限って、達成を判定します。それ以外は、AIコーチの声かけとして扱い、達成のお祝いは行いません。
+②状態は、提案中・受けた・断った・進行中・達成・期限切れとします。期限は、提案のときにAIコーチが決めます。同時に進行するチャレンジは1つとします。
+③続けて投稿した日数は、つないでいるSNSのどれかに、1本以上投稿できた日を数えます。投稿のない日があれば、1日目に戻します。変えたい場合は、確認22のとおり、運用しながら決めます。
+11月20日(金)のお打ち合わせまでにご回答をお願いいたします。①②は、野中様の文章をいただいてからのご確認でも構いません。
+I72: Open",Đối chiếu phạm vi sửa FV-010; không suy duyệt khách từ nội dung nguồn.,BR-0031;FLOW-0021-A02.01,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0550,QA,source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx,Phiên bản/hash nguồn trong SOURCE_REGISTER; mở lại khi sửa 2026-11-19T08:01:28+00:00,d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765,Q&A!A74:I74; hàng vật lý,"A74: 74.0
+B74: タレント情報
+C74: AIにタレントの情報を入れる画面
+D74: 46343.0
+E74: Câu hỏi: Câu trả lời 確認8 nói ""cần thêm màn hình để đưa thông tin Talent vào AI"". Đó là màn hình nào?
+Vì sao cần hỏi: Tài liệu hiện tại không có màn hình nhập thông tin Talent; nếu thêm thì thành màn hình mới.
+Tài liệu đang nói:
+- 概要要件定義書 (UC-02, 6-4 chức năng 2-3): Manager trò chuyện với ChatGPT để đăng ký thông tin Talent (file riêng của Talent trên OneDrive); 管理画面 chỉ hiển thị (画面案 M-07), không sửa.
+- Biên bản 17/11 (確認8): ""部品"" không cần; cần thêm màn hình để đưa thông tin Talent vào AI.
+Phương án:
+- A: Như tài liệu (đăng ký qua project ChatGPT; 管理画面 chỉ hiển thị).
+- B: Thêm màn hình trên 管理画面 để Manager nhập / sửa thông tin Talent (hồ sơ, định hướng, sở thích, sở trường, mục tiêu tương lai).
+AMCOLAB đề xuất: Phương án A ở giai đoạn 1. Nếu chọn B, xin trao đổi riêng về phạm vi.
+Cần quý công ty phản hồi trước buổi họp 20/11 (thứ Sáu).
+F74: 【確認事項】確認8のご回答にある「AIにタレントの情報を入れる画面は別に必要になる」とは、どのような画面でしょうか。
+【確認の背景】現在の資料には、タレントの情報を入力する画面は含まれておらず、追加する場合は新しい画面になるためです。
+【現在の資料の記載】
+・概要要件定義書(UC-02、6-4 機能2-3):マネージャーがChatGPTで会話して、タレントの情報を登録する(OneDriveのタレント別ファイル)。管理画面はその内容を表示するのみで、書き換えない(画面案 M-07)。
+・11月17日の議事録(確認8):「書き出しの部品」は必要ない。AIにタレントの情報を入れる画面は別に必要になる。
+【選択肢】
+・A:資料のとおり(ChatGPTのプロジェクトから登録。管理画面は表示のみ)。
+・B:管理画面に、マネージャーがタレントの情報(プロフィール、方向性、趣味、特技、将来の目標)を入力・変更する画面を設ける。
+【AMCOLABからのご提案】第1フェーズではAを提案いたします。Bの場合は、範囲について別途ご相談させてください。
+11月20日(金)のお打ち合わせまでにご回答をお願いいたします。
+I74: Open",Đối chiếu phạm vi sửa FV-011; không suy duyệt khách từ nội dung nguồn.,REQ-0125;FLOW-0006-M04,"Nội dung nguồn; thẩm quyền xác nhận theo từng mệnh đề, không tự nâng phê duyệt",,Đã mở nguồn; chữ PDF và các hình liên quan được xem riêng. Không chứng nhận vận hành/provider/thương mại.,VERIFIED,"Codex — tác giả sửa, không phải Independent Reviewer",2026-11-19T08:01:28+00:00
+EV-0551,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,"YK2 tên v2, bìa0.1 ngày13/11/2026",30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"UC-12, word/document.xml P473; word/media/image25.png; SHA256 ảnh 741ef926885122fdd6cd8a445c51f885bd8cacfa49e9545e21c0771fa4de7a29",事務所アカウントでログインする,Hình UC-12 vẽ Manager đăng nhập tài khoản văn phòng vào app; P767 lại nói thao tác ở quản trị. Không tự chọn một bản thay khách.,REQ-0092;BR-0069;FLOW-0024;FND-0023,Hình mô tả trong YK2; không là phê duyệt khách,EV-0532,"Đọc trực quan; trích nhãn bước1, không OCR toàn hình hoặc coi đây là quyết định cuối.",VERIFIED,Codex — tác giả sửa,2026-11-19T08:01:28+00:00

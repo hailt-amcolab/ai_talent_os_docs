@@ -28,8 +28,8 @@ Giảm nguy cơ mạng xã hội khóa tài khoản của tài năng, ví dụ k
 3. **Rải giờ đăng giữa các tài năng:** cộng ngẫu nhiên vài phút (mặc định ±10 phút) vào giờ đăng, để nhiều tài năng không đăng cùng một phút.
 4. Đội xem quy định hiện hành của Instagram, TikTok, YouTube về nội dung AI và tần suất đăng, rồi chỉnh tham số trước khi chạy thật.
 5. Upload-Post có giới hạn đăng riêng của từng mạng trong 24 giờ (Instagram 50, TikTok 15, YouTube 30) và giới hạn số request theo gói; các số trong hướng dẫn là thông tin kỹ thuật cần kiểm chứng, không phải trần nghiệp vụ đã duyệt (tài liệu Upload-Post, tra 17/11).
-6. Upload-Post chặn nội dung trùng hoặc gần giống trong 48 giờ trên cùng tài khoản và mạng, và chặn gắn @ quá nhiều. Bài hẹn giờ được kiểm lại số bài lúc tới giờ đăng, nên vẫn có thể bị từ chối (bộ Upload-Post §8.4a, U19).
-7. Giới hạn của chính các mạng (tra 17/11, bộ Upload-Post §8.4a): Instagram 100 bài/24 giờ qua API; TikTok khoảng 15 bài/24 giờ **dùng chung cho mọi ứng dụng**, nên nếu tài năng tự đăng bằng công cụ khác thì hệ thống có thể bị từ chối dù chưa chạm hạn mức quan sát được của hệ thống.
+6. Upload-Post chặn nội dung trùng hoặc gần giống trong 48 giờ trên cùng tài khoản và mạng, và chặn gắn @ quá nhiều. Bài hẹn giờ được kiểm lại số bài lúc tới giờ đăng, nên vẫn có thể bị từ chối (bộ Upload-Post §12, U19).
+7. Giới hạn của chính các mạng (tra 17/11, bộ Upload-Post §12): Instagram 100 bài/24 giờ qua API; TikTok khoảng 15 bài/24 giờ **dùng chung cho mọi ứng dụng**, nên nếu tài năng tự đăng bằng công cụ khác thì hệ thống có thể bị từ chối dù chưa chạm hạn mức quan sát được của hệ thống.
 
 A5 (別紙B, phụ lục B): "cơ bản mỗi ngày 1 bài" được coi là mục tiêu, không phải giới hạn.
 

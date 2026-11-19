@@ -1,0 +1,13 @@
+{
+  "version": "CORRECTION-1",
+  "requirements": "docs/requirement-review/registers/requirements.csv",
+  "business_rules": "docs/requirement-review/registers/business-rules.csv",
+  "flow_index": "docs/requirement-review/corrections-2026-11-19/FLOW_INDEX.md",
+  "steps": "docs/requirement-review/corrections-2026-11-19/steps.csv",
+  "state_transitions": "docs/requirement-review/corrections-2026-11-19/state-transitions.csv",
+  "scenarios": "docs/requirement-review/corrections-2026-11-19/scenarios.csv",
+  "finding_review_applicability": "docs/requirement-review/corrections-2026-11-19/finding-review-applicability.csv",
+  "qa_draft": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+  "qa_internal": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv",
+  "historical_bundles": "Giữ nguyên extraction/flow-reconstruction/gap/independent-review/full-reverification; không dùng snapshot cũ như nội dung hiện hành."
+}

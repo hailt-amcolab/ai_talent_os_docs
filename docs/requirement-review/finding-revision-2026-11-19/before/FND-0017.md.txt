@@ -1,0 +1,75 @@
+# FND-0017 — Cách tính số ngày đăng liên tiếp được để lại cho vận hành
+
+Loại: **MISSING_RULE**. Loại phụ: —. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0010;FLOW-0021. Chức năng: 3-4;6-7. ID cũ: RV-14;RV-23;B12. FGAP: FGAP-0070.
+
+## Vấn đề
+
+Cách tính số ngày đăng liên tiếp được để lại cho vận hành
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+Có yêu cầu hiển thị số ngày liên tiếp; KS xác nhận22 nói cách đếm quyết trong vận hành.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+Để lại cho vận hành là quyết định về thời điểm chốt, không phải một thuật toán reset đã xác nhận.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Cách xác định ngày có đăng, ngày không đăng và liên hệ kết quả từng SNS/chu kỳ.
+
+## Quyết định cần đưa ra
+
+Có chủ sở hữu chốt thuật toán trước baseline phần tính số ngày; không tự áp reset về1.
+
+## Ảnh hưởng nghiệp vụ
+
+Chưa xác định được số đếm mong muốn ở trường hợp biên, nhưng không chặn toàn bộ đăng bài.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING_DEFERRED
+
+## Lý do / tái sử dụng Q&A
+
+Theo No.72 khi chuẩn bị chốt phần tính toán; không ép khách trả lời ngay phần đã có chủ đích để vận hành.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A15:M15 (RV-14; MỞ — CHƯA HOÀN TẤT TOÀN BỘ);workbook15/Noi_bo!A24:M24 (RV-23; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn AC thuật toán số ngày; không chặn quyền đăng hoặc toàn bộ chu kỳ.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0119 / `K:55` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A55:I55; ID=22.0; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A55: 0 B55: 22.0 F55: AIコーチがタレントに伝える「続けて投稿した日数」は、タレントが1日に1本以上投稿した日を数え、投稿のない日があると1日目から数え直す前提でよいでしょうか。 G55: [trống] I55: 続けて投稿した日数の数え方は、運用しながら決めます。
+- EV-0127 / `Q:72` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A72:J72; ID=72.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A72: 72.0 D72: 46343.0 E72: Câu hỏi: (1) Hệ thống xác định "đạt thử thách" bằng cách nào? (2) Trạng thái của thử thách sau khi Talent nhận và thời hạn. (3) Cách đếm "số ngày đăng liên tục". Vì sao cần hỏi: Cần quy tắc rõ để lập trình; nếu để AI tự phán đoán thì kết quả khó kiểm tra. Tài liệu đang nói: - Biên bản 17/11 (確認5): AIコーチ đề xuất thử thách theo tình hình Talent; Manager cũng đề xuất được qua chỉ thị cho AI; Talent chọn nhận hoặc từ chối, không cần Manager duyệt. Thời điểm đề xuất và đề xuất lại sau khi bị từ chối do chỉ thị cho AI quyết. 野中様 sẽ viết ý tưởng và tổng quan thử thách vào 確認シート. - 確認22: cách đếm số ngày đăng liên tục sẽ q… [xem toàn ô/đoạn trong EV]
+- EV-0259 / `T:10` — `SD-T18`, `source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf`, Trang PDF 10 (từ 1); mã màn ở source_refs; SHA256 `67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8`. Trích đoạn định vị:  T-06 マイページ ここがあなたのお部屋！全部ここから行けるよ 画面イメージ 1 この画面ですること タレントが、自分のフォロワー数と目標、これまでの投稿をまとめて見る画面です。丸いボタンから、AIコーチとの会話、今 日の投稿案、動画、投稿の予定、送った写真・動画へ移ります。 使う人 タレント（スマートフォン） 使う場面 UC-09 投稿の実績を確かめる 前後の画面 T-05 SNS の接続 T-07 ホーム T-09 AIコーチとの会話 T-11 写真・動画の送付 下のメニュー ▶ T-06 マイページ ▶ T-12 動画の作成 T-14 投稿の予定と結果 T-16 ご利用とお支払い 下のメニュー 家の印：T-07 ホーム／吹き出しの印：T-09 AIコーチとの会話／プラスの印：T-11 写真・動画の送付／カレンダーの印： T-14 投稿の予定と結果／人の印：T-06 マイページ 業務フロー 実績と目標を確かめる（25ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 名前、投稿の本数、続けて 表示 ログインしているタレントの名前、これまでの投 — 投稿した日数 稿の本数、続けて投稿した日数 2 SNS ごとのフォロワー数と 表示 つないでいる SNS ごとのフォロワー数、目標の — 目標 人数、目標に対する割合の棒 3 「SNS の接続」 ボタン 常に表示 T-05 を開く 4 「ご利用とお支払い」 ボタン 常に表示 T-16… [xem toàn ô/đoạn trong EV]

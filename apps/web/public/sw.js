@@ -1,5 +1,5 @@
 // Talent PWA only. Never cache API, auth responses, RSC, QR or private HTML.
-const VERSION = 'v5'
+const VERSION = 'v6' // v6: drops caches that stored an HTML interstitial as a JS chunk
 const CACHE = `talent-static-${VERSION}`
 const OFFLINE = '/pwa/offline'
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll([OFFLINE]))) })
@@ -14,22 +14,36 @@ self.addEventListener('fetch', e => {
     e.respondWith(fetch(req).catch(() => caches.match(OFFLINE)))
   } else if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/')) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => {
-      if (res.ok) { const copy = res.clone(); e.waitUntil(caches.open(CACHE).then(c => c.put(req, copy))) }
+      // A tunnel warning page, captive portal or error page can answer 200 text/html for a .js URL.
+      // Caching it would break the app until the cache is cleared, so only real static files are kept.
+      if (res.ok && !(res.headers.get('Content-Type') || '').includes('text/html')) { const copy = res.clone(); e.waitUntil(caches.open(CACHE).then(c => c.put(req, copy))) }
       return res
     })))
   }
 })
 self.addEventListener('message', e => { if (e.data === 'SKIP_WAITING') self.skipWaiting() })
+// Unread count shared with the page (lib/pwa/badge.ts reads/clears the same key).
+// ponytail: device-local counter; replace with the server unread count (talent_notifications) sent as badgeCount when 6-1 is built.
+// Two pushes landing at the same instant can lose one increment; acceptable for a badge.
+const META = 'talent-meta', UNREAD = '/__unread'
+const readUnread = () => caches.open(META).then(c => c.match(UNREAD)).then(r => r ? r.json() : 0).then(n => Number.isInteger(n) && n >= 0 ? n : 0).catch(() => 0)
+const writeUnread = n => caches.open(META).then(c => c.put(UNREAD, new Response(JSON.stringify(n)))).then(() => n)
 self.addEventListener('push', e => {
   let d = {}
   try { d = e.data ? e.data.json() : {} } catch {}
   if (!d || typeof d !== 'object') d = {}
-  const jobs = [
+  // Server count wins when sent; otherwise count this push locally.
+  const unread = (Number.isInteger(d.badgeCount) && d.badgeCount >= 0 ? Promise.resolve(d.badgeCount) : readUnread().then(n => n + 1)).then(writeUnread).catch(() => null)
+  e.waitUntil(Promise.all([
     self.registration.showNotification(typeof d.title === 'string' ? d.title : 'Notification', { body: typeof d.body === 'string' ? d.body : '', icon: '/icons/icon-192.png', badge: '/icons/badge-72.png', tag: typeof d.tag === 'string' ? d.tag : undefined, data: { url: d.url } }),
-    self.clients.matchAll({ type: 'window' }).then(list => list.forEach(c => c.postMessage({ type: 'NOTIFICATION_RECEIVED' }))),
-  ]
-  if (Number.isInteger(d.badgeCount) && d.badgeCount >= 0 && self.navigator.setAppBadge) jobs.push(d.badgeCount > 0 ? self.navigator.setAppBadge(d.badgeCount) : self.navigator.clearAppBadge())
-  e.waitUntil(Promise.all(jobs))
+    unread.then(n => {
+      const badge = n === null || !self.navigator.setAppBadge ? undefined : (n > 0 ? self.navigator.setAppBadge(n) : self.navigator.clearAppBadge())
+      return Promise.all([
+        Promise.resolve(badge).catch(() => {}), // badge needs notification permission; never fail the push for it
+        self.clients.matchAll({ type: 'window' }).then(list => list.forEach(c => c.postMessage({ type: 'NOTIFICATION_RECEIVED', unread: n }))),
+      ])
+    }),
+  ]))
 })
 self.addEventListener('notificationclick', e => {
   e.notification.close()

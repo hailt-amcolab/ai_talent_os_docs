@@ -1,0 +1,8 @@
+﻿gate_id,assessment,basis,action
+G1,NO_SOURCE_INTEGRITY_DEFECT_FOUND_IN_CHECKED_INPUTS,"12 file nguồn giữ hash so snapshot; các lỗi phát hiện là diễn giải/metadata/cách chuyển câu, không phải nguồn bị sửa.",Giữ lịch sử nguồn; chưa cần thu hồiG1 do các ca này. Không suy đã hiểu đúng mọi hình/mệnh đề.
+G2,SCOPED_REASSESSMENT_REQUIRED,BT-002:REQ0020 quá rộng;BT-003:4screen_refs sai. BT001/004/010 cần ngữ cảnh theo nguồn hiện hành.,"Sửa5dòng đã xác định và xem ngữ cảnh được chỉ; giữbảntrước,review đúnghashmới; đánhgiáđộphủ khi cập nhậtgate, không tựđổi toànG2."
+G3,SCOPED_CONTEXT_REASSESSMENT_REQUIRED,FLOW0024M04/A01/E02 cần nhận diện mô tảSD18;FLOW0006M04 cần tách trườngdựkiến với phầnmở. FLOW0018M01 hai chế độ đangđúng.,"Rà các bước được chỉ, không tái tạo mọi flow từđầu hoặc giảđịnh toànG3sai."
+G4,RECHECK_CLAIM_SCOPE_AND_ROUTING,Một số gap đúng nhưng chưa đủ chứng minh câu hỏi phải giao khách; quyền/thiếuphươngán ởBT006/007/009/011/012.,"Rà từngý trongfinding được chỉ; giữ FACT đãđúng, không đổi finding ACCEPT thành REJECT chỉ từQAHOLD."
+G5,IMPACT_REVIEW_NEEDED_NOT_AUTOMATIC_REVOCATION,"Hồ sơ review đã có phảnbiện thu hẹp, nhưng câuWQA07101 vẫnlọt; cóđiểm thiếu ngữcảnh chưađược chặn. PASS phạmvifinding không chứngminh mọi câu đãduyệt.","Reviewer kiểm lại các reasoning/phiênbảnbịsửa, dùngcaseevidence; không sửa chữký/hồsơ duyệtcũ hoặc tựtuyênbố nguồnphêduyệtgiả."
+G6,DRAFT_ONLY_NO_PASS_IDENTIFIED,"BảnQ&A cólỗi tiềnđề,giữchờ,táchý;V4 đãchỉnh. Chưa có G6PASS trong hồ sơ được đọc.",Rà/duyệt V4sau khi xử lý phần ảnhhưởng. Không phát hành từPASSG5.
+G7/G8,NOT_ASSERTED_BY_THIS_AUDIT,Không thựchiện xácnhậnkhách hoặc đánhgiá readiness toànbaseline trong lượt này.,Không suyCustomerConfirmed hoặcAPPROVEDbaseline từtraceaudit.

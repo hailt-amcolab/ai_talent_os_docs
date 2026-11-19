@@ -42,9 +42,9 @@ Mốc POC (thử nghiệm kỹ thuật) đề xuất: **xong trước 01/12/2026
 
 **Mô tả.** Đăng bài lên Instagram, TikTok, YouTube và lấy số liệu đều đi qua một dịch vụ bên thứ ba ([YK2] §8, 6-10).
 - Chưa thử trên tài khoản thật: bước kết nối, nhãn "do AI tạo" của từng mạng, hủy bài đã hẹn, độ trễ số liệu, Best Time to Post (giờ đăng tốt) và Audience Insights (số liệu người theo dõi).
-- Giới hạn mỗi tài khoản trong 24 giờ: Instagram 50 bài, TikTok 15 bài (bộ Upload-Post §8).
+- Giới hạn mỗi tài khoản trong 24 giờ: Instagram 50 bài, TikTok 15 bài (bộ Upload-Post §12).
 - Bài đang được đăng dở thì không thu hồi chắc chắn được. Dừng đăng tự động hoặc hủy bài sát giờ vẫn có thể lọt bài.
-- Phí tăng theo số tài năng đăng ký với Upload-Post, không theo số bài. Ước tính theo giá công bố (bộ Upload-Post §8.4a): khoảng 50–150 USD/tháng cho 30 tài năng, khoảng 1.200 USD/tháng cho 1.000 tài năng (gói Business + 1 USD mỗi profile thêm). Chưa rõ Connect API có cần gói có white-label (từ Professional) không.
+- Phí tăng theo số tài năng đăng ký với Upload-Post, không theo số bài. Ước tính theo giá công bố (bộ Upload-Post §12): khoảng 50–150 USD/tháng cho 30 tài năng, khoảng 1.200 USD/tháng cho 1.000 tài năng (gói Business + 1 USD mỗi profile thêm). Chưa rõ Connect API có cần gói có white-label (từ Professional) không.
 - Upload-Post tự tạm dừng tài khoản khi mạng báo spam (Instagram 24 giờ, TikTok cấm đăng 7 ngày); trong thời gian đó tài năng không đăng được lên mạng đó.
 
 **Dấu hiệu xảy ra.** POC kết nối thất bại; bài bị từ chối vì nhãn AI; số liệu thiếu hoặc trễ quá một ngày.
@@ -203,7 +203,7 @@ Các điểm chưa thống nhất:
 - có khai báo nội dung quảng cáo và câu đồng ý về nhạc;
 - **để người dùng sửa được chữ soạn sẵn trước khi đăng.**
 
-TikTok cũng không chấp nhận công cụ nội bộ để một nhóm đăng lên các tài khoản do nhóm đó quản lý. Hệ thống lại để AI viết chú thích, hẹn giờ tự động và cho tài năng sửa chữ trực tiếp (CR-21, đã chốt làm theo [KS] 確認28). Nếu TikTok coi cách dùng này là vi phạm, bài có thể bị xóa hoặc tài khoản bị khóa. Nguồn: TikTok Content Sharing Guidelines, tra 17/11/2026 (bộ Upload-Post §8.4a).
+TikTok cũng không chấp nhận công cụ nội bộ để một nhóm đăng lên các tài khoản do nhóm đó quản lý. Hệ thống lại để AI viết chú thích, hẹn giờ tự động và cho tài năng sửa chữ trực tiếp (CR-21, đã chốt làm theo [KS] 確認28). Nếu TikTok coi cách dùng này là vi phạm, bài có thể bị xóa hoặc tài khoản bị khóa. Nguồn: TikTok Content Sharing Guidelines, tra 17/11/2026 (bộ Upload-Post §12).
 
 Tài liệu Upload-Post (trang đăng lên TikTok, tra 17/11) cho biết họ dùng ứng dụng TikTok đã được duyệt, có tham số `privacy_level`, `disable_comment`, `disable_duet`, `disable_stitch`, `is_aigc`, nhưng **không nhắc tới các quy định giao diện này**. Vì vậy vẫn chưa rõ trách nhiệm thuộc về ai.
 

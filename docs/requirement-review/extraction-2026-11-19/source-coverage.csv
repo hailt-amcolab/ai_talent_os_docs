@@ -1,0 +1,320 @@
+source_id,source_unit,locator,requirement_ids,evidence_ids,coverage_status,notes
+YK2,Chức năng 1-4,"Chương6, 1-4 ログインとタレントの紐付け（優先順位：高）; P590",REQ-0001;REQ-0002;REQ-0003;REQ-0004;REQ-0005;REQ-0006;REQ-0007;REQ-0008,EV-0001;EV-0002;EV-0003;EV-0004;EV-0005;EV-0006;EV-0007;EV-0008;EV-0009;EV-0010;EV-0011;EV-0012;EV-0013;EV-0014;EV-0015;EV-0016;EV-0017;EV-0018;EV-0019;EV-0020;EV-0021;EV-0022;EV-0023,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 1-5,"Chương6, 1-5 タレントの識別（優先順位：高）; P599",REQ-0009,EV-0024;EV-0025,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-2,"Chương6, 6-2 初回登録と SNS の接続の案内（優先順位：高）; P602",REQ-0010;REQ-0011;REQ-0012,EV-0026;EV-0027;EV-0028;EV-0029;EV-0030;EV-0031;EV-0032;EV-0033,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 1-6,"Chương6, 1-6 マネージャーのログインと権限（優先順位：高）; P607",REQ-0013;REQ-0014;REQ-0015;REQ-0016,EV-0034;EV-0035;EV-0018;EV-0036;EV-0037;EV-0038;EV-0039;EV-0040;EV-0041;EV-0042,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-3,"Chương6, 7-3 タレントのステータスの切り替え（優先順位：高）; P614",REQ-0017;REQ-0018;REQ-0019;REQ-0020,EV-0043;EV-0044;EV-0045;EV-0046;EV-0047;EV-0048;EV-0049;EV-0050;EV-0051;EV-0052;EV-0053;EV-0054;EV-0055;EV-0056;EV-0057;EV-0058;EV-0059,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-6,"Chương6, 7-6 閲覧の記録（優先順位：中）; P619",REQ-0021;REQ-0022,EV-0060;EV-0061;EV-0062;EV-0063;EV-0064,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 1-1,"Chương6, 1-1 月額使用料の課金（優先順位：高）; P623",REQ-0100;REQ-0101;REQ-0102;REQ-0103;REQ-0104,EV-0267;EV-0268;EV-0269;EV-0270;EV-0271;EV-0272;EV-0047;EV-0273;EV-0274;EV-0275;EV-0276;EV-0277;EV-0278;EV-0279;EV-0280;EV-0281;EV-0444;EV-0282;EV-0283;EV-0106;EV-0284,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 1-2,"Chương6, 1-2 有償と無償の区分（優先順位：高）; P629",REQ-0105,EV-0285;EV-0286;EV-0287;EV-0242;EV-0288,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 1-3,"Chương6, 1-3 区分の変更（優先順位：中）; P633",REQ-0106,EV-0289;EV-0290;EV-0291,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 5-4,"Chương6, 5-4 動画生成回数の集計と月額との合算請求（優先順位：高）; P635",REQ-0107;REQ-0108;REQ-0109;REQ-0110,EV-0292;EV-0185;EV-0293;EV-0179;EV-0294;EV-0295;EV-0296;EV-0297;EV-0275;EV-0284;EV-0298;EV-0299;EV-0288;EV-0244,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 2-2,"Chương6, 2-2 タレント別フォルダの作成（優先順位：高）; P641",REQ-0023;REQ-0024,EV-0065;EV-0066;EV-0007;EV-0067;EV-0068;EV-0069,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 2-3,"Chương6, 2-3 ChatGPT からの情報の登録（優先順位：高）; P645",REQ-0025;REQ-0026;REQ-0027;REQ-0170,EV-0070;EV-0071;EV-0431;EV-0072;EV-0073;EV-0074;EV-0075;EV-0416;EV-0417;EV-0087,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 2-4,"Chương6, 2-4 目標の登録（優先順位：高）; P649",REQ-0028;REQ-0029,EV-0076;EV-0077;EV-0078;EV-0079;EV-0080;EV-0081;EV-0082;EV-0057,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 2-1,"Chương6, 2-1 タレント情報の読み込み（優先順位：高）; P652",REQ-0030;REQ-0031,EV-0083;EV-0084;EV-0085;EV-0086;EV-0087;EV-0437,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-1,"Chương6, 7-1 タレントの情報の表示（優先順位：高）; P656",REQ-0032;REQ-0033;REQ-0034;REQ-0165;REQ-0168,EV-0434;EV-0089;EV-0090;EV-0091;EV-0092;EV-0093;EV-0094;EV-0015;EV-0095;EV-0096;EV-0397;EV-0398;EV-0052;EV-0007;EV-0403;EV-0404;EV-0301,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-1,"Chương6, 3-1 タレントとアルゴリズムの理解（優先順位：高）; P660",REQ-0035;REQ-0036,EV-0097;EV-0098;EV-0084;EV-0099;EV-0100;EV-0101,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-4,"Chương6, 3-4 AIコーチとの会話（優先順位：高）; P663",REQ-0040;REQ-0041;REQ-0042;REQ-0043;REQ-0166;REQ-0167,EV-0110;EV-0111;EV-0112;EV-0113;EV-0114;EV-0115;EV-0021;EV-0116;EV-0107;EV-0445;EV-0117;EV-0118;EV-0119;EV-0399;EV-0400;EV-0401;EV-0402,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-3,"Chương6, 3-3 会話の話題の制限（優先順位：高）; P669",REQ-0038;REQ-0039,EV-0104;EV-0105;EV-0106;EV-0107;EV-0108;EV-0109,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-9,"Chương6, 3-9 未投稿のタレントへの声かけ（優先順位：中）; P673",REQ-0049,EV-0129;EV-0130,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-2,"Chương6, 3-2 自己改善（優先順位：高）; P677",REQ-0037,EV-0102;EV-0103,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-6,"Chương6, 3-6 翌日の振り返りと改善案（優先順位：高）; P680",REQ-0045,EV-0122;EV-0118,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-8,"Chương6, 3-8 週次の振り返り（優先順位：中）; P682",REQ-0048,EV-0128;EV-0118,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-7,"Chương6, 3-7 フォロワー増加の通知（優先順位：中）; P684",REQ-0046;REQ-0047,EV-0123;EV-0124;EV-0125;EV-0126;EV-0127,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-5,"Chương6, 3-5 AI の利用料の管理（優先順位：中）; P687",REQ-0044,EV-0120;EV-0121,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 4-1,"Chương6, 4-1 投稿案の自動作成（優先順位：高）; P691",REQ-0050;REQ-0051;REQ-0052;REQ-0172,EV-0131;EV-0132;EV-0133;EV-0134;EV-0135;EV-0136;EV-0137;EV-0138;EV-0139;EV-0140;EV-0420;EV-0421,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 4-2,"Chương6, 4-2 修正の依頼と作り直し（優先順位：高）; P696",REQ-0053;REQ-0054,EV-0141;EV-0142;EV-0143;EV-0144;EV-0145;EV-0146;EV-0147;EV-0052,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 4-3,"Chương6, 4-3 採用（優先順位：高）; P699",REQ-0055;REQ-0056,EV-0148;EV-0149;EV-0144;EV-0145;EV-0150;EV-0151,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 4-4,"Chương6, 4-4 使ってはいけない言葉の検出（優先順位：高）; P703",REQ-0057;REQ-0058,EV-0152;EV-0153;EV-0154;EV-0155;EV-0156;EV-0439;EV-0440;EV-0157;EV-0158;EV-0159;EV-0160;EV-0161,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-6,"Chương6, 6-6 投稿イメージの提示（優先順位：中）; P707",REQ-0059,EV-0162;EV-0145,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-3,"Chương6, 6-3 写真・動画の送付（優先順位：高）; P710",REQ-0060;REQ-0061,EV-0163;EV-0164;EV-0165,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-4,"Chương6, 6-4 素材の保存（優先順位：高）; P715",REQ-0062;REQ-0063,EV-0166;EV-0167;EV-0168;EV-0164;EV-0438;EV-0169;EV-0170;EV-0171;EV-0172,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-5,"Chương6, 6-5 催促のお知らせ（優先順位：中）; P718",REQ-0064,EV-0173;EV-0118,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 5-1,"Chương6, 5-1 動画の作成（優先順位：高）; P722",REQ-0065;REQ-0066;REQ-0067;REQ-0068,EV-0174;EV-0175;EV-0176;EV-0177;EV-0178;EV-0179;EV-0180;EV-0435;EV-0436;EV-0181;EV-0182;EV-0183;EV-0184;EV-0185;EV-0186,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 5-2,"Chương6, 5-2 動画の形式（優先順位：高）; P727",REQ-0069,EV-0187;EV-0188;EV-0177,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 5-3,"Chương6, 5-3 でき上がりの確認（優先順位：高）; P729",REQ-0070,EV-0189;EV-0190;EV-0186,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 5-5,"Chương6, 5-5 AI で作ったことの表示（優先順位：高）; P731",REQ-0071,EV-0191;EV-0192;EV-0052;EV-0186,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-7,"Chương6, 7-7 投稿の承認（優先順位：高）; P734",REQ-0072;REQ-0073;REQ-0074;REQ-0075,EV-0193;EV-0194;EV-0195;EV-0196;EV-0145;EV-0446;EV-0197;EV-0198;EV-0199;EV-0200;EV-0441;EV-0201;EV-0202;EV-0203;EV-0204;EV-0089;EV-0205;EV-0052;EV-0206,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-2,"Chương6, 8-2 投稿サービスとの接続（優先順位：高）; P740",REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0171,EV-0207;EV-0059;EV-0033;EV-0208;EV-0209;EV-0210;EV-0211;EV-0212;EV-0213;EV-0214;EV-0032;EV-0052;EV-0418;EV-0419,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-3,"Chương6, 8-3 3つの SNS への投稿（優先順位：高）; P746",REQ-0080;REQ-0081,EV-0215;EV-0216;EV-0217;EV-0218;EV-0219;EV-0030;EV-0220,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-4,"Chương6, 8-4 凍結対策（優先順位：高）; P751",REQ-0082;REQ-0083,EV-0221;EV-0222;EV-0052;EV-0223;EV-0224;EV-0225,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-5,"Chương6, 8-5 投稿失敗の通知（優先順位：高）; P753",REQ-0084;REQ-0085,EV-0226;EV-0227;EV-0228;EV-0229;EV-0220;EV-0218;EV-0412,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-6,"Chương6, 8-6 SNS の接続切れの通知（優先順位：中）; P756",REQ-0086,EV-0230;EV-0033,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-5,"Chương6, 7-5 すべての自動投稿の停止（優先順位：高）; P758",REQ-0087;REQ-0088,EV-0231;EV-0232;EV-0057;EV-0442;EV-0233;EV-0234;EV-0235;EV-0236;EV-0237,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-2,"Chương6, 7-2 投稿の情報の表示（優先順位：高）; P762",REQ-0089,EV-0238;EV-0239;EV-0240;EV-0218;EV-0443,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 9-1,"Chương6, 9-1 事務所アカウントの投稿（優先順位：中）; P765",REQ-0090;REQ-0091;REQ-0092,EV-0241;EV-0242;EV-0243;EV-0244;EV-0249;EV-0245;EV-0246;EV-0247;EV-0052;EV-0218;EV-0248;EV-0250;EV-0251;EV-0252;EV-0253,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-7,"Chương6, 8-7 実績の取り込み（優先順位：高）; P769",REQ-0093,EV-0254;EV-0255;EV-0256,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-8,"Chương6, 8-8 実績の書き戻し（優先順位：高）; P773",REQ-0094,EV-0257;EV-0084,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 3-10,"Chương6, 3-10 フォロワー数の表示（優先順位：高）; P775",REQ-0095,EV-0258;EV-0080;EV-0259;EV-0260,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-7,"Chương6, 6-7 タレント向けの実績・達成度の表示（優先順位：高）; P777",REQ-0096;REQ-0097,EV-0261;EV-0025;EV-0220;EV-0262;EV-0259,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-1,"Chương6, 8-1 投稿時間の分析（優先順位：中）; P779",REQ-0098,EV-0263;EV-0264;EV-0265;EV-0222;EV-0144,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 8-9,"Chương6, 8-9 反応の時間帯の取得（優先順位：低）; P782",REQ-0099,EV-0266,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-1,"Chương6, 6-1 アプリ内のメッセージとスマートフォンへの通知（優先順位：高）; P785",REQ-0111,EV-0300;EV-0031;EV-0301,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 7-4,"Chương6, 7-4 お知らせ一覧（優先順位：高）; P789",REQ-0114;REQ-0115,EV-0307;EV-0308;EV-0206;EV-0309;EV-0310;EV-0311,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+YK2,Chức năng 6-8,"Chương6, 6-8 ホーム画面から開く形（PWA）の基盤（優先順位：高）; P792",REQ-0112;REQ-0113,EV-0302;EV-0303;EV-0304;EV-0305;EV-0306;EV-0134;EV-0259,EXTRACTED,Tách hành vi bằng nguồn; mã TR/SCD chỉ làm liên kết tránh trùng.
+KS,前提 UC-01-1,確認事項!A2:I2,REQ-0004,EV-0011,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-2,確認事項!A3:I3,REQ-0001,EV-0002,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-3,確認事項!A4:I4,REQ-0003,EV-0009,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-4,確認事項!A5:I5,REQ-0138,EV-0357,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-5,確認事項!A6:I6,REQ-0105,EV-0286,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-6,確認事項!A7:I7,REQ-0023,EV-0066,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-7,確認事項!A8:I8,REQ-0025,EV-0071,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-8,確認事項!A9:I9,REQ-0031,EV-0086,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-01-9,確認事項!A10:I10,REQ-0159,EV-0395,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,1.0,確認事項!A11:I11,REQ-0001;REQ-0149,EV-0003,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,2.0,確認事項!A12:I12,REQ-0165,EV-0397,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-1,確認事項!A13:I13,REQ-0025,EV-0431,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-2,確認事項!A14:I14,REQ-0026,EV-0073,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-3,確認事項!A15:I15,REQ-0030;REQ-0035;REQ-0094,EV-0084,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-4,確認事項!A16:I16,REQ-0028,EV-0078,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-5,確認事項!A17:I17,REQ-0028,EV-0079,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-6,確認事項!A18:I18,REQ-0119,EV-0432,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-7,確認事項!A19:I19,REQ-0035;REQ-0036,EV-0099,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-8,確認事項!A20:I20,REQ-0170,EV-0417,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-9,確認事項!A21:I21,REQ-0058;REQ-0151,EV-0158,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-10,確認事項!A22:I22,REQ-0058,EV-0159,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-11,確認事項!A23:I23,REQ-0058,EV-0160,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-02-12,確認事項!A24:I24,REQ-0057,EV-0153,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,3.0,確認事項!A25:I25,REQ-0028;REQ-0095,EV-0080,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,4.0,確認事項!A26:I26,REQ-0058;REQ-0151,EV-0161,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,5.0,確認事項!A27:I27,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0314,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,6.0,確認事項!A28:I28,REQ-0122,EV-0321,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,7.0,確認事項!A29:I29,REQ-0123,EV-0325,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,8.0,確認事項!A30:I30,REQ-0124;REQ-0125,EV-0328,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-1,確認事項!A31:I31,REQ-0112,EV-0303,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-2,確認事項!A32:I32,REQ-0005,EV-0014,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-3,確認事項!A33:I33,REQ-0006,EV-0017,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-4,確認事項!A34:I34,REQ-0077,EV-0209,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-5,確認事項!A35:I35,REQ-0171,EV-0419,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-6,確認事項!A36:I36,REQ-0011,EV-0029,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-7,確認事項!A37:I37,REQ-0143,EV-0365,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-03-8,確認事項!A38:I38,REQ-0144,EV-0367,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,9.0,確認事項!A39:I39,REQ-0077,EV-0210,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,10.0,確認事項!A40:I40,REQ-0079,EV-0214,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,11.0,確認事項!A41:I41,REQ-0012;REQ-0081,EV-0030,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,12.0,確認事項!A42:I42,REQ-0012;REQ-0111,EV-0031,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,13.0,確認事項!A43:I43,REQ-0033,EV-0094,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-04-1,確認事項!A44:I44,REQ-0040,EV-0112,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-04-2,確認事項!A45:I45,REQ-0169,EV-0406,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-04-3,確認事項!A46:I46,REQ-0130,EV-0341,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,14.0,確認事項!A47:I47,REQ-0043;REQ-0045;REQ-0048;REQ-0064;REQ-0118;REQ-0167,EV-0118,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,15.0,確認事項!A48:I48,REQ-0050;REQ-0118,EV-0132,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,16.0,確認事項!A49:I49,REQ-0051,EV-0136,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,17.0,確認事項!A50:I50,REQ-0039,EV-0109,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,18.0,確認事項!A51:I51,REQ-0042,EV-0115,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,19.0,確認事項!A52:I52,REQ-0049;REQ-0116,EV-0130,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,20.0,確認事項!A53:I53,REQ-0167,EV-0402,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,21.0,確認事項!A54:I54,REQ-0166,EV-0400,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,22.0,確認事項!A55:I55,REQ-0043,EV-0119,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,23.0,確認事項!A56:I56,REQ-0038,EV-0105,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-05-1,確認事項!A57:I57,REQ-0080,EV-0216,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-05-2,確認事項!A58:I58,REQ-0172,EV-0421,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-05-3,確認事項!A59:I59,REQ-0057,EV-0154,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,24.0,確認事項!A60:I60,REQ-0052,EV-0139,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,25.0,確認事項!A61:I61,REQ-0055;REQ-0116;REQ-0117,EV-0149,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,26.0,確認事項!A62:I62,REQ-0056;REQ-0116;REQ-0117,EV-0151,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,27.0,確認事項!A63:I63,REQ-0091,EV-0246,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,28.0,確認事項!A64:I64,REQ-0054,EV-0147,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,29.0,確認事項!A65:I65,REQ-0053,EV-0142,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,30.0,確認事項!A66:I66,REQ-0098,EV-0265,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-06-1,確認事項!A67:I67,REQ-0066;REQ-0108,EV-0179,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-06-2,確認事項!A68:I68,REQ-0066,EV-0180,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-06-3,確認事項!A69:I69,REQ-0071,EV-0192,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-06-4,確認事項!A70:I70,REQ-0108,EV-0294,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-06-5,確認事項!A71:I71,REQ-0067,EV-0182,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,31.0,確認事項!A72:I72,REQ-0065,EV-0175,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,32.0,確認事項!A73:I73,REQ-0063,EV-0171,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-07-1,確認事項!A74:I74,REQ-0072,EV-0194,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-07-2,確認事項!A75:I75,REQ-0072,EV-0195,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,33.0,確認事項!A76:I76,REQ-0072,EV-0196,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,34.0,確認事項!A77:I77,REQ-0075,EV-0204,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,35.0,確認事項!A78:I78,REQ-0073,EV-0198,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,36.0,確認事項!A79:I79,REQ-0074,EV-0202,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-1,確認事項!A80:I80,REQ-0173,EV-0422,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-2,確認事項!A81:I81,REQ-0173,EV-0423,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-3,確認事項!A82:I82,REQ-0080;REQ-0081,EV-0217,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-4,確認事項!A83:I83,REQ-0083,EV-0225,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-5,確認事項!A84:I84,REQ-0089,EV-0239,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-08-6,確認事項!A85:I85,REQ-0088,EV-0235,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,37.0,確認事項!A86:I86,REQ-0082,EV-0221,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,38.0,確認事項!A87:I87,REQ-0084,EV-0227,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-09-1,確認事項!A88:I88,REQ-0093,EV-0255,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-09-2,確認事項!A89:I89,REQ-0093,EV-0256,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,39.0,確認事項!A90:I90,REQ-0046;REQ-0047,EV-0124,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,40.0,確認事項!A91:I91,REQ-0009;REQ-0096,EV-0025,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-10-1,確認事項!A92:I92,REQ-0137,EV-0353,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,41.0,確認事項!A93:I93,REQ-0032;REQ-0075,EV-0089,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,42.0,確認事項!A94:I94,REQ-0032,EV-0090,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,43.0,確認事項!A95:I95,REQ-0168,EV-0404,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,44.0,確認事項!A96:I96,REQ-0021,EV-0061,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,45.0,確認事項!A97:I97,REQ-0115;REQ-0133,EV-0310,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,46.0,確認事項!A98:I98,REQ-0114,EV-0308,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,47.0,確認事項!A99:I99,REQ-0121,EV-0317,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-11-1,確認事項!A100:I100,REQ-0100,EV-0269,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-11-2,確認事項!A101:I101,REQ-0105,EV-0287,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-11-3,確認事項!A102:I102,REQ-0101,EV-0272,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-11-4,確認事項!A103:I103,REQ-0106,EV-0290,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,48.0,確認事項!A104:I104,REQ-0102;REQ-0103,EV-0274,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,49.0,確認事項!A105:I105,REQ-0102;REQ-0109,EV-0275,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,50.0,確認事項!A106:I106,REQ-0104,EV-0283,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,51.0,確認事項!A107:I107,REQ-0109,EV-0297,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-12-1,確認事項!A108:I108,REQ-0090;REQ-0105,EV-0242,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-12-2,確認事項!A109:I109,REQ-0090;REQ-0092,EV-0249,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-12-3,確認事項!A110:I110,REQ-0092,EV-0250,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-12-4,確認事項!A111:I111,REQ-0026,EV-0074,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-12-5,確認事項!A112:I112,REQ-0110,EV-0299,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,52.0,確認事項!A113:I113,REQ-0090,EV-0243,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-13-1,確認事項!A114:I114,REQ-0008,EV-0023,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,前提 UC-13-2,確認事項!A115:I115,REQ-0015,EV-0039,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,53.0,確認事項!A116:I116,REQ-0017,EV-0045,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,54.0,確認事項!A117:I117,REQ-0017,EV-0046,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,55.0,確認事項!A118:I118,REQ-0019,EV-0054,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+KS,56.0,確認事項!A119:I119,REQ-0018,EV-0049,EXTRACTED_OR_LINKED,OK/G/I được xét theo từng ý; không tự xác nhận toàn hàng hoặc thương mại.
+QA,Q&A No./ID 1.0,Q&A!A2:N2,REQ-0068;REQ-0107,EV-0185,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 2.0,Q&A!A3:N3,REQ-0066,EV-0435,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 3.0,Q&A!A4:N4,REQ-0108,EV-0295,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 4.0,Q&A!A5:N5,REQ-0100;REQ-0147,EV-0270,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 5.0,Q&A!A6:N6,REQ-0016,EV-0042,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 6.0,Q&A!A7:N7,REQ-0075,EV-0205,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 7.0,Q&A!A8:N8,REQ-0032;REQ-0033,EV-0091,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 8.0,Q&A!A9:N9,REQ-0062,EV-0168,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 9.0,Q&A!A10:N10,REQ-0050,EV-0133,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 10.0,Q&A!A11:N11,REQ-0018,EV-0050,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 11.0,Q&A!A12:N12,REQ-0001;REQ-0002,EV-0004,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 12.0,Q&A!A13:N13,REQ-0087,EV-0232,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 13.0,Q&A!A14:N14,REQ-0057,EV-0155,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 14.0,Q&A!A15:N15,REQ-0028,EV-0081,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 15.0,Q&A!A16:N16,REQ-0084;REQ-0085,EV-0228,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 16.0,Q&A!A17:N17,REQ-0089,EV-0240,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 17.0,Q&A!A18:N18,REQ-0044,EV-0121,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 18.0,Q&A!A19:N19,REQ-0165,EV-0398,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 19.0,Q&A!A20:N20,REQ-0017;REQ-0101,EV-0047,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 20.0,Q&A!A21:N21,REQ-0092,EV-0251,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 21.0,Q&A!A22:N22,REQ-0022,EV-0064,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 22.0,Q&A!A23:N23,REQ-0031;REQ-0170,EV-0087,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 23.0,Q&A!A24:N24,REQ-0012;REQ-0079,EV-0032,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 24.0,Q&A!A25:N25,REQ-0127,EV-0334,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 25.0,Q&A!A26:N26,REQ-0007;REQ-0042,EV-0021,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 26.0,Q&A!A27:N27,REQ-0135,EV-0447,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 27.0,Q&A!A28:N28,REQ-0152,EV-0380,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 28.0,Q&A!A29:N29,REQ-0129,EV-0339,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 29.0,Q&A!A30:N30,REQ-0019;REQ-0140,EV-0055,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 30.0,Q&A!A31:N31,REQ-0135,EV-0448,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 31.0,Q&A!A32:N32,REQ-0097,EV-0262,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 32.0,Q&A!A33:N33,REQ-0112,EV-0304,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 33.0,Q&A!A34:N34,REQ-0137,EV-0354,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 34.0,Q&A!A35:N35,REQ-0156;REQ-0157;REQ-0158,EV-0388,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 35.0,Q&A!A36:N36,REQ-0073,EV-0199,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 36.0,Q&A!A37:N37,REQ-0065,EV-0176,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 37.0,Q&A!A38:N38,REQ-0063,EV-0172,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 38.0,Q&A!A39:N39,REQ-0051,EV-0137,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 39.0,Q&A!A40:N40,REQ-0053;REQ-0054,EV-0143,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 40.0,Q&A!A41:N41,REQ-0057,EV-0156,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 41.0,Q&A!A42:N42,REQ-0130,EV-0342,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 42.0,Q&A!A43:N43,REQ-0046,EV-0125,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 43.0,Q&A!A44:N44,REQ-0091;REQ-0092,EV-0247,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 44.0,Q&A!A45:N45,REQ-0121,EV-0318,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 45.0,Q&A!A46:N46,REQ-0122;REQ-0123,EV-0322,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 46.0,Q&A!A47:N47,REQ-0103,EV-0281,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 47.0,Q&A!A48:N48,REQ-0106,EV-0291,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 48.0,Q&A!A49:N49,REQ-0105;REQ-0110,EV-0288,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 49.0,Q&A!A50:N50,REQ-0102,EV-0276,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 51.0,Q&A!A51:N51,REQ-0128;REQ-0129,EV-0336,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 52.0,Q&A!A52:N52,REQ-0020;REQ-0076,EV-0059,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 53.0,Q&A!A53:N53,REQ-0102,EV-0277,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 54.0,Q&A!A54:N54,REQ-0031,EV-0437,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 55.0,Q&A!A55:N55,REQ-0062,EV-0438,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 56.0,Q&A!A56:N56,REQ-0082;REQ-0098,EV-0222,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 57.0,Q&A!A57:N57,REQ-0057,EV-0439,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 58.0,Q&A!A58:N58,REQ-0073,EV-0441,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 59.0,Q&A!A59:N59,REQ-0085,EV-0412,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 60.0,Q&A!A60:N60,REQ-0087,EV-0442,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 61.0,Q&A!A61:N61,REQ-0089,EV-0443,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 62.0,Q&A!A62:N62,REQ-0066,EV-0436,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 63.0,Q&A!A63:N63,REQ-0103,EV-0444,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 64.0,Q&A!A64:N64,REQ-0018,EV-0051,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 65.0,Q&A!A65:N65,REQ-0024,EV-0068,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 66.0,Q&A!A66:N66,REQ-0092,EV-0252,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 67.0,Q&A!A67:N67,REQ-0126,EV-0332,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 68.0,Q&A!A68:N68,REQ-0174,EV-0427,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 69.0,Q&A!A69:N69,REQ-0024,EV-0069,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 70.0,Q&A!A70:N70,REQ-0052;REQ-0128,EV-0140,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 71.0,Q&A!A71:N71,REQ-0128,EV-0337,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 72.0,Q&A!A72:N72,REQ-0047;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0127,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 73.0,Q&A!A73:N73,REQ-0042,EV-0445,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 74.0,Q&A!A74:N74,REQ-0125,EV-0329,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 75.0,Q&A!A75:N75,REQ-0115;REQ-0133,EV-0311,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 76.0,Q&A!A76:N76,REQ-0038;REQ-0104,EV-0106,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,Q&A No./ID 77.0,Q&A!A77:N77,REQ-0088,EV-0236,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,保留 No./ID 50.0,保留!A2:N2,REQ-0157,EV-0391,EXTRACTED_OR_LINKED,Phần chưa có ánh xạ riêng là ngữ cảnh/đề xuất; không dùng để tự phát sinh yêu cầu đã duyệt.
+QA,デザインFB,デザインFB!hàng1,,,EMPTY_LOG_HEADER_ONLY,"Kiểm trực tiếp: chỉ có tiêu đề, không có trả lời/quyết định để trích."
+QA,お知らせ・メール文章,お知らせ・メール文章!hàng1,,,EMPTY_LOG_HEADER_ONLY,"Kiểm trực tiếp: chỉ có tiêu đề, không có trả lời/quyết định để trích."
+QA,追加要件 No./ID CR-01,追加要件!A2:N2,REQ-0001;REQ-0002;REQ-0003;REQ-0004;REQ-0005;REQ-0006;REQ-0007;REQ-0008,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-02,追加要件!A3:N3,REQ-0050;REQ-0051;REQ-0052;REQ-0172,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-03,追加要件!A4:N4,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-04,追加要件!A5:N5,REQ-0065;REQ-0066;REQ-0067;REQ-0068,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-05,追加要件!A6:N6,REQ-0050;REQ-0051;REQ-0052;REQ-0172,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-06,追加要件!A7:N7,REQ-0057;REQ-0058,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-07,追加要件!A8:N8,REQ-0130,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-08,追加要件!A9:N9,REQ-0046;REQ-0047,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-09,追加要件!A10:N10,REQ-0090;REQ-0091;REQ-0092,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Có nội dung cũ đã thay theo quyết định17/11 (đăng thay/định tuyến/mỗi SNS1 tài khoản/sửa trực tiếp)."
+QA,追加要件 No./ID CR-10,追加要件!A11:N11,REQ-0062;REQ-0063,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-11,追加要件!A12:N12,REQ-0106,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-12,追加要件!A13:N13,REQ-0107;REQ-0108;REQ-0109;REQ-0110,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-13,追加要件!A14:N14,REQ-0013;REQ-0014;REQ-0015;REQ-0016,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-14,追加要件!A15:N15,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Có nội dung cũ đã thay theo quyết định17/11 (đăng thay/định tuyến/mỗi SNS1 tài khoản/sửa trực tiếp)."
+QA,追加要件 No./ID CR-15,追加要件!A16:N16,REQ-0084;REQ-0085,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-16,追加要件!A17:N17,REQ-0044,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-17,追加要件!A18:N18,REQ-0121,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-18,追加要件!A19:N19,REQ-0122;REQ-0123;REQ-0124,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-19,追加要件!A20:N20,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-20,追加要件!A21:N21,REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0171,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Có nội dung cũ đã thay theo quyết định17/11 (đăng thay/định tuyến/mỗi SNS1 tài khoản/sửa trực tiếp)."
+QA,追加要件 No./ID CR-21,追加要件!A22:N22,REQ-0053;REQ-0054,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Có nội dung cũ đã thay theo quyết định17/11 (đăng thay/định tuyến/mỗi SNS1 tài khoản/sửa trực tiếp)."
+QA,追加要件 No./ID CR-22,追加要件!A23:N23,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0396,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-23,追加要件!A24:N24,REQ-0062;REQ-0063,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế."
+QA,追加要件 No./ID CR-24,追加要件!A25:N25,REQ-0032;REQ-0033;REQ-0034;REQ-0165;REQ-0168,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Phương án có điều kiện chưa được chọn; không biến thành requirement phải triển khai."
+QA,追加要件 No./ID CR-25,追加要件!A26:N26,REQ-0134;REQ-0135,,LINKED_CONTEXT_NOT_APPROVAL,"Dòng CR là đề xuất/đánh giá phạm vi của nguồn QA, không phải tự động xác nhận khách. Đối chiếu với KS/GJ/QA tại requirement liên kết; không phục hồi phần đã bị quyết định sau thay thế. Phương án có điều kiện chưa được chọn; không biến thành requirement phải triển khai."
+SD-T18,Trang màn 5,PDF trang5,REQ-0001,EV-0005,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 6,PDF trang6,REQ-0004,EV-0012,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 7,PDF trang7,REQ-0005;REQ-0033,EV-0015,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 8,PDF trang8,REQ-0010;REQ-0011;REQ-0012,EV-0027,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 9,PDF trang9,REQ-0012;REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0086,EV-0033,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 10,PDF trang10,REQ-0095;REQ-0097;REQ-0113,EV-0259,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 11,PDF trang11,REQ-0050;REQ-0113;REQ-0118,EV-0134,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 12,PDF trang12,REQ-0116;REQ-0117,EV-0312,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 13,PDF trang13,REQ-0038;REQ-0039;REQ-0042;REQ-0119;REQ-0120,EV-0107,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 14,PDF trang14,REQ-0053;REQ-0054;REQ-0055;REQ-0056;REQ-0059;REQ-0072,EV-0145,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 15,PDF trang15,REQ-0060;REQ-0062;REQ-0063,EV-0164,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 16,PDF trang16,REQ-0065;REQ-0066;REQ-0067;REQ-0069,EV-0177,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 17,PDF trang17,REQ-0068;REQ-0070;REQ-0071,EV-0186,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 18,PDF trang18,REQ-0081;REQ-0085;REQ-0096;REQ-0128,EV-0220,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 19,PDF trang19,REQ-0111;REQ-0168,EV-0301,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-T18,Trang màn 20,PDF trang20,REQ-0104;REQ-0109,EV-0284,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 4,PDF trang4,REQ-0013;REQ-0014;REQ-0016;REQ-0126,EV-0035,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 5,PDF trang5,REQ-0075;REQ-0114;REQ-0115,EV-0206,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 6,PDF trang6,REQ-0002;REQ-0003;REQ-0023;REQ-0165,EV-0007,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 7,PDF trang7,REQ-0072,EV-0446,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 8,PDF trang8,REQ-0073;REQ-0074,EV-0200,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 9,PDF trang9,REQ-0034,EV-0096,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 10,PDF trang10,REQ-0095,EV-0260,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 11,PDF trang11,REQ-0080;REQ-0085;REQ-0089;REQ-0091;REQ-0128,EV-0218,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 12,PDF trang12,REQ-0032;REQ-0168,EV-0092,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 13,PDF trang13,REQ-0019;REQ-0029;REQ-0087,EV-0057,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 14,PDF trang14,REQ-0057,EV-0440,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 15,PDF trang15,REQ-0090;REQ-0110,EV-0244,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 16,PDF trang16,REQ-0121,EV-0319,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 17,PDF trang17,REQ-0122,EV-0323,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 18,PDF trang18,REQ-0123,EV-0326,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 19,PDF trang19,REQ-0088,EV-0237,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 20,PDF trang20,REQ-0130,EV-0343,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 21,PDF trang21,REQ-0015,EV-0040,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 22,PDF trang22,REQ-0021;REQ-0022,EV-0062,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+SD-M18,Trang màn 23,PDF trang23,REQ-0125,EV-0330,TEXT_DESCRIPTION_LINKED,"Chỉ mô tả chữ, hình mẫu không được coi là giá trị chốt; không tự đóng No. mở."
+GJ,Đồng thuận mục1,合意事項 (đồng thuận) mục1,REQ-0053;REQ-0055;REQ-0098;REQ-0116;REQ-0117;REQ-0118,EV-0144,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục2,合意事項 (đồng thuận) mục2,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0315,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục3,合意事項 (đồng thuận) mục3,REQ-0137,EV-0355,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục4,合意事項 (đồng thuận) mục4,REQ-0042,EV-0116,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục5,合意事項 (đồng thuận) mục5,REQ-0019,EV-0056,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục6,合意事項 (đồng thuận) mục6,REQ-0102,EV-0278,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.
+GJ,Đồng thuận mục7,合意事項 (đồng thuận) mục7,REQ-0018;REQ-0054;REQ-0071;REQ-0075;REQ-0079;REQ-0082;REQ-0091;REQ-0124;REQ-0165;REQ-0168,EV-0052,EXTRACTED_OR_LINKED,Phân biệt quyết định với việc phải đề xuất/hỏi dịch vụ.

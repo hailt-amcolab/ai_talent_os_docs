@@ -1,0 +1,18 @@
+{
+  "approval_type": "User/Tech Lead approval of G1-G4 analysis gates, not customer requirements or release approval",
+  "verbatim_user_message": "tôi đã duyệt, đánh pass hết cho tôi, và g5 còn block gì nữa không",
+  "approved_by": "Người dùng / Tech Lead trong hội thoại hiện tại — duyệt trực tiếp; không tự đặt tên người ký",
+  "recorded_by": "Codex — ghi nhận quyết định, không ký thay reviewer",
+  "recorded_at": "2026-11-19T05:58:29+00:00",
+  "scope_limits": [
+    "G1-G3: duyệt hồ sơ nguồn/truy vết/rà luồng và giới hạn đã nêu; không xác nhận đủ triển khai hoặc phê duyệt thương mại.",
+    "G4: chấp thuận24 finding ACCEPT về nội dung và phân tuyến20 REJECT;3 NEED_MORE_EVIDENCE ngoài phạm vi finding hợp lệ, không được hỏi khách.",
+    "FND-0004,FND-0013,FND-0016 giữ chờ chứng cứ; FND-0017 giữ mốc vận hành.",
+    "G5 chưa được người dùng xác nhận ký independent review; không sửa review.status hoặc kết quả review."
+  ],
+  "pending_findings_outside_g4_validated_scope": [
+    "FND-0004",
+    "FND-0013",
+    "FND-0016"
+  ]
+}

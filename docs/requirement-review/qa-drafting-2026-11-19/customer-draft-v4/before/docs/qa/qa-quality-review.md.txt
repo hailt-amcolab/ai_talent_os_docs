@@ -1,0 +1,121 @@
+# Q&A Quality Review — AI Talent OS
+
+## Review Summary
+
+**Kết quả đợt review: BLOCKED do thiếu nội dung Q&A đầu vào. Chưa có câu hỏi đủ điều kiện chuyển Tech Lead review về chất lượng.**
+
+Đường dẫn được giao `docs/qa/qa-draft.md` không tồn tại khi kiểm tra. Tìm trong repository chỉ thấy [bản nháp tại đợt qa-drafting](../requirement-review/qa-drafting-2026-11-19/qa-draft.md). Tệp này là thông báo chặn, chưa chứa Q&A ID, Finding ID gắn với câu hỏi, câu hỏi hoặc lựa chọn dành cho khách. Không sao chép hay thay thế bản nháp vào đường dẫn được giao.
+
+| Chỉ tiêu | Số lượng |
+|---|---:|
+| Q&A thực tế có nội dung để review | 0 |
+| PASS | 0 |
+| REWRITE | 0 |
+| SPLIT | 0 |
+| MERGE | 0 |
+| REJECT | 0 |
+| NEED_MORE_EVIDENCE | 0 |
+
+Các số 0 phản ánh tập câu hỏi rỗng; không có nghĩa đã kiểm đạt nghiệp vụ, bằng chứng hoặc văn phong. Không phân loại thông báo BLOCKED thành một câu hỏi khách hàng.
+
+### Phạm vi và bằng chứng đã kiểm
+
+- Đọc `AGENTS.md`, catalog nguồn, Source Register, quy tắc dữ liệu và G1–G8; đối chiếu Requirement Register 175 dòng, Business Rules 90 dòng, chỉ mục/đặc tả chung Business Flows 30 luồng, Finding Register 47 finding, kết quả Independent Review và hồ sơ đợt soạn Q&A. Không rà lại từng nhánh của 30 luồng vì bản nháp không có câu hỏi để gắn phạm vi kiểm chứng.
+- Mở lại biên bản họp gốc 17/11, đọc trực tiếp cấu trúc năm sheet QA và KS; kiểm các ô phản hồi/trạng thái liên quan đến các finding ACCEPT, gồm `Q&A!G7:I7`, `G54:I54`, `G56:I57`, `G63:I63`, `G69:I69`, `G71:I71`, `G75:I76`. Kiểm hash cả 12 nguồn: trùng snapshot nguồn của lần independent review. Hash đúng không thay việc kiểm ý nghĩa câu hỏi.
+- Đối chiếu trực tiếp [reviews.csv](../requirement-review/registers/reviews.csv), [gate-runs.csv](../requirement-review/registers/gate-runs.csv) và [review-results.csv](../requirement-review/independent-review-2026-11-19/review-results.csv): 10 ACCEPT về nội dung finding, 16 REWRITE, 20 REJECT, 1 NEED_MORE_EVIDENCE; không có review mang trạng thái ACCEPTED. GATE-0005/G5 và GATE-0006/G6 hiện BLOCKED.
+- Hồ sơ [IE-QAD-0001](../requirement-review/qa-drafting-2026-11-19/internal-evidence.md) giải thích vì sao chưa soạn câu hỏi. Lần này kiểm lại sổ review/gate và nội dung tệp, không lấy giải thích Analyst làm bằng chứng duy nhất.
+
+Người thực hiện: Codex, hỗ trợ review chất lượng theo vai trò người dùng giao. Không ký phê duyệt độc lập hoặc APPROVED, không chạy lại hay đổi trạng thái các gate trong đợt này. Đây là báo cáo kiểm tra đầu vào; chưa thể hoàn tất lượt đánh giá chất lượng từng câu trước Tech Lead.
+
+## Detailed Review
+
+**Không có Q&A để lập mục review theo Q&A ID.** Không tự cấp ID, lấy câu hỏi lịch sử trong workbook làm bản nháp thay thế, hoặc tạo câu hỏi mới từ các finding.
+
+| Trường kiểm tra | Kết quả và giới hạn |
+|---|---|
+| Q&A ID / Finding ID | Không có trong bản nháp tìm được; không thể kiểm liên kết câu hỏi → finding. |
+| Review Result | Chưa áp dụng sáu kết quả theo từng câu, vì chưa có đối tượng review. |
+| Evidence Status | Kiểm được nguồn và hồ sơ gate; chưa kiểm được bằng chứng hỗ trợ cách đặt vấn đề của câu hỏi vì câu hỏi chưa tồn tại. |
+| Business Accuracy | Chưa đánh giá. Không thể kết luận đúng nghiệp vụ từ riêng trạng thái ACCEPT của finding. |
+| Business Relevance | Chưa đánh giá cho từng câu. Các đầu việc kỹ thuật bị loại trong review finding không tự được đưa trở lại Customer Q&A. |
+| Clarity & Naturalness | Chưa đánh giá. Không có câu chữ dành cho khách để kiểm độ rõ, độ tự nhiên, thuật ngữ hay mức dẫn dắt. |
+| Question Quality | Chưa đánh giá tính cụ thể, một quyết định mỗi câu, lựa chọn hoặc khả năng dùng câu trả lời cập nhật luồng/quy tắc. |
+| Reason | Tệp ở đường dẫn yêu cầu chưa có; bản nháp tìm được chưa chứa câu hỏi. Hồ sơ hiện hành cũng chưa ghi G5 PASS. |
+| Suggested Revision | Không áp dụng: không có nội dung hiện tại để trích và sửa. Analyst cần xác định bản nháp thực tế hoặc bổ sung nội dung sau khi xử lý các điều kiện liên quan. |
+
+Không đề xuất viết lại, chia hoặc gộp một câu chưa tồn tại. Điều đó sẽ tạo nội dung mới thay vì review bản Analyst được giao.
+
+## Cross-Q&A Findings
+
+### Các câu hỏi trùng lặp hoặc mâu thuẫn
+
+Chưa thể đánh giá trên tập rỗng. Không ghi “không có trùng/mâu thuẫn” như một kết quả đã đạt. Cũng chưa thể xác định câu nào hỏi lại điều khách đã trả lời, câu nào thuần kỹ thuật, hay câu nào không có finding hợp lệ.
+
+Không có mâu thuẫn giữa thông báo BLOCKED trong bản nháp tìm được và sổ gate hiện tại. Tuy nhiên, mô tả tác vụ “toàn bộ bộ Q&A đã được tạo tại docs/qa/qa-draft.md” khác với tệp thực tế trong workspace; đây là vấn đề nhận diện đầu vào, không phải mâu thuẫn requirement.
+
+### Các finding ACCEPT chưa có Q&A
+
+Cả 10 finding ACCEPT về nội dung đều chưa xuất hiện thành câu hỏi trong bản nháp tìm được. Điều này có lý do được ghi trong hồ sơ: điều kiện chuyển bước chưa hoàn tất. **Chưa đủ căn cứ gọi đây là Analyst bỏ sót câu hỏi đủ điều kiện**, cũng không tự tạo thêm câu hỏi để tăng độ bao phủ.
+
+| Finding ID | Chủ đề theo hồ sơ review | Q&A lịch sử cần tiếp tục | Trạng thái bao phủ hiện tại |
+|---|---|---|---|
+| FND-0002 | Quan hệ chế độ đăng, duyệt và từ cấm | No.71 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0003 | Quyền sửa và đường xử lý bài bị từ cấm | No.57; giao điểm No.71 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0006 | Chốt giờ, nhiều bài và tư liệu đến muộn | No.56 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0009 | Phân công duyệt và người nhận khi thiếu/vắng phụ trách | No.6 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0010 | Tiêu chí hồ sơ đủ để tạo bài | No.54 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0014 | Ý nghĩa giới hạn hội thoại | No.76, mục xác nhận23 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0022 | Quyền sử dụng và phí khi dừng vì chưa thanh toán | No.63 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0024 | Đăng ký mới cùng email sau nghỉ và phạm vi xóa | No.69 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0025 | Tạo nháp từ hàng video Talent tự làm | No.37 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+| FND-0028 | Loại email, người nhận và nội dung gửi Manager | No.75 | Chưa soạn; vẫn chặn G5/G6 theo hồ sơ |
+
+Không có REWRITE nào được ghi đã sửa và kiểm lại đủ điều kiện trong kết quả review hiện tại. FND-0013 vẫn cần thêm bằng chứng; đó là trạng thái finding, không phải một Q&A được tính vào thống kê NEED_MORE_EVIDENCE ở trên.
+
+### Phụ thuộc cần kiểm khi có bản nháp
+
+Các mục dưới là chỉ dẫn kiểm tra dựa trên luồng và phạm vi finding, không phải phát hiện lỗi ở câu hỏi chưa có hoặc quyết định mới của khách:
+
+- FND-0009 và FND-0028: phạm vi người nhận email cần dùng cùng cách phân công phụ trách đã được chốt; không hỏi chọn tuyến nhận hai lần.
+- FND-0002 và FND-0003: phân biệt kiểm từ cấm/duyệt trên đường tự động với quyền sửa và xác nhận lại sau khi bài bị chặn; tránh hai câu cùng yêu cầu quyết định một thứ tự xử lý.
+- FND-0006: dùng một quy tắc xử lý quá giờ làm tham chiếu cho các nhánh sửa bài, duyệt lại hoặc đăng lại; tránh đặt các lựa chọn giờ trái nhau ở nhiều câu.
+- FND-0010: tách tiêu chí đủ hồ sơ khỏi trạng thái bắt đầu sử dụng và ngày bắt đầu tính phí. Các chủ đề liên quan trong FND-0011/0012/0021 còn cần sửa; không mặc định đã chốt.
+- FND-0022 và FND-0024: phân biệt ngừng vì nợ với nghỉ hẳn và đăng ký mới. Biên bản gốc 17/11, phần đồng thuận5 và dòng xác nhận56 ở phần7, đã nêu sáu tháng lưu dữ liệu và không có thao tác đưa Talent nghỉ về đang dùng; không đặt phương án khôi phục mặc định trái quyết định đó.
+
+### Đề xuất sắp xếp và ưu tiên
+
+Chưa có Q&A ID để sắp xếp danh sách thực tế. Khi Analyst có bản nháp đủ điều kiện, có thể nhóm theo hành trình sau, vẫn giữ No. lịch sử:
+
+| Thứ tự tham khảo | Module / Business Flow | Finding liên quan | Lý do |
+|---|---|---|---|
+| 1 | Khởi tạo hồ sơ — FLOW-0005/0006 | FND-0010 | Làm rõ điều kiện tạo nội dung trước khi đi vào đăng bài. |
+| 2 | Phân công phụ trách — FLOW-0017/0022 | FND-0009 | Xác định trách nhiệm nhận/xử lý; email cần dùng cùng cách phân công. |
+| 3 | Hội thoại và tư liệu — FLOW-0011/0014 | FND-0014, FND-0025 | Làm rõ đầu vào và cách dùng trước khi chạy đăng. |
+| 4 | Đăng, kiểm từ cấm, duyệt và giờ — FLOW-0016/0017/0018/0019 | FND-0002, FND-0003, FND-0006 | Ưu tiên làm rõ điều kiện được phép đăng và xử lý quá giờ; đây là nhận định ưu tiên của reviewer, chưa phải mức ưu tiên khách đã duyệt. |
+| 5 | Email quản lý — FLOW-0022 | FND-0028 | Tiếp nối cách phân công tại nhóm2; có thể xử lý cùng buổi để tránh hỏi lặp. |
+| 6 | Chưa thanh toán, ngừng dùng, xóa và đăng ký mới — FLOW-0023/0026 | FND-0022, FND-0024 | Làm rõ quyền sử dụng/phí và kết thúc vòng đời; cần kiểm phụ thuộc chu kỳ thu đang chờ. |
+
+Bảng này không yêu cầu tạo đủ 10 câu hay một câu cho mỗi finding. Analyst chỉ soạn phần còn cần thẩm quyền khách sau kiểm nguồn; reviewer sẽ quyết định chia/gộp theo câu chữ thực tế.
+
+## Final Recommendation
+
+| Nhóm bàn giao | Kết quả |
+|---|---|
+| Q&A đủ điều kiện Tech Lead review | Chưa có câu nào. Tech Lead có thể xem báo cáo này để xử lý đầu vào và phân công nội bộ. |
+| Q&A cần chỉnh sửa | Chưa xác định theo từng câu. Không có bản nháp chứa câu hỏi để đề xuất sửa. |
+| Q&A cần điều tra thêm | Chưa có Q&A ID để gán. Cần làm rõ tệp đầu vào: đường dẫn yêu cầu không tồn tại, bản tìm được rỗng về câu hỏi. |
+| Q&A nên loại bỏ | Chưa có câu nào để loại. Không chuyển 20 finding REJECT thành 20 Q&A REJECT. |
+
+Analyst xác định đúng phiên bản/tệp có nội dung cần review; nếu chưa có thì xử lý phản biện và điều kiện chuyển bước đã ghi trong hồ sơ. Tech Lead/chủ quy trình xử lý người chịu trách nhiệm và gate theo [QUALITY_GATES.md, G5–G6](../requirement-review/QUALITY_GATES.md). Sau khi có nội dung, reviewer cần kiểm lại từng câu theo A–F, gồm trích nguyên văn, nguồn phản biện và đề xuất chỉnh sửa khi áp dụng.
+
+Giới hạn kiểm chứng: đợt này xác nhận tình trạng đầu vào và đối chiếu bao phủ finding; chưa hoàn tất review chất lượng nội dung bộ Q&A. Chưa kiểm lại mọi trích dẫn, hình nguồn và mọi câu trả lời lịch sử cho từng câu vì chưa có câu để xác định phạm vi. Không dùng kết quả review finding cũ thay cho bằng chứng hỗ trợ một câu hỏi tương lai.
+
+Giữ nguyên qa-draft.md tìm được, toàn bộ Requirement Register, Finding Register, các register khác, nguồn khách và workbook15. Chỉ tạo báo cáo này; không ghi APPROVED, không tạo/gửi câu hỏi và không dịch sang tiếng Nhật. Chờ Tech Lead hoặc Analyst xử lý đầu vào/đề xuất.
+
+### Định danh lần kiểm tra
+
+- Ngày kiểm tra: 2026-11-19T04:57:23+00:00.
+- `qa-drafting-2026-11-19/qa-draft.md` — SHA-256 `d6948acb4b32c5070c12a4d6131acee0307850d37387fa8a084c1daea73a9669`.
+- `independent-review-2026-11-19/review-results.csv` — SHA-256 `c2885a898ba49da5242d3cc94b7fa9aaf6a2721d7ca17ad081cbce739f88fb7f`.
+- `registers/reviews.csv` — SHA-256 `79c354eceb052f29e9626daa75c43718c6e404a2d687ea199dd849772f01a218`.
+- `registers/gate-runs.csv` — SHA-256 `823e7463b591693ee6b6f6bfc9091429452deffcc7eab5d38b3e75a435851f0d`.

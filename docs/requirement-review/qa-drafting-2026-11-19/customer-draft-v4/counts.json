@@ -1,0 +1,27 @@
+{
+  "original_questions": 44,
+  "dispositions": {
+    "REMOVE_FROM_CUSTOMER_DRAFT": 1,
+    "REWRITE": 18,
+    "KEEP": 16,
+    "HOLD_INTERNAL": 7,
+    "SPLIT": 1,
+    "HOLD_PROVIDER_AND_TEAM": 1
+  },
+  "active_questions": 36,
+  "active_findings": 21,
+  "split_new_question_ids": [
+    "WQA-061-02"
+  ],
+  "retired_or_held_ids": [
+    "WQA-071-01",
+    "WQA-056-01",
+    "WQA-056-02",
+    "WQA-069-02",
+    "WQA-058-01",
+    "WQA-062-01",
+    "WQA-049-01",
+    "WQA-066-01",
+    "WQA-067-01"
+  ]
+}

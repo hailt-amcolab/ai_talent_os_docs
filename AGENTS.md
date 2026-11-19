@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Authoritative requirement sources
-Read [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md) before requirement analysis, workflow reviews, customer questions, or specification changes. The user designated exactly nine original sources in that catalog. `Phan_tich/`, `SCD/`, `agent_spec/`, database design documents, this file, and `CLAUDE.md` are derived material or internal guidance, not independent evidence of customer approval. Cite original document sections, PDF pages, or workbook sheet/No./cells. Keep source files unchanged; distinguish source proposals, customer decisions, internal design choices, and commercial approval. Newer explicit decisions supersede older statements only for the same subject; unresolved conflicts stay open. Never infer confirmed requirements from application code or demos.
+Read [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md) before requirement analysis, workflow reviews, customer questions, or specification changes. The user designated `source_requiments/` as the source folder on 2026-11-19: initial documents in `base/`, dated deliveries, and living logs in `Q&A/`. Use the current catalog (12 files at this snapshot), not the superseded nine-file limit. Folder dates are not automatically document or approval dates. Include the 2026-11-18 screen definitions: `[SD-T18]` has T-01–T-16 and `[SD-M18]` has M-01–M-20; screen IDs differ from `[AG]`, so always cite the document/version and page. New screen descriptions and `要確認` notes do not automatically close existing Q&A. `Phan_tich/`, `SCD/`, `agent_spec/`, database designs, this file, and `CLAUDE.md` are derived material, not customer approval. Keep source files unchanged. Distinguish source proposals, customer decisions, internal design, and commercial approval; newer explicit decisions supersede older statements only on the same subject. Keep unresolved conflicts open and never infer confirmed requirements from code or demos.
 
 ## Project Structure & Module Organization
 Full stack, layers and conventions: `agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md` (read it before adding code).
@@ -31,3 +31,23 @@ History currently contains two descriptive documentation commits, including Viet
 
 ## Configuration & Agent Instructions
 Copy each app's `.env.example` to `.env` (API) or `.env.local` (web). Keep VAPID public keys aligned and private keys out of commits; disable `ENABLE_PUSH_TEST` in production. Keep API endpoints in `apps/api`. Follow `apps/web/AGENTS.md` and read bundled Next.js documentation before editing web code.
+
+## Requirement Analysis & Verification
+
+For requirement quality work, use the repository skill [requirement-review](.agents/skills/requirement-review/SKILL.md) and the workflow in [docs/requirement-review/README.md](docs/requirement-review/README.md). Read its Source Register, data rules and G1–G8 before starting the requested stage. Workflow setup alone does not authorize business analysis or Customer Q&A creation.
+
+- Every conclusion must trace to an exact source/version and locator. Re-open the original source before marking VERIFIED; record the evidence, hash, checker and date. VERIFIED is not customer approval.
+- Do not invent requirements or resolve business conflicts on the customer's behalf. Keep unresolved points open with evidence and an owner.
+- Keep FACT, INFERENCE, ASSUMPTION and PROPOSAL separate. Internal analysis, SCD, technical specs, code and demos cannot establish customer confirmation.
+- Check current QA (all five sheets), KS, GJ, screen definitions and existing internal tracking before raising a question. Never ask an answered question again; continue an open issue under its existing QA No. Preserve protected confirmation rows in workbook15.
+- Route technical design and provider checks to the team/provider. Ask the customer only for decisions requiring their authority about behavior, policy or scope.
+- All newly drafted Q&A must currently be in Vietnamese and understandable to a nontechnical reader. This applies over older handoff instructions asking for Japanese drafts; do not rewrite historical drafts merely to enforce it.
+- Reuse existing canonical analysis and tracking locations. Add metadata and links rather than duplicate their content; preserve old results and existing user changes.
+- G5 requires a reviewer other than the author and a recorded source-based review. Do not self-sign independent review or automatically delegate. Missing reviewer or evidence blocks the applicable gate.
+- Separate business, design, commercial and release approval. Source changes invalidate affected verification/gates until reassessed. SCD colors and configurable assumptions do not establish G8 readiness.
+
+### Q&A preparation and approval — WCP-0001
+
+The user approved WCP-0001; see [approval/change record](docs/requirement-review/workflow-change-proposal-2026-11-19/application/APPROVAL_AND_CHANGELOG.md). When separately tasked, prepare internal WORKING_DRAFT from content-review ACCEPT for the exact finding hash, traceable current evidence, and an unresolved business decision requiring customer authority. Follow QUALITY_GATES and DATA_MODEL. REWRITE needs revision plus recorded content ACCEPT on recheck of the new hash; exclude REJECT/NEED_MORE_EVIDENCE and answered/technical-only issues. Preserve historical review outcomes/eligibility. AI content review does not substitute for an independent reviewer signature.
+
+WORKING_DRAFT may be prepared while G5 is BLOCKED; do not change gate/reviewer/finding approval states to enable it. APPROVED_QA still requires effective G1–G6 PASS for the scope and Tech Lead approval of the exact IDs/version/hash. External sending needs separate authorization; Customer Confirmed requires actual customer evidence under G7. Workflow-change approval alone does not authorize drafting Q&A.

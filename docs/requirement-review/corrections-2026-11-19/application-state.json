@@ -1,0 +1,122 @@
+{
+  "created_at": "2026-11-19T08:01:28+00:00",
+  "affected_requirements": [
+    "REQ-0020",
+    "REQ-0057",
+    "REQ-0078",
+    "REQ-0090",
+    "REQ-0092",
+    "REQ-0094",
+    "REQ-0117",
+    "REQ-0118",
+    "REQ-0120",
+    "REQ-0125",
+    "REQ-0159",
+    "REQ-0169"
+  ],
+  "affected_rules": [
+    "BR-0031",
+    "BR-0044",
+    "BR-0060",
+    "BR-0069"
+  ],
+  "affected_flows": [
+    "FLOW-0003",
+    "FLOW-0004",
+    "FLOW-0006",
+    "FLOW-0009",
+    "FLOW-0013",
+    "FLOW-0016",
+    "FLOW-0021",
+    "FLOW-0024"
+  ],
+  "revised_findings": [
+    "FND-0003",
+    "FND-0023"
+  ],
+  "new_review_ids": [
+    "REV-0155",
+    "REV-0156"
+  ],
+  "new_evidence_ids": [
+    "EV-0517",
+    "EV-0518",
+    "EV-0519",
+    "EV-0520",
+    "EV-0521",
+    "EV-0522",
+    "EV-0523",
+    "EV-0524",
+    "EV-0525",
+    "EV-0526",
+    "EV-0527",
+    "EV-0528",
+    "EV-0529",
+    "EV-0530",
+    "EV-0531",
+    "EV-0532",
+    "EV-0533",
+    "EV-0534",
+    "EV-0535",
+    "EV-0536",
+    "EV-0537",
+    "EV-0538",
+    "EV-0539",
+    "EV-0540",
+    "EV-0541",
+    "EV-0542",
+    "EV-0543",
+    "EV-0544",
+    "EV-0545",
+    "EV-0546",
+    "EV-0547",
+    "EV-0548",
+    "EV-0549",
+    "EV-0550",
+    "EV-0551"
+  ],
+  "mutated_paths": [
+    "docs/requirement-review/registers/evidence.csv",
+    "docs/requirement-review/registers/requirements.csv",
+    "docs/requirement-review/registers/business-rules.csv",
+    "docs/requirement-review/registers/business-flows.csv",
+    "docs/requirement-review/registers/findings.csv",
+    "docs/requirement-review/registers/reviews.csv",
+    "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/current-export-manifest.json",
+    "docs/qa/qa-quality-review.md",
+    "docs/requirement-review/README.md",
+    "docs/requirement-review/registers/gate-runs.csv"
+  ],
+  "step_ids": [
+    "FLOW-0004-M03",
+    "FLOW-0006-M04",
+    "FLOW-0006-E01.01",
+    "FLOW-0009-M05",
+    "FLOW-0013-M07",
+    "FLOW-0016-M05",
+    "FLOW-0021-M02",
+    "FLOW-0021-A02.01",
+    "FLOW-0024-M04",
+    "FLOW-0024-A01.01",
+    "FLOW-0024-E01.01",
+    "FLOW-0024-E02.01"
+  ],
+  "qa_version": "V5",
+  "qa_total": 36,
+  "qa_hold_ids": [
+    "WQA-057-01",
+    "WQA-057-02",
+    "WQA-066-02"
+  ],
+  "qa_waiting_tech_lead": 33,
+  "new_gate_runs": [
+    "GATE-0013",
+    "GATE-0014",
+    "GATE-0015",
+    "GATE-0016",
+    "GATE-0017"
+  ]
+}

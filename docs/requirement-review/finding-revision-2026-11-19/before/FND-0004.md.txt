@@ -1,0 +1,78 @@
+# FND-0004 — Chưa có trạng thái tổng bài đầy đủ sau hai chế độ và kết quả từng SNS
+
+Loại: **UNDEFINED_STATE**. Loại phụ: —. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0017;FLOW-0018;FLOW-0019;FLOW-0021. Chức năng: C-01;8-3;8-5;6-7. ID cũ: RV-03;S10-01. FGAP: FGAP-0043;FGAP-0051;FGAP-0062.
+
+## Vấn đề
+
+Chưa có trạng thái tổng bài đầy đủ sau hai chế độ và kết quả từng SNS
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+YK2 có hình6 trạng thái cũ và lưu kết quả riêng từng SNS; No.51 xác nhận cần cập nhật vì có hai chế độ.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+Thành công một phần và chưa biết kết quả không nhất thiết tương đương lỗi toàn bài; không tự thêm enum vào yêu cầu khách.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Bảng chiếu kết quả từng mạng thành trạng thái/nhãn tổng và các chuyển hợp lệ sau trả lại, sửa, tự động, hủy.
+
+## Quyết định cần đưa ra
+
+Đội lập bảng chuyển/hiển thị theo kết quả đã chốt; phần người dùng hiểu/thao tác được cần xác nhận cùng No.51/59.
+
+## Ảnh hưởng nghiệp vụ
+
+Chưa có oracle cho danh sách bài, thống kê và chọn đăng lại; không kết luận thực tế đã đăng trùng.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING
+
+## Lý do / tái sử dụng Q&A
+
+Theo No.51/59/70/71; khách chốt ý nghĩa hiển thị/hành vi, đội chọn cấu trúc trạng thái kỹ thuật.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A4:M4 (RV-03; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn chốt hành vi/AC của đúng nhánh liên quan; không chặn toàn bộ dự án.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0335 / `Y:504-507` — `YK2`, `source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx`, 5-1 投稿の状態と移り変わり; Đoạn XML P504–P507 (đánh số w:p từ 1, kể cả đoạn trống); xem mục/chức năng trong source_refs; SHA256 `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3`. Trích đoạn định vị: 投稿は、次の6つの状態で管理します。投稿できたか・できなかったかは、SNS ごとに記録します。 図5-1 投稿の状態と移り変わり タレントのステータス、動画、SNS の接続、請求の状態も、同じ形で最終版に書きます。
+- EV-0336 / `Q:51` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A51:J51; ID=51.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A51: 51.0 D51: 46341.0 E51: Câu hỏi: Xin cho biết danh sách 6 trạng thái của bài đăng trong 図5-1, và các trạng thái kết quả theo từng SNS. Vì sao cần hỏi: Đây là cơ sở để thiết kế dữ liệu và màn hình bài đăng; bản tài liệu dạng chữ không xem được hình 図5-1. Tài liệu đang nói: - 概要要件定義書 改訂版 (5-1): quản lý bằng 6 trạng thái, kết quả ghi theo từng SNS; danh sách nằm trong 図5-1. - 6-10 (7-2): lọc theo 予約済み・承認待ち・投稿済み・失敗. - 6-6 (4-4), 6-9 (7-7): bài có từ cấm không được đặt lịch; có 差し戻し; quá giờ đăng mà chưa duyệt thì không đăng. - 6-10 (8-3): SNS chưa kết nối thì không đăng; bài không có video thì không đăng lên YouTube. Cần quý công ty cung cấp:… [xem toàn ô/đoạn trong EV]
+- EV-0510 / `Y:748` — `YK2`, `source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx`, YK2 đoạn w:p P748–P748 (đếm mọi đoạn XML từ1); mục/UC ghi tại flow; SHA256 `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3`. Trích đoạn định vị: 投稿できたか・できなかったかを、SNS ごとに記録します。
+- EV-0412 / `Q:59` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A59:J59; ID=59.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A59: 59.0 D59: 46341.0 E59: Câu hỏi: 8-5 ghi "talent hoặc manager đặt lại lịch". Thao tác này ở màn nào? Đăng lại chỉ SNS bị lỗi hay cả 3 SNS? Giờ mới do ai quyết? Vì sao cần hỏi: Talent không hủy được bài đã đặt lịch (7-2), nên cần làm rõ talent được thao tác gì với bài lỗi. Tài liệu đang nói: - 概要要件定義書 改訂版 (6-10 chức năng 8-5): không tự đăng lại; talent hoặc manager đặt lại lịch. - 6-10 (7-2): talent không hủy được bài đã đặt lịch. AMCOLAB đề xuất: Có nút "予約し直す" trên bài 失敗 ở cả app talent và màn quản lý; chỉ đăng lại SNS bị lỗi; giờ mới là khung giờ tiếp theo do AI quyết. F59: 【確認事項】資料(機能8-5)の「タレントまたはマネージャーが、予約し直します」について、どの画面で操作しますか。失敗したS… [xem toàn ô/đoạn trong EV]
+- EV-0220 / `T:18` — `SD-T18`, `source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf`, Trang PDF 18 (từ 1); mã màn ở source_refs; SHA256 `67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8`. Trích đoạn định vị:  T-14 投稿の予定と結果 投稿の予定と結果は、ここで見られるよ 画面イメージ 1 この画面ですること タレントが、自分の投稿の状態（承認待ち・予約済み・差し戻し・投稿済み・失敗）と、投稿ごとの実績を見る画面です。見 られる実績は、自分の投稿の分だけです。表示する実績の項目は、投稿サービスで取れる範囲にします。 使う人 タレント（スマートフォン） 使う場面 UC-08 予約して投稿する、UC-09 投稿の実績を確かめる 前後の画面 T-06 マイページ T-07 ホーム ▶ T-14 投稿の予定と結果 ▶ T-10 投稿案の詳細 T-10 投稿案の詳細（採用の後） 下のメニュー 下のメニュー 家の印：T-07 ホーム／吹き出しの印：T-09 AIコーチとの会話／プラスの印：T-11 写真・動画の送付／カレンダーの印： T-14 投稿の予定と結果／人の印：T-06 マイページ 業務フロー 毎日の投稿（22ページ） 自動投稿（23ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 表示の切り替え 選択 すべて／予定／投稿済み 選んだ状態の投稿だけを表示する 2 これからの投稿 ボタン 投稿予定の時刻、投稿先の SNS、状態（承認待 押した投稿の T-10 を開く ち・予約済み）。動画がない投稿は、YouTube に出ないことを表示する 3 差し戻された投稿 ボタン マネージャーが差し戻した投稿と、理由へのリン 理由を表示する。タレントは… [xem toàn ô/đoạn trong EV]
+- EV-0218 / `M:11` — `SD-M18`, `source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf`, Trang PDF 11 (từ 1); mã màn ở source_refs; SHA256 `1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67`. Trích đoạn định vị:  M-08 タレントの詳細（投稿） 投稿の予定・状態・結果を見られるよ 画面イメージ（パソコンで表示したとき） 1 この画面ですること マネージャーが、タレントの投稿の予定・状態・実績を見て、予約の取り消しと、予約し直しを 行う画面です。投稿できなかった投稿は、自動では投稿し直しません。投稿できたかどうかは、 SNS ごとに表示します。 使う人 マネージャー（パソコン。スマートフォンでも表示できます） 使う場面 UC-08 予約して 投稿する、UC-09 投稿の実績を確かめる 前後の画面 M-07・M-09・M-10 の M-08 タレントの詳細 M-05 投稿の承認 ▶ ▶ タブ （投稿） M-11 投稿の確認 業務フロー 実績と目標を確かめる（26ページ） マネージャーの利用と、閲覧の記録（34ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 情報・投稿・会 選択 開いているタブを強調する 情報：M-07／投稿：M-08 話・設定のタブ ／会話：M-09／設定：M- 10 を開く 2 状態での絞り込み 選択 承認待ち／予約済み／使ってはい 選んだ状態の投稿だけを表 けない言葉／投稿済み／失敗 示する 3 投稿の一覧 表示 投稿予定の時刻、投稿先の SNS、 — 状態、表示回数、いいねの数 4 行ごとのボタン ボタン 承認待ち：「承認へ」／予約済 「承認へ」は M-05、「文 み：「取り消す」／使ってはいけ 章を直す」は M-11… [xem toàn ô/đoạn trong EV]

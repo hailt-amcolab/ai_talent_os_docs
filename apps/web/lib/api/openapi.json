@@ -456,6 +456,71 @@
             ]
           }
         ]
+      },
+      "SnsAccounts": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "type": "boolean"
+          },
+          "accounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SnsAccount"
+            }
+          }
+        },
+        "required": [
+          "profile",
+          "accounts"
+        ]
+      },
+      "SnsAccount": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_connected",
+              "connected",
+              "reauth_required"
+            ]
+          },
+          "handle": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "status"
+        ]
+      },
+      "SnsConnectStart": {
+        "type": "object",
+        "properties": {
+          "authorizeUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "expiresInSeconds": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "authorizeUrl",
+          "expiresInSeconds"
+        ]
       }
     },
     "parameters": {}
@@ -1869,6 +1934,98 @@
           },
           "503": {
             "description": "OneDrive unavailable or not configured"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/upload-post/accounts": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnsAccounts"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Origin not allowed"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "503": {
+            "description": "Upload-Post unavailable, not configured or plan limit"
+          }
+        }
+      }
+    },
+    "/api/v1/dev/upload-post/connect": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "platform": {
+                    "type": "string",
+                    "enum": [
+                      "instagram",
+                      "tiktok",
+                      "youtube"
+                    ]
+                  }
+                },
+                "required": [
+                  "platform"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnsConnectStart"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Origin not allowed"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "503": {
+            "description": "Upload-Post unavailable, not configured or plan limit"
           }
         }
       }

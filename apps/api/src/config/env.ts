@@ -21,6 +21,8 @@ const Env = z.object({
   VAPID_PUBLIC_KEY: z.string().optional(),
   VAPID_PRIVATE_KEY: z.string().optional(),
   VAPID_SUBJECT: z.string().optional(),
+  // Upload-Post connect demo (/api/v1/dev/upload-post/*). Unset → 503 UPLOAD_POST_NOT_CONFIGURED. Never sent to the browser.
+  UPLOAD_POST_API_KEY: z.preprocess(blank, z.string().min(1).optional()),
   // OneDrive demo (Microsoft Graph). Unset mode → ONEDRIVE_NOT_CONFIGURED. Modes never fall back to each other.
   //   app       = shared organization drive, client credentials (needs a Microsoft 365 tenant with SharePoint Online)
   //   delegated = each login connects its own Microsoft account (personal Outlook/Hotmail or work), auth code + PKCE

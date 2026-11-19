@@ -1,0 +1,77 @@
+# FND-0018 — Đơn giá và giá áp dụng khi thay giữa kỳ chưa chốt
+
+Loại: **MISSING_RULE**. Loại phụ: —. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0015;FLOW-0023;FLOW-0027. Chức năng: 5-1;5-4;1-1. ID cũ: RV-06;RV-07;S08-06. FGAP: FGAP-0049;FGAP-0078;FGAP-0089;FGAP-0090.
+
+## Vấn đề
+
+Đơn giá và giá áp dụng khi thay giữa kỳ chưa chốt
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+Phải hiện giá trước tạo; giá do công ty quyết; đơn giá có thể cấu hình là hướng đội thiết kế.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+Cấu hình được không tự xác nhận số tiền và giá áp cho lượt trước/sau thay đổi.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Đơn giá cuối, thời điểm hiệu lực và điều chỉnh lượt/phí khi kết quả lỗi hoặc muộn.
+
+## Quyết định cần đưa ra
+
+Chốt giá và nguyên tắc áp giá trước UAT/phí thật; đội lưu dấu giá theo cách phù hợp.
+
+## Ảnh hưởng nghiệp vụ
+
+Chưa có oracle tiền phải thu của lượt gần mốc thay giá; không chứng minh hiện đã thu sai.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING
+
+## Lý do / tái sử dụng Q&A
+
+No.2/62 đã tồn tại; không yêu cầu khách chọn schema/bảng lưu giá.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A7:M7 (RV-06; MỞ — CHƯA HOÀN TẤT TOÀN BỘ);workbook15/Noi_bo!A8:M8 (RV-07; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn chốt giá/phí thật; không tự chặn xây phần độc lập với đơn giá.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0179 / `K:67` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A67:I67; ID=前提 UC-06-1; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A67: 1 B67: 前提 UC-06-1 F67: タレントが AI育成OS のタレントのアプリで AI に動画を作らせた場合は、1回目から動画生成の料金がかかります。動画生成1回あたりの金額は、アデッソ様に決めていただきます。 G67: [trống] I67: [trống]
+- EV-0180 / `K:68` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A68:I68; ID=前提 UC-06-2; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A68: 1 B68: 前提 UC-06-2 F68: AI育成OS のタレントのアプリの動画を作る画面に表示する金額は、目安です。請求額が表示の金額と変わる場合があることを、同じ画面に表示します。 G68: [trống] I68: [trống]
+- EV-0435 / `Q:3` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A3:J3; ID=2.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A3: 2.0 D3: 46339.0 E3: Câu hỏi: Đơn giá mỗi video (số tiền thu talent cho mỗi lượt) là bao nhiêu? Vì sao cần hỏi: Đơn giá do quý công ty quyết định; cần để thiết kế màn hình tạo video. Tài liệu đang nói: - 御見積書 (điều kiện A19): đơn giá cố định cho mỗi video do quý công ty quyết định. - 概要要件定義書 改訂版 (UC-06-1, 14-4 mục 7): アデッソ quyết đơn giá mỗi lượt; FutureCore đưa chi phí ước tính. - 概要要件定義書 改訂版 (mục 8): giả định dùng Kling qua fal.ai (đã kiểm thử: chi phí thấp, chất lượng tốt với nhân vật người Nhật). Cần quý công ty cung cấp: - Đơn giá mỗi video (yên). F3: 【確認事項】動画1本あたりの単価(タレントへの請求額)をご教示ください。 【確認の背景】単価は貴社でお決めいただく事項であり、動画作成画面の設計に必要なためです。 【現在… [xem toàn ô/đoạn trong EV]
+- EV-0436 / `Q:62` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A62:J62; ID=62.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A62: 62.0 D62: 46341.0 E62: Câu hỏi: Đơn giá video được cài đặt ở đâu, ai đổi được? Đổi giá giữa tháng thì các lượt đã 依頼 trước đó tính theo giá nào? Lượt bị lỗi được trừ lại lúc nào? Vì sao cần hỏi: Ảnh hưởng trực tiếp tới số tiền thu talent mỗi tháng. Tài liệu đang nói: - 概要要件定義書 改訂版 (6-3 chức năng 5-4): đếm 1 lượt lúc 依頼; lỗi do dịch vụ tạo video thì không tính (Q&A No.1). - 5-6: danh sách giá trị cài đặt trên màn quản lý chưa có đơn giá video. AMCOLAB đề xuất: Đơn giá là 1 giá trị cài đặt chung trên màn quản lý; tính theo giá tại thời điểm 依頼; lượt lỗi được trừ ngay khi dịch vụ báo lỗi. F62: 【確認事項】動画1本あたりの単価は、どこで設定し、どなたが変更しますか。月の途中で単価を変えた… [xem toàn ô/đoạn trong EV]
+- EV-0491 / `Y:636-639` — `YK2`, `source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx`, YK2 đoạn w:p P636–P639 (đếm mọi đoạn XML từ1); mục/UC ghi tại flow; SHA256 `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3`. Trích đoạn định vị: 動画を作る画面に、動画生成1回あたりの金額を表示します。タレントが金額を確かめて作成を依頼した時点で、1回と数えます。 作り直した場合は、作り直しの分も数えます。動画生成サービスの側で動画ができなかった場合は、数えません。 その月の動画生成回数の分の料金を、月額使用料と合算して請求します。 タレントは、アプリで、その月の動画生成回数と料金の合計を確認できます。マネージャーは、管理画面でタレントごとに確認できます。事務所アカウントの動画生成回数も、管理画面に表示します。事務所アカウントの動画生成の料金は請求せず、アデッソ様の社内で清算していただきます。

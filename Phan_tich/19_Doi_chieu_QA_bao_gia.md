@@ -38,7 +38,7 @@ Câu đóng nào khớp với SCD hiện tại thì ghi "Khớp". Câu đóng n�
 | 12 | Quản lý dừng hoặc mở lại đăng tự động cho từng tài năng | AMCOLAB | Khớp 7-5 |
 | 13 | AI kiểm tra từ cấm theo ngữ cảnh; một danh sách chung, nhập ở màn quản trị; **FutureCore cung cấp mẫu danh sách** | Khách | Khớp 4-4 |
 | 14 | Mục tiêu theo từng mạng (mặc định 10.000), có hạn đạt. Ô "目標%" (phần trăm mục tiêu) chung trong thiết kế アデッソ sẽ chỉnh theo từng mạng khi làm định nghĩa màn hình. Đạt mục tiêu thì báo tài năng và quản lý. **Báo tăng người theo dõi khi đạt 25%, 50%, 75% mục tiêu** (đề xuất của AMCOLAB, khách xem trên màn thật) | AMCOLAB | Sửa 3-7: thêm mốc 25/50/75%. Cột Comment ghi đội còn muốn kiểm tra lại với thiết kế (mục tiêu tổng 3 mạng) |
-| 15 | Đăng lỗi không tự đăng lại; chỉ báo tài năng và quản lý (CR-15) | AMCOLAB | Khớp 8-5; bộ Upload-Post B08 |
+| 15 | Đăng lỗi không tự đăng lại; chỉ báo tài năng và quản lý (CR-15) | AMCOLAB | Khớp 8-5; bộ Upload-Post §1 |
 | 16 | Quản lý hủy bài đã hẹn ở màn quản trị; hệ thống hủy lịch trên Upload-Post | Khách | Khớp 7-2 |
 | 17 | Phí AI tổng hợp theo tài năng và theo tháng, hiện ở màn quản trị; không có trần, không tự dừng (CR-16) | AMCOLAB | Khớp 3-5; đóng S03-08 |
 | 18 | Tuổi tính từ ngày sinh, chỉ hiển thị tham khảo. アデッソ lấy đồng ý của phụ huynh. **Quy tắc chủ đề và cách nói với tài năng vị thành niên** do アデッソ viết vào file chỉ thị cho AI ([YK2] 7-5), không phải chức năng của hệ thống | AMCOLAB | 3-3: quy tắc cho tài năng vị thành niên nằm trong file chỉ thị, không làm logic riêng |

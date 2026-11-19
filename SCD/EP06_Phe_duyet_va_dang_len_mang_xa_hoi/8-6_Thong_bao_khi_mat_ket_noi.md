@@ -64,4 +64,4 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - Các lỗi mất kết nối của Upload-Post chủ yếu là chuỗi chữ ("session has expired", "Token expired and refresh failed"…), chỉ TikTok có mã `tiktok_reconnect_required`. Phân loại theo mẫu chuỗi đã kiểm trong POC.
 - **Instagram `account_checkpoint_required`:** chủ tài khoản phải mở Instagram để xử lý cảnh báo bảo mật; kết nối lại không giải quyết được. Câu thông báo cho tài năng phải khác với câu "kết nối lại".
-- Chi tiết: bộ Upload-Post §8.4a (U26).
+- Chi tiết: bộ Upload-Post §9 (U26).

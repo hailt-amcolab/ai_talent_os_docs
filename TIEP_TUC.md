@@ -2,7 +2,11 @@
 
 ## Quy ước nguồn mới nhất theo người dùng
 
-Đọc [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md): chỉ9 tệp được liệt kê là nguồn gốc; các tệp phân tích/SCD/guide là dẫn xuất. Xem [đối chiếu26](Phan_tich/26_Doi_chieu_9_nguon_va_cau_hoi_khach.md) và workbook15: `Luong`203, `Chi_tiet`64, `Gui_khach`52 quyết định còn mở, `Noi_bo`33 việc. Các thông tin cũ bên dưới phải kiểm lại với nguồn gốc; không xin lại bảng KS đã có, không coi CR-24 riêng tư/CR-25 màn hình vẫn chờ khi No.7/68 đã Close. Không có phản hồi khách mới; các sửa SCD chỉ đồng bộ quyết định đã có.
+Cập nhật **19/11/2026**: đọc [TAI_LIEU_NGUON.md](TAI_LIEU_NGUON.md). Nguồn hiện hành nằm ở `source_requiments/`, gồm `base/`, các đợt ngày 16/17/18-11 và `Q&A/`; danh mục hiện có 12 tệp, không còn giới hạn chín nguồn. Chín tệp cũ có hash giữ nguyên; DOCX v1 được đưa vào danh mục lịch sử, hai PDF định nghĩa màn hình 18/11 là tài liệu bổ sung. Không coi việc bổ sung PDF là phản hồi mới hoặc tự đóng Q&A.
+
+Đọc [bản cập nhật nguồn 28](Phan_tich/28_Cap_nhat_danh_muc_nguon_19-11-2026.md) trước khi dùng bộ câu hỏi/mã màn cũ: SD-T18 có 16 màn, T-08 là thiết lập tự động; SD-M18 có 20 màn, M-20 nhập thông tin Talent. Cần đối chiếu lại No.70/71/74 và các tham chiếu [AG], không thay mã hàng loạt. Q&A/KS chưa đổi nội dung so với bản đối chiếu 18/11; xem trạng thái tại log gốc, kể cả bảo lưu No.50.
+
+[Đối chiếu26](Phan_tich/26_Doi_chieu_9_nguon_va_cau_hoi_khach.md) là bản ghi lịch sử của chín nguồn ngày 18/11. Workbook15 là bảng theo dõi nội bộ, không phải nguồn phê duyệt. Các mục bàn giao 16/11 bên dưới là lịch sử, cần đọc lại cùng nguồn/stack hiện hành; không dùng các số lượng hoặc trạng thái kỹ thuật cũ như kết luận hiện tại.
 
 File này để mở lại công việc ở máy khác hoặc phiên Claude Code mới. Đọc cùng [CLAUDE.md](CLAUDE.md). Mở phiên mới thì nói: "đọc TIEP_TUC.md rồi làm tiếp".
 
@@ -17,7 +21,7 @@ File này để mở lại công việc ở máy khác hoặc phiên Claude Code
 | Mã nguồn | `apps/web` (Next.js 16, PWA, chỉ giao diện) và `apps/api` (Hono, PM2, Docker Compose, Caddy; có API `POST /api/v1/dev/push-test`). Quyết định tách FE và BE ghi ở đầu file 18 |
 | Rủi ro kỹ thuật | [20_Rui_ro_ky_thuat.md](Phan_tich/20_Rui_ro_ky_thuat.md): RT01–RT12, kế hoạch 4 POC (Upload-Post, OneDrive/Graph, GMO, AI và video) đề xuất xong trước 01/12/2026 |
 | Đối chiếu Q&A (bản 15/11) | [19_Doi_chieu_QA_bao_gia.md](Phan_tich/19_Doi_chieu_QA_bao_gia.md); cột "Q&A AMCOLAB" trong file 15; mục "Cập nhật theo Q&A" trong 26 file SCD và mục "Đối chiếu với file Q&A" trong 10 file câu hỏi module |
-| Tra lại Graph và Upload-Post (17/11) | Bộ OneDrive §4.2, §9.1, §11.1; bộ Upload-Post §13.2a; SCD 3-10, 8-1, 8-9; đóng S07-08. Xem `agent_spec/KET_QUA_KIEM_CHUNG_17-11.md` §7 |
+| Tra lại Graph và Upload-Post (17/11) | Bộ OneDrive §4.2, §9.1, §11.1; bộ Upload-Post §13.2a (nay là §11 của bản 2.0); SCD 3-10, 8-1, 8-9; đóng S07-08. Xem `agent_spec/KET_QUA_KIEM_CHUNG_17-11.md` §7 |
 | Hạ tầng | [18_Ha_tang_he_thong.md](Phan_tich/18_Ha_tang_he_thong.md): API trên Vercel, dữ liệu trên Supabase, worker trên VPS; câu hỏi I1–I8 (đã đưa vào file 15) |
 | Đặc tả từng chức năng | [SCD/](SCD/README.md): 60 file (54 chức năng + C-01〜C-06). **Đã viết đầy đủ cả 10 module EP01–EP10** (54 chức năng + C-01〜C-06), không còn bản khung; EP06 có danh sách kiểm chứng Upload-Post, mỗi module có `00_Cau_hoi_cho_khach.md`. Còn lại là bản khung |
 

@@ -1,0 +1,19 @@
+{
+  "version": "V4",
+  "parent_manifest": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/artifact-manifest.json",
+  "question_count": 36,
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "bdfce1bbe326e0e6cd80199ad627e9a3fa73dd089ebd5868933136a428a9c124"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+      "sha256": "2bbfcf1fe2e431c4c350e3f99770459d46db2536a02fdff2ed18fd7cb37ec73e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "b92a5a9cddb48e86ecd99574960bfac4634eca81bb34cefdb6e8e2768f691543"
+    }
+  ]
+}

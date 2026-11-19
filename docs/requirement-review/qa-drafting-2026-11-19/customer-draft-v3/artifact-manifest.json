@@ -1,0 +1,49 @@
+{
+  "stage": "Customer Draft V3 — DRAFT_UNAPPROVED; latest review and G5 signed scope checked",
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/REPORT.md",
+      "sha256": "0aa4c95ecc27f0ef1579b55d11ef109464f68a1f3b45fb2371a0447ea4efcbeb"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/VALIDATION.md",
+      "sha256": "bc1ebeffc43c95799f0ab85d82772a311e3f26197490ea39bb1bf470d7f311a5"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/before/qa-draft.md.txt",
+      "sha256": "45f8aeafa6d5a421f8c5eb96bf807ae379e182a441936c22ab5225e789a47b84"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/changes.csv",
+      "sha256": "6e4fcec052e988ad1b9e46ab84a2319530ac28247a1c947988d5701157248a89"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/eligibility.csv",
+      "sha256": "54ea7b7a0a2f91943762c86e01d176d3a1e18b2077852737fa2f1db7c05278bf"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/input-manifest.json",
+      "sha256": "b32c3f085a42364caa5dc3dd7662a93c7dd4904c23a553edead5df434bd5f37a"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/internal-evidence.csv",
+      "sha256": "3d5fa0afe13f242ed05c952ed95f441a62067a702286a6438762886b65221a22"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/internal-evidence.md",
+      "sha256": "546cf22de9ab8719e6939b3c92448b7c577c10014db7d20baab1aaf6d9ab8a71"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/questions.csv",
+      "sha256": "3b2709305c0c14ec4814e210a7f5c3727ee23e99d63972439e3ece95dc511475"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3/source-checks.csv",
+      "sha256": "68e9bcb35277fe0fc861272df37ebfee6431b005db238342756387bd0501a9ee"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "aa8e4fee46f41ae78c8c9299bd67180b77f631543fdad75f376ba5dd98ea35e8"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-11-19T06:21:11.077882+00:00",
+  "inputs": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "aa8e4fee46f41ae78c8c9299bd67180b77f631543fdad75f376ba5dd98ea35e8"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "7ef11eead7876956ffcde23f39835dc4a61cced8a22e02c5c89fb3d3e6e37cf7"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+      "sha256": "a64ba402a9d4c963134fe376a6eb51465c1c1f2f68c1e35fb0978a633d500854"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "ae233d337186e240ce222aa6a1109a54089e1e5b7a35522df60c1bb0117a30ec"
+    }
+  ],
+  "question_count": 44,
+  "screen_link_count": 116
+}

@@ -25,7 +25,7 @@ Lấy khung giờ bài được xem và được tương tác, trong phạm vi U
 2. Với TikTok, lấy thêm `activity_by_hour` từ `GET /api/uploadposts/audience` (giờ người theo dõi hoạt động).
 3. Với YouTube, Upload-Post không có chiều giờ: chỉ lưu `by_day`, để trống giờ.
 
-Đã đọc trang riêng của hai endpoint ngày 17/11/2026 (bộ Upload-Post §13.2a). Vì đã có nguồn dữ liệu, chức năng này **làm được**; không còn phương án bỏ.
+Đã đọc trang riêng của hai endpoint ngày 17/11/2026 (bộ Upload-Post §11). Vì đã có nguồn dữ liệu, chức năng này **làm được**; không còn phương án bỏ.
 
 Điều kiện của nguồn dữ liệu:
 - Instagram cần ≥ 100 người theo dõi và quyền insights.

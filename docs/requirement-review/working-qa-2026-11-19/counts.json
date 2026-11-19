@@ -1,0 +1,13 @@
+{
+  "qa_count": 44,
+  "findings_used": 23,
+  "findings_content_accept": 24,
+  "findings_not_used": 24,
+  "rejected": 20,
+  "need_more_evidence": 3,
+  "rewrite_without_accepted_recheck": 0,
+  "deferred_accepted": 1,
+  "status": "DRAFT_UNAPPROVED",
+  "qa_level": "WORKING_DRAFT",
+  "findings_ineligible_by_content": 23
+}

@@ -1,0 +1,79 @@
+{
+  "change_id": "WCP-0001",
+  "status": "APPLIED_WORKFLOW_ONLY",
+  "approval_ref": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/approval.json",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "839d530cd19ebab81e8456f17c611d1d6649abef2bef9e7828cefa5bfa0e1f10"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "767092c03a8e82e523f7b59567b68f7e44f7dfdc117e7bb3c7f2308b115e71ab"
+    },
+    {
+      "path": ".agents/skills/requirement-review/SKILL.md",
+      "sha256": "a60cd95e1c081b12120a001a28e14e43134a3f84c12288c75eac1e15ddafc119"
+    },
+    {
+      "path": "docs/requirement-review/QUALITY_GATES.md",
+      "sha256": "99dcf1c0e9290cd24f5398f5ddef331c957208e4e7dd227f3d6290b72c561613"
+    },
+    {
+      "path": "docs/requirement-review/DATA_MODEL.md",
+      "sha256": "b45f591d7b462b6ec075d1c5694ef30e4ceff981f1650cf87f9c5070986da825"
+    },
+    {
+      "path": "docs/requirement-review/RUNBOOK.md",
+      "sha256": "c69b43b9174358865493e2632abce2ceb91597a4a26e518242bdc3db60b030a1"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "sha256": "a6bee2acc11de00bdfb73da22ffd848b8cd38abad12aeb03589c83b1554591bf"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/APPROVAL_AND_CHANGELOG.md",
+      "sha256": "c0ce2aaf228d83bc835f76697e29e2a6dbc96ea4c3fdc0165e3d93cb6492c25a"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/VALIDATION.md",
+      "sha256": "2c7ce6eaa29f2a98b62c6770591337a5e4e1e20d85090176c92f1570b82cde74"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/approval.json",
+      "sha256": "240356e2f66c90adafd7e3b2328ff82cab8810b1aa6518b40e6f1010925bff13"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/.agents/skills/requirement-review/SKILL.md.txt",
+      "sha256": "fedf57fbd58c25df8f937ffc5e1f4bc10e9b06b004befe57ebfe3b69c49a5542"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/AGENTS.md.txt",
+      "sha256": "bbf431701b40d0418bdf830c08dafe64744784681d7ccc6431da6127d504f5ed"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/CLAUDE.md.txt",
+      "sha256": "85c1d6f73297c0183efea7e03a34e1c0ff5fb963ca00de83de5c33d71320f729"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/docs/requirement-review/DATA_MODEL.md.txt",
+      "sha256": "0266873a607a86ec6d8594ce25873b89b0dc3557b971ef9219104480a2146080"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/docs/requirement-review/QUALITY_GATES.md.txt",
+      "sha256": "615a12e7790e5de0340e5a4237a4da5cab40ed6bd4c717dca0e415004600a344"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/docs/requirement-review/README.md.txt",
+      "sha256": "4b6bdfda4c51b004948b4bc96c709ac672b86bd2b052487f0783a8dff2915919"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/before/docs/requirement-review/RUNBOOK.md.txt",
+      "sha256": "2e6dbca1170909eb091b2eebb666a59e4972bb200d99de8cf0b56d12b89b4ac7"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/preserved-inputs.json",
+      "sha256": "69364e95f98e5a36196ca0d6788368f1d2a402b2d8ad4f0edd5ca40a5b86ad02"
+    }
+  ]
+}

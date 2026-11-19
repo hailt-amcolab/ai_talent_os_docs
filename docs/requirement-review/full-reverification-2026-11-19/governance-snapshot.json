@@ -1,0 +1,22 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "839d530cd19ebab81e8456f17c611d1d6649abef2bef9e7828cefa5bfa0e1f10",
+    "recording_scope": "completion snapshot"
+  },
+  {
+    "path": "CLAUDE.md",
+    "sha256": "767092c03a8e82e523f7b59567b68f7e44f7dfdc117e7bb3c7f2308b115e71ab",
+    "recording_scope": "completion snapshot"
+  },
+  {
+    "path": "TAI_LIEU_NGUON.md",
+    "sha256": "66aaaf8f284d1703aece6c675131f7ea15e0c631d241727e6e3e62058eebe89f",
+    "recording_scope": "completion snapshot"
+  },
+  {
+    "path": ".agents/skills/requirement-review/SKILL.md",
+    "sha256": "a60cd95e1c081b12120a001a28e14e43134a3f84c12288c75eac1e15ddafc119",
+    "recording_scope": "completion snapshot"
+  }
+]

@@ -1,0 +1,35 @@
+# Cách vận hành từng giai đoạn
+
+## Bắt đầu một đợt
+
+Người dùng chỉ định module/luồng, mục tiêu và đầu ra. Chưa có lệnh phân tích thì chỉ được thiết lập công cụ/tài liệu quy trình. Đọc catalog và các hướng dẫn gốc; kiểm working tree, không ghi đè thay đổi người khác. Dùng skill ở [.agents/skills/requirement-review/SKILL.md](../../.agents/skills/requirement-review/SKILL.md). Skill đặt ở cấp repository, không cài global; nếu phiên Codex chưa nạp catalog mới, mở phiên mới hoặc yêu cầu đọc trực tiếp đường dẫn này.
+
+Mỗi đợt ghi phạm vi, nguồn và phiên bản, người lập, reviewer độc lập, người duyệt, phần không kiểm tra trong gate-runs. Các lệnh dưới là **mẫu giao việc cho Codex**, không phải lệnh shell. Chỉ chạy bước đã được giao; không hiểu mẫu là ủy quyền hiện tại.
+
+| Giai đoạn | Mẫu giao việc | Kết quả / điểm dừng |
+|---|---|---|
+| 1. Tiếp nhận nguồn | “Dùng requirement-review, kiểm G1 cho [phạm vi], chỉ cập nhật sổ nguồn và bằng chứng; chưa phân tích.” | Snapshot và G1; thiếu nguồn cần thiết thì ghi BLOCKED |
+| 2. Trích yêu cầu | “Phân tích [phạm vi] theo G2; tái sử dụng TR và workbook15; chưa soạn Q&A.” | Yêu cầu nguyên tử/quy tắc, EV và nhãn; không ghi kết luận khách chưa xác nhận |
+| 3. Rà luồng | “Rà G3 cho [luồng] theo đúng phiên bản màn; nối FL/RV hiện có.” | Chỉ mục luồng, nhánh, kết quả kỳ vọng và phát hiện |
+| 4. Xác minh phát hiện | “Chạy G4 cho [các mã]; tra lại toàn bộ log liên quan; phân việc khách/đội/provider.” | Finding hợp lệ, mục trùng/không hợp lệ và việc nội bộ |
+| 5. Review độc lập | “Reviewer [người khác tác giả] thực hiện G5 trên [phiên bản], đọc nguồn trực tiếp.” | Review có phản biện, sửa và kiểm lại; thiếu reviewer thì BLOCKED |
+| 6. Biên tập câu hỏi | “Được phép soạn Q&A tiếng Việt cho [finding], chạy G6; lưu bản nháp ở workbook15, chưa gửi.” | Bản nháp rõ nghĩa, không trùng; không tạo kho mới |
+| 7. Ghi nhận trả lời | “Đối chiếu phản hồi khách tại [nguồn/phiên bản/vị trí], chạy G7 cho [các ý].” | Chỉ mục quyết định và phạm vi thay thế; còn mở không tự đóng |
+| 8. Chốt đặc tả | “Đánh giá G8 cho [phạm vi], đề xuất baseline và báo cáo sẵn sàng; không triển khai.” | SCD/AC đồng bộ sau khi được giao sửa, báo cáo và bản chốt có thẩm quyền |
+
+Câu đã được khách trả lời đi thẳng nhánh tái sử dụng quyết định của G7 sau G1–G5; không tạo Q&A mới. G6/G7 không bắt buộc hỏi khách cho quyết định thuần kỹ thuật đã được phân quyền nội bộ. G8 vẫn phải chứng minh phần nghiệp vụ đủ căn cứ, kỹ thuật đủ kiểm chứng.
+
+## Thao tác lưu hồ sơ
+
+1. Tra ID chính trong file24/25, báo cáo23 và workbook15 trước khi cấp ID mới. Điền các sổ metadata, không chép toàn văn các phân tích cũ. Không sửa 56 dòng 確認 (mục xác nhận) được bảo vệ của workbook15.
+2. Đọc nguồn tại vị trí chính xác; tạo EV với hash nguồn thực đọc, người/ngày và giới hạn. Ảnh hoặc sơ đồ cần xem trực quan; không đọc được thì ghi thiếu bằng chứng.
+3. Mỗi kết quả gate là một dòng gate-runs mới, không xóa lần FAIL trước. Snapshot input/output có thể là commit đã có hoặc tệp manifest/hash của các artifact trong đợt; không tự commit khi chưa được giao.
+4. Reviewer đọc nguồn độc lập, phản biện vào reviews.csv; tác giả sửa artifact, reviewer kiểm lại hash mới. Nếu dùng AI hỗ trợ phải ghi rõ và có người chịu trách nhiệm. Không coi lần tự đọc lại là review độc lập.
+5. Trước G6/G7/G8, kiểm hash và log hiện hành lần nữa; thay đổi nguồn thì xử lý STALE theo DATA_MODEL.md. Quyết định mới chỉ giải quyết ý có bằng chứng và điều kiện đóng thỏa mãn.
+6. Khi đủ G8, chốt danh sách ID/phiên bản/EV/quyết định và hash gói baseline; ghi người ký. Sửa sau chốt phải có mã thay đổi, tác động, quyết định cần thiết và baseline mới; bản cũ giữ nguyên.
+
+## Kiểm tra cơ học
+
+Từ thư mục gốc: `python3 docs/requirement-review/validate.py`.
+
+Lệnh chỉ đọc: kiểm bộ 12 nguồn/hash so với kiểm kê28, schema CSV và đường dẫn nội bộ của bộ quy trình. Khi có thêm nguồn hợp lệ phải cập nhật catalog/manifest theo quy trình tiếp nhận; không sửa nguồn để làm kiểm tra qua. Lệnh **không** chứng minh yêu cầu đúng, không ký gate, không kiểm thẩm quyền khách, và không thay review bằng người. Kết quả PASS của script chỉ là kiểm tra cơ học.

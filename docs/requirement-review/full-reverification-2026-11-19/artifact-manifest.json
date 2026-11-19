@@ -1,0 +1,138 @@
+{
+  "created_at": "2026-11-19T07:45:26.384520+00:00",
+  "scope": "Full existing requirement-review record set; audit only, no approval",
+  "files": [
+    {
+      "path": "REVERIFICATION_REPORT.md",
+      "sha256": "56bdd458800d7ea002eddfe021f52867ee78e0b0cea2a29120ad313bab47b296"
+    },
+    {
+      "path": "VALIDATION.md",
+      "sha256": "1e669d5151e10507c6529476b294491557f3da79bb99bb311f869591458a0258"
+    },
+    {
+      "path": "artifact-excerpts.csv",
+      "sha256": "8c3f64d11372404f3b90a77b44a09baf0beb3e5d89e022d3da77cd39a5626604"
+    },
+    {
+      "path": "business-rules-results.csv",
+      "sha256": "9aa324852335964bc698c18f1d00abcd54bd9f5c44cd6dd7be83112894cbe3b4"
+    },
+    {
+      "path": "coverage.json",
+      "sha256": "0ad6a0d2c9307a69a7ae1487c2274534e7d79f6fa68cb02ab8d8bb0c110d48e3"
+    },
+    {
+      "path": "docx-image-index.json",
+      "sha256": "7d58ba92aabc225d347624fb7d309a7e32a645039d263f412d7b2d4171fec260"
+    },
+    {
+      "path": "evidence-integrity.csv",
+      "sha256": "5c352bfa26607af639a1fb50b0724b6cd6ef850ca9bcc2a22958b99de433a151"
+    },
+    {
+      "path": "finding-results.csv",
+      "sha256": "8b935c07eb48c367b66cf871f80ed6c37d549ab9bb127c96b731beab33bbce86"
+    },
+    {
+      "path": "flow-results.csv",
+      "sha256": "5dafb302e9b4139451a600286520d2303eb7e97f1d656fe6c14f009de63f45a5"
+    },
+    {
+      "path": "gate-impact.csv",
+      "sha256": "c52c04fdf81886c99c9b8abda375035b8cf9544b3d7da71389920cc982cbb84a"
+    },
+    {
+      "path": "governance-snapshot.json",
+      "sha256": "dd08d9c8e3be87719627aece4bfe158271f29b29b3d1d9a36c8e3042702579fc"
+    },
+    {
+      "path": "historical-qa-dispositions.csv",
+      "sha256": "f2c915dbb60220d36e9a85e5971c6dbf392d76f4852fbdf98a9ae8e7088fd0d6"
+    },
+    {
+      "path": "input-manifest.json",
+      "sha256": "03467c805a1438705203b067590359cec252707269c40805cb3b85fc289b9afb"
+    },
+    {
+      "path": "issues.csv",
+      "sha256": "3b64bfa1e76aed5249632adadf3d374ffcfaa61ed63429a1700bb6352c7f60b8"
+    },
+    {
+      "path": "qa-results.csv",
+      "sha256": "d1a417a2e0665a27b007b7e4a8155945d725f239054f4f2dcf227187c9a1ade2"
+    },
+    {
+      "path": "records/business-rules.jsonl",
+      "sha256": "1b189b8d037f67f20c2891ac7208f50f84288d55e62220a631dfdad1ef40ead6"
+    },
+    {
+      "path": "records/finding.jsonl",
+      "sha256": "66828fb72a9ed3305591392ed3c6e86a32887b393e50ad3d20cb7edc0eb422ff"
+    },
+    {
+      "path": "records/flow.jsonl",
+      "sha256": "477e4888b53d96f28ba9af8fe6585bec44f15612673025c95329ee7a15152c8e"
+    },
+    {
+      "path": "records/qa.jsonl",
+      "sha256": "3be3ae7f9b900e5d6c3880ae033fd66d17154fb67b90a378ed042efa37b0fe7a"
+    },
+    {
+      "path": "records/requirements.jsonl",
+      "sha256": "ae1bf7a0107908e487e7e5e368eeefe6284c933f7aede202d5976e0bd4c9754c"
+    },
+    {
+      "path": "records/state-transitions.jsonl",
+      "sha256": "3ef34598d680fe03dd7dbafb7c5019ca861c9bfd8142ba8abd4105c5a2ace27f"
+    },
+    {
+      "path": "records/steps.jsonl",
+      "sha256": "60ed68a8f3ee661c3fece53df2a0e681c04f62a855c79f29988d4cfba9ad1088"
+    },
+    {
+      "path": "reference-errors.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "requirements-results.csv",
+      "sha256": "3f24a172bf3c528a2b2c6ad8eaa53ed5673c7fbb7a0d5ac5eef12a982e47b945"
+    },
+    {
+      "path": "scenario-results.csv",
+      "sha256": "91145e985b3d2c7d372d8d384c30a5996c726143849036527791a33361d09a8b"
+    },
+    {
+      "path": "screen-reference-check.csv",
+      "sha256": "b42118ae93c31b135d87ce02b30c1ac3351d5334fb3f858c56451da0354b8af2"
+    },
+    {
+      "path": "source-coverage-checks.csv",
+      "sha256": "aec5a0571191b11107760d6406a87737f8873610bf7f8388df36b54b2c1bd744"
+    },
+    {
+      "path": "source-evidence.csv",
+      "sha256": "585dad80e2843965d91d02c5006964bf771c4aa977b200a6d5d825ab362b66c5"
+    },
+    {
+      "path": "source-snapshot.csv",
+      "sha256": "ffaca0010650bb193442ecd81c55578af0688d334c5b760588761e08e6bc8134"
+    },
+    {
+      "path": "state-transitions-results.csv",
+      "sha256": "56396d6baccaff42be2afddb44b1a821087815376b82565ad156aff99cb73762"
+    },
+    {
+      "path": "steps-results.csv",
+      "sha256": "60b016d685cbaff2c9ced6459ea20488bfee09ebb177b23c62c88b2290bb030f"
+    },
+    {
+      "path": "validate_reverification.py",
+      "sha256": "c5cf2e07162d65aafe6155651a384438342abae54117e88cae54c29ee0e2afaf"
+    },
+    {
+      "path": "visual-checks.csv",
+      "sha256": "9581057e9ce77f6c390eec7bc8cfcd0e3a5d3b97257bb12cbc5460fe35294110"
+    }
+  ]
+}

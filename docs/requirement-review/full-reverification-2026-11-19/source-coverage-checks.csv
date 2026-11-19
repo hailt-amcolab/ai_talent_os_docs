@@ -1,0 +1,320 @@
+source_id,source_unit,locator,existing_coverage_status,requirement_ids,evidence_ids,links_resolve,limit
+YK2,Chức năng 1-4,"Chương6, 1-4 ログインとタレントの紐付け（優先順位：高）; P590",EXTRACTED,REQ-0001;REQ-0002;REQ-0003;REQ-0004;REQ-0005;REQ-0006;REQ-0007;REQ-0008,EV-0001;EV-0002;EV-0003;EV-0004;EV-0005;EV-0006;EV-0007;EV-0008;EV-0009;EV-0010;EV-0011;EV-0012;EV-0013;EV-0014;EV-0015;EV-0016;EV-0017;EV-0018;EV-0019;EV-0020;EV-0021;EV-0022;EV-0023,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 1-5,"Chương6, 1-5 タレントの識別（優先順位：高）; P599",EXTRACTED,REQ-0009,EV-0024;EV-0025,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-2,"Chương6, 6-2 初回登録と SNS の接続の案内（優先順位：高）; P602",EXTRACTED,REQ-0010;REQ-0011;REQ-0012,EV-0026;EV-0027;EV-0028;EV-0029;EV-0030;EV-0031;EV-0032;EV-0033,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 1-6,"Chương6, 1-6 マネージャーのログインと権限（優先順位：高）; P607",EXTRACTED,REQ-0013;REQ-0014;REQ-0015;REQ-0016,EV-0034;EV-0035;EV-0018;EV-0036;EV-0037;EV-0038;EV-0039;EV-0040;EV-0041;EV-0042,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-3,"Chương6, 7-3 タレントのステータスの切り替え（優先順位：高）; P614",EXTRACTED,REQ-0017;REQ-0018;REQ-0019;REQ-0020,EV-0043;EV-0044;EV-0045;EV-0046;EV-0047;EV-0048;EV-0049;EV-0050;EV-0051;EV-0052;EV-0053;EV-0054;EV-0055;EV-0056;EV-0057;EV-0058;EV-0059,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-6,"Chương6, 7-6 閲覧の記録（優先順位：中）; P619",EXTRACTED,REQ-0021;REQ-0022,EV-0060;EV-0061;EV-0062;EV-0063;EV-0064,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 1-1,"Chương6, 1-1 月額使用料の課金（優先順位：高）; P623",EXTRACTED,REQ-0100;REQ-0101;REQ-0102;REQ-0103;REQ-0104,EV-0267;EV-0268;EV-0269;EV-0270;EV-0271;EV-0272;EV-0047;EV-0273;EV-0274;EV-0275;EV-0276;EV-0277;EV-0278;EV-0279;EV-0280;EV-0281;EV-0444;EV-0282;EV-0283;EV-0106;EV-0284,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 1-2,"Chương6, 1-2 有償と無償の区分（優先順位：高）; P629",EXTRACTED,REQ-0105,EV-0285;EV-0286;EV-0287;EV-0242;EV-0288,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 1-3,"Chương6, 1-3 区分の変更（優先順位：中）; P633",EXTRACTED,REQ-0106,EV-0289;EV-0290;EV-0291,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 5-4,"Chương6, 5-4 動画生成回数の集計と月額との合算請求（優先順位：高）; P635",EXTRACTED,REQ-0107;REQ-0108;REQ-0109;REQ-0110,EV-0292;EV-0185;EV-0293;EV-0179;EV-0294;EV-0295;EV-0296;EV-0297;EV-0275;EV-0284;EV-0298;EV-0299;EV-0288;EV-0244,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 2-2,"Chương6, 2-2 タレント別フォルダの作成（優先順位：高）; P641",EXTRACTED,REQ-0023;REQ-0024,EV-0065;EV-0066;EV-0007;EV-0067;EV-0068;EV-0069,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 2-3,"Chương6, 2-3 ChatGPT からの情報の登録（優先順位：高）; P645",EXTRACTED,REQ-0025;REQ-0026;REQ-0027;REQ-0170,EV-0070;EV-0071;EV-0431;EV-0072;EV-0073;EV-0074;EV-0075;EV-0416;EV-0417;EV-0087,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 2-4,"Chương6, 2-4 目標の登録（優先順位：高）; P649",EXTRACTED,REQ-0028;REQ-0029,EV-0076;EV-0077;EV-0078;EV-0079;EV-0080;EV-0081;EV-0082;EV-0057,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 2-1,"Chương6, 2-1 タレント情報の読み込み（優先順位：高）; P652",EXTRACTED,REQ-0030;REQ-0031,EV-0083;EV-0084;EV-0085;EV-0086;EV-0087;EV-0437,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-1,"Chương6, 7-1 タレントの情報の表示（優先順位：高）; P656",EXTRACTED,REQ-0032;REQ-0033;REQ-0034;REQ-0165;REQ-0168,EV-0434;EV-0089;EV-0090;EV-0091;EV-0092;EV-0093;EV-0094;EV-0015;EV-0095;EV-0096;EV-0397;EV-0398;EV-0052;EV-0007;EV-0403;EV-0404;EV-0301,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-1,"Chương6, 3-1 タレントとアルゴリズムの理解（優先順位：高）; P660",EXTRACTED,REQ-0035;REQ-0036,EV-0097;EV-0098;EV-0084;EV-0099;EV-0100;EV-0101,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-4,"Chương6, 3-4 AIコーチとの会話（優先順位：高）; P663",EXTRACTED,REQ-0040;REQ-0041;REQ-0042;REQ-0043;REQ-0166;REQ-0167,EV-0110;EV-0111;EV-0112;EV-0113;EV-0114;EV-0115;EV-0021;EV-0116;EV-0107;EV-0445;EV-0117;EV-0118;EV-0119;EV-0399;EV-0400;EV-0401;EV-0402,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-3,"Chương6, 3-3 会話の話題の制限（優先順位：高）; P669",EXTRACTED,REQ-0038;REQ-0039,EV-0104;EV-0105;EV-0106;EV-0107;EV-0108;EV-0109,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-9,"Chương6, 3-9 未投稿のタレントへの声かけ（優先順位：中）; P673",EXTRACTED,REQ-0049,EV-0129;EV-0130,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-2,"Chương6, 3-2 自己改善（優先順位：高）; P677",EXTRACTED,REQ-0037,EV-0102;EV-0103,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-6,"Chương6, 3-6 翌日の振り返りと改善案（優先順位：高）; P680",EXTRACTED,REQ-0045,EV-0122;EV-0118,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-8,"Chương6, 3-8 週次の振り返り（優先順位：中）; P682",EXTRACTED,REQ-0048,EV-0128;EV-0118,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-7,"Chương6, 3-7 フォロワー増加の通知（優先順位：中）; P684",EXTRACTED,REQ-0046;REQ-0047,EV-0123;EV-0124;EV-0125;EV-0126;EV-0127,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-5,"Chương6, 3-5 AI の利用料の管理（優先順位：中）; P687",EXTRACTED,REQ-0044,EV-0120;EV-0121,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 4-1,"Chương6, 4-1 投稿案の自動作成（優先順位：高）; P691",EXTRACTED,REQ-0050;REQ-0051;REQ-0052;REQ-0172,EV-0131;EV-0132;EV-0133;EV-0134;EV-0135;EV-0136;EV-0137;EV-0138;EV-0139;EV-0140;EV-0420;EV-0421,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 4-2,"Chương6, 4-2 修正の依頼と作り直し（優先順位：高）; P696",EXTRACTED,REQ-0053;REQ-0054,EV-0141;EV-0142;EV-0143;EV-0144;EV-0145;EV-0146;EV-0147;EV-0052,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 4-3,"Chương6, 4-3 採用（優先順位：高）; P699",EXTRACTED,REQ-0055;REQ-0056,EV-0148;EV-0149;EV-0144;EV-0145;EV-0150;EV-0151,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 4-4,"Chương6, 4-4 使ってはいけない言葉の検出（優先順位：高）; P703",EXTRACTED,REQ-0057;REQ-0058,EV-0152;EV-0153;EV-0154;EV-0155;EV-0156;EV-0439;EV-0440;EV-0157;EV-0158;EV-0159;EV-0160;EV-0161,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-6,"Chương6, 6-6 投稿イメージの提示（優先順位：中）; P707",EXTRACTED,REQ-0059,EV-0162;EV-0145,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-3,"Chương6, 6-3 写真・動画の送付（優先順位：高）; P710",EXTRACTED,REQ-0060;REQ-0061,EV-0163;EV-0164;EV-0165,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-4,"Chương6, 6-4 素材の保存（優先順位：高）; P715",EXTRACTED,REQ-0062;REQ-0063,EV-0166;EV-0167;EV-0168;EV-0164;EV-0438;EV-0169;EV-0170;EV-0171;EV-0172,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-5,"Chương6, 6-5 催促のお知らせ（優先順位：中）; P718",EXTRACTED,REQ-0064,EV-0173;EV-0118,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 5-1,"Chương6, 5-1 動画の作成（優先順位：高）; P722",EXTRACTED,REQ-0065;REQ-0066;REQ-0067;REQ-0068,EV-0174;EV-0175;EV-0176;EV-0177;EV-0178;EV-0179;EV-0180;EV-0435;EV-0436;EV-0181;EV-0182;EV-0183;EV-0184;EV-0185;EV-0186,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 5-2,"Chương6, 5-2 動画の形式（優先順位：高）; P727",EXTRACTED,REQ-0069,EV-0187;EV-0188;EV-0177,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 5-3,"Chương6, 5-3 でき上がりの確認（優先順位：高）; P729",EXTRACTED,REQ-0070,EV-0189;EV-0190;EV-0186,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 5-5,"Chương6, 5-5 AI で作ったことの表示（優先順位：高）; P731",EXTRACTED,REQ-0071,EV-0191;EV-0192;EV-0052;EV-0186,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-7,"Chương6, 7-7 投稿の承認（優先順位：高）; P734",EXTRACTED,REQ-0072;REQ-0073;REQ-0074;REQ-0075,EV-0193;EV-0194;EV-0195;EV-0196;EV-0145;EV-0446;EV-0197;EV-0198;EV-0199;EV-0200;EV-0441;EV-0201;EV-0202;EV-0203;EV-0204;EV-0089;EV-0205;EV-0052;EV-0206,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-2,"Chương6, 8-2 投稿サービスとの接続（優先順位：高）; P740",EXTRACTED,REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0171,EV-0207;EV-0059;EV-0033;EV-0208;EV-0209;EV-0210;EV-0211;EV-0212;EV-0213;EV-0214;EV-0032;EV-0052;EV-0418;EV-0419,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-3,"Chương6, 8-3 3つの SNS への投稿（優先順位：高）; P746",EXTRACTED,REQ-0080;REQ-0081,EV-0215;EV-0216;EV-0217;EV-0218;EV-0219;EV-0030;EV-0220,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-4,"Chương6, 8-4 凍結対策（優先順位：高）; P751",EXTRACTED,REQ-0082;REQ-0083,EV-0221;EV-0222;EV-0052;EV-0223;EV-0224;EV-0225,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-5,"Chương6, 8-5 投稿失敗の通知（優先順位：高）; P753",EXTRACTED,REQ-0084;REQ-0085,EV-0226;EV-0227;EV-0228;EV-0229;EV-0220;EV-0218;EV-0412,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-6,"Chương6, 8-6 SNS の接続切れの通知（優先順位：中）; P756",EXTRACTED,REQ-0086,EV-0230;EV-0033,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-5,"Chương6, 7-5 すべての自動投稿の停止（優先順位：高）; P758",EXTRACTED,REQ-0087;REQ-0088,EV-0231;EV-0232;EV-0057;EV-0442;EV-0233;EV-0234;EV-0235;EV-0236;EV-0237,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-2,"Chương6, 7-2 投稿の情報の表示（優先順位：高）; P762",EXTRACTED,REQ-0089,EV-0238;EV-0239;EV-0240;EV-0218;EV-0443,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 9-1,"Chương6, 9-1 事務所アカウントの投稿（優先順位：中）; P765",EXTRACTED,REQ-0090;REQ-0091;REQ-0092,EV-0241;EV-0242;EV-0243;EV-0244;EV-0249;EV-0245;EV-0246;EV-0247;EV-0052;EV-0218;EV-0248;EV-0250;EV-0251;EV-0252;EV-0253,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-7,"Chương6, 8-7 実績の取り込み（優先順位：高）; P769",EXTRACTED,REQ-0093,EV-0254;EV-0255;EV-0256,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-8,"Chương6, 8-8 実績の書き戻し（優先順位：高）; P773",EXTRACTED,REQ-0094,EV-0257;EV-0084,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 3-10,"Chương6, 3-10 フォロワー数の表示（優先順位：高）; P775",EXTRACTED,REQ-0095,EV-0258;EV-0080;EV-0259;EV-0260,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-7,"Chương6, 6-7 タレント向けの実績・達成度の表示（優先順位：高）; P777",EXTRACTED,REQ-0096;REQ-0097,EV-0261;EV-0025;EV-0220;EV-0262;EV-0259,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-1,"Chương6, 8-1 投稿時間の分析（優先順位：中）; P779",EXTRACTED,REQ-0098,EV-0263;EV-0264;EV-0265;EV-0222;EV-0144,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 8-9,"Chương6, 8-9 反応の時間帯の取得（優先順位：低）; P782",EXTRACTED,REQ-0099,EV-0266,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-1,"Chương6, 6-1 アプリ内のメッセージとスマートフォンへの通知（優先順位：高）; P785",EXTRACTED,REQ-0111,EV-0300;EV-0031;EV-0301,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 7-4,"Chương6, 7-4 お知らせ一覧（優先順位：高）; P789",EXTRACTED,REQ-0114;REQ-0115,EV-0307;EV-0308;EV-0206;EV-0309;EV-0310;EV-0311,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+YK2,Chức năng 6-8,"Chương6, 6-8 ホーム画面から開く形（PWA）の基盤（優先順位：高）; P792",EXTRACTED,REQ-0112;REQ-0113,EV-0302;EV-0303;EV-0304;EV-0305;EV-0306;EV-0134;EV-0259,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-1,確認事項!A2:I2,EXTRACTED_OR_LINKED,REQ-0004,EV-0011,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-2,確認事項!A3:I3,EXTRACTED_OR_LINKED,REQ-0001,EV-0002,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-3,確認事項!A4:I4,EXTRACTED_OR_LINKED,REQ-0003,EV-0009,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-4,確認事項!A5:I5,EXTRACTED_OR_LINKED,REQ-0138,EV-0357,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-5,確認事項!A6:I6,EXTRACTED_OR_LINKED,REQ-0105,EV-0286,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-6,確認事項!A7:I7,EXTRACTED_OR_LINKED,REQ-0023,EV-0066,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-7,確認事項!A8:I8,EXTRACTED_OR_LINKED,REQ-0025,EV-0071,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-8,確認事項!A9:I9,EXTRACTED_OR_LINKED,REQ-0031,EV-0086,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-01-9,確認事項!A10:I10,EXTRACTED_OR_LINKED,REQ-0159,EV-0395,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,1.0,確認事項!A11:I11,EXTRACTED_OR_LINKED,REQ-0001;REQ-0149,EV-0003,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,2.0,確認事項!A12:I12,EXTRACTED_OR_LINKED,REQ-0165,EV-0397,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-1,確認事項!A13:I13,EXTRACTED_OR_LINKED,REQ-0025,EV-0431,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-2,確認事項!A14:I14,EXTRACTED_OR_LINKED,REQ-0026,EV-0073,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-3,確認事項!A15:I15,EXTRACTED_OR_LINKED,REQ-0030;REQ-0035;REQ-0094,EV-0084,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-4,確認事項!A16:I16,EXTRACTED_OR_LINKED,REQ-0028,EV-0078,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-5,確認事項!A17:I17,EXTRACTED_OR_LINKED,REQ-0028,EV-0079,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-6,確認事項!A18:I18,EXTRACTED_OR_LINKED,REQ-0119,EV-0432,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-7,確認事項!A19:I19,EXTRACTED_OR_LINKED,REQ-0035;REQ-0036,EV-0099,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-8,確認事項!A20:I20,EXTRACTED_OR_LINKED,REQ-0170,EV-0417,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-9,確認事項!A21:I21,EXTRACTED_OR_LINKED,REQ-0058;REQ-0151,EV-0158,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-10,確認事項!A22:I22,EXTRACTED_OR_LINKED,REQ-0058,EV-0159,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-11,確認事項!A23:I23,EXTRACTED_OR_LINKED,REQ-0058,EV-0160,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-02-12,確認事項!A24:I24,EXTRACTED_OR_LINKED,REQ-0057,EV-0153,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,3.0,確認事項!A25:I25,EXTRACTED_OR_LINKED,REQ-0028;REQ-0095,EV-0080,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,4.0,確認事項!A26:I26,EXTRACTED_OR_LINKED,REQ-0058;REQ-0151,EV-0161,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,5.0,確認事項!A27:I27,EXTRACTED_OR_LINKED,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0314,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,6.0,確認事項!A28:I28,EXTRACTED_OR_LINKED,REQ-0122,EV-0321,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,7.0,確認事項!A29:I29,EXTRACTED_OR_LINKED,REQ-0123,EV-0325,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,8.0,確認事項!A30:I30,EXTRACTED_OR_LINKED,REQ-0124;REQ-0125,EV-0328,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-1,確認事項!A31:I31,EXTRACTED_OR_LINKED,REQ-0112,EV-0303,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-2,確認事項!A32:I32,EXTRACTED_OR_LINKED,REQ-0005,EV-0014,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-3,確認事項!A33:I33,EXTRACTED_OR_LINKED,REQ-0006,EV-0017,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-4,確認事項!A34:I34,EXTRACTED_OR_LINKED,REQ-0077,EV-0209,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-5,確認事項!A35:I35,EXTRACTED_OR_LINKED,REQ-0171,EV-0419,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-6,確認事項!A36:I36,EXTRACTED_OR_LINKED,REQ-0011,EV-0029,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-7,確認事項!A37:I37,EXTRACTED_OR_LINKED,REQ-0143,EV-0365,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-03-8,確認事項!A38:I38,EXTRACTED_OR_LINKED,REQ-0144,EV-0367,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,9.0,確認事項!A39:I39,EXTRACTED_OR_LINKED,REQ-0077,EV-0210,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,10.0,確認事項!A40:I40,EXTRACTED_OR_LINKED,REQ-0079,EV-0214,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,11.0,確認事項!A41:I41,EXTRACTED_OR_LINKED,REQ-0012;REQ-0081,EV-0030,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,12.0,確認事項!A42:I42,EXTRACTED_OR_LINKED,REQ-0012;REQ-0111,EV-0031,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,13.0,確認事項!A43:I43,EXTRACTED_OR_LINKED,REQ-0033,EV-0094,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-04-1,確認事項!A44:I44,EXTRACTED_OR_LINKED,REQ-0040,EV-0112,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-04-2,確認事項!A45:I45,EXTRACTED_OR_LINKED,REQ-0169,EV-0406,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-04-3,確認事項!A46:I46,EXTRACTED_OR_LINKED,REQ-0130,EV-0341,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,14.0,確認事項!A47:I47,EXTRACTED_OR_LINKED,REQ-0043;REQ-0045;REQ-0048;REQ-0064;REQ-0118;REQ-0167,EV-0118,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,15.0,確認事項!A48:I48,EXTRACTED_OR_LINKED,REQ-0050;REQ-0118,EV-0132,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,16.0,確認事項!A49:I49,EXTRACTED_OR_LINKED,REQ-0051,EV-0136,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,17.0,確認事項!A50:I50,EXTRACTED_OR_LINKED,REQ-0039,EV-0109,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,18.0,確認事項!A51:I51,EXTRACTED_OR_LINKED,REQ-0042,EV-0115,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,19.0,確認事項!A52:I52,EXTRACTED_OR_LINKED,REQ-0049;REQ-0116,EV-0130,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,20.0,確認事項!A53:I53,EXTRACTED_OR_LINKED,REQ-0167,EV-0402,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,21.0,確認事項!A54:I54,EXTRACTED_OR_LINKED,REQ-0166,EV-0400,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,22.0,確認事項!A55:I55,EXTRACTED_OR_LINKED,REQ-0043,EV-0119,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,23.0,確認事項!A56:I56,EXTRACTED_OR_LINKED,REQ-0038,EV-0105,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-05-1,確認事項!A57:I57,EXTRACTED_OR_LINKED,REQ-0080,EV-0216,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-05-2,確認事項!A58:I58,EXTRACTED_OR_LINKED,REQ-0172,EV-0421,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-05-3,確認事項!A59:I59,EXTRACTED_OR_LINKED,REQ-0057,EV-0154,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,24.0,確認事項!A60:I60,EXTRACTED_OR_LINKED,REQ-0052,EV-0139,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,25.0,確認事項!A61:I61,EXTRACTED_OR_LINKED,REQ-0055;REQ-0116;REQ-0117,EV-0149,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,26.0,確認事項!A62:I62,EXTRACTED_OR_LINKED,REQ-0056;REQ-0116;REQ-0117,EV-0151,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,27.0,確認事項!A63:I63,EXTRACTED_OR_LINKED,REQ-0091,EV-0246,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,28.0,確認事項!A64:I64,EXTRACTED_OR_LINKED,REQ-0054,EV-0147,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,29.0,確認事項!A65:I65,EXTRACTED_OR_LINKED,REQ-0053,EV-0142,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,30.0,確認事項!A66:I66,EXTRACTED_OR_LINKED,REQ-0098,EV-0265,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-06-1,確認事項!A67:I67,EXTRACTED_OR_LINKED,REQ-0066;REQ-0108,EV-0179,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-06-2,確認事項!A68:I68,EXTRACTED_OR_LINKED,REQ-0066,EV-0180,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-06-3,確認事項!A69:I69,EXTRACTED_OR_LINKED,REQ-0071,EV-0192,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-06-4,確認事項!A70:I70,EXTRACTED_OR_LINKED,REQ-0108,EV-0294,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-06-5,確認事項!A71:I71,EXTRACTED_OR_LINKED,REQ-0067,EV-0182,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,31.0,確認事項!A72:I72,EXTRACTED_OR_LINKED,REQ-0065,EV-0175,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,32.0,確認事項!A73:I73,EXTRACTED_OR_LINKED,REQ-0063,EV-0171,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-07-1,確認事項!A74:I74,EXTRACTED_OR_LINKED,REQ-0072,EV-0194,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-07-2,確認事項!A75:I75,EXTRACTED_OR_LINKED,REQ-0072,EV-0195,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,33.0,確認事項!A76:I76,EXTRACTED_OR_LINKED,REQ-0072,EV-0196,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,34.0,確認事項!A77:I77,EXTRACTED_OR_LINKED,REQ-0075,EV-0204,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,35.0,確認事項!A78:I78,EXTRACTED_OR_LINKED,REQ-0073,EV-0198,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,36.0,確認事項!A79:I79,EXTRACTED_OR_LINKED,REQ-0074,EV-0202,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-1,確認事項!A80:I80,EXTRACTED_OR_LINKED,REQ-0173,EV-0422,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-2,確認事項!A81:I81,EXTRACTED_OR_LINKED,REQ-0173,EV-0423,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-3,確認事項!A82:I82,EXTRACTED_OR_LINKED,REQ-0080;REQ-0081,EV-0217,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-4,確認事項!A83:I83,EXTRACTED_OR_LINKED,REQ-0083,EV-0225,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-5,確認事項!A84:I84,EXTRACTED_OR_LINKED,REQ-0089,EV-0239,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-08-6,確認事項!A85:I85,EXTRACTED_OR_LINKED,REQ-0088,EV-0235,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,37.0,確認事項!A86:I86,EXTRACTED_OR_LINKED,REQ-0082,EV-0221,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,38.0,確認事項!A87:I87,EXTRACTED_OR_LINKED,REQ-0084,EV-0227,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-09-1,確認事項!A88:I88,EXTRACTED_OR_LINKED,REQ-0093,EV-0255,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-09-2,確認事項!A89:I89,EXTRACTED_OR_LINKED,REQ-0093,EV-0256,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,39.0,確認事項!A90:I90,EXTRACTED_OR_LINKED,REQ-0046;REQ-0047,EV-0124,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,40.0,確認事項!A91:I91,EXTRACTED_OR_LINKED,REQ-0009;REQ-0096,EV-0025,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-10-1,確認事項!A92:I92,EXTRACTED_OR_LINKED,REQ-0137,EV-0353,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,41.0,確認事項!A93:I93,EXTRACTED_OR_LINKED,REQ-0032;REQ-0075,EV-0089,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,42.0,確認事項!A94:I94,EXTRACTED_OR_LINKED,REQ-0032,EV-0090,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,43.0,確認事項!A95:I95,EXTRACTED_OR_LINKED,REQ-0168,EV-0404,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,44.0,確認事項!A96:I96,EXTRACTED_OR_LINKED,REQ-0021,EV-0061,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,45.0,確認事項!A97:I97,EXTRACTED_OR_LINKED,REQ-0115;REQ-0133,EV-0310,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,46.0,確認事項!A98:I98,EXTRACTED_OR_LINKED,REQ-0114,EV-0308,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,47.0,確認事項!A99:I99,EXTRACTED_OR_LINKED,REQ-0121,EV-0317,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-11-1,確認事項!A100:I100,EXTRACTED_OR_LINKED,REQ-0100,EV-0269,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-11-2,確認事項!A101:I101,EXTRACTED_OR_LINKED,REQ-0105,EV-0287,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-11-3,確認事項!A102:I102,EXTRACTED_OR_LINKED,REQ-0101,EV-0272,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-11-4,確認事項!A103:I103,EXTRACTED_OR_LINKED,REQ-0106,EV-0290,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,48.0,確認事項!A104:I104,EXTRACTED_OR_LINKED,REQ-0102;REQ-0103,EV-0274,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,49.0,確認事項!A105:I105,EXTRACTED_OR_LINKED,REQ-0102;REQ-0109,EV-0275,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,50.0,確認事項!A106:I106,EXTRACTED_OR_LINKED,REQ-0104,EV-0283,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,51.0,確認事項!A107:I107,EXTRACTED_OR_LINKED,REQ-0109,EV-0297,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-12-1,確認事項!A108:I108,EXTRACTED_OR_LINKED,REQ-0090;REQ-0105,EV-0242,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-12-2,確認事項!A109:I109,EXTRACTED_OR_LINKED,REQ-0090;REQ-0092,EV-0249,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-12-3,確認事項!A110:I110,EXTRACTED_OR_LINKED,REQ-0092,EV-0250,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-12-4,確認事項!A111:I111,EXTRACTED_OR_LINKED,REQ-0026,EV-0074,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-12-5,確認事項!A112:I112,EXTRACTED_OR_LINKED,REQ-0110,EV-0299,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,52.0,確認事項!A113:I113,EXTRACTED_OR_LINKED,REQ-0090,EV-0243,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-13-1,確認事項!A114:I114,EXTRACTED_OR_LINKED,REQ-0008,EV-0023,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,前提 UC-13-2,確認事項!A115:I115,EXTRACTED_OR_LINKED,REQ-0015,EV-0039,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,53.0,確認事項!A116:I116,EXTRACTED_OR_LINKED,REQ-0017,EV-0045,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,54.0,確認事項!A117:I117,EXTRACTED_OR_LINKED,REQ-0017,EV-0046,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,55.0,確認事項!A118:I118,EXTRACTED_OR_LINKED,REQ-0019,EV-0054,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+KS,56.0,確認事項!A119:I119,EXTRACTED_OR_LINKED,REQ-0018,EV-0049,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 1.0,Q&A!A2:N2,EXTRACTED_OR_LINKED,REQ-0068;REQ-0107,EV-0185,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 2.0,Q&A!A3:N3,EXTRACTED_OR_LINKED,REQ-0066,EV-0435,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 3.0,Q&A!A4:N4,EXTRACTED_OR_LINKED,REQ-0108,EV-0295,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 4.0,Q&A!A5:N5,EXTRACTED_OR_LINKED,REQ-0100;REQ-0147,EV-0270,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 5.0,Q&A!A6:N6,EXTRACTED_OR_LINKED,REQ-0016,EV-0042,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 6.0,Q&A!A7:N7,EXTRACTED_OR_LINKED,REQ-0075,EV-0205,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 7.0,Q&A!A8:N8,EXTRACTED_OR_LINKED,REQ-0032;REQ-0033,EV-0091,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 8.0,Q&A!A9:N9,EXTRACTED_OR_LINKED,REQ-0062,EV-0168,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 9.0,Q&A!A10:N10,EXTRACTED_OR_LINKED,REQ-0050,EV-0133,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 10.0,Q&A!A11:N11,EXTRACTED_OR_LINKED,REQ-0018,EV-0050,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 11.0,Q&A!A12:N12,EXTRACTED_OR_LINKED,REQ-0001;REQ-0002,EV-0004,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 12.0,Q&A!A13:N13,EXTRACTED_OR_LINKED,REQ-0087,EV-0232,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 13.0,Q&A!A14:N14,EXTRACTED_OR_LINKED,REQ-0057,EV-0155,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 14.0,Q&A!A15:N15,EXTRACTED_OR_LINKED,REQ-0028,EV-0081,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 15.0,Q&A!A16:N16,EXTRACTED_OR_LINKED,REQ-0084;REQ-0085,EV-0228,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 16.0,Q&A!A17:N17,EXTRACTED_OR_LINKED,REQ-0089,EV-0240,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 17.0,Q&A!A18:N18,EXTRACTED_OR_LINKED,REQ-0044,EV-0121,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 18.0,Q&A!A19:N19,EXTRACTED_OR_LINKED,REQ-0165,EV-0398,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 19.0,Q&A!A20:N20,EXTRACTED_OR_LINKED,REQ-0017;REQ-0101,EV-0047,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 20.0,Q&A!A21:N21,EXTRACTED_OR_LINKED,REQ-0092,EV-0251,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 21.0,Q&A!A22:N22,EXTRACTED_OR_LINKED,REQ-0022,EV-0064,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 22.0,Q&A!A23:N23,EXTRACTED_OR_LINKED,REQ-0031;REQ-0170,EV-0087,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 23.0,Q&A!A24:N24,EXTRACTED_OR_LINKED,REQ-0012;REQ-0079,EV-0032,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 24.0,Q&A!A25:N25,EXTRACTED_OR_LINKED,REQ-0127,EV-0334,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 25.0,Q&A!A26:N26,EXTRACTED_OR_LINKED,REQ-0007;REQ-0042,EV-0021,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 26.0,Q&A!A27:N27,EXTRACTED_OR_LINKED,REQ-0135,EV-0447,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 27.0,Q&A!A28:N28,EXTRACTED_OR_LINKED,REQ-0152,EV-0380,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 28.0,Q&A!A29:N29,EXTRACTED_OR_LINKED,REQ-0129,EV-0339,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 29.0,Q&A!A30:N30,EXTRACTED_OR_LINKED,REQ-0019;REQ-0140,EV-0055,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 30.0,Q&A!A31:N31,EXTRACTED_OR_LINKED,REQ-0135,EV-0448,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 31.0,Q&A!A32:N32,EXTRACTED_OR_LINKED,REQ-0097,EV-0262,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 32.0,Q&A!A33:N33,EXTRACTED_OR_LINKED,REQ-0112,EV-0304,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 33.0,Q&A!A34:N34,EXTRACTED_OR_LINKED,REQ-0137,EV-0354,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 34.0,Q&A!A35:N35,EXTRACTED_OR_LINKED,REQ-0156;REQ-0157;REQ-0158,EV-0388,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 35.0,Q&A!A36:N36,EXTRACTED_OR_LINKED,REQ-0073,EV-0199,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 36.0,Q&A!A37:N37,EXTRACTED_OR_LINKED,REQ-0065,EV-0176,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 37.0,Q&A!A38:N38,EXTRACTED_OR_LINKED,REQ-0063,EV-0172,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 38.0,Q&A!A39:N39,EXTRACTED_OR_LINKED,REQ-0051,EV-0137,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 39.0,Q&A!A40:N40,EXTRACTED_OR_LINKED,REQ-0053;REQ-0054,EV-0143,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 40.0,Q&A!A41:N41,EXTRACTED_OR_LINKED,REQ-0057,EV-0156,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 41.0,Q&A!A42:N42,EXTRACTED_OR_LINKED,REQ-0130,EV-0342,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 42.0,Q&A!A43:N43,EXTRACTED_OR_LINKED,REQ-0046,EV-0125,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 43.0,Q&A!A44:N44,EXTRACTED_OR_LINKED,REQ-0091;REQ-0092,EV-0247,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 44.0,Q&A!A45:N45,EXTRACTED_OR_LINKED,REQ-0121,EV-0318,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 45.0,Q&A!A46:N46,EXTRACTED_OR_LINKED,REQ-0122;REQ-0123,EV-0322,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 46.0,Q&A!A47:N47,EXTRACTED_OR_LINKED,REQ-0103,EV-0281,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 47.0,Q&A!A48:N48,EXTRACTED_OR_LINKED,REQ-0106,EV-0291,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 48.0,Q&A!A49:N49,EXTRACTED_OR_LINKED,REQ-0105;REQ-0110,EV-0288,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 49.0,Q&A!A50:N50,EXTRACTED_OR_LINKED,REQ-0102,EV-0276,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 51.0,Q&A!A51:N51,EXTRACTED_OR_LINKED,REQ-0128;REQ-0129,EV-0336,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 52.0,Q&A!A52:N52,EXTRACTED_OR_LINKED,REQ-0020;REQ-0076,EV-0059,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 53.0,Q&A!A53:N53,EXTRACTED_OR_LINKED,REQ-0102,EV-0277,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 54.0,Q&A!A54:N54,EXTRACTED_OR_LINKED,REQ-0031,EV-0437,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 55.0,Q&A!A55:N55,EXTRACTED_OR_LINKED,REQ-0062,EV-0438,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 56.0,Q&A!A56:N56,EXTRACTED_OR_LINKED,REQ-0082;REQ-0098,EV-0222,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 57.0,Q&A!A57:N57,EXTRACTED_OR_LINKED,REQ-0057,EV-0439,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 58.0,Q&A!A58:N58,EXTRACTED_OR_LINKED,REQ-0073,EV-0441,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 59.0,Q&A!A59:N59,EXTRACTED_OR_LINKED,REQ-0085,EV-0412,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 60.0,Q&A!A60:N60,EXTRACTED_OR_LINKED,REQ-0087,EV-0442,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 61.0,Q&A!A61:N61,EXTRACTED_OR_LINKED,REQ-0089,EV-0443,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 62.0,Q&A!A62:N62,EXTRACTED_OR_LINKED,REQ-0066,EV-0436,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 63.0,Q&A!A63:N63,EXTRACTED_OR_LINKED,REQ-0103,EV-0444,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 64.0,Q&A!A64:N64,EXTRACTED_OR_LINKED,REQ-0018,EV-0051,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 65.0,Q&A!A65:N65,EXTRACTED_OR_LINKED,REQ-0024,EV-0068,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 66.0,Q&A!A66:N66,EXTRACTED_OR_LINKED,REQ-0092,EV-0252,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 67.0,Q&A!A67:N67,EXTRACTED_OR_LINKED,REQ-0126,EV-0332,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 68.0,Q&A!A68:N68,EXTRACTED_OR_LINKED,REQ-0174,EV-0427,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 69.0,Q&A!A69:N69,EXTRACTED_OR_LINKED,REQ-0024,EV-0069,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 70.0,Q&A!A70:N70,EXTRACTED_OR_LINKED,REQ-0052;REQ-0128,EV-0140,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 71.0,Q&A!A71:N71,EXTRACTED_OR_LINKED,REQ-0128,EV-0337,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 72.0,Q&A!A72:N72,EXTRACTED_OR_LINKED,REQ-0047;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0127,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 73.0,Q&A!A73:N73,EXTRACTED_OR_LINKED,REQ-0042,EV-0445,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 74.0,Q&A!A74:N74,EXTRACTED_OR_LINKED,REQ-0125,EV-0329,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 75.0,Q&A!A75:N75,EXTRACTED_OR_LINKED,REQ-0115;REQ-0133,EV-0311,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 76.0,Q&A!A76:N76,EXTRACTED_OR_LINKED,REQ-0038;REQ-0104,EV-0106,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,Q&A No./ID 77.0,Q&A!A77:N77,EXTRACTED_OR_LINKED,REQ-0088,EV-0236,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,保留 No./ID 50.0,保留!A2:N2,EXTRACTED_OR_LINKED,REQ-0157,EV-0391,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,デザインFB,デザインFB!hàng1,EMPTY_LOG_HEADER_ONLY,,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,お知らせ・メール文章,お知らせ・メール文章!hàng1,EMPTY_LOG_HEADER_ONLY,,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-01,追加要件!A2:N2,LINKED_CONTEXT_NOT_APPROVAL,REQ-0001;REQ-0002;REQ-0003;REQ-0004;REQ-0005;REQ-0006;REQ-0007;REQ-0008,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-02,追加要件!A3:N3,LINKED_CONTEXT_NOT_APPROVAL,REQ-0050;REQ-0051;REQ-0052;REQ-0172,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-03,追加要件!A4:N4,LINKED_CONTEXT_NOT_APPROVAL,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-04,追加要件!A5:N5,LINKED_CONTEXT_NOT_APPROVAL,REQ-0065;REQ-0066;REQ-0067;REQ-0068,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-05,追加要件!A6:N6,LINKED_CONTEXT_NOT_APPROVAL,REQ-0050;REQ-0051;REQ-0052;REQ-0172,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-06,追加要件!A7:N7,LINKED_CONTEXT_NOT_APPROVAL,REQ-0057;REQ-0058,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-07,追加要件!A8:N8,LINKED_CONTEXT_NOT_APPROVAL,REQ-0130,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-08,追加要件!A9:N9,LINKED_CONTEXT_NOT_APPROVAL,REQ-0046;REQ-0047,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-09,追加要件!A10:N10,LINKED_CONTEXT_NOT_APPROVAL,REQ-0090;REQ-0091;REQ-0092,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-10,追加要件!A11:N11,LINKED_CONTEXT_NOT_APPROVAL,REQ-0062;REQ-0063,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-11,追加要件!A12:N12,LINKED_CONTEXT_NOT_APPROVAL,REQ-0106,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-12,追加要件!A13:N13,LINKED_CONTEXT_NOT_APPROVAL,REQ-0107;REQ-0108;REQ-0109;REQ-0110,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-13,追加要件!A14:N14,LINKED_CONTEXT_NOT_APPROVAL,REQ-0013;REQ-0014;REQ-0015;REQ-0016,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-14,追加要件!A15:N15,LINKED_CONTEXT_NOT_APPROVAL,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-15,追加要件!A16:N16,LINKED_CONTEXT_NOT_APPROVAL,REQ-0084;REQ-0085,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-16,追加要件!A17:N17,LINKED_CONTEXT_NOT_APPROVAL,REQ-0044,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-17,追加要件!A18:N18,LINKED_CONTEXT_NOT_APPROVAL,REQ-0121,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-18,追加要件!A19:N19,LINKED_CONTEXT_NOT_APPROVAL,REQ-0122;REQ-0123;REQ-0124,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-19,追加要件!A20:N20,LINKED_CONTEXT_NOT_APPROVAL,REQ-0072;REQ-0073;REQ-0074;REQ-0075,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-20,追加要件!A21:N21,LINKED_CONTEXT_NOT_APPROVAL,REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0171,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-21,追加要件!A22:N22,LINKED_CONTEXT_NOT_APPROVAL,REQ-0053;REQ-0054,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-22,追加要件!A23:N23,LINKED_CONTEXT_NOT_APPROVAL,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0396,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-23,追加要件!A24:N24,LINKED_CONTEXT_NOT_APPROVAL,REQ-0062;REQ-0063,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-24,追加要件!A25:N25,LINKED_CONTEXT_NOT_APPROVAL,REQ-0032;REQ-0033;REQ-0034;REQ-0165;REQ-0168,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+QA,追加要件 No./ID CR-25,追加要件!A26:N26,LINKED_CONTEXT_NOT_APPROVAL,REQ-0134;REQ-0135,,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 5,PDF trang5,TEXT_DESCRIPTION_LINKED,REQ-0001,EV-0005,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 6,PDF trang6,TEXT_DESCRIPTION_LINKED,REQ-0004,EV-0012,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 7,PDF trang7,TEXT_DESCRIPTION_LINKED,REQ-0005;REQ-0033,EV-0015,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 8,PDF trang8,TEXT_DESCRIPTION_LINKED,REQ-0010;REQ-0011;REQ-0012,EV-0027,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 9,PDF trang9,TEXT_DESCRIPTION_LINKED,REQ-0012;REQ-0076;REQ-0077;REQ-0078;REQ-0079;REQ-0086,EV-0033,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 10,PDF trang10,TEXT_DESCRIPTION_LINKED,REQ-0095;REQ-0097;REQ-0113,EV-0259,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 11,PDF trang11,TEXT_DESCRIPTION_LINKED,REQ-0050;REQ-0113;REQ-0118,EV-0134,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 12,PDF trang12,TEXT_DESCRIPTION_LINKED,REQ-0116;REQ-0117,EV-0312,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 13,PDF trang13,TEXT_DESCRIPTION_LINKED,REQ-0038;REQ-0039;REQ-0042;REQ-0119;REQ-0120,EV-0107,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 14,PDF trang14,TEXT_DESCRIPTION_LINKED,REQ-0053;REQ-0054;REQ-0055;REQ-0056;REQ-0059;REQ-0072,EV-0145,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 15,PDF trang15,TEXT_DESCRIPTION_LINKED,REQ-0060;REQ-0062;REQ-0063,EV-0164,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 16,PDF trang16,TEXT_DESCRIPTION_LINKED,REQ-0065;REQ-0066;REQ-0067;REQ-0069,EV-0177,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 17,PDF trang17,TEXT_DESCRIPTION_LINKED,REQ-0068;REQ-0070;REQ-0071,EV-0186,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 18,PDF trang18,TEXT_DESCRIPTION_LINKED,REQ-0081;REQ-0085;REQ-0096;REQ-0128,EV-0220,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 19,PDF trang19,TEXT_DESCRIPTION_LINKED,REQ-0111;REQ-0168,EV-0301,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-T18,Trang màn 20,PDF trang20,TEXT_DESCRIPTION_LINKED,REQ-0104;REQ-0109,EV-0284,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 4,PDF trang4,TEXT_DESCRIPTION_LINKED,REQ-0013;REQ-0014;REQ-0016;REQ-0126,EV-0035,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 5,PDF trang5,TEXT_DESCRIPTION_LINKED,REQ-0075;REQ-0114;REQ-0115,EV-0206,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 6,PDF trang6,TEXT_DESCRIPTION_LINKED,REQ-0002;REQ-0003;REQ-0023;REQ-0165,EV-0007,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 7,PDF trang7,TEXT_DESCRIPTION_LINKED,REQ-0072,EV-0446,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 8,PDF trang8,TEXT_DESCRIPTION_LINKED,REQ-0073;REQ-0074,EV-0200,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 9,PDF trang9,TEXT_DESCRIPTION_LINKED,REQ-0034,EV-0096,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 10,PDF trang10,TEXT_DESCRIPTION_LINKED,REQ-0095,EV-0260,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 11,PDF trang11,TEXT_DESCRIPTION_LINKED,REQ-0080;REQ-0085;REQ-0089;REQ-0091;REQ-0128,EV-0218,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 12,PDF trang12,TEXT_DESCRIPTION_LINKED,REQ-0032;REQ-0168,EV-0092,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 13,PDF trang13,TEXT_DESCRIPTION_LINKED,REQ-0019;REQ-0029;REQ-0087,EV-0057,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 14,PDF trang14,TEXT_DESCRIPTION_LINKED,REQ-0057,EV-0440,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 15,PDF trang15,TEXT_DESCRIPTION_LINKED,REQ-0090;REQ-0110,EV-0244,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 16,PDF trang16,TEXT_DESCRIPTION_LINKED,REQ-0121,EV-0319,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 17,PDF trang17,TEXT_DESCRIPTION_LINKED,REQ-0122,EV-0323,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 18,PDF trang18,TEXT_DESCRIPTION_LINKED,REQ-0123,EV-0326,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 19,PDF trang19,TEXT_DESCRIPTION_LINKED,REQ-0088,EV-0237,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 20,PDF trang20,TEXT_DESCRIPTION_LINKED,REQ-0130,EV-0343,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 21,PDF trang21,TEXT_DESCRIPTION_LINKED,REQ-0015,EV-0040,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 22,PDF trang22,TEXT_DESCRIPTION_LINKED,REQ-0021;REQ-0022,EV-0062,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+SD-M18,Trang màn 23,PDF trang23,TEXT_DESCRIPTION_LINKED,REQ-0125,EV-0330,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục1,合意事項 (đồng thuận) mục1,EXTRACTED_OR_LINKED,REQ-0053;REQ-0055;REQ-0098;REQ-0116;REQ-0117;REQ-0118,EV-0144,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục2,合意事項 (đồng thuận) mục2,EXTRACTED_OR_LINKED,REQ-0119;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,EV-0315,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục3,合意事項 (đồng thuận) mục3,EXTRACTED_OR_LINKED,REQ-0137,EV-0355,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục4,合意事項 (đồng thuận) mục4,EXTRACTED_OR_LINKED,REQ-0042,EV-0116,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục5,合意事項 (đồng thuận) mục5,EXTRACTED_OR_LINKED,REQ-0019,EV-0056,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục6,合意事項 (đồng thuận) mục6,EXTRACTED_OR_LINKED,REQ-0102,EV-0278,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.
+GJ,Đồng thuận mục7,合意事項 (đồng thuận) mục7,EXTRACTED_OR_LINKED,REQ-0018;REQ-0054;REQ-0071;REQ-0075;REQ-0079;REQ-0082;REQ-0091;REQ-0124;REQ-0165;REQ-0168,EV-0052,True,Kiểm map hiện hữu; không dùng sự tồn tại của map để chứng minh bao phủ mọi chi tiết từng pixel/ô nguồn.

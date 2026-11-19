@@ -1,0 +1,35 @@
+qa_no,sheet,cells,existing_subject,source_status,requirement_ids,role
+2,Q&A,E3:I3,動画の単価・生成サービス,Open,REQ-0066,Theo dõi câu đã có; không phải Q&A mới
+4,Q&A,E5:I5,決済事業者・決済方法,Open,REQ-0100;REQ-0147,Theo dõi câu đã có; không phải Q&A mới
+6,Q&A,E7:I7,承認者,Open,REQ-0075,Theo dõi câu đã có; không phải Q&A mới
+8,Q&A,E9:I9,画像・動画の保存先,Open,REQ-0062,Theo dõi câu đã có; không phải Q&A mới
+24,Q&A,E25:I25,InstagramDM自動化アプリとの関係,Open,REQ-0127,Theo dõi câu đã có; không phải Q&A mới
+34,Q&A,E35:I35,見積書の版・正式版の提出時期,Open,REQ-0156;REQ-0157;REQ-0158,Theo dõi câu đã có; không phải Q&A mới
+37,Q&A,E38:I38,自作動画の保存と自動投稿案化,Open,REQ-0063,Theo dõi câu đã có; không phải Q&A mới
+49,Q&A,E50:I50,請求サイクル,Open,REQ-0102,Theo dõi câu đã có; không phải Q&A mới
+51,Q&A,E51:I51,投稿の状態一覧,Open,REQ-0128;REQ-0129,Theo dõi câu đã có; không phải Q&A mới
+52,Q&A,E52:I52,利用前から利用中への切り替え,Open,REQ-0020;REQ-0076,Theo dõi câu đã có; không phải Q&A mới
+53,Q&A,E53:I53,月額使用料の課金開始日,Open,REQ-0102,Theo dõi câu đã có; không phải Q&A mới
+54,Q&A,E54:I54,タレント情報の登録完了の判定,Open,REQ-0031,Theo dõi câu đã có; không phải Q&A mới
+55,Q&A,E55:I55,テーマ・投稿案・素材の有効期限,Open,REQ-0062,Theo dõi câu đã có; không phải Q&A mới
+56,Q&A,E56:I56,投稿時刻の確定と1日複数投稿,Open,REQ-0082;REQ-0098,Theo dõi câu đã có; không phải Q&A mới
+57,Q&A,E57:I57,使ってはいけない言葉の検出後の流れ,Open,REQ-0057,Theo dõi câu đã có; không phải Q&A mới
+58,Q&A,E58:I58,差し戻し後の再依頼,Open,REQ-0073,Theo dõi câu đã có; không phải Q&A mới
+59,Q&A,E59:I59,投稿失敗後の予約し直し,Open,REQ-0085,Theo dõi câu đã có; không phải Q&A mới
+60,Q&A,E60:I60,自動投稿の停止中の採用,Open,REQ-0087,Theo dõi câu đã có; không phải Q&A mới
+61,Q&A,E61:I61,予約取り消し時のタレントへのお知らせ,Open,REQ-0089,Theo dõi câu đã có; không phải Q&A mới
+62,Q&A,E62:I62,動画単価の設定場所と改定時の扱い,Open,REQ-0066,Theo dõi câu đã có; không phải Q&A mới
+63,Q&A,E63:I63,支払い失敗後に利用を止める場合の状態,Open,REQ-0103,Theo dõi câu đã có; không phải Q&A mới
+65,Q&A,E65:I65,再申込と仮パスワード,Open,REQ-0024,Theo dõi câu đã có; không phải Q&A mới
+66,Q&A,E66:I66,事務所アカウントの詳細,Open,REQ-0092,Theo dõi câu đã có; không phải Q&A mới
+67,Q&A,E67:I67,マネージャーのアカウントの復旧,Open,REQ-0126,Theo dõi câu đã có; không phải Q&A mới
+69,Q&A,E69:I69,退会後6か月間の再申込と削除の対象,Open,REQ-0024,Theo dõi câu đã có; không phải Q&A mới
+70,Q&A,E70:I70,自動投稿(期間投稿)の期間中の動き,Open,REQ-0052;REQ-0128,Theo dõi câu đã có; không phải Q&A mới
+71,Q&A,E71:I71,自動投稿・要確認と、承認・使ってはいけない言葉の関係,Open,REQ-0128,Theo dõi câu đã có; không phải Q&A mới
+72,Q&A,E72:I72,チャレンジの判定と連続投稿日数の数え方,Open,REQ-0047;REQ-0120;REQ-0160;REQ-0161;REQ-0162;REQ-0163;REQ-0164,Theo dõi câu đã có; không phải Q&A mới
+73,Q&A,E73:I73,声かけの朝・昼・晩の時刻と内容,Open,REQ-0042,Theo dõi câu đã có; không phải Q&A mới
+74,Q&A,E74:I74,AIにタレントの情報を入れる画面,Open,REQ-0125,Theo dõi câu đã có; không phải Q&A mới
+75,Q&A,E75:I75,マネージャーへのお知らせのメール通知,Open,REQ-0115;REQ-0133,Theo dõi câu đã có; không phải Q&A mới
+76,Q&A,E76:I76,決定事項欄が空欄の項目の理解,Open,REQ-0038;REQ-0104,Theo dõi câu đã có; không phải Q&A mới
+77,Q&A,E77:I77,すべての自動投稿の停止(前提 UC-08-6),Open,REQ-0088,Theo dõi câu đã có; không phải Q&A mới
+50,保留,E2:I2,範囲外の追加機能の取扱い,Open,REQ-0157,Theo dõi câu đã có; không phải Q&A mới

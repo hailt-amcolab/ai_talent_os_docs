@@ -271,7 +271,7 @@ Chức năng: [2-1](../SCD/EP02_Thong_tin_tai_nang_va_nguon_du_lieu_cho_AI/2-1_D
 **HIGH · Mâu thuẫn tích hợp · G02/G13/G19**  
 Chức năng: [8-2](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-2_Ket_noi_dich_vu_dang_bai.md), [6-2](../SCD/EP01_Danh_tinh_va_quyen_truy_cap/6-2_Huong_dan_lan_dau_va_ket_noi_mang_xa_hoi.md). Theo dõi: S06-02; Q&A No.23/66 Open; Upload-Post Q01–04/Q09.
 
-- **Bằng chứng:** SCD 8-2 dùng hosted link 48 giờ và xóa profile khi nghỉ; guide Upload-Post §8.2 chọn Connect API 15 phút có Q02 cần chấp thuận; B15/§11 không tự xóa profile ngay. Guide đã có xử lý account switch, nhưng SCD chưa nối cùng lifecycle.
+- **Bằng chứng:** SCD 8-2 dùng hosted link 48 giờ và xóa profile khi nghỉ; guide Upload-Post §6.2 chọn Connect API 15 phút có Q02 cần chấp thuận; §10.4 không tự xóa profile ngay. Guide đã có xử lý account switch, nhưng SCD chưa nối cùng lifecycle.
 - **Ảnh hưởng:** Sai UX, TTL, quota hoặc mất chứng cứ/lịch khi xóa provider profile trước đối soát.
 - **Phương án sửa/điều kiện đóng:** Chốt adapter/UI và gói thực tế; đồng bộ TTL, lifecycle profile, reconnect cùng/khác remote ID, lịch cũ, duplicate SNS giữa Talent; tham chiếu contract kỹ thuật đã có.
 - **Trade-off:** Chọn lại hosted page có thể giảm UI nhưng cần đánh giá hạn chế; không gọi khác biệt TTL là lỗi provider.
@@ -293,7 +293,7 @@ Chức năng: [8-3](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-3_Dang_len_3
 **HIGH · Mâu thuẫn điều kiện kết thúc · G13/G17/G19**  
 Chức năng: [7-2](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/7-2_Xem_va_huy_bai_dang.md), [7-5](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/7-5_Dung_dang_tu_dong_toan_bo_hoac_tung_tai_nang.md), [7-3](../SCD/EP01_Danh_tinh_va_quyen_truy_cap/7-3_Doi_trang_thai_tai_nang.md). Theo dõi: L22-09/12; Q&A No.60/61/77 Open; Upload-Post Q08.
 
-- **Bằng chứng:** SCD 7-2 main#4 và 7-5 #2 chuyển đã hủy sau lệnh gọi; guide Upload-Post §11/§17 có cancel_pending/unknown, xử lý stop chưa hết và không kịp hủy.
+- **Bằng chứng:** SCD 7-2 main#4 và 7-5 #2 chuyển đã hủy sau lệnh gọi; guide Upload-Post §10 có cancel_requested/outcome_unknown, xử lý stop chưa hết và không kịp hủy.
 - **Ảnh hưởng:** Manager tin đã dừng hết nhưng bài vẫn xuất bản, callback muộn hồi sinh lịch; khó truy trách nhiệm.
 - **Phương án sửa/điều kiện đóng:** Đưa kết quả pending/confirmed/too_late vào hợp đồng UI và AC; chặn lịch mới trước, quét lại tác vụ đang bay, xác nhận từng mạng; nút resume không bỏ qua cờ stop khác.
 - **Trade-off:** Không hứa thu hồi bài đã live; UX cần hiển thị kết quả một phần và đường xử lý thủ công.
@@ -337,7 +337,7 @@ Chức năng: [3-7](../SCD/EP03_Huan_luyen_vien_AI/3-7_Thong_bao_khi_dat_muc_tie
 **MEDIUM · Thiếu truy vết dữ liệu · G03/G15**  
 Chức năng: [8-7](../SCD/EP07_Ket_qua_va_phan_tich/8-7_Lay_so_lieu.md), [8-8](../SCD/EP07_Ket_qua_va_phan_tich/8-8_Ghi_so_lieu_vao_file.md), [8-9](../SCD/EP07_Ket_qua_va_phan_tich/8-9_Lay_khung_gio_tuong_tac.md), [8-1](../SCD/EP07_Ket_qua_va_phan_tich/8-1_Phan_tich_gio_dang.md), [3-6](../SCD/EP03_Huan_luyen_vien_AI/3-6_Nhan_xet_bai_hom_truoc_va_goi_y_cai_thien.md), [3-8](../SCD/EP03_Huan_luyen_vien_AI/3-8_Tong_ket_tuan.md), [3-10](../SCD/EP07_Ket_qua_va_phan_tich/3-10_Hien_thi_so_nguoi_theo_doi.md), [6-7](../SCD/EP07_Ket_qua_va_phan_tich/6-7_So_lieu_va_muc_dat_cho_tai_nang.md). Theo dõi: L22-06/13; S07-01–09; Upload-Post Q07.
 
-- **Bằng chứng:** Guide Upload-Post §13 phân biệt null/captured_at/unavailable_reason/confidence; SCD 6-7 cộng metric các mạng và 3-8 lấy ngày gần nhất; chưa ràng buộc freshness/cửa sổ/nguồn thống nhất tới export, biểu đồ, AI, streak và bài ngoài hệ thống.
+- **Bằng chứng:** Guide Upload-Post §11 phân biệt null/captured_at/unavailable_reason/confidence; SCD 6-7 cộng metric các mạng và 3-8 lấy ngày gần nhất; chưa ràng buộc freshness/cửa sổ/nguồn thống nhất tới export, biểu đồ, AI, streak và bài ngoài hệ thống.
 - **Ảnh hưởng:** Hiểu dữ liệu thiếu thành 0, cộng chỉ số khác định nghĩa, nhận xét sai hoặc nhắc không đăng nhầm.
 - **Phương án sửa/điều kiện đóng:** Bảng lineage từng metric: định nghĩa, nguồn, timezone/event time, độ mới, null, dedupe ngoài hệ thống, sửa snapshot muộn và cách dùng trong AI; nối guide vào AC từng consumer.
 - **Trade-off:** Không thể cam kết cùng metric cho mọi mạng; phải hiển thị phần không hỗ trợ.
@@ -436,7 +436,7 @@ Chức năng: [C-06](../SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-06_Quy_ta
 **HIGH · Thiếu readiness vận hành · G14/G16/G19/G20**  
 Chức năng: [8-2](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-2_Ket_noi_dich_vu_dang_bai.md), [8-3](../SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-3_Dang_len_3_mang_xa_hoi.md), [8-9](../SCD/EP07_Ket_qua_va_phan_tich/8-9_Lay_khung_gio_tuong_tac.md), [1-1](../SCD/EP08_Thu_phi/1-1_Thu_phi_thue_bao_thang.md), [5-1](../SCD/EP05_Tu_lieu_va_video_AI/5-1_Tao_video.md). Theo dõi: I2/I3/I4/I5; Upload-Post §15; YK2 §8/§12.1–12.4.
 
-- **Bằng chứng:** YK2 cho hoãn riêng tích hợp chưa xong hợp đồng/xét duyệt; guide Upload-Post có P01–P15/điều kiện gói và OneDrive có ca MT chưa chạy. Tài liệu có checklist nhưng chưa có manifest đã ký cho đợt, tài khoản, vùng, quota và bằng chứng được nghiệm thu.
+- **Bằng chứng:** YK2 cho hoãn riêng tích hợp chưa xong hợp đồng/xét duyệt; guide Upload-Post có UP-K01〜K11/điều kiện gói và OneDrive có ca MT chưa chạy. Tài liệu có checklist nhưng chưa có manifest đã ký cho đợt, tài khoản, vùng, quota và bằng chứng được nghiệm thu.
 - **Ảnh hưởng:** Bị hiểu rằng tài liệu API/giả lập đủ để phát hành; thiếu dịch vụ khiến chuỗi đã bán không chạy được.
 - **Phương án sửa/điều kiện đóng:** Lập release manifest từng chuỗi: scope quyết định, dependency, tài khoản/gói/consent, POC evidence, AC pass/fail, owner và đường tắt/ẩn nếu hoãn; không chạy provider thật trong cuộc rà soát tài liệu này.
 - **Trade-off:** Phát hành từng phần có thể hợp lý nhưng cần chấp nhận phạm vi rõ, không giấu tính năng chặn.

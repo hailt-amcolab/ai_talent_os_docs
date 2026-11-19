@@ -1,0 +1,7 @@
+# Bản nháp Q&A khách hàng
+
+Trạng thái: BLOCKED — chưa đủ điều kiện soạn câu hỏi.
+
+Hiện chưa có finding nào hoàn tất Independent Review để đưa vào bản nháp. Chưa có câu hỏi dành cho khách hàng trong phiên bản này.
+
+Hồ sơ kiểm tra điều kiện được lưu riêng tại [Internal Evidence](internal-evidence.md), mã IE-QAD-0001.

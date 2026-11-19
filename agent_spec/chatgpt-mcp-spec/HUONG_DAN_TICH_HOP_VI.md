@@ -40,7 +40,7 @@ sequenceDiagram
   B-->>C: Diff, proposalId, URL xác nhận
   M->>W: Mở URL, đăng nhập + TOTP, xem diff
   W->>B: REST POST xác nhận (phiên Manager)
-  B-->>W: Đã xác nhận; chưa ghi
+  B-->>W: Đã xác nhận, chưa ghi
   C->>B: commit(proposalId)
   B->>G: Replace với If-Match
   G-->>B: eTag mới hoặc conflict

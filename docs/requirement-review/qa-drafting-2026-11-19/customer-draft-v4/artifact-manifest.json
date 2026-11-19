@@ -1,0 +1,93 @@
+{
+  "stage": "V4 author QA re-audit; no independent signature/gate approval",
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/QA_REAUDIT_REPORT.md",
+      "sha256": "2db3d0d22eb28a94ad4b7a6cfb421176c056bb2bbeea9ca75e0327286e62c24e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/VALIDATION.md",
+      "sha256": "2880bcc99066ee43b3e9101354102675c09c30b3463932b5bb3f17de5f4d0911"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/all-question-records.csv",
+      "sha256": "b5511ba32cd60c5d9484bc5554f7f763dc80705bd8c537a08d29c41fe25bf26b"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/before/docs/qa/qa-quality-review.md.txt",
+      "sha256": "21bd19d6ee8ec012e4e6874f1e6536d777d85ada69138780743a136652882724"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md.txt",
+      "sha256": "ae233d337186e240ce222aa6a1109a54089e1e5b7a35522df60c1bb0117a30ec"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv.txt",
+      "sha256": "7ef11eead7876956ffcde23f39835dc4a61cced8a22e02c5c89fb3d3e6e37cf7"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv.txt",
+      "sha256": "a64ba402a9d4c963134fe376a6eb51465c1c1f2f68c1e35fb0978a633d500854"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/before/docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md.txt",
+      "sha256": "aa8e4fee46f41ae78c8c9299bd67180b77f631543fdad75f376ba5dd98ea35e8"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/counts.json",
+      "sha256": "9072959aa02d521dc43cbdc41ce01fcb1d0daa1790eabdeb7902a11a5578ef2b"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/input-manifest.json",
+      "sha256": "f05343133e514c7c4fe8f3802445a7bdb8686cce457cd27a6c7151d17882c629"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/internal-design-check.json",
+      "sha256": "3890af0a93c702748779076920f2d6f03525c8172c23765a7e8226701ead0787"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/internal-evidence.csv",
+      "sha256": "6c6edb96c5c1a96a70b5946bd3b5d1f0d04be61a3edd4d1ad65da71016016f8c"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/internal-evidence.md",
+      "sha256": "1b5345e31c24fc11f8203dd2fb28197f3ff0f85f967e138f47c926fbfade0672"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/questions.csv",
+      "sha256": "2a73ef77ce1ce834cea2497d80f16b3fdf232e02f06fb02435e24b40106347d3"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/review-results.csv",
+      "sha256": "7b3cb7360ccce5931c2d7e38d435aa35da9b6f19640bf3c04ba44417d6343fbe"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/source-audit.csv",
+      "sha256": "d6c4e82df3cb0b970eccdd67af45a815263a77c16297cc6a2c412b8c5f8fdeab"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/validate_qa_reaudit.py",
+      "sha256": "904afd3e6d9b6a364499e5ba027d4c83db98b310b639119c691fdc64dc776fe9"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "88c524c5ac6e96f80e3f7e6b823e228ffb8b811d470a4ec3ef65c9d3cd32fd3b"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "bdfce1bbe326e0e6cd80199ad627e9a3fa73dd089ebd5868933136a428a9c124"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+      "sha256": "2bbfcf1fe2e431c4c350e3f99770459d46db2536a02fdff2ed18fd7cb37ec73e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "b92a5a9cddb48e86ecd99574960bfac4634eca81bb34cefdb6e8e2768f691543"
+    },
+    {
+      "path": "docs/qa/qa-quality-review.md",
+      "sha256": "8cec9c7ba3ebc75edd00f49508d0a70d1cb27cf6c47959afe5cd832d2843d7ab"
+    }
+  ]
+}

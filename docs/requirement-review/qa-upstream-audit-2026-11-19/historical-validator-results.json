@@ -1,0 +1,32 @@
+[
+  {
+    "script": "docs/requirement-review/validate.py",
+    "exit_code": 0,
+    "output": "PASS: 12 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n"
+  },
+  {
+    "script": "docs/requirement-review/extraction-2026-11-19/validate_extraction.py",
+    "exit_code": 0,
+    "output": "PASS — đủ trường, ID/EV/BR liên kết hợp lệ, nguồn đúng hash, đủ54 chức năng và67 mục cũ được nối.\nKhông thay kiểm chứng ngữ nghĩa, review độc lập, xác nhận khách hoặc ký gate.\n"
+  },
+  {
+    "script": "docs/requirement-review/flow-reconstruction-2026-11-19/validate_flows.py",
+    "exit_code": 1,
+    "output": "FAIL — hồ sơ flow:\nĐầu vào extraction/phân tích cũ đã đổi: docs/requirement-review/registers/findings.csv\nĐầu vào extraction/phân tích cũ đã đổi: docs/requirement-review/registers/reviews.csv\n"
+  },
+  {
+    "script": "docs/requirement-review/gap-analysis-2026-11-19/validate_gap_analysis.py",
+    "exit_code": 1,
+    "output": "FAIL\nHash changed: docs/requirement-review/registers/reviews.csv\nHash changed: docs/requirement-review/README.md\nHash changed: docs/requirement-review/DATA_MODEL.md\nLedger/detail mismatch: FND-0001\nLedger/detail mismatch: FND-0004\nLedger/detail mismatch: FND-0005\nLedger/detail mismatch: FND-0007\nLedger/detail mismatch: FND-0008\nLedger/detail mismatch: FND-0011\nLedger/detail mismatch: FND-0012\nLedger/detail mismatch: FND-0015\nLedger/detail mismatch: FND-0016\nLedger/detail mismatch: FND-0017\nLedger/detail mismatch: FND-0018\nLedger/detail mismatch: FND-0021\nLedger/detail mismatch: FND-0023\nLedger/detail mismatch: FND-0026\nLedger/detail mismatch: FND-0030\nLedger/detail mismatch: FND-0031\nHash changed: docs/requirement-review/registers/findings.csv\n"
+  },
+  {
+    "script": "docs/requirement-review/independent-current-review-2026-11-19/validate_current_review.py",
+    "exit_code": 1,
+    "output": "FAIL\nProtected input changed docs/requirement-review/registers/gate-runs.csv\nProtected input changed docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md\nProtected input changed docs/qa/qa-quality-review.md\nHistorical review rows changed or duplicate append\nReview signature invented\n"
+  },
+  {
+    "script": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4/validate_qa_reaudit.py",
+    "exit_code": 0,
+    "output": "PASS:44 audited IDs,36 synchronized questions, disposition/source links, preserved registers/sources/gates, stable IDs and history.\n"
+  }
+]

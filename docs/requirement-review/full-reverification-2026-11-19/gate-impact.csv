@@ -1,0 +1,9 @@
+gate_id,latest_recorded_run,latest_recorded_status,audit_action,mutation
+G1,GATE-0007,PASS,Nguồn/hash ổn định; bổ sung việc đọc hình trong audit này. Giới hạn bản ký còn nguyên.,NONE
+G2,GATE-0008,PASS,"12REQ/4BR cần sửa hoặc bổ sung ngữ cảnh; reviewer kiểm đúng hash bản sửa, không phủ lại PASS cũ lên nội dung mới.",NONE
+G3,GATE-0009,PASS,8flow có bước/context bị ảnh hưởng và TRANS-0009; sửa theo FV trước khi dùng làm đặc tả cuối.,NONE
+G4,GATE-0010,PASS,"Rà lại lý lẽ/phân tuyến của FND-0003 và FND-0023 khi sửa upstream; giữ gap thực, không tăng câu hỏi.",NONE
+G5,GATE-0012,PASS,Giữ kết quả/44mục ký lịch sử và3mục loại trừ. Bản finding thay đổi phải review/duyệt đúng hash mới; audit này không ký độc lập.,NONE
+G6,GATE-0006,BLOCKED,36Q&A vẫn DRAFT_UNAPPROVED. Kiểm G6 đúng bản cuối sau các thay đổi upstream; chưa cho phát hành.,NONE
+G7,,NO_RUN_RECORDED,Không có phản hồi khách mới trong audit; không tự ghi Customer Confirmed.,NONE
+G8,,NO_RUN_RECORDED,Không tạo baseline/sẵn sàng triển khai từ kết quả tự kiểm.,NONE

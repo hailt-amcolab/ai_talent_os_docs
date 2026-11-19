@@ -1,0 +1,73 @@
+evidence_id,source_id,source_path,source_version,source_sha256,locator,original_excerpt,interpretation_vi,claim_supported,authority,counter_evidence,limits,verification_status,checked_by,checked_at
+EV-0512,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Snapshot19/11/2026; source-snapshot.json,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"YK2 w:p P615–P617, đếm mọi đoạn XML từ1; mục/chức năng theo finding","ステータスは、利用前・利用中・利用終了の3つです。
+マネージャーが、管理画面でタレントを選んで切り替えます。切り替える前に、確認の画面を出します。
+利用終了に切り替えると、声かけを止め、請求を止め、予約済みの投稿を取り消します。タレントは、ログインできなくなります。",Xem FACT/INFERENCE và phần còn thiếu trong finding liên kết.,FND-0011,"Nguồn gốc, chỉ theo từng ý; không coi Close/OK hay đề xuất là phê duyệt toàn bộ",Phần phản chứng/đã trả lời được chỉ riêng tại finding.,Tác giả đọc lại văn bản nguồn; không phải independent review hoặc bằng chứng hệ thống đã chạy/lỗi.,VERIFIED,Codex — tác giả Gap & Conflict Analysis,2026-11-19T11:32:25+07:00
+EV-0513,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Snapshot19/11/2026; source-snapshot.json,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"YK2 w:p P771–P774, đếm mọi đoạn XML từ1; mục/chức năng theo finding","取り込む項目は、投稿サービスで取れる範囲です。実際のアカウントにつないで確かめてから、最終版に書きます。
+取り込めなかった場合は、次の回に取り込み直します。
+8-8 実績の書き戻し（優先順位：高）
+取り込んだ実績を、タレントのフォルダのファイルに書きます。AIコーチが、翌朝から読み込んで使います。",Xem FACT/INFERENCE và phần còn thiếu trong finding liên kết.,FND-0027,"Nguồn gốc, chỉ theo từng ý; không coi Close/OK hay đề xuất là phê duyệt toàn bộ",Phần phản chứng/đã trả lời được chỉ riêng tại finding.,Tác giả đọc lại văn bản nguồn; không phải independent review hoặc bằng chứng hệ thống đã chạy/lỗi.,VERIFIED,Codex — tác giả Gap & Conflict Analysis,2026-11-19T11:32:25+07:00
+EV-0514,SD-M18,source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf,Snapshot19/11/2026; source-snapshot.json,1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67,SD-M18 PDF trang27 từ1; bản18/11,"  業務フロー           お知らせに対応する                                                                                      お知らせが届いたときの流れだよ
+
+
+ T-01   タレントのアプリの画面      M-01   管理画面の画面   外部のサービス   その作業でつなぐ、AI育成OS の外のサービス       点線の枠   分かれ道と補足
+
+
+  1     お知らせが届いてから、対応するまで
+
+                                             2
+                                                    鈴の印からお知らせを
+                                                    開き、関係する画面を
+         タレント                                       開く
+                                                     T-15
+
+
+
+
+                     1
+                            お知らせを出す。タレ
+                            ントにはアプリと通
+         AI育成OS             知、マネージャーには
+                            管理画面に出す
+
+
+
+
+                                                                    3                          4                 5
+                                                                         お知らせ一覧で、対応
+                                                                                                   タレントと AIコーチ       対応が終わったお知ら
+                                                                         が必要なことを確かめ
+                                                                                                   の会話を確かめる          せを、対応済みにする
+         マネージャー                                                          る
+                                                                                                   M-09              M-02
+                                                                          M-02
+
+
+
+
+         外部の              スマートフォンへの通知
+         サービス
+
+
+
+  2     この業務フローの前提条件
+ ●    スマートフォンへの通知を許可していないタレントも、アプリのお知らせの画面でお知らせを確かめられます。                      ●   【要確認】（確認45）マネージャーへのお知らせをメールでも送る場合の、お知らせの種類と送り先を、今後確認し
+                                                                                  ます。
+ ●    タレントが体調や退所の相談をしたときは、AI育成OS がマネージャーにお知らせします。
+
+
+
+
+AI育成OS 画面定義書（管理画面）                                                                                                                 27 / 34 ページ
+",Xem FACT/INFERENCE và phần còn thiếu trong finding liên kết.,FND-0028,"Nguồn gốc, chỉ theo từng ý; không coi Close/OK hay đề xuất là phê duyệt toàn bộ",Phần phản chứng/đã trả lời được chỉ riêng tại finding.,Tác giả đọc lại văn bản nguồn; không phải independent review hoặc bằng chứng hệ thống đã chạy/lỗi.,VERIFIED,Codex — tác giả Gap & Conflict Analysis,2026-11-19T11:32:25+07:00
+EV-0515,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Snapshot19/11/2026; source-snapshot.json,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"YK2 w:p P608–P611, đếm mọi đoạn XML từ1; mục/chức năng theo finding","マネージャーは、メールアドレスとパスワードに加えて、認証アプリに表示される6桁の番号を入力してログインします（二段階認証）。
+パスワードの決まりと、間違えたときの動きは、タレントと同じです。
+管理画面を30分操作しなかった場合は、ログインし直しが必要です。
+マネージャーの追加と、使えなくする操作は、マネージャーが管理画面で行います。使えなくしたマネージャーは、すぐにログインできなくなります。",Xem FACT/INFERENCE và phần còn thiếu trong finding liên kết.,FND-0030,"Nguồn gốc, chỉ theo từng ý; không coi Close/OK hay đề xuất là phê duyệt toàn bộ",Phần phản chứng/đã trả lời được chỉ riêng tại finding.,Tác giả đọc lại văn bản nguồn; không phải independent review hoặc bằng chứng hệ thống đã chạy/lỗi.,VERIFIED,Codex — tác giả Gap & Conflict Analysis,2026-11-19T11:32:25+07:00
+EV-0516,YK2,source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx,Snapshot19/11/2026; source-snapshot.json,30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3,"YK2 w:p P878–P885, đếm mọi đoạn XML từ1; mục/chức năng theo finding","使える時間帯：設計の中で決め、最終版に書きます。
+外部サービスの障害：外部サービスに障害が起きたときは、その機能を止め、ほかの機能は使えるようにします。投稿できなかった場合は、お知らせします。
+バックアップ：対象・頻度・保存期間は、設計の中で決め、最終版に書きます。
+9-4 操作と処理の記録
+閲覧の記録：マネージャーが、いつ、どのタレントの情報を見たか
+操作の記録：承認、ステータスの切り替え、自動投稿の停止と再開などの操作
+処理の記録：投稿、実績の取り込み、動画生成、請求の結果
+記録の保存期間は、設計の中で決め、最終版に書きます。",Xem FACT/INFERENCE và phần còn thiếu trong finding liên kết.,FND-0037,"Nguồn gốc, chỉ theo từng ý; không coi Close/OK hay đề xuất là phê duyệt toàn bộ",Phần phản chứng/đã trả lời được chỉ riêng tại finding.,Tác giả đọc lại văn bản nguồn; không phải independent review hoặc bằng chứng hệ thống đã chạy/lỗi.,VERIFIED,Codex — tác giả Gap & Conflict Analysis,2026-11-19T11:32:25+07:00

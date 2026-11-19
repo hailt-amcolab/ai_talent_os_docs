@@ -1,0 +1,173 @@
+{
+  "prepared_at": "2026-11-19T06:17:14+00:00",
+  "inputs": [
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "e93400b426dac06a7d4609e0ea32585ee594b748a49ef424eee7149ea0fb9cc3"
+    },
+    {
+      "path": "docs/requirement-review/registers/reviews.csv",
+      "sha256": "91ec56cc11ad3536818caca8c12f27756786f9bb17a59fe55ee7e1366c6f60b9"
+    },
+    {
+      "path": "docs/requirement-review/registers/gate-runs.csv",
+      "sha256": "1aafcbf78a71f193f56536359c6e34a7de0661c2518e79fd31e20b3913023a0f"
+    },
+    {
+      "path": "docs/requirement-review/registers/requirements.csv",
+      "sha256": "281a855367746d22a386bffc498635a956af69abfbd6bec541430a7b12812917"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-rules.csv",
+      "sha256": "7abf2342a0c7af5fd2e515ff925eb2ae026b16c3553502411c6659c9c50f2841"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-flows.csv",
+      "sha256": "bbe2499604f57a6736983a3f0557da0a7f2b9b493d840d7db631299ddb132e14"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/review-results.csv",
+      "sha256": "74967f80d4fb499f3cea36328898b8f79e978e6195061840833252c3c9356009"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/source-snapshot.json",
+      "sha256": "742156c2f137bd84565468cdb8b2091bab115c076d7c82a8cb148157f9645307"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/source-evidence.csv",
+      "sha256": "da687a4a7f97e3917bd6ac183ad968924643123562a27ee9b24ec336da0afc29"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/REVIEW_REPORT.md",
+      "sha256": "9aa3805fa83ddec30f71ff33017196d43d1127b2628894d21cb7d62bbe32507b"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/reviews-before.csv",
+      "sha256": "0dbd1adcde2d955c397a0324f8e34aa03022155fd53f05db8d604f7979c90f3e"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/input-manifest.json",
+      "sha256": "9fa912e4a1ddd5ad6525af6cd3a84c18965e67f33e82af4f6224b7af0a9af1b9"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/artifact-manifest.json",
+      "sha256": "d9a5be4a3fd4a487aabfabc7c682b8928b79a05e3576520b1b8b857a7b49d297"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/validate_current_review.py",
+      "sha256": "d5644fe0a0d3b6979de38fb5f27f77d807976859dd9aa34d634eeeb110196b2e"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/source-checks.csv",
+      "sha256": "d5550788f25f8419f8ef0ced247cbbac7ee2563040fe4839aed921188e44f8fa"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/counts.json",
+      "sha256": "371909e25d9d2606a8c73e13cd9995d81fe393680418cbeacb0518d4afd7f8b9"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/REPORT.md",
+      "sha256": "df0c518cb962cfdc153a3c8c13a4253cbc6bd1d35ba7349d47230a7031a52b8f"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/internal-evidence.md",
+      "sha256": "fc3a8b79b57b121fbfbfebbb5dc89c1d5c95711e98d44d10cc8627a43c2cea76"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/validate_working_qa.py",
+      "sha256": "649794bf47380d487b71314c2dbc4ceb85b7ccef6e5204e4729cea7b90d1fe1b"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/eligibility.csv",
+      "sha256": "c87b56bd5631d63161b096dced3a61fef11dd5a8f6dcb36838f80020d026ae81"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/working-qa-draft.md",
+      "sha256": "c93b336383f0502557ac6c320e07593c450b91bbb47e48bf5642042ee6a27d65"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/internal-evidence.csv",
+      "sha256": "df0138eba553c92769c36fec37fde9ebaa96bd78469bf1a947c852a435d0e85c"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/input-manifest.json",
+      "sha256": "9bd32596f59e8590d792db226c9001834bf16cac94f6308ec67be81420363a4f"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/artifact-manifest.json",
+      "sha256": "b8f25909eab38be9d2284c132d82807036f14235310de89a089ea086cc724909"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/VALIDATION.md",
+      "sha256": "bd838c863b6267414c8ca71e541c961e7fe6cbc7c5991d587d0d1849e34cdcea"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/questions.csv",
+      "sha256": "0be538cb50aef78d810a1ea13a984dbd014fe16f0af1cdd9b356787a11d056f6"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/approval.json",
+      "sha256": "49b0de850d89ff181082462feecaae56b77b19c1216f546987165824c29cf586"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/STATUS.md",
+      "sha256": "76d0cb5bcde9a132822feeb26b6f3991159af63632898e9b91debaa32e0ed9bd"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/questions.csv",
+      "sha256": "3c3429f73fca9aa2c63a6b6edd83ca30add8e9be3fb730bc3d3391bd2340578b"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/internal-evidence.csv",
+      "sha256": "823f2ff05c575c13dfaf1ed5a3e6c1109d532349072864dadd7fe5dc56a44e9e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/artifact-manifest.json",
+      "sha256": "6299f96493fff52704339c9f11ad7d2c3b7e1be4c62dfc21adc516d7c8191ab0"
+    },
+    {
+      "path": "docs/requirement-review/QUALITY_GATES.md",
+      "sha256": "99dcf1c0e9290cd24f5398f5ddef331c957208e4e7dd227f3d6290b72c561613"
+    },
+    {
+      "path": "docs/requirement-review/DATA_MODEL.md",
+      "sha256": "b45f591d7b462b6ec075d1c5694ef30e4ceff981f1650cf87f9c5070986da825"
+    },
+    {
+      "path": "docs/requirement-review/workflow-change-proposal-2026-11-19/application/approval.json",
+      "sha256": "240356e2f66c90adafd7e3b2328ff82cab8810b1aa6518b40e6f1010925bff13"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "YK2",
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3"
+    },
+    {
+      "source_id": "GJ",
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0"
+    },
+    {
+      "source_id": "SD-T18",
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8"
+    },
+    {
+      "source_id": "SD-M18",
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67"
+    },
+    {
+      "source_id": "QA",
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765"
+    },
+    {
+      "source_id": "KS",
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82"
+    }
+  ]
+}

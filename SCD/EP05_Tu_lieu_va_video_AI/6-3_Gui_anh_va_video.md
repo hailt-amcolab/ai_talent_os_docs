@@ -51,8 +51,8 @@ Tài năng chọn ảnh, video trong máy hoặc chụp ngay rồi gửi. Quá d
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
 | Định dạng | Ảnh: JPEG, PNG, HEIC. Video: MP4, MOV | Tham số | S05-01 |
-| Dung lượng mỗi tệp | Ảnh 20 MB, video **300 MB** (Instagram Reels tối đa 300 MB) | Tham số | S05-01; bộ Upload-Post §8.4a |
-| Độ dài video | **3 giây đến 3 phút** (Instagram cần ít nhất 3 giây; TikTok thường cho 3 phút) | Tham số | S05-01; bộ Upload-Post §8.4a |
+| Dung lượng mỗi tệp | Ảnh 20 MB, video **300 MB** (Instagram Reels tối đa 300 MB) | Tham số | S05-01; bộ Upload-Post §7.4, §12 |
+| Độ dài video | **3 giây đến 3 phút** (Instagram cần ít nhất 3 giây; TikTok thường cho 3 phút) | Tham số | S05-01; bộ Upload-Post §7.4, §12 |
 | Chuẩn hóa trước khi đăng | Worker đổi ảnh HEIC sang JPEG và nén ảnh dưới 8 MB; video sang MP4 H.264 + AAC (`yuv420p`, `+faststart`). Không tự thêm viền hay cắt: Upload-Post tự làm cho Instagram, TikTok | Đề xuất nội bộ | Bộ Upload-Post §8.4a (U20, U21) |
 | Số ảnh mỗi bài | Tối đa 10 | Tham số, kiểm chứng | S05-01, B2 |
 

@@ -1,0 +1,24 @@
+{
+  "flows": 30,
+  "requirements_in_scope": 175,
+  "requirements_mapped": 175,
+  "rules": 90,
+  "rules_mapped": 90,
+  "steps": 281,
+  "branches": 118,
+  "scenario_classifications": 219,
+  "transitions": 64,
+  "flow_gap_records": 97,
+  "new_evidence": 63,
+  "reused_evidence": 241,
+  "source_flow_units": 32,
+  "legacy_scenarios_mapped": 84,
+  "classifications": {
+    "SOURCE_CONFIRMED": 81,
+    "SOURCE_DESCRIBED": 96,
+    "UNDEFINED": 95,
+    "INFERENCE": 6,
+    "CONFLICTED": 2,
+    "SOURCE_PROPOSAL": 1
+  }
+}

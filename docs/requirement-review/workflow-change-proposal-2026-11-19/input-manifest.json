@@ -1,0 +1,70 @@
+{
+  "proposal_id": "WCP-0001",
+  "status": "PROPOSED_NOT_APPLIED",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "bbf431701b40d0418bdf830c08dafe64744784681d7ccc6431da6127d504f5ed"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "85c1d6f73297c0183efea7e03a34e1c0ff5fb963ca00de83de5c33d71320f729"
+    },
+    {
+      "path": ".agents/skills/requirement-review/SKILL.md",
+      "sha256": "fedf57fbd58c25df8f937ffc5e1f4bc10e9b06b004befe57ebfe3b69c49a5542"
+    },
+    {
+      "path": "TAI_LIEU_NGUON.md",
+      "sha256": "66aaaf8f284d1703aece6c675131f7ea15e0c631d241727e6e3e62058eebe89f"
+    },
+    {
+      "path": "docs/requirement-review/SOURCE_REGISTER.md",
+      "sha256": "945cb7920f682953ab05560621e70e932d1c2c8cebbbabecbe5902828ec91b22"
+    },
+    {
+      "path": "docs/requirement-review/QUALITY_GATES.md",
+      "sha256": "615a12e7790e5de0340e5a4237a4da5cab40ed6bd4c717dca0e415004600a344"
+    },
+    {
+      "path": "docs/requirement-review/DATA_MODEL.md",
+      "sha256": "0266873a607a86ec6d8594ce25873b89b0dc3557b971ef9219104480a2146080"
+    },
+    {
+      "path": "docs/requirement-review/RUNBOOK.md",
+      "sha256": "2e6dbca1170909eb091b2eebb666a59e4972bb200d99de8cf0b56d12b89b4ac7"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "sha256": "4b6bdfda4c51b004948b4bc96c709ac672b86bd2b052487f0783a8dff2915919"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "fdce620f71d7543cfae5d20217d7e4ba3465e99630add3c2be782f3a3c6280ce"
+    },
+    {
+      "path": "docs/requirement-review/registers/reviews.csv",
+      "sha256": "79c354eceb052f29e9626daa75c43718c6e404a2d687ea199dd849772f01a218"
+    },
+    {
+      "path": "docs/requirement-review/registers/gate-runs.csv",
+      "sha256": "823e7463b591693ee6b6f6bfc9091429452deffcc7eab5d38b3e75a435851f0d"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/REVIEW_REPORT.md",
+      "sha256": "9e1f8fa47008065aa7a6d0cb8b71ca40baeb62245ee874e684807e07e8b50a2f"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/review-results.csv",
+      "sha256": "c2885a898ba49da5242d3cc94b7fa9aaf6a2721d7ca17ad081cbce739f88fb7f"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "d6948acb4b32c5070c12a4d6131acee0307850d37387fa8a084c1daea73a9669"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/internal-evidence.md",
+      "sha256": "39d2193c3f8e6e1600b5a101e4a38ffdcee17a47c0bb287821d05955a00f5642"
+    }
+  ]
+}

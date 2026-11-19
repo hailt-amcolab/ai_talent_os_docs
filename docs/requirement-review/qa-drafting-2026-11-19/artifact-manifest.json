@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-19T04:48:23+00:00",
+  "status": "BLOCKED",
+  "question_count": 0,
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "d6948acb4b32c5070c12a4d6131acee0307850d37387fa8a084c1daea73a9669"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/internal-evidence.md",
+      "sha256": "39d2193c3f8e6e1600b5a101e4a38ffdcee17a47c0bb287821d05955a00f5642"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/input-manifest.json",
+      "sha256": "d755e7d962b0d0c5d6af9d78df605e81509432af9a552fdc42c31ce5fdaed70e"
+    }
+  ]
+}

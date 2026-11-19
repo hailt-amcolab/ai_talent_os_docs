@@ -1,0 +1,41 @@
+{
+  "stage": "Customer Q&A Draft V2 — WORKING_DRAFT/DRAFT_UNAPPROVED",
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/REPORT.md",
+      "sha256": "a3a8de7d688f7d2877aac92cd686b178b36bafd6a6a315935ae64f87960c207f"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/VALIDATION.md",
+      "sha256": "d69b355078e0d745c21db232adc98da017a0770b16c23600b5267bc4c304f512"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/before/qa-draft.md.txt",
+      "sha256": "d6948acb4b32c5070c12a4d6131acee0307850d37387fa8a084c1daea73a9669"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/changes.csv",
+      "sha256": "5dc34140581be386acb7f7567de31f5be5e19078f7b85fb588977013695fd959"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/input-manifest.json",
+      "sha256": "20c45bed922c0251ed6132a7684c7ed1405323c155238901e9b9bbf00cdbb465"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/internal-evidence.csv",
+      "sha256": "823f2ff05c575c13dfaf1ed5a3e6c1109d532349072864dadd7fe5dc56a44e9e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/internal-evidence.md",
+      "sha256": "3444245ab0473a4ec8806f7c69a1bfe7d4afcd05e69d613f3bfd9adcff45c4e2"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2/questions.csv",
+      "sha256": "3c3429f73fca9aa2c63a6b6edd83ca30add8e9be3fb730bc3d3391bd2340578b"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "45f8aeafa6d5a421f8c5eb96bf807ae379e182a441936c22ab5225e789a47b84"
+    }
+  ]
+}

@@ -88,4 +88,4 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 - Bài hẹn giờ có thể bị từ chối lúc tới giờ đăng vì tài khoản đã chạm giới hạn ngày (Upload-Post kiểm lại lúc đăng). Xử lý như đăng lỗi cho đúng mạng đó.
 - TikTok từ chối riêng một bài (`content_rejected`: `spam_risk`, `spam_risk_text`): báo tài năng sửa chú thích hoặc hashtag qua AI (4-2) rồi chấp nhận lại. Không gửi lại nguyên bài.
 - Upload-Post tự tạm dừng tài khoản (`account_restricted`, ví dụ Instagram nghi spam 24 giờ, TikTok đăng quá nhiều 1 giờ): lỗi cho riêng mạng đó, ghi thời điểm hết tạm dừng. Upload-Post tự thử lại YouTube sau 2 giờ khi chạm giới hạn ngày của kênh; hệ thống không gửi thêm.
-- Chi tiết: bộ Upload-Post §8.4a (U19, U26).
+- Chi tiết: bộ Upload-Post §9, §12 (U19, U26).

@@ -1,0 +1,28 @@
+{
+  "requirements": 175,
+  "rules": 90,
+  "evidence": 445,
+  "missing": 161,
+  "open_qa": 34,
+  "coverage_units": 319,
+  "functional_features": 54,
+  "legacy_features": 67,
+  "requirement_statuses": {
+    "CONFIRMED": 63,
+    "PARTIAL": 106,
+    "UNKNOWN": 4,
+    "CONFLICTED": 2
+  },
+  "rule_statuses": {
+    "CONFIRMED": 58,
+    "PARTIAL": 30,
+    "CONFLICTED": 2
+  },
+  "coverage_statuses": {
+    "EXTRACTED": 54,
+    "EXTRACTED_OR_LINKED": 202,
+    "EMPTY_LOG_HEADER_ONLY": 2,
+    "LINKED_CONTEXT_NOT_APPROVAL": 25,
+    "TEXT_DESCRIPTION_LINKED": 36
+  }
+}

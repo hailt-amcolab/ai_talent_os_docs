@@ -1,0 +1,49 @@
+{
+  "stage": "Working Q&A W1; DRAFT_UNAPPROVED; no release authorization",
+  "files": [
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/REPORT.md",
+      "sha256": "df0c518cb962cfdc153a3c8c13a4253cbc6bd1d35ba7349d47230a7031a52b8f"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/VALIDATION.md",
+      "sha256": "bd838c863b6267414c8ca71e541c961e7fe6cbc7c5991d587d0d1849e34cdcea"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/counts.json",
+      "sha256": "371909e25d9d2606a8c73e13cd9995d81fe393680418cbeacb0518d4afd7f8b9"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/eligibility.csv",
+      "sha256": "c87b56bd5631d63161b096dced3a61fef11dd5a8f6dcb36838f80020d026ae81"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/input-manifest.json",
+      "sha256": "9bd32596f59e8590d792db226c9001834bf16cac94f6308ec67be81420363a4f"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/internal-evidence.csv",
+      "sha256": "df0138eba553c92769c36fec37fde9ebaa96bd78469bf1a947c852a435d0e85c"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/internal-evidence.md",
+      "sha256": "fc3a8b79b57b121fbfbfebbb5dc89c1d5c95711e98d44d10cc8627a43c2cea76"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/questions.csv",
+      "sha256": "0be538cb50aef78d810a1ea13a984dbd014fe16f0af1cdd9b356787a11d056f6"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/source-checks.csv",
+      "sha256": "d5550788f25f8419f8ef0ced247cbbac7ee2563040fe4839aed921188e44f8fa"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/validate_working_qa.py",
+      "sha256": "649794bf47380d487b71314c2dbc4ceb85b7ccef6e5204e4729cea7b90d1fe1b"
+    },
+    {
+      "path": "docs/requirement-review/working-qa-2026-11-19/working-qa-draft.md",
+      "sha256": "c93b336383f0502557ac6c320e07593c450b91bbb47e48bf5642042ee6a27d65"
+    }
+  ]
+}

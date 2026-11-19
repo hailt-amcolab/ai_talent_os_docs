@@ -1,0 +1,20 @@
+{
+  "version": "V5",
+  "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+  "question_count": 36,
+  "internal_hold_count": 3,
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "9ef2b1d730c651174faf159b1d4bb3dfcfa531250d5af14e36424ceea9d83e57"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+      "sha256": "2bbfcf1fe2e431c4c350e3f99770459d46db2536a02fdff2ed18fd7cb37ec73e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "56779050ac75293eaa9f15552d8b471fbda6565288eabcdc6004143d3fb3a8b5"
+    }
+  ]
+}

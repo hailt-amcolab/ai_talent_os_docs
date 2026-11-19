@@ -337,7 +337,7 @@ sequenceDiagram
   FE->>PS: pushManager.subscribe(applicationServerKey)
   PS-->>FE: endpoint + khóa p256dh, auth
   FE->>BE: POST /api/v1/me/push-subscriptions
-  BE->>BE: kiểm endpoint, khóa; lưu, gắn với phiên đăng nhập
+  BE->>BE: kiểm endpoint, khóa, rồi lưu, gắn với phiên đăng nhập
   Note over BE: Sau này: sự kiện nghiệp vụ → talent_notifications → outbox → worker
   BE->>PS: web-push (mã hóa bằng p256dh/auth, ký VAPID)
   PS-->>SW: sự kiện push

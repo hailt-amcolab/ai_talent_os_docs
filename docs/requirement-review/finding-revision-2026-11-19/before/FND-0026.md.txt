@@ -1,0 +1,77 @@
+# FND-0026 — Thời hạn nháp/chủ đề và tư liệu cũ đang dùng chưa đủ
+
+Loại: **MISSING_RULE**. Loại phụ: —. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0013;FLOW-0014;FLOW-0018. Chức năng: 6-4;4-1. ID cũ: RV-25;L23-10. FGAP: FGAP-0041;FGAP-0046.
+
+## Vấn đề
+
+Thời hạn nháp/chủ đề và tư liệu cũ đang dùng chưa đủ
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+Sau nghỉ có mốc6 tháng; No.55 nói ảnh/video theo mốc đó, còn chủ đề/nháp vẫn là đề xuất. GJ giao đội xem xét tư liệu cũ khi đầy.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+Mốc sau nghỉ không tự xác định tuổi tư liệu đang dùng hoặc hạn nháp chưa chấp nhận.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Thời hạn/được dùng tiếp chủ đề và nháp; điều kiện xử lý tư liệu cũ mà lịch tương lai còn tham chiếu.
+
+## Quyết định cần đưa ra
+
+Đội đề xuất cách bảo toàn tư liệu cần dùng; chỉ thay quyền lưu/dùng/xóa cần khách quyết định.
+
+## Ảnh hưởng nghiệp vụ
+
+Chưa biết bài qua ngày có dùng lại được; nguy cơ lịch thiếu tư liệu chỉ là tình huống cần kiểm, không phải lỗi thực tế.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING
+
+## Lý do / tái sử dụng Q&A
+
+Tiếp tục No.55/8 theo phần quyền lưu và vòng đời; không hỏi khách thiết kế kho tạm.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A26:M26 (RV-25; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn chốt hành vi/AC của đúng nhánh liên quan; không chặn toàn bộ dự án.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0438 / `Q:55` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A55:J55; ID=55.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A55: 55.0 D55: 46341.0 E55: Câu hỏi: Chủ đề không được chọn, 投稿案 chưa 採用, và ảnh đã gửi nhưng chưa 採用 được giữ đến khi nào? Hôm sau còn dùng được không? Vì sao cần hỏi: Quyết định những gì talent thấy trên màn hình mỗi ngày và cách dọn dữ liệu. Tài liệu đang nói: - 概要要件定義書 改訂版 (5-3, 6-6 chức năng 4-1): mỗi sáng 3 chủ đề; 投稿案 tạo theo yêu cầu của talent. - 6-7 (6-4): talent xem lại 素材 đã gửi và dùng sau được. - Không ghi thời hạn. AMCOLAB đề xuất: - Chủ đề hết hạn khi có 3 chủ đề mới sáng hôm sau. - 投稿案 chưa 採用 giữ 7 ngày rồi ẩn khỏi màn hình. - 素材 giữ theo thời hạn lưu dữ liệu (câu 29). F55: 【確認事項】選ばれなかったテーマ、採用されなかった投稿案、送ったが採用されていない写真・動画は、いつま… [xem toàn ô/đoạn trong EV]
+- EV-0168 / `Q:9` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A9:J9; ID=8.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A9: 8.0 D9: 46339.0 E9: Câu hỏi: Ảnh và video talent gửi sẽ lưu ở kho riêng tại Nhật Bản, hay lưu trong OneDrive của talent? Vì sao cần hỏi: Đây là nơi chứa dữ liệu cá nhân; nó quyết định cách tách dữ liệu theo từng talent và cách manager xem tư liệu. Tài liệu đang nói: - 御見積書 (No.32): lưu ở kho riêng vùng Nhật Bản, không sao chép sang OneDrive. - 概要要件定義書 改訂版 (7-2): ảnh và video lưu ở OneDrive; talent và manager xem được. Lựa chọn: - A: Kho riêng. Manager xem tư liệu ngay trong màn quản lý. - B: OneDrive. Tệp lớn được tải qua OneDrive; cần ước lượng lại công việc. AMCOLAB đề xuất: Tài liệu đang ghi B (OneDrive). Chúng tôi xin quý công ty xác … [xem toàn ô/đoạn trong EV]
+- EV-0170 / `Y:717` — `YK2`, `source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx`, 6-4 素材の保存（優先順位：高）; Đoạn XML P717–P717 (đánh số w:p từ 1, kể cả đoạn trống); xem mục/chức năng trong source_refs; SHA256 `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3`. Trích đoạn định vị: タレントは、送った写真・動画をアプリの一覧で見て、後から投稿に使えます。自分で作った動画を保存した場合は、保存した順に1日1本ずつ、投稿案にします。
+- EV-0164 / `T:15` — `SD-T18`, `source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf`, Trang PDF 15 (từ 1); mã màn ở source_refs; SHA256 `67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8`. Trích đoạn định vị:  T-11 写真・動画の送付 写真・動画を選んで、送るだけ！ 画面イメージ 1 この画面ですること タレントが、投稿に使う写真・動画を AI育成OS に送る画面です。端末から選ぶ、その場で撮影する、これまでに送ったもの から選ぶ、の3つの方法があります。送れる形式と容量の上限は、設計の中で決めます。 使う人 タレント（スマートフォン） 使う場面 UC-05 投稿案を採用する、UC-06 動画を作る 前後の画面 T-06 マイページ T-07 ホーム T-09 AIコーチとの会話 T-10 投稿案の詳細 ▶ T-11 写真・動画の送付 ▶ T-10 投稿案の詳細 下のメニュー 下のメニュー 家の印：T-07 ホーム／吹き出しの印：T-09 AIコーチとの会話／プラスの印：T-11 写真・動画の送付／カレンダーの印： T-14 投稿の予定と結果／人の印：T-06 マイページ 業務フロー 毎日の投稿（22ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 送る方法の切り替え 選択 端末から選ぶ／撮影する／送ったもの 「撮影する」はその場で撮影する。「送 ったもの」は、これまでに送った写真・ 動画の一覧を表示する 2 選んだ写真・動画のプレビ 表示 選んだ写真・動画と、選んだ件数 — ュー 3 写真・動画の一覧 選択 端末の写真・動画。選んだ順に番号を付ける 押すと、選ぶ・外す 4 自分で作った動画として保 チェック 常に表示 チェックを付け… [xem toàn ô/đoạn trong EV]
+- EV-0056 / `G:5` — `GJ`, `source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md`, 合意事項 (nội dung đồng thuận), 5. 退会したタレントのデータ（確認55）; SHA256 `c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0`. Trích đoạn định vị: ### 5. 退会したタレントのデータ（確認55） - 退会したタレントのデータ（投稿の実績、写真など）は、退会後半年間残し、その後は自動で削除する。削除した後は元に戻せない形でよい。 

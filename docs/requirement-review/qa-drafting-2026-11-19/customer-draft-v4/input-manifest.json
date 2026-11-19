@@ -1,0 +1,392 @@
+{
+  "checked_at": "2026-11-19T06:41:15+00:00",
+  "preserved_inputs": [
+    {
+      "path": "docs/requirement-review/registers/requirements.csv",
+      "sha256": "281a855367746d22a386bffc498635a956af69abfbd6bec541430a7b12812917"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-rules.csv",
+      "sha256": "7abf2342a0c7af5fd2e515ff925eb2ae026b16c3553502411c6659c9c50f2841"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-flows.csv",
+      "sha256": "bbe2499604f57a6736983a3f0557da0a7f2b9b493d840d7db631299ddb132e14"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "e93400b426dac06a7d4609e0ea32585ee594b748a49ef424eee7149ea0fb9cc3"
+    },
+    {
+      "path": "docs/requirement-review/registers/reviews.csv",
+      "sha256": "91ec56cc11ad3536818caca8c12f27756786f9bb17a59fe55ee7e1366c6f60b9"
+    },
+    {
+      "path": "docs/requirement-review/registers/baselines.csv",
+      "sha256": "9ecae9573f9b6a1440cb0e446429db1eec7c46975e84bd05a2c705674d5eefbd"
+    },
+    {
+      "path": "docs/requirement-review/registers/gate-runs.csv",
+      "sha256": "1aafcbf78a71f193f56536359c6e34a7de0661c2518e79fd31e20b3913023a0f"
+    },
+    {
+      "path": "docs/requirement-review/registers/customer-decisions.csv",
+      "sha256": "72a7a5b8267771460bb92bc3c4426b25cea776bbd23c1a985c7abbb99cb92d56"
+    },
+    {
+      "path": "docs/requirement-review/registers/evidence.csv",
+      "sha256": "dccbc5df21400f63461ab7c31600c19271af63688ff1b7467fb9964564723b59"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/review-results.csv",
+      "sha256": "74967f80d4fb499f3cea36328898b8f79e978e6195061840833252c3c9356009"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/source-snapshot.json",
+      "sha256": "742156c2f137bd84565468cdb8b2091bab115c076d7c82a8cb148157f9645307"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/source-evidence.csv",
+      "sha256": "da687a4a7f97e3917bd6ac183ad968924643123562a27ee9b24ec336da0afc29"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/REVIEW_REPORT.md",
+      "sha256": "9aa3805fa83ddec30f71ff33017196d43d1127b2628894d21cb7d62bbe32507b"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/reviews-before.csv",
+      "sha256": "0dbd1adcde2d955c397a0324f8e34aa03022155fd53f05db8d604f7979c90f3e"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/input-manifest.json",
+      "sha256": "9fa912e4a1ddd5ad6525af6cd3a84c18965e67f33e82af4f6224b7af0a9af1b9"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/artifact-manifest.json",
+      "sha256": "d9a5be4a3fd4a487aabfabc7c682b8928b79a05e3576520b1b8b857a7b49d297"
+    },
+    {
+      "path": "docs/requirement-review/independent-current-review-2026-11-19/validate_current_review.py",
+      "sha256": "d5644fe0a0d3b6979de38fb5f27f77d807976859dd9aa34d634eeeb110196b2e"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/review-results.csv",
+      "sha256": "c2885a898ba49da5242d3cc94b7fa9aaf6a2721d7ca17ad081cbce739f88fb7f"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/counter-evidence.csv",
+      "sha256": "ba32db87c6dac9a28631a773fd4635722f2150694e226de2c2bc5a432dcc611b"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/source-snapshot.json",
+      "sha256": "457c590d57fbb18729cc4e6f3d57ea36bc5e4e236a1dd286841aa9e6a7f0fa9a"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/REVIEW_REPORT.md",
+      "sha256": "9e1f8fa47008065aa7a6d0cb8b71ca40baeb62245ee874e684807e07e8b50a2f"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/evidence-audit.csv",
+      "sha256": "271c56de10e18ad82036e975468148884ef5c9fa55476930d22ce7b2788bb37b"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/input-manifest.json",
+      "sha256": "70c4af13441c0e765d2a5d40a2b53df981c352715a69dc3270d447f066d0f19a"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/artifact-manifest.json",
+      "sha256": "3c3e71ec09d1e26e994eb846fbf014468f169ef4f2a8df6668836bdb8ca2353a"
+    },
+    {
+      "path": "docs/requirement-review/independent-review-2026-11-19/validate_review.py",
+      "sha256": "7b0f783e9c2b99a1cb70bfe605441b17e5a2810425b1902f94983d5fa0c289a3"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/source-snapshot.json",
+      "sha256": "742156c2f137bd84565468cdb8b2091bab115c076d7c82a8cb148157f9645307"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/validate_recheck.py",
+      "sha256": "d806081b01b3936d23fa0fced343faff7c5d5bfe785ed95af7648f918d00b022"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/recheck-results.csv",
+      "sha256": "850fa33ed6de9b70889ed1e388c986b9f468f18a79256f800533a7b829984709"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/reviews-before.csv",
+      "sha256": "79c354eceb052f29e9626daa75c43718c6e404a2d687ea199dd849772f01a218"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/input-manifest.json",
+      "sha256": "08ec43f519fc0a64f6f5b5ca049b2571b99b91a3c6a55c9a42d1fd432414579e"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/RECHECK_REPORT.md",
+      "sha256": "76e4409890cb0789742806fd91108f4aa50063f31719ab98ab3c89e307efa9d4"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/changed-scope.csv",
+      "sha256": "b7a190d3b3ef28b1a7a1bbb9bcd3fbb39d652bb3a5509678f272ce8d4b321403"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/artifact-manifest.json",
+      "sha256": "b8f37453439427002a5e870deee48e08df55b1d7af86bf2b82b9a11b4a56bde9"
+    },
+    {
+      "path": "docs/requirement-review/independent-recheck-2026-11-19/evidence-recheck.csv",
+      "sha256": "1c3d7267d7a0dc24a828ab7f26456ebfb40655baa46f070c85b7025874567878"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/approval.json",
+      "sha256": "49b0de850d89ff181082462feecaae56b77b19c1216f546987165824c29cf586"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/reviews-before.csv",
+      "sha256": "a5607f4780b1c0b0aeaedca3f9a13114fa699f1a9faecdd1e35843675bfb27b1"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/input-manifest.json",
+      "sha256": "8d5e75a7f4cc2262225ccaa68eb0ca7e48d1291cfaf9d78962fe9ba56a9600ce"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/preserved-inputs.json",
+      "sha256": "05968f8697edf3219e0cfb537ad3974d04095fdec243c6ba3cd5c31538f37869"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/gate-runs-before.csv",
+      "sha256": "bd9990294cfbb9f22ab42f30be7223e17c400df2f5521a3ac466e2f093f59672"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/STATUS.md",
+      "sha256": "76d0cb5bcde9a132822feeb26b6f3991159af63632898e9b91debaa32e0ed9bd"
+    },
+    {
+      "path": "docs/requirement-review/g5-signoff-2026-11-19/artifact-manifest.json",
+      "sha256": "b78835b87a7906f8d27a89be64aca06282a9b3821e6dff87d15275ef714e3fdc"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/REVISED_FINDINGS.md",
+      "sha256": "3a44decead8c9ff7451589d6487ebc57ed367ab4dba987285a2650f705c5db70"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/source-audit.csv",
+      "sha256": "1da419611b0af74b7357cd2c443d5b9d18237d8cd0b0a35159361965576c6fb1"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/recheck-list.csv",
+      "sha256": "f670515a85a272ec11325e722e3474074635e0f1e269fd991c845c65cbd407fa"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/changes.csv",
+      "sha256": "99cc1ebefb9ee26dd354935991927e9ccf892184d278f49ea89e8a4d29afa17b"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/validate_revision.py",
+      "sha256": "828080bc1319a89d66d4bba1241fc5cf39a4276e41326bd877ee059f78aa0bb7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/input-manifest.json",
+      "sha256": "e1bb58d087699950ac133acaa6cbb953d85a3f9301d159c6e4f56eaf731be35e"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/finding-details.csv",
+      "sha256": "4100f98dc1b0b7cfc8badb7bd166dc1da88f0dc69e65266bccb5602c86d4c075"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/artifact-manifest.json",
+      "sha256": "5fc67fb7aa095ac0704a50cb764665c62263e33547a719643d702eb2029cc5c7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/VALIDATION.md",
+      "sha256": "529abe93c000938eed6e509979b12f03e82d80c095a2a812e5b9991f85e425fc"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0007.md.txt",
+      "sha256": "262dd4ac92cb6581252005cb44723a74e14455f96f84e7951414a7cff3282447"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0001.md.txt",
+      "sha256": "5cb4bb04b864d352eed3aafaef307f32f0d8ce3547e01e3516c4f4a5060967a3"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0021.md.txt",
+      "sha256": "a6839fec5fe319bcca73651bb054163acfefd367917b8eae1a5a3bf1827d6e9c"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0012.md.txt",
+      "sha256": "b668bf73e703272e202314dcb6268c8ff807e5aa5cb24529bd11491b3a1b13f7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0004.md.txt",
+      "sha256": "43d4f67d130937aa28e2c2ad3692de963435fffea8d866385f9fc2f80784d0da"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0030.md.txt",
+      "sha256": "b6b75804da4b77e2975c34499ebe290461b93b0535eb61ee567545dbe9decf34"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0031.md.txt",
+      "sha256": "238d6a51026c1eff93b70741627867a50f012e8ac107b6d6c822cb512bb177b6"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0005.md.txt",
+      "sha256": "7dd90b1e189b1326c67edda7d3b94cfbfaad0e478ed086fefc40aa3c71ea2c12"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/findings-register.csv",
+      "sha256": "fdce620f71d7543cfae5d20217d7e4ba3465e99630add3c2be782f3a3c6280ce"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0015.md.txt",
+      "sha256": "3743f170b200fe5e6e9ed77060539c69235c4165043004f99f6b2f23bc4b56bd"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0017.md.txt",
+      "sha256": "a7062e3abc3ce95cef03bddc03f55bdc36d1a731c3d0c52adf2fd03001031490"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0016.md.txt",
+      "sha256": "487e6c825360f65f76f2b1bb197d4440f27f60c0cf07c584b74ac63559f00eee"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0008.md.txt",
+      "sha256": "ed2b4dcafe98ccd78f19c64f78cefa55d17208eb27177b3494f72123ca3e41a4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0023.md.txt",
+      "sha256": "54dcdf92160eb394f00d732cfbcf8c451b08d4dce191824963db7584a061cb8b"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0018.md.txt",
+      "sha256": "4c369287ed12ed29a7e7f642327ec792774a39b8bd861b571c7e9efe990c109f"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0026.md.txt",
+      "sha256": "9c001ce4dba994c626acdf3be8ff79e821fc480748fe303f3ef9a1d43ffac7e4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0011.md.txt",
+      "sha256": "0e2929eeee2710810a0b9fe691f1a5600dddee689434c81ccf58437cc059eadc"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0011.md",
+      "sha256": "e06119baa0815ec1fc6c7a278269f6348ca628c142872136252351a2baa4275c"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0008.md",
+      "sha256": "3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0017.md",
+      "sha256": "d8fc919dc8dce7102b32a2d312cca434f5c2197bb6c9c2b901502ec9d9545dc2"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0031.md",
+      "sha256": "01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0026.md",
+      "sha256": "3cd7b20045402d84ec676334f7cff4a44e9966a86151b8b9bfb77708c8d1451e"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0030.md",
+      "sha256": "0b675e53815e5cbcc5fc8dd4201837c8be95d5936289bef330a1e8dfdfa7cb54"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0001.md",
+      "sha256": "3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0018.md",
+      "sha256": "ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0012.md",
+      "sha256": "420db66e02c10ceee93966f404d3805ebeef3a4a5ff4675ff41eec4756935633"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0007.md",
+      "sha256": "969677f26bdca1a5c2abeaa78c9f49d7b84f6509fb8278c91b0ffddf03582b56"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0023.md",
+      "sha256": "97d179fd9aca9992ea41b67515cae30bbafb5960eabb85b0ab214dd1445927ee"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0016.md",
+      "sha256": "5f66a0c6c1abab82ffe49f3df1042033d985021223d6bbf5c4d7a01a2f3633ef"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0015.md",
+      "sha256": "145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0021.md",
+      "sha256": "96e11c07c6fe41cfbe652db9b7658130286931bcb9871379ba2898651d81c9ec"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0005.md",
+      "sha256": "9d643efe7b27158c25a2c146f70f9b885ed475fce59f6e5e4490572d2e59b3e8"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0004.md",
+      "sha256": "344391ce64479b23f34769215d356a4f2e6cf532ce720b15edeeb8df6fc0306d"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8"
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559"
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab"
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae"
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0"
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181"
+    },
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82"
+    }
+  ],
+  "before_copies": [
+    "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+    "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+    "docs/qa/qa-quality-review.md"
+  ]
+}

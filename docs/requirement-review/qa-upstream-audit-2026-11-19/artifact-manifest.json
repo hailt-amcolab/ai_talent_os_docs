@@ -1,0 +1,113 @@
+{
+  "stage": "Scoped upstream audit from44 Q&A; audit only; proposed fixes not applied",
+  "files": [
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/UPSTREAM_AUDIT_REPORT.md",
+      "sha256": "051909cc179185fb279860ee358638ed1e4401aa844580c677688a1b5012ebc1"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/VALIDATION.md",
+      "sha256": "b38a08b417b25398e05bedccc9683370e8d790335869cd5fe92bcddd01c03fba"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/artifact-excerpts.csv",
+      "sha256": "4dc2ec06963c58b4c53f141ff04ec714db35dadbf3c059a9638137483d4fbae2"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-001.md",
+      "sha256": "8fc6fbc0b3a3caff299cfaa4a66653d88c8470b094477241ea8ab85b3623deb3"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-002.md",
+      "sha256": "48ae3a705a52ae337e468836d2f9f28f3964ba29d98f774a94d9793998a87bba"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-003.md",
+      "sha256": "31cf46ebefb7a9a408912b5f80592ecdc4f2fc8ba8826323e598dfd1a1b6d05d"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-004.md",
+      "sha256": "a4694cd123c008e42c7bca21a56bf4f10ff563c688a3a088fefa130eb79c0523"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-005.md",
+      "sha256": "be1dcd3ddcba9e118d857a798bd4b8b4438be35c3cd4bb35c38bdb51354b8dc6"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-006.md",
+      "sha256": "5e87b06ac059ea9e7f650839e4475c78ea9aba08986ca657ec9dd960b05b3c8b"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-007.md",
+      "sha256": "d4ef16772a902a2f292d6f1be3c889643740bf5b048a76344d9984e9ff6fc69f"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-008.md",
+      "sha256": "9803aa12a0573a9e4bc4826bb00afd32e63d50706c7d38289ed756bca1f420da"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-009.md",
+      "sha256": "4c5d6528912f0509523160ca0c4c0b3d8dafcac61fbd98731cc9a38d26d043ba"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-010.md",
+      "sha256": "ac2bfa9c1384af04119301f0d369aa1e84b008ab40173683d31cbf449772a806"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-011.md",
+      "sha256": "4b344ecf500156a4dbf15a82125e0460eea841f66a1d40c1e519d7b1e28c8e7d"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-012.md",
+      "sha256": "913a24059c2705acd5145a4770931e37261acc3bf61c39987c3040bbdd269656"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases/BT-013.md",
+      "sha256": "2c4619d8acd8d8736de244e4bc6e846db6de20dc8b5c7b1436ec199128b6b964"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/cases.csv",
+      "sha256": "6f746ffa69e15458703fe499b817ab4ea47f0b8e397bef23e4f620e5bec62fbb"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/confirmed-fix-list.csv",
+      "sha256": "a13b6114ead52306c991c761ed16d0252c79b7bf21038bff988e153b2ab55b32"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/counts.json",
+      "sha256": "f3b2d3df6cfd5ce32c2edc415121a190242ea47d9f95c5c768f6c07aba0aa850"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/gate-impact.csv",
+      "sha256": "4b231cbb6482d27c6ffb4892e17ec31fb417f0f1c5ac7c79e4e59b5bff92ee45"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/historical-validator-results.json",
+      "sha256": "72a328b3f542e7bec8fbb282ac824a51ebbd374fa5537343b3d7fcea77adb348"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/input-manifest.json",
+      "sha256": "5b3acd0e5f56412d9b7667839411e41c314f9b1b19914336a48d53b0fbbace45"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/review-ledger-reconciliation.json",
+      "sha256": "be958211f09fb2182f17b8d54478df5a465b2559fae0b11f51fab6a7f068268a"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/screen-reference-check.csv",
+      "sha256": "f333e944be439ab1a960dbf42b77bd8f70699ff869fa96d0b52878d5d2daad70"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/source-evidence.csv",
+      "sha256": "67e04d73f4795f0c36d474d607bdc3b2c0b69b4a044953a0a5e8e46230574a0f"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/trace-matrix.csv",
+      "sha256": "41fc578457ef2e17f3ca1245789423557ca7d089af9a42b548aba1ac3a92c31c"
+    },
+    {
+      "path": "docs/requirement-review/qa-upstream-audit-2026-11-19/validate_upstream_audit.py",
+      "sha256": "1bf078e43a92e0ea94e32520eb74a2b831742a832dabf836b80cb9004001008c"
+    }
+  ]
+}

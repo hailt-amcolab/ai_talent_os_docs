@@ -1,0 +1,85 @@
+legacy_scenario_id,features,flow_ids,role,execution_status
+FL-001,1-4,FLOW-0001;FLOW-0002,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-002,1-5,FLOW-0002;FLOW-0011,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-003,1-6,FLOW-0025,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-004,6-2,FLOW-0002;FLOW-0003,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-005,7-3,FLOW-0026,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-006,7-6,FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-007,2-1,FLOW-0005;FLOW-0010,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-008,2-2,FLOW-0001;FLOW-0005;FLOW-0026,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-009,2-3,FLOW-0005;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-010,2-4,FLOW-0007,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-011,7-1,FLOW-0001;FLOW-0002;FLOW-0009;FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-012,3-1,FLOW-0009;FLOW-0010,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-013,3-2,FLOW-0010;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-014,3-3,FLOW-0011,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-015,3-4,FLOW-0010;FLOW-0011;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-016,3-5,FLOW-0027,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-017,3-6,FLOW-0010;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-018,3-7,FLOW-0012;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-019,3-8,FLOW-0010;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-020,3-9,FLOW-0010,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-021,4-1,FLOW-0013,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-022,4-2,FLOW-0013,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-023,4-3,FLOW-0013,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-024,4-4,FLOW-0016;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-025,6-6,FLOW-0013,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-026,5-1,FLOW-0015,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-027,5-2,FLOW-0015,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-028,5-3,FLOW-0015,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-029,5-5,FLOW-0015,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-030,6-3,FLOW-0014,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-031,6-4,FLOW-0014,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-032,6-5,FLOW-0010,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-033,7-2,FLOW-0020,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-034,7-5,FLOW-0020,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-035,7-7,FLOW-0017,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-036,8-2,FLOW-0004;FLOW-0024,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-037,8-3,FLOW-0019,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-038,8-4,FLOW-0019,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-039,8-5,FLOW-0019,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-040,8-6,FLOW-0004,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-041,9-1,FLOW-0024,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-042,3-10,FLOW-0007;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-043,6-7,FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-044,8-1,FLOW-0013;FLOW-0019;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-045,8-7,FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-046,8-8,FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-047,8-9,FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-048,1-1,FLOW-0003;FLOW-0023;FLOW-0026,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-049,1-2,FLOW-0001;FLOW-0023,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-050,1-3,FLOW-0023,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-051,5-4,FLOW-0015;FLOW-0023;FLOW-0024;FLOW-0027,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-052,6-1,FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-053,6-8,FLOW-0002;FLOW-0013,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-054,7-4,FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-055,C-01,FLOW-0019;FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-056,C-02,FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-057,C-03,FLOW-0022;FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-058,C-04,FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-059,C-05,FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-060,C-06,FLOW-0028;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-061,EXT-AUTO,FLOW-0010;FLOW-0018,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-062,EXT-CHALLENGE,FLOW-0012,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-063,EXT-CATEGORY,FLOW-0008,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-064,EXT-INSTRUCTION,FLOW-0009,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-065,EXT-PROFILE,FLOW-0006,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-066,EXT-RECOVERY,FLOW-0025,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-067,EXT-OPS,FLOW-0001;FLOW-0002;FLOW-0003;FLOW-0006;FLOW-0009;FLOW-0010;FLOW-0011;FLOW-0019;FLOW-0023;FLOW-0025;FLOW-0027;FLOW-0028;FLOW-0029;FLOW-0030,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-068,1-4 6-2 1-1 2-2 8-2 3-4,FLOW-0001;FLOW-0002;FLOW-0003;FLOW-0004;FLOW-0005;FLOW-0010;FLOW-0011;FLOW-0021;FLOW-0023;FLOW-0024;FLOW-0026,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-069,4-3 4-4 7-7 7-5 8-3,FLOW-0013;FLOW-0016;FLOW-0017;FLOW-0019;FLOW-0020;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-070,8-3 8-5 6-7 3-9,FLOW-0010;FLOW-0019;FLOW-0021,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-071,5-1 5-4 1-1 7-3,FLOW-0003;FLOW-0015;FLOW-0023;FLOW-0024;FLOW-0026;FLOW-0027,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-072,2-1 2-3 3-1 3-2 4-1,FLOW-0005;FLOW-0009;FLOW-0010;FLOW-0013;FLOW-0021;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-073,8-7 8-8 3-7 6-1 7-4,FLOW-0012;FLOW-0021;FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-074,7-3 2-2 C-03 C-04,FLOW-0001;FLOW-0005;FLOW-0022;FLOW-0026;FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-075,C-04 8-3 1-1 5-1,FLOW-0003;FLOW-0015;FLOW-0019;FLOW-0023;FLOW-0026;FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-076,1-5 6-1 6-8 7-4,FLOW-0002;FLOW-0011;FLOW-0013;FLOW-0022,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-077,7-5 EXT-AUTO 8-3,FLOW-0010;FLOW-0018;FLOW-0019;FLOW-0020,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-078,8-2 8-3 8-7,FLOW-0004;FLOW-0019;FLOW-0021;FLOW-0024,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-079,3-8 6-7 1-1 5-4,FLOW-0003;FLOW-0010;FLOW-0015;FLOW-0021;FLOW-0023;FLOW-0024;FLOW-0026;FLOW-0027,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-080,3-9 6-5 C-02 C-04,FLOW-0010;FLOW-0028,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-081,EXT-OPS C-04,FLOW-0001;FLOW-0002;FLOW-0003;FLOW-0006;FLOW-0009;FLOW-0010;FLOW-0011;FLOW-0019;FLOW-0023;FLOW-0025;FLOW-0027;FLOW-0028;FLOW-0029;FLOW-0030,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-082,3-1 3-2 2-3 4-1,FLOW-0005;FLOW-0009;FLOW-0010;FLOW-0013;FLOW-0021;FLOW-0029,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-083,7-4 7-7 1-6,FLOW-0017;FLOW-0022;FLOW-0025,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG
+FL-084,EXT-OPS 1-1 8-3 5-1,FLOW-0001;FLOW-0002;FLOW-0003;FLOW-0006;FLOW-0009;FLOW-0010;FLOW-0011;FLOW-0015;FLOW-0019;FLOW-0023;FLOW-0025;FLOW-0026;FLOW-0027;FLOW-0028;FLOW-0029;FLOW-0030,Chỉ mục scenario nội bộ có sẵn; chưa xác nhận oracle từ nguồn khách,KHÔNG CHẠY TRONG ĐỢT TÁI DỰNG

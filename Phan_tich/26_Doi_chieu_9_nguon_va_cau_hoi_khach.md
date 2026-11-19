@@ -1,5 +1,7 @@
 # Đối chiếu chín nguồn và biên tập bộ câu hỏi khách hàng
 
+> Cập nhật đường dẫn ngày 19/11: đây là bản đối chiếu lịch sử của bộ chín nguồn ngày 18/11. Danh mục hiện hành đã chuyển sang `source_requiments/` và có 12 tệp, gồm hai bản định nghĩa màn hình 18/11. Đọc [TAI_LIEU_NGUON.md](../TAI_LIEU_NGUON.md) và [bản cập nhật28](28_Cap_nhat_danh_muc_nguon_19-11-2026.md); không dùng số chín trong báo cáo này làm giới hạn nguồn hiện tại.
+
 Ngày18/11/2026. Theo danh mục người dùng chỉ định tại [TAI_LIEU_NGUON.md](../TAI_LIEU_NGUON.md). Tài liệu phân tích/SCD/guide/thiết kế DB là dẫn xuất, không phải bằng chứng khách đã đồng ý. Đợt này chỉ làm tài liệu; không dùng mã nguồn, demo hoặc cấu hình môi trường.
 
 ## 1. Phần đối chiếu đã bổ sung
@@ -10,15 +12,15 @@ Ngày18/11/2026. Theo danh mục người dùng chỉ định tại [TAI_LIEU_NG
 
 | Mã | Tệp nguồn | Mức đối chiếu | SHA256 nguồn khi đối chiếu |
 |---|---|---|---|
-| QA | [AI-Talent-OS_Q&A表.xlsx](<../AI-Talent-OS_Q&A表.xlsx>) | Toàn bộ cell text5 sheet; QA76 câu (43 Close/33 Open); bảo lưu No.50 Open; CR25 dòng. | `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765` |
-| YK2 | [AI育成OS_概要要件定義書_v2.docx](<../AI育成OS_概要要件定義書_v2.docx>) | Văn bản/bảng và26 ảnh nhúng đã xem; tra hình theo chú thích trong DOCX, gồm hình5-1/5-2/5-3 và UC01–13. | `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3` |
-| AG | [アプリ画面案_AI育成OS.pdf](<../アプリ画面案_AI育成OS.pdf>) | 12/12 trang: xem hình tổng quan từng trang và đối chiếu text/mã màn. | `4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181` |
-| GT | [画面遷移図と画面案_AI育成OS.pdf](<../画面遷移図と画面案_AI育成OS.pdf>) | 8/8 trang: xem hình tổng quan từng trang, chú ý lựa chọn/mã màn cũ. | `52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea` |
-| KS | [要件定義確認シート_AI育成OS.xlsx](<../要件定義確認シート_AI育成OS.xlsx>) | Toàn bộ sheet hiện có,118 dòng nội dung; đọc F/G/I và OK, không suy tick là đủ mọi chi tiết. | `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82` |
-| SM | [要件説明資料_AI育成OS.pdf](<../要件説明資料_AI育成OS.pdf>) | 42/42 trang: xem hình tổng quan từng trang + text; xác nhận có LINE/miễn phí/2quyền cũ. | `8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae` |
-| GJ | [20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md](<../20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md>) | Đọc biên bản, quyết định và action; phân biệt nội dung đã chốt với việc phải hỏi provider/đề xuất sau. | `c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0` |
-| TK-T | [★AI育成OS_タレントアプリ画面_かわいい版.pdf](<../Design style/★AI育成OS_タレントアプリ画面_かわいい版.pdf>) | 12/12 trang: xem hình tổng quan và text; có lượt miễn phí/mục tiêu tổng cũ. | `f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559` |
-| TK-M | [★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf](<../Design style/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf>) | 18/18 trang: xem hình tổng quan và text; nhóm/chỉ thị là đề xuất trong bản thiết kế, có mã khác AG. | `d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab` |
+| QA | [AI-Talent-OS_Q&A表.xlsx](<../source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx>) | Toàn bộ cell text5 sheet; QA76 câu (43 Close/33 Open); bảo lưu No.50 Open; CR25 dòng. | `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765` |
+| YK2 | [AI育成OS_概要要件定義書_v2.docx](<../source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx>) | Văn bản/bảng và26 ảnh nhúng đã xem; tra hình theo chú thích trong DOCX, gồm hình5-1/5-2/5-3 và UC01–13. | `30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3` |
+| AG | [アプリ画面案_AI育成OS.pdf](<../source_requiments/16112026/アプリ画面案_AI育成OS.pdf>) | 12/12 trang: xem hình tổng quan từng trang và đối chiếu text/mã màn. | `4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181` |
+| GT | [画面遷移図と画面案_AI育成OS.pdf](<../source_requiments/base/画面遷移図と画面案_AI育成OS.pdf>) | 8/8 trang: xem hình tổng quan từng trang, chú ý lựa chọn/mã màn cũ. | `52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea` |
+| KS | [要件定義確認シート_AI育成OS.xlsx](<../source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx>) | Toàn bộ sheet hiện có,118 dòng nội dung; đọc F/G/I và OK, không suy tick là đủ mọi chi tiết. | `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82` |
+| SM | [要件説明資料_AI育成OS.pdf](<../source_requiments/base/要件説明資料_AI育成OS.pdf>) | 42/42 trang: xem hình tổng quan từng trang + text; xác nhận có LINE/miễn phí/2quyền cũ. | `8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae` |
+| GJ | [20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md](<../source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md>) | Đọc biên bản, quyết định và action; phân biệt nội dung đã chốt với việc phải hỏi provider/đề xuất sau. | `c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0` |
+| TK-T | [★AI育成OS_タレントアプリ画面_かわいい版.pdf](<../source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf>) | 12/12 trang: xem hình tổng quan và text; có lượt miễn phí/mục tiêu tổng cũ. | `f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559` |
+| TK-M | [★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf](<../source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf>) | 18/18 trang: xem hình tổng quan và text; nhóm/chỉ thị là đề xuất trong bản thiết kế, có mã khác AG. | `d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab` |
 
 Không chỉnh sửa9 nguồn. Các hash dùng để nhận biết phiên bản nguồn của lần đối chiếu này. Danh mục128 tệp ở file23 là chỉ mục lần trước, không có nghĩa128 nguồn gốc.
 

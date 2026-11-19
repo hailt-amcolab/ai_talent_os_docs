@@ -12,6 +12,7 @@ import { systemModule } from '../modules/system/routes.ts'
 import { authModule } from '../modules/auth/routes.ts'
 import { pwaModule } from '../modules/pwa/routes.ts'
 import { onedriveModule } from '../modules/onedrive/routes.ts'
+import { uploadPostModule } from '../modules/upload-post/routes.ts'
 
 // Dựng ứng dụng HTTP từ phụ thuộc đã tạo sẵn. Tách khỏi server.ts để kiểm thử bằng app.request() không cần mở cổng.
 // Thêm module mới: tạo src/modules/<tên>/ rồi gắn ở mục "Modules" bên dưới.
@@ -48,6 +49,7 @@ export function createApp(deps: AppDeps) {
     app.route('/', authModule(deps))
     app.route('/', pwaModule(deps))
     app.route('/', onedriveModule(deps))
+    app.route('/', uploadPostModule(deps))
   }
 
   // Tài liệu API để FE sinh client. Không bật ở production để không lộ danh sách API.

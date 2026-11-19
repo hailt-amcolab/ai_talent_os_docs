@@ -1,0 +1,7 @@
+{
+  "path": "agent_spec/supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md",
+  "sha256": "363d89667277b7c4e4c9a5ed6872a68a891e9f9d8738213e1321d8889353ac7c",
+  "locator": "dòng27,537",
+  "authority": "INTERNAL_DESIGN_ONLY",
+  "finding": "Tài liệu auth ghi reset TOTP khi mất máy là chưa rõ; quy trình Manager khác là phương án No.67 chưa chốt, không thay quyết định khách."
+}

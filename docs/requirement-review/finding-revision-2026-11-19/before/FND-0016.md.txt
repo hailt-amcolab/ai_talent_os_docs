@@ -1,0 +1,76 @@
+# FND-0016 — Thử thách thiếu tiêu chí hoàn thành và vòng đời kiểm được
+
+Loại: **MISSING_RULE**. Loại phụ: UNDEFINED_STATE. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0012. Chức năng: EXT-CHALLENGE;3-7. ID cũ: RV-14;B12;L22-06. FGAP: FGAP-0037;FGAP-0038;FGAP-0039.
+
+## Vấn đề
+
+Thử thách thiếu tiêu chí hoàn thành và vòng đời kiểm được
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+AI đề xuất, Talent nhận/từ chối, Manager không duyệt; cách đề xuất lại theo hướng dẫn còn hoàn thiện.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+AI viết lời chúc không tự là bằng chứng khách định nghĩa tiêu chí đạt; đề xuất dài G27 không được duyệt toàn bộ bởi I27.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Tiêu chí đạt, nguồn đo/khai báo, trạng thái, hạn và quy tắc đề xuất lại.
+
+## Quyết định cần đưa ra
+
+Chốt phần thử thách trong đợt; đội phân biệt tính kết quả với nội dung AI.
+
+## Ảnh hưởng nghiệp vụ
+
+Không có oracle thống nhất cho đạt/quá hạn và thông báo; chưa kết luận AI thực tế đã đánh giá sai.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING
+
+## Lý do / tái sử dụng Q&A
+
+No.72 và GJ mục2; không hỏi lại Manager có duyệt thử thách không.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A15:M15 (RV-14; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn chốt hành vi/AC của đúng nhánh liên quan; không chặn toàn bộ dự án.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0314 / `K:27` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A27:I27; ID=5.0; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A27: 0 B27: 5.0 F27: タレントのチャレンジは、マネージャーが ChatGPT に指示して、そのタレントの情報のファイルに登録する前提でよいでしょうか。AIコーチがタレントの投稿の状況を見て、チャレンジをタレントに提案する形も考えられます。どのようなチャレンジを入れたいかも、あわせてお教えください。 G27: チャレンジ機能は、単に毎日タスクを与えるのではなく、**タレントの成長段階・活動状況・SNSの実績・モチベーションに応じて、AIコーチが最適なタイミングでチャレンジを提案する仕組み**にすることが重要です。 ENTAMAのAI育成OSでは、次のような設計を推奨します。 ## **1. どんな状況でチャレンジを提案するか** AIコーチがタレントの状況を分析し、必要なタイミングでチャレンジを提案します。 | タレントの状況 | AIコーチの判断 | チャレンジ例 | | --------- | ---------- | ------------ | | 新規登録直後 | 活動習慣を作る | 自己紹介動画を投稿 | | 投稿が止まっている | 活動再開が必要 | 15秒動画を1本投稿 | | 投稿が継続している | 次の成長段階へ | 投稿内容の改善 | | フォロワーが停滞 | 新規ファン獲得が必要 | 新しいジャンルに挑戦 | | 再生数が伸びている | 成功パターンを強化 | 同じテーマで続編を投稿 | | 反応率が低い | コンテンツ改善が必要 | 冒… [xem toàn ô/đoạn trong EV]
+- EV-0315 / `G:2` — `GJ`, `source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md`, 合意事項 (nội dung đồng thuận), 2. チャレンジ（確認5）; SHA256 `c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0`. Trích đoạn định vị: ### 2. チャレンジ（確認5） - AI コーチが、タレントの状況（フォロワーが伸びているとき、伸び悩んでいるときなど）を見てチャレンジを提案する。マネージャーも、AI への指示を通してチャレンジを提案できる。 - タレントは、提案されたチャレンジを受けるか断るかを選べる。マネージャーの承認は不要である。 - 提案のきっかけ（いつ提案するか）と、断られた後に再び提案する時期は、AI への指示で決める必要がある。野中様が、チャレンジの考え方と全体像を文章にして確認シートに書き込む。 
+- EV-0127 / `Q:72` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A72:J72; ID=72.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A72: 72.0 D72: 46343.0 E72: Câu hỏi: (1) Hệ thống xác định "đạt thử thách" bằng cách nào? (2) Trạng thái của thử thách sau khi Talent nhận và thời hạn. (3) Cách đếm "số ngày đăng liên tục". Vì sao cần hỏi: Cần quy tắc rõ để lập trình; nếu để AI tự phán đoán thì kết quả khó kiểm tra. Tài liệu đang nói: - Biên bản 17/11 (確認5): AIコーチ đề xuất thử thách theo tình hình Talent; Manager cũng đề xuất được qua chỉ thị cho AI; Talent chọn nhận hoặc từ chối, không cần Manager duyệt. Thời điểm đề xuất và đề xuất lại sau khi bị từ chối do chỉ thị cho AI quyết. 野中様 sẽ viết ý tưởng và tổng quan thử thách vào 確認シート. - 確認22: cách đếm số ngày đăng liên tục sẽ q… [xem toàn ô/đoạn trong EV]
+- EV-0107 / `T:13` — `SD-T18`, `source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf`, Trang PDF 13 (từ 1); mã màn ở source_refs; SHA256 `67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8`. Trích đoạn định vị:  T-09 AIコーチとの会話 テーマも直したいところも、モモに話してね 画面イメージ 1 この画面ですること タレントが、AIコーチ「モモ」と会話する画面です。AIコーチは、毎朝、前日の投稿の結果と今日のテーマの候補を伝えます。タレントは、 テーマを選び、投稿案の直したい点を伝えます。体調や退所の相談があったときは、AIコーチが会話を続けたうえで、AI育成OS がマネージ ャーにお知らせします。 使う人 タレント（スマートフォン） 使う場面 UC-04 AIコーチと会話する 前後の画面 T-06 マイページ T-07 ホーム 下のメニュー ▶ T-09 AIコーチとの会話 ▶ T-10 投稿案の詳細 T-11 写真・動画の送付 スマートフォンへの通知 下のメニュー 家の印：T-07 ホーム／吹き出しの印：T-09 AIコーチとの会話／プラスの印：T-11 写真・動画の送付／カレンダーの印：T-14 投稿の予 定と結果／人の印：T-06 マイページ 業務フロー 毎日の投稿（22ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 AIコーチの声かけ 表示 朝：前日の投稿の結果と、続けて投稿した日数。日 — 中：写真・動画の催促。投稿の後：投稿できたこ と。週1回：1週間の結果と、目標までの残り 2 今日のテーマの候補 表示 毎朝の3つの候補 — 3 タレントのメッセージ 表示 タレントが送った文章 — 4 「投稿案を見る」 ボタン AI… [xem toàn ô/đoạn trong EV]

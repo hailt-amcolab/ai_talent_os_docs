@@ -1,0 +1,173 @@
+{
+  "stage": "16 REWRITE revised by Analyst R1; pending independent recheck",
+  "files": [
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/REVISED_FINDINGS.md",
+      "sha256": "3a44decead8c9ff7451589d6487ebc57ed367ab4dba987285a2650f705c5db70"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/VALIDATION.md",
+      "sha256": "529abe93c000938eed6e509979b12f03e82d80c095a2a812e5b9991f85e425fc"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0001.md.txt",
+      "sha256": "5cb4bb04b864d352eed3aafaef307f32f0d8ce3547e01e3516c4f4a5060967a3"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0004.md.txt",
+      "sha256": "43d4f67d130937aa28e2c2ad3692de963435fffea8d866385f9fc2f80784d0da"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0005.md.txt",
+      "sha256": "7dd90b1e189b1326c67edda7d3b94cfbfaad0e478ed086fefc40aa3c71ea2c12"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0007.md.txt",
+      "sha256": "262dd4ac92cb6581252005cb44723a74e14455f96f84e7951414a7cff3282447"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0008.md.txt",
+      "sha256": "ed2b4dcafe98ccd78f19c64f78cefa55d17208eb27177b3494f72123ca3e41a4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0011.md.txt",
+      "sha256": "0e2929eeee2710810a0b9fe691f1a5600dddee689434c81ccf58437cc059eadc"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0012.md.txt",
+      "sha256": "b668bf73e703272e202314dcb6268c8ff807e5aa5cb24529bd11491b3a1b13f7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0015.md.txt",
+      "sha256": "3743f170b200fe5e6e9ed77060539c69235c4165043004f99f6b2f23bc4b56bd"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0016.md.txt",
+      "sha256": "487e6c825360f65f76f2b1bb197d4440f27f60c0cf07c584b74ac63559f00eee"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0017.md.txt",
+      "sha256": "a7062e3abc3ce95cef03bddc03f55bdc36d1a731c3d0c52adf2fd03001031490"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0018.md.txt",
+      "sha256": "4c369287ed12ed29a7e7f642327ec792774a39b8bd861b571c7e9efe990c109f"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0021.md.txt",
+      "sha256": "a6839fec5fe319bcca73651bb054163acfefd367917b8eae1a5a3bf1827d6e9c"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0023.md.txt",
+      "sha256": "54dcdf92160eb394f00d732cfbcf8c451b08d4dce191824963db7584a061cb8b"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0026.md.txt",
+      "sha256": "9c001ce4dba994c626acdf3be8ff79e821fc480748fe303f3ef9a1d43ffac7e4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0030.md.txt",
+      "sha256": "b6b75804da4b77e2975c34499ebe290461b93b0535eb61ee567545dbe9decf34"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/FND-0031.md.txt",
+      "sha256": "238d6a51026c1eff93b70741627867a50f012e8ac107b6d6c822cb512bb177b6"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/before/findings-register.csv",
+      "sha256": "fdce620f71d7543cfae5d20217d7e4ba3465e99630add3c2be782f3a3c6280ce"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/changes.csv",
+      "sha256": "99cc1ebefb9ee26dd354935991927e9ccf892184d278f49ea89e8a4d29afa17b"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/finding-details.csv",
+      "sha256": "4100f98dc1b0b7cfc8badb7bd166dc1da88f0dc69e65266bccb5602c86d4c075"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0001.md",
+      "sha256": "3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0004.md",
+      "sha256": "344391ce64479b23f34769215d356a4f2e6cf532ce720b15edeeb8df6fc0306d"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0005.md",
+      "sha256": "9d643efe7b27158c25a2c146f70f9b885ed475fce59f6e5e4490572d2e59b3e8"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0007.md",
+      "sha256": "969677f26bdca1a5c2abeaa78c9f49d7b84f6509fb8278c91b0ffddf03582b56"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0008.md",
+      "sha256": "3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0011.md",
+      "sha256": "e06119baa0815ec1fc6c7a278269f6348ca628c142872136252351a2baa4275c"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0012.md",
+      "sha256": "420db66e02c10ceee93966f404d3805ebeef3a4a5ff4675ff41eec4756935633"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0015.md",
+      "sha256": "145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0016.md",
+      "sha256": "5f66a0c6c1abab82ffe49f3df1042033d985021223d6bbf5c4d7a01a2f3633ef"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0017.md",
+      "sha256": "d8fc919dc8dce7102b32a2d312cca434f5c2197bb6c9c2b901502ec9d9545dc2"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0018.md",
+      "sha256": "ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0021.md",
+      "sha256": "96e11c07c6fe41cfbe652db9b7658130286931bcb9871379ba2898651d81c9ec"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0023.md",
+      "sha256": "97d179fd9aca9992ea41b67515cae30bbafb5960eabb85b0ab214dd1445927ee"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0026.md",
+      "sha256": "3cd7b20045402d84ec676334f7cff4a44e9966a86151b8b9bfb77708c8d1451e"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0030.md",
+      "sha256": "0b675e53815e5cbcc5fc8dd4201837c8be95d5936289bef330a1e8dfdfa7cb54"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0031.md",
+      "sha256": "01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/input-manifest.json",
+      "sha256": "e1bb58d087699950ac133acaa6cbb953d85a3f9301d159c6e4f56eaf731be35e"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/recheck-list.csv",
+      "sha256": "f670515a85a272ec11325e722e3474074635e0f1e269fd991c845c65cbd407fa"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/source-audit.csv",
+      "sha256": "1da419611b0af74b7357cd2c443d5b9d18237d8cd0b0a35159361965576c6fb1"
+    },
+    {
+      "path": "docs/requirement-review/finding-revision-2026-11-19/validate_revision.py",
+      "sha256": "828080bc1319a89d66d4bba1241fc5cf39a4276e41326bd877ee059f78aa0bb7"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "e93400b426dac06a7d4609e0ea32585ee594b748a49ef424eee7149ea0fb9cc3"
+    }
+  ]
+}

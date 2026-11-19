@@ -1,0 +1,79 @@
+# FND-0008 — Dừng/hủy/mở lại chưa có phạm vi và kết quả trọn vẹn
+
+Loại: **MISSING_RULE**. Loại phụ: MISSING_EXCEPTION. Trạng thái: VALIDATED; AUTHOR_SOURCE_CHECKED; G4 chưa ký; G5 NOT_RUN.
+
+Flow: FLOW-0018;FLOW-0019;FLOW-0020. Chức năng: 7-5;7-2;EXT-AUTO. ID cũ: RV-19;L22-09. FGAP: FGAP-0059;FGAP-0060;FGAP-0061;FGAP-0065;FGAP-0066;FGAP-0067;FGAP-0068;FGAP-0069.
+
+## Vấn đề
+
+Dừng/hủy/mở lại chưa có phạm vi và kết quả trọn vẹn
+
+## FACT — nguồn đã nêu / ý đã được chốt
+
+Có thao tác dừng theo Talent/toàn bộ; Manager hủy lịch ở quản trị. Tiền đề UC-08-6 chưa OK; SD32 vẫn cần xác nhận.
+
+## Giới hạn thẩm quyền
+
+FACT ở đây là nội dung nguồn đã nêu; chỉ lời đáp/quyết định có thẩm quyền mới xác nhận ý tương ứng. YK2/SD không tự đóng Q&A; Close/OK không phê duyệt đề xuất chưa được trả lời. Không sử dụng SCD/spec/code làm quyết định khách.
+
+## INFERENCE — nhận định có giới hạn
+
+Tạm dừng lịch mới, hủy lịch đã có và phục hồi bài là các tác động khác nhau; không suy mở lại nghĩa đăng bù mọi bài.
+
+## ASSUMPTION
+
+Không dùng giả định để lấp khoảng trống.
+
+## PROPOSAL
+
+Quyết định cần đưa ra là đầu việc xác định; chưa chọn phương án thay khách.
+
+## Thông tin còn thiếu
+
+Hiệu lực dừng toàn bộ, bài chấp nhận/tạo trong lúc dừng, thông báo/trạng thái sau hủy và phạm vi tiếp tục.
+
+## Quyết định cần đưa ra
+
+Chốt chính sách dừng–hủy–tiếp tục theo No.60/61/77; đội đối soát kết quả hủy thực tế.
+
+## Ảnh hưởng nghiệp vụ
+
+Chưa xác định bài nào được đăng tiếp sau mở lại; không kết luận mọi lịch đã hủy chỉ từ gửi lệnh.
+
+## Có cần hỏi khách
+
+FOLLOW_EXISTING
+
+## Lý do / tái sử dụng Q&A
+
+Tiếp tục đúng No.60/61/77, không hỏi lại từ đầu có chức năng dừng.
+
+## Tài liệu liên quan đã đối chiếu
+
+TAI_LIEU_NGUON.md; Source Register; Requirement/BR Register; flow specs/steps/transitions tương ứng; QA đủ5sheet, KS, GJ, SD-T18/SD-M18; workbook15 và báo cáo23 chỉ đối chiếu nội bộ
+
+## Đối chiếu kết quả cũ (không ghi đè)
+
+workbook15/Noi_bo!A20:M20 (RV-19; MỞ — CHƯA HOÀN TẤT TOÀN BỘ)
+
+## Phạm vi chặn
+
+Chặn chốt hành vi/AC của đúng nhánh liên quan; không chặn toàn bộ dự án.
+
+## Bên chịu trách nhiệm
+
+BA/Tech Lead phân tuyến; khách chốt chính sách, provider xác nhận năng lực theo phạm vi
+
+## Điều kiện đóng
+
+Có quyết định đúng thẩm quyền cho phần còn thiếu, liên kết bằng chứng và cập nhật flow/AC liên quan; reviewer kiểm lại. Vấn đề kỹ thuật: thiết kế và kiểm chứng tích hợp do đội, không thay bằng câu trả lời khách.
+
+## Bằng chứng cụ thể
+
+- EV-0239 / `K:84` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A84:I84; ID=前提 UC-08-5; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A84: 1 B84: 前提 UC-08-5 F84: 予約した投稿は、マネージャーが AI育成OS の管理画面から取り消します。AI育成OS が、投稿サービス（Upload-Post）に入っている予約を取り消します。 G84: [trống] I84: [trống]
+- EV-0235 / `K:85` — `KS`, `source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx`, 確認事項!A85:I85; ID=前提 UC-08-6; SHA256 `b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82`. Trích đoạn định vị: A85: 0 B85: 前提 UC-08-6 F85: マネージャーが AI育成OS の管理画面で「すべての自動投稿を止める」を押すと、AI育成OS は、新しい投稿を投稿サービス（Upload-Post）に予約しなくなり、すでに予約が入っている投稿も取り消します。取り消した投稿は、再開した後も投稿されません。 G85: [trống] I85: [trống]
+- EV-0442 / `Q:60` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A60:J60; ID=60.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A60: 60.0 D60: 46341.0 E60: Câu hỏi: Trong lúc dừng đăng tự động (theo từng talent hoặc toàn bộ): AIコーチ có vẫn đưa chủ đề không? Talent có 採用 được không? Bài 採用 lúc đó ở trạng thái gì, và khi mở lại có được gửi sang Upload-Post không? Vì sao cần hỏi: Tài liệu chỉ ghi việc hủy bài đã đặt lịch, chưa ghi bài mới phát sinh trong lúc dừng. Tài liệu đang nói: - 概要要件定義書 改訂版 (6-10 chức năng 7-5): lúc dừng không gửi bài mới sang Upload-Post; hủy bài đã đặt lịch. - UC-08: mở lại thì bài đã hủy không được đăng. AMCOLAB đề xuất: AIコーチ vẫn chạy; talent vẫn 採用 được, bài ở trạng thái "停止中のため保留"; khi mở lại, bài còn kịp giờ thì đặt lịch, quá giờ thì talent 採… [xem toàn ô/đoạn trong EV]
+- EV-0443 / `Q:61` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A61:J61; ID=61.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A61: 61.0 D61: 46341.0 E61: Câu hỏi: Khi manager hủy bài đã đặt lịch, hoặc khi dừng đăng tự động làm hủy hàng loạt, có báo cho talent không? Bài bị hủy có quay về 投稿案 để 採用 lại được không? Vì sao cần hỏi: 別紙A chưa có loại thông báo này; nếu không báo, talent sẽ không biết bài của mình không được đăng. Tài liệu đang nói: - 概要要件定義書 改訂版 (6-10 chức năng 7-2, 7-5): manager hủy bài đã đặt lịch; dừng tự động thì hủy bài đã đặt lịch. - 別紙A: không có thông báo hủy bài cho talent. AMCOLAB đề xuất: Báo talent trong app; bài bị hủy quay về 投稿案 để talent 採用 lại khi cần. F61: 【確認事項】マネージャーが予約済みの投稿を取り消したとき、または自動投稿の停止でまとめて取り消されたときに、タレントにお知らせしますか。取り消された投稿は、投稿案… [xem toàn ô/đoạn trong EV]
+- EV-0236 / `Q:77` — `QA`, `source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx`, Q&A!A77:J77; ID=77.0; SHA256 `d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765`. Trích đoạn định vị: A77: 77.0 D77: 46343.0 E77: Câu hỏi: 前提 UC-08-6 (nút "すべての自動投稿を止める" trên 管理画面) vẫn chưa được tick OK và không có ghi chú. Điểm nào khác với ý quý công ty? Vì sao cần hỏi: Cần chốt hành vi của nút dừng khẩn cấp, nhất là sau khi có thêm đăng tự động theo kỳ hạn (No.70). Tài liệu đang nói: - 前提 UC-08-6 / 画面案 M-16: bấm nút thì hệ thống không đặt lịch bài mới, huỷ cả bài đã đặt lịch; bài đã huỷ không đăng lại dù mở lại. Có nút "mở lại" khi đang dừng. - Biên bản 17/11 (確認19・25・26): có đăng tự động theo kỳ hạn. Điểm cần xác nhận: (1) huỷ cả bài đã đặt lịch; (2) bài bị huỷ không tự quay lại sau khi mở lại; (3) đăng tự động theo kỳ hạn có bị dừng khôn… [xem toàn ô/đoạn trong EV]
+- EV-0237 / `M:19` — `SD-M18`, `source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf`, Trang PDF 19 (từ 1); mã màn ở source_refs; SHA256 `1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67`. Trích đoạn định vị:  M-16 すべての自動投稿の停止 困ったときは、全員の自動投稿を止められるよ 画面イメージ（パソコンで表示したとき） 1 この画面ですること マネージャーが、すべてのタレントの自動投稿をまとめて止める・再開する画面です。マネージ ャーの権限は1種類で、すべてのマネージャーが操作できます。タレントごとに止める操作は、タ レントの詳細（設定）（M-10）で行います。 使う人 マネージャー（パソコン。スマートフォンでも表示できます） 使う場面 UC-08 予約して 投稿する 前後の画面 M-16 すべての自動投稿 左のメニュー ▶ ▶ 左のメニューの各画面 の停止 業務フロー 自動投稿を止める・再開する（32ページ） 2 項目の説明 No. 項目 種類 表示する内容・表示する条件 操作したときの動き 1 現在の状態 表示 すべてのタレントの自動投稿が、 — 動いているか、止まっているか 2 「すべての自動投 ボタン 動いているときに表示する。止ま 3 の確認を表示する 稿を止める」 っているときは「再開する」を表 示する 3 止める前の確認 ボタン 止めたときに起きること 「止める」を押すと、新し い投稿を予約しなくなり、 すでに予約が入っている投 稿も取り消す。「やめる」 を押すと、何もせずに閉じ る スマートフォンで表示したとき 3 前提条件 4 これまでの停止と 表示 日時、操作（停止・再開）、操作 — 再開 したマネージャー ● すべてのマネージャーが、この操作を行えます。 … [xem toàn ô/đoạn trong EV]
+- EV-0482 / `M:32` — `SD-M18`, `source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf`, SD-M18 PDF trang32 từ1; mã màn/luồng theo đúng bản18/11; SHA256 `1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67`. Trích đoạn định vị:  業務フロー 自動投稿を止める・再開する 全員の自動投稿を止めるときの流れだよ T-01 タレントのアプリの画面 M-01 管理画面の画面 外部のサービス その作業でつなぐ、AI育成OS の外のサービス 点線の枠 分かれ道と補足 1 止めてから、再開するまで 2 4 新しい予約をやめ、予 再開した後の投稿か AI育成OS 約済みの投稿を取り消 ら、予約する す 1 3 すべての自動投稿を止 確認が終わったら、再 める 開する マネージャー M-16 M-16 外部の 投稿サービス 投稿サービス サービス 2 この業務フローの前提条件 ● すべてのマネージャーが、この操作を行えます。タレントごとに止める操作は、タレントの詳細（設定）で行いま ● 【要確認】（前提 UC-08-6）止めたときに、予約済みの投稿も取り消し、取り消した投稿は再開した後も投稿され す。 ない内容を、今後確認します。 AI育成OS 画面定義書（管理画面） 32 / 34 ページ … [xem toàn ô/đoạn trong EV]

@@ -27,6 +27,12 @@ const demoErrors: Record<string, string> = {
   NOT_A_FOLDER: 'This is not a folder.', FILE_TYPE_NOT_ALLOWED: 'Only .md, .txt and .json files can be written here.', FILE_TOO_LARGE: 'This file is too large to open as text.',
   EXTENSION_CHANGE_NOT_ALLOWED: 'Keep the file extension when renaming.', MEDIA_TYPE_NOT_ALLOWED: 'Only JPEG, PNG, HEIC, MP4 and MOV files with a matching extension can be uploaded.',
   MEDIA_TYPE_MISMATCH: 'The file content does not match its type.', MEDIA_TOO_LARGE: 'The file is too large (demo limit 300 MB).', MEDIA_SIZE_MISMATCH: 'The upload was incomplete. Please try again.', MEDIA_EMPTY: 'The file is empty.',
+  UPLOAD_POST_NOT_CONFIGURED: 'Upload-Post is not set up in this environment (UPLOAD_POST_API_KEY in apps/api/.env).',
+  UPLOAD_POST_PLAN: 'The Upload-Post plan does not allow this (for example TikTok posting on the Free plan).',
+  UPLOAD_POST_PROFILE_LIMIT: 'No free Upload-Post profile left (Free plan: 2). Each login needs its own profile: log in with the account that already connected, or free a profile in Upload-Post.',
+  UPLOAD_POST_AUTH: 'Upload-Post rejected the API key. Check UPLOAD_POST_API_KEY.', UPLOAD_POST_RATE_LIMITED: 'Upload-Post is busy. Please wait a minute and try again.',
+  UPLOAD_POST_QUOTA: 'The Upload-Post monthly limit has been reached.', UPLOAD_POST_UNAVAILABLE: 'Upload-Post is unavailable. Please try again later.',
+  UPLOAD_POST_OUTCOME_UNKNOWN: 'Upload-Post did not answer in time. Press "Check again" before retrying.', UPLOAD_POST_INVALID: 'Upload-Post rejected the request.',
 }
 // Every user-facing string (English). Components never hard-code text.
 // Final notification and email wording is approved by the client (§6-13).
@@ -72,6 +78,9 @@ export const t = {
       'After opening from the icon, log in again', // 4.4: the Home Screen app and Safari keep separate logins (checked in PW-03)
     ],
     androidButton: 'Install app',
+    bannerLabel: 'Install the app',
+    bannerText: 'Add this app to your Home Screen for quick access and notifications.',
+    later: 'Not now',
     androidMenu: 'From the browser menu (︙), choose "Install app" or "Add to Home screen".',
   },
   push: {
@@ -86,4 +95,22 @@ export const t = {
     saving: 'Saving…',
   },
   update: { available: 'A new version is available', button: 'Update', busy: 'Sending in progress. Update when it finishes.' },
+  sns: {
+    open: 'Social accounts (Upload-Post demo)', title: 'Social accounts',
+    help: 'Connect your YouTube, Instagram and TikTok accounts. You sign in on the network’s own page; this app never sees your password.',
+    returnHint: 'After you allow access, come back to this app. The status below updates by itself.',
+    names: { youtube: 'YouTube', instagram: 'Instagram', tiktok: 'TikTok' },
+    status: { not_connected: 'Not connected', connected: 'Connected', reauth_required: 'Connection expired. Please reconnect' },
+    tiktokPaid: 'Posting to TikTok needs a paid Upload-Post plan.',
+    instagramHint: 'Instagram must be a Business or Creator account (in the Instagram app: Settings → Account type and tools → Switch to professional account). No Facebook Page is needed. Allow every permission asked during the connection.',
+    youtubeHint: 'Sign in with the Google account that owns your YouTube channel.',
+    errorCode: (code: string) => `Error code: ${code}`,
+    backIos: 'iPhone: tap "Done" at the top (or close this Safari tab), then open AI Talent OS from your Home Screen.',
+    backAndroid: 'Android: close this tab, then open AI Talent OS from your Home Screen or recent apps.',
+    backOther: 'Close this page and return to AI Talent OS.',
+    connect: 'Connect', reconnect: 'Reconnect', recheck: 'Check again',
+    returnSuccess: 'Access allowed', returnCancelled: 'Connection cancelled', returnError: 'The connection did not finish',
+    returnBack: 'Go back to the AI Talent OS app. The connection is checked again when you open it.',
+  },
+  badge: { unread: (n: number) => n === 0 ? 'No unread notifications' : `${n} unread notification${n === 1 ? '' : 's'}`, markRead: 'Mark all as read' },
 } as const

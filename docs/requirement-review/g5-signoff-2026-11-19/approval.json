@@ -1,0 +1,491 @@
+{
+  "approval_type": "G5 — user-confirmed review and explicit internal approval",
+  "verbatim_user_message": "tôi đã review ký phê duyệt G5 cho tôi đi",
+  "approved_by": "Người dùng trong hội thoại hiện tại — tự xác nhận đã review và chỉ đạo phê duyệt G5",
+  "recorded_by": "Codex — ghi nhận theo chỉ đạo; không tự nhận là người phê duyệt",
+  "recorded_at": "2026-11-19T13:13:47+07:00",
+  "gate_run_id": "GATE-0012",
+  "supersedes_gate_run": "GATE-0011",
+  "result": "PASS",
+  "scope": "24 finding ACCEPT về nội dung và chấp nhận kết quả loại/phân tuyến20 REJECT; không bao gồm3 finding thiếu chứng cứ",
+  "scope_basis": "Phạm vi kết quả review hiện hành và G4 đã được duyệt; không diễn giải chấp thuận này thành ACCEPT cho toàn bộ47 finding.",
+  "prerequisite_gate_refs": {
+    "G1": "GATE-0007",
+    "G2": "GATE-0008",
+    "G3": "GATE-0009",
+    "G4": "GATE-0010"
+  },
+  "approved_scope": [
+    {
+      "finding_id": "FND-0001",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0001.md",
+      "artifact_sha256": "3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f",
+      "content_review_ref": "REV-0064",
+      "human_approval_review_id": "REV-0111",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ hành vi dùng tư liệu và kết quả đổi/kết thúc kỳ tại No.70; phần phụ thuộc phương án nhịp tạo chờ FutureCore trình."
+    },
+    {
+      "finding_id": "FND-0002",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0002.md",
+      "artifact_sha256": "da414554169516a8dfd419ea7b84e7b8f1da1a92c95718f0ee1809f057ce7a98",
+      "content_review_ref": "REV-0065",
+      "human_approval_review_id": "REV-0112",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Chỉ các điều kiện đăng/duyệt/từ cấm trong No.71; không hỏi lại có hai chế độ hay quyền tự chọn."
+    },
+    {
+      "finding_id": "FND-0003",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0003.md",
+      "artifact_sha256": "8a1edb541b9fd70e607a22a77f20cf69fdf4409bc38ccf71a3918690f240e77e",
+      "content_review_ref": "REV-0066",
+      "human_approval_review_id": "REV-0113",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ quyền sửa/xác nhận lại và đường trở lại duyệt; quy tắc quá giờ dẫn0006."
+    },
+    {
+      "finding_id": "FND-0005",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0005.md",
+      "artifact_sha256": "9d643efe7b27158c25a2c146f70f9b885ed475fce59f6e5e4490572d2e59b3e8",
+      "content_review_ref": "REV-0068",
+      "human_approval_review_id": "REV-0114",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ lịch sử và bản đang xin duyệt; quy tắc giờ dùng0006; không hỏi lựa chọn cùng ID hay ID mới."
+    },
+    {
+      "finding_id": "FND-0006",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0006.md",
+      "artifact_sha256": "1b81c1be9b9b0224a558aaf2a830a95d480b577c545144fbeedda2a457218c27",
+      "content_review_ref": "REV-0069",
+      "human_approval_review_id": "REV-0115",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ chính sách giờ trong No.56; không hỏi lại quota sản phẩm."
+    },
+    {
+      "finding_id": "FND-0007",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0007.md",
+      "artifact_sha256": "969677f26bdca1a5c2abeaa78c9f49d7b84f6509fb8278c91b0ffddf03582b56",
+      "content_review_ref": "REV-0070",
+      "human_approval_review_id": "REV-0116",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Chỉ giữ đích SNS/giờ; bỏ hỏi lại có nút hay màn đặt lại."
+    },
+    {
+      "finding_id": "FND-0008",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0008.md",
+      "artifact_sha256": "3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4",
+      "content_review_ref": "REV-0071",
+      "human_approval_review_id": "REV-0117",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Tiếp tục No.60/61/77 riêng; giữ cả phần bảo lưu hủy/không phục hồi của77; đội kiểm hủy thực tế."
+    },
+    {
+      "finding_id": "FND-0009",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0009.md",
+      "artifact_sha256": "5b81e9b4f3af0db87539cd2f94fd63903168f3b91dc24f2d67570f4d70f640e4",
+      "content_review_ref": "REV-0072",
+      "human_approval_review_id": "REV-0118",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ lựa chọn phân công và trường hợp thiếu/vắng người phụ trách theo No.6."
+    },
+    {
+      "finding_id": "FND-0010",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0010.md",
+      "artifact_sha256": "75e209537a79a8649c91c96537412842ecb3f407722ae003b0ed8c712171a679",
+      "content_review_ref": "REV-0073",
+      "human_approval_review_id": "REV-0119",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Chỉ tiêu chí đủ và người xác nhận hoàn tất; cách kiểm file/nút là đội đề xuất."
+    },
+    {
+      "finding_id": "FND-0011",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0011.md",
+      "artifact_sha256": "e06119baa0815ec1fc6c7a278269f6348ca628c142872136252351a2baa4275c",
+      "content_review_ref": "REV-0074",
+      "human_approval_review_id": "REV-0120",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ quan hệ chuyển tay/tự chuyển và trạng thái hiển thị; không dùng trạng thái này để tự chốt ngày thu."
+    },
+    {
+      "finding_id": "FND-0012",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0012.md",
+      "artifact_sha256": "420db66e02c10ceee93966f404d3805ebeef3a4a5ff4675ff41eec4756935633",
+      "content_review_ref": "REV-0075",
+      "human_approval_review_id": "REV-0121",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Chỉ xác nhận trường/phạm vi mục nhập trong màn có sẵn; No.74 cần cập nhật bối cảnh khi dùng."
+    },
+    {
+      "finding_id": "FND-0014",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0014.md",
+      "artifact_sha256": "21a6a898b70a9572783b97d82514bd48d59e0f99eda68c8399abfb660a866b93",
+      "content_review_ref": "REV-0077",
+      "human_approval_review_id": "REV-0122",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ ý nghĩa hạn chế và nội dung công ty cần cung cấp; không hỏi rate-limit hay timeout."
+    },
+    {
+      "finding_id": "FND-0015",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0015.md",
+      "artifact_sha256": "145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787",
+      "content_review_ref": "REV-0078",
+      "human_approval_review_id": "REV-0123",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ giờ/loại tin/ngưỡng trong No.73; không kéo nút tạm dừng M-10 vào phạm vi này."
+    },
+    {
+      "finding_id": "FND-0017",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0017.md",
+      "artifact_sha256": "d8fc919dc8dce7102b32a2d312cca434f5c2197bb6c9c2b901502ec9d9545dc2",
+      "content_review_ref": "REV-0080",
+      "human_approval_review_id": "REV-0124",
+      "qa_timing": "DEFERRED_NO_QUESTION_NOW",
+      "retained_scope": "Giữ theo dõi quyết định reset đến mốc vận hành; chỉ đổi mốc khi có lý do/ảnh hưởng được duyệt."
+    },
+    {
+      "finding_id": "FND-0018",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0018.md",
+      "artifact_sha256": "ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7",
+      "content_review_ref": "REV-0081",
+      "human_approval_review_id": "REV-0125",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ giá, người đổi và lượt trước/sau đổi; thời điểm điều chỉnh lỗi ở phần riêng No.62."
+    },
+    {
+      "finding_id": "FND-0019",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0019.md",
+      "artifact_sha256": "73e276217a0d4f5d64eecf2bac280275aed889caa50654378a76686b1e23a800",
+      "content_review_ref": "REV-0082",
+      "human_approval_review_id": "REV-0126",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đối soát với provider; thời điểm trừ lượt lỗi tiếp tục phần riêng No.62. Không đưa timeout thành câu khách."
+    },
+    {
+      "finding_id": "FND-0020",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0020.md",
+      "artifact_sha256": "59f58e8bd579e6b1177a361160eee74ade7617d1e19a1c9f23a6c5f2cb671aa4",
+      "content_review_ref": "REV-0083",
+      "human_approval_review_id": "REV-0127",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Theo dõi nhận kết quả tại No.4/49; chỉ trình thay đổi khi có bằng chứng hạn chế và ảnh hưởng."
+    },
+    {
+      "finding_id": "FND-0021",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0021.md",
+      "artifact_sha256": "96e11c07c6fe41cfbe652db9b7658130286931bcb9871379ba2898651d81c9ec",
+      "content_review_ref": "REV-0084",
+      "human_approval_review_id": "REV-0128",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ sự kiện bắt đầu thu và kỳ cộng phí video; không hỏi lại nguyên tắc trọn tháng."
+    },
+    {
+      "finding_id": "FND-0022",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0022.md",
+      "artifact_sha256": "dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1",
+      "content_review_ref": "REV-0085",
+      "human_approval_review_id": "REV-0129",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ quyền dùng, thu kỳ tiếp theo và cách dùng lại sau trả nợ trong No.63; đội chọn cách biểu diễn trạng thái."
+    },
+    {
+      "finding_id": "FND-0023",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0023.md",
+      "artifact_sha256": "97d179fd9aca9992ea41b67515cae30bbafb5960eabb85b0ab214dd1445927ee",
+      "content_review_ref": "REV-0086",
+      "human_approval_review_id": "REV-0130",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Đối chiếu khác biệt đường thao tác và giữ phần email vận hành/trạng thái/xóa chưa chốt; không đặt lại ai nối/có trong danh sách."
+    },
+    {
+      "finding_id": "FND-0024",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0024.md",
+      "artifact_sha256": "25acdc3290f7ff4e134929d4c9309fdc2827b68efac8c6f481e77f77fa233862",
+      "content_review_ref": "REV-0087",
+      "human_approval_review_id": "REV-0131",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ chính sách đăng ký mới cùng email và đối tượng xóa; đội xử lý xóa nhiều kho/callback."
+    },
+    {
+      "finding_id": "FND-0025",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0025.md",
+      "artifact_sha256": "bfee052d1171d222802344f2c2bb0537a7c8be31fd009fdeb75e08273c652743",
+      "content_review_ref": "REV-0088",
+      "human_approval_review_id": "REV-0132",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Chỉ chọn có đưa hàng video tự làm tạo nháp theo ngày vào phạm vi hiện tại; không hỏi lại quyền gửi/lưu thông thường."
+    },
+    {
+      "finding_id": "FND-0026",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0026.md",
+      "artifact_sha256": "3cd7b20045402d84ec676334f7cff4a44e9966a86151b8b9bfb77708c8d1451e",
+      "content_review_ref": "REV-0089",
+      "human_approval_review_id": "REV-0133",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ khả năng dùng nháp cũ; quyền xóa tư liệu có lịch chỉ trình sau phương án bảo vệ của đội."
+    },
+    {
+      "finding_id": "FND-0027",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0027.md",
+      "artifact_sha256": "eccee8e3f297e8b73318b00b362c89c27b9a72f450250e0d5052caa9088e48f4",
+      "content_review_ref": "REV-0090",
+      "human_approval_review_id": "REV-0134",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội/provider kiểm và ghi ma trận dữ liệu; chỉ mở việc khách khi kết quả thật làm đổi phạm vi."
+    },
+    {
+      "finding_id": "FND-0028",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0028.md",
+      "artifact_sha256": "cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85",
+      "content_review_ref": "REV-0091",
+      "human_approval_review_id": "REV-0135",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ phạm vi email của No.75; không hỏi lại có cần email hoặc cách gửi kỹ thuật."
+    },
+    {
+      "finding_id": "FND-0029",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0029.md",
+      "artifact_sha256": "bbd721b78061cd917ba661ec6f063de67fd33c9505b1c193a514415dbe70dfe3",
+      "content_review_ref": "REV-0092",
+      "human_approval_review_id": "REV-0136",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội làm rõ mô hình xử lý theo màn hiện có; chỉ mở lại nếu có ví dụ thay hành vi cần khách."
+    },
+    {
+      "finding_id": "FND-0030",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0030.md",
+      "artifact_sha256": "0b675e53815e5cbcc5fc8dd4201837c8be95d5936289bef330a1e8dfdfa7cb54",
+      "content_review_ref": "REV-0093",
+      "human_approval_review_id": "REV-0137",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Đội đề xuất quy trình; khách chỉ định đầu mối và thẩm quyền khôi phục, không thiết kế MFA."
+    },
+    {
+      "finding_id": "FND-0031",
+      "content_result": "ACCEPT",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0031.md",
+      "artifact_sha256": "01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514",
+      "content_review_ref": "REV-0094",
+      "human_approval_review_id": "REV-0138",
+      "qa_timing": "WHEN_SEPARATELY_AUTHORIZED",
+      "retained_scope": "Giữ quyền xét/nộp lại và cách xử lý đơn chờ; không hỏi lại phương thức tự đăng ký đã chốt."
+    },
+    {
+      "finding_id": "FND-0032",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0032.md",
+      "artifact_sha256": "5dc518a36d185b9a8003851f3ecfda5992392a194b8d83d11e263b73838b27e1",
+      "content_review_ref": "REV-0095",
+      "human_approval_review_id": "REV-0139",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Chủ dự án/FutureCore nhận và đối chiếu bản ký/change approval; không coi Close, CR hoặc màn là phê duyệt thương mại."
+    },
+    {
+      "finding_id": "FND-0033",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0033.md",
+      "artifact_sha256": "130630936f1f3a3e3914dd478a792724256930e9903b282cafddebe0518871b7",
+      "content_review_ref": "REV-0096",
+      "human_approval_review_id": "REV-0140",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội map trang/link/token, giữ hành vi nguồn hoặc trình thay đổi cụ thể có ảnh hưởng."
+    },
+    {
+      "finding_id": "FND-0034",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0034.md",
+      "artifact_sha256": "88a9daf1e89e60885327213365e7f918a808eae0cd6e8f74f6a65478a13a1b64",
+      "content_review_ref": "REV-0097",
+      "human_approval_review_id": "REV-0141",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội kiểm side effect/retry của từng dịch vụ; hành vi quyền/phí dùng finding nghiệp vụ tương ứng."
+    },
+    {
+      "finding_id": "FND-0035",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0035.md",
+      "artifact_sha256": "bec47d6e5d676f94c9e0b406c1dbbfde20743e3da5906fa768834ac7ae4a89c4",
+      "content_review_ref": "REV-0098",
+      "human_approval_review_id": "REV-0142",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội kiểm cơ chế; hồ sơ đủ ở0010, quyền giữ/xóa ở0024/0026."
+    },
+    {
+      "finding_id": "FND-0036",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0036.md",
+      "artifact_sha256": "693ee11c8875c94019a224d0d26d7b4487ea27c867a93922c24f3e17b2791887",
+      "content_review_ref": "REV-0099",
+      "human_approval_review_id": "REV-0143",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội đặc tả tương tác/validation trong phạm vi có sẵn, không tự thêm chức năng để xin duyệt."
+    },
+    {
+      "finding_id": "FND-0037",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0037.md",
+      "artifact_sha256": "b3afaeb46d1fd14da7ffff836901440e0607479b353dea4c05835741c3e46c23",
+      "content_review_ref": "REV-0100",
+      "human_approval_review_id": "REV-0144",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đội đề xuất và kiểm khôi phục; chỉ thay quyền dữ liệu/phạm vi mới dẫn finding nghiệp vụ."
+    },
+    {
+      "finding_id": "FND-0038",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0038.md",
+      "artifact_sha256": "6b43ce3d13b2f1fd2070b8bf8a5b0148897d463fd4dbc11fd1b1d4e502ac8680",
+      "content_review_ref": "REV-0101",
+      "human_approval_review_id": "REV-0145",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Giữ checklist và nhận đầu vào No.8/24; trình thay đổi chỉ khi có bằng chứng."
+    },
+    {
+      "finding_id": "FND-0039",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0039.md",
+      "artifact_sha256": "0c63e495eb18f08148c33f1e00c9dfe682478def152f0137d0851208850a8687",
+      "content_review_ref": "REV-0102",
+      "human_approval_review_id": "REV-0146",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Đồng bộ đặc tả nội bộ; lỗi retry mạng không tự là yêu cầu viết lại mới."
+    },
+    {
+      "finding_id": "FND-0040",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0040.md",
+      "artifact_sha256": "e0566e02a243b6f4a2f428c0ad0d95c5d9bd91c6954925adee38d8e858f96ff2",
+      "content_review_ref": "REV-0103",
+      "human_approval_review_id": "REV-0147",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại số bài tối đa; chỉ giữ rải giờ0006 và kiểm provider."
+    },
+    {
+      "finding_id": "FND-0041",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0041.md",
+      "artifact_sha256": "83fb1509bc043af036c151c47a807d7358b9fe6f27d22d37c1c8282d29177e7b",
+      "content_review_ref": "REV-0104",
+      "human_approval_review_id": "REV-0148",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại quyền xem; phạm vi email xử lý riêng."
+    },
+    {
+      "finding_id": "FND-0042",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0042.md",
+      "artifact_sha256": "32b7524aa85b4714a08315bac78806ef17a77f6393434f81836488f3e44d6c5a",
+      "content_review_ref": "REV-0105",
+      "human_approval_review_id": "REV-0149",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Chỉ đối tượng xóa/nộp mới cùng email còn0024; giữ đúng ý đã chốt."
+    },
+    {
+      "finding_id": "FND-0043",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0043.md",
+      "artifact_sha256": "0c8e03cda9d0c0d9d259d4682468e85dd0890aa8632ebb5ad314ef7fa8f12d1c",
+      "content_review_ref": "REV-0106",
+      "human_approval_review_id": "REV-0150",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại đối tượng đăng thay/thu video office qua cổng."
+    },
+    {
+      "finding_id": "FND-0044",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0044.md",
+      "artifact_sha256": "2c4d44dfcce7eb3ffb598687f10871624c77459059f1bcc91f309d82d72d1444",
+      "content_review_ref": "REV-0107",
+      "human_approval_review_id": "REV-0151",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại ai nối/số tài khoản."
+    },
+    {
+      "finding_id": "FND-0045",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0045.md",
+      "artifact_sha256": "ca3e3f032e7fba19ca78512a4b2f48f4a2728fd7f9049e8c12def31474d9eae2",
+      "content_review_ref": "REV-0108",
+      "human_approval_review_id": "REV-0152",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại3cấp; tình huống cùng cấp cần chứng cứ0013."
+    },
+    {
+      "finding_id": "FND-0046",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0046.md",
+      "artifact_sha256": "f2a0f989db2ed452c6280fe133f79f917ee04f98d303b3c99d1fec1028034132",
+      "content_review_ref": "REV-0109",
+      "human_approval_review_id": "REV-0153",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại nhu cầu khung; chi tiết kỳ/duyệt ở0001/0002."
+    },
+    {
+      "finding_id": "FND-0047",
+      "content_result": "REJECT",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0047.md",
+      "artifact_sha256": "f2d33d69b5c1009c2f460fabc50e3a96b656571eea3d97a7f1073ee29b695c5d",
+      "content_review_ref": "REV-0110",
+      "human_approval_review_id": "REV-0154",
+      "qa_timing": "EXCLUDED",
+      "retained_scope": "Không hỏi lại mục tiêu từng SNS; giữ milestone đề xuất để xác nhận đúng mốc/màn, không tự đóng toàn RV-22."
+    }
+  ],
+  "excluded_findings": [
+    {
+      "finding_id": "FND-0004",
+      "result": "NEED_MORE_EVIDENCE",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0004.md",
+      "artifact_sha256": "344391ce64479b23f34769215d356a4f2e6cf532ce720b15edeeb8df6fc0306d",
+      "reason": "Có bảng trạng thái cũ và kết quả từng mạng; No.51 giao đội cập nhật sau70/71. R1 mới hẹn lập phương án tổng hợp, chưa chỉ ra phần nhãn/thao tác cụ thể mà đội không thể quyết trong thiết kế hiện có."
+    },
+    {
+      "finding_id": "FND-0013",
+      "result": "NEED_MORE_EVIDENCE",
+      "artifact_ref": "docs/requirement-review/gap-analysis-2026-11-19/findings/FND-0013.md",
+      "artifact_sha256": "7d82ceb298cab1dc0cf5eca783bb0e9c1617d8e56824d08cf7c39ae2c9a4490a",
+      "reason": "Ưu tiên ba cấp và hiệu lực sáng hôm sau đã có nguồn. Chưa có ví dụ xung đột cùng cấp/phương án hợp nhất cụ thể chứng minh còn quyết định khách; không tự yêu cầu hồi tố bài cũ."
+    },
+    {
+      "finding_id": "FND-0016",
+      "result": "NEED_MORE_EVIDENCE",
+      "artifact_ref": "docs/requirement-review/finding-revision-2026-11-19/findings/FND-0016.md",
+      "artifact_sha256": "5f66a0c6c1abab82ffe49f3df1042033d985021223d6bbf5c4d7a01a2f3633ef",
+      "reason": "G27 đã có nguồn đo và báo cáo Talent, I27/GJ chỉ chốt một phần; CR-22 chưa phê duyệt phạm vi màn. R1 ghi sẽ đối chiếu nhưng chưa có bảng xác định ý đã đủ, ý còn đề xuất và phần nào cần khách."
+    }
+  ],
+  "exclusion_effect": "Ba mục thiếu chứng cứ không được dùng để soạn/hỏi khách. Các nhánh phụ thuộc quyết định của chúng vẫn mở; không coi G5 PASS phạm vi này là đã đủ đặc tả hoặc triển khai các nhánh đó.",
+  "deferred_finding": "FND-0017 — giữ mốc vận hành; không hỏi ngay",
+  "approval_boundaries": [
+    "Người dùng xác nhận đã review và chỉ đạo phê duyệt; không tự đặt tên/học hàm/chức danh người ký hoặc mô tả chi tiết thao tác đọc nguồn của người dùng chưa được cung cấp.",
+    "ACCEPTED là chấp nhận hồ sơ/kết quả review;20 finding REJECT vẫn REJECT, không được hỏi khách.",
+    "Không sửa phê duyệt G1–G4, không cấp PASS G6–G8, không APPROVED_QA, không cho phép gửi khách hoặc xác nhận requirement thay khách.",
+    "Nguồn hoặc artifact thay hash phải đánh giá lại hiệu lực/phạm vi."
+  ]
+}
