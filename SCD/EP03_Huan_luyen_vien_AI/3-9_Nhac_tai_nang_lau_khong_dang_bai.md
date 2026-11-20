@@ -1,5 +1,13 @@
 # 3-9 Nhắc tài năng lâu không đăng bài
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+3 ngày nhắc Talent/7 ngày báo Manager là giá trị ban đầu chỉnh tại M-17; không phải con số cố định cho mọi đợt.
+
+Áp dụng đếm ngày không đăng cho Talent ở chế độ tự động vẫn KS 20261120 No.20; cách đếm office chưa tự suy từ Talent.
+
+Căn cứ: `M19:22;BF19:11;KS:20261120:20` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0607;EV-0623`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |
@@ -23,7 +31,7 @@ Tài năng không đăng đủ số ngày đã cài (mặc định 3) thì AIコ
 
 1. Mỗi sáng trong lô buổi sáng, tính số ngày không đăng của từng tài năng ở 利用中: số ngày từ ngày có bài đăng thành công gần nhất tới hôm qua. Bài tự đăng ngoài hệ thống cũng tính nếu Upload-Post đọc được (UC-09). Chưa đăng bài nào thì tính từ ngày chuyển sang 利用中.
 2. Số ngày **bằng** mốc 1: tin buổi sáng có thêm lời hỏi han (3-4), kèm thông báo 投稿がない日の声かけ (別紙A).
-3. Số ngày **bằng** mốc 2: tạo thông báo 投稿のない日が続いたタレント cho mọi quản lý (7-4).
+3. Số ngày **bằng** mốc 2: tạo thông báo 投稿のない日が続いたタレント cho Manager phụ trách (7-4, SD-M19 trang6).
 4. Đăng lại thì đếm lại từ 0.
 
 Dùng "bằng" chứ không dùng "từ … trở lên", để mỗi đợt không đăng chỉ nhắc một lần ở mỗi mốc.

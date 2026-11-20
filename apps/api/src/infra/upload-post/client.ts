@@ -80,12 +80,23 @@ export class UploadPostClient {
     return parsed as T
   }
 
-  // Connect API: URL đăng nhập mạng xã hội, hạn 900 giây, state dùng một lần.
+  // Hosted connection page: https://app.upload-post.com/connect?token=… valid 48h.
+  // Docs: POST /api/uploadposts/users/generate-jwt. The page links the chosen network, then sends the browser to redirect_url.
   async startConnect(profile: string, platform: Platform, redirectUrl: string) {
-    const r = await this.call('POST', `/api/uploadposts/oauth/${platform}/start`, { json: { profile, redirect_url: redirectUrl } })
-    const authorizeUrl = text(r.authorize_url)
-    if (!authorizeUrl?.startsWith('https://')) throw new UploadPostError('unavailable', 'BAD_RESPONSE')
-    return { authorizeUrl, expiresInSeconds: typeof r.expires_in === 'number' ? r.expires_in : 900 }
+    const r = await this.call('POST', '/api/uploadposts/users/generate-jwt', {
+      json: {
+        username: profile,
+        redirect_url: redirectUrl,
+        platforms: [platform],
+        show_calendar: false,
+        redirect_button_text: 'Back to AI Talent OS',
+      },
+    })
+    const accessUrl = text(r.access_url)
+    let url: URL | null = null
+    try { if (accessUrl) url = new URL(accessUrl) } catch { url = null }
+    if (!url || url.protocol !== 'https:' || url.hostname !== 'app.upload-post.com') throw new UploadPostError('unavailable', 'BAD_RESPONSE')
+    return { authorizeUrl: url.toString(), expiresInSeconds: 48 * 60 * 60 }
   }
 
   async cancelSchedule(jobId: string) {

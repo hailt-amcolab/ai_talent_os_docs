@@ -1,4 +1,18 @@
+> **Cập nhật QA mới — 2026-11-20:** đã lọc trùng 5 sheet; bản nháp còn 2 câu, rút thêm 24 câu (gồm 6 câu phí/thanh toán theo yêu cầu). Các số đếm và gate ở nội dung đợt trước bên dưới là lịch sử; G1–G4 hiện STALE, G5/G6 BLOCKED. Bản chính: `docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md`.
+
 # Sổ nguồn và quy tắc ưu tiên
+
+> **Bản đối chiếu hiện hành20/11:** đã đọc81trang PDF19/11 bằng chữ và hình, biên bản GJ19, QA5sheet và KS3sheet. Các thông báo chờ kiểm kê bên dưới là lịch sử. Đã cập nhật bản chính và phân tuyến36Q&A thành26câu nháp/10câu rút. Số trang mục lục/KS có chỗ lệch trang thực tế; luôn dùng locator PDF thực tế. Xem [kết quả và giới hạn](corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
+> **DEC-0001 ngày20/11:** người dùng đã chốt H65: không giới hạn số lần AI viết lại; không còn chờ quyết định số lượt hoặc yêu cầu Tech Lead chọn giữa2lần/không giới hạn. Chỉ thay đúng chủ đề; các phần nguồn khác và Independent Verification vẫn theo gate hiện hành. [Bản ghi](corrections-2026-11-19/REPORT.md).
+
+> **Cập nhật QA/KS ngày 20/11/2026:** vẫn16tệp;14tệp giữ hash kiểm kê trước, hai workbook đổi hash. QA không đổi giá trị/công thức cả5sheet; KS có2ô sửa, thêm2sheet và bình luận FCP, chưa có trả lời trong các cột trả lời mới. Các số liệu/hash12nguồn bên dưới là lịch sử. Kiểm kê hiện hành và phạm vi G1 STALE tại [hồ sơ tiếp nhận](corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
+## Nguồn tiếp nhận thêm ngày20/11/2026
+
+Kiểm kê hiện hành16tệp tại [source-inventory-current.json](source-inventory-current.json); snapshot12tệp bên dưới giữ nguyên. Bốn nguồn mới: GJ19 (biên bản FCP–AMCOLAB), SD-T19 (33trang), SD-M19 (27trang), BF19 (21trang), ngày lập trong nội dung19/11/2026. Mã và trang phải kèm đúng bản; chưa tự thay/copy mã18/11.
+
+GJ19 phân biệt ý kiến FCP, AMCOLAB, quyết định giữa hai bên và việc sẽ hỏi アデッソ; không nâng toàn bộ thành P1 khách xác nhận. SD-T19/SD-M19 là P3 mô tả giao diện, BF19 mô tả luồng; 要確認 (cần xác nhận) vẫn mở. [Tiếp nhận/hash](corrections-2026-11-19/new-delivery-intake.json) và [phạm vi ảnh hưởng cần đối chiếu](corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
 
 Snapshot khảo sát 19/11/2026: kiểm tra trực tiếp 12 tệp, hash trùng [kiểm kê28](../../Phan_tich/28_Kiem_ke_nguon_19-11-2026.json). Tên tệp, đường dẫn, SHA-256, số trang/sheet đầy đủ tiếp tục quản lý tại JSON đó; không tạo bản hash chính thứ hai. [Danh mục nguồn](../../TAI_LIEU_NGUON.md) là đầu mối nhận nguồn, bảng dưới là phần quản lý hiệu lực. Hash chỉ xác nhận đúng tệp, không xác nhận đúng yêu cầu hoặc khách đồng ý.
 

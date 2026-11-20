@@ -1,7 +1,8 @@
 // Talent PWA only. Never cache API, auth responses, RSC, QR or private HTML.
-const VERSION = 'v6' // v6: drops caches that stored an HTML interstitial as a JS chunk
+const VERSION = 'v7' // v7: answers the in-scope manifest so a tunnel warning page cannot hide Install app
 const CACHE = `talent-static-${VERSION}`
 const OFFLINE = '/pwa/offline'
+const upstream = path => fetch(new Request(location.origin + path, { credentials: 'include', cache: 'no-store', headers: { 'ngrok-skip-browser-warning': '1' } }))
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll([OFFLINE]))) })
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('talent-static-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()))
@@ -9,6 +10,23 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url)
   if (req.method !== 'GET' || url.origin !== location.origin || req.headers.has('Authorization') || req.headers.has('RSC') || url.searchParams.has('_rsc')) return
+  // Chrome loads the manifest and its icons without cookies. ngrok then returns its warning HTML
+  // and never fires beforeinstallprompt. Answer from here, and refetch upstream with the bypass header.
+  if (url.pathname === '/pwa/manifest') {
+    e.respondWith(upstream('/manifest.webmanifest').then(async res => {
+      const type = res.headers.get('Content-Type') || ''
+      if (!res.ok || type.includes('text/html')) return res
+      const data = await res.json()
+      if (Array.isArray(data.icons)) data.icons = data.icons.map(icon => ({ ...icon, src: String(icon.src).replace('/icons/', '/pwa/icons/') }))
+      return new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/manifest+json', 'Cache-Control': 'no-store' } })
+    }))
+    return
+  }
+  if (url.pathname.startsWith('/pwa/icons/')) {
+    const file = url.pathname.slice('/pwa/icons/'.length)
+    if (/^[\w.-]+$/.test(file)) e.respondWith(upstream('/icons/' + file))
+    return
+  }
   if (req.mode === 'navigate') {
     if (!url.pathname.startsWith('/pwa/')) return
     e.respondWith(fetch(req).catch(() => caches.match(OFFLINE)))

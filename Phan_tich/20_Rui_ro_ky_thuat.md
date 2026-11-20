@@ -1,5 +1,15 @@
 # Rủi ro kỹ thuật của dự án
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **8-2** — Mở màn login/cho phép của từng SNS, không mở giao diện dịch vụ đăng; quay về T-07. Một tài khoản mỗi SNS; business/creator Instagram; không cần nối đủ 3 SNS. Còn mở: Luồng nhà cung cấp/48 h là thiết kế tích hợp phải kiểm, không hỏi khách chọn API hoặc khẳng định đã kiểm tài khoản thật. Căn cứ: `T19:10,26;BF19:5`.
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+- **1-1** — Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp. Còn mở: Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày. Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Viết ngày 17/11/2026. Dựa trên các lần kiểm chứng tài liệu và đặc tả trong `agent_spec/` (xem `agent_spec/KET_QUA_KIEM_CHUNG_17-11.md`), file Q&A bản 15/11 (`Phan_tich/19_Doi_chieu_QA_bao_gia.md`) và tài liệu hạ tầng (`Phan_tich/18_Ha_tang_he_thong.md`). **Chưa rủi ro nào được thử trên môi trường thật**; mọi ca kiểm thử trong `agent_spec/` vẫn ở trạng thái NOT_RUN (chưa chạy).
 
 File này thay phần chi tiết của `Phan_tich/11_Edge_case_va_rui_ro.md` §3.2 (T1–T9). Cột "Mã cũ" ghi ánh xạ sang mã trong file 11.

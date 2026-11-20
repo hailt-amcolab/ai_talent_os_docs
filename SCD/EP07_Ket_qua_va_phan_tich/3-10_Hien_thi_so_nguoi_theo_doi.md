@@ -1,5 +1,13 @@
 # 3-10 Hiển thị số người theo dõi
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Mục tiêu ban đầu 10000 mỗi SNS; Manager đổi theo Talent. Follower hiện tại có thể giảm; tổng bài là lũy kế; bài cũ xem được. Chỉ số thực tế giới hạn theo dịch vụ.
+
+Streak/reset hẹn quyết khi vận hành; không tự lấy số trong hình làm giá trị khách duyệt.
+
+Căn cứ: `T19:11,23;M19:11,15;BF19:13` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0563;EV-0575;EV-0596;EV-0600;EV-0625`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP07 – Kết quả và phân tích |

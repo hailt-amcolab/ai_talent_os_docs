@@ -1,5 +1,13 @@
 # 9-1 Đăng bài bằng tài khoản công ty
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Office nhập tên/email ở M-12; tạo folder ngay; Manager login app Talent bằng office, tự nối SNS; không thanh toán/không phí tháng/không duyệt; phí video nội bộ. Unit là office, hiện cùng Talent list.
+
+Vòng đời kết thúc/xóa office cần No.66; không suy ngoại lệ streak/nhắc ngày không đăng từ việc miễn phí.
+
+Căn cứ: `T19:5,9,25,30;M19:10,17;BF19:20` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0557;EV-0561;EV-0577;EV-0582;EV-0595;EV-0602;EV-0632`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
@@ -19,17 +27,13 @@
 
 Đăng bài lên tài khoản mạng xã hội của công ty アデッソ bằng cùng các chức năng như tài năng (§6-10 chức năng 9-1, UC-12).
 
-## Luồng chính (theo đề xuất A1, đúng UC-12 前提 và [AG] M-12)
+## Luồng chính
 
-1. Quản lý tạo tài khoản công ty ở M-12 (1-2): tên, email đăng nhập. Hệ thống tạo thư mục (2-2) và hồ sơ Upload-Post (8-2), trạng thái 利用中.
-2. Quản lý đăng nhập **ứng dụng tài năng** bằng tài khoản công ty. Có nhiều tài khoản công ty thì đăng nhập lại cho từng tài khoản (UC-12 前提).
-3. Kết nối mạng xã hội của công ty (T-05), nhập thông tin và định hướng của công ty qua ChatGPT (2-3).
-4. Dùng toàn bộ luồng: chủ đề, bản nháp, gửi tư liệu, tạo video, chấp nhận, đăng.
-5. Khác với tài năng:
-   - không có bước thanh toán (6-2), không thu phí tháng (1-2);
-   - số lần tạo video chỉ đếm và hiện ở màn hình quản trị, アデッソ tự quyết toán nội bộ (5-4);
-   - không có ô xin duyệt (A2);
-   - không nhắc khi không đăng, không báo quản lý khi 7 ngày không đăng (B10), không nhắc gửi tư liệu (S05-04).
+1. Manager tạo office ở M-12, nhập tên/email; hệ thống tạo folder ngay (SD-M19 trang17).
+2. Manager đăng nhập app Talent tại T-03 bằng ID office; mở T-08, bỏ kiểm đăng ký thanh toán.
+3. Manager nối SNS tại T-07 và dùng các bước soạn/tư liệu/video/chấp nhận/đăng trong app; bài office không cần duyệt.
+4. Office hiện cùng danh sách Talent; không phí tháng; video có đếm để công ty quyết toán nội bộ, không thu qua cổng.
+5. Không hỏi lại chọn app hay quản trị. Vòng đời kết thúc/xóa và ngoại lệ nhắc không đăng của office chưa được tự coi giống Talent thường; tiếp tục No.66.
 
 ## Luồng lỗi và trường hợp biên
 

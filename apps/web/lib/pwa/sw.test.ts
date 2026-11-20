@@ -11,7 +11,13 @@ function worker() {
   const caches = { keys: async () => [], delete: async () => true, open: async (name: string) => name === 'talent-meta'
     ? { match: async (k: string) => meta.has(k) ? new Response(meta.get(k)) : undefined, put: async (k: string, r: Response) => { meta.set(k, await r.text()) } }
     : { addAll: async () => {}, put: async (...args: unknown[]) => { written.push(args) } }, match: async (k: unknown) => k === '/pwa/offline' ? new Response('OFFLINE') : undefined }
-  vm.runInNewContext(readFileSync(new URL('../../public/sw.js', import.meta.url), 'utf8'), { self, caches, Response, location: { origin: 'https://example.test' }, URL, fetch: async () => { if (offline) throw new Error('offline'); return html ? new Response('<html>ngrok warning</html>', { headers: { 'Content-Type': 'text/html' } }) : new Response('private profile') } })
+  vm.runInNewContext(readFileSync(new URL('../../public/sw.js', import.meta.url), 'utf8'), { self, caches, Response, Request, location: { origin: 'https://example.test' }, URL, fetch: async (input: Request | string) => {
+    if (offline) throw new Error('offline')
+    if (html) return new Response('<html>ngrok warning</html>', { headers: { 'Content-Type': 'text/html' } })
+    const href = typeof input === 'string' ? input : input.url
+    if (href.endsWith('/manifest.webmanifest')) return new Response(JSON.stringify({ name: 'AI Talent OS', icons: [{ src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' }] }), { headers: { 'Content-Type': 'application/manifest+json' } })
+    return new Response('private profile')
+  } })
   async function fetchEvent(path: string, mode = 'navigate', headers = new Headers()) {
     let response: Promise<Response> | undefined
     events.get('fetch')!({ request: { url: 'https://example.test' + path, method: 'GET', mode, headers }, respondWith: (r: Promise<Response>) => { response = r }, waitUntil: () => {} })
@@ -66,6 +72,17 @@ test('malformed push still displays a notification and click cannot navigate out
     w.events.get('notificationclick')!({ notification: { close: () => {}, data: { url } }, waitUntil: (p: Promise<void>) => { wait = p } })
     await wait; assert.equal(w.opened.at(-1), 'https://example.test/pwa/home')
   }
+})
+test('the in-scope manifest is fetched past the tunnel warning and its icons stay inside the worker scope', async () => {
+  const w = worker()
+  const manifestBody = await w.fetchEvent('/pwa/manifest', 'cors')
+  assert.ok(manifestBody)
+  const data = JSON.parse(manifestBody)
+  assert.equal(data.icons[0].src, '/pwa/icons/icon-192.png')
+  assert.equal(await w.fetchEvent('/pwa/icons/icon-192.png', 'cors'), 'private profile')
+  w.htmlNext()
+  const warning = await w.fetchEvent('/pwa/manifest', 'cors')
+  assert.match(warning ?? '', /ngrok/)
 })
 test('worker activation is opt-in, never skips waiting from install', async () => {
   const w = worker(); let wait = Promise.resolve()

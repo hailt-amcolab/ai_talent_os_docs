@@ -1,5 +1,13 @@
 # 3-3 Giới hạn chủ đề trò chuyện
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Phạm vi hội thoại ngoài đăng bài, sức khỏe/rời công ty và thông báo tâm sự nghiêm trọng vẫn được hỏi tại KS 20261120 No.21,27,28.
+
+Không dùng sự xuất hiện loại thông báo trong hình để tự chốt được tư vấn mọi chủ đề hoặc số lượt hội thoại.
+
+Căn cứ: `BF19:14,18;M19:6,27;T19:16` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0626;EV-0630;EV-0591;EV-0612;EV-0568`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |
@@ -28,7 +36,7 @@ Hệ thống, chạy cho mỗi tin nhắn của tài năng.
 1. Trước khi trả lời, phân loại tin nhắn của tài năng bằng một lần gọi AI riêng, kết quả là một trong: `normal` (bình thường), `off_topic_request` (nhờ viết văn hay làm video không liên quan), `serious_health` (sức khỏe thể chất, tinh thần), `serious_leave` (muốn rời công ty, ngừng hoạt động), `danger` (dấu hiệu tự hại, nguy hiểm; S03-02).
 2. `normal`: trả lời như thường (3-4).
 3. `off_topic_request`: trả lời bằng câu từ chối cố định (S03-03), rồi kéo về chủ đề đăng bài.
-4. `serious_health`, `serious_leave`: vẫn trò chuyện bình thường, có cảm thông; tạo thông báo 深刻な相談 (chuyện nghiêm trọng) cho mọi quản lý (7-4); đánh dấu tin nhắn để M-09 hiện nhãn.
+4. `serious_health`, `serious_leave`: vẫn trò chuyện bình thường, có cảm thông; tạo thông báo 深刻な相談 (chuyện nghiêm trọng) cho Manager phụ trách (phạm vi loại thông báo này vẫn chờ KS20261120 No.21; không coi đã chốt); đánh dấu tin nhắn để M-09 hiện nhãn.
 5. `danger`: như bước 4, cộng thêm câu an toàn cố định có thông tin nơi tư vấn (S03-02).
 
 ## Luồng lỗi và trường hợp biên

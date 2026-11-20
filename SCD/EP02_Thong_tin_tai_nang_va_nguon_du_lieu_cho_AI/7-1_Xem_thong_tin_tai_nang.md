@@ -1,5 +1,13 @@
 # 7-1 Xem thông tin tài năng
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Danh sách gồm Talent và office; lọc tên/trạng thái/ngày không đăng/category/người phụ trách. M-07 có nút sang M-21 để sửa hồ sơ; không còn mô tả hồ sơ chỉ nhập qua ChatGPT.
+
+Loại phân công theo category hay cá nhân vẫn KS 20261120 No.10/QA No.6.
+
+Căn cứ: `M19:10,11,13,15,26` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0595;EV-0596;EV-0598;EV-0600;EV-0611`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP02 – Thông tin tài năng và nguồn dữ liệu cho AI |
@@ -26,20 +34,11 @@ Quản lý xem danh sách tài năng, tìm, lọc, rồi mở chi tiết: thông
 
 ## Luồng chính
 
-**Danh sách (M-06)**
-1. Hiện các cột theo [AG]: tên, trạng thái, có dùng duyệt bài không, đăng tự động (đang chạy hoặc đã dừng), kết nối mạng xã hội, số người theo dõi IG/TT/YT, lần đăng gần nhất, số ngày không đăng. Thêm trạng thái thư mục (S02-03). Tài khoản công ty có nhãn 事務所.
-2. Tìm theo tên. Lọc theo trạng thái, và theo số ngày không đăng ("từ 3 ngày", "từ 7 ngày", lấy theo giá trị cài đặt ở M-17).
-3. Mặc định xếp theo số ngày không đăng, nhiều nhất lên đầu (S02-06).
-4. Nút ＋事務所アカウント sang M-12 (1-2). Bấm một dòng sang M-07.
-
-**Chi tiết – thông tin (M-07)**
-5. Tên và tuổi (kèm nhãn dưới 18 tuổi nếu có, [KS] 確認2), các mục hồ sơ đọc từ `プロフィール.md` (S02-04), thử thách.
-6. Số người theo dõi và mục tiêu từng mạng, thanh tiến độ, mức tăng 7 ngày gần nhất, hạn đạt (dữ liệu của 3-10, 2-4).
-7. Trạng thái kết nối từng mạng (8-2). Trạng thái thư mục kèm liên kết (S02-03).
-8. Câu "nội dung do quản lý nhập qua ChatGPT; màn này không sửa được".
-
-**Chi tiết – hội thoại (M-09)**
-9. Hội thoại giữa tài năng và AIコーチ, chỉ đọc. Tin nhắn được đánh dấu là chuyện nghiêm trọng (3-3) có nhãn riêng.
+1. M-06 liệt kê cả Talent và office; tìm tên và lọc trạng thái/ngày không đăng/category/phụ trách. Mọi Manager xem mọi Talent.
+2. M-07 xem hồ sơ, thử thách, mục tiêu/follower từng SNS, kết nối; nút sửa mở M-21.
+3. M-21 nhập năm nhóm thông tin dự kiến, lưu/hủy/lịch sử; cũng sửa được qua ChatGPT. Không ghi hồ sơ chỉ sửa bằng ChatGPT hoặc M-07 không có đường sửa.
+4. M-09 chỉ đọc hội thoại, không sửa; mở thông tin/hội thoại/kết quả phải ghi nhật ký xem.
+5. Căn cứ SD-M19 trang10–13,26. Trường bắt buộc để AI chạy còn No.54, danh sách dự kiến tại KS20261120 No.39 chưa có trả lời.
 
 ## Luồng lỗi và trường hợp biên
 

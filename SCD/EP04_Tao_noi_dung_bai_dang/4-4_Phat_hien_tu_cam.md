@@ -1,5 +1,13 @@
 # 4-4 Phát hiện từ cấm
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12.
+
+Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57.
+
+Căn cứ: `M19:16,23;BF19:17;GJ19:12` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0601;EV-0608;EV-0629;EV-0645`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP04 – Tạo nội dung bài đăng |
@@ -27,21 +35,12 @@ Khi tài năng chấp nhận bài, AI kiểm tra chú thích và hashtag có t�
 
 ## Luồng chính
 
-**A. Kiểm tra (gọi từ 4-3)**
-1. Gửi AI: chú thích, hashtag, tiêu đề YouTube (B3), cùng toàn bộ danh sách từ cấm. Yêu cầu trả về: có hay không, các đoạn bị trúng, từ trong danh sách tương ứng, lý do ngắn.
-2. Không có: trả "sạch" cho 4-3.
-3. Có: bài sang "dính từ cấm". Báo tài năng: lý do và đoạn bị trúng (S04-07). Tạo thông báo 使ってはいけない言葉の検出 cho mọi quản lý (7-4).
-
-**B. Quản lý xử lý (M-11)**
-4. Quản lý mở M-11: ảnh, video, chú thích (sửa được), đoạn bị trúng tô màu, giờ đăng dự kiến.
-5. Bấm 直して予約する (sửa và hẹn giờ): lưu bản sửa → **kiểm tra lại từ cấm** → sạch thì hẹn giờ như 4-3 bước 6 → báo tài năng nội dung đã được sửa (B5).
-6. Bấm 予約しない (không đăng): bài sang "đã hủy", báo tài năng ([AG] M-11; [YK2] không ghi, xem S04-08).
-
-**C. Danh sách (M-17)**
-7. Quản lý thêm, sửa, xóa từ hoặc cách nói. Áp dụng ngay cho lần kiểm tra sau. Ghi nhật ký thao tác (C-03).
-
-**D. Phòng ngừa**
-8. Danh sách cũng được đưa vào lời nhắc tạo bản nháp (4-1, 4-2) để AI tránh ngay từ đầu (UC-05).
+1. Khi Talent chấp nhận, AI kiểm văn bản/hashtag theo ngữ cảnh; có thể bỏ sót. Có từ cấm thì không đặt lịch và báo Manager phụ trách.
+2. Manager mở M-11 (SD-M19 trang16), xem đoạn tô màu/lý do và sửa.
+3. Bấm sửa và đặt lịch: AI kiểm lại; còn từ cấm thì giữ bài ở màn này, không đặt lịch. Sạch thì đặt lịch và về M-08. Theo GJ19§12 không cần trả bản Manager sửa cho Talent xác nhận lại.
+4. Nút không đặt lịch trở về M-08; không suy mọi trường hợp thành enum hủy.
+5. Danh sách từ cấm ở M-18 (SD-M19 trang23), dùng chung.
+6. Quyền Talent tự sửa bài đã bị chặn còn No.57; khác quyền sửa bản nháp thường. Giao điểm phê duyệt bài tự động còn No.71.
 
 ## Luồng lỗi và trường hợp biên
 

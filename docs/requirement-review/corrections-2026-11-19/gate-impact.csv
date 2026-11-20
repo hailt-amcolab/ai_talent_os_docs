@@ -4,3 +4,4 @@ G3,GATE-0014,STALE,8flow có bản sửa;12 bước/TRANS-0009/CASE-0036 và ng�
 G4,GATE-0015,STALE,Chỉ FND-0003 và FND-0023 bản mới;45 finding khác giữ đánh giá trước,GATE-0010,True
 G5,GATE-0016,STALE,Chỉ FND-0003/FND-0023 bản mới và3Q&A phụ thuộc;42mục còn lại trong chữ ký G5 cũ không bị sửa,GATE-0012,True
 G6,GATE-0017,BLOCKED,"Q&A V5 nội bộ36câu,3HOLD; chưa có phê duyệt G6",GATE-0006,True
+G1,GATE-0018,STALE,4nguồn mới19/11 cần đối chiếu thay đổi/thẩm quyền,GATE-0007,True

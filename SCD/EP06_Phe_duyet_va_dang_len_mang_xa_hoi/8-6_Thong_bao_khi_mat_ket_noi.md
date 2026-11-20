@@ -1,5 +1,13 @@
 # 8-6 Thông báo khi mất kết nối
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Mất kết nối báo Talent và Manager; Talent tự nối lại từ T-07.
+
+Cơ chế phát hiện và phục hồi do đội/provider.
+
+Căn cứ: `T19:10,24;M19:6;BF19:5` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0562;EV-0576;EV-0591;EV-0617`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |

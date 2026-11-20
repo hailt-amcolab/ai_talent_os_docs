@@ -1,5 +1,18 @@
 # Quy tắc nghiệp vụ
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **4-2** — Không giới hạn số lần AI viết lại theo DEC-0001; quyền sửa tay giữ nguyên. Các mô tả hai lượt trong PDF19/11 là lịch sử bị thay đúng chủ đề. Còn mở: Xử lý lỗi/kết quả không rõ/gửi lặp còn do đội thiết kế. Căn cứ: `T19:18,27,29;USER:DEC-0001`.
+- **4-4** — Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12. Còn mở: Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57. Căn cứ: `M19:16,23;BF19:17;GJ19:12`.
+- **7-4** — Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người. Còn mở: Phân công category/cá nhân và fallback vẫn No.6; email loại nào và câu chữ còn cần rà mẫu. Không tự chốt đã xử lý chung hay riêng từng Manager. Căn cứ: `M19:6,8;BF19:14;GJ19:6,7`.
+- **1-1** — Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp. Còn mở: Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày. Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở mục 5 業務ルール (quy tắc nghiệp vụ) của [YK2]. Phần còn lại nằm rải rác ở mục 3, 4 (phần 前提 – tiền đề của từng UC), 6, 7, 9, 10, 11 và 14. Cuối tab có 10 điểm mâu thuẫn và 20 quy tắc còn thiếu. Tab này đã viết lại theo bản yêu cầu v2.
 
 **Cách đọc:**
@@ -59,7 +72,7 @@ Có 71 quy tắc nghiệp vụ, chia thành 10 nhóm. Một phần nằm ở m�
 | BR-C03 | Nội dung của bản nháp | Khi tài năng đã chọn chủ đề | Chú thích, hashtag, hướng dẫn chụp (ví dụ: một ảnh nghiêng mặt lúc tập). Thêm kịch bản nếu là video | Độ dài và số hashtag phải nằm trong giới hạn của cả 3 mạng xã hội | — | 5-3, 6-6 (4-1), 確認24 |
 | BR-C04 | Số bản nháp mỗi ngày | Mỗi tài năng | Tài năng yêu cầu bao nhiêu thì AI tạo bấy nhiêu | Không có con số cố định. V1 là 1 bài mỗi ngày | — | 5-3, UC-05 前提 |
 | BR-C05 | Chỉ đăng bài có ảnh hoặc video; ở 要確認 phải 採用 (chấp nhận) | Mọi bài | 要確認: không 採用 thì không đăng. 自動投稿: hệ thống tự soạn và tự đăng trong khoảng tài năng đặt, dùng tư liệu đã tải lên ([KS] 確認19, 25). Không có ảnh hay video thì không 採用 được, vì cả 3 mạng xã hội đều không đăng chữ suông ⚠ | — | Video tự làm đã lưu thì AI tự làm bản nháp, mỗi ngày một cái theo thứ tự lưu ⚠, nhưng tài năng vẫn phải 採用 | 6-6 (4-3), UC-05, UC-06, 確認25, 26, 32 |
-| BR-C06 | Bản nháp sửa qua AI hoặc tài năng tự sửa | Trước khi 採用 | Tài năng nói điểm muốn sửa hoặc đưa câu chữ muốn dùng để AI viết lại, hoặc tự sửa chữ trực tiếp ([KS] 確認28) | Nhờ AI viết lại tối đa 2 lần; 要確認 mà 2 lần vẫn không hợp thì hôm đó không đăng, trừ khi tài năng tự sửa ([KS] 確認29). Mỗi lần tạo bản nháp tốn khoảng 0,2–3 yên | — | 6-6 (4-2), [KS] 確認28, 29 |
+| BR-C06 | Bản nháp sửa qua AI hoặc tài năng tự sửa | Trước khi 採用 | Tài năng nói điểm muốn sửa hoặc đưa câu chữ muốn dùng để AI viết lại, hoặc tự sửa chữ trực tiếp ([KS] 確認28) | Nhờ AI viết lại không giới hạn số lần (DEC-0001 ngày20/11/2026, áp dụng H65). Mỗi lần tạo bản nháp tốn khoảng 0,2–3 yên | — | 6-6 (4-2), [KS] 確認28, 29 |
 | BR-C07 (mới) | Chưa có hồ sơ thì chưa có bản nháp | Tài năng mới | Huấn luyện viên AI không đưa bản nháp cho tới khi quản lý nhập thông tin tài năng | — | — | UC-01 前提 |
 
 ## D. Duyệt bài và từ cấm
@@ -180,7 +193,7 @@ Có 20 tình huống nghiệp vụ chắc chắn sẽ xảy ra nhưng tài liệ
 | 10 | **Giờ đăng:** thế nào là "đủ số liệu" để AI tự chọn giờ? Nhiều bài 採用 trong một ngày thì mỗi bài đăng giờ nào? Quản lý có được đổi giờ không? | [YK2] 5-2, 5-3, 6-11 (8-1), 確認30 |
 | 11 | **チャレンジ (thử thách):** AI đề xuất theo tình hình, quản lý cũng đề xuất qua chỉ thị cho AI, tài năng nhận hoặc từ chối, không cần duyệt ([KS] 確認5). Còn chờ khái niệm アデッソ viết: gồm những loại nào, tính hoàn thành ra sao | [YK2] UC-02 前提, [KS] 確認5 |
 | 12 | **Nhận biết chuyện nghiêm trọng:** tiêu chí là gì? Xử lý khẩn cấp khi có dấu hiệu tự hại hoặc nguy hiểm, nhất là với người vị thành niên? Thông báo chỉ hiện trên màn hình quản trị nên quản lý có thể không thấy kịp | [YK2] 5-5, 6-5 (3-3), 確認17, 45 |
-| 13 | **Mức trần chi phí AI:** Viết lại đã giới hạn 2 lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt, 確認23). Có mức trần chi phí cho mỗi tài năng, cảnh báo khi dùng bất thường không? | [YK2] 6-5 (3-4, 3-5), 確認23, 29 |
+| 13 | **Mức trần chi phí AI:** Viết lại không giới hạn số lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt, 確認23). Có mức trần chi phí cho mỗi tài năng, cảnh báo khi dùng bất thường không? | [YK2] 6-5 (3-4, 3-5), 確認23, 29 |
 | 14 | **Nhiều người cùng thao tác một việc:** nhiều quản lý cùng đánh dấu đã xử lý một thông báo, cùng duyệt một đơn đăng ký. AI và quản lý cùng ghi một file trên OneDrive | [YK2] 3-3, 6-12 (7-4), 6-5 (3-2), 確認46 |
 | 15 | **Giới hạn cụ thể của nội dung bài:** độ dài chú thích và số hashtag tối đa chung cho 3 mạng xã hội, tiêu đề YouTube, số ảnh tối đa mỗi bài, định dạng và dung lượng tư liệu | [YK2] 5-3, 6-6 (4-1), 6-7 (6-3), 9-2 |
 | 16 | **Quyền đối với nội dung:** cách kiểm tra bài đăng và tư liệu có vi phạm quyền của bên thứ ba không, như nhạc, ảnh người khác, logo nhãn hàng. Ai gắn nhãn AI cho video tài năng tự làm bằng công cụ AI khác? | [YK2] 11, 5-7 |

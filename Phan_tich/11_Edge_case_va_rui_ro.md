@@ -1,5 +1,18 @@
 # Edge case, xung đột dữ liệu và rủi ro
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **4-4** — Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12. Còn mở: Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57. Căn cứ: `M19:16,23;BF19:17;GJ19:12`.
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+- **1-1** — Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp. Còn mở: Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày. Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26`.
+- **C-04** — Lỗi video hiển thị câu dễ hiểu cố định, không mã lỗi provider; mọi ngoại lệ và vận hành lỗi cần đội rà thành yêu cầu phi chức năng. Còn mở: Timeout/retry/kết quả muộn và đối soát chưa được nguồn chốt; không phát triển nội dung khách suy diễn. Căn cứ: `GJ19:18;T19:21;BF19:9`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Có 28 edge case, 9 xung đột dữ liệu, 12 rủi ro nghiệp vụ và 9 rủi ro kỹ thuật. Trong đó có 27 mục ảnh hưởng cao. Sáu rủi ro cần xử lý trước đợt kiểm thử nghiệm thu (giữa tháng 1/2027):
 
 - cổng thanh toán, nay chặn cả luồng chính vì mọi tài năng phải thanh toán (R1);
@@ -34,7 +47,7 @@ Tab này đã viết lại theo bản yêu cầu v2. Mã cũ được giữ khi 
 | E05 | Hai quản lý cùng duyệt hoặc trả lại một bài, cùng lúc | Trung bình | Người bấm trước quyết; yêu cầu chỉ gửi tới quản lý của nhóm hoặc phụ trách ([KS] 確認34). Người sau thấy "đã được xử lý bởi …". Ghi nhật ký thao tác | 6-9 (7-7), 9-4 |
 | E06 | Quản lý đang sửa bài dính từ cấm, cùng lúc tài năng nhờ AI viết lại hoặc 採用 lại bài đó | Trung bình | Khóa bài khi đang chờ quản lý sửa, hoặc kiểm tra phiên bản khi lưu | 6-6 (4-4) |
 | E07 (đổi) | Bài dính từ cấm hoặc chờ duyệt mà không ai xử lý trước giờ đăng | Trung bình | V2 đề xuất hủy lịch khi quá giờ chưa duyệt (⚠ 確認36). Thêm nhắc quản lý trước giờ đăng, vì thông báo chỉ hiện trên màn hình quản trị (確認45). Bài dính từ cấm quá giờ thì xử lý tương tự | 5-3, 6-9 (7-7) |
-| E08 | AI viết lại nhiều lần mà vẫn dính từ cấm, hoặc kiểm tra từ cấm báo nhầm | Trung bình | Cho quản lý bỏ qua kết quả báo nhầm và ghi nhật ký. Nhờ AI viết lại tối đa 2 lần ([KS] 確認29), nên vòng lặp có điểm dừng; tài năng tự sửa chữ được ([KS] 確認28) | 6-6 (4-2, 4-4), 11 |
+| E08 | AI viết lại nhiều lần mà vẫn dính từ cấm, hoặc kiểm tra từ cấm báo nhầm | Trung bình | Cho quản lý bỏ qua kết quả báo nhầm và ghi nhật ký. Nhờ AI viết lại không giới hạn theo DEC-0001; không còn điểm dừng dựa trên số lượt; tài năng tự sửa chữ được ([KS] 確認28) | 6-6 (4-2, 4-4), 11 |
 | E09 (đổi) | Dừng đăng tự động đúng lúc có bài đang gửi sang Upload-Post, hoặc hủy lịch bên Upload-Post bị lỗi | Trung bình | V2 quy định dừng thì hủy luôn bài đã đặt lịch. Cần xác định bài đang gửi dở tính thế nào, và thử lại khi hủy lỗi | 6-10 (7-5), UC-08 前提 |
 | E10 (đổi) | Nhiều bản nháp được 採用 trong một ngày (v2 không giới hạn số bản nháp, đề xuất không giới hạn số bài), dễ bị mạng xã hội chặn | Trung bình | Giãn giờ đăng giữa các bài cùng ngày. Chốt biện pháp chống khóa tài khoản theo quy định từng mạng | 5-3, 6-10 (8-4), 確認37 |
 | E11 | Bài chỉ có ảnh nên không đăng YouTube. Không rõ việc này ảnh hưởng thế nào tới số ngày đăng liên tục và mục tiêu YouTube | Thấp | Quy định rõ "đã đăng" tính theo bài hay theo từng mạng. V2 đề xuất tính theo ngày có ít nhất 1 bài (⚠ 確認22) | 6-10 (8-3) |
@@ -92,7 +105,7 @@ Tab này đã viết lại theo bản yêu cầu v2. Mã cũ được giữ khi 
 | R4 | Danh sách từ cấm chưa có. Kiểm tra bằng AI nên có thể báo nhầm hoặc bỏ sót | Cao | Xin danh sách sớm, thử với bài mẫu trước kiểm thử chấp nhận | [YK2] 6-6, 確認4 |
 | R5 | Pháp lý dữ liệu: đồng ý của tài năng thuộc công ty đã rõ hơn, nhưng việc quản lý đọc hội thoại, dữ liệu gửi ra nước ngoài (OpenAI, máy chủ) và người ngoài công ty vẫn chưa có căn cứ | Cao | Khách soạn điều khoản sử dụng; chúng ta liệt kê dữ liệu nào đi đâu | [YK2] 10-3, 確認1, 13, 42 |
 | R6 | Đưa tin tức vào đề xuất chủ đề cần nguồn tin, có thể tốn phí và vướng bản quyền | Trung bình | Đã chốt dùng tìm web của AI (CR-05).  Chốt nguồn tin trước khi thiết kế | [YK2] 6-5, 確認16 |
-| R7 | Không giới hạn trò chuyện và số bài (viết lại đã giới hạn 2 lần, [KS] 確認29), nên chi phí AI và Upload-Post khó đoán | Trung bình | Theo dõi chi phí theo từng tài năng, báo khi vượt ngưỡng khách đặt | [YK2] 確認23, 29, 37 |
+| R7 | Không giới hạn trò chuyện và số bài (viết lại không giới hạn số lần, [KS] 確認29), nên chi phí AI và Upload-Post khó đoán | Trung bình | Theo dõi chi phí theo từng tài năng, báo khi vượt ngưỡng khách đặt | [YK2] 確認23, 29, 37 |
 | R8 | Phạm vi phình ra: AMCOLAB đã phân loại thành CR-01〜CR-25. CR-17 (nhóm tài năng: M-10 thiết kế khách = M-13 [AG]), CR-18 (màn chỉ thị cho AI: M-11 thiết kế khách = M-14, M-15 [AG]), CR-19 (duyệt theo nhóm hoặc quản lý phụ trách) và CR-21 (tài năng sửa chữ trực tiếp) **làm**; CR-20 (nhiều tài khoản trên một mạng) **không làm**; CR-22 (thử thách) đã chốt hướng, chờ khái niệm アデッソ viết; CR-23 (video tự làm thành bản nháp mỗi ngày) vẫn chờ khách (Q&A No.50); CR-24 (hội thoại riêng tư) **không làm** vì quản lý xem toàn bộ hội thoại (Q&A No.7 đóng 17/11); CR-25 **không cần** vì 画面定義書 do FutureCore làm (Q&A No.68 đóng 17/11). Ảnh hưởng tới báo giá và lịch của các CR nay làm: chưa rõ ([KS], tệp 21) | Trung bình | Chốt phạm vi bằng văn bản trước khi thiết kế chi tiết | [YK2] 確認6–8, 47 |
 | R9 | Lịch gấp: kiểm thử chấp nhận từ giữa tháng 1/2027, nghiệm thu tuần 2–3 tháng 2, chạy thật cuối tháng 2 | Cao | Chia đợt, làm trước luồng chính (đăng ký, bài hàng ngày, đăng bài) | [YK2] 12 |
 | R10 | 56 mục 確認 (mục cần xác nhận) chưa trả lời, khách trả lời chậm làm trễ thiết kế | Cao | Xếp thứ tự câu hỏi (mục 4), hỏi theo đợt trong các buổi họp định kỳ | [YK2] 4 |

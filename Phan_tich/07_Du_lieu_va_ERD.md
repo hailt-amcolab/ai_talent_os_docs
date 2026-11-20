@@ -1,5 +1,15 @@
 # Dữ liệu và ERD sơ bộ
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **2-3** — M-21 (SD-M19 trang 26) nhập hồ sơ, định hướng, sở thích/sở trường, mục tiêu tương lai, giọng văn; có lưu/hủy/lịch sử. Xem/sửa được từ quản trị và ChatGPT, không sửa trực tiếp file OneDrive. Còn mở: Năm mục là danh sách dự kiến tại KS 20261120 No.39, chưa có trả lời; trường bắt buộc để AI chạy còn No.54. Không hỏi lại màn nhập có tồn tại không. Căn cứ: `M19:11,26;BF19:18`.
+- **C-01** — Ba trạng thái nguồn mô tả: chưa dùng/đang dùng/đã kết thúc. Kết thúc dừng lời nhắn/thu phí/hủy lịch/chặn login; không trở lại đang dùng; giữ 6 tháng rồi xóa. Thanh toán đăng ký xong tự chuyển có thể dùng theo T19 trang 8–9. Còn mở: Tạm dừng vì nợ và ảnh hưởng thu phí chưa được trả lời; không đồng nhất dừng đăng với kết thúc sử dụng. Căn cứ: `M19:14,15;BF19:3,16`.
+- **6-4** — Dùng lại ảnh/video đã gửi; OneDrive vẫn là kho hồ sơ/chỉ thị. GJ19§14 cho phép cân nhắc kho ảnh/video khác nếu không thêm chi phí. Còn mở: Không tự chuyển kho lưu. Video tự làm lần lượt 1 bài/ngày vẫn KS 20261120 No.18/QA No.37; tư liệu Manager dùng trong kỳ và quyền xem còn No.19. Căn cứ: `T19:19;BF19:11,18;GJ19:14`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Hệ thống cần quản lý 28 entity, nằm ở 3 nơi lưu: cơ sở dữ liệu của hệ thống, OneDrive và các dịch vụ ngoài. Trong đó thử thách, chỉ dẫn cho AI, nhóm tài năng là chức năng khách đã quyết làm ngày 17/11 ([KS]), và KHOANG_DANG_TU_DONG mới thêm cho cách đăng 自動投稿. Cấu trúc bảng thật nằm ở `database-design/`; tệp này chỉ là phân tích nghiệp vụ. [YK2] chỉ mô tả dữ liệu ở mức nghiệp vụ (mục 7 データ要件 – yêu cầu dữ liệu), nên cấu trúc bảng, khóa và kiểu dữ liệu ở đây đều là đề xuất của mình. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với bản theo v1:** bỏ entity đường dẫn mời (LOI_MOI), thêm đơn đăng ký (DON_DANG_KY). Bỏ thuộc tính có trả phí, thay bằng loại tài khoản (tài năng / công ty). Thêm ngày sinh và cờ dừng đăng tự động cho từng tài năng. Thêm 3 entity đề xuất: THU_THACH, CHI_DAN_AI, NHOM_TAI_NANG.

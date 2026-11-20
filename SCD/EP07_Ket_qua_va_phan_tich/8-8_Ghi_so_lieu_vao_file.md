@@ -1,5 +1,13 @@
 # 8-8 Ghi số liệu vào file
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Lấy số liệu/follower 1 lần ngày trong phạm vi dịch vụ; ghi kết quả vào file Talent, sáng hôm sau AI dùng.
+
+Phải kiểm tài khoản provider thật; lịch chạy số liệu/khung giờ là thiết kế, không tự xác nhận khả năng từ tài liệu nguồn.
+
+Căn cứ: `T19:23,27;M19:12;BF19:9,13` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0575;EV-0579;EV-0597;EV-0621;EV-0625`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP07 – Kết quả và phân tích |

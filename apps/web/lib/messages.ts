@@ -97,7 +97,7 @@ export const t = {
   update: { available: 'A new version is available', button: 'Update', busy: 'Sending in progress. Update when it finishes.' },
   sns: {
     open: 'Social accounts (Upload-Post demo)', title: 'Social accounts',
-    help: 'Connect your YouTube, Instagram and TikTok accounts. You sign in on the network’s own page; this app never sees your password.',
+    help: 'Connect opens Upload-Post’s connection page for that network. You sign in there; this app never sees your password.',
     returnHint: 'After you allow access, come back to this app. The status below updates by itself.',
     names: { youtube: 'YouTube', instagram: 'Instagram', tiktok: 'TikTok' },
     status: { not_connected: 'Not connected', connected: 'Connected', reauth_required: 'Connection expired. Please reconnect' },

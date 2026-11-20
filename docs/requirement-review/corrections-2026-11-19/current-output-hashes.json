@@ -1,0 +1,113 @@
+{
+  "files": [
+    {
+      "path": "TAI_LIEU_NGUON.md",
+      "sha256": "257c45d9ab11abb1515f378d468e247bd81ce5aa7f7f5d5ce65f77821cf31c58"
+    },
+    {
+      "path": "docs/qa/qa-quality-review.md",
+      "sha256": "fec8a2c81681e77e700d13bb6c9e83c06f329cbe3c1357735a866ab2d384685f"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "sha256": "936b4629b323dab94e54955f96f0ddab09e8635751b96326f78e7fe727dad8e8"
+    },
+    {
+      "path": "docs/requirement-review/SOURCE_REGISTER.md",
+      "sha256": "3ba7dc9e8ccd03ecba2d38c73e337494b57ea74c6e05a02a33ce60f11e7e91e5"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "b365b0bd9b692e7ef16dc068ee694915ca188be2d17b883a5969a4a48a183afe"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/current-export-manifest.json",
+      "sha256": "9ad309093da34a69e79e6840138d56ee25ce4cb5f2159003b3dbc55738c88283"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "f85005b28db31fea58b1dc0ea72eb54c8081516cb7d4ac78364b99293fd7304a"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv",
+      "sha256": "fc97e3d69720bb123345ad3b755bf14cb508992defb1f140c53212d82fa645dc"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.md",
+      "sha256": "300888e32e60e184738b81046d2ba579da95fe7bed30d295f94b7f9515adfc10"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/qa-draft.md",
+      "sha256": "b4c1c5a96a5c5b1830c78669b00c2a85307258225f75f96a6d625893c4e9091e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/qa-impact.csv",
+      "sha256": "2fff7dbc54a546a54936b3db0003e6e8810353eebbe54de0ae5b574590e7074d"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/questions.csv",
+      "sha256": "5fae95c7b7a73b2a1881c2ba0f3661f574df8890384597096239a32ab065010c"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "b4c1c5a96a5c5b1830c78669b00c2a85307258225f75f96a6d625893c4e9091e"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-flows.csv",
+      "sha256": "3704c001e025160fd270ac95beabfbb36c70ea2770547ee24528523cccdf5a7e"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-rules.csv",
+      "sha256": "e2aa4d762a75519cfbbac090c20ff918df8e3daff537daae73ae5e2810464f43"
+    },
+    {
+      "path": "docs/requirement-review/registers/evidence.csv",
+      "sha256": "e92f877d0d9dffe1da2f490e3c26e59ad129b545de29fda36829079fd92baa1a"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "07f66031bce3d6117f05a4d98932be9853a66867ac7e0bf27434744435426ae4"
+    },
+    {
+      "path": "docs/requirement-review/registers/requirements.csv",
+      "sha256": "cc1e375eaf8a0247d4313f070a288a309807f76a066bc7308332be8ec5063c1d"
+    },
+    {
+      "path": "docs/requirement-review/registers/reviews.csv",
+      "sha256": "13692607da02a97b1866543dcc4c6c26c49ab059ff0068bfd5038cf96f2a7323"
+    },
+    {
+      "path": "docs/requirement-review/source-inventory-current.json",
+      "sha256": "f72d042b7afa0e00ffba5f9a009ddc1306c916ee07ca131837b85734666c020a"
+    },
+    {
+      "path": "docs/requirement-review/validate.py",
+      "sha256": "5ea4d6e1b4ede0ceb56173828a18c27e3139ac0218842f4140efd4ba46cd1477"
+    },
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "ab8a6db3458248cc9db69859463480d9ba72082e5a46bbdeb11a418ad6d9fac8"
+    },
+    {
+      "path": "agent_spec/chatgpt-mcp-spec/CA_KIEM_THU_VI.md",
+      "sha256": "04c096c2da26d26340a2877f0a2524686077e988ad42f4facb8d7804558fc75a"
+    },
+    {
+      "path": "agent_spec/chatgpt-mcp-spec/HUONG_DAN_TICH_HOP_VI.md",
+      "sha256": "7b622a8c9cf29e85469d86bfafa4fe4c5db603e43ae7b0e3c1b8dd55a64b6ce7"
+    },
+    {
+      "path": "agent_spec/chatgpt-mcp-spec/README.md",
+      "sha256": "90ab9e0e92543d54e029d0e62f70b4188b3004251e1df26e224497a886ecf78c"
+    },
+    {
+      "path": "agent_spec/chatgpt-mcp-spec/examples/mcp.env.example",
+      "sha256": "694a6e1bcc35d2eaa4c519ab2406409466dc1be21949eeea4a22d54d3df92805"
+    },
+    {
+      "path": "agent_spec/chatgpt-mcp-spec/examples/commit-profile.ts",
+      "sha256": "ead6f05ac28abc387065abf083b09452bc0421d0e96970c1f2df9e176e326e81"
+    }
+  ],
+  "gate_hash_boundary": "Current gate rows excluded to avoid manifest cycle; validator checks append-only history, six new statuses and output manifest hash."
+}

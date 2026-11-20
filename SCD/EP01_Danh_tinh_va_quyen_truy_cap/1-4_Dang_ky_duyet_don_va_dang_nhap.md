@@ -1,5 +1,13 @@
 # 1-4 Đăng ký, duyệt đơn và đăng nhập
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Đơn chờ không có hạn; nộp lại lúc chờ thì báo đã nộp và báo Manager lần nữa. Email đã đăng ký (kể cả đang ngừng) chuyển đăng nhập, không gửi thông báo đơn mới. Đơn sau từ chối được tiếp nhận như đơn mới; trao đổi trước xét qua email ngoài app. Sau đặt mật khẩu phải quay về đăng nhập.
+
+Chưa chốt đổi quyết định trên chính đơn từ chối; chưa chốt toàn bộ vòng đời đăng ký lại sau nghỉ/xóa 6 tháng. Điều khoản dùng trang ngoài còn KS 20261120 No.33.
+
+Căn cứ: `T19:3,5,6,7;M19:7;BF19:3` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0555;EV-0557;EV-0558;EV-0559;EV-0592;EV-0615`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP01 – Danh tính và quyền truy cập |
@@ -40,7 +48,7 @@ Tài khoản công ty không đi qua luồng này. Quản lý tạo trực tiế
 **A. Gửi đơn (T-01)**
 1. Người đăng ký nhập tên (nghệ danh hoặc tên thật), email, ngày sinh; đọc điều khoản và tích đồng ý (UC-01 前提, 確認1).
 2. Bấm 申し込む (gửi đơn). Hệ thống lưu đơn ở trạng thái chờ duyệt, hiện câu "quản lý sẽ xem đơn, được duyệt thì thư có mật khẩu tạm sẽ được gửi".
-3. Hệ thống tạo thông báo loại 利用の申し込み (có người xin dùng) cho mọi quản lý (7-4, 別紙A tức phụ lục A).
+3. Hệ thống tạo thông báo loại 利用の申し込み (có người xin dùng) cho Manager phụ trách theo nguồn19/11 (7-4, 別紙A tức phụ lục A).
 
 **B. Duyệt đơn (M-03)**
 4. Quản lý mở thông báo và vào M-03. Màn hình hiện tên, email, ngày sinh, tuổi kèm nhãn dưới 18 tuổi ([KS] 確認2; chỉ để tham khảo, 確認2), giờ gửi, đã đồng ý điều khoản.
@@ -50,10 +58,10 @@ Tài khoản công ty không đi qua luồng này. Quản lý tạo trực tiế
 
 **C. Đăng nhập lần đầu (T-02 → T-03)**
 8. Tài năng nhập email và mật khẩu tạm ở T-02, được chuyển bắt buộc sang T-03.
-9. Ở T-03, tài năng nhập mật khẩu mới hai lần và tích xác nhận "quản lý đọc được hội thoại với AIコーチ" (確認13). Bấm 設定して進む (đặt và tiếp tục) để sang T-04 (chức năng 6-2).
+9. Ở T-03, tài năng nhập mật khẩu mới hai lần và tích xác nhận "quản lý đọc được hội thoại với AIコーチ" (確認13). Bấm 設定して進む (đặt và tiếp tục) để quay lại T-03 đăng nhập bằng mật khẩu riêng, rồi đến T-06 bản19/11 (SD-T19 trang6).
 
 **D. Đăng nhập thường (T-02)**
-10. Nhập email và mật khẩu, vào T-07 ホーム (trang chủ). [AG] đang mở T-06, nhưng đội đề xuất T-07 cho khớp [YK2] 6-8 (B13). Đặt màn mở đầu thành tham số để đổi dễ.
+10. Nhập email/mật khẩu tại T-03 bản19/11: chưa đăng ký thanh toán thì T-06; hoàn tất khởi tạo thì T-08 Mypage. B13 chọn Home làm màn mở đầu hết hiệu lực trước SD-T19 trang5,11.
 11. Đăng nhập được giữ 30 ngày trên cùng thiết bị. Đổi máy thì đăng nhập lại và dùng tiếp như cũ (UC-13 前提).
 
 **E. Quên mật khẩu**

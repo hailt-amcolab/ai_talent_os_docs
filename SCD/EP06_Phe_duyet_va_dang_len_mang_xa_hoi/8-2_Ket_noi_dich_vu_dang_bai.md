@@ -1,5 +1,13 @@
 # 8-2 Kết nối dịch vụ đăng bài
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Mở màn login/cho phép của từng SNS, không mở giao diện dịch vụ đăng; quay về T-07. Một tài khoản mỗi SNS; business/creator Instagram; không cần nối đủ 3 SNS.
+
+Luồng nhà cung cấp/48 h là thiết kế tích hợp phải kiểm, không hỏi khách chọn API hoặc khẳng định đã kiểm tài khoản thật.
+
+Căn cứ: `T19:10,26;BF19:5` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0562;EV-0578;EV-0617`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
@@ -21,11 +29,11 @@
 
 ## Luồng chính
 
-1. **Đăng ký:** khi tài năng chuyển sang 利用中 (đăng ký thanh toán xong, S01-01), hoặc khi quản lý tạo tài khoản công ty, worker tạo hồ sơ tài năng trên Upload-Post, lưu mã hồ sơ (S06-02). §6-10 ghi "khi đăng ký tài năng"; đội đề xuất mốc này để không mất phí cho người chưa thanh toán.
-2. **Kết nối:** tài năng bấm SNS をつなぐ ở T-05. Hệ thống xin Upload-Post đường dẫn kết nối riêng (hạn 48 giờ) và mở trong trình duyệt.
-3. Tài năng đăng nhập từng mạng ngay trên trang của Upload-Post. Instagram phải là tài khoản doanh nghiệp hoặc nhà sáng tạo ([AG] T-05).
-4. Quay về ứng dụng: hệ thống đọc trạng thái kết nối từng mạng từ Upload-Post và lưu lại. T-05, T-06, M-06, M-07 hiện 接続済み (đã kết nối), これから (chưa), 接続切れ (mất kết nối).
-5. **Hủy đăng ký:** khi chuyển sang 利用終了 thì xóa hồ sơ trên Upload-Post (S01-03).
+1. Tạo mapping với dịch vụ đăng theo thiết kế đội; mốc tạo profile/phí cần kiểm provider, không suy đã được khách duyệt.
+2. Talent chọn nối/nối lại ở T-07 (SD-T19 trang10). Hệ thống phối hợp dịch vụ đăng qua API, mở màn đăng nhập/cho phép của chính SNS. Không mô tả Talent đăng nhập trên giao diện Upload-Post.
+3. Talent cho phép SNS; quay T-07, hiển thị trạng thái hoặc lý do thất bại. Instagram cần business/creator.
+4. Mỗi SNS một tài khoản; không buộc nối đủ ba; unit được coi là office.
+5. Thời hạn/link riêng48giờ trong YK2 là điểm thiết kế cần đối chiếu với cơ chế mới, không đặt như hành vi khách bắt buộc ở màn19/11.
 
 ## Luồng lỗi và trường hợp biên
 

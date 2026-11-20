@@ -17,7 +17,8 @@ export type CommitPorts = {
   // Cả lookup retry cũng phải bind actor/client/grant/resource và kiểm quyền Talent hiện tại.
   findAuthorizedOperation: (actor: Actor, proposalId: string) => Promise<Operation | null>
   // Một transaction: đọc/khóa proposal, kiểm Talent/policy/hash/eTag/expiry,
-  // approval người thật + binding đầy đủ, consume approval + INSERT UNIQUE operation + audit.
+  // approval người thật + binding đầy đủ, consume approval + INSERT UNIQUE operation + audit + outbox.
+  // Map vào domain_operations/outbox_events hiện có theo migration được review; không tạo hệ song song.
   // Khi race UNIQUE: chỉ trả operation cũ SAU khi kiểm tra lại binding/quyền.
   acceptApprovedProposal: (actor: Actor, proposalId: string) => Promise<Operation>
 }
@@ -35,6 +36,8 @@ export async function commitProfile(
   return ports.acceptApprovedProposal(actor, proposalId)
 }
 
-// Execution adapter nhận operation bền vững, claim lease và kiểm lại quyền trước side effect.
+// accepted chỉ là nhận việc, chưa xác nhận OneDrive đã ghi. Dispatcher đưa operation/event IDs
+// vào BullMQ + Redis; worker nhận operation bền vững, claim lease và kiểm lại quyền trước side effect.
+// Queue retry không tự giải quyết outcome_unknown. Không chứa token/patch PII trong payload job.
 // Không đặt fetch Graph trong transaction acceptApprovedProposal.
 // Phải có If-Match, timeout=>outcome_unknown và reconciliation theo hướng dẫn §8.

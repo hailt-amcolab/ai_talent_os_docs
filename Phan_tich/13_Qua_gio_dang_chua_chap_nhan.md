@@ -1,5 +1,14 @@
 # Xử lý khi đến giờ đăng mà tài năng chưa chấp nhận bài
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **7-7** — Duyệt bài công việc khi Talent xin duyệt; trả lại phải có lý do; chờ duyệt không sửa theoGJ19§13. Quá giờ chưa duyệt thì không đăng/hủy và báo cả hai bên. Còn mở: Bật tính năng có áp mọi bài không, đích category/cá nhân và phê duyệt trên đường tự động vẫn KS 20261120 No.9,10,14. Căn cứ: `T19:18,22,30;M19:8,9;BF19:8`.
+- **8-5** — Manager thao tác đăng lại tại M-08; nguồn mới mô tả đăng lại ngay, không có màn chọn giờ. Không tự động thử lại khi lỗi. Còn mở: BF19 trang 9 vẫn có nhánh Talent đăng lại dưới nhãn đề xuất, trong khi màn T17 không có nút; ghi khác biệt tác nhân. Đích SNS lỗi vẫn No.59; bỏ giả định hẹn sau 15 phút. Căn cứ: `M19:12;BF19:9;GJ19:17`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Tổng hợp những gì [YK2] (AI育成OS_概要要件定義書_v2.docx) nói về trường hợp đến giờ đăng mà tài năng chưa 採用 (chấp nhận) bản nháp, kèm vị trí của từng điểm trong các file phân tích và các điểm còn thiếu cần hỏi khách. Viết ngày 16/11/2026.
 
 **Ký hiệu:** ⚠ = nội dung dựa trên một mục 確認 (mục cần xác nhận); chỗ khách đã chốt ngày 17/11 ghi `[KS] 確認N` (tệp 21). Tệp này chỉ mô tả cách đăng 要確認; cách 自動投稿 không có bước chấp nhận ([KS] 確認25). Chức năng ghi theo mã trong [YK2] mục 6 (ví dụ 4-3).

@@ -1,5 +1,17 @@
 # Rà soát đầu-cuối yêu cầu, luồng và độ sẵn sàng đặc tả
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **4-4** — Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12. Còn mở: Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57. Căn cứ: `M19:16,23;BF19:17;GJ19:12`.
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+- **7-4** — Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người. Còn mở: Phân công category/cá nhân và fallback vẫn No.6; email loại nào và câu chữ còn cần rà mẫu. Không tự chốt đã xử lý chung hay riêng từng Manager. Căn cứ: `M19:6,8;BF19:14;GJ19:6,7`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Hiệu lực từ20/11 — DEC-0001:** số lần AI viết lại hiện không giới hạn theo chỉ đạo người dùng áp dụng H65. Giới hạn hai lần và vấn đề bộ đếm/RV-01/L23-01 bên dưới là lịch sử; không dùng để chặn lần viết lại thứ ba. Phục hồi lỗi/gửi lặp vẫn cần đội thiết kế. Workbook15 và các dòng xác nhận nguồn được giữ nguyên. [Quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 > **Bổ sung sau đối chiếu9 nguồn gốc:** xem [file26](26_Doi_chieu_9_nguon_va_cau_hoi_khach.md). Đã xem hình tổng quan92 trang PDF và26 ảnh DOCX; giới hạn “chưa xem hình” trong lần quét trước là lịch sử. Workbook15 hiện thêm `Gui_khach`/`Noi_bo`;4 RV đã đồng bộ một phần, không có câu trả lời khách mới và chưa đóng toàn bộ RV.
 
 Ngày rà soát: **18/11/2026**. Phạm vi: **tài liệu**, gồm yêu cầu gốc, Q&A, bảng xác nhận, biên bản, màn hình, SCD, tài liệu phân tích và hướng dẫn tích hợp/thiết kế. Không đọc mã nguồn, môi trường, dữ liệu thật hoặc chạy dịch vụ để suy ra yêu cầu hay kết luận chức năng đã hoạt động.

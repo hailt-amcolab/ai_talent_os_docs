@@ -1,5 +1,13 @@
 # 3-8 Tổng kết tuần
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Tổng kết hằng tuần; ngày gửi chọn được trên M-17. Ngày thứ Hai là đề xuất trước, không phải lịch bất biến.
+
+Không phát sinh quyết định nghiệp vụ mới từ phần nguồn này; các đề xuất kỹ thuật cũ vẫn là đề xuất.
+
+Căn cứ: `T19:16,27;M19:22` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0568;EV-0579;EV-0607`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |

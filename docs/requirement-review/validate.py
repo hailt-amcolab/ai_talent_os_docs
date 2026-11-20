@@ -14,7 +14,9 @@ SCHEMAS = {'baselines.csv': ['baseline_id', 'version', 'scope', 'excluded_scope'
 
 def main():
     errors = []
-    manifest_path = ROOT / 'Phan_tich/28_Kiem_ke_nguon_19-11-2026.json'
+    manifest_path = DOCS / 'source-inventory-current.json'
+    if not manifest_path.exists():
+        manifest_path = ROOT / 'Phan_tich/28_Kiem_ke_nguon_19-11-2026.json'
     manifest = json.loads(manifest_path.read_text())
     entries = manifest['files']
     expected = {entry['path'] for entry in entries}
@@ -58,6 +60,42 @@ def main():
             local = target.split('#', 1)[0].strip('<>')
             if local and not (path.parent / local).exists():
                 errors.append(f'Broken local link: {path.relative_to(ROOT)} -> {target}')
+    intake_path = DOCS / 'corrections-2026-11-19/new-delivery-intake.json'
+    if intake_path.exists():
+        reconciliation = json.loads(intake_path.read_text()).get('reconciliation')
+        if reconciliation:
+            def table(relative):
+                with (DOCS / relative).open(newline='') as handle:
+                    return list(csv.DictReader(handle))
+
+            questions = table('qa-drafting-2026-11-19/customer-draft-v5/questions.csv')
+            export = table('qa-drafting-2026-11-19/csv-export/qa-draft.csv')
+            internal = table('qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv')
+            active = {row['qa_id'] for row in questions if row['status'] == 'DRAFT_UNAPPROVED'}
+            exported = {row['\ufeffID'] for row in export}
+            if active != exported or active != set(reconciliation['active_qa_ids']):
+                errors.append('Current Q&A draft/export/reconciliation IDs differ')
+            draft_path = DOCS / 'qa-drafting-2026-11-19/qa-draft.md'
+            draft_hash = hashlib.sha256(draft_path.read_bytes()).hexdigest()
+            if any(row['draft_sha256'] != draft_hash for row in internal):
+                errors.append('Current Q&A Internal Evidence has an outdated draft hash')
+            current_evidence = table('registers/evidence.csv')
+            by_id = {row['evidence_id']: row for row in current_evidence}
+            evidence_ids = set(reconciliation['page_evidence'].values())
+            evidence_ids.update(reconciliation['workbook_evidence_successors'].values())
+            for evidence_id in evidence_ids:
+                row = by_id.get(evidence_id)
+                if row is None:
+                    errors.append(f'Missing current evidence: {evidence_id}')
+                    continue
+                source = ROOT / row['source_path']
+                if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != row['source_sha256']:
+                    errors.append(f'Current evidence source hash differs: {evidence_id}')
+            export_manifest = DOCS / 'qa-drafting-2026-11-19/csv-export/current-export-manifest.json'
+            for item in json.loads(export_manifest.read_text())['files']:
+                artifact = ROOT / item['path']
+                if not artifact.is_file() or hashlib.sha256(artifact.read_bytes()).hexdigest() != item['sha256']:
+                    errors.append(f'Current Q&A export hash differs: {item["path"]}')
     if errors:
         print('FAIL: structural checks only')
         print('\n'.join(errors))

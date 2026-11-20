@@ -88,7 +88,10 @@
     "docs/requirement-review/qa-drafting-2026-11-19/csv-export/current-export-manifest.json",
     "docs/qa/qa-quality-review.md",
     "docs/requirement-review/README.md",
-    "docs/requirement-review/registers/gate-runs.csv"
+    "docs/requirement-review/registers/gate-runs.csv",
+    "TAI_LIEU_NGUON.md",
+    "docs/requirement-review/SOURCE_REGISTER.md",
+    "docs/requirement-review/validate.py"
   ],
   "step_ids": [
     "FLOW-0004-M03",
@@ -117,6 +120,16 @@
     "GATE-0014",
     "GATE-0015",
     "GATE-0016",
-    "GATE-0017"
-  ]
+    "GATE-0017",
+    "GATE-0018"
+  ],
+  "new_delivery_source_ids": [
+    "GJ19",
+    "BF19",
+    "SD-T19",
+    "SD-M19"
+  ],
+  "source_freshness": "PENDING_DELIVERY_19NOV_RECONCILIATION",
+  "completed_at": "2026-11-20T09:35:35+07:00",
+  "completion_scope": "FV-001–012 implemented; independent review and incoming19Nov reconciliation remain pending"
 }

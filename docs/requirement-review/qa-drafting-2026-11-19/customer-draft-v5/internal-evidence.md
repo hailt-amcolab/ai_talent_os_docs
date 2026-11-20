@@ -1,442 +1,467 @@
-# Internal Evidence — Q&A V5 sau sửa upstream
+# Kết quả lọc trùng toàn bộ QA hiện hành
 
-Chỉ cập nhật truy vết và hiệu lực review, không đổi câu hỏi hoặc tạo ACCEPT mới. Ba câu HOLD không thuộc tập đủ điều kiện hỏi. Hồ sơ sửa: [REPORT](../../corrections-2026-11-19/REPORT.md). Dữ liệu đầy đủ: [internal-evidence.csv](internal-evidence.csv).
+Còn WQA-076-01 (ngoại lệ tâm sự nghiêm trọng, liên quan KS No.21/27/28) và WQA-066-02 (chỉ thời hạn giữ dữ liệu văn phòng). 24 câu vừa rút có lý do trong questions.csv và bảng cuối bản Q&A. Nội dung chi tiết đợt lọc trước dưới đây là lịch sử; trạng thái hiện hành lấy internal-evidence.csv. Chưa có content ACCEPT hoặc Independent Verification.
 
-## IE-WQA-071-02
+# Internal Evidence — lọc trùng QA mới
 
-Finding `FND-0002`: [FND-0002.md](../../gap-analysis-2026-11-19/findings/FND-0002.md), SHA256 `da414554169516a8dfd419ea7b84e7b8f1da1a92c95718f0ee1809f057ce7a98`.
+Tác giả: Codex. Không phải Independent Verification hoặc G7. Nội dung và review lịch sử trước sửa giữ trong changes.csv và các cột lịch sử của internal-evidence.csv.
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0065: ACCEPT, hash `da414554169516a8dfd419ea7b84e7b8f1da1a92c95718f0ee1809f057ce7a98`.
+<a id="ie-wqa-071-02"></a>
 
-Phạm vi giữ: Chỉ các điều kiện đăng/duyệt/từ cấm trong No.71; không hỏi lại có hai chế độ hay quyền tự chọn.
+## WQA-071-02
 
-Nguồn/EV: T:12;T:14;M:8;M:14;Q:71; CREV-0008;CREV-0009;CREV-0010;CREV-0011;CREV-0012;CREV-0013;CREV-0014. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0002; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.71; QA No.84.
+- Nguồn/vị trí: QA!A84:J84.
+- EV: EV-0953.
+- Lý do: Trùng trực tiếp câu đang mở No.84 về bước chuyển duyệt trong chế độ tự động..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+<a id="ie-wqa-057-01"></a>
 
-## IE-WQA-057-01
+## WQA-057-01
 
-Finding `FND-0003`: [FND-0003.md](../../corrections-2026-11-19/findings/FND-0003.md), SHA256 `a916fa9d731cbd170ac995c87fa6b8d9cb5f345f8da8225a83c5bd6c4f2c9d71`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0003; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.57.
+- Nguồn/vị trí: M19:16,23;BF19:17;GJ19:12.
+- EV: EV-0601;EV-0608;EV-0629;EV-0645.
+- Lý do: Manager có luồng sửa và AI kiểm lại; quyền Talent sửa chính bài đang bị chặn chưa rõ. Tác động: Tránh hai bên cùng xử lý một bài mà không rõ quyền; không hỏi lại việc Talent xác nhận bản Manager đã sửa..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Hiệu lực review: PENDING_CURRENT_FINDING_RECHECK. Review lịch sử REV-0066: ACCEPT, hash `8a1edb541b9fd70e607a22a77f20cf69fdf4409bc38ccf71a3918690f240e77e`.
+<a id="ie-wqa-057-02"></a>
 
-**HOLD**: Bản finding đã thay hash; cần reviewer ACCEPT đúng bản mới trước xét lại câu hỏi. Yêu cầu review `REV-0155` đang OPEN, chưa có người ký.
+## WQA-057-02
 
-Phạm vi giữ: Giữ quyền sửa/xác nhận lại và đường trở lại duyệt; quy tắc quá giờ dẫn0006.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0003; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.57.
+- Nguồn/vị trí: M19:16,23;BF19:17;GJ19:12.
+- EV: EV-0601;EV-0608;EV-0629;EV-0645.
+- Lý do: GJ19§12 nói Manager sửa không trả Talent; SD-M19 trang16 và BF19 trang17 có kiểm lại rồi đặt lịch..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Nguồn/EV: T:14;M:14;K:64;Q:57; CREV-0015;CREV-0016;CREV-0017;CREV-0018;CREV-0019;CREV-0020. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+<a id="ie-wqa-056-03"></a>
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+## WQA-056-03
 
-## IE-WQA-057-02
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0006; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.56.
+- Nguồn/vị trí: T19:17,18,22,30;BF19:7,8.
+- EV: EV-0569;EV-0570;EV-0574;EV-0582;EV-0619;EV-0620.
+- Lý do: Bài cần ảnh hoặc video để hoàn tất nhưng tư liệu có thể đến sau giờ dự kiến. Tác động: Chốt cách xử lý bài đến muộn; các bước duyệt hoặc kiểm tra từ cấm vẫn phải áp dụng nếu có..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Finding `FND-0003`: [FND-0003.md](../../corrections-2026-11-19/findings/FND-0003.md), SHA256 `a916fa9d731cbd170ac995c87fa6b8d9cb5f345f8da8225a83c5bd6c4f2c9d71`.
+<a id="ie-wqa-006-01"></a>
 
-Hiệu lực review: PENDING_CURRENT_FINDING_RECHECK. Review lịch sử REV-0066: ACCEPT, hash `8a1edb541b9fd70e607a22a77f20cf69fdf4409bc38ccf71a3918690f240e77e`.
+## WQA-006-01
 
-**HOLD**: Bản finding đã thay hash; cần reviewer ACCEPT đúng bản mới trước xét lại câu hỏi. Yêu cầu review `REV-0155` đang OPEN, chưa có người ký.
+- Trạng thái: WITHDRAWN_PENDING_SOURCE_CONFLICT.
+- Finding: FND-0009; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.6; QA No.87;88.
+- Nguồn/vị trí: QA!A87:J87;QA!A88:J88.
+- EV: EV-0956;EV-0957.
+- Lý do: No.87 trả lời gửi thông báo mọi Manager, No.88 nói assign để nhận thông báo; không tiếp tục câu hỏi giả định chắc chắn phải phân công theo Talent/nhóm. Ghi nhận mâu thuẫn nguồn để đối chiếu..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ quyền sửa/xác nhận lại và đường trở lại duyệt; quy tắc quá giờ dẫn0006.
+<a id="ie-wqa-006-02"></a>
 
-Nguồn/EV: M:14;T:14;Q:57; CREV-0015;CREV-0016;CREV-0017;CREV-0018;CREV-0019;CREV-0020. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-006-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0009; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.6; QA No.88.
+- Nguồn/vị trí: QA!A88:J88.
+- EV: EV-0957.
+- Lý do: No.88 ghi mọi Manager phụ trách chung và Manager nào cũng cập nhật được; rút câu hỏi ai được xử lý thay. Không suy thêm quy tắc gửi thông báo từ câu này..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-056-03
+<a id="ie-wqa-054-01"></a>
 
-Finding `FND-0006`: [FND-0006.md](../../gap-analysis-2026-11-19/findings/FND-0006.md), SHA256 `1b81c1be9b9b0224a558aaf2a830a95d480b577c545144fbeedda2a457218c27`.
+## WQA-054-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0069: ACCEPT, hash `1b81c1be9b9b0224a558aaf2a830a95d480b577c545144fbeedda2a457218c27`.
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0010; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.54; QA No.92.
+- Nguồn/vị trí: QA!A92:J92.
+- EV: EV-0961.
+- Lý do: Phần thông tin bắt buộc để AI chạy đã nằm trong No.92 đang mở..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ chính sách giờ trong No.56; không hỏi lại quota sản phẩm.
+<a id="ie-wqa-076-01"></a>
 
-Nguồn/EV: M:8;T:14;Q:56; CREV-0031;CREV-0032;CREV-0033;CREV-0034. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-076-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0014; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.76.
+- Nguồn/vị trí: BF19:14,18;M19:6,27;T19:16.
+- EV: EV-0626;EV-0630;EV-0591;EV-0612;EV-0568.
+- Lý do: Có quy tắc giới hạn chuyện ngoài đăng bài, nhưng đồng thời có đề xuất báo Manager khi Talent tâm sự nghiêm trọng. Tác động: Chốt ranh giới xử lý trước khi xây thông báo tâm sự nghiêm trọng; không mặc định AI được tư vấn các chủ đề này..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-006-01
+<a id="ie-wqa-063-01"></a>
 
-Finding `FND-0009`: [FND-0009.md](../../gap-analysis-2026-11-19/findings/FND-0009.md), SHA256 `5b81e9b4f3af0db87539cd2f94fd63903168f3b91dc24f2d67570f4d70f640e4`.
+## WQA-063-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0072: ACCEPT, hash `5b81e9b4f3af0db87539cd2f94fd63903168f3b91dc24f2d67570f4d70f640e4`.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0022; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.63.
+- Nguồn/vị trí: T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26.
+- EV: EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ lựa chọn phân công và trường hợp thiếu/vắng người phụ trách theo No.6.
+<a id="ie-wqa-063-02"></a>
 
-Nguồn/EV: M:9;M:13;Q:7;K:77;K:93; CREV-0046;CREV-0047;CREV-0048;CREV-0049;CREV-0050;CREV-0051. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-063-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0022; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.63.
+- Nguồn/vị trí: T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26.
+- EV: EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-006-02
+<a id="ie-wqa-063-03"></a>
 
-Finding `FND-0009`: [FND-0009.md](../../gap-analysis-2026-11-19/findings/FND-0009.md), SHA256 `5b81e9b4f3af0db87539cd2f94fd63903168f3b91dc24f2d67570f4d70f640e4`.
+## WQA-063-03
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0072: ACCEPT, hash `5b81e9b4f3af0db87539cd2f94fd63903168f3b91dc24f2d67570f4d70f640e4`.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0022; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.63.
+- Nguồn/vị trí: T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26.
+- EV: EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ lựa chọn phân công và trường hợp thiếu/vắng người phụ trách theo No.6.
+<a id="ie-wqa-069-01"></a>
 
-Nguồn/EV: Q:7;M:9;M:13; CREV-0046;CREV-0047;CREV-0048;CREV-0049;CREV-0050;CREV-0051. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-069-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0024; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.69; QA No.78.
+- Nguồn/vị trí: QA!A78:J78.
+- EV: EV-0947.
+- Lý do: No.78 đã hỏi cả trạng thái kết thúc sử dụng và trả lời chỉ báo email đã tồn tại. Rút câu hỏi dùng email cũ, không suy có đường đăng ký lại khác..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-054-01
+<a id="ie-wqa-037-01"></a>
 
-Finding `FND-0010`: [FND-0010.md](../../gap-analysis-2026-11-19/findings/FND-0010.md), SHA256 `75e209537a79a8649c91c96537412842ecb3f407722ae003b0ed8c712171a679`.
+## WQA-037-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0073: ACCEPT, hash `75e209537a79a8649c91c96537412842ecb3f407722ae003b0ed8c712171a679`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0025; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.37.
+- Nguồn/vị trí: T19:19;BF19:11,18;GJ19:14.
+- EV: EV-0571;EV-0623;EV-0630;EV-0647.
+- Lý do: Đề xuất dùng lần lượt video đã lưu, mỗi ngày một video, vẫn đang chờ xác nhận ở mục nguồn cũ. Tác động: Tiếp tục No.37 và KS 20261120 No.18, không tạo câu mới trùng quyết định..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Chỉ tiêu chí đủ và người xác nhận hoàn tất; cách kiểm file/nút là đội đề xuất.
+<a id="ie-wqa-075-01"></a>
 
-Nguồn/EV: M:23;M:30;K:9;K:15;Q:54; CREV-0052;CREV-0053;CREV-0054;CREV-0055. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-075-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0028; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.75.
+- Nguồn/vị trí: M19:6,8;BF19:14;GJ19:6,7.
+- EV: EV-0591;EV-0593;EV-0626;EV-0639;EV-0640.
+- Lý do: Đã rõ gửi người phụ trách; chưa rõ loại sự kiện nào cần thêm email. Tác động: Chốt kênh cho từng loại; nội dung email được rà bằng bộ mẫu riêng, tâm sự nghiêm trọng phụ thuộc WQA-076-01..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-076-01
+<a id="ie-wqa-075-02"></a>
 
-Finding `FND-0014`: [FND-0014.md](../../gap-analysis-2026-11-19/findings/FND-0014.md), SHA256 `21a6a898b70a9572783b97d82514bd48d59e0f99eda68c8399abfb660a866b93`.
+## WQA-075-02
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0077: ACCEPT, hash `21a6a898b70a9572783b97d82514bd48d59e0f99eda68c8399abfb660a866b93`.
+- Trạng thái: AWAIT_TEMPLATE_REVIEW.
+- Finding: FND-0028; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.75.
+- Nguồn/vị trí: M19:6,8;BF19:14;GJ19:6,7.
+- EV: EV-0591;EV-0593;EV-0626;EV-0639;EV-0640.
+- Lý do: GJ19§7/SD-M19 trang6: FCP chuẩn bị bộ mẫu chung màn hình/email để khách rà. Chuyển thành việc chuẩn bị/duyệt mẫu, không hỏi mở khách phải tự thiết kế nội dung email..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ ý nghĩa hạn chế và nội dung công ty cần cung cấp; không hỏi rate-limit hay timeout.
+<a id="ie-wqa-075-03"></a>
 
-Nguồn/EV: T:13;K:56;Q:76; CREV-0072;CREV-0073;CREV-0074;CREV-0075. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-075-03
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0028; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.75.
+- Nguồn/vị trí: M19:6,8;BF19:14;GJ19:6,7.
+- EV: EV-0591;EV-0593;EV-0626;EV-0639;EV-0640.
+- Lý do: SD-M19 trang1,6/BF19 trang14: gửi Manager phụ trách. Loại phân công/fallback vẫn No.6; không hỏi lại mọi Manager hay phụ trách..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-063-01
+<a id="ie-wqa-070-01"></a>
 
-Finding `FND-0022`: [FND-0022.md](../../gap-analysis-2026-11-19/findings/FND-0022.md), SHA256 `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+## WQA-070-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0085: ACCEPT, hash `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0001; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.70; QA No.83.
+- Nguồn/vị trí: QA!A83:J83.
+- EV: EV-0952.
+- Lý do: Quyền dùng lại tư liệu đã được hỏi ở No.83 đang mở..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ quyền dùng, thu kỳ tiếp theo và cách dùng lại sau trả nợ trong No.63; đội chọn cách biểu diễn trạng thái.
+<a id="ie-wqa-070-02"></a>
 
-Nguồn/EV: M:13;M:31;Q:63;Y:626;K:119; CREV-0115;CREV-0116;CREV-0117;CREV-0118. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-070-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0001; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.70; QA No.83.
+- Nguồn/vị trí: QA!A83:J83.
+- EV: EV-0952.
+- Lý do: Tình huống thiếu tư liệu và tái sử dụng đã được hỏi ở No.83 đang mở..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-063-02
+<a id="ie-wqa-070-03"></a>
 
-Finding `FND-0022`: [FND-0022.md](../../gap-analysis-2026-11-19/findings/FND-0022.md), SHA256 `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+## WQA-070-03
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0085: ACCEPT, hash `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0001; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.70.
+- Nguồn/vị trí: T19:12,13,17,18,27,30;BF19:6,7.
+- EV: EV-0564;EV-0565;EV-0569;EV-0570;EV-0579;EV-0582;EV-0618;EV-0619.
+- Lý do: Kỳ đăng có thể được đổi hoặc kết thúc trong khi đã có bài chuẩn bị theo chủ đề cũ. Tác động: Tránh bài thuộc chủ đề cũ tiếp tục xuất hiện sau khi kỳ đã đổi; phần kỹ thuật hủy lịch do team xử lý..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ quyền dùng, thu kỳ tiếp theo và cách dùng lại sau trả nợ trong No.63; đội chọn cách biểu diễn trạng thái.
+<a id="ie-wqa-059-01"></a>
 
-Nguồn/EV: Q:63;M:13;T:20; CREV-0115;CREV-0116;CREV-0117;CREV-0118. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-059-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0007; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.59.
+- Nguồn/vị trí: M19:12;BF19:9;GJ19:17.
+- EV: EV-0597;EV-0621;EV-0650.
+- Lý do: Một lần đăng có thể thành công ở mạng này nhưng thất bại ở mạng khác; nguồn mô tả thao tác đăng lại ngay. Tác động: Tránh tạo bài trùng trên mạng đã thành công; giữ nguyên phần thời điểm đăng lại đã được nguồn mô tả..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-063-03
+<a id="ie-wqa-060-01"></a>
 
-Finding `FND-0022`: [FND-0022.md](../../gap-analysis-2026-11-19/findings/FND-0022.md), SHA256 `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+## WQA-060-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0085: ACCEPT, hash `dea756cbdd96e3cf8cc66e4af78059f2c1538fac96af7e801a892c2362d316f1`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0008; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.60.
+- Nguồn/vị trí: M19:15,21;BF19:19;KS:20261120:32.
+- EV: EV-0600;EV-0606;EV-0631.
+- Lý do: Nguồn mô tả hủy lịch cũ và chặn lịch mới khi dừng; chưa rõ kết quả đối với nội dung Talent tiếp tục chấp nhận. Tác động: Chốt số phận bài mới trong thời gian dừng; không hỏi lại việc hủy và không phục hồi các lịch cũ..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ quyền dùng, thu kỳ tiếp theo và cách dùng lại sau trả nợ trong No.63; đội chọn cách biểu diễn trạng thái.
+<a id="ie-wqa-061-01"></a>
 
-Nguồn/EV: Q:63;M:13;M:4;K:119; CREV-0115;CREV-0116;CREV-0117;CREV-0118. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-061-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0008; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.61.
+- Nguồn/vị trí: T19:22,31;M19:12;BF19:9.
+- EV: EV-0574;EV-0583;EV-0597;EV-0621.
+- Lý do: Talent không có nút tự hủy; cần biết lịch đã bị Manager hủy. Tác động: Tránh Talent tiếp tục chờ một bài sẽ không đăng; không hỏi lại quyền hủy của Manager..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-069-01
+<a id="ie-wqa-061-02"></a>
 
-Finding `FND-0024`: [FND-0024.md](../../gap-analysis-2026-11-19/findings/FND-0024.md), SHA256 `25acdc3290f7ff4e134929d4c9309fdc2827b68efac8c6f481e77f77fa233862`.
+## WQA-061-02
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0087: ACCEPT, hash `25acdc3290f7ff4e134929d4c9309fdc2827b68efac8c6f481e77f77fa233862`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0008; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.61.
+- Nguồn/vị trí: T19:22,31;M19:12;BF19:9.
+- EV: EV-0574;EV-0583;EV-0597;EV-0621.
+- Lý do: Hủy lịch không tự trả lời nội dung bài có còn được dùng. Tác động: Phân biệt hủy lần đăng với loại bỏ nội dung, tránh tự phục hồi lịch cũ..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ chính sách đăng ký mới cùng email và đối tượng xóa; đội xử lý xóa nhiều kho/callback.
+<a id="ie-wqa-077-01"></a>
 
-Nguồn/EV: Q:69;Q:65;Y:644;M:13;G:5; CREV-0130;CREV-0131;CREV-0132;CREV-0133;CREV-0134. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-077-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0008; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.77.
+- Nguồn/vị trí: M19:15,21;BF19:19;KS:20261120:32.
+- EV: EV-0600;EV-0606;EV-0631.
+- Lý do: SD-M19 trang21/BF19 trang19 mô tả hủy lịch và không phục hồi; KS20261120 No.32 đang chờ xác nhận. Không phát sinh câu hỏi trùng; chưa đóng quyết định khách..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-037-01
+<a id="ie-wqa-052-01"></a>
 
-Finding `FND-0025`: [FND-0025.md](../../gap-analysis-2026-11-19/findings/FND-0025.md), SHA256 `bfee052d1171d222802344f2c2bb0537a7c8be31fd009fdeb75e08273c652743`.
+## WQA-052-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0088: ACCEPT, hash `bfee052d1171d222802344f2c2bb0537a7c8be31fd009fdeb75e08273c652743`.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0011; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.52.
+- Nguồn/vị trí: T19:5,6,8,9,11,26,33;BF19:4.
+- EV: EV-0557;EV-0558;EV-0560;EV-0561;EV-0563;EV-0578;EV-0585;EV-0616.
+- Lý do: SD-T19 trang8–9/BF19 trang4 đã mô tả đăng ký thanh toán xong tự cho phép sử dụng; không suy là mốc thu phí..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Chỉ chọn có đưa hàng video tự làm tạo nháp theo ngày vào phạm vi hiện tại; không hỏi lại quyền gửi/lưu thông thường.
+<a id="ie-wqa-074-01"></a>
 
-Nguồn/EV: T:15;K:73;Q:38; CREV-0135;CREV-0136;CREV-0137;CREV-0138. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-074-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: TRACK_EXISTING_SOURCE_ITEM.
+- Finding: FND-0012; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.74.
+- Nguồn/vị trí: M19:11,26;BF19:18.
+- EV: EV-0596;EV-0611;EV-0630.
+- Lý do: Danh sách năm nhóm đã có tại SD-M19 M-21 trang26; KS20261120 No.39 đang chờ xác nhận. Theo dõi tại mục nguồn này, không gửi câu trùng; chưa coi khách trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-075-01
+<a id="ie-wqa-073-01"></a>
 
-Finding `FND-0028`: [FND-0028.md](../../gap-analysis-2026-11-19/findings/FND-0028.md), SHA256 `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+## WQA-073-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0091: ACCEPT, hash `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+- Trạng thái: DEFER_TO_CONFIGURATION.
+- Finding: FND-0015; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.73.
+- Nguồn/vị trí: T19:12,13,16,27;M19:22.
+- EV: EV-0564;EV-0565;EV-0568;EV-0579;EV-0607.
+- Lý do: SD-M19 trang22: ba giờ chung là cấu hình vận hành. Không đòi giờ cố định để đóng phân tích; xác nhận cấu hình trước vận hành, không lấy giờ trong hình làm khách đã chốt..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ phạm vi email của No.75; không hỏi lại có cần email hoặc cách gửi kỹ thuật.
+<a id="ie-wqa-073-02"></a>
 
-Nguồn/EV: M:6;M:5;K:97;Q:75; CREV-0150;CREV-0151;CREV-0152;CREV-0153;CREV-0154. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-073-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DEFER_TO_CONFIGURATION.
+- Finding: FND-0015; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.73.
+- Nguồn/vị trí: M19:22;BF19:11;KS:20261120:20.
+- EV: EV-0607;EV-0623.
+- Lý do: SD-M19 trang22 mô tả3/7 là giá trị ban đầu chỉnh được; câu hỏi chính sách còn cần là có đếm ở chế độ tự động hay không (KS20261120 No.20), không hỏi lại con số cố định..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-075-02
+<a id="ie-wqa-002-01"></a>
 
-Finding `FND-0028`: [FND-0028.md](../../gap-analysis-2026-11-19/findings/FND-0028.md), SHA256 `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+## WQA-002-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0091: ACCEPT, hash `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0018; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.2.
+- Nguồn/vị trí: T19:20;BF19:12.
+- EV: EV-0572;EV-0624.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ phạm vi email của No.75; không hỏi lại có cần email hoặc cách gửi kỹ thuật.
+<a id="ie-wqa-062-02"></a>
 
-Nguồn/EV: Q:75;M:5;M:6; CREV-0150;CREV-0151;CREV-0152;CREV-0153;CREV-0154. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-062-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0018; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.62.
+- Nguồn/vị trí: T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26.
+- EV: EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-075-03
+<a id="ie-wqa-053-01"></a>
 
-Finding `FND-0028`: [FND-0028.md](../../gap-analysis-2026-11-19/findings/FND-0028.md), SHA256 `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+## WQA-053-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0091: ACCEPT, hash `cd6766ddd945e65f7025543f2c592b6eb9a45e3060fcec1489712e0ee778ee85`.
+- Trạng thái: EXCLUDED_PRICING_BY_USER.
+- Finding: FND-0021; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.53.
+- Nguồn/vị trí: T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26.
+- EV: EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627.
+- Lý do: Rút theo yêu cầu người dùng: bỏ câu liên quan giá tiền, phí và chính sách thanh toán; không coi nghiệp vụ đã được trả lời..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ phạm vi email của No.75; không hỏi lại có cần email hoặc cách gửi kỹ thuật.
+<a id="ie-wqa-066-02"></a>
 
-Nguồn/EV: Q:75;M:5;Q:7; CREV-0150;CREV-0151;CREV-0152;CREV-0153;CREV-0154. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-066-02
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0023; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.66.
+- Nguồn/vị trí: T19:5,9,25,30;M19:10,17;BF19:20.
+- EV: EV-0557;EV-0561;EV-0577;EV-0582;EV-0595;EV-0602;EV-0632.
+- Lý do: Văn phòng dùng ứng dụng Talent nhưng được miễn phí tháng; chưa rõ vòng đời kết thúc và giữ dữ liệu. Tác động: Chốt ngoại lệ vòng đời văn phòng; không hỏi lại việc miễn phí hoặc cách đăng nhập đã được nguồn mô tả..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-070-01
+<a id="ie-wqa-055-01"></a>
 
-Finding `FND-0001`: [FND-0001.md](../../finding-revision-2026-11-19/findings/FND-0001.md), SHA256 `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+## WQA-055-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0064: ACCEPT, hash `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0026; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.55.
+- Nguồn/vị trí: T19:12,13,17,18,27,30;BF19:6,7.
+- EV: EV-0564;EV-0565;EV-0569;EV-0570;EV-0579;EV-0582;EV-0618;EV-0619.
+- Lý do: Ngày mới có đề xuất mới, trong khi nháp chưa chọn của ngày trước có thể còn giá trị. Tác động: Chốt vòng đời nháp; thời gian giữ cụ thể chỉ cần hỏi tiếp nếu cho phép dùng lại..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ hành vi dùng tư liệu và kết quả đổi/kết thúc kỳ tại No.70; phần phụ thuộc phương án nhịp tạo chờ FutureCore trình.
+<a id="ie-wqa-065-01"></a>
 
-Nguồn/EV: T:12;T:23;Q:70;G:1; CREV-0001;CREV-0002;CREV-0003;CREV-0004;CREV-0005;CREV-0006;CREV-0007. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-065-01
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0031; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.65.
+- Nguồn/vị trí: T19:3,5,6,7;M19:7;BF19:3.
+- EV: EV-0555;EV-0557;EV-0558;EV-0559;EV-0592;EV-0615.
+- Lý do: GJ19§3 và SD-M19 trang7: đơn chờ không hạn; trao đổi qua email ngoài app theo BF19 trang3..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-070-02
+<a id="ie-wqa-065-02"></a>
 
-Finding `FND-0001`: [FND-0001.md](../../finding-revision-2026-11-19/findings/FND-0001.md), SHA256 `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+## WQA-065-02
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0064: ACCEPT, hash `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+- Trạng thái: RESOLVED_BY_SOURCE.
+- Finding: FND-0031; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.65.
+- Nguồn/vị trí: T19:3,5,6,7;M19:7;BF19:3.
+- EV: EV-0555;EV-0557;EV-0558;EV-0559;EV-0592;EV-0615.
+- Lý do: SD-M19 trang7 mô tả đơn sau từ chối tiếp nhận/thông báo như đơn mới; không thêm điều kiện hoặc hạn tùy ý..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-Phạm vi giữ: Giữ hành vi dùng tư liệu và kết quả đổi/kết thúc kỳ tại No.70; phần phụ thuộc phương án nhịp tạo chờ FutureCore trình.
+<a id="ie-wqa-065-03"></a>
 
-Nguồn/EV: T:12;T:23;Q:70; CREV-0001;CREV-0002;CREV-0003;CREV-0004;CREV-0005;CREV-0006;CREV-0007. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+## WQA-065-03
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+- Trạng thái: DRAFT_UNAPPROVED.
+- Finding: FND-0031; hash `6c6da7d8f898fa7b67a2bdd69ebe454dd56fd1183d63cf098420ec66d3cb0509`.
+- QA: No.65.
+- Nguồn/vị trí: T19:3,5,6,7;M19:7;BF19:3.
+- EV: EV-0555;EV-0557;EV-0558;EV-0559;EV-0592;EV-0615.
+- Lý do: Đã có luồng nộp lại thành đơn mới; chưa có yêu cầu rõ về sửa kết quả trên đơn cũ. Tác động: Chỉ giữ nếu công ty cần thao tác sửa quyết định; không hỏi lại quyền nộp lại đã được nguồn mô tả..
+- Giới hạn: QA mới có SHA-256 `c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda`; bằng chứng QA hash cũ không được kế thừa. NOT_REVIEWED; không tự xác nhận khách hoặc ký review.
 
-## IE-WQA-070-03
+<a id="ie-wqa-081-01"></a>
 
-Finding `FND-0001`: [FND-0001.md](../../finding-revision-2026-11-19/findings/FND-0001.md), SHA256 `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+## WQA-081-01
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0064: ACCEPT, hash `3e2a48dbc25d2da1793e8479989c9907775f093dc55ba4c0bca4cc70cfea562f`.
+Finding FND-0049, nguồn: QA!A81:J81, No.81; SD-T19 trang PDF10, T-07; QA No.23; EV: EV-0950;EV-0562.
 
-Phạm vi giữ: Giữ hành vi dùng tư liệu và kết quả đổi/kết thúc kỳ tại No.70; phần phụ thuộc phương án nhịp tạo chờ FutureCore trình.
+FACT: No.81 trả lời có thao tác hủy kết nối; SD-T19 trang10 quy định một tài khoản cho mỗi SNS và có kết nối lại.
 
-Nguồn/EV: T:12;T:23;Q:70;M:19; CREV-0001;CREV-0002;CREV-0003;CREV-0004;CREV-0005;CREV-0006;CREV-0007. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+INFERENCE: Lịch đã có và tài khoản SNS thay đổi có thể không còn cùng đích đăng; đây là tình huống giả định cần xác định chính sách, chưa phải lỗi đã quan sát.
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+PROPOSAL: ĐỀ XUẤT CỦA ĐỘI — CHƯA CHỐT: chặn ngắt kết nối/đổi tài khoản của đúng SNS còn lịch đăng; hiển thị lịch liên quan và hướng dẫn liên hệ Manager xử lý trước. Không chặn các SNS khác không có lịch. Không coi cách này xử lý được việc mất kết nối ngoài ứng dụng; phần đó do team thiết kế.
 
-## IE-WQA-059-01
+Giới hạn: chưa content ACCEPT, chưa Independent Verification, chưa quyết định khách; chỉ là ứng viên được người dùng yêu cầu ghi.
 
-Finding `FND-0007`: [FND-0007.md](../../finding-revision-2026-11-19/findings/FND-0007.md), SHA256 `969677f26bdca1a5c2abeaa78c9f49d7b84f6509fb8278c91b0ffddf03582b56`.
+<a id="ie-wqa-013-01"></a>
 
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0070: ACCEPT, hash `969677f26bdca1a5c2abeaa78c9f49d7b84f6509fb8278c91b0ffddf03582b56`.
+## WQA-013-01
 
-Phạm vi giữ: Chỉ giữ đích SNS/giờ; bỏ hỏi lại có nút hay màn đặt lại.
+Finding FND-0050, nguồn: QA!A14:J14, No.13; SD-M19 trang PDF23, M-18; SD-T19 trang PDF17–18, T-12; GJ19§12; QA No.57/71/90; EV: EV-0884;EV-0608.
 
-Nguồn/EV: T:18;M:11;Q:59;Y:755; CREV-0035;CREV-0036;CREV-0037;CREV-0038. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
+FACT: SD-M19 trang23 cho thêm/sửa/xóa danh sách chung và kiểm bài khi Talent chấp nhận; GJ19§12 mô tả kiểm lại bản Manager sửa.
 
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
+INFERENCE: Bài sạch theo danh sách cũ có thể chứa từ mới bị cấm; hiệu lực hồi tố và người tiếp nhận xử lý chưa được xác nhận.
 
-## IE-WQA-060-01
+PROPOSAL: CHƯA ĐỀ XUẤT CHỐT HÀNH VI: cần khách xác định hiệu lực của danh sách mới và trách nhiệm xử lý. Không mặc định Manager đã duyệt thì bài được miễn kiểm tra mới; cũng không tự buộc Talent xác nhận lại bản Manager sửa, vì GJ19§12 đã mô tả không cần trả lại Talent.
 
-Finding `FND-0008`: [FND-0008.md](../../finding-revision-2026-11-19/findings/FND-0008.md), SHA256 `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0071: ACCEPT, hash `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Phạm vi giữ: Tiếp tục No.60/61/77 riêng; giữ cả phần bảo lưu hủy/không phục hồi của77; đội kiểm hủy thực tế.
-
-Nguồn/EV: M:13;M:19;M:32;Q:60; CREV-0039;CREV-0040;CREV-0041;CREV-0042;CREV-0043;CREV-0044;CREV-0045. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-061-01
-
-Finding `FND-0008`: [FND-0008.md](../../finding-revision-2026-11-19/findings/FND-0008.md), SHA256 `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0071: ACCEPT, hash `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Phạm vi giữ: Tiếp tục No.60/61/77 riêng; giữ cả phần bảo lưu hủy/không phục hồi của77; đội kiểm hủy thực tế.
-
-Nguồn/EV: M:11;T:19;Q:61; CREV-0039;CREV-0040;CREV-0041;CREV-0042;CREV-0043;CREV-0044;CREV-0045. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-061-02
-
-Finding `FND-0008`: [FND-0008.md](../../finding-revision-2026-11-19/findings/FND-0008.md), SHA256 `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0071: ACCEPT, hash `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Phạm vi giữ: Tiếp tục No.60/61/77 riêng; giữ cả phần bảo lưu hủy/không phục hồi của77; đội kiểm hủy thực tế.
-
-Nguồn/EV: M:11;T:19;Q:61; CREV-0039;CREV-0040;CREV-0041;CREV-0042;CREV-0043;CREV-0044;CREV-0045. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-077-01
-
-Finding `FND-0008`: [FND-0008.md](../../finding-revision-2026-11-19/findings/FND-0008.md), SHA256 `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0071: ACCEPT, hash `3d817eb90246141aeaf91251232e6170aa8914e2b3738127c5c0ee7c728fc0f4`.
-
-Phạm vi giữ: Tiếp tục No.60/61/77 riêng; giữ cả phần bảo lưu hủy/không phục hồi của77; đội kiểm hủy thực tế.
-
-Nguồn/EV: M:19;M:32;Q:77;K:85; CREV-0039;CREV-0040;CREV-0041;CREV-0042;CREV-0043;CREV-0044;CREV-0045. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-052-01
-
-Finding `FND-0011`: [FND-0011.md](../../finding-revision-2026-11-19/findings/FND-0011.md), SHA256 `e06119baa0815ec1fc6c7a278269f6348ca628c142872136252351a2baa4275c`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0074: ACCEPT, hash `e06119baa0815ec1fc6c7a278269f6348ca628c142872136252351a2baa4275c`.
-
-Phạm vi giữ: Giữ quan hệ chuyển tay/tự chuyển và trạng thái hiển thị; không dùng trạng thái này để tự chốt ngày thu.
-
-Nguồn/EV: M:13;T:8;Q:52;Y:616; CREV-0056;CREV-0057;CREV-0058;CREV-0059;CREV-0060. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-074-01
-
-Finding `FND-0012`: [FND-0012.md](../../finding-revision-2026-11-19/findings/FND-0012.md), SHA256 `420db66e02c10ceee93966f404d3805ebeef3a4a5ff4675ff41eec4756935633`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0075: ACCEPT, hash `420db66e02c10ceee93966f404d3805ebeef3a4a5ff4675ff41eec4756935633`.
-
-Phạm vi giữ: Chỉ xác nhận trường/phạm vi mục nhập trong màn có sẵn; No.74 cần cập nhật bối cảnh khi dùng.
-
-Nguồn/EV: M:23;M:30;K:30;Q:74; CREV-0061;CREV-0062;CREV-0063;CREV-0064;CREV-0065. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-073-01
-
-Finding `FND-0015`: [FND-0015.md](../../finding-revision-2026-11-19/findings/FND-0015.md), SHA256 `145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0078: ACCEPT, hash `145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787`.
-
-Phạm vi giữ: Giữ giờ/loại tin/ngưỡng trong No.73; không kéo nút tạm dừng M-10 vào phạm vi này.
-
-Nguồn/EV: M:20;T:13;G:4;Q:73; CREV-0076;CREV-0077;CREV-0078;CREV-0079;CREV-0080;CREV-0081. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-073-02
-
-Finding `FND-0015`: [FND-0015.md](../../finding-revision-2026-11-19/findings/FND-0015.md), SHA256 `145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0078: ACCEPT, hash `145991e9e65a8391d1ea87f46c5d06b80008a504f5e2acdfd94f1fa4d91d1787`.
-
-Phạm vi giữ: Giữ giờ/loại tin/ngưỡng trong No.73; không kéo nút tạm dừng M-10 vào phạm vi này.
-
-Nguồn/EV: M:20;K:52;Q:73; CREV-0076;CREV-0077;CREV-0078;CREV-0079;CREV-0080;CREV-0081. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-002-01
-
-Finding `FND-0018`: [FND-0018.md](../../finding-revision-2026-11-19/findings/FND-0018.md), SHA256 `ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0081: ACCEPT, hash `ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7`.
-
-Phạm vi giữ: Giữ giá, người đổi và lượt trước/sau đổi; thời điểm điều chỉnh lỗi ở phần riêng No.62.
-
-Nguồn/EV: T:16;K:67;Q:3; CREV-0091;CREV-0092;CREV-0093;CREV-0094;CREV-0095. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-062-02
-
-Finding `FND-0018`: [FND-0018.md](../../finding-revision-2026-11-19/findings/FND-0018.md), SHA256 `ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0081: ACCEPT, hash `ae412eb8783bba5f81896e013773a7bd9a830085001b48400c97113eb3adc4d7`.
-
-Phạm vi giữ: Giữ giá, người đổi và lượt trước/sau đổi; thời điểm điều chỉnh lỗi ở phần riêng No.62.
-
-Nguồn/EV: Y:636-639;T:16;Q:62;K:68; CREV-0091;CREV-0092;CREV-0093;CREV-0094;CREV-0095. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-053-01
-
-Finding `FND-0021`: [FND-0021.md](../../finding-revision-2026-11-19/findings/FND-0021.md), SHA256 `96e11c07c6fe41cfbe652db9b7658130286931bcb9871379ba2898651d81c9ec`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0084: ACCEPT, hash `96e11c07c6fe41cfbe652db9b7658130286931bcb9871379ba2898651d81c9ec`.
-
-Phạm vi giữ: Giữ sự kiện bắt đầu thu và kỳ cộng phí video; không hỏi lại nguyên tắc trọn tháng.
-
-Nguồn/EV: T:8;T:20;Q:53;G:6; CREV-0106;CREV-0107;CREV-0108;CREV-0109;CREV-0110;CREV-0111;CREV-0112;CREV-0113;CREV-0114. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-066-02
-
-Finding `FND-0023`: [FND-0023.md](../../corrections-2026-11-19/findings/FND-0023.md), SHA256 `f483e992b310347deb50139fbc117dac984ff4619668a03bb0c7d9544e9c6501`.
-
-Hiệu lực review: PENDING_CURRENT_FINDING_RECHECK. Review lịch sử REV-0086: ACCEPT, hash `97d179fd9aca9992ea41b67515cae30bbafb5960eabb85b0ab214dd1445927ee`.
-
-**HOLD**: Bản finding đã thay hash; cần reviewer ACCEPT đúng bản mới trước xét lại câu hỏi. Yêu cầu review `REV-0156` đang OPEN, chưa có người ký.
-
-Phạm vi giữ: Đối chiếu khác biệt đường thao tác và giữ phần email vận hành/trạng thái/xóa chưa chốt; không đặt lại ai nối/có trong danh sách.
-
-Nguồn/EV: M:15;M:33;M:13;Q:66; CREV-0119;CREV-0120;CREV-0121;CREV-0122;CREV-0123;CREV-0124;CREV-0125;CREV-0126;CREV-0127;CREV-0128;CREV-0129. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-055-01
-
-Finding `FND-0026`: [FND-0026.md](../../finding-revision-2026-11-19/findings/FND-0026.md), SHA256 `3cd7b20045402d84ec676334f7cff4a44e9966a86151b8b9bfb77708c8d1451e`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0089: ACCEPT, hash `3cd7b20045402d84ec676334f7cff4a44e9966a86151b8b9bfb77708c8d1451e`.
-
-Phạm vi giữ: Giữ khả năng dùng nháp cũ; quyền xóa tư liệu có lịch chỉ trình sau phương án bảo vệ của đội.
-
-Nguồn/EV: T:11;T:14;Q:55; CREV-0139;CREV-0140;CREV-0141;CREV-0142;CREV-0143;CREV-0144;CREV-0145. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-065-01
-
-Finding `FND-0031`: [FND-0031.md](../../finding-revision-2026-11-19/findings/FND-0031.md), SHA256 `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0094: ACCEPT, hash `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Phạm vi giữ: Giữ quyền xét/nộp lại và cách xử lý đơn chờ; không hỏi lại phương thức tự đăng ký đã chốt.
-
-Nguồn/EV: M:6;Q:65; CREV-0164;CREV-0165;CREV-0166;CREV-0167;CREV-0168;CREV-0169. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-065-02
-
-Finding `FND-0031`: [FND-0031.md](../../finding-revision-2026-11-19/findings/FND-0031.md), SHA256 `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0094: ACCEPT, hash `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Phạm vi giữ: Giữ quyền xét/nộp lại và cách xử lý đơn chờ; không hỏi lại phương thức tự đăng ký đã chốt.
-
-Nguồn/EV: Q:65;Y:644;M:6; CREV-0164;CREV-0165;CREV-0166;CREV-0167;CREV-0168;CREV-0169. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
-## IE-WQA-065-03
-
-Finding `FND-0031`: [FND-0031.md](../../finding-revision-2026-11-19/findings/FND-0031.md), SHA256 `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Hiệu lực review: HISTORICAL_CONTENT_REVIEW_STILL_MATCHES_FINDING_HASH. Review lịch sử REV-0094: ACCEPT, hash `01f6b753cd1330c772f7fdbcd495ec01a96279a862997afdc769dde1282a8514`.
-
-Phạm vi giữ: Giữ quyền xét/nộp lại và cách xử lý đơn chờ; không hỏi lại phương thức tự đăng ký đã chốt.
-
-Nguồn/EV: M:4;M:21;M:6;Q:65; CREV-0164;CREV-0165;CREV-0166;CREV-0167;CREV-0168;CREV-0169. Bằng chứng sửa bổ sung ở [correction-evidence.csv](../../corrections-2026-11-19/correction-evidence.csv).
-
-FACT: nguồn và trạng thái review được truy vết. INFERENCE: phần quyết định còn mở trong phạm vi câu. ASSUMPTION: không tự chọn hành vi. PROPOSAL: câu hỏi là bản biên tập, không phải quyết định khách. Không tự Customer Confirmed/phê duyệt Q&A.
-
+Giới hạn: chưa content ACCEPT, chưa Independent Verification, chưa quyết định khách; chỉ là ứng viên được người dùng yêu cầu ghi.

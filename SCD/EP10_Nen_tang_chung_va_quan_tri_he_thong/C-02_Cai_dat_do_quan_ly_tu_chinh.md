@@ -1,5 +1,13 @@
 # C-02 Cài đặt do quản lý tự chỉnh
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+M-17 cấu hình giờ chung, nhắc tư liệu 2 giờ và ngày 3/7 ban đầu, ngày tổng kết; M-18 danh sách từ cấm. Mục tiêu/quyền duyệt/dừng theoTalent tại M-10.
+
+Đơn giá video không tự đặt vào M-17 vì bản mới không có mục giá, chờ No.62.
+
+Căn cứ: `M19:15,22,23;BF19:18` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0600;EV-0607;EV-0608;EV-0630`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP10 – Nền tảng chung và quản trị hệ thống |

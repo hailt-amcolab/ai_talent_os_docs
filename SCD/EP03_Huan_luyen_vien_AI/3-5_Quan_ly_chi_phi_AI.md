@@ -1,5 +1,15 @@
 # 3-5 Quản lý chi phí AI
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Tổng hợp phí AI theo Talent/tháng và tách ChatGPT. QA No.17/CR-16 chưa đổi: chưa có trần tự dừng. Sheet chi phí mới chỉ đề xuất trần, cột trả lời trống.
+
+Chưa xác nhận trần tiền hoặc phạm vi dừng khi chạm trần; không đưa trần hai lần viết lại đã bỏ vào tính phí.
+
+Căn cứ: `M19:15;KS:FEE3` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0600`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
+> **Chờ đối chiếu nguồn20/11:** KS sheet chi phí/quy mô C4:D4 mới đề xuất trần phí AI nhưng E4 chưa trả lời. QA No.17/CR-16 không đổi nội dung; không tự thay quyết định không có trần bằng đề xuất mới. [Phạm vi và gate](../../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |
@@ -41,7 +51,7 @@ Tổng hợp phí AI mà AIコーチ dùng, theo từng tài năng và từng th
 | Tổng hợp theo tài năng, theo tháng | — | Chốt | §6-5 |
 | Tách khỏi phí ChatGPT | Hệ thống không theo dõi phí ChatGPT; M-10 chỉ hiện phí AI của hệ thống | Chốt | §5-5, §6-5 |
 | Đơn giá mô hình, tỉ giá | Đội nhập theo bảng giá OpenAI | Tham số | S03-08 |
-| Mức trần chi phí | Không có | Đề xuất | S03-08 |
+| Mức trần chi phí | Chưa có trần tự dừng theo QA No.17/CR-16; đề xuất trần mới chưa trả lời | Quyết định cũ và đề xuất mới tách riêng | KS sheet chi phí C4:E4 |
 
 ## Dữ liệu [Đề xuất nội bộ]
 

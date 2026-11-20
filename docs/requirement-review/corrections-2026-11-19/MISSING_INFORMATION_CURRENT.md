@@ -1,5 +1,9 @@
 # Thông tin còn thiếu — bản hiện hành sau sửa
 
+**Đã đối chiếu nguồn19/11/QA20/11.** Các kết luận còn thiếu bên dưới chỉ áp dụng phần chưa được nguồn mới giải đáp. Xem [phân tuyến từng câu và nguồn mới](NEW_DELIVERY_IMPACT.md) và chỉ mục30luồng hiện hành. Không hỏi lại H65, tự kích hoạt sau đăng ký phương thức, đơn chờ không hạn, đườngoffice dùng app, hay Manager sửa từcấm có cần trảTalent xác nhận.
+
+> **Đã giải quyết số lượt — DEC-0001:** không giới hạn số lần AI viết lại. Không hỏi lại H65 hoặc cách đếm để chặn lần3; xử lý lỗi/gửi lặp còn là việc đội. Các mục khác dưới đây giữ phạm vi riêng.
+
 Không phải Q&A mới; phần có nguồn và phần chưa chốt đã được tách. Snapshot extraction cũ giữ nguyên.
 
 - **REQ-0004 — Đăng nhập bằng email và mật khẩu:** Cơ chế đăng nhập có mô tả; giới hạn và thời gian phiên trong chương 6 vẫn là giả định, không tự lấy Close No.25 để xác nhận toàn bộ. Nguồn: Y:591-598; K:2; T:6.
@@ -11,9 +15,9 @@ Không phải Q&A mới; phần có nguồn và phần chưa chốt đã đượ
 - **REQ-0014 — Hết phiên quản trị khi không thao tác:** 30 phút là giả định chương 6, chưa có quyết định khách riêng. Nguồn: Y:583; Y:610; M:4.
 - **REQ-0015 — Thêm hoặc vô hiệu hóa Manager:** Chặn tự vô hiệu hóa và Manager cuối; khôi phục khi mất xác thực: QA No.67. Hành vi vô hiệu hóa được KS xác nhận; thêm người chỉ mô tả. Nguồn: Y:611; Y:490; K:115; M:21.
 - **REQ-0016 — Quyền Manager và ngăn Talent vào quản trị:** KS tiền đề nút dừng toàn bộ chưa OK; QA No.77 còn mở. Close No.5 ngày 15/11 là lựa chọn thiết kế của đội. Nguồn: Y:612-613; Q:6; M:4.
-- **REQ-0020 — Điều kiện chuyển từ chưa dùng sang đang dùng:** Chỉ phần áp dụng đề xuất tự chuyển và mốc hiển thị tương ứng còn mở No.52/53; không hỏi lại có thao tác Manager chuyển bằng tay. Nguồn: Y:615-616;Q:52;M:13;Q:53.
+- **REQ-0020 — Điều kiện chuyển từ chưa dùng sang đang dùng:** SD-T19 trang8–9 đã mô tả tự cho phép sử dụng sau đăng ký phương thức; không hỏi lại lựa chọn tự chuyển. Mốc bắt đầu thu phí vẫn No.53, độc lập trạng thái. Nguồn: Y:615-616;Q:52;M:13;Q:53.
 - **REQ-0022 — Tra cứu nhật ký xem bất biến:** Nhật ký cần ghi đã được xác nhận; bộ lọc và tính bất biến là mô tả yêu cầu/chỉ dẫn thiết kế, chưa có xác nhận khách riêng. Nguồn: Y:621; Q:22; M:22.
-- **REQ-0024 — Không nhận đăng ký trùng email:** Chưa rõ đăng ký lại sau từ chối/ngừng dùng/xóa dữ liệu; QA No.65/69. Nguồn: Y:644; Q:65; Q:69.
+- **REQ-0024 — Không nhận đăng ký trùng email:** Đơn sau từ chối nộp mới đã có ởSD-M19 trang7; chỉ giữ thay kết quả chính đơn từ chối và đăng ký lại sau nghỉ/xóa dữ liệu tại No.65/69. Nguồn: Y:644; Q:65; Q:69.
 - **REQ-0027 — Xác nhận đích trước khi ghi thông tin:** Chưa có quyết định khách riêng về bước xác nhận và tình huống ghi đè/đồng thời. Nguồn: Y:647-648.
 - **REQ-0029 — Phản ánh ngay mục tiêu vừa sửa:** Chưa có xác nhận riêng tiêu chí tức thời hoặc tính toán phần trăm. Nguồn: Y:651; M:13.
 - **REQ-0034 — Danh sách Talent và bộ lọc:** SD có thêm lọc category/người phụ trách và office trong cùng danh sách; QA No.6/66 còn mở cho chi tiết. Nguồn: Y:657-658; M:9.
@@ -31,7 +35,7 @@ Không phải Q&A mới; phần có nguồn và phần chưa chốt đã đượ
 - **REQ-0049 — Nhắc Talent lâu không đăng và báo Manager:** KS nói số ngày sẽ xác nhận sau; không coi 3 ngày/7 ngày là giá trị đã chốt. Nguồn: Y:674-676; K:52.
 - **REQ-0052 — Nội dung bài nháp và giới hạn dùng chung SNS:** Ghi chú KS xác nhận24 nói tạo văn bản/hashtag theo ảnh; cách hiểu ảnh→bài đang được hỏi No.70, không tự chốt toàn bộ cơ chế. Nguồn: Y:693-695; K:60; Q:70.
 - **REQ-0056 — Không chấp nhận bài không có tư liệu:** KS xác nhận26 còn để xác nhận ngày không nhận tư liệu trong chế độ kiểm tra; giữ riêng giới hạn nút và quy tắc ngày không tư liệu. Nguồn: Y:701; T:14; K:62.
-- **REQ-0057 — AI kiểm từ cấm theo ngữ cảnh:** SD-T18 p22 đã vẽ chấp nhận → kiểm từ cấm → duyệt công việc khi Talent xin duyệt → đặt lịch; SD-M18 p29 có Manager sửa → đặt lịch. Chưa chốt Talent có sửa trực tiếp bài bị chặn/tái xác nhận sau Manager sửa hay không, và giao điểm kiểm/duyệt ở chế độ tự động; tiếp tục No.57/71. Không coi mọi thứ tự đều chưa mô tả. Nguồn: Y:704-706;K:24;K:59;Q:14;Q:41;Q:57;M:14;Y:704-705;M:29;T:22;Q:71.
+- **REQ-0057 — AI kiểm từ cấm theo ngữ cảnh:** SD-T18 p22 đã vẽ chấp nhận → kiểm từ cấm → duyệt công việc khi Talent xin duyệt → đặt lịch; SD-M18 p29 có Manager sửa → đặt lịch. GJ19§12/SD-M19 trang16 đã mô tả không trả Talent xác nhận bảnManager sửa; chỉ quyền Talent sửa chính bài bị chặn chưa rõ, và giao điểm kiểm/duyệt ở chế độ tự động; tiếp tục No.57/71. Không coi mọi thứ tự đều chưa mô tả. Nguồn: Y:704-706;K:24;K:59;Q:14;Q:41;Q:57;M:14;Y:704-705;M:29;T:22;Q:71.
 - **REQ-0059 — Xem trước hình và chữ của bài:** Chưa có xác nhận riêng về độ giống bài thực trên từng SNS. Nguồn: Y:708; T:14.
 - **REQ-0060 — Gửi ảnh hoặc video từ thiết bị:** Định dạng, dung lượng và quy tắc chọn nhiều file chưa chốt. Nguồn: Y:711; T:15.
 - **REQ-0061 — Phản hồi lỗi gửi tư liệu:** Giới hạn cụ thể, khôi phục gửi dở và chống trùng chưa mô tả; không tự thêm từ technical spec. Nguồn: Y:712-713.

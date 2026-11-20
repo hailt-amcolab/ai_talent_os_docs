@@ -1,5 +1,13 @@
 # 8-5 Thông báo khi đăng lỗi
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Manager thao tác đăng lại tại M-08; nguồn mới mô tả đăng lại ngay, không có màn chọn giờ. Không tự động thử lại khi lỗi.
+
+BF19 trang 9 vẫn có nhánh Talent đăng lại dưới nhãn đề xuất, trong khi màn T17 không có nút; ghi khác biệt tác nhân. Đích SNS lỗi vẫn No.59; bỏ giả định hẹn sau 15 phút.
+
+Căn cứ: `M19:12;BF19:9;GJ19:17` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0597;EV-0621;EV-0650`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |
@@ -21,10 +29,11 @@
 
 ## Luồng chính
 
-1. 8-3 ghi một hoặc nhiều mạng `failed`.
-2. Báo tài năng: thông báo 投稿の失敗, ví dụ "TikTok に投稿できませんでした", kèm lý do dễ hiểu (đổi từ mã lỗi). T-13 hiện 失敗.
-3. Báo quản lý: thông báo ở M-02 và biểu tượng đỏ ở M-08.
-4. **Hẹn lại (S06-04):** quản lý bấm 予約し直す ở M-08. Hệ thống chỉ đăng lại các mạng lỗi (S06-05), hẹn sau 15 phút. Tài năng muốn hẹn lại thì liên hệ quản lý (T-13 ghi rõ).
+1. Ghi thành công/thất bại riêng từng SNS; thông báo Talent và Manager phụ trách, nêu mạng và lý do.
+2. Không tự đăng lại. Manager mở M-08 và bấm 予約し直す.
+3. SD-M19 trang12/GJ19§17 mô tả đăng lại ngay; bỏ giả định tự hẹn sau15phút.
+4. Chỉ mạng lỗi hay mọi mạng còn No.59; chưa coi lựa chọn chỉ mạng lỗi là đã chốt.
+5. BF19 trang9 còn vẽ Talent bấm đăng lại như đề xuất, trong khi T-17 trang23 không có nút: giữ khác biệt actor để đối chiếu, không tự cấp quyền mới.
 
 ## Luồng lỗi và trường hợp biên
 
@@ -41,9 +50,9 @@
 |---|---|---|---|
 | Báo tài năng kèm mạng và lý do; cảnh báo ở màn hình quản trị | — | Chốt | §6-10, 別紙A |
 | Không tự đăng lại | — | Chốt | §6-10 |
-| Ai hẹn lại | Quản lý | Đề xuất | S06-04, [AG] M-08 |
+| Ai đăng lại | M-08 mô tả Manager; BF19 trang9 còn nhánh Talent đề xuất | Khác biệt nguồn cần giữ | SD-M19 trang12; BF19 trang9 |
 | Đăng lại mạng nào | Chỉ mạng lỗi | Đề xuất | S06-05 |
-| Giờ hẹn lại | Sau 15 phút | Tham số | S06-05 |
+| Giờ đăng lại | Ngay theo mô tả mới; quyền/thao tác và đích SNS cần kiểm đúng phạm vi | GJ19§17; SD-M19 trang12 | BF19 trang9 còn đề xuất actor |
 
 ## Dữ liệu
 

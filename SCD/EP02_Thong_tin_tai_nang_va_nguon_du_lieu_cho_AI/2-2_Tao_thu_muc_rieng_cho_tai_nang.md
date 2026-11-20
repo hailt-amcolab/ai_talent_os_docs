@@ -1,5 +1,13 @@
 # 2-2 Tạo thư mục riêng cho tài năng
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Folder Talent tạo tự động khi đăng ký thanh toán; folder office tạo ngay khi tạo tài khoản. Chưa nhập hồ sơ thì AI không tạo bài. Hồ sơ/chỉ thị đọc từ nguồn tương ứng; không yêu cầu Manager tạo folder thủ công.
+
+Định dạng, chống ghi lặp/đồng thời và khôi phục là việc đội; chưa tự thay kiến trúc OneDrive.
+
+Căn cứ: `T19:9;M19:7,17;BF19:4,18` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0561;EV-0592;EV-0602;EV-0616;EV-0630`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP02 – Thông tin tài năng và nguồn dữ liệu cho AI |

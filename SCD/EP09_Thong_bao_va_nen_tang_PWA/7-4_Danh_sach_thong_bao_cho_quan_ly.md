@@ -1,5 +1,13 @@
 # 7-4 Danh sách thông báo cho quản lý
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người.
+
+Phân công category/cá nhân và fallback vẫn No.6; email loại nào và câu chữ còn cần rà mẫu. Không tự chốt đã xử lý chung hay riêng từng Manager.
+
+Căn cứ: `M19:6,8;BF19:14;GJ19:6,7` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0591;EV-0593;EV-0626;EV-0639;EV-0640`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP09 – Thông báo và nền tảng PWA |
@@ -21,13 +29,11 @@ Thông báo cho quản lý hiện ở danh sách trên màn hình quản trị, 
 
 ## Luồng chính
 
-1. Module nào cần báo quản lý thì gọi `notify_managers(type, talent_id, payload)`; `type` theo C-05.
-2. Một thông báo dùng chung cho mọi quản lý (§3-3), trừ 承認の依頼 (yêu cầu duyệt) chỉ gửi quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34). Lọc được theo nhóm tài năng (CR-17, [KS] 確認47).
-3. M-02: cột ngày giờ, loại (nhãn màu), tài năng, nội dung, nút 対応済みにする (đánh dấu đã xử lý). Bộ lọc loại, công tắc "対応済みも表示" (hiện cả đã xử lý).
-4. Chạm vào dòng thì mở màn liên quan (M-03, M-05, M-07 đến M-11).
-5. Một quản lý đánh dấu đã xử lý thì **mọi quản lý** thấy đã xử lý, kèm tên người đánh dấu (S09-02).
-6. Một số loại tự đánh dấu đã xử lý khi việc xong: 承認の依頼 khi đã duyệt, trả lại hoặc quá hạn; 利用の申し込み khi đã duyệt hoặc từ chối; 使ってはいけない言葉 khi đã sửa hoặc không đăng (S09-03).
-7. Menu trái hiện số chưa xử lý.
+1. Tạo thông báo cho Manager phụ trách Talent theo phân công; không gửi toàn bộ Manager mặc định. Category hay cá nhân và fallback còn No.6/KS20261120 No.10.
+2. M-02 (SD-M19 trang6) hiển thị ngày, loại, Talent, nội dung; lọc theo loại/category. Mặc định chỉ thông báo chưa mở; bỏ lọc để xem cả đã mở.
+3. Nhấn dòng để mở màn liên quan: thông báo được đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Không có nút 対応済みにする riêng.
+4. Yêu cầu duyệt bài nằm M-04 riêng, không liệt kê lại ở M-02.
+5. Có email tới Manager phụ trách theo BF19 trang14; loại email/câu chữ cuối tiếp tục No.75 và rà mẫu thông báo/email. Không tự chọn trạng thái đã đọc chung hay riêng từng Manager.
 
 ## Luồng lỗi và trường hợp biên
 

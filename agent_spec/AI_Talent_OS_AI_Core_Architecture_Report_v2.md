@@ -1,776 +1,251 @@
-# AI Talent OS --- Báo cáo kiến trúc AI Core và kế hoạch tích hợp
+# AI Talent OS — Kiến trúc AI Core và kế hoạch tích hợp
 
-**Phiên bản:** 2.0 (điều chỉnh sau review kỹ thuật)\
-**Ngày:** 19/11/2026\
-**Trạng thái:** Đề xuất kỹ thuật; chưa phải đặc tả được khách hàng phê
-duyệt\
-**Phạm vi:** AI Orchestrator, MCP, OneDrive, Upload-Post, Supabase,
-RBAC, Worker, triển khai và kiểm thử
+**Phiên bản:** 2.1 — review theo nguồn hiện hành và code repository. Bản trước: 2.0 ngày 19/11/2026.  
+**Trạng thái:** thiết kế nội bộ; BullMQ + Redis đã được người dùng chốt. Các lựa chọn khác giữ nhãn đề xuất; chưa Independent Verification, chưa phải đặc tả khách phê duyệt hoặc tính năng đã triển khai.  
+**Phạm vi:** AI Coach, điều phối, MCP, OneDrive, Upload-Post, Postgres, worker và các ranh giới nghiệp vụ.
 
-## 1. Tóm tắt quyết định
+## 1. Kết quả review và căn cứ
 
-Kiến trúc được lựa chọn là **Code-first AI Core + OneDrive-driven
-Business Instructions + MCP Tool Gateway + Background Worker**.
+Giữ hướng **AI Core bằng TypeScript + service nghiệp vụ + worker BullMQ/Redis**. Cần chỉnh cách ghép dữ liệu, gửi job, phân quyền và thứ tự triển khai để phù hợp dự án; không cần tự xây nền tảng multi-agent hoặc thêm một backend song song.
 
--   **Không tự xây dựng toàn bộ Agent Engine:** dùng thư viện AI SDK cho
-    tương tác mô hình, tool calling và đầu ra có cấu trúc.
--   **Tự xây dựng lớp điều phối mỏng:** ghép nghiệp vụ AI Talent OS, xác
-    thực, phạm vi dữ liệu, theo dõi tác vụ, giới hạn thực thi.
--   **MCP TypeScript SDK:** xây dựng các MCP Tool truy cập dịch vụ
-    nghiệp vụ; có thể cung cấp MCP endpoint riêng cho ChatGPT.
--   **OneDrive:** nguồn thông tin Talent, mục tiêu, kiến thức, chỉ dẫn
-    nghiệp vụ.
--   **Upload-Post:** nguồn thống kê SNS thông qua **MCP → Backend SNS
-    Service → Upload-Post API**, không để mô hình gọi API Upload-Post
-    trực tiếp.
--   **Supabase:** dữ liệu ứng dụng, liên kết Talent/SNS, trạng thái, kết
-    quả AI, nhật ký; có thể lưu snapshot số liệu.
--   **VPS:** AI Worker, Scheduler, Redis/BullMQ, MCP nội bộ; Backend API
-    có thể ở VPS hoặc Vercel tùy hiện trạng.
--   **Không tạo màn hình quản trị Agent/Prompt/Workflow/MCP/Model**
-    trong phạm vi AI Core ban đầu. Manager cập nhật hướng dẫn qua
-    OneDrive hoặc ChatGPT/MCP theo luồng được xác nhận.
+| Nội dung | Căn cứ và cách áp dụng |
+|---|---|
+| BullMQ + Redis | Người dùng chỉ định “chốt sử dụng bullmq đi”. Quyết định kỹ thuật nội bộ, thay pg-boss; chưa cài thư viện hoặc Redis. |
+| Next.js FE, Hono BE | Theo [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md) và repository: FE chỉ giao diện; API trong `apps/api`, worker dùng chung service/container. Không mặc định chuyển BE lên Vercel. |
+| Sửa hồ sơ và chỉ thị | BF19 trang PDF18; SD-M19 M-15 trang20, M-21 trang26: qua quản trị hoặc ChatGPT, không sửa trực tiếp file OneDrive. Phải có màn chỉ thị nghiệp vụ; việc không xây màn cấu hình Agent/Model không loại bỏ màn này. |
+| Ưu tiên chỉ thị | BF19 trang18: từng Talent → category → toàn bộ. Nhiều category xung đột hoặc hồ sơ trái chỉ thị chưa được tự giải quyết; QA No.92 vẫn mở. |
+| Thông tin và media | OneDrive phục vụ hồ sơ/chỉ thị; QA No.8 G9/H9 cho media lưu Supabase/OneDrive. Không tự bắt lưu kép mọi media hoặc coi Supabase Storage chỉ chứa tệp tạm. |
+| Quyền Manager | QA No.88 G88/H88 ghi Manager cùng cập nhật mọi Talent; assign không phải rào cản mọi thao tác. No.87/88 và SD-M19 trang1/8 còn lệch người nhận thông báo; chưa chọn một bên. |
+| Nhịp AI và số liệu | YK2 §5/§6/§7 mô tả đọc dữ liệu và nhập thống kê hằng ngày; SD-M19 M-17 trang22 có khung sáng/trưa/tối cấu hình được. Không cố định 08:00. Live fetch là tùy chọn kỹ thuật có kiểm soát, không thay daily ingestion. |
+| Nội dung đã duyệt | QA No.85: Talent không sửa bài đã xin duyệt/duyệt/đặt lịch. No.90/GJ19 §12: Manager sửa từ cấm có thể đi tiếp, không trả Talent xác nhận lại. Hai ứng viên về đổi SNS khi còn lịch và danh sách từ cấm mới chưa là quy tắc đã chốt. |
+| Lượt viết lại | DEC-0001: người dùng chốt H65 không giới hạn số lần AI viết lại. Giới hạn kỹ thuật từng execution không được biến thành cap số lần Talent yêu cầu viết lại. |
+| Video, thanh toán, phạm vi hội thoại | Slideshow còn cần đối chiếu QA No.36/CR-04 với màn mới; provider thanh toán chưa chốt; tâm sự nghiêm trọng còn hỏi. Không mở chức năng bằng giả định hoặc lấy việc rút câu giá khỏi Q&A làm xác nhận nghiệp vụ. |
 
-### 1.1. Phân loại nguồn và quyết định
+Nguồn chính: [catalog](../TAI_LIEU_NGUON.md), [kiểm kê/hash hiện hành](../docs/requirement-review/source-inventory-current.json), [QA](../source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx), [BF19](../source_requiments/19112926/業務フロー_AI育成OS.pdf), [SD-M19](../source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf), [GJ19](../source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md). Trang là trang PDF thực tế. Nguồn mô tả giao diện hoặc biên bản FCP–AMCOLAB không tự chứng minh khách đã phê duyệt mọi nội dung.
 
-  -----------------------------------------------------------------------
-  Nội dung                            Cơ sở / trạng thái
-  ----------------------------------- -----------------------------------
-  AI Coach đọc thông tin Talent từ    Yêu cầu v2: UC-04, §6-5, §7
-  OneDrive mỗi sáng                   
-
-  Manager cung cấp thông tin Talent   Yêu cầu v2: UC-02, §6-2 mục 2-3
-  qua ChatGPT, lưu vào OneDrive       
-
-  Thống kê bài đăng và follower từ    Yêu cầu v2: UC-05, §5 và §7
-  Upload-Post, nhập một lần/ngày      
-
-  AI chủ động gọi MCP tới Backend để  **Quyết định kiến trúc mới trong
-  lấy thống kê Upload-Post trực tiếp  trao đổi**; cần đối chiếu cách vận
-                                      hành nhập số liệu một lần/ngày
-
-  MCP cho Manager qua ChatGPT         Có cơ sở từ điều kiện báo giá A4
-                                      theo ghi chú Q&A số 45; chi tiết
-                                      xác thực/ghi dữ liệu cần kiểm chứng
-
-  Agent, prompt kỹ thuật, tool        **Đề xuất kỹ thuật** nhằm giảm màn
-  allowlist cấu hình bằng code        hình
-
-  Redis/BullMQ, AI SDK, MCP SDK, Zod  **Đề xuất thư viện**; cần kiểm tra
-                                      phiên bản tương thích trước khi cài
-
-  Màn hình M-11 chỉ dẫn AI            Chưa mặc định thuộc phạm vi: nhóm
-                                      thay đổi CR-17--CR-25 đang chờ
-                                      quyết định
-  -----------------------------------------------------------------------
-
-**Lưu ý:** tài liệu v2 quy định **nhập thống kê Upload-Post một
-lần/ngày**. Đề xuất MCP gọi trực tiếp Upload-Post theo nhu cầu AI là một
-cách triển khai bổ sung/điều chỉnh, không tự động thay thế yêu cầu nhập
-hằng ngày. Nên duy trì **daily snapshot** cho lịch sử và có **live fetch
-có kiểm soát** khi nghiệp vụ cần dữ liệu mới hơn.
-
-------------------------------------------------------------------------
+**Hiện trạng code được đọc:** module demo Auth/PWA/OneDrive/Upload-Post gắn qua `ENABLE_AUTH_DEMO`; demo bị chặn production. Chưa có worker, Redis, BullMQ hoặc AI SDK trong cấu hình triển khai/dependencies hiện hành. Service nghiệp vụ AI/đăng bài không được coi là có sẵn chỉ vì schema đã có.
 
 ## 2. Kiến trúc tổng thể
 
-``` mermaid
+```mermaid
 flowchart TB
-    subgraph CLIENT["Lớp người dùng"]
-        PWA["Talent PWA"]
-        MAN["Manager Dashboard"]
-        GPT["ChatGPT của Manager"]
-    end
-    subgraph APP["Backend ứng dụng — VPS hoặc Vercel"]
-        API["Hono / TypeScript API"]
-        AUTH["Auth + RBAC + Resource Authorization"]
-        SNS["SNS Analytics Service"]
-        UCLIENT["Upload-Post API Client"]
-        BIZ["Talent / Posting / OneDrive Services"]
-    end
-    subgraph VPS["VPS — Docker"]
-        SCH["Scheduler"]
-        REDIS[("Redis / BullMQ")]
-        WORK["AI Worker"]
-        ORCH["AI Orchestrator Wrapper"]
-        MCP["Internal MCP Tool Server / Adapter"]
-        REMOTE["Remote MCP Endpoint (nếu được duyệt)"]
-    end
-    subgraph EXTERNAL["Dữ liệu và nhà cung cấp"]
-        SUPA[("Supabase PostgreSQL / Auth / Storage")]
-        DRIVE["Microsoft OneDrive / Graph"]
-        POST["Upload-Post API"]
-        LLM["OpenAI API"]
-    end
-
-    PWA --> API
-    MAN --> API
-    API --> AUTH
-    API --> BIZ
-    API -->|Tạo execution| SUPA
-    API -->|Gửi job qua kênh bảo mật| REDIS
-    SCH --> REDIS
-    REDIS --> WORK
-    WORK --> ORCH
-    ORCH <--> LLM
-    ORCH --> MCP
-    MCP -->|Tool có kiểm soát| BIZ
-    MCP -->|get_talent_sns_metrics| SNS
-    SNS --> UCLIENT
-    UCLIENT --> POST
-    SNS -->|mapping / snapshot| SUPA
-    BIZ --> DRIVE
-    BIZ --> SUPA
-    ORCH -->|logs / output| SUPA
-    GPT -->|HTTPS + OAuth, theo khả năng tích hợp| REMOTE
-    REMOTE --> AUTH
-    REMOTE --> BIZ
+  PWA["Talent PWA / Manager Dashboard"] --> API["apps/api — Hono API"]
+  GPT["ChatGPT của Manager"] --> REMOTE["MCP endpoint + OAuth — dự kiến"]
+  REMOTE --> AUTH["Auth, quyền và kiểm tra tài nguyên"]
+  API --> AUTH
+  AUTH --> BIZ["Service nghiệp vụ dùng chung"]
+  BIZ --> TX["Postgres transaction: nghiệp vụ + operation + outbox"]
+  TX --> DB[("Postgres — nguồn trạng thái nghiệp vụ")]
+  DB --> DISP["Outbox dispatcher"]
+  DISP --> REDIS[("Redis — BullMQ")]
+  REDIS --> WORK["Worker: kiểm lại trạng thái / quyền / version"]
+  WORK --> ORCH["AI Orchestrator + SDK — dự kiến"]
+  ORCH --> TOOLS["Tool adapter + allowlist"]
+  TOOLS --> BIZ
+  ORCH --> LLM["Model provider — chọn khi tích hợp"]
+  WORK --> DB
+  BIZ --> DRIVE["OneDrive / Graph"]
+  BIZ --> MEDIA["Supabase Storage hoặc OneDrive theo chính sách"]
+  BIZ --> SNS["SNS Service → Upload-Post"]
 ```
 
-**Quy tắc kiến trúc:** AI chỉ yêu cầu gọi tool; Backend/MCP kiểm tra
-quyền và thực hiện nghiệp vụ. Không cấp cho mô hình khóa quản trị
-Supabase, khóa Upload-Post hoặc Microsoft Graph.
+API và worker là các entrypoint trong cùng `apps/api`, cùng composition root và service; đây là hướng triển khai theo cấu trúc hiện hành, chưa phải Docker đã chạy. Redis đặt trong mạng riêng; không đưa kết nối Redis hoặc khóa nhà cung cấp vào FE/model. Nơi triển khai API/worker thực tế và phiên bản thư viện vẫn cần chốt theo môi trường.
 
-**Lưu ý hạ tầng:** Nếu API đặt trên Vercel, Redis nằm trong Docker
-network riêng của VPS không thể được gọi trực tiếp theo sơ đồ logic. Cần
-một API enqueue bảo mật trên VPS hoặc kết nối mạng riêng phù hợp. Không
-công khai Redis lên Internet.
+## 3. Chọn thư viện và ranh giới tự xây
 
-## 3. AI Core: dùng thư viện nào, tự xây phần nào?
+| Thành phần | Vai trò | Trạng thái |
+|---|---|---|
+| BullMQ + Redis | Hàng đợi, lịch, concurrency, retry kỹ thuật | Đã chốt công nghệ, chưa triển khai |
+| SDK mô hình | Gọi model, tool calling, kết quả có cấu trúc | Vercel AI SDK hoặc SDK nhà cung cấp là ứng viên; chưa chốt phiên bản/tương thích |
+| MCP TypeScript SDK | Giao thức endpoint cho ChatGPT khi cần | Đề xuất; theo bộ MCP hiện có, chưa kiểm chứng |
+| Zod | Kiểm đầu vào/đầu ra tool và kết quả | Đã dùng trong API; phần AI chưa triển khai |
+| Orchestrator mỏng | Context, vòng gọi tool, chính sách thực thi | Tự xây trong module AI |
+| Service nghiệp vụ | Quyền, chuyển trạng thái, duyệt, lịch, thông báo | Bổ sung/tái sử dụng đúng phần thực sự đã có, không nhân đôi trong MCP |
 
-  -----------------------------------------------------------------------
-  Chức năng               Phương án               Tự xây?
-  ----------------------- ----------------------- -----------------------
-  Gọi model, tool         Vercel AI SDK (`ai`,    Không xây engine
-  calling, structured     provider tương ứng)     
-  output                                          
+Tên “Vercel AI SDK” không yêu cầu BE chạy trên Vercel. Chưa cần LangGraph/Mastra hoặc một nền tảng multi-agent; đánh giá lại khi có luồng cụ thể mà service/worker hiện tại không đáp ứng. Không cài SDK chỉ từ ví dụ của tài liệu này.
 
-  Giao thức MCP           MCP TypeScript SDK      Không xây protocol
-  Server/Client                                   
+### 3.1. Phân biệt Orchestrator, Agent SDK, provider và model
 
-  Hàng đợi, retry,        BullMQ + Redis          Không xây queue engine
-  concurrency, lịch chạy                          
+| Lớp | Vai trò | Đề xuất hiện tại / trạng thái |
+|---|---|---|
+| AI Orchestrator | Code dự án: chuẩn bị context, cấp tool, giới hạn thực thi, kiểm output và lưu kết quả | Tự xây lớp mỏng trong `apps/api`; gọi Agent hoặc lời gọi AI đơn giản theo use case |
+| Agent SDK | Thư viện thực hiện vòng lặp model/tool | Ưu tiên thử Vercel AI SDK; SDK không có model riêng. Chưa chốt phiên bản hoặc triển khai |
+| Provider adapter | Kết nối SDK đến API nhà cung cấp | Đề xuất bắt đầu với OpenAI qua `@ai-sdk/openai`, dùng API key riêng của dự án; chưa phải quyết định đã được người dùng phê duyệt |
+| Model | Model cụ thể thực hiện suy luận/sinh nội dung | Chưa chốt; chọn bằng benchmark tiếng Nhật, tool calling, output có cấu trúc, độ trễ và chi phí |
 
-  Kiểm tra schema dữ liệu Zod                     Không xây validator
+Luồng đề xuất:
 
-  Định nghĩa Agent        TypeScript Registry     Có
-
-  Chọn prompt và ghép     Prompt Resolver         Có
-  hướng dẫn OneDrive                              
-
-  Xây execution context   Context Builder         Có
-
-  Quyền người dùng,       Authorization Layer     Có
-  Agent, dữ liệu                                  
-
-  Kết nối SNS metrics     Backend SNS Service +   Có/tái sử dụng
-                          Upload-Post Client      
-
-  Trạng thái, chi phí,    Execution Service       Có
-  lịch sử AI                                      
-
-  Quy trình đăng bài, phê Business Services hiện  Tái sử dụng
-  duyệt, cảnh báo         có                      
-  -----------------------------------------------------------------------
-
-**Không cần LangGraph/Mastra ở giai đoạn đầu.** Chỉ xem xét khi có
-workflow nhiều Agent, trạng thái dài hạn, nhánh phức tạp hoặc cơ chế tạm
-dừng/tiếp tục khó đáp ứng bằng worker và nghiệp vụ hiện tại.
-
-### 3.1. Kiến trúc nội bộ
-
-``` mermaid
-flowchart LR
-    R["Execution Request"] --> RUN["Agent Runner"]
-    REG["Agent Registry<br/>TypeScript"] --> RUN
-    RUN --> PR["Prompt Resolver"]
-    CODE["System Prompt<br/>Code"] --> PR
-    OD["OneDrive<br/>Business Instructions"] --> PR
-    PR --> CB["Context Builder"]
-    CB --> SDK["AI SDK Agent / Tool Loop"]
-    SDK <--> AI["OpenAI"]
-    SDK --> TX["Tool Executor"]
-    TX --> AZ["RBAC + Scope + Tool Allowlist"]
-    AZ --> MCP["MCP Adapter"]
-    MCP --> BE["Backend Business Services"]
-    SDK --> VAL["Zod Output Validation"]
-    VAL --> LOG["Execution Log + Result"]
-    LOG --> DB[("Supabase")]
+```text
+BullMQ worker / API
+  → AI Orchestrator
+  → CoachAgent dùng Vercel AI SDK
+  → provider adapter @ai-sdk/openai
+  → OpenAI API → model cấu hình theo tác vụ
 ```
 
-### 3.2. Ví dụ Agent cấu hình bằng TypeScript
+Vercel AI SDK hỗ trợ nhiều provider, ví dụ OpenAI, Anthropic và Google; lựa chọn SDK không đồng nghĩa đã chọn provider hoặc model. Tên SDK cũng không bắt buộc chạy backend trên Vercel. Với phương án gọi trực tiếp ở trên, không bắt buộc dùng Vercel AI Gateway; phải cấu hình adapter trực tiếp rõ ràng, không nhầm chuỗi tên model qua Gateway với kết nối trực tiếp. Model và bí mật được quản lý ở backend/worker, không cho Talent tự truyền tùy ý.
 
-``` ts
-export const dailyCoachAgent = {
-  code: "daily_coach",
-  promptRevision: "2026-11-19-v1",
-  model: process.env.AI_COACH_MODEL ?? "gpt-4.1-mini",
-  allowedTools: [
-    "get_talent_profile",
-    "get_talent_knowledge",
-    "get_talent_sns_metrics",
-    "get_talent_sns_posts"
-  ],
-  limits: {
-    maxSteps: 5,
-    maxToolCalls: 8,
-    timeoutMs: 60_000
-  }
-} as const;
-```
+CoachAgent là tên tác vụ do dự án định nghĩa, không phải một model hay sản phẩm Agent có sẵn của nhà cung cấp. Tác vụ viết caption có đầu vào đầy đủ có thể dùng lời gọi AI một lần thay vì Agent loop. Không trộn lựa chọn provider cho AI Coach với dịch vụ tạo video hoặc endpoint MCP cho ChatGPT.
 
-Các giá trị model/giới hạn chỉ là ví dụ. Khi triển khai phải đối chiếu
-khả năng model, phiên bản SDK, quota và benchmark.
+Tham chiếu kỹ thuật: [danh sách provider của AI SDK](https://ai-sdk.dev/providers/ai-sdk-providers), [OpenAI adapter và cách kết nối trực tiếp](https://ai-sdk.dev/providers/ai-sdk-providers/openai). Đây là cơ sở mô tả khả năng thư viện, không phải nguồn khách chốt công nghệ. Việc đề xuất OpenAI/Vercel AI SDK ở đây chưa thay các mục lựa chọn SDK/model còn mở trong kế hoạch.
 
-### 3.3. Quy tắc ghép prompt
+## 4. Transactional outbox và tính bền vững của BullMQ
 
-1.  **System Policy (code):** vai trò, quy tắc an toàn, hạn chế quyền,
-    định dạng.
-2.  **Agent Instructions (code):** nhiệm vụ AI Coach / Content
-    Generator.
-3.  **Business Instructions (OneDrive):** định hướng nội dung, văn
-    phong, kiến thức chung.
-4.  **Talent Context (OneDrive):** hồ sơ, mục tiêu, thông tin riêng.
-5.  **SNS Metrics (MCP → Backend → Upload-Post):** số liệu theo nguồn,
-    thời gian và phạm vi.
-6.  **Output Schema (Zod):** kiểm tra kết quả trước khi lưu.
+**Postgres là nguồn trạng thái; Redis là phương tiện phân phối job.** Theo [phạm vi DB](../database-design/07_implementation_scope_and_rules.md) §4.4, đã có `domain_operations` và `outbox_events`; không ghi DB rồi gọi `queue.add()` như hai bước độc lập và coi đã bảo đảm giao việc.
 
-Dữ liệu OneDrive và kết quả công cụ là dữ liệu đầu vào **không được phép
-ghi đè chính sách hệ thống**.
+1. Service xác thực người gọi, kiểm trạng thái/điều kiện nghiệp vụ và version.
+2. Ghi thay đổi nghiệp vụ + operation + outbox trong cùng transaction.
+3. Dispatcher nhận lease outbox, gửi job có định danh ổn định. Sau khi Redis nhận, cập nhật trạng thái giao việc bằng cơ chế phù hợp; hết lease thì có thể gửi lại an toàn.
+4. Worker nhận job, tra lại operation/trạng thái trong DB và giành quyền xử lý bằng cập nhật có điều kiện. Job trùng không tạo execution hoặc tác động ngoài trùng.
+5. Ghi kết quả/lỗi và trạng thái nghiệp vụ trước khi xác nhận job hoàn tất; thất bại hoặc kết quả không rõ cần đối soát.
 
-------------------------------------------------------------------------
+Các bước trên là yêu cầu thiết kế tích hợp, chưa là giao thức đã triển khai. Cần chốt mapping outbox event ↔ BullMQ job và bảo toàn outbox hiện hành: trạng thái đã giao Redis không đồng nghĩa tác vụ nghiệp vụ đã hoàn tất. Có khả năng phát lại từ operation/outbox còn lưu khi Redis mất dữ liệu; kiểm tra khoảng giữ, retention và đối soát trước khi dọn job.
 
-## 4. Thiết kế MCP
+- Job chỉ mang ID/tham chiếu và dữ liệu điều phối tối thiểu; không chứa token, mật khẩu, hồ sơ đầy đủ hoặc file media.
+- Dùng cấu hình lưu bền vững, dung lượng, eviction, backup và giám sát Redis được kiểm thử theo môi trường; chưa ấn định cấu hình production trong báo cáo này.
+- Worker chết sau khi provider đã xử lý nhưng trước khi ghi DB: ưu tiên idempotency provider hoặc tra kết quả theo request ID; không hứa xử lý “đúng một lần”.
+- BullMQ retry dùng cho lỗi kỹ thuật phù hợp, có backoff và giới hạn; **không tự đăng lại bài SNS lỗi**, vì QA No.15/CR-15 đã bỏ chức năng đó.
+- Chống trùng ở DB/service vẫn bắt buộc, kể cả khi queue có cơ chế chống lặp hoặc dọn job cũ.
 
-### 4.1. Hai kiểu tích hợp
+## 5. AI Orchestrator và ghép context
 
-**MCP nội bộ cho AI Worker:** AI SDK có thể gọi MCP Client tới MCP
-Server, hoặc dùng tool adapter cùng registry. Với luồng cố định, gọi
-trực tiếp Business Service là lựa chọn đơn giản hơn; chỉ bắt buộc đi qua
-MCP ở những chức năng được thiết kế theo MCP.
+Registry TypeScript giữ mã tác vụ, schema, tool allowlist, revision và cấu hình model theo môi trường. Thiếu model/config hợp lệ phải báo lỗi rõ, không âm thầm chọn model mẫu. Agent chỉ đề nghị tool call; tool executor kiểm quyền và gọi service. Với tác vụ cố định, gọi service trực tiếp là mặc định; không buộc mọi thao tác nội bộ đi vòng qua MCP hoặc HTTP.
 
-**Remote MCP cho ChatGPT:** endpoint HTTPS riêng, xác thực theo cơ chế
-được ChatGPT và MCP hỗ trợ, ánh xạ người dùng Manager, kiểm tra quyền
-trước mọi thao tác. Không sử dụng service role để đại diện quyền của
-Manager.
+Ghép context theo thứ tự rõ ràng:
 
-### 4.2. Danh sách công cụ tối thiểu
+1. Chính sách hệ thống và quyền được code kiểm soát: dữ liệu OneDrive không được ghi đè.
+2. Nhiệm vụ tác vụ và schema kết quả.
+3. Chỉ thị nghiệp vụ theo nguồn: từng Talent ưu tiên hơn category, category ưu tiên hơn toàn bộ. Snapshot phải lưu đủ version/eTag của từng lớp.
+4. Hồ sơ/mục tiêu và dữ liệu Talent. Nếu mâu thuẫn với chỉ thị, giữ phần chưa chốt của QA No.92; không tự dùng thứ tự prompt để thay quyết định khách.
+5. Metrics có nguồn, thời điểm, account mapping và độ mới. Dữ liệu thiếu không được bịa thành 0.
 
-  ---------------------------------------------------------------------------
-  Tool                        Nguồn thực tế           Kiểu
-  --------------------------- ----------------------- -----------------------
-  `get_talent_profile`        Backend → OneDrive      Đọc
+Bản registry chỉ cấu hình kỹ thuật. Không bỏ màn M-15/M-21 hoặc bộ nhập hồ sơ/chỉ thị nghiệp vụ. Không tự tạo vai trò System Admin mới cho khách; quyền vận hành kỹ thuật tách khỏi vai trò Manager/Talent.
 
-  `get_talent_goals`          Backend → OneDrive      Đọc
+Giới hạn mỗi execution: thời gian, số bước/tool calls, token và concurrency do team đo/đề xuất. Phân biệt giới hạn bảo vệ hạ tầng với trần chi phí nghiệp vụ hoặc số lần viết lại: No.17 không có cơ chế tự dừng theo trần chi phí, H65 không giới hạn lượt viết lại. Không dùng giới hạn kỹ thuật để lặng lẽ thay hai quyết định này; nếu tạo ra hành vi hạn chế mới phải nêu rõ để duyệt.
 
-  `get_talent_knowledge`      Backend → OneDrive      Đọc
+## 6. OneDrive, media và ghi từ Manager
 
-  `get_talent_sns_accounts`   Backend → Supabase /    Đọc
-                              Upload-Post mapping     
+Hồ sơ/chỉ thị được cập nhật qua **màn quản trị hoặc ChatGPT/MCP**, cùng một service kiểm tra quyền, validation và version. Không hướng dẫn Manager sửa trực tiếp file OneDrive. BF19 trang18 đã mô tả cách làm này.
 
-  `get_talent_sns_posts`      Backend → Upload-Post   Đọc
+- Context builder đọc qua adapter OneDrive, không gọi Graph trực tiếp từ model.
+- Snapshot context gắn profile/instruction versions, eTag và thời điểm đọc; tránh trộn một nửa phiên bản cũ với một nửa phiên bản mới trong một lần chạy.
+- Cache có invalidation sau ghi từ cả quản trị và MCP. Xung đột version trả lại cho Manager kiểm tra, không ghi đè thay đổi mới hơn.
+- Ghi từ ChatGPT theo bộ [MCP](chatgpt-mcp-spec/README.md): chuẩn bị thay đổi → xem Talent đích và phần thay đổi → xác nhận → commit có kiểm lại quyền/version. Hội thoại “đồng ý” hoặc một tool read không tự trở thành quyền ghi.
+- OAuth/Graph dùng adapter và cấu hình theo [bộ OneDrive](onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md); các trạng thái live cần kiểm lại trước triển khai.
+- Media dùng adapter lưu trữ được chọn theo QA No.8; không bắt buộc nằm trong cây hồ sơ OneDrive. DB giữ owner, storage reference và metadata cần thiết. Không tự cấp link công khai lâu dài để model hoặc dịch vụ ngoài lấy file.
 
-  `get_talent_sns_metrics`    Backend → Upload-Post   Đọc
+Cấu trúc file và quyền OAuth chi tiết tái sử dụng bộ tích hợp hiện có; không tạo một cây thư mục chuẩn thứ hai chỉ từ ví dụ AI Core.
 
-  `update_talent_knowledge`   Backend → OneDrive      Ghi, cần xác nhận/kiểm
-                                                      tra
+## 7. Quyền của API, worker và MCP
 
-  `save_ai_analysis`          Backend → Supabase      Ghi nội bộ
-  ---------------------------------------------------------------------------
+Ba lớp kiểm tra: danh tính/phiên người dùng; tool allowlist; quyền với tài nguyên/hành động cụ thể. API public và MCP cần xác thực độc lập đúng luồng. Worker có danh tính hệ thống được giới hạn cho event cụ thể, không mượn token Manager hết hạn để chạy mọi tác vụ.
 
-**Không cung cấp:** `execute_sql`, `read_any_file`,
-`call_arbitrary_url`, hoặc tool cho phép AI chỉ định API key.
+- Talent chỉ truy cập dữ liệu của mình. Manager có một loại quyền theo nguồn; No.88 cho phép cùng cập nhật mọi Talent. “Người phụ trách” và đích thông báo chưa là điều kiện giới hạn mọi quyền Manager.
+- Worker dùng kết nối DB với role tối thiểu theo `apps/api/PRISMA.md`; không mặc định dùng `SUPABASE_SERVICE_ROLE_KEY` để truy cập toàn bộ dữ liệu. Quyền `talent_dispatcher` hiện chưa tự cấp đủ quyền cho mọi worker: cần migration/quyền riêng và test khi triển khai, không mở DDL hoặc role owner cho worker.
+- Lệnh MCP chọn Talent đích qua ngữ cảnh được server xác thực/kiểm quyền. Không tin ID do model tự đưa. Với Manager thao tác nhiều Talent, phải có bước chọn đích và khóa đích đó trong yêu cầu đã xác nhận; không lấy Talent gần nhất trong hội thoại làm mặc định.
+- Không mở tool tùy ý như `execute_sql`, `read_any_file`, `call_arbitrary_url` hay cho model chọn API key.
+- Trước ghi hoặc tác động ngoài, kiểm lại trạng thái Talent, operation, version bài, lịch và tài khoản SNS hiện hành. Thay đổi quyền hoặc việc dừng đăng sau enqueue phải có hiệu lực ở worker, theo quy tắc nghiệp vụ đã chốt.
+- Không ghi token/QR/TOTP/secret hoặc hội thoại đầy đủ vào log kỹ thuật. Audit và dữ liệu hội thoại nghiệp vụ có chính sách giữ riêng.
 
-### 4.3. Tool thống kê SNS --- hợp đồng đề xuất
+## 8. Dữ liệu SNS: nhập hằng ngày và đọc theo nhu cầu
 
-``` ts
-type GetTalentSnsMetricsInput = {
-  platform?: "instagram" | "tiktok" | "youtube";
-  startDate: string; // YYYY-MM-DD
-  endDate: string;   // YYYY-MM-DD
-  freshness?: "latest" | "daily_snapshot";
-};
-```
+Giữ daily ingestion theo YK2; lưu `follower_snapshots` và `post_metric_snapshots` hiện có hoặc mapping đã được review, không tạo kho lịch sử trùng. Service SNS đọc từ snapshot là đường cơ sở; live fetch là tùy chọn cần kiểm quota/quyền và nhu cầu.
 
-`talentId`, `actorId`, `executionId` **không lấy trực tiếp từ tham số do
-model quyết định**. Các giá trị này phải đến từ ngữ cảnh thực thi đã xác
-thực.
+Tool đọc metrics chuẩn hóa ít nhất: `source`, `platform`, account mapping, kỳ dữ liệu, `retrievedAt`, độ mới và trường không có. Thiếu trường là không có dữ liệu, không mặc định bằng 0. Chỉ định nghĩa các trường được API/provider kiểm chứng; không lấy ví dụ JSON trong báo cáo làm hợp đồng Upload-Post đã chạy.
 
-Đầu ra chuẩn hóa (ví dụ):
+Nếu provider lỗi, chỉ trả snapshot cũ khi use case cho phép và gắn nhãn cũ rõ; thiếu dữ liệu bắt buộc thì hoãn/báo lỗi use case đó. Không tự bịa số, không gọi mỗi tool call một lần ra provider nếu có snapshot/cache phù hợp. Chưa chốt policy fallback hoặc SLA độ mới thì không tuyên bố use case đạt.
 
-``` json
-{
-  "source": "upload-post",
-  "retrievedAt": "2026-11-19T01:00:00Z",
-  "freshness": "latest",
-  "platform": "instagram",
-  "metrics": [
-    {
-      "postId": "example-post",
-      "views": 1200,
-      "likes": 80,
-      "comments": 4
-    }
-  ],
-  "unavailableMetrics": ["shares"]
-}
-```
+MCP cho ChatGPT có thể expose cùng service; worker nội bộ không bắt buộc gọi MCP chỉ để lấy dữ liệu trong cùng codebase. Các adapter Upload-Post hiện có là demo kết nối; không chứng minh đã có service thống kê production.
 
-Đây là **hợp đồng nội bộ đề xuất**, không phải khẳng định Upload-Post hỗ
-trợ mọi trường hoặc bộ lọc. Cần kiểm chứng endpoint, mapping, rate
-limit, độ trễ thống kê, phân trang và quyền truy cập từng nền tảng trước
-khi code.
+## 9. Luồng worker và điều kiện nghiệp vụ
 
-### 4.4. Luồng thống kê qua MCP
-
-``` mermaid
+```mermaid
 sequenceDiagram
-    autonumber
-    participant O as AI Orchestrator
-    participant AI as OpenAI
-    participant M as MCP Tool
-    participant BE as Backend SNS Service
-    participant DB as Supabase
-    participant UP as Upload-Post
-
-    O->>AI: Prompt + tools được phép
-    AI-->>O: get_talent_sns_metrics(period)
-    O->>M: Tool call + execution context
-    M->>M: Kiểm tra allowlist / RBAC / scope
-    M->>BE: Get metrics cho Talent đã xác thực
-    BE->>DB: Tìm mapping SNS và kiểm tra quyền
-    DB-->>BE: Mapping hợp lệ
-    BE->>UP: Gọi API thống kê
-    UP-->>BE: Dữ liệu thực tế
-    BE->>BE: Chuẩn hóa + kiểm tra nguồn/thời điểm
-    BE-->>M: Metrics chuẩn hóa
-    M-->>O: Tool result
-    O->>AI: Metrics để phân tích
-    AI-->>O: Đánh giá và đề xuất
+  participant S as Scheduler / API
+  participant DB as Postgres
+  participant D as Dispatcher
+  participant Q as BullMQ / Redis
+  participant W as Worker
+  participant B as Service + Orchestrator
+  S->>DB: Ghi operation + outbox trong transaction
+  D->>DB: Nhận lease event đến hạn
+  D->>Q: Enqueue theo event/operation ID
+  Q->>W: Giao job, có thể giao lại
+  W->>DB: Claim; kiểm trạng thái / version / đã xử lý
+  W->>B: Build context + chạy tác vụ được phép
+  B->>DB: Ghi output / usage / trạng thái có chống trùng
+  W-->>Q: Xác nhận job hoàn tất
 ```
 
-### 4.5. Chiến lược dữ liệu thống kê
-
--   **Daily ingestion:** tác vụ lấy thống kê một lần/ngày theo tài liệu
-    v2; lưu snapshot phục vụ lịch sử.
--   **Live MCP fetch:** chỉ gọi Upload-Post khi AI cần dữ liệu mới nhất
-    có sẵn, có giới hạn tần suất và thời gian.
--   **Fallback:** nếu Upload-Post lỗi, có thể trả snapshot kèm
-    `retrievedAt` và `isStale=true` nếu nghiệp vụ cho phép; tuyệt đối
-    không trình bày snapshot là dữ liệu mới.
--   **Rate limit:** giới hạn theo nhà cung cấp, Talent và execution; sử
-    dụng cache TTL có kiểm soát.
--   **Chưa xác nhận:** số liệu nào API Upload-Post thực sự cung cấp, độ
-    mới của dữ liệu và quy tắc thay thế khi lỗi.
-
-------------------------------------------------------------------------
-
-## 5. OneDrive: dữ liệu và hướng dẫn nghiệp vụ
-
-Cấu trúc thư mục **minh họa**, cần đối chiếu với cấu trúc OneDrive thực
-tế:
-
-``` text
-AI-Talent-OS/
-├── shared/
-│   ├── ai-guidelines.md
-│   └── sns-knowledge.md
-└── talents/
-    └── {talentId}/
-        ├── profile.md
-        ├── goals.md
-        ├── instructions.md
-        ├── knowledge/
-        └── media/
-```
-
--   Manager chỉnh sửa **hướng dẫn nghiệp vụ** và thông tin Talent qua
-    OneDrive hoặc ChatGPT/MCP theo quyền.
--   System prompt, RBAC, tool allowlist, API key và execution limits
-    **không** đặt trong tài liệu OneDrive.
--   Nên dùng OneDrive `eTag`/metadata và cache để tránh tải lặp; ghi
-    nhận phiên bản tài liệu được dùng cho mỗi execution.
--   Cần xác định loại tài khoản Microsoft 365, cơ chế OAuth/Graph, phạm
-    vi quyền và khả năng ghi file. Không mặc định tài khoản Microsoft cá
-    nhân dùng được client credentials.
--   Luồng ghi từ ChatGPT cần hiển thị **Talent đích + nội dung thay
-    đổi** để Manager xác nhận trước khi ghi, phù hợp yêu cầu v2 §6-2 mục
-    2-3.
-
-------------------------------------------------------------------------
-
-## 6. RBAC và kiểm soát dữ liệu
-
-Ba lớp quyền độc lập:
-
-1.  **User Permission:** vai trò Manager/Talent/System Admin có được
-    thực hiện hành động?
-2.  **Agent Tool Permission:** Agent có quyền gọi tool tương ứng?
-3.  **Resource Authorization:** người dùng/execution có quyền với
-    Talent, SNS account, file OneDrive cụ thể?
-
-``` mermaid
-flowchart TB
-    CALL["AI đề xuất Tool Call"] --> ROLE{"User permission?"}
-    ROLE -->|Không| DENY["Từ chối + audit"]
-    ROLE -->|Có| TOOL{"Tool nằm trong allowlist?"}
-    TOOL -->|Không| DENY
-    TOOL -->|Có| SCOPE{"Talent / file / account hợp lệ?"}
-    SCOPE -->|Không| DENY
-    SCOPE -->|Có| EXEC["Thực thi Business Service"]
-```
-
-**Đề xuất:** quyền tĩnh bằng TypeScript, vai trò người dùng trong
-Supabase, chính sách truy cập dữ liệu kiểm tra tại Backend và RLS khi
-phù hợp. Không cần màn hình cấu hình RBAC riêng.
-
-------------------------------------------------------------------------
-
-## 7. Workflow và luồng thực thi
-
-### 7.1. Daily AI Coach
-
-``` mermaid
-sequenceDiagram
-    autonumber
-    participant S as Scheduler
-    participant Q as BullMQ
-    participant W as Worker
-    participant O as Orchestrator
-    participant D as OneDrive
-    participant M as MCP
-    participant B as Backend
-    participant U as Upload-Post
-    participant AI as OpenAI
-    participant DB as Supabase
-
-    S->>Q: Lập job 08:00 theo múi giờ nghiệp vụ
-    Q->>W: Nhận job Talent
-    W->>DB: Tạo execution / chống trùng
-    W->>O: Chạy daily_coach
-    O->>D: Đọc profile + goals + instructions
-    O->>AI: Gửi prompt / tools
-    AI-->>O: Yêu cầu metrics
-    O->>M: get_talent_sns_metrics
-    M->>B: Gọi SNS Analytics Service
-    B->>U: Lấy thống kê
-    U-->>B: Metrics
-    B-->>M: Metrics chuẩn hóa
-    M-->>O: Kết quả tool
-    O->>AI: Tiếp tục phân tích
-    AI-->>O: 3 chủ đề đề xuất
-    O->>O: Kiểm tra schema
-    O->>DB: Lưu đề xuất + execution
-    W-->>Q: Hoàn tất
-```
-
-**Trạng thái execution:**
-`PENDING → QUEUED → RUNNING → COMPLETED | FAILED | TIMED_OUT | CANCELLED`.
-
-**Giới hạn bắt buộc:** timeout, max steps, max tool calls, giới hạn
-token/chi phí, retry theo loại lỗi, idempotency key, nhật ký kiểm toán.
-
-### 7.2. Phân biệt AI với nghiệp vụ
-
-AI có thể đề xuất chủ đề, caption, hashtag, thời gian đăng. Việc lưu bản
-nháp, duyệt, đặt lịch, hủy lịch và đăng SNS phải đi qua **Business
-Services** và trạng thái nghiệp vụ hiện có. Không cho AI trực tiếp vượt
-qua bước duyệt hoặc quy tắc ngừng đăng.
-
-------------------------------------------------------------------------
-
-## 8. Cơ sở dữ liệu tối giản
-
-Không tạo các bảng cấu hình động `ai_agents`, `ai_prompts`,
-`ai_model_configs`, `ai_workflows` ở V1.
-
-Đề xuất ba bảng:
-
-``` mermaid
-erDiagram
-    AI_EXECUTIONS ||--o{ AI_TOOL_CALLS : has
-    AI_EXECUTIONS ||--o| AI_RESULTS : produces
-
-    AI_EXECUTIONS {
-      uuid id PK
-      text agent_code
-      uuid talent_id
-      text status
-      text prompt_revision
-      text model
-      text instruction_etag
-      int input_tokens
-      int output_tokens
-      timestamp started_at
-      timestamp finished_at
-    }
-    AI_TOOL_CALLS {
-      uuid id PK
-      uuid execution_id FK
-      text tool_name
-      text status
-      int duration_ms
-      timestamp created_at
-    }
-    AI_RESULTS {
-      uuid id PK
-      uuid execution_id FK
-      jsonb output
-      timestamp created_at
-    }
-```
-
-Các trường ở trên là **khung logic**, không phải DDL cuối cùng. Khi
-thiết kế database cần bổ sung:
-
--   Khóa ngoại tới Talent/User hiện có.
--   Chỉ mục theo `talent_id`, `status`, `created_at`.
--   Ràng buộc chống chạy trùng cho job theo lịch.
--   `request_id`, `actor_id`, lỗi và thời gian xử lý.
--   RLS hoặc giới hạn truy cập server-side.
--   Chính sách lưu log, ẩn dữ liệu nhạy cảm, thời gian lưu giữ.
--   Snapshot SNS theo nhu cầu của nghiệp vụ thống kê, không bắt buộc đặt
-    trong schema AI Core.
-
-------------------------------------------------------------------------
-
-## 9. API và hợp đồng tích hợp
-
-### 9.1. API tối thiểu
-
-``` http
-POST /api/v1/ai/executions
-GET  /api/v1/ai/executions/:id
-POST /api/v1/ai/executions/:id/cancel
-```
-
-Các endpoint quản trị Agent/Prompt/Workflow **không cần**.
-
-### 9.2. Backend SNS Service
-
-Có thể triển khai qua lời gọi service nội bộ hoặc API có xác thực:
-
-``` http
-GET /internal/sns/analytics?startDate=...&endDate=...
-```
-
-Talent đích được xác định từ execution context đáng tin cậy. Nếu truyền
-Talent ID qua API nội bộ, phải xác minh nó thuộc scope đã được cấp
-quyền. Endpoint này không công khai cho client thông thường.
-
-### 9.3. Luồng xử lý yêu cầu
-
--   Client gửi yêu cầu tới Backend.
--   Backend xác thực và tạo execution.
--   Worker chạy Agent theo cấu hình code.
--   Agent dùng tool đã cấp quyền.
--   Tool gọi Backend Service.
--   Backend Service gọi Upload-Post hoặc OneDrive.
--   Kết quả được kiểm tra và lưu vào Supabase.
--   Client đọc kết quả qua API hiện có.
-
-------------------------------------------------------------------------
-
-## 10. Triển khai trên VPS
-
-### 10.1. Thành phần Docker
-
-``` text
-VPS
-├── reverse-proxy
-├── ai-worker
-├── ai-scheduler
-├── redis
-├── internal-mcp       # Có thể gộp vào worker
-└── remote-mcp         # Chỉ khi tích hợp ChatGPT được chốt
-```
-
-Không bắt buộc tách MCP nội bộ thành container riêng; ưu tiên dùng chung
-Business Service để tránh nhân đôi logic.
-
-### 10.2. Biến môi trường ví dụ
-
-``` dotenv
-OPENAI_API_KEY=
-AI_COACH_MODEL=
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-REDIS_URL=
-UPLOAD_POST_API_KEY=
-ONEDRIVE_TENANT_ID=
-ONEDRIVE_CLIENT_ID=
-ONEDRIVE_CLIENT_SECRET=
-AI_MAX_STEPS=5
-AI_MAX_TOOL_CALLS=8
-AI_TIMEOUT_MS=60000
-```
-
-Các biến OneDrive ở trên là **ví dụ cho một kiểu xác thực**; phải lựa
-chọn theo tenant, tài khoản và luồng OAuth thực tế. Không commit secret
-lên Git.
-
-### 10.3. Quan sát và vận hành
-
--   Ghi execution ID xuyên suốt Backend → Worker → MCP → Upload-Post.
--   Theo dõi số job thành công/thất bại, latency, token và chi phí.
--   Ghi nguồn dữ liệu, thời điểm lấy và trạng thái cache của metrics.
--   Phân biệt lỗi xác thực, lỗi rate limit, lỗi nhà cung cấp và lỗi dữ
-    liệu.
--   Cảnh báo job hằng ngày thất bại, không tạo màn hình riêng nếu hệ
-    thống log hiện có đáp ứng.
-
-------------------------------------------------------------------------
-
-## 11. Kế hoạch tích hợp theo giai đoạn
-
-  -----------------------------------------------------------------------
-  Giai đoạn               Nội dung                Điều kiện hoàn tất
-  ----------------------- ----------------------- -----------------------
-  P0 --- Kiểm tra hiện    Kiểm tra Backend,       Chốt ranh giới service
-  trạng                   Supabase, OneDrive,     và quyền
-                          Upload-Post và hạ tầng  
-                          VPS                     
-
-  P1 --- Nền tảng AI      AI SDK, Agent Registry, Chạy Agent đơn giản có
-                          Prompt Resolver,        log
-                          Execution Service       
-
-  P2 --- MCP và dữ liệu   MCP Tool OneDrive +     Tool đọc đúng Talent,
-                          Backend SNS Service →   không vượt quyền
-                          Upload-Post             
-
-  P3 --- AI Coach         Daily Coach tạo ba chủ  Kết quả hợp lệ, hiển
-                          đề từ dữ liệu thực      thị đúng Talent
-
-  P4 --- Tác vụ nền       Scheduler, BullMQ,      Chạy ổn định theo lịch
-                          retry, idempotency      
-
-  P5 --- Bảo mật/vận hành Test phân quyền, tải,   Đủ điều kiện UAT
-                          chi phí, lỗi            
-
-  P6 --- ChatGPT MCP      Remote MCP, OAuth, cập  Được khách hàng xác
-                          nhật OneDrive có xác    nhận và kiểm chứng
-                          nhận                    
-  -----------------------------------------------------------------------
-
-Không đưa estimate ngày công trước khi kiểm tra codebase và danh sách
-chức năng đã được duyệt.
-
-------------------------------------------------------------------------
-
-## 12. Kịch bản kiểm thử bắt buộc
-
-### 12.1. Chức năng
-
--   Daily Coach lấy đúng profile và mục tiêu Talent.
--   MCP gọi Backend để lấy metrics Upload-Post, không lấy nhầm tài
-    khoản.
--   AI trả đúng ba chủ đề với lý do dựa trên dữ liệu.
--   Nếu thiếu metrics, kết quả phải thể hiện thiếu dữ liệu, không bịa
-    số.
--   Manager sửa hướng dẫn OneDrive; execution sau dùng phiên bản mới
-    theo chính sách cache.
-
-### 12.2. Bảo mật
-
--   Talent A không đọc được dữ liệu Talent B.
--   Manager không được tự mở rộng quyền MCP bằng nội dung OneDrive.
--   Agent không gọi tool ngoài allowlist.
--   Prompt injection trong tài liệu hoặc metrics không thể thay đổi
-    chính sách.
--   Các thao tác ghi OneDrive từ ChatGPT phải được xác thực, kiểm tra
-    phạm vi và có bước xác nhận theo yêu cầu.
-
-### 12.3. Độ ổn định
-
--   Upload-Post trả 429, timeout hoặc dữ liệu thiếu.
--   OneDrive trả 401/403, hết hạn token hoặc không tìm thấy file.
--   OpenAI timeout hoặc trả JSON không hợp lệ.
--   Worker khởi động lại giữa execution.
--   Scheduler kích hoạt trùng.
--   Dữ liệu metrics đã cũ hoặc chưa đồng bộ.
-
-------------------------------------------------------------------------
-
-## 13. Quyết định còn mở
-
-  -----------------------------------------------------------------------
-  Mã                      Câu hỏi cần chốt        Ảnh hưởng
-  ----------------------- ----------------------- -----------------------
-  AIC-01                  Backend API thực tế     Kết nối queue,
-                          chạy ở VPS hay Vercel?  deployment
-
-  AIC-02                  Dùng MCP protocol trong Độ phức tạp runtime
-                          toàn bộ tool nội bộ hay 
-                          adapter cho các tool cố 
-                          định?                   
-
-  AIC-03                  Metrics luôn live từ    Tải API, độ mới, nghiệp
-                          Upload-Post hay ưu tiên vụ
-                          snapshot một lần/ngày   
-                          theo v2?                
-
-  AIC-04                  Upload-Post hỗ trợ      Tool contract
-                          những endpoint, trường  
-                          thống kê và quota nào?  
-
-  AIC-05                  OneDrive dùng Microsoft Xác thực và phân quyền
-                          365 tenant nào và       
-                          phương thức OAuth nào?  
-
-  AIC-06                  Manager điều chỉnh AI   Remote MCP
-                          qua ChatGPT/MCP ở mức   
-                          nào; thao tác ghi nào   
-                          được phép?              
-
-  AIC-07                  Có yêu cầu quản trị     Phạm vi UI
-                          prompt bằng màn hình    
-                          hay chỉ qua OneDrive?   
-
-  AIC-08                  Quota token/chi phí,    Worker sizing
-                          concurrency và thời     
-                          gian hoàn tất AI Coach? 
-
-  AIC-09                  Quy tắc cache/fallback  Tính đúng của phân tích
-                          khi Upload-Post không   
-                          sẵn sàng?               
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-## 14. Kết luận
-
-**Phương án khuyến nghị:**
-
-> **AI SDK + MCP TypeScript SDK + BullMQ + Zod + Custom Orchestrator
-> Wrapper (TypeScript)**
-
-Kết hợp: - **Code:** Agent, system prompt, RBAC, MCP allowlist,
-workflow. - **OneDrive:** hướng dẫn nghiệp vụ, hồ sơ, mục tiêu và kiến
-thức Talent. - **MCP → Backend → Upload-Post:** lấy thống kê SNS trực
-tiếp khi cần. - **Supabase:** dữ liệu ứng dụng, snapshot, execution và
-kết quả. - **VPS:** worker, scheduler, queue và MCP nội bộ.
-
-Phương án này giảm tối đa màn hình cấu hình mới, tận dụng các thư viện
-hiện có, giữ nguyên ranh giới nghiệp vụ Backend và có khả năng mở rộng
-sau này mà không xây dựng sớm một nền tảng multi-agent phức tạp.
-
-------------------------------------------------------------------------
-
-## 15. Tài liệu đối chiếu
-
-1.  `AI育成OS_概要要件定義書_v2.docx`: UC-02, UC-04, §5-5, §6-2 (2-3),
-    §6-5, §7; các đoạn về OneDrive, ChatGPT, Upload-Post và nhập thống
-    kê một lần/ngày.
-2.  `CLAUDE.md`: ghi chú ưu tiên tài liệu v2, điều kiện báo giá A4/MCP,
-    phạm vi CR-17--CR-25, kiến trúc dự kiến.
-3.  `TIEP_TUC.md`: tình trạng kiểm chứng Upload-Post, OneDrive,
-    ChatGPT/MCP và phương án VPS/Vercel.
-4.  Các quyết định kỹ thuật bổ sung trong cuộc trao đổi ngày 19/11/2026:
-    cấu hình code/OneDrive, hạn chế màn hình, MCP lấy thống kê qua
-    Backend và lựa chọn thư viện Hybrid.
-
-**Ghi chú:** Phần hợp đồng API Upload-Post, phiên bản thư viện và cơ chế
-OAuth/MCP phải được xác minh theo tài liệu nhà cung cấp tại thời điểm
-triển khai; các ví dụ trong báo cáo chưa phải hợp đồng tích hợp đã kiểm
-chứng.
+Daily Coach: lịch theo múi giờ nghiệp vụ đã cấu hình; không dùng giờ máy chủ làm ngày Talent và không đóng cứng 08:00. Kiểm Talent đủ điều kiện sử dụng và có hồ sơ trước khi tạo đề xuất. Tạo ba chủ đề theo nguồn là use case khác với tự động tạo/đăng bài trong một kỳ; không gộp chúng thành cùng job làm phát sinh bài ngoài ý muốn.
+
+Tách trạng thái execution với trạng thái bài/duyệt/lịch/SNS. Worker hoàn tất AI không đồng nghĩa đã được phép đăng. Việc chọn chế độ, duyệt bài công việc và xử lý quá giờ tiếp tục theo No.71/84/56/58; không lấp phần còn mở bằng quyết định của model.
+
+Execution có thể dùng khung `PENDING → QUEUED → RUNNING → COMPLETED | FAILED | TIMED_OUT | CANCELLED`, nhưng đây chỉ là đề xuất lifecycle kỹ thuật. Cancel execution không tự hủy được lịch đã gửi Upload-Post hoặc thu hồi tác động ngoài đã thực hiện; phải đi qua use case hủy/đối soát phù hợp. Khi provider chưa rõ đã thực hiện hay chưa, giữ trạng thái cần đối soát thay vì retry mù.
+
+## 10. Dữ liệu AI và API: mở rộng trên nền hiện có
+
+Không tạo ngay ba bảng `ai_executions`, `ai_tool_calls`, `ai_results` như thể dự án chưa có dữ liệu liên quan. Schema hiện đã có `coach_messages`, `theme_suggestions`, `ai_usage_events`, `domain_operations`, `outbox_events`, dữ liệu bài/video và snapshot SNS.
+
+Đề xuất execution/tool-call cần được map với operation, kết quả nghiệp vụ và audit hiện có. Chỉ thêm cấu trúc khi chứng minh thiếu thông tin phục hồi/truy vết; không lưu cùng output đầy đủ ở nhiều bảng. Quyết định DDL thuộc đợt thiết kế DB riêng, theo [phạm vi DB](../database-design/07_implementation_scope_and_rules.md), không được cấp quyền/migration chỉ từ báo cáo này. Các phần DEFERRED vẫn bị chặn cho tới khi tái đánh giá theo nguồn mới.
+
+API dùng `/api/v1/me/...` cho Talent và `/api/v1/admin/...` cho Manager theo tech stack; execution chỉ là resource của use case, không mặc định expose endpoint cho người dùng tự chọn agent/model/tool. Nếu cần endpoint theo dõi execution, kiểm owner/actor và không lộ prompt, bí mật hoặc dữ liệu Talent khác. Lệnh API/MCP/worker gọi chung service. Không bắt buộc mở `/internal/sns/analytics` qua HTTP chỉ để cùng module đọc metrics.
+
+## 11. Triển khai và cấu hình
+
+Đề xuất mở rộng Docker Compose hiện có: `api`, `web`, `migrate` vẫn giữ; thêm `worker`, dispatcher/scheduler entrypoint phù hợp và `redis`. Có thể gộp dispatcher/scheduler trong tiến trình worker nếu đã kiểm cơ chế lease/leader và chống chạy lặp; chưa cần container MCP nội bộ riêng. Remote MCP gắn trong backend hoặc entrypoint riêng nếu có lý do vận hành, dùng chung quyền/service.
+
+Cấu hình cần thiết kế thêm: Redis connection/persistence, cấu hình model/provider, concurrency, timeout, tool limits, queue namespace theo môi trường. Tên biến chính thức phải đồng bộ `config/env.ts` và `.env.example` khi triển khai; không tạo một bộ env thứ hai trong báo cáo. Secret ở backend/worker, không đưa vào `NEXT_PUBLIC_*`, payload job hoặc log. DB runtime dùng `DATABASE_URL` của role riêng; `DIRECT_URL` chỉ dành migration.
+
+Quan sát: operation/event/job/execution/request IDs xuyên suốt; độ trễ outbox, queue backlog, job lặp, worker stale, retry, lỗi provider, token/usage và dữ liệu snapshot cũ. Redis mất dữ liệu, provider timeout và deploy khi đang có job đều phải có phương án phục hồi được thử. Không dùng demo pass thay kiểm môi trường production.
+
+## 12. Thứ tự triển khai đề xuất
+
+| Giai đoạn | Nội dung | Điều kiện trước khi chuyển tiếp |
+|---|---|---|
+| P0 — Chốt ranh giới | Đối chiếu use case, phần nguồn còn mở, tài khoản provider, schema và quyền | Scope rõ; không dùng code/demo như xác nhận khách |
+| P1 — Nền tảng worker | BullMQ/Redis + outbox dispatcher + quyền + chống trùng + quan sát | Kiểm crash, mất enqueue, gửi lặp, replay, dừng tác vụ |
+| P2 — Dữ liệu/context | OneDrive, version/cache, daily SNS snapshot, quyền tài nguyên | Đúng Talent/account, ghi xung đột được phát hiện, không lộ bí mật |
+| P3 — AI tối thiểu | Chốt SDK/model theo benchmark; tác vụ đọc và tạo chủ đề | Output hợp lệ, ghi đúng usage, hồi phục lỗi, không tự đăng |
+| P4 — Kết nối nghiệp vụ | Duyệt/đăng/video/thông báo chỉ theo scope đã chốt | Gate yêu cầu và kiểm provider đạt cho đúng phần; tác động ngoài chống trùng |
+| P5 — ChatGPT/MCP | OAuth + chuẩn bị/xác nhận/commit qua service chung | Theo bộ MCP, còn quyền/version/scope khi commit; không ghi tùy ý |
+| P6 — Vận hành | Tải thực, bảo mật, Redis restart, deploy, backup/replay | Kết quả được review độc lập; UAT/release có điều kiện riêng |
+
+Các giai đoạn trên là kế hoạch kỹ thuật đề xuất, không tự cấp G1–G8 PASS hoặc mở phạm vi chưa có quyết định. Không đưa estimate trước khi kiểm tải và các adapter thật.
+
+## 13. Kiểm chứng cần có
+
+- API commit DB nhưng Redis lỗi: event còn và được gửi lại; Redis nhận job nhưng dispatcher chưa ghi ack: không tạo tác động ngoài trùng.
+- Worker chết trước/sau provider call; Redis restart/mất queue; scheduler chạy hai bản: có đối soát/replay an toàn.
+- Talent ngừng dùng, Manager bị vô hiệu hóa, bài bị hủy hoặc account mapping đổi sau enqueue: worker kiểm điều kiện lại, không dùng context cũ để vượt quyết định hiện hành.
+- AI timeout, tool vượt allowlist, prompt injection, output sai schema: không tự ghi kết quả hợp lệ hoặc tự duyệt bài.
+- Cả UI và MCP sửa hồ sơ/chỉ thị: version/cache đúng, không ghi đè; nhiều category/hồ sơ mâu thuẫn không được tự chọn quy tắc chưa chốt.
+- Daily snapshots và live fetch: phân biệt trường không có, dữ liệu cũ, rate limit và account ID; không trộn lịch sử hai tài khoản SNS.
+- Kỹ thuật retry không tạo thêm lần đăng; giới hạn từng execution không thành hạn hai lần viết lại; hủy execution không bị hiểu là đã hủy lịch ngoài.
+- Manager TOTP và quyền production không lấy optional MFA/self-registration demo làm baseline.
+
+Đây là danh sách kiểm chứng **chưa chạy trong lượt review tài liệu**. Ca cụ thể bổ sung vào bộ kiểm thử hiện có khi được giao triển khai; không tạo một bộ checklist release độc lập chỉ từ báo cáo.
+
+## 14. Quyết định còn mở và chủ xử lý
+
+| Mã | Nội dung | Chủ xử lý / giới hạn |
+|---|---|---|
+| AIC-01 | Môi trường chạy API/worker, dung lượng và persistence Redis | Tech Lead/ops; API vẫn thuộc `apps/api`; không tự chọn Vercel |
+| AIC-02 | Phần tool nào cần MCP nội bộ | Team; ưu tiên service/adapter trong tiến trình cho luồng cố định |
+| AIC-03 | Chính sách snapshot/live | Daily ingestion giữ nguyên; team đề xuất cache, khách chỉ quyết phần hành vi cần thay đổi |
+| AIC-04 | Endpoint metrics, quota, account thật | Team/provider kiểm trực tiếp; không hỏi khách thiết kế API |
+| AIC-05 | Tenant và phương thức Graph | Theo bộ OneDrive; kiểm cấu hình/tài khoản thật |
+| AIC-06 | Scope ghi ChatGPT/MCP và OAuth/commit | Theo bộ MCP; cần kiểm chứng và phê duyệt đúng phạm vi |
+| AIC-07 | Đồng bộ màn nghiệp vụ, thứ tự chỉ thị và phần mâu thuẫn | M-15/M-21 đã được mô tả, không hỏi lại có cần màn hay không. No.92 và nhiều category tiếp tục mở |
+| AIC-08 | SDK/model, số bước, concurrency, SLA | Team benchmark; không tự biến thành giới hạn lượt viết lại hoặc trần chi phí nghiệp vụ |
+| AIC-09 | Fallback dữ liệu, lỗi provider và thông báo | Đề xuất kỹ thuật có giới hạn; No.87/88 còn lệch người nhận |
+
+**BullMQ + Redis không còn là quyết định mở.** Các nội dung trên không chặn sửa những lỗi mô tả đã rõ trong báo cáo, nhưng chặn tuyên bố sẵn sàng triển khai/release toàn bộ khi chưa kiểm chứng.
+
+## 15. Tài liệu tham chiếu và giới hạn review
+
+- [Tech stack và cấu trúc](TECH_STACK_VA_CAU_TRUC_DU_AN.md), [Prisma và DB runtime](../apps/api/PRISMA.md), [phạm vi DB](../database-design/07_implementation_scope_and_rules.md).
+- [ChatGPT/MCP](chatgpt-mcp-spec/README.md); các bộ tích hợp OneDrive/Upload-Post đang có trong `agent_spec`, tái sử dụng adapter/service phù hợp sau kiểm scope.
+- [Danh mục nguồn khách](../TAI_LIEU_NGUON.md), [báo cáo yêu cầu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md), [Q&A nội bộ](../docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md).
+
+`CLAUDE.md`, `TIEP_TUC.md`, code và báo cáo nội bộ không là nguồn khách phê duyệt. Review này đọc source/code để sửa kiến trúc và ghi phần còn mở; không kiểm live provider, không benchmark hoặc chốt phiên bản SDK, không sửa DB/code/dependencies và không ký Independent Verification. Bản trước được giữ trong nhật ký thay đổi hiện có.

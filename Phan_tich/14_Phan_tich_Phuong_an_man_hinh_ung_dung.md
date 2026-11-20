@@ -1,5 +1,13 @@
 # Phân tích tài liệu アプリ画面案_AI育成OS.pdf (phương án màn hình ứng dụng)
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **C-06** — T19 có 19 màn, M19 có 21 màn; đăng nhập xong mở Mypage; thanh điều hướng 5 mục Home/AI/tư liệu/lịch/Mypage; chuông ở Home/Mypage. Số/chữ/tên trong hình là minh họa. Còn mở: Mục lục các PDF và KS có số trang cũ; trích trang PDF thực tế, không dùng số màn AG/18 thay cho 19. Căn cứ: `T19:1,32,33;M19:1,4`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Viết ngày 16/11/2026. Ký hiệu nguồn trong file này:
 
 - **[AG]** = アプリ画面案_AI育成OS.pdf, 12 trang, ghi ngày tạo 12/11/2026, đơn vị tạo FutureCore Partners.

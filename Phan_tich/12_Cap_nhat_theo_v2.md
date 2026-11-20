@@ -1,5 +1,7 @@
 # Cập nhật theo bản yêu cầu v2
 
+> **Hồ sơ lịch sử:** đã đối chiếu với bộ nguồn19/11 vàQA/KS20/11. Các kết luận của đợt cũ giữ nguyên; bản hiện hành tra [sổ kiểm chứng](../docs/requirement-review/README.md). Không lấy snapshot9/12nguồn làm danh mục hiện hành16nguồn.
+
 Bản v2 của 概要要件定義書 (bản định nghĩa yêu cầu tổng quát) thay đổi 3 điểm lớn:
 
 - Tài năng **tự đăng ký trên ứng dụng** và quản lý duyệt, thay cho việc quản lý đăng ký hộ.

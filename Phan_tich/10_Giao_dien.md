@@ -1,5 +1,15 @@
 # Yêu cầu giao diện và trải nghiệm người dùng
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **C-06** — T19 có 19 màn, M19 có 21 màn; đăng nhập xong mở Mypage; thanh điều hướng 5 mục Home/AI/tư liệu/lịch/Mypage; chuông ở Home/Mypage. Số/chữ/tên trong hình là minh họa. Còn mở: Mục lục các PDF và KS có số trang cũ; trích trang PDF thực tế, không dùng số màn AG/18 thay cho 19. Căn cứ: `T19:1,32,33;M19:1,4`.
+- **6-2** — Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán. Còn mở: Cần kiểm thiết bị/PWA quay lại sau kết nối, không coi hình minh họa là kiểm chứng tương thích. Căn cứ: `T19:5,6,8,9,11,26,33;BF19:4`.
+- **7-1** — Danh sách gồm Talent và office; lọc tên/trạng thái/ngày không đăng/category/người phụ trách. M-07 có nút sang M-21 để sửa hồ sơ; không còn mô tả hồ sơ chỉ nhập qua ChatGPT. Còn mở: Loại phân công theo category hay cá nhân vẫn KS 20261120 No.10/QA No.6. Căn cứ: `M19:10,11,13,15,26`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Theo [YK2] 6-14, bản thiết kế của アデッソ ([TK-T], [TK-M]) là căn cứ để làm lại 画面定義書 (bản định nghĩa màn hình). Những chỗ thiết kế còn sót từ bản cũ (LINE, lượt video miễn phí, hạn mức tiền video, không có bước trả lại bài, quyền riêng để dừng đăng tự động) sẽ sửa theo [YK2]. V2 còn thêm luồng tự đăng ký, nên cả hai bộ thiết kế đều thiếu màn đăng ký và màn duyệt đơn. Mã màn hình chuẩn là mã T/M của [AG]; trang 1 của [AG] có bảng đối chiếu với mã L/M của thiết kế khách, L-08 ngoài phạm vi (Q&A No.30, đóng 17/11). 画面定義書 do FutureCore làm, dự kiến gửi sáng 20/11 (Q&A No.68; biên bản họp 17/11, việc số 5). Tab này đã viết lại theo bản yêu cầu v2.
 
 | Ký hiệu | Tài liệu | Ngày | Mã màn hình | Vai trò theo v2 |

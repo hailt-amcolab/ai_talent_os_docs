@@ -1,5 +1,19 @@
 # Workflow chính của hệ thống
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **6-2** — Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán. Còn mở: Cần kiểm thiết bị/PWA quay lại sau kết nối, không coi hình minh họa là kiểm chứng tương thích. Căn cứ: `T19:5,6,8,9,11,26,33;BF19:4`.
+- **4-3** — Chấp nhận yêu cầu có ảnh/video; xin duyệt chỉ hiện cho Talent bật tính năng. Đang chờ Manager duyệt thì không sửa; trả lại có lý do thì sửa rồi xin duyệt lại. Còn mở: Thiếu tư liệu trong chế độ kiểm tra còn KS No.8; bài đến muộn còn No.56; không chốt mọi giao điểm duyệt/từ cấm cho tự động. Căn cứ: `T19:17,18,22,30;BF19:7,8`.
+- **4-4** — Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12. Còn mở: Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57. Căn cứ: `M19:16,23;BF19:17;GJ19:12`.
+- **7-5** — Dừng riêng hoặc toàn bộ ngăn lịch mới và hủy lịch đã có; chạy lại không phục hồi bài đã hủy; tự làm video cũng dừng theo BF19 trang 19. Còn mở: Phần này có mô tả rõ nhưng KS 20261120 No.32 vẫn chưa trả lời; tiếp tục theo dõi tại đó, không tạo câu hỏi trùng. Bài mới trong lúc dừng còn No.60. Căn cứ: `M19:15,21;BF19:19;KS:20261120:32`.
+- **9-1** — Office nhập tên/email ở M-12; tạo folder ngay; Manager login app Talent bằng office, tự nối SNS; không thanh toán/không phí tháng/không duyệt; phí video nội bộ. Unit là office, hiện cùng Talent list. Còn mở: Vòng đời kết thúc/xóa office cần No.66; không suy ngoại lệ streak/nhắc ngày không đăng từ việc miễn phí. Căn cứ: `T19:5,9,25,30;M19:10,17;BF19:20`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Có 11 workflow chính, dựng lại từ 13 tình huống sử dụng (UC-01 đến UC-13) ở mục 4 và các chức năng ở mục 6 của [YK2]. Workflow 2 (đăng bài hằng ngày) là luồng cốt lõi, các workflow khác nối vào nó. Tab này đã viết lại theo bản yêu cầu v2. Số 確認 (mục cần xác nhận) theo đánh số của v2.
 
 **Cách đọc sơ đồ:**
@@ -102,7 +116,7 @@ Tài năng tự chọn một trong hai cách đăng bằng ô đánh dấu ([KS]
 - **要確認 (xác nhận trước khi đăng):** vòng quen thuộc: tin nhắn, chọn chủ đề, viết bản nháp, gửi tư liệu, 採用 (chấp nhận), đặt lịch, đăng bài, hôm sau nhận xét. Nhịp đề xuất (hằng ngày, vài ngày một lần, hay gộp mỗi tuần) chỉnh qua chỉ thị cho AI ([KS] 確認14, 15).
 - **自動投稿 (đăng tự động):** khi bắt đầu, tài năng chọn chủ đề, tải tư liệu lên và đặt khoảng thời gian (ví dụ 1–2 tuần). Trong khoảng đó hệ thống tự soạn và tự đăng, không có bước 採用 từng bài ([KS] 確認25).
 
-Ở cả hai cách, bài chỉ được đặt lịch khi có tư liệu và việc đăng tự động (toàn bộ và của tài năng đó, chức năng 7-5) đang bật. Ở 要確認, bài còn phải được 採用. Nhờ AI soạn lại tối đa 2 lần; tài năng tự sửa chữ được ([KS] 確認28, 29).
+Ở cả hai cách, bài chỉ được đặt lịch khi có tư liệu và việc đăng tự động (toàn bộ và của tài năng đó, chức năng 7-5) đang bật. Ở 要確認, bài còn phải được 採用. Nhờ AI soạn lại không giới hạn số lần; tài năng tự sửa chữ được ([KS] 確認28, 29).
 
 ```mermaid
 flowchart TD
@@ -116,7 +130,7 @@ flowchart TD
   S1 --> S2{"Tài năng phản hồi?"}
   S2 -- "Chọn chủ đề hoặc nói chủ đề muốn đăng" --> S3["AI viết bản nháp<br/>chú thích, hashtag, hướng dẫn chụp, kịch bản"]
   S2 -- "Không phản hồi" --> X1["Không đăng hôm nay<br/>cộng số ngày không đăng – Workflow 8"]
-  S3 --> S4["Tài năng tự sửa chữ, hoặc nhờ AI viết lại<br/>tối đa 2 lần ([KS] 確認28, 29)"]
+  S3 --> S4["Tài năng tự sửa chữ, hoặc nhờ AI viết lại<br/>không giới hạn số lần (DEC-0001; [KS] 確認28)"]
   S4 --> S5{"Đã có ảnh hoặc video?"}
   S5 -- "Chưa, đến trước giờ đăng 2 tiếng" --> S6["Nhắc một lần"]
   S6 --> S7{"Gửi kịp?"}
@@ -159,7 +173,7 @@ flowchart TD
 - Xử lý trước giờ nhắn chưa có giờ bắt đầu. Tin gửi theo khung sáng, trưa, tối ([KS] 確認18); số lần gửi mỗi ngày và giờ cụ thể của từng khung chưa rõ. Đổi giờ theo từng tài năng: xem xét sau khi vận hành.
 - 自動投稿: đang hỏi ở Q&A No.70 (ảnh nào cho bài nào, dừng và đổi giữa khoảng, soạn trước hay soạn từng ngày, hết khoảng), No.71 (ô 自動投稿 / 要確認 có cùng là lựa chọn "自動投稿 hay 1回の投稿" khi bắt đầu đăng theo biên bản 17/11 không; bài công việc có qua duyệt không; kiểm tra từ cấm lúc nào; 要確認 chưa xác nhận tới giờ đăng thì sao) và No.77 (nút dừng toàn bộ có dừng cả khoảng 自動投稿 không). AMCOLAB đề xuất: ảnh dùng theo thứ tự tải lên, mỗi bài một ảnh, hết ảnh thì không đăng và báo tài năng; soạn trước một ngày.
 - 要確認 mà tài năng không gửi ảnh, video trong ngày thì xử lý thế nào: xác nhận sau ([KS] 確認26).
-- 要確認 mà soạn lại 2 lần vẫn không hợp: hôm đó không đăng, trừ khi tài năng tự sửa rồi đăng ([KS] 確認29).
+- Talent có thể tiếp tục nhờ AI viết lại không giới hạn số lần; không dừng đăng vì hết hai lượt (DEC-0001). Điều kiện chấp nhận/duyệt bài vẫn áp dụng.
 - Biện pháp chống khóa tài khoản chưa có (8-4). Con số 1 ảnh + 1 video mỗi ngày đã bị bỏ (確認37).
 - Đăng lỗi thì 8-5 cho "tài năng hoặc quản lý đặt lịch lại", nhưng 確認30 đề xuất tài năng không đổi được giờ đăng. Chỉ một mạng lỗi thì có đăng lại riêng mạng đó không?
 - Tài năng 採用 sau giờ đăng dự kiến thì bài đăng lúc nào.

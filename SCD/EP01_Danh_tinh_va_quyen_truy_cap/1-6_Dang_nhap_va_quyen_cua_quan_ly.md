@@ -1,5 +1,13 @@
 # 1-6 Đăng nhập và quyền của quản lý
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Manager dùng ứng dụng mã 6 số như Google Authenticator; đăng ký QR lần đầu. Thêm tên/email; vô hiệu hóa chặn đăng nhập và ngừng nhận thông báo.
+
+Khôi phục mất phương tiện 2FA và bảo vệ Manager cuối vẫn là No.67; không tự duyệt quy trình khôi phục.
+
+Căn cứ: `M19:5,24` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0590;EV-0609`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP01 – Danh tính và quyền truy cập |
@@ -37,11 +45,11 @@ Chỉ quản lý vào được màn hình quản trị, bằng đăng nhập hai
 3. Lần đầu: quét mã QR để đăng ký ứng dụng xác thực rồi nhập mã ([AG] M-01).
 4. 30 phút không thao tác thì phải đăng nhập lại.
 
-**B. Thêm quản lý (M-18)**
+**B. Thêm quản lý (M-19 bản19/11, trang24)**
 5. Bấm 追加する (thêm), nhập tên và email.
 6. [Đề xuất nội bộ] Hệ thống gửi thư mời có đường dẫn đặt mật khẩu. Lần đăng nhập đầu, người mới đăng ký ứng dụng xác thực (bước 3).
 
-**C. Vô hiệu hóa (M-18)**
+**C. Vô hiệu hóa (M-19 bản19/11, trang24)**
 7. Bấm 使えなくする (vô hiệu hóa), xác nhận. Người đó bị đăng xuất khỏi mọi phiên ngay, không nhận thông báo nữa. Dữ liệu tài năng và bài đăng không đổi ([AG] M-18).
 8. Bấm 変更 (sửa) để đổi tên, email, hoặc cho dùng lại quản lý đã vô hiệu hóa.
 

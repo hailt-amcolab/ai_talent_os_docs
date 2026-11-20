@@ -1,5 +1,9 @@
 # Cập nhật theo bảng xác nhận yêu cầu (quyết định ngày 17/11/2026)
 
+> **Hồ sơ lịch sử:** đã đối chiếu với bộ nguồn19/11 vàQA/KS20/11. Các kết luận của đợt cũ giữ nguyên; bản hiện hành tra [sổ kiểm chứng](../docs/requirement-review/README.md). Không lấy snapshot9/12nguồn làm danh mục hiện hành16nguồn.
+
+> **Hiệu lực từ20/11 — DEC-0001:** số lần AI viết lại hiện không giới hạn theo chỉ đạo người dùng áp dụng H65. Giới hạn hai lần và vấn đề bộ đếm/RV-01/L23-01 bên dưới là lịch sử; không dùng để chặn lần viết lại thứ ba. Phục hồi lỗi/gửi lặp vẫn cần đội thiết kế. Workbook15 và các dòng xác nhận nguồn được giữ nguyên. [Quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Ngày viết: 18/11/2026. Nguồn: `要件定義確認シート_AI育成OS.xlsx` (要件定義確認シート, bảng xác nhận yêu cầu; viết tắt **[KS]**), sheet `確認事項` (các mục cần xác nhận), 118 dòng.
 
 ## 1. Tệp này là gì

@@ -1,5 +1,15 @@
 # 4-1 Tự tạo bản nháp
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+AI tạo chữ/hashtag, dùng ảnh/video Talent gửi; không tự biến ảnh thành slideshow trong luồng bài thường. Bài ảnh không đăng YouTube.
+
+Thứ tự ảnh→chữ hay chữ→ảnh còn KS 20261120 No.7; hiển thị kịch bản/video-idea còn No.35,36, không coi giá hiển thị là đã tạo video.
+
+Căn cứ: `T19:12,13,17,18,27,30;BF19:6,7` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0564;EV-0565;EV-0569;EV-0570;EV-0579;EV-0582;EV-0618;EV-0619`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP04 – Tạo nội dung bài đăng |
@@ -59,7 +69,7 @@ Theo nhịp đề xuất trong chỉ thị cho AI (hằng ngày, vài ngày mộ
 |---|---|---|---|
 | Số chủ đề mỗi lần đề xuất | 3 | Chốt | §6-6 |
 | Nhịp đề xuất | Hằng ngày, vài ngày một lần hoặc mỗi tuần, theo chỉ thị cho AI | Chốt ([KS] 確認14, 15); cách làm FutureCore đề xuất sau | — |
-| Nhờ AI viết lại | Tối đa 2 lần mỗi bản nháp (4-2) | Chốt ([KS] 確認29) | — |
+| Nhờ AI viết lại | Không giới hạn số lần mỗi bản nháp | Người dùng chốt20/11 | DEC-0001; KS H65 |
 | Nội dung bản nháp | Chú thích, hashtag, hướng dẫn chụp; video thêm kịch bản | Chốt (chờ 確認24) | §6-6, §5-3 |
 | Một nội dung cho cả 3 mạng | — | Chốt | UC-05 前提 |
 | Tiêu đề cho YouTube | Tối đa 100 ký tự | Đề xuất | B3 |

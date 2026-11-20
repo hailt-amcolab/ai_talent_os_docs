@@ -1,7 +1,8 @@
 import { AppError } from '../../core/errors.ts'
 import { PLATFORMS, UploadPostError, type Platform, type UploadPostClient } from '../../infra/upload-post/client.ts'
 
-// Upload-Post connect demo (/api/v1/dev/upload-post/*): one Upload-Post profile per demo login, SNS linked via Connect API.
+// Upload-Post connect demo (/api/v1/dev/upload-post/*): one Upload-Post profile per demo login.
+// Connect opens Upload-Post's hosted page (generate-jwt), limited to the network on the button.
 // ponytail: profile name derived from the login id, no DB table; the real feature stores it on talents (spec UP-D1).
 export type SnsAccount = { platform: Platform; status: 'not_connected' | 'connected' | 'reauth_required'; handle?: string; displayName?: string }
 

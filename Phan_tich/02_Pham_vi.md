@@ -1,5 +1,15 @@
 # Phạm vi dự án: Trong phạm vi / Ngoài phạm vi / Chưa rõ
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+- **1-3** — Không phục hồi phân loại Talent trả phí/miễn phí đã bỏ; office là loại riêng. Còn mở: Không phát sinh quyết định nghiệp vụ mới từ phần nguồn này; các đề xuất kỹ thuật cũ vẫn là đề xuất. Căn cứ: `M19:17;T19:25`.
+- **1-2** — Office nhập tên/email ở M-12; tạo folder ngay; Manager login app Talent bằng office, tự nối SNS; không thanh toán/không phí tháng/không duyệt; phí video nội bộ. Unit là office, hiện cùng Talent list. Còn mở: Vòng đời kết thúc/xóa office cần No.66; không suy ngoại lệ streak/nhắc ngày không đăng từ việc miễn phí. Căn cứ: `T19:5,9,25,30;M19:10,17;BF19:20`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Tab này đã viết lại theo bản yêu cầu v2. [YK2] = AI育成OS_概要要件定義書_v2.docx. Số 確認 (mục cần xác nhận) theo đánh số của v2. 前提 là phần tiền đề ở cuối mỗi UC.
 
 **Thay đổi phạm vi chính so với v1:** tài năng tự đăng ký trên ứng dụng chuyển từ "ngoài phạm vi" vào "trong phạm vi". Người ngoài công ty không còn là mục để sau mà dùng chung luồng đăng ký (⚠ 確認1). Loại tài năng miễn phí bị bỏ. Hủy bài trên màn hình quản trị và dừng đăng theo từng tài năng vào phạm vi. Màn hình chỉ dẫn cho AI và nhóm tài năng: khách quyết làm ngày 17/11 ([KS] 確認6–8, 47).

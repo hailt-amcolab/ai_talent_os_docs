@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   cacheComponents: true,
   partialPrefetching: true,
+  async rewrites() {
+    return [{ source: '/pwa/icons/:file', destination: '/icons/:file' }]
+  },
   async headers() {
     return [
       {

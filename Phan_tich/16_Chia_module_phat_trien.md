@@ -1,5 +1,14 @@
 # Chia module và chức năng để phát triển
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **7-1** — Danh sách gồm Talent và office; lọc tên/trạng thái/ngày không đăng/category/người phụ trách. M-07 có nút sang M-21 để sửa hồ sơ; không còn mô tả hồ sơ chỉ nhập qua ChatGPT. Còn mở: Loại phân công theo category hay cá nhân vẫn KS 20261120 No.10/QA No.6. Căn cứ: `M19:10,11,13,15,26`.
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2), chương 6. [AG] = `アプリ画面案_AI育成OS.pdf` (phương án màn hình ứng dụng, 12/11/2026).
 
 File này gom 54 chức năng thành module để chia việc phát triển. Phân tích chi tiết từng chức năng (tác nhân, đầu vào, điều kiện, luồng, đầu ra) vẫn nằm ở [04_Yeu_cau_chuc_nang.md](04_Yeu_cau_chuc_nang.md). File đó chia theo 12 nhóm của [YK2].

@@ -1,5 +1,13 @@
 # 6-3 Gửi ảnh và video
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+T-13 chọn từ thiết bị hoặc tư liệu đã gửi; xem trước/sắp thứ tự và gửi gắn vào bài. Định dạng/dung lượng do thiết kế, không lấy placeholder làm yêu cầu.
+
+Màn 19/11 không mô tả thẻ chụp mới; không coi tính năng chụp/quay ngay của YK2 đã bị hủy chỉ vì màn không vẽ.
+
+Căn cứ: `T19:19;BF19:7,10,11` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0571;EV-0619;EV-0622;EV-0623`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
@@ -33,7 +41,7 @@ Tài năng chọn ảnh, video trong máy hoặc chụp ngay rồi gửi. Quá d
 5. Ô "自分で作った動画として保存する" (lưu làm video tự làm): đánh dấu video vào hàng chờ của 6-4, không gắn vào bản nháp hôm nay.
 6. Xong thì về T-09.
 
-**Quản lý gửi thay (M-08):** cùng luồng, ghi lại người gửi là quản lý.
+**Quản lý gửi thay:** không áp dụng cho Talent thường theo KS確認27; Manager thao tác app bằng office. Phần Manager cấp tư liệu dùng trong kỳ tự động còn KS20261120 No.19; không tự mở luồng gửi thay Talent từ M-08.
 
 ## Luồng lỗi và trường hợp biên
 

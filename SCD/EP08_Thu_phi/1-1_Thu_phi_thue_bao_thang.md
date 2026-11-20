@@ -1,5 +1,13 @@
 # 1-1 Thu phí thuê bao tháng
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp.
+
+Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày.
+
+Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP08 – Thu phí |
@@ -28,23 +36,12 @@ Thu phí tháng của tài năng qua GMO Payment Gateway (thanh toán qua nhà m
 
 ## Luồng chính
 
-**A. Đăng ký thanh toán (6-2 bước 3)**
-1. Tài năng bấm 決済代行会社の画面を開く (mở trang của công ty thanh toán), chọn thanh toán qua nhà mạng hoặc thẻ trên trang của GMO. Hệ thống **không bao giờ nhận thông tin thẻ** (§10-2).
-2. GMO báo kết quả về điểm nhận của hệ thống (file 18, câu I5). Thành công thì phát sự kiện "đã đăng ký thanh toán": tài năng sang 利用中 (S01-01), tạo thư mục (2-2), đăng ký Upload-Post (8-2).
-3. Thu ngay phí của kỳ đầu. Kỳ thu là một tháng tính từ ngày đăng ký (ví dụ đăng ký 17/11 thì kỳ đầu đến 16/12; §5-4, [KS] 確認48). アデッソ hỏi đơn vị thanh toán có làm được không.
-
-**B. Thu hằng tháng (S08-02)**
-4. Ngày 1 mỗi tháng: tính cho từng tài năng ở 利用中 = phí tháng này + số lần tạo video tháng trước × đơn giá đã lưu ở từng lần (5-4).
-5. Gửi yêu cầu thu sang GMO. Lưu hóa đơn tháng ở trạng thái "đang thu".
-6. Nhận kết quả: thành công thì "đã thu"; lỗi thì "thu lỗi" và sang luồng C.
-
-**C. Thu lỗi**
-7. Báo tài năng (支払いの失敗: ứng dụng và thông báo đẩy) và mọi quản lý (M-02). Không tự dừng (§6-3).
-8. Thu lại khi tài năng đổi cách thanh toán, và tự thu lại một lần sau 3 ngày (S08-03).
-9. Quản lý muốn dừng thì chuyển tài năng sang 利用終了 (B7 phương án A).
-
-**D. Tài năng tự xem, tự đổi (T-15)**
-10. Số tiền dự kiến tháng này (phí tháng, phí video, tổng), nút 支払い方法を変える (đổi cách thanh toán), 請求の履歴を見る (xem lịch sử), cả hai mở trang của GMO.
+1. Đăng ký/đổi thanh toán và xem lịch sử tại trang nhà cung cấp; hệ thống không lưu số thẻ. Chưa chọn cổng chính thức: GMO trong tài liệu là dự kiến, Square tại KS H105 mới là ghi chú cần kiểm.
+2. Đăng ký phương thức xong tự kích hoạt và tạo folder theo SD-T19 trang8–9; không suy đăng ký đồng nghĩa đã thu tiền.
+3. Tổng hóa đơn gồm phí tháng và phí video hợp lệ. Trả trước/sau, ngày bắt đầu/kỳ thu, khả năng thu số tiền biến đổi còn KS20261120 No.23–26 và QA No.4/53.
+4. Không chốt thu ngay kỳ đầu, ngày1 hay thử lại sau3ngày từ giả định cũ. Đội đề xuất lịch/đối soát sau khi có quyết định và bằng chứng provider.
+5. Thu lỗi báo Talent/Manager; Manager quyết định dừng. Tạm dừng nợ và phí trong thời gian dừng còn No.63.
+6. Talent xem dự kiến, lượt video và link đổi thanh toán/lịch sử tại T-19 (SD-T19 trang25).
 
 ## Luồng lỗi và trường hợp biên
 

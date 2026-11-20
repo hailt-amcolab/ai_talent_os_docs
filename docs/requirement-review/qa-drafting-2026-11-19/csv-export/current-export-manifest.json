@@ -1,20 +1,119 @@
 {
-  "version": "V5",
+  "version": "V5-SNS-SCHEDULE-NG-WORKFLOW",
   "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
-  "question_count": 36,
-  "internal_hold_count": 3,
+  "question_count": 4,
+  "internal_hold_count": 4,
   "files": [
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
-      "sha256": "9ef2b1d730c651174faf159b1d4bb3dfcfa531250d5af14e36424ceea9d83e57"
+      "sha256": "f85005b28db31fea58b1dc0ea72eb54c8081516cb7d4ac78364b99293fd7304a"
     },
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
-      "sha256": "2bbfcf1fe2e431c4c350e3f99770459d46db2536a02fdff2ed18fd7cb37ec73e"
+      "sha256": "81f85acf87499e2825df38f024d424c229cc026e87793c42677d1a1c8643bc51"
     },
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
-      "sha256": "56779050ac75293eaa9f15552d8b471fbda6565288eabcdc6004143d3fb3a8b5"
+      "sha256": "b365b0bd9b692e7ef16dc068ee694915ca188be2d17b883a5969a4a48a183afe"
     }
-  ]
+  ],
+  "source_freshness": "QA_CHANGED_PENDING_REVIEW",
+  "previous_exports": [
+    {
+      "version": "V5",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 36,
+      "internal_hold_count": 3,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "8be44cac21ea948d924e31b589422b3bf2d31c4793da8a3b8e60dc239362cc9c"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "b3f75870c74e5e8dfa61947b6870e72512a991c7293138ab7a10f6dcdd5040bb"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "c01617525244c8206722142b16310943ebfdb01919d7e5f198ac8381734c0702"
+        }
+      ],
+      "source_freshness": "PENDING_DELIVERY_19NOV_RECONCILIATION"
+    },
+    {
+      "version": "V5-R19NOV-QA20NOV",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 26,
+      "internal_hold_count": 26,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "8be44cac21ea948d924e31b589422b3bf2d31c4793da8a3b8e60dc239362cc9c"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "b3f75870c74e5e8dfa61947b6870e72512a991c7293138ab7a10f6dcdd5040bb"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "c01617525244c8206722142b16310943ebfdb01919d7e5f198ac8381734c0702"
+        }
+      ],
+      "source_freshness": "AUTHOR_RECONCILED_NOT_INDEPENDENTLY_REVIEWED",
+      "disposition_count": 10,
+      "draft_sha256": "dc0b84cc26b3f927dc31c9ac89dcd8cdab979ca4ee61a228ffea7de3a28c2c2a"
+    },
+    {
+      "version": "V5-FLOW-INTERSECTIONS-20NOV",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 26,
+      "internal_hold_count": 26,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "76163f4b161cb6a61a25baa2582789be81d6315bb8dee1a310df45c5ad8d8135"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "b3f75870c74e5e8dfa61947b6870e72512a991c7293138ab7a10f6dcdd5040bb"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "ed882604335eed03fd120a7eea5103ef12e73cd3329ec75278aef2f757ad6ec3"
+        }
+      ],
+      "source_freshness": "AUTHOR_RECONCILED_NOT_INDEPENDENTLY_REVIEWED",
+      "disposition_count": 10,
+      "draft_sha256": "44b75f09a3eb7b40629b5988c67c1898110f6df3b36f1121e36979c1d346f652",
+      "priority_count": 16,
+      "supplementary_count": 10
+    },
+    {
+      "version": "V5-QA-WORKBOOK-DEDUP-NO-PRICING",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 2,
+      "internal_hold_count": 2,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "1ba770f43baecc675d098aa95fe73cc30176e1f367e303c540cec086be900c19"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "4461bed6196a8eca5becd00326096262eb7c3d6ffe2024df6995e2b21f2290a7"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "c398ae0d4c77652e361de1d392fd328384defadcace28fff50bfc984fed76d42"
+        }
+      ],
+      "source_freshness": "QA_CHANGED_PENDING_REVIEW",
+      "disposition_count": 34,
+      "draft_sha256": "f481d391e64ac32ea9f38b8192b5dfb3e83c5f16d74b6dbb79885bbe7fc91732"
+    }
+  ],
+  "disposition_count": 34,
+  "draft_sha256": "b4c1c5a96a5c5b1830c78669b00c2a85307258225f75f96a6d625893c4e9091e",
+  "working_draft_count": 2,
+  "candidate_pending_content_review_count": 2
 }

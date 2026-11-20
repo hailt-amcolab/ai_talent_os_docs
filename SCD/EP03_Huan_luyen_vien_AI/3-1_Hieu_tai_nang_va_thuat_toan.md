@@ -1,5 +1,13 @@
 # 3-1 Hiểu tài năng và thuật toán
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Chỉ thị toàn bộ/category/Talent, ưu tiên Talent > category > toàn bộ; mọi trường hợp vẫn kiểm từ cấm. Có thử trên Talent, lưu, lịch sử và quay một phiên bản; sửa qua quản trị hoặc ChatGPT.
+
+Nhiều category xung đột và hiệu lực thay chỉ thị với bài đã tạo vẫn cần phương án đội.
+
+Căn cứ: `M19:19,20,27;BF19:18` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0604;EV-0605;EV-0612;EV-0630`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |

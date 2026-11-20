@@ -1,5 +1,7 @@
 # Đối chiếu chín nguồn và biên tập bộ câu hỏi khách hàng
 
+> **Hồ sơ lịch sử:** đã đối chiếu với bộ nguồn19/11 vàQA/KS20/11. Các kết luận của đợt cũ giữ nguyên; bản hiện hành tra [sổ kiểm chứng](../docs/requirement-review/README.md). Không lấy snapshot9/12nguồn làm danh mục hiện hành16nguồn.
+
 > Cập nhật đường dẫn ngày 19/11: đây là bản đối chiếu lịch sử của bộ chín nguồn ngày 18/11. Danh mục hiện hành đã chuyển sang `source_requiments/` và có 12 tệp, gồm hai bản định nghĩa màn hình 18/11. Đọc [TAI_LIEU_NGUON.md](../TAI_LIEU_NGUON.md) và [bản cập nhật28](28_Cap_nhat_danh_muc_nguon_19-11-2026.md); không dùng số chín trong báo cáo này làm giới hạn nguồn hiện tại.
 
 Ngày18/11/2026. Theo danh mục người dùng chỉ định tại [TAI_LIEU_NGUON.md](../TAI_LIEU_NGUON.md). Tài liệu phân tích/SCD/guide/thiết kế DB là dẫn xuất, không phải bằng chứng khách đã đồng ý. Đợt này chỉ làm tài liệu; không dùng mã nguồn, demo hoặc cấu hình môi trường.

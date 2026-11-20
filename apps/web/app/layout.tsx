@@ -5,6 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: APP.name,
   description: APP.description,
+  manifest: '/pwa/manifest',
   // iPhone: tên dưới biểu tượng và thanh trạng thái khi mở từ màn hình chính. Biểu tượng lấy từ app/apple-icon.png.
   appleWebApp: { capable: true, title: APP.shortName, statusBarStyle: 'default' },
 }

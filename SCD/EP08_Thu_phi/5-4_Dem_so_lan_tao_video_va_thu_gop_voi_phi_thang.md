@@ -1,5 +1,13 @@
 # 5-4 Đếm số lần tạo video và thu gộp với phí tháng
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp.
+
+Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày.
+
+Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0561;EV-0572;EV-0573;EV-0577;EV-0578;EV-0600;EV-0627`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP08 – Thu phí |
@@ -22,11 +30,11 @@ Hiện đơn giá mỗi lần tạo video trên màn tạo video. Tính một l�
 ## Luồng chính
 
 1. 5-1 tạo một lần tạo, lưu `unit_price_jpy` tại thời điểm yêu cầu, `billable = true`.
-2. Lỗi phía dịch vụ hoặc quá 15 phút (S05-08): `billable = false`.
+2. Lỗi phía dịch vụ xác định không tính lượt. Timeout15phút là ngưỡng kỹ thuật đề xuất, không tự biến kết quả chưa rõ thành không tính phí; tiếp tục No.62 và đối soát đội.
 3. Tổng tháng = số lần `billable` trong tháng × đơn giá đã lưu ở từng lần (B9: đơn giá cố định).
 4. T-11, T-12: số lần tháng này; T-15: tổng dự kiến (phí tháng + phí video).
 5. M-06, M-10: số lần và tiền tháng này của từng tài năng; tài khoản công ty hiện số lần, không có tiền phải thu.
-6. Ngày thu (1-1): đưa phí video tháng trước vào hóa đơn.
+6. Ngày thu/kỳ video và ghép phí chờ quyết định ở1-1; không mặc định thu tháng trước vào ngày1.
 
 ## Luồng lỗi và trường hợp biên
 

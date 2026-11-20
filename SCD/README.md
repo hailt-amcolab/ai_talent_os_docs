@@ -1,5 +1,9 @@
 # Đặc tả từng chức năng (SCD) – AI育成OS
 
+> **Đã đối chiếu nguồn19/11 và QA/KS20/11:** mọi đặc tả chức năng có mục cập nhật hiện hành và căn cứ. Các câu hỏi module đã gom về một bản Q&A chính. Nội dung nguồn mới có thể còn là mô tả/đề xuất; màu R1–R9 trước đây không thay review/G8. [Kết quả đối chiếu](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
+> Thuộc [bộ tài liệu dự án](../docs/README.md). Đây là đặc tả nội bộ từng chức năng. Tra yêu cầu, luồng, finding và Q&A hiện hành tại [kiểm chứng yêu cầu](../docs/requirement-review/README.md). Màu R1–R9 và câu hỏi trong module không thay G1–G8 hoặc xác nhận khách. Đối chiếu nguồn mới ngày 19/11 trước khi dùng; không biên tập bộ Q&A song song trong SCD.
+
 Thư mục này có **một file cho mỗi chức năng**, chia thư mục con theo module EP01–EP10 ([file 16](../Phan_tich/16_Chia_module_phat_trien.md)). Mỗi file trả lời một câu hỏi: **chức năng này đã đủ để giao AI agent viết mã chưa, nếu chưa thì còn thiếu gì và ai phải lấp.**
 
 Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩa yêu cầu tổng quan, bản 2). [AG] = `アプリ画面案_AI育成OS.pdf` (phương án màn hình ứng dụng). Các file phân tích nằm trong [Phan_tich/](../Phan_tich/).
@@ -12,7 +16,7 @@ Nguồn: [YK2] = `AI育成OS_概要要件定義書_v2.docx` (bản định nghĩ
 | Module | Phần của module đó trong [file 16](../Phan_tich/16_Chia_module_phat_trien.md) | Khi làm bất kỳ chức năng nào trong module |
 | Chức năng | Đúng một file trong thư mục này | Khi làm chức năng đó |
 
-**Chỉ giao agent file có mức 🟢 hoặc 🟡, và đã viết đầy đủ** (không còn dòng "Bản khung" ở đầu file).
+**Khi giao triển khai phải kiểm gate hiện hành đúng phạm vi; màu xanh/vàng và việc viết đủ mục chưa chứng minh đủ điều kiện G8.**
 
 ## 2. Hai loại file
 

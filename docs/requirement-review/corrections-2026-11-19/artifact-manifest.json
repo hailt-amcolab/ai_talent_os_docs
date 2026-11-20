@@ -1,0 +1,203 @@
+{
+  "version": "CORRECTION-1",
+  "approval": "DRAFT_PENDING_REVIEW",
+  "incoming_source_reconciliation": "PENDING",
+  "files": [
+    {
+      "path": "FLOW_INDEX.md",
+      "sha256": "cf979d5e221474ae21510dc926ffe7b8f9315b6389ac2033998995cb11205ae0"
+    },
+    {
+      "path": "MISSING_INFORMATION_CURRENT.md",
+      "sha256": "1f5562a525e847ff123cb8991bec2e8d82b6d9bffb7ce28cc0c0c16639ffbe69"
+    },
+    {
+      "path": "NEW_DELIVERY_IMPACT.md",
+      "sha256": "620c4c0d526cd3f4e0a4b5d87e4b4f77ba6176e7c0ada57a84d427369e0604fa"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "92bde28bb802172d1f22d5d2cb8676b7a4e74df3acb22650c1101e6e00f2c841"
+    },
+    {
+      "path": "STATE_TRANSITION_TABLES.md",
+      "sha256": "4e21b40cf00836625c7d133b2e891f6f0acb579ea318145beeab3808438f6ec5"
+    },
+    {
+      "path": "VALIDATION.md",
+      "sha256": "4d3467034633036dab0a49bf0cdb37684a58d889143e923e39b54d3c5fd59370"
+    },
+    {
+      "path": "application-state.json",
+      "sha256": "06bc4f7d200b89309e5b1788be89c756baf62e7efa8c209afd8e8919e7ce194c"
+    },
+    {
+      "path": "before/TAI_LIEU_NGUON.md.txt",
+      "sha256": "66aaaf8f284d1703aece6c675131f7ea15e0c631d241727e6e3e62058eebe89f"
+    },
+    {
+      "path": "before/docs/qa/qa-quality-review.md.txt",
+      "sha256": "8cec9c7ba3ebc75edd00f49508d0a70d1cb27cf6c47959afe5cd832d2843d7ab"
+    },
+    {
+      "path": "before/docs/requirement-review/README.md.txt",
+      "sha256": "a6bee2acc11de00bdfb73da22ffd848b8cd38abad12aeb03589c83b1554591bf"
+    },
+    {
+      "path": "before/docs/requirement-review/SOURCE_REGISTER.md.txt",
+      "sha256": "945cb7920f682953ab05560621e70e932d1c2c8cebbbabecbe5902828ec91b22"
+    },
+    {
+      "path": "before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md.txt",
+      "sha256": "b92a5a9cddb48e86ecd99574960bfac4634eca81bb34cefdb6e8e2768f691543"
+    },
+    {
+      "path": "before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/current-export-manifest.json",
+      "sha256": "40337ebb414e542a09baff8a31682761d773daf86093900b978e7ad065b670b9"
+    },
+    {
+      "path": "before/docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "bdfce1bbe326e0e6cd80199ad627e9a3fa73dd089ebd5868933136a428a9c124"
+    },
+    {
+      "path": "before/docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md.txt",
+      "sha256": "88c524c5ac6e96f80e3f7e6b823e228ffb8b811d470a4ec3ef65c9d3cd32fd3b"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/business-flows.csv",
+      "sha256": "bbe2499604f57a6736983a3f0557da0a7f2b9b493d840d7db631299ddb132e14"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/business-rules.csv",
+      "sha256": "7abf2342a0c7af5fd2e515ff925eb2ae026b16c3553502411c6659c9c50f2841"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/evidence.csv",
+      "sha256": "dccbc5df21400f63461ab7c31600c19271af63688ff1b7467fb9964564723b59"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/findings.csv",
+      "sha256": "e93400b426dac06a7d4609e0ea32585ee594b748a49ef424eee7149ea0fb9cc3"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/gate-runs.csv",
+      "sha256": "1aafcbf78a71f193f56536359c6e34a7de0661c2518e79fd31e20b3913023a0f"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/requirements.csv",
+      "sha256": "281a855367746d22a386bffc498635a956af69abfbd6bec541430a7b12812917"
+    },
+    {
+      "path": "before/docs/requirement-review/registers/reviews.csv",
+      "sha256": "91ec56cc11ad3536818caca8c12f27756786f9bb17a59fe55ee7e1366c6f60b9"
+    },
+    {
+      "path": "before/docs/requirement-review/validate.py",
+      "sha256": "8670da22b2eba0ffeba9793961eb5f31f18110a5c26909c06fd3ddc53b8a5c03"
+    },
+    {
+      "path": "changes.csv",
+      "sha256": "822dbdd33d686d9a0026ee4113bc3936a6a302dd7e9d1dc826592bfa9116c8f5"
+    },
+    {
+      "path": "correction-evidence.csv",
+      "sha256": "97ce667de9eb151b682bb975cd25d02be859765e7f706b1ba6c4b3a27ec2cc24"
+    },
+    {
+      "path": "current-output-hashes.json",
+      "sha256": "839bd5d2510f19ed967f84ec8c52245180a0ce28538bf8cba06a071dd8916d48"
+    },
+    {
+      "path": "current-view.json",
+      "sha256": "ebd8f60b77163d50c4290a249548a6171846f58ee5ef14c096729e8daa1f85ce"
+    },
+    {
+      "path": "finding-details.csv",
+      "sha256": "da92a207e0ff0a9627d9b2b6b8b2ce57e92f050a50f71395d7501691d2927bd8"
+    },
+    {
+      "path": "finding-review-applicability.csv",
+      "sha256": "3b16a3c6c760eb1316f6af3318223156f84ee98cfc59b281533b91197d4c975a"
+    },
+    {
+      "path": "findings/FND-0003.md",
+      "sha256": "a916fa9d731cbd170ac995c87fa6b8d9cb5f345f8da8225a83c5bd6c4f2c9d71"
+    },
+    {
+      "path": "findings/FND-0023.md",
+      "sha256": "f483e992b310347deb50139fbc117dac984ff4619668a03bb0c7d9544e9c6501"
+    },
+    {
+      "path": "flows/FLOW-0003.md",
+      "sha256": "38c798b0ab4a871e84d4569a4e4b6f18277f62733e171b7f73769afdcd44d66e"
+    },
+    {
+      "path": "flows/FLOW-0004.md",
+      "sha256": "4d4f6b9b56a9d8436fd68c5547df26d2c3a19ca6a157241bf805f946a12ee1ba"
+    },
+    {
+      "path": "flows/FLOW-0006.md",
+      "sha256": "7133031abd99086a8e683331d75a74822959d05213fe3e9aacc887c16dd20228"
+    },
+    {
+      "path": "flows/FLOW-0009.md",
+      "sha256": "27f7425cfae9bb197155529905e128f8529c4860de956c39ff3f30855a73a916"
+    },
+    {
+      "path": "flows/FLOW-0013.md",
+      "sha256": "bcb4ff180ac73541ce73bbceaf3bb8c8cb9b8851ffc88b5092f7b9239159789b"
+    },
+    {
+      "path": "flows/FLOW-0016.md",
+      "sha256": "cb2a6c4bf45d0fddcaaaf91cb91881a42db80bfe3e031e75c64b1739c423440c"
+    },
+    {
+      "path": "flows/FLOW-0021.md",
+      "sha256": "a0abad4ab9913b26f976e0cf1d531b206c6ebb34232c09c4850d73ced5b1524e"
+    },
+    {
+      "path": "flows/FLOW-0024.md",
+      "sha256": "27e39902941a86ec7d82f84df4b04691e5577d8604e17bf5fa1cf121db34b3e5"
+    },
+    {
+      "path": "gate-impact.csv",
+      "sha256": "2e1a89ae84ca8ec90949dfbbae00c8534f03765376f2db19c2a8e1a4d547c4c2"
+    },
+    {
+      "path": "input-manifest.json",
+      "sha256": "6218630041c38eedbb0081646863f878f93e183277f658f5e57a95dbd299b63b"
+    },
+    {
+      "path": "issue-resolution.csv",
+      "sha256": "36f2a1e7c79797d6dc1032bffe80daf9481598270866252829a1ac291a594d85"
+    },
+    {
+      "path": "new-delivery-intake.json",
+      "sha256": "19f8069c2b48dcf0ba09e325c01de0dec9bcaa7c916f34ce1fb04e8c17c96ef4"
+    },
+    {
+      "path": "register-deltas.csv",
+      "sha256": "30a3b2857b51c77daaedbdad918c962cc9d767a7b968dd6e802259cebcb9158a"
+    },
+    {
+      "path": "scenarios.csv",
+      "sha256": "a55d67c7de980333b0681cf6a26727ab5566bcc1d9286f8be86357d4d3f8cc64"
+    },
+    {
+      "path": "source-snapshot.json",
+      "sha256": "c1484cb162eed1bb229ff240231ab964600a8e90b2f83f9e31ee8ed0d10f59e5"
+    },
+    {
+      "path": "state-transitions.csv",
+      "sha256": "34ea64e9c80493ec04726bec02178354b7ddbecff68a21b75a7888033d95173f"
+    },
+    {
+      "path": "steps.csv",
+      "sha256": "fb4c594f0ad2b1a6bc950812eca554f5d57a243156fec6cd1be249f96828737c"
+    },
+    {
+      "path": "validate_corrections.py",
+      "sha256": "2b95804165e660ec2915c2a224782c7bdc327b8946ac8c4930423c0ee13cb83a"
+    }
+  ]
+}

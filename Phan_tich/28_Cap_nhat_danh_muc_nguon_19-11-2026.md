@@ -1,5 +1,13 @@
 # Cập nhật kiến thức tài liệu nguồn ngày 19/11/2026
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **C-06** — T19 có 19 màn, M19 có 21 màn; đăng nhập xong mở Mypage; thanh điều hướng 5 mục Home/AI/tư liệu/lịch/Mypage; chuông ở Home/Mypage. Số/chữ/tên trong hình là minh họa. Còn mở: Mục lục các PDF và KS có số trang cũ; trích trang PDF thực tế, không dùng số màn AG/18 thay cho 19. Căn cứ: `T19:1,32,33;M19:1,4`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
 ## 1. Nguồn chính thức và thay đổi lần này
 
 Theo chỉ định mới của người dùng, [source_requiments/](../source_requiments/) tập hợp nguồn đầu vào ban đầu, tài liệu bổ sung qua thời gian và nhật ký Q&A. Danh mục hiện hành là [TAI_LIEU_NGUON.md](../TAI_LIEU_NGUON.md); không còn giới hạn ở chín tệp ngày 18/11.

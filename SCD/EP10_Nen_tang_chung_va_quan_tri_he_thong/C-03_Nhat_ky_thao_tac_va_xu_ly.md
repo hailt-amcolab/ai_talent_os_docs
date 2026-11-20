@@ -1,5 +1,13 @@
 # C-03 Nhật ký thao tác và xử lý
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Ghi tự động Manager/thời điểm/màn/Talent khi xem thông tin, hội thoại, kết quả. Lọc khoảng thời gian và Talent, nhật ký xem không được sửa.
+
+Retention nhật ký vận hành/thao tác không được nguồn mới chốt.
+
+Căn cứ: `M19:11,13,25;BF19:21` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0596;EV-0598;EV-0610;EV-0633`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP10 – Nền tảng chung và quản trị hệ thống |

@@ -1,5 +1,16 @@
 # Cách đọc bảng câu hỏi sau rà soát 18/11/2026
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **4-2** — Không giới hạn số lần AI viết lại theo DEC-0001; quyền sửa tay giữ nguyên. Các mô tả hai lượt trong PDF19/11 là lịch sử bị thay đúng chủ đề. Còn mở: Xử lý lỗi/kết quả không rõ/gửi lặp còn do đội thiết kế. Căn cứ: `T19:18,27,29;USER:DEC-0001`.
+- **7-4** — Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người. Còn mở: Phân công category/cá nhân và fallback vẫn No.6; email loại nào và câu chữ còn cần rà mẫu. Không tự chốt đã xử lý chung hay riêng từng Manager. Căn cứ: `M19:6,8;BF19:14;GJ19:6,7`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Hiệu lực từ20/11 — DEC-0001:** số lần AI viết lại hiện không giới hạn theo chỉ đạo người dùng áp dụng H65. Giới hạn hai lần và vấn đề bộ đếm/RV-01/L23-01 bên dưới là lịch sử; không dùng để chặn lần viết lại thứ ba. Phục hồi lỗi/gửi lặp vẫn cần đội thiết kế. Workbook15 và các dòng xác nhận nguồn được giữ nguyên. [Quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Bảng chính: [15_Cau_hoi_lam_ro_luong.xlsx](15_Cau_hoi_lam_ro_luong.xlsx). **XLSX thay cho CSV cũ, là bản theo dõi chính duy nhất.** Liên kết luồng: [22_So_do_tuong_tac_tac_nhan.md](22_So_do_tuong_tac_tac_nhan.md), đặc biệt G01–G20.
 
 ## Phạm vi thay đổi

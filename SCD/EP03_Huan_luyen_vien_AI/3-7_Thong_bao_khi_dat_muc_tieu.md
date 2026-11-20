@@ -1,5 +1,13 @@
 # 3-7 Thông báo khi đạt mục tiêu
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Đạt mục tiêu có thông báo; follower tăng được truyền qua lời nhắn AI theo chỉ thị.
+
+Mốc 25/50/75% ở QA No.14 và cách mới nêu trong màn 19/11 cần đối chiếu, không tự bỏ hay thêm thông báo mốc.
+
+Căn cứ: `T19:16,24;M19:6;BF19:13` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0568;EV-0576;EV-0591;EV-0625`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP03 – Huấn luyện viên AI |
@@ -22,7 +30,7 @@ Số người theo dõi một mạng đạt mục tiêu thì báo cả tài năn
 ## Luồng chính
 
 1. Sau mỗi lần lấy số liệu (8-7), so số người theo dõi từng mạng với mục tiêu (2-4).
-2. Mạng nào vừa đạt (lần trước chưa đạt, lần này đạt): tạo thông báo 目標の達成 cho tài năng (ứng dụng và thông báo đẩy) và cho mọi quản lý (M-02). Mỗi mạng, mỗi giá trị mục tiêu chỉ báo một lần.
+2. Mạng nào vừa đạt (lần trước chưa đạt, lần này đạt): tạo thông báo 目標の達成 cho tài năng (ứng dụng và thông báo đẩy) và cho Manager phụ trách (M-02 bản19/11). Mỗi mạng, mỗi giá trị mục tiêu chỉ báo một lần.
 3. Người theo dõi tăng chưa đạt mục tiêu: theo QA No.14, giữ thông báo mốc25/50/75% của từng mạng theo đề xuất AMCOLAB để khách xác nhận trên màn thật; không bỏ loại thông báo riêng. Gộp nhiều mốc/đổi goal/dữ liệu muộn chờ L23-09, không tự coi đã chốt.
 4. Thử thách: trong lô buổi sáng, AI đánh giá đã hoàn thành chưa dựa trên số liệu hệ thống đưa vào (chuỗi ngày đăng, số bài, mức tăng người theo dõi) (B12). Hoàn thành thì tin buổi sáng có lời chúc mừng, kèm thông báo 達成のお祝い.
 

@@ -1,5 +1,13 @@
 # 7-6 Nhật ký xem thông tin
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Ghi tự động Manager/thời điểm/màn/Talent khi xem thông tin, hội thoại, kết quả. Lọc khoảng thời gian và Talent, nhật ký xem không được sửa.
+
+Retention nhật ký vận hành/thao tác không được nguồn mới chốt.
+
+Căn cứ: `M19:11,13,25;BF19:21` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0596;EV-0598;EV-0610;EV-0633`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP01 – Danh tính và quyền truy cập |
@@ -27,7 +35,7 @@ Quản lý đọc được thông tin cá nhân và hội thoại của tài nă
 ## Luồng chính
 
 1. Mỗi lần quản lý mở M-07 (thông tin), M-08 (bài đăng và kết quả) hoặc M-09 (hội thoại) của một tài năng, máy chủ ghi: thời điểm, quản lý, tài năng, màn hình.
-2. Ở M-19, quản lý lọc theo khoảng thời gian và theo tài năng ([AG] đã đổi bộ lọc từ "người xem" sang "tài năng"), rồi xem danh sách.
+2. Ở M-20 bản19/11 (trang25), quản lý lọc theo khoảng thời gian và theo tài năng ([AG] đã đổi bộ lọc từ "người xem" sang "tài năng"), rồi xem danh sách.
 
 ## Luồng lỗi và trường hợp biên
 

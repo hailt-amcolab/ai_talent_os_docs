@@ -1,5 +1,13 @@
 # 5-3 Xem và xử lý video đã tạo
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Video tạo xong được xem/dùng/tạo lại/không dùng; tạo lại tính thêm; lỗi dùng thông báo cố định dễ hiểu thay mã lỗi provider.
+
+Video không tạo được không tính lượt; timeout/kết quả muộn chưa được nguồn quyết định tài chính đầy đủ.
+
+Căn cứ: `T19:21;BF19:12` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0573;EV-0624`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |

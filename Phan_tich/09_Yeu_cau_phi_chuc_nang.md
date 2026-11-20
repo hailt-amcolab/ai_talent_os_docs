@@ -1,5 +1,17 @@
 # Yêu cầu phi chức năng
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **6-8** — Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán. Còn mở: Cần kiểm thiết bị/PWA quay lại sau kết nối, không coi hình minh họa là kiểm chứng tương thích. Căn cứ: `T19:5,6,8,9,11,26,33;BF19:4`.
+- **C-04** — Lỗi video hiển thị câu dễ hiểu cố định, không mã lỗi provider; mọi ngoại lệ và vận hành lỗi cần đội rà thành yêu cầu phi chức năng. Còn mở: Timeout/retry/kết quả muộn và đối soát chưa được nguồn chốt; không phát triển nội dung khách suy diễn. Căn cứ: `GJ19:18;T19:21;BF19:9`.
+- **3-5** — Tổng hợp phí AI theo Talent/tháng và tách ChatGPT. QA No.17/CR-16 chưa đổi: chưa có trần tự dừng. Sheet chi phí mới chỉ đề xuất trần, cột trả lời trống. Còn mở: Chưa xác nhận trần tiền hoặc phạm vi dừng khi chạm trần; không đưa trần hai lần viết lại đã bỏ vào tính phí. Căn cứ: `M19:15;KS:FEE3`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được nêu tương đối đầy đủ. Các nhóm còn lại chủ yếu ghi "設計の中で決め、最終版に書きます" (sẽ quyết khi thiết kế và ghi vào bản cuối). Nguồn chính là [YK2] mục 9 (hiệu năng, vận hành, nhật ký), 10 (bảo mật), 11 (điều kiện tiền đề và ràng buộc), 12 (nghiệm thu) và phần 前提 (tiền đề) của các UC. Tab này đã viết lại theo bản yêu cầu v2.
 
 **So với v1:** quy mô ban đầu rõ hơn (khoảng 30 người, thêm 10 mỗi tháng). Màn hình quản trị phải dễ xem trên điện thoại. Màn hình đăng ký công khai và email trở thành điểm bảo mật và tính sẵn sàng mới. Việc đồng ý về dữ liệu của tài năng thuộc công ty đã rõ (ủy thác khi ký hợp đồng).
@@ -30,7 +42,7 @@ Trong 7 nhóm yêu cầu phi chức năng, chỉ có bảo mật là được n�
 | Tạo video mất vài phút. Tài năng được đóng ứng dụng trong lúc chờ, xong thì được báo | Nêu rõ (chỉ là mô tả, không phải chỉ tiêu) | 6-8 (5-1), UC-06 前提, [SM] tr.9 |
 | Thông báo đẩy có thể đến trễ hoặc không đến, không đảm bảo | Nêu rõ (nằm ngoài cam kết) | 11 |
 | Số liệu lấy mỗi ngày một lần | Nêu rõ | 6-11 (8-7), UC-09 前提 |
-| Viết lại tối đa 2 lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt), nên tải lên AI chưa có trần | Một phần chốt | [KS] 確認29, 確認23 |
+| Viết lại không giới hạn số lần ([KS] 確認29); trò chuyện chưa giới hạn (khách muốn đặt giới hạn, chưa chốt), nên tải lên AI chưa có trần | Một phần chốt | [KS] 確認29, 確認23 |
 | Thời gian phản hồi của màn hình, của câu trả lời từ AI, của việc tải ảnh và video lên | Cần xác nhận (tài liệu không nêu) | — |
 | Độ lệch cho phép giữa giờ hẹn và giờ bài thực sự xuất hiện trên mạng xã hội | Cần xác nhận | — |
 | Số người dùng đồng thời | Cần xác nhận | — |
@@ -146,7 +158,7 @@ Có 12 câu hỏi, gom từ các dòng "Cần xác nhận" ở trên. Mức ưu 
 - [ ] **(Cao)** Sao lưu những dữ liệu nào, tần suất ra sao, giữ bao lâu? Chấp nhận mất dữ liệu trong khoảng bao lâu?
 - [ ] **(Cao)** Màn hình đăng ký công khai cần những biện pháp chống đăng ký rác nào? Đồng ý của người ngoài công ty được lấy thế nào? (確認1)
 - [ ] **(Cao)** Dung lượng tối đa của mỗi ảnh hoặc video và tổng dung lượng lưu trữ.
-- [ ] **(Trung bình)** Thời gian phản hồi mong muốn của màn hình và của câu trả lời từ AI. Có cần trần chi phí AI cho mỗi tài năng không? (viết lại đã giới hạn 2 lần, [KS] 確認29; trò chuyện chưa, 確認23)
+- [ ] **(Trung bình)** Thời gian phản hồi mong muốn của màn hình và của câu trả lời từ AI. Có cần trần chi phí AI cho mỗi tài năng không? (viết lại không giới hạn số lần, [KS] 確認29; trò chuyện chưa, 確認23)
 - [ ] **(Trung bình)** Thời gian lưu từng loại nhật ký. Ai xem nhật ký thao tác và nhật ký xử lý.
 - [ ] **(Trung bình)** Có yêu cầu kiểm thử bảo mật, và có chuẩn bảo mật nào của アデッソ phải tuân theo không?
 - [ ] **(Trung bình)** Danh sách hệ điều hành và trình duyệt được hỗ trợ.

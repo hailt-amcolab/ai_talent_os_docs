@@ -1,5 +1,19 @@
 # Báo cáo phân tích dự án AI育成OS
 
+## Đối chiếu nguồn mới — 20/11/2026
+
+Phần dưới cập nhật hiệu lực theo nguồn mới; các mã [AG]/SD18 trong phân tích trước vẫn là trích dẫn lịch sử. Không suy nguồn FCP hoặc mục cần xác nhận thành khách đã duyệt.
+
+- **6-2** — Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán. Còn mở: Cần kiểm thiết bị/PWA quay lại sau kết nối, không coi hình minh họa là kiểm chứng tương thích. Căn cứ: `T19:5,6,8,9,11,26,33;BF19:4`.
+- **4-4** — Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12. Còn mở: Quyền Talent tự sửa chính bài đã bị chặn chưa được mô tả rõ như quyền sửa bản nháp thường; chỉ giữ phần này ở No.57. Căn cứ: `M19:16,23;BF19:17;GJ19:12`.
+- **5-1** — T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước. Còn mở: CONFLICT: QA No.36/CR-04 trước có cả video ngắn và slideshow; nguồn 19/11 chỉ nêu short. Không tự xóa slideshow hoặc suy đã duyệt đổi phạm vi. Căn cứ: `T19:20;BF19:12`.
+- **7-4** — Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người. Còn mở: Phân công category/cá nhân và fallback vẫn No.6; email loại nào và câu chữ còn cần rà mẫu. Không tự chốt đã xử lý chung hay riêng từng Manager. Căn cứ: `M19:6,8;BF19:14;GJ19:6,7`.
+- **1-1** — Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp. Còn mở: Chưa chốt trả trước/sau, ngày bắt đầu tính phí, cổng chính thức; Square ở H105 là nhận định cần provider kiểm, không tự chọn GMO hay Square/thu ngay/ngày 1/thử lại 3 ngày. Căn cứ: `T19:9,20,21,25,26;M19:15;BF19:15;KS:20261120:23,24,25,26`.
+
+Chi tiết từng finding/Q&A và hiệu lực gate: [báo cáo đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Không dùng các giả định mâu thuẫn bên dưới làm kết luận hiện hành.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 2026-11-13 · hoahn-hocnao
 
 AI育成OS có phạm vi rõ (54 chức năng), nhưng chưa đủ điều kiện để thiết kế chi tiết. Bản yêu cầu v2 đổi hẳn cách bắt đầu dùng (tài năng tự đăng ký, quản lý duyệt) và bỏ loại tài năng miễn phí. Sáu việc cần chốt trước đợt kiểm thử nghiệm thu (giữa tháng 1/2027) là:
@@ -57,7 +71,7 @@ Bảng dưới liệt kê đủ 54 chức năng theo thứ tự trong [YK2] mụ
 | 3. Thu phí ([YK2] 6-3) | **1-1** Thu phí thuê bao tháng (高): qua cước nhà mạng hoặc thẻ<br>**1-2** Loại tài khoản (高): tài năng trả phí hoặc tài khoản công ty không tính phí<br>**1-3** Đổi loại (中): không còn việc để làm vì v2 bỏ loại miễn phí<br>**5-4** Đếm số lần tạo video và thu gộp với phí tháng (高) | 4 |
 | 4. Thông tin tài năng ([YK2] 6-4) | **2-2** Tạo thư mục riêng cho tài năng (高): tạo trên OneDrive khi đăng ký thanh toán xong<br>**2-3** Nhập thông tin từ ChatGPT (高): quản lý nhập hồ sơ qua ChatGPT project của từng tài năng<br>**2-4** Đăng ký mục tiêu (高): số người theo dõi, hạn đạt<br>**2-1** Đọc thông tin tài năng (高): huấn luyện viên AI đọc mỗi sáng<br>**7-1** Xem thông tin tài năng (高): trên màn hình quản trị | 5 |
 | 5. Huấn luyện viên AI – lõi ([YK2] 6-5) | **3-1** Hiểu tài năng và thuật toán (高)<br>**3-4** Trò chuyện với huấn luyện viên AI (高): tối đa 1.000 ký tự mỗi tin<br>**3-3** Giới hạn chủ đề trò chuyện (高): chuyện sức khỏe, rời công ty thì báo quản lý<br>**3-9** Nhắc tài năng lâu không đăng bài (中): mặc định 3 ngày nhắn tài năng, 7 ngày báo quản lý<br>**3-2** Tự cải thiện (高)<br>**3-6** Nhận xét bài hôm trước và gợi ý cải thiện (高)<br>**3-8** Tổng kết tuần (中)<br>**3-7** Thông báo khi đạt mục tiêu (中)<br>**3-5** Quản lý chi phí AI (中) | 9 |
-| 6. Bản nháp ([YK2] 6-6) | **4-1** Tự tạo bản nháp (高): 3 chủ đề mỗi lần đề xuất, chú thích, hashtag, hướng dẫn chụp, kịch bản video<br>**4-2** Yêu cầu sửa và viết lại (高): nhờ AI tối đa 2 lần, tài năng tự sửa chữ được ([KS] 確認28, 29)<br>**4-3** 採用 – chấp nhận bản nháp (高): bắt buộc có ảnh hoặc video, chọn có gửi duyệt không; chỉ áp cho 要確認, còn 自動投稿 tự đăng trong khoảng tài năng đặt ([KS] 確認25)<br>**4-4** Phát hiện từ cấm (高)<br>**6-6** Xem trước bài đăng (中) | 5 |
+| 6. Bản nháp ([YK2] 6-6) | **4-1** Tự tạo bản nháp (高): 3 chủ đề mỗi lần đề xuất, chú thích, hashtag, hướng dẫn chụp, kịch bản video<br>**4-2** Yêu cầu sửa và viết lại (高): nhờ AI không giới hạn số lần, tài năng tự sửa chữ được ([KS] 確認28, 29)<br>**4-3** 採用 – chấp nhận bản nháp (高): bắt buộc có ảnh hoặc video, chọn có gửi duyệt không; chỉ áp cho 要確認, còn 自動投稿 tự đăng trong khoảng tài năng đặt ([KS] 確認25)<br>**4-4** Phát hiện từ cấm (高)<br>**6-6** Xem trước bài đăng (中) | 5 |
 | 7. Tư liệu ([YK2] 6-7) | **6-3** Gửi ảnh và video (高): tài năng gửi, quản lý cũng gửi thay được<br>**6-4** Lưu tư liệu (高): lưu vào thư mục OneDrive, video tự làm dùng mỗi ngày 1 cái<br>**6-5** Nhắc gửi tư liệu (中): trước giờ đăng 2 tiếng, 1 lần mỗi ngày | 3 |
 | 8. Video ([YK2] 6-8) | **5-1** Tạo video (高): từ ảnh, qua Kling<br>**5-2** Định dạng video (高): video ngắn dọc<br>**5-3** Xem và xử lý video đã tạo (高): dùng, tạo lại hoặc bỏ<br>**5-5** Ghi rõ video do AI tạo (高) | 4 |
 | 9. Duyệt bài ([YK2] 6-9) | **7-7** Duyệt bài đăng (高): bật theo từng tài năng; tài năng tự chọn gửi duyệt; yêu cầu gửi quản lý của nhóm hoặc quản lý phụ trách ([KS] 確認34); duyệt hoặc trả lại có lý do; quá giờ chưa duyệt thì không đăng (確認35, 36) | 1 |
@@ -140,7 +154,7 @@ Mình đề xuất 27 entity [Đề xuất], trong đó 3 entity chỉ cần n�
 | Dịch vụ | Vai trò | Mức rõ ràng |
 | --- | --- | --- |
 | Upload-Post | Đăng bài, hủy lịch, số liệu, cho tài năng tự kết nối tài khoản | Phí theo tháng, tính theo số tài năng đã đăng ký (UC-08 前提). Các khả năng và thời điểm đăng ký tài năng chưa rõ |
-| OpenAI API | Huấn luyện viên AI, bản nháp, kiểm tra từ cấm | Rõ về mục đích. Viết lại tối đa 2 lần ([KS] 確認29); trò chuyện: khách muốn đặt giới hạn, chưa chốt (確認23), nên chưa có trần chi phí |
+| OpenAI API | Huấn luyện viên AI, bản nháp, kiểm tra từ cấm | Rõ về mục đích. Viết lại không giới hạn số lần ([KS] 確認29); trò chuyện: khách muốn đặt giới hạn, chưa chốt (確認23), nên chưa có trần chi phí |
 | ChatGPT | Quản lý tạo một project cho mỗi tài năng, nhập hồ sơ | Chưa có cơ chế ghi vào OneDrive. Làm tay cho từng tài năng (UC-01 前提) |
 | Microsoft 365 / OneDrive | Lưu trữ | Chưa nêu cách kết nối và xác thực |
 | fal.ai (Kling) | Tạo video | Gửi qua API ([SM] tr.9) |
@@ -269,7 +283,7 @@ V2 đã giải quyết 3 mâu thuẫn của v1: chuyển loại trả phí / mi�
 | R10 | Tài năng không dùng đều, chưa có chỉ số đo | Cao | 2-1 |
 | R11 (mới) | Người ngoài công ty tự đăng ký mà không có hợp đồng: thiếu đồng ý về dữ liệu, quyền hình ảnh, đồng ý của phụ huynh | Cao (pháp lý) | 2-3, 10-3, 確認1 |
 | R12 (mới) | Phạm vi phình ra nếu nhận màn hình chỉ dẫn cho AI và nhóm tài năng mà không bàn chi phí, lịch | Cao | 確認6, 7, 8, 47, 14-3 |
-| R13 (mới) | Chi phí AI không có trần: viết lại đã giới hạn 2 lần ([KS] 確認29), nhưng trò chuyện chưa giới hạn (確認23) | Trung bình | 6-5 (3-5) |
+| R13 (mới) | Chi phí AI không có trần: viết lại không giới hạn số lần ([KS] 確認29), nhưng trò chuyện chưa giới hạn (確認23) | Trung bình | 6-5 (3-5) |
 | T1 | Upload-Post là công ty mới, các khả năng chưa kiểm chứng. Thời điểm đăng ký tài năng chưa rõ, mà phí tính theo số tài năng | Cao | 8, 6-10 (8-2), UC-08 前提, [SM] tr.39 |
 | T2 | Luồng ChatGPT project → OneDrive chưa có cơ chế, và phải làm tay cho từng tài năng (thêm 10 người mỗi tháng) | Cao | 6-4 (2-3), UC-01 前提, 2-2 |
 | T3 | Xử lý buổi sáng bị giới hạn tốc độ khi tăng số tài năng | Cao | 9-2, 確認18 |
@@ -345,7 +359,7 @@ flowchart LR
 ### Hỏi để chốt chính sách
 
 - [ ] Tiêu chí nhận biết chuyện nghiêm trọng, kênh liên hệ ngoài giờ làm việc, cách AI trả lời khi có dấu hiệu tự hại. (確認17, 6-5 chức năng 3-3)
-- [ ] Viết lại đã giới hạn 2 lần ([KS] 確認29), trò chuyện chưa giới hạn (確認23): có cần mức trần chi phí AI cho mỗi tài năng không? (6-5 chức năng 3-5)
+- [ ] Viết lại không giới hạn số lần ([KS] 確認29), trò chuyện chưa giới hạn (確認23): có cần mức trần chi phí AI cho mỗi tài năng không? (6-5 chức năng 3-5)
 - [ ] Chỉ số đo mục tiêu duy trì đăng bài, và khái niệm チャレンジ (thử thách) mà アデッソ sẽ viết (2-1, [KS] 確認5).
 
 Danh sách đầy đủ: tab "Cập nhật theo v2" (10 điểm mới trong v2), "Quy tắc nghiệp vụ" (20 quy tắc còn thiếu), "Workflow" (15 luồng chưa rõ), "Dữ liệu và ERD" (13 điểm), và các tab viết theo v1: "Edge case và rủi ro", "Yêu cầu phi chức năng", "Tích hợp", "Vai trò và phân quyền".

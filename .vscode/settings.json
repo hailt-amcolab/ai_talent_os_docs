@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "docs/requirement-review/extraction-2026-11-19": true,
+    "docs/requirement-review/finding-revision-2026-11-19": true,
+    "docs/requirement-review/flow-reconstruction-2026-11-19": true,
+    "docs/requirement-review/full-reverification-2026-11-19": true,
+    "docs/requirement-review/g5-signoff-2026-11-19": true,
+    "docs/requirement-review/gap-analysis-2026-11-19": true,
+    "docs/requirement-review/gate-approval-2026-11-19": true,
+    "docs/requirement-review/independent-current-review-2026-11-19": true,
+    "docs/requirement-review/independent-recheck-2026-11-19": true,
+    "docs/requirement-review/independent-review-2026-11-19": true,
+    "docs/requirement-review/qa-upstream-audit-2026-11-19": true,
+    "docs/requirement-review/workflow-change-proposal-2026-11-19": true,
+    "docs/requirement-review/working-qa-2026-11-19": true,
+    "docs/requirement-review/**/before": true,
+    "docs/requirement-review/.history": true,
+    "docs/requirement-review/SETUP_REPORT.md": true,
+    "docs/requirement-review/READINESS_REPORT.md": true,
+    "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v2": true,
+    "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v3": true,
+    "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v4": true
+  }
+}

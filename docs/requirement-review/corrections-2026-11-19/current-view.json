@@ -1,5 +1,5 @@
 {
-  "version": "CORRECTION-1",
+  "version": "CORRECTION-1+DEC-0001+RECONCILIATION-19NOV-QA20NOV",
   "requirements": "docs/requirement-review/registers/requirements.csv",
   "business_rules": "docs/requirement-review/registers/business-rules.csv",
   "flow_index": "docs/requirement-review/corrections-2026-11-19/FLOW_INDEX.md",
@@ -9,5 +9,12 @@
   "finding_review_applicability": "docs/requirement-review/corrections-2026-11-19/finding-review-applicability.csv",
   "qa_draft": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
   "qa_internal": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv",
-  "historical_bundles": "Giữ nguyên extraction/flow-reconstruction/gap/independent-review/full-reverification; không dùng snapshot cũ như nội dung hiện hành."
+  "historical_bundles": "Giữ nguyên extraction/flow-reconstruction/gap/independent-review/full-reverification; không dùng snapshot cũ như nội dung hiện hành.",
+  "applied_decisions": [
+    "DEC-0001 —20/11/2026, không giới hạn số lượt AI viết lại"
+  ],
+  "decision_register": "docs/requirement-review/registers/customer-decisions.csv",
+  "current_limitations": "Đối chiếu tác giả hoàn tất theo phạm vi báo cáo; chưa Independent Review/G6 cho bản nguồn mới; không dùng PASS lịch sử cho hash mới.",
+  "finding_details": "docs/requirement-review/corrections-2026-11-19/finding-details.csv",
+  "reconciliation": "docs/requirement-review/corrections-2026-11-19/new-delivery-intake.json#reconciliation"
 }

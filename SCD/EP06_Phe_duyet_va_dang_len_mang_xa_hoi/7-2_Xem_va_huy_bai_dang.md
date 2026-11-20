@@ -1,5 +1,13 @@
 # 7-2 Xem và hủy bài đăng
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Manager hủy trên M-08, hệ thống hủy lịch dịch vụ; Talent xem hướng dẫn liên hệ Manager, không có nút hủy trong app.
+
+T19 trang 31/BF19 trang 9 còn hỏi xác nhận phạm vi Talent không hủy; kênh thông báo khi Manager hủy và tái dùng bài còn No.61.
+
+Căn cứ: `T19:22,31;M19:12;BF19:9` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0574;EV-0583;EV-0597;EV-0621`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP06 – Phê duyệt và đăng lên mạng xã hội |

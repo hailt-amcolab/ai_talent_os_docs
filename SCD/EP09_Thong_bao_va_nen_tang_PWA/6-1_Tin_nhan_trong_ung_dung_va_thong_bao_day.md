@@ -1,5 +1,13 @@
 # 6-1 Tin nhắn trong ứng dụng và thông báo đẩy
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Thông báo trong app luôn dùng được; push khi có quyền; nhấn mở màn liên quan. Không cấp quyền push vẫn đọc trong app.
+
+Danh mục/câu chữ cuối cần đầu mối khách duyệt; cơ chế push không bảo đảm giao nhận.
+
+Căn cứ: `T19:24,33;BF19:14` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0576;EV-0585;EV-0626`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP09 – Thông báo và nền tảng PWA |

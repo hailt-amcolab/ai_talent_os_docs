@@ -1,5 +1,13 @@
 # 6-2 Hướng dẫn lần đầu và kết nối mạng xã hội
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán.
+
+Cần kiểm thiết bị/PWA quay lại sau kết nối, không coi hình minh họa là kiểm chứng tương thích.
+
+Căn cứ: `T19:5,6,8,9,11,26,33;BF19:4` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0557;EV-0558;EV-0560;EV-0561;EV-0563;EV-0578;EV-0585;EV-0616`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP01 – Danh tính và quyền truy cập |
@@ -28,15 +36,14 @@ Sau lần đăng nhập đầu, dẫn tài năng qua 4 bước cần thiết đ�
 - **Trước:** đã đặt mật khẩu và đã xác nhận "quản lý đọc được hội thoại" ở T-03 (1-4, 確認13).
 - **Sau:** ứng dụng đã ở màn hình chính, đã quyết cho hay không cho thông báo, đã đăng ký thanh toán, đã kết nối ít nhất các mạng tài năng muốn dùng.
 
-## Luồng chính (T-04)
+## Luồng chính
 
-1. **Thêm vào màn hình chính:** hướng dẫn theo loại máy (iPhone: nút chia sẻ → "thêm vào màn hình chính"; Android: nút cài đặt của trình duyệt). Bước này xong khi ứng dụng được mở ở chế độ cài đặt (standalone).
-2. **Cho phép thông báo:** bấm nút để trình duyệt hỏi quyền. Cho phép thì lưu đăng ký Web Push (6-1). Từ chối vẫn được tính là xong bước và dùng tiếp được (確認12). Cách bật lại xem được trong ứng dụng.
-3. **Đăng ký thanh toán** (bỏ qua với tài khoản công ty): mở trang của công ty thanh toán (1-1). Xong thì quay về T-04. Chưa xong bước này thì chưa dùng được AIコーチ ([AG] T-04).
-4. **Kết nối mạng xã hội:** chuyển sang T-05 (8-2). Không bắt buộc đủ 3 mạng (確認11).
-5. Nút マイページへ (vào trang của tôi) đưa sang T-06.
-
-Mỗi bước hiện dấu xong. Đóng ứng dụng giữa chừng thì lần mở sau quay về T-04, đúng bước chưa xong.
+1. Talent đăng nhập T-03; mật khẩu tạm dẫn T-04. Sau đặt mật khẩu quay lại T-03 để đăng nhập bằng mật khẩu riêng.
+2. T-06 hướng dẫn đăng ký phương thức thanh toán tại trang nhà cung cấp; chưa xong thì lần đăng nhập sau vẫn mở T-06.
+3. Đăng ký thành công: hệ thống tự cho phép sử dụng, tạo folder Talent và báo Manager. Không suy đây là thời điểm thu phí đầu tiên.
+4. Hướng dẫn thủ công thêm lên màn hình chính; nút vào Mypage chỉ dùng khi thanh toán đã đăng ký và app đang mở từ biểu tượng.
+5. Kết nối SNS tại T-07 và cho phép thông báo có thể làm sau. Chưa nối SNS thì chưa đăng được; không cho push vẫn đọc T-18.
+6. Sau khởi tạo mở T-08 Mypage; office bỏ T-06/thanh toán và mở T-08. Căn cứ SD-T19 trang5–10, BF19 trang4.
 
 ## Luồng lỗi và trường hợp biên
 

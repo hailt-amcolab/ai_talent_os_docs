@@ -1,4 +1,25 @@
+> **Cập nhật QA mới — 2026-11-20:** đã lọc trùng 5 sheet; bản nháp còn 2 câu, rút thêm 24 câu (gồm 6 câu phí/thanh toán theo yêu cầu). Các số đếm và gate ở nội dung đợt trước bên dưới là lịch sử; G1–G4 hiện STALE, G5/G6 BLOCKED. Bản chính: `docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md`.
+
 # Danh mục nguồn yêu cầu gốc
+
+> **Bản đối chiếu hiện hành20/11:** đã đọc81trang PDF19/11 bằng chữ và hình, biên bản GJ19, QA5sheet và KS3sheet. Các thông báo chờ kiểm kê bên dưới là lịch sử. Đã cập nhật bản chính và phân tuyến36Q&A thành26câu nháp/10câu rút. Số trang mục lục/KS có chỗ lệch trang thực tế; luôn dùng locator PDF thực tế. Xem [kết quả và giới hạn](docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
+> **DEC-0001 ngày20/11:** người dùng đã chốt H65: không giới hạn số lần AI viết lại; không còn chờ quyết định số lượt hoặc yêu cầu Tech Lead chọn giữa2lần/không giới hạn. Chỉ thay đúng chủ đề; các phần nguồn khác và Independent Verification vẫn theo gate hiện hành. [Bản ghi](docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
+> **Cập nhật QA/KS ngày 20/11/2026:** vẫn16tệp;14tệp giữ hash kiểm kê trước, hai workbook đổi hash. QA không đổi giá trị/công thức cả5sheet; KS có2ô sửa, thêm2sheet và bình luận FCP, chưa có trả lời trong các cột trả lời mới. Các số liệu/hash12nguồn bên dưới là lịch sử. Kiểm kê hiện hành và phạm vi G1 STALE tại [hồ sơ tiếp nhận](docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).
+
+## Tiếp nhận bổ sung ngày20/11/2026
+
+Hiện có **16 tệp**:12 tệp snapshot19/11 bên dưới giữ nguyên hash và4 tệp mới trong `source_requiments/19112926/`. Không đổi tên thư mục; nội dung các tệp mới ghi ngày19/11/2026. Kiểm kê hiện hành: [source-inventory-current.json](docs/requirement-review/source-inventory-current.json).
+
+| Mã | Tệp | Vai trò/giới hạn |
+|---|---|---|
+| GJ19 | [20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md](source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md) | Biên bản FCP–AMCOLAB, chưa chứng minh khách アデッソ duyệt. |
+| BF19 | [業務フロー_AI育成OS.pdf](source_requiments/19112926/業務フロー_AI育成OS.pdf) | 21trang; tài liệu lập19/11, cần đối chiếu theo từng ý; mã màn khác18/11. |
+| SD-T19 | [画面定義書_タレントのアプリ_AI育成OS.pdf](source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf) | 33trang; tài liệu lập19/11, cần đối chiếu theo từng ý; mã màn khác18/11. |
+| SD-M19 | [画面定義書_管理画面_AI育成OS.pdf](source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf) | 27trang; tài liệu lập19/11, cần đối chiếu theo từng ý; mã màn khác18/11. |
+
+Nguồn mới không tự thay toàn bộ tài liệu cũ hoặc đóng Q&A. Bộ sửa FV-001–012 được hoàn tất theo snapshot trước; cần đối chiếu đợt mới trước duyệt lại/gửi khách. [Tác động tiếp nhận](docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md). Phần danh mục12tệp dưới là snapshot lịch sử.
 
 Cập nhật ngày **19/11/2026** theo chỉ định mới của người dùng: **`source_requiments/` là nơi lưu tài liệu khách cung cấp ban đầu, các đợt bổ sung và nhật ký Q&A**. Giữ nguyên tên thư mục này. Danh mục chín nguồn ngày 18/11 là một bản ghi lịch sử, không còn là danh sách giới hạn nguồn hiện hành.
 

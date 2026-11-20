@@ -1,5 +1,15 @@
 # 4-2 Yêu cầu sửa và viết lại
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Không giới hạn số lần AI viết lại theo DEC-0001; quyền sửa tay giữ nguyên. Các mô tả hai lượt trong PDF19/11 là lịch sử bị thay đúng chủ đề.
+
+Xử lý lỗi/kết quả không rõ/gửi lặp còn do đội thiết kế.
+
+Căn cứ: `T19:18,27,29;USER:DEC-0001` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0570;EV-0579;EV-0581`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
+> **Quyết định20/11 — DEC-0001:** người dùng chốt áp dụng H65, không giới hạn số lần nhờ AI viết lại. Thay giới hạn hai lần trong đúng chủ đề; các điều kiện sửa/duyệt và chính sách chi phí khác giữ nguyên. Xem [bản ghi quyết định](../../docs/requirement-review/corrections-2026-11-19/REPORT.md).
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP04 – Tạo nội dung bài đăng |
@@ -21,7 +31,7 @@ Tài năng nói điểm muốn sửa trong hội thoại, AI viết lại bản 
 
 ## Tác nhân và quyền
 
-- Tài năng: yêu cầu sửa bản nháp của mình. Sửa chữ trực tiếp được ([KS] 確認28), hoặc nhờ AI viết lại tối đa 2 lần ([KS] 確認29).
+- Tài năng: yêu cầu sửa bản nháp của mình. Sửa chữ trực tiếp được ([KS] 確認28), hoặc nhờ AI viết lại không giới hạn số lần (DEC-0001, áp dụng KS H65).
 
 ## Luồng chính
 
@@ -45,7 +55,7 @@ Tài năng nói điểm muốn sửa trong hội thoại, AI viết lại bản 
 
 | Quy tắc | Giá trị | Loại | Nguồn |
 |---|---|---|---|
-| Số lần nhờ AI viết lại | Tối đa 2 lần mỗi bản nháp. 要確認 mà 2 lần vẫn không hợp thì hôm đó không đăng, trừ khi tài năng tự sửa rồi đăng | Chốt ([KS] 確認29) | — |
+| Số lần nhờ AI viết lại | Không giới hạn số lần mỗi bản nháp; không dừng đăng chỉ vì đã dùng hai lượt (DEC-0001) | Người dùng chốt20/11 | DEC-0001; KS H65 |
 | Chi phí mỗi lần | Khoảng 0,2–3 yên | Tham khảo | 確認29 |
 | Tài năng sửa chữ trực tiếp | Được, ở màn bản nháp (T-09) | Chốt ([KS] 確認28) | — |
 
@@ -62,7 +72,7 @@ T-09: nút 直しを依頼. T-08: hội thoại sửa.
 1. Cho tài năng nói "もっと短く", thì phiên bản mới ngắn hơn phiên bản trước và T-09 hiện phiên bản mới.
 2. Cho tài năng dán câu "今日も頑張りました", thì chú thích mới có câu đó.
 3. Cho bản nháp đã chấp nhận, khi tài năng nhờ sửa, thì không có phiên bản mới và có câu giải thích.
-4. Cho bản nháp đã có 2 lần AI viết lại được tính hợp lệ, khi yêu cầu AI viết lại lần thứ3, thì không gọi tạo bản viết lại mới và báo đã hết lượt; tài năng vẫn được tự sửa chữ theo quyết định17/11. Cách tính lượt khi lỗi/thử lại đang chờ làm rõ ở L23-01 (sheet Chi_tiet: câu về cách đếm rewrite), không dùng AC này để tự quyết cách đếm.
+4. Cho bản nháp còn được phép sửa và đã viết lại bằng AI ít nhất hai lần, khi tài năng yêu cầu lần thứ ba hoặc tiếp tục các lần sau, thì hệ thống tiếp tục xử lý yêu cầu, không từ chối vì hết lượt và không tự đặt bài vào nhánh không đăng trong ngày (DEC-0001).
 5. Cho tài năng tự sửa chữ, thì lưu bản sửa và không coi thao tác sửa tay đó là một lần AI viết lại.
 
 ## Phụ thuộc

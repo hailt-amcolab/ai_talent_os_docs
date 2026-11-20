@@ -1,38 +1,28 @@
-# Quy trình phân tích và kiểm chứng yêu cầu
+> **Bản bổ sung hiện hành:** 4 mục nội bộ (2 nháp trước + 2 ứng viên chưa content ACCEPT), 38 ID tracking. Đề xuất và câu hỏi tách riêng; không kế thừa phê duyệt. Số đếm các đợt trước bên dưới là lịch sử.
 
-## Điểm vào hiện hành sau sửa theo kiểm chứng
+> **Cập nhật QA mới — 2026-11-20:** đã lọc trùng 5 sheet; bản nháp còn 2 câu, rút thêm 24 câu (gồm 6 câu phí/thanh toán theo yêu cầu). Các số đếm và gate ở nội dung đợt trước bên dưới là lịch sử; G1–G4 hiện STALE, G5/G6 BLOCKED. Bản chính: `docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md`.
 
-[Báo cáo sửa](corrections-2026-11-19/REPORT.md) và [current-view.json](corrections-2026-11-19/current-view.json) xác định bản đang dùng. Register requirements/business-rules đã cập nhật liên kết G3; [flow index hiện hành](corrections-2026-11-19/FLOW_INDEX.md), [thông tin còn thiếu](corrections-2026-11-19/MISSING_INFORMATION_CURRENT.md), [hiệu lực review finding](corrections-2026-11-19/finding-review-applicability.csv) và Q&A V5 thay điểm vào tương ứng. Các mô tả/gate cũ bên dưới là lịch sử từng đợt, không phải trạng thái hiện hành. Không tự áp dụng PASS cũ cho hash sửa.
+# Kiểm chứng yêu cầu AI Talent OS
 
-Thiết lập ngày 19/11/2026. Đây là quy trình nội bộ, không phải yêu cầu hoặc phê duyệt của khách. **Mốc thiết lập ban đầu chưa chạy phân tích nghiệp vụ. Đợt Requirement Extraction theo lệnh tiếp theo được ghi riêng ở cuối trang; chưa tạo Q&A hoặc thông qua G1–G8 cho module nào.**
+**Bản đối chiếu hiện hành: nguồn19/11 và QA/KS20/11/2026.** Đã đối chiếu175yêu cầu,90quy tắc,30luồng,47finding cũ và36ID Q&A; thêm FND-0048 đang cần bằng chứng. Chưa duyệt Q&A hoặc Independent Verification của bản mới.
 
-Đọc [danh mục nguồn](../../TAI_LIEU_NGUON.md), [sổ nguồn](SOURCE_REGISTER.md), [quy tắc dữ liệu](DATA_MODEL.md), [quality gates (cổng kiểm soát)](QUALITY_GATES.md), rồi [hướng dẫn vận hành](RUNBOOK.md). Kết quả khảo sát và các quyết định vận hành còn thiếu ở [báo cáo thiết lập](SETUP_REPORT.md).
+| Cần xem | Bản chính |
+|---|---|
+| Nguồn và thẩm quyền | [Catalog](../../TAI_LIEU_NGUON.md), [Source Register](SOURCE_REGISTER.md) |
+| Kết quả đối chiếu và điểm còn thiếu | [Báo cáo hiện hành](corrections-2026-11-19/NEW_DELIVERY_IMPACT.md) |
+| Yêu cầu và quy tắc | [Requirements](registers/requirements.csv), [business rules](registers/business-rules.csv) |
+| Luồng đã đối chiếu | [30luồng hiện hành](corrections-2026-11-19/FLOW_INDEX.md) |
+| Finding và hiệu lực review | [Findings](registers/findings.csv), [chi tiết hiện hành](corrections-2026-11-19/finding-details.csv), [review applicability](corrections-2026-11-19/finding-review-applicability.csv) |
+| Bằng chứng và phạm vi tài liệu đã rà | [Evidence](registers/evidence.csv), [hồ sơ nguồn/bản đồ đối chiếu](corrections-2026-11-19/new-delivery-intake.json) |
+| Q&A hiện hành | [26câu nháp và10ID rút/phân tuyến](qa-drafting-2026-11-19/qa-draft.md), [CSV26câu](qa-drafting-2026-11-19/csv-export/qa-draft.csv) |
+| Trạng thái gate | [Gate runs](registers/gate-runs.csv), [readiness](READINESS_REPORT.md) |
 
-## Nơi quản lý duy nhất
+Đã đọc81trang PDF mới bằng chữ và hình, biên bản FCP–AMCOLAB, QA5sheet và KS3sheet. Các nguồn mới không tự là khách duyệt;42mục trong hai sheet KS mới chưa có trả lời. H65 đã chốt theo DEC-0001: không giới hạn số lần AI viết lại.
 
-| Thành phần | Nơi lưu nội dung chính | Lớp quản lý mới |
-|---|---|---|
-| Source Register (sổ nguồn) | TAI_LIEU_NGUON.md; kiểm kê28 JSON | SOURCE_REGISTER.md: phiên bản, hiệu lực, quan hệ, ưu tiên |
-| Requirement Register (sổ yêu cầu) | Phan_tich/24_Ma_tran_truy_vet_yeu_cau_luong.csv | registers/requirements.csv: định danh từng yêu cầu, nguồn và kiểm chứng; trỏ dòng TR, không chép nguyên dòng |
-| Business Rules (quy tắc nghiệp vụ) | Phan_tich/05_Quy_tac_nghiep_vu.md; phần quy tắc trong SCD | registers/business-rules.csv: chỉ mục và bằng chứng từng quy tắc |
-| Business Flows (luồng nghiệp vụ) | Phan_tich/06_Workflow.md, 22; kịch bản25; SCD | registers/business-flows.csv: chỉ mục, nhánh và phạm vi đã kiểm tra |
-| Findings (phát hiện) | Phan_tich/23; RV, G, L22/L23 hiện có; workbook15 | registers/findings.csv: chỉ bổ sung phát hiện chưa có nơi chính, hoặc trỏ phát hiện cũ để quản lý xác minh |
-| Evidence (bằng chứng) | Nguồn gốc giữ nguyên | registers/evidence.csv: vị trí, hash, nội dung ngắn và hành vi được chứng minh |
-| Q&A Draft (câu hỏi dự thảo) | Đợt Markdown đã được chỉ định: qa-drafting-2026-11-19/qa-draft.md; Internal Evidence riêng cùng thư mục. Workbook15 giữ ID/lịch sử hiện có | Một bản nội dung chính mỗi đợt; không chép bộ Markdown sang workbook thành kho song song. WORKING_DRAFT theo WCP-0001; APPROVED_QA cần G1–G6 và Tech Lead duyệt đúng bản |
-| Independent Review (rà soát độc lập) | registers/reviews.csv | Người khác tác giả, ghi từng phản biện và kết quả xử lý |
-| Customer Decisions (quyết định khách) | QA, KS, GJ là bằng chứng gốc | registers/customer-decisions.csv: chỉ mục quyết định, phần chưa chốt, tác động và quan hệ thay thế |
-| Requirement Baseline (bản yêu cầu được chốt) | registers/baselines.csv | Danh sách ID và phiên bản bất biến; phê duyệt, phạm vi loại trừ, thay đổi |
-| Readiness Report (báo cáo sẵn sàng) | SCD/README.md R1–R9; Phan_tich/23 là đánh giá trước | READINESS_REPORT.md: đánh giá mới theo phạm vi và snapshot, không sửa ngược lịch sử |
-| Lịch sử qua gate | registers/gate-runs.csv | Mỗi lần chạy một dòng có input/output hash và người chịu trách nhiệm |
+**Gate hiện hành:** G1 PASS cho phạm vi toàn vẹn/định danh16nguồn, có giới hạn nguồn được tách rõ; G2–G4 bản sửa còn STALE, G5/G6 BLOCKED. Kết quả đối chiếu tác giả không thay reviewer khác tác giả, Tech Lead duyệt Q&A hoặc bằng chứng khách trả lời. Các lần PASS trước chỉ áp dụng snapshot/phạm vi của chúng.
 
-Ở mốc thiết lập, các CSV chỉ có tiêu đề. Đợt trích xuất19/11 đã điền requirements, business-rules và evidence; các sổ còn lại chỉ có tiêu đề trừ gate-runs lưu trạng thái chờ duyệt. Chúng là phần bổ sung quản lý truy vết, không thay thế tài liệu cũ. Nội dung nghiệp vụ chỉ lưu tại nơi chính; sổ mới lưu liên kết, trạng thái và bằng chứng. Không di chuyển/sửa workbook15 trong bước thiết lập.
+Đọc [quy tắc dữ liệu](DATA_MODEL.md), [G1–G8](QUALITY_GATES.md), [runbook](RUNBOOK.md), [WCP-0001](workflow-change-proposal-2026-11-19/application/APPROVAL_AND_CHANGELOG.md) khi vận hành. Không tạo kho Q&A song song trong SCD hoặc workbook15.
 
-## Đợt Requirement Extraction đã thực hiện
+Kiểm cấu trúc/hash và sự khớp bản xuất hiện hành: `python3 docs/requirement-review/validate.py`. Kiểm cơ học không thay Independent Review hoặc phê duyệt nghiệp vụ.
 
-Xem [kết quả ngày19/11/2026](extraction-2026-11-19/README.md), [thông tin còn thiếu](extraction-2026-11-19/MISSING_INFORMATION.md) và [báo cáo truy xuất nguồn](extraction-2026-11-19/TRACEABILITY_REPORT.md). Đây là bản trích xuất chờ duyệt G2, không thay mốc thiết lập trong READINESS_REPORT.md hoặc đánh giá sẵn sàng của các module.
-
-## Thay đổi workflow WCP-0001 đã được chấp thuận
-
-Xem [hồ sơ chấp thuận và áp dụng](workflow-change-proposal-2026-11-19/application/APPROVAL_AND_CHANGELOG.md). Có hai cấp Q&A: WORKING_DRAFT nội bộ được chuẩn bị từ ACCEPT nội dung đủ điều kiện; APPROVED_QA cần G1–G6 PASS và Tech Lead duyệt đúng bản. Chữ ký reviewer và ủy quyền gửi ngoài giữ nguyên. Xem điều kiện ở QUALITY_GATES/DATA_MODEL và bước6a/6b trong RUNBOOK.
-
-Với đợt Markdown hiện tại, qa-draft.md là bản biên tập chính; workbook15 giữ mã/lịch sử, các lần cập nhật sau chỉ trỏ bản Markdown, không chép thêm cùng bộ câu hỏi. Không sửa workbook trong đợt cập nhật quy trình này. Nếu chuyển nơi chính sau này phải có quyết định và liên kết, giữ bản cũ bất biến. Gói đã duyệt dùng manifest/hash riêng. Bản qa-draft.md trống hiện hữu và các gate BLOCKED cũ vẫn là hồ sơ lịch sử; chỉ thay bản khi được giao soạn và đã lưu phiên bản trước.
+Các thư mục theo ngày, chữ ký, review và manifest trước đây giữ làm hồ sơ lịch sử. Nội dung trước sửa được lưu trong changes.csv, không sửa ngược để ép PASS validator snapshot cũ. [Bộ tài liệu dự án](../README.md).

@@ -1,5 +1,13 @@
 # 5-2 Định dạng video
 
+## Đối chiếu nguồn hiện hành — 20/11/2026
+
+Video có thể đăng 3 SNS đã nối; video AI cần ghi nhãn.
+
+Codec/độ dài/cách nhãn từng SNS vẫn thuộc kiểm dịch vụ; không dùng ví dụ 15 giây làm độ dài bắt buộc.
+
+Căn cứ: `T19:20,21,30;BF19:12` (T19=SD-T19, M19=SD-M19; số sau dấu hai chấm là trang PDF thực tế; KS là sheet/mục). Bằng chứng: `EV-0572;EV-0573;EV-0582;EV-0624`. Nội dung mới là mô tả/đề xuất nguồn trong phạm vi nêu trên, chỉ DEC-0001 là quyết định trực tiếp của người dùng. Các mã màn gắn [AG] và các mục nguồn bên dưới giữ để tra lịch sử; chưa có G5/G8 cho bản sửa.
+
 | Mục | Giá trị |
 |---|---|
 | Module | EP05 – Tư liệu và video AI |
