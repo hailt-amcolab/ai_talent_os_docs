@@ -1,5 +1,14 @@
 # 8-1 Phân tích giờ đăng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Rải giờ và tối ưu theo chu kỳ 30 ngày — PROPOSAL của nguồn:** Đề nghị rải phút theo Talent/SNS, tránh giờ tròn, thử các khung trong 30 ngày rồi dùng kết quả cho 30 ngày tiếp; mục tiêu hiệu quả, phân tải và có thời gian giao lưu. **Giới hạn:** Không coi ví dụ 19:07/20:23 hoặc chu kỳ 30 ngày là mốc đã chốt. Dữ liệu watch time chưa được kiểm; chỉ thị AI không tự bảo đảm scheduler phân tải hoặc tuân thủ cap. Nguồn `ISS22-P PDFtrang5; ADV22 PDFtrang8; ADV22 PDFtrang11`; EV `EV-1245;EV-1259;EV-1262`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Lấy số liệu/follower 1 lần ngày trong phạm vi dịch vụ; ghi kết quả vào file Talent, sáng hôm sau AI dùng.

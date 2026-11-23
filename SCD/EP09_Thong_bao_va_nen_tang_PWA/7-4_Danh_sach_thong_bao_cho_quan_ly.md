@@ -1,5 +1,28 @@
 # 7-4 Danh sách thông báo cho quản lý
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Manager responsive và phạm vi tablet — PROPOSAL của nguồn:** Đề xuất PC đầy đủ, smartphone bốn tab Home/duyệt/Talent/menu, tablet có danh sách và chi tiết cạnh nhau, menu bên trái và home chia ưu tiên. **Giới hạn:** Trang 29 vẫn hỏi xác nhận bốn tab và phạm vi tablet. Giữ quyết định PC là chính, duyệt/chỉ thị AI dùng trên smartphone; chưa coi hình là UX đã duyệt hoặc chọn breakpoint. Nguồn `UI-M20 PDFtrang1; UI-M20 PDFtrang2; UI-M20 PDFtrang3; UI-M20 PDFtrang5; UI-M20 PDFtrang6; UI-M20 PDFtrang29`; EV `EV-1211;EV-1212;EV-1213;EV-1215;EV-1216;EV-1239`.
+
+**Thông báo: mở là xử lý và hình cảnh báo cũ — FACT của nguồn:** M-02 mới vẫn ghi mở thông báo là 対応済み; hình tablet/PC vẫn có cảnh báo tâm sự nghiêm trọng và từ cấm. **Giới hạn:** QA No.97 vẫn Open, không tự chọn A/B. Hình không khôi phục chức năng KS F22 đã bỏ; email và người phụ trách còn No.75/87/88. Nguồn `UI-M20 PDFtrang5; UI-M20 PDFtrang9; UI-M20 PDFtrang29`; EV `EV-1215;EV-1219;EV-1239`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Manager nhận yêu cầu duyệt:** Gán Manager phụ trách theo từng Talent; yêu cầu duyệt gửi người phụ trách. Mọi Manager vẫn xem dữ liệu Talent; trả bài có lý do để Talent sửa. **Còn mở/giới hạn:** Không suy mọi loại thông báo cùng người nhận. No.87/88 mở lại: người nhận thông báo chung, cách gán, chuyển phụ trách khi vô hiệu hóa và nhắc quá hạn chưa chốt. Nguồn `KS 確認事項!K77;確認事項!K93;20261120!F11`; bằng chứng `EV-0969`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Bỏ nút đánh dấu xử lý; mở dòng thông báo sang màn liên quan thì đánh dấu đã xử lý và bỏ khỏi số chưa xử lý. Lọc mặc định chưa mở, bỏ lọc xem cả đã mở. Yêu cầu duyệt nằm danh sách M-04 riêng. Thông báo và email gửi Manager phụ trách, không mọi người.
@@ -85,3 +108,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP09: 
 ## Nguồn
 
 - [YK2] §3-3, §6-12 (7-4), 別紙A, UC-10, 確認45–47. [AG] trang 6 (M-02), trang 11.
+
+
+</details>

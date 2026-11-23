@@ -1,23 +1,23 @@
 {
-  "version": "V5-SNS-SCHEDULE-NG-WORKFLOW",
+  "version": "V5-DELIVERY23112026-SOURCE-TRACKING",
   "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
-  "question_count": 4,
-  "internal_hold_count": 4,
+  "question_count": 0,
+  "internal_hold_count": 0,
   "files": [
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
-      "sha256": "f85005b28db31fea58b1dc0ea72eb54c8081516cb7d4ac78364b99293fd7304a"
+      "sha256": "a58c051bfb7cc22f28484657934da72211ab0129ebff7a9e53bedbfb6fec97b1"
     },
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
-      "sha256": "81f85acf87499e2825df38f024d424c229cc026e87793c42677d1a1c8643bc51"
+      "sha256": "9905953a3508422682849476a1c7521aa140e3a27f1d9b60c4229b6e6959d3ac"
     },
     {
       "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
-      "sha256": "b365b0bd9b692e7ef16dc068ee694915ca188be2d17b883a5969a4a48a183afe"
+      "sha256": "074e5bafa9f6a8cf7331485e6f73af5de6f855f45da47f21cb9dd4a61fd6509e"
     }
   ],
-  "source_freshness": "QA_CHANGED_PENDING_REVIEW",
+  "source_freshness": "DELIVERY_23112026_AUTHOR_IMPACT_REVIEW_NOT_INDEPENDENT",
   "previous_exports": [
     {
       "version": "V5",
@@ -110,10 +110,61 @@
       "source_freshness": "QA_CHANGED_PENDING_REVIEW",
       "disposition_count": 34,
       "draft_sha256": "f481d391e64ac32ea9f38b8192b5dfb3e83c5f16d74b6dbb79885bbe7fc91732"
+    },
+    {
+      "version": "V5-SNS-SCHEDULE-NG-WORKFLOW",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 4,
+      "internal_hold_count": 4,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "f85005b28db31fea58b1dc0ea72eb54c8081516cb7d4ac78364b99293fd7304a"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "81f85acf87499e2825df38f024d424c229cc026e87793c42677d1a1c8643bc51"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "b365b0bd9b692e7ef16dc068ee694915ca188be2d17b883a5969a4a48a183afe"
+        }
+      ],
+      "source_freshness": "QA_CHANGED_PENDING_REVIEW",
+      "disposition_count": 34,
+      "draft_sha256": "b4c1c5a96a5c5b1830c78669b00c2a85307258225f75f96a6d625893c4e9091e",
+      "working_draft_count": 2,
+      "candidate_pending_content_review_count": 2
+    },
+    {
+      "version": "V5-QA-KS-23NOV-SOURCE-TRACKING",
+      "parent_manifest": "docs/requirement-review/corrections-2026-11-19/artifact-manifest.json",
+      "question_count": 0,
+      "internal_hold_count": 0,
+      "files": [
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+          "sha256": "a58c051bfb7cc22f28484657934da72211ab0129ebff7a9e53bedbfb6fec97b1"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+          "sha256": "9905953a3508422682849476a1c7521aa140e3a27f1d9b60c4229b6e6959d3ac"
+        },
+        {
+          "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+          "sha256": "074e5bafa9f6a8cf7331485e6f73af5de6f855f45da47f21cb9dd4a61fd6509e"
+        }
+      ],
+      "source_freshness": "QA_KS_23NOV_READ_NOT_INDEPENDENT_REVIEW",
+      "disposition_count": 38,
+      "draft_sha256": "60e51836f0612f835eb57b0cb09138f89030e2436e0eeb191a44c8e17fab81c5",
+      "working_draft_count": 0,
+      "candidate_pending_content_review_count": 0
     }
   ],
-  "disposition_count": 34,
-  "draft_sha256": "b4c1c5a96a5c5b1830c78669b00c2a85307258225f75f96a6d625893c4e9091e",
-  "working_draft_count": 2,
-  "candidate_pending_content_review_count": 2
+  "disposition_count": 38,
+  "draft_sha256": "6ef38791ba21bd2b565a84bfad99c2564934e64a50a0217457a7f49f9a7ff51e",
+  "working_draft_count": 0,
+  "candidate_pending_content_review_count": 0,
+  "incoming_source_ref": "docs/requirement-review/corrections-2026-11-19/delivery-23112026-intake.json"
 }

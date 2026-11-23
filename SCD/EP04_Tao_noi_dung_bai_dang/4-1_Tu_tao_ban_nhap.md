@@ -1,5 +1,19 @@
 # 4-1 Tự tạo bản nháp
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Ảnh và YouTube:** Bài ảnh đăng Instagram/TikTok, không gửi YouTube; video Talent tạo có thể đăng YouTube. **Còn mở/giới hạn:** Đây là hành vi nêu trong nguồn, không phải xác minh năng lực API của nhà cung cấp. Nguồn `KS 20261120!F2`; bằng chứng `EV-0962`.
+
+- **Ảnh/video trước, chữ sau:** Talent gửi ảnh/video trước; AI đọc tư liệu rồi tạo văn bản và hashtag. Có ảnh hợp chủ đề thì dùng, nếu không thì dùng tư liệu đang có. **Còn mở/giới hạn:** Không dùng luồng cũ tạo chữ trước như mặc định cho cùng nhánh. Nguồn `KS 確認事項!K60;20261120!F8`; bằng chứng `EV-0966`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 AI tạo chữ/hashtag, dùng ảnh/video Talent gửi; không tự biến ảnh thành slideshow trong luồng bài thường. Bài ảnh không đăng YouTube.
@@ -139,3 +153,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 
 - Q&A No.38, CR-05 (đã chốt làm ở SP1): chủ đề buổi sáng có tính tới tin tức và chuyện xã hội trong ngày. **Dùng chức năng tìm web của AI, tìm 1 lần mỗi ngày** (chung cho mọi tài năng, hoặc theo nhóm khi có nhóm), rồi dùng kết quả cho mọi tài năng để giảm phí. Phí tìm web đưa vào ước tính phí AI hằng tháng.
 - Q&A No.55 (đang hỏi): chủ đề hết hạn khi có 3 chủ đề mới ở lượt đề xuất sau.
+
+
+</details>

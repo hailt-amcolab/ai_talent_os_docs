@@ -1,5 +1,7 @@
 # Hướng dẫn tích hợp OneDrive
 
+> **Đối chiếu lưu trữ23/11/2026:** xem [kiến trúc OneDrive/Supabase](../KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md) về phân loại file, nguồn dữ liệu và phương án media mới. Nội dung dưới giữ lịch sử; không mặc định Supabase chỉ lưu tạm, phải chuyển mọi media sang OneDrive hoặc dùng ROPC cho production. Chính sách/ca kiểm liên quan cần review trước triển khai, chưa có kết quả test mới.
+
 Bản 2.1 · 18/11/2026 · Dành cho AI agent lập trình. Thay bộ 1.1 (17/11/2026: `ONEDRIVE_IMPLEMENTATION_SPEC_VI.md`, `TEST_CASES*.json/md`, `CHATGPT_MCP_EVIDENCE_VI.md`, các tệp schema và manifest; xem lịch sử git).
 
 Tài liệu này hướng dẫn agent **chưa làm gì** dựng được phần lưu trữ trên OneDrive của AI Talent OS:

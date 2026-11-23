@@ -1,6 +1,8 @@
 # 03. ERD khái niệm và logic
 
-> **Cập nhật 18/11/2026:** §1–§2 là ERD 25 bảng nghiệp vụ; §6 là phần danh tính, phiên, tác động ra ngoài và thông báo đẩy (schema `app_private`). Đã cập nhật theo 6 migration hiện hành: khóa ngoại thật tới `auth.users`, khóa ngoại kép theo chủ (D-18), bảng chưa chốt bị chặn ghi (D-22, `07` §3).
+> **Rà soát 23/11/2026:** Đối chiếu QA/KS hiện hành và bộ `23112026`; xem [kết quả tác động DB](06_extensibility_review.md) và [danh mục nguồn](../TAI_LIEU_NGUON.md). Tách schema trong repository, quyết định nguồn và đề xuất thiết kế. Lần rà này chỉ cập nhật tài liệu, chưa áp migration hoặc kiểm tra database đang chạy; không cấp phê duyệt nghiệp vụ, thương mại hay release.
+
+> **Cập nhật 18/11/2026:** §1–§2 là ERD 25 bảng nghiệp vụ; §6 là phần danh tính, phiên, tác động ra ngoài và thông báo đẩy (schema `app_private`). Phần lõi phản ánh 6 migration tới technology_demo; migration thứ7 chỉ thêm2bảng demo OneDrive không vẽ: khóa ngoại thật tới `auth.users`, khóa ngoại kép theo chủ (D-18), bảng chưa chốt bị chặn ghi (D-22, `07` §3).
 
 Bản 1.1 · 18/11/2026 · Bước 3. Tên bảng và cột theo `05_data_dictionary.md`; mã R, BR, U theo `01_confirmed_requirements.md`.
 
@@ -162,7 +164,7 @@ Chi tiết đủ cột của 38 bảng ở `05_data_dictionary.md`. Sơ đồ ch
 | D-06 | Ảnh nguồn của video qua bảng nối `video_generation_inputs` | Một lần tạo video chọn nhiều ảnh, một ảnh dùng cho nhiều lần (R05-08) | N:N |
 | D-07 | Hashtag lưu dạng mảng `text[]` trong `posts` | Hashtag là danh sách có thứ tự đi cùng chú thích, không truy vấn riêng từng hashtag, không có thuộc tính riêng. Tách bảng chỉ thêm phép nối | Chấp nhận mảng (giá trị nguyên tử ở mức bài) |
 | D-08 | Số liệu bài lưu dạng JSONB | Chỉ số lấy được còn UNKNOWN và khác nhau theo mạng (U-07, R07-02) | Ngoại lệ có lý do; khi chốt chỉ số thì có thể tách cột |
-| D-09 | Thông báo tách hai bảng: cho tài năng và cho quản lý | Khác người nhận (một tài năng so với mọi quản lý, [YK2] §3-3), khác trạng thái (đã đọc so với đã xử lý), khác đối tượng liên quan | 3NF |
+| D-09 | Thông báo tách hai bảng: cho tài năng và cho quản lý | Thiết kế vật lý tách đối tượng Talent/Manager; chưa đáp ứng routing tới người phụ trách Talent (KS K77/K93) hoặc phân biệt read/handled (No.97). Cần thiết kế P-16 trước mở luồng | 3NF |
 | D-10 | Thông báo cho quản lý dùng khóa ngoại có kiểu (`talent_id`, `talent_application_id`, `post_id`, `coach_message_id`), không dùng cặp "loại + id" | Giữ được toàn vẹn tham chiếu; 8 loại thông báo ([YK2] §6-12 7-4) chỉ cần 4 loại đối tượng | 3NF |
 | D-11 | `activity_logs` tham chiếu mềm (`target_type`, `target_id` dạng chữ) | Nhật ký phải giữ được khi đối tượng đổi hoặc bị xóa, và trải qua mọi loại đối tượng ([YK2] §9-4). Khóa ngoại cứng sẽ chặn xóa hoặc mất nhật ký | Ngoại lệ có lý do |
 | D-12 | Không sao chép email vào `talents`, `managers` | Email nằm ở `auth.users`; chép sang sẽ lệch khi đổi email | 3NF |
@@ -189,11 +191,11 @@ Chi tiết đủ cột của 38 bảng ở `05_data_dictionary.md`. Sơ đồ ch
 | Xóa người dùng Auth | Khóa ngoại thật, RESTRICT: không xóa được người dùng Auth khi còn `auth_principals`, tài năng hoặc quản lý gắn với nó (D-23) |
 | Chu trình khóa ngoại | Không có chu trình bắt buộc. `posts.revised_from_post_id` tự tham chiếu, cho phép NULL |
 
-## 5. Vòng đời trạng thái dùng trong schema
+## 5. Giá trị vật lý trong migration và giới hạn vòng đời
 
 | Bảng.cột | Giá trị | Căn cứ |
 |---|---|---|
-| `talents.status` | `before_use` (利用前), `in_use` (利用中), `ended` (利用終了) | R01-11 |
+| `talents.status` | `before_use`, `in_use`, `ended` là 3 giá trị hiện có; thiếu 一時停止 theo KS K116/F32 | R01-11, P-21; chưa sửa CHECK |
 | `talent_applications.status` | `pending`, `approved`, `rejected` | R01-01 |
 | `posts.status` | `draft` (投稿案), `awaiting_approval` (承認待ち), `scheduled` (予約済み), `published` (投稿済み), `failed` (失敗), `cancelled` (取り消し) | R06-01. Đường chuyển theo hình 5-1 (sơ đồ ở `SCD/EP10…/C-01`); DB không chặn đường chuyển, tầng dịch vụ kiểm |
 | `post_deliveries.provider_state` | `not_submitted` → `submitted` / `submit_failed`; `submitted` → `cancel_requested` → `cancelled` / `cancel_failed`; `submitted` → `published` / `publish_failed`; `publish_failed` → `submitted` (hẹn lại, hình 5-1) | R06-03, R06-11〜R06-13. Bảng đang chặn ghi; vòng đời này phải xem lại khi thiết kế lại luồng đăng (`07` §3). Giá trị "bỏ qua" chờ U-06 |
@@ -232,7 +234,20 @@ erDiagram
 
 - Một người dùng Auth đóng đúng một vai trò (D-19). `auth_principals` có thể tồn tại trước dòng `managers`/`talents` trong lúc tạo tài khoản.
 - Thu hồi phiên (trigger) tắt luôn các máy nhận push gắn với phiên đó; vô hiệu quản lý hoặc chuyển tài năng sang `ended` thì tăng `security_version` và thu hồi mọi phiên.
-- `auth_rate_buckets` không có quan hệ (khóa là chuỗi băm). Ba bảng demo (`tech_demo_*`, `demo_auth_deliveries`) không vẽ: không dùng cho tính năng thật.
+- `auth_rate_buckets` không có quan hệ (khóa là chuỗi băm). Năm bảng demo (gồm hai bảng OneDrive migration `20261118000200`) không vẽ: không dùng cho tính năng thật.
 - Bảng có trong DB không có nghĩa luồng đã được mở: xem `07` §2–§3.
 
 Ký hiệu nguồn: [SUPA] = `agent_spec/supabase-db-auth-spec/HUONG_DAN_TICH_HOP_VI.md`; [PWA] = `agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md`.
+
+## 7. Khoảng lệch với nguồn hiện hành23/11
+
+ERD trên mô tả cấu trúc nghiệp vụ/danh tính đã có trong repository, không là ERD đích đã duyệt và không bao gồm đầy đủ bảng demo. Không thêm trạng thái/bảng đề xuất vào hình như đã triển khai.
+
+- **D-02:** Một `posts` không đồng nghĩa chỉ ghi đè nội dung. Khi mở duyệt/đăng cần revision và snapshot nội dung/media đã được xác nhận, gắn đúng quyết định/lần gửi (P-23); chuỗi `revised_from_post_id` hiện có chưa tự đủ.
+- **D-03:** Một dòng `post_deliveries` mỗi SNS là aggregate hiện có; không thay lịch sử lần thử, callback hoặc bằng chứng đăng. Inbox/draft đề nghị cho TikTok cần vòng đời riêng nếu được duyệt.
+- **D-09:** Người nhận duyệt theo Talent khác quyền Manager xem mọi Talent; không suy từ routing ra hàng rào phân quyền.
+- **D-16:** `text + CHECK` vẫn cần migration, kiểm dữ liệu/backfill, tương thích API/worker và thời gian khóa. Không mặc định nới CHECK là thay đổi rủi ro thấp.
+- **Trạng thái:** 一時停止 vẫn thu phí, khác `ended` và cờ dừng đăng. Không suy ra dừng login hoặc hủy job provider; `ended` không khôi phục theo KS 確認56, còn cơ chế DB thực hiện cần kiểm riêng P-18.
+- **Lưu trữ:** media hỗ trợ hướng Supabase/OneDrive (QA No.8), nhưng cột vật lý còn thiên OneDrive. Profile/version/readiness và M-21 là khoảng trống thiết kế P-24.
+
+Truy vết đầy đủ, đề xuất chưa duyệt và điều kiện triển khai: [06](06_extensibility_review.md), [04 P-21–P-26](04_database_schema.md#bổ-sung-thiết-kế-sau-đợt2311--chưa-có-ddl).

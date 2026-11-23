@@ -1,5 +1,14 @@
 # 3-5 Quản lý chi phí AI
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Trần phí và nhận định đã giải quyết thanh toán — FACT của nguồn:** Bảng hiện trạng mới ghi có trần video/tháng; phần so sánh ghi thanh toán đã giải quyết bằng thẻ. **Giới hạn:** QA No.3/17 và CR-12/16 nói không có trần video/AI tự dừng. Không dùng mô tả hồi tố để đảo chính sách. KS F25 chỉ ghi GMO là ứng viên; có phương thức thẻ không chứng minh cổng đã ký hoặc tích hợp. Nguồn `ISS22-P PDFtrang2; ISS22-P PDFtrang7`; EV `EV-1242;EV-1247`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Tổng hợp phí AI theo Talent/tháng và tách ChatGPT. QA No.17/CR-16 chưa đổi: chưa có trần tự dừng. Sheet chi phí mới chỉ đề xuất trần, cột trả lời trống.

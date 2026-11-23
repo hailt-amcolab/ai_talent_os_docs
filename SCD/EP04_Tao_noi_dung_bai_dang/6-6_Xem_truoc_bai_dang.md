@@ -1,5 +1,14 @@
 # 6-6 Xem trước bài đăng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Đồng ý và quyền riêng tư theo từng SNS — PROPOSAL của nguồn:** Đề nghị hiện tài khoản TikTok, cho người dùng chọn mức công khai không chọn sẵn, cấu hình tương tác/nội dung thương mại và ghi nhận nội dung, media, SNS, thời điểm đồng ý. **Giới hạn:** OAuth kết nối không đồng nghĩa đồng ý cho từng nội dung. Cần UI và phiên bản nội dung được xác nhận; chưa tự thêm schema/API hoặc quyền Manager xác nhận thay. Nguồn `ISS22-P PDFtrang3; ISS22-P PDFtrang7; ISS22-P PDFtrang10`; EV `EV-1243;EV-1247;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Chấp nhận yêu cầu có ảnh/video; xin duyệt chỉ hiện cho Talent bật tính năng. Đang chờ Manager duyệt thì không sửa; trả lại có lý do thì sửa rồi xin duyệt lại.

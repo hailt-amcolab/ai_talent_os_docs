@@ -1,5 +1,16 @@
 # 3-2 Tự cải thiện
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Chống giống nhau và phân tích chéo Talent — PROPOSAL của nguồn:** Đề nghị cá nhân hóa giọng/chủ đề và so nội dung/ý tưởng video của 200 Talent trước khi đăng, đề xuất khác khi giống nhau. **Giới hạn:** Cá nhân hóa đã có hướng; so chéo 200 người là phần dữ liệu/chi phí khác, không bảo đảm bằng một prompt. Không đưa dữ liệu Talent khác vào hội thoại/output hoặc tự nới quyền truy cập. Nguồn `ISS22-P PDFtrang5; ADV22 PDFtrang3; ADV22 PDFtrang11`; EV `EV-1245;EV-1254;EV-1262`.
+
+**Tăng trưởng, dashboard và KPI kinh doanh — PROPOSAL của nguồn:** Đề nghị Momo phân tích điểm yếu, tạo chiến lược/thử thách cá nhân; dashboard ưu tiên vấn đề; KPI gồm tăng follower, engagement, số hợp đồng doanh nghiệp và doanh thu mỗi Talent. **Giới hạn:** Coaching/thử thách/số liệu đã có ngữ cảnh cũ; ghép nhãn hiệu, hợp đồng và doanh thu cần phạm vi/định nghĩa/nguồn mới. Không coi toàn bộ dữ liệu lấy được qua Upload-Post hoặc được duyệt giai đoạn 1. Nguồn `ISS22-P PDFtrang8; ISS22-P PDFtrang9; ISS22-P PDFtrang10`; EV `EV-1248;EV-1249;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Chỉ thị công ty và nội dung Manager nhập được ưu tiên trước đề xuất AI; nguồn mới không thay thuật toán tự học hoặc thiết kế lưu bộ nhớ.

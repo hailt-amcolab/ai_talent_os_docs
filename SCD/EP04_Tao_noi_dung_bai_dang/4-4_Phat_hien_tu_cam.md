@@ -1,5 +1,26 @@
 # 4-4 Phát hiện từ cấm
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Xác nhận lại bài AI sửa từ cấm — PROPOSAL của nguồn:** Đề nghị bài có từ cấm phải được Talent xem lại sau AI sửa dù đang chọn không xác nhận từng bài. UI-M20 M-11 vẫn vẽ Manager sửa rồi AI kiểm lại. **Giới hạn:** Có ba nhánh: KS K59 AI sửa/đặt lịch; báo cáo 22/11 thêm Talent xác nhận; UI M-11 Manager sửa. Không tự chọn hoặc đóng No.57/71/90/96 bằng hình minh họa. Nguồn `ISS22-P PDFtrang7; ADV22 PDFtrang7; ADV22 PDFtrang10; UI-M20 PDFtrang18`; EV `EV-1247;EV-1258;EV-1261;EV-1228`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **AI tự sửa từ cấm:** Phát hiện từ cấm thì AI viết lại và đặt lịch; không theo luồng Manager tự sửa. **Còn mở/giới hạn:** Thay vai trò sửa ở GJ19§12/QA No.40/90/CR-06. Chưa chốt số lượt tự sửa, trường hợp không sạch, duyệt công việc và quá giờ. No.96 chỉ hỏi hiệu lực danh sách đổi sau kiểm, không tự cho quét lại hàng loạt. Nguồn `KS 確認事項!K59`; bằng chứng `EV-0983`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Manager sửa bài bị từ cấm, AI kiểm lại; sạch thì đặt lịch, còn từ cấm thì giữ ở màn xử lý. Không cần trả bản Manager sửa cho Talent xác nhận lại theo GJ19§12.
@@ -122,3 +143,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 - Q&A No.40, CR-06 (đã chốt): màn của quản lý cho bài dính từ cấm là **màn tối thiểu: sửa chữ, hẹn giờ, hủy**.
 - Q&A No.57 (đang hỏi): kiểm tra từ cấm trước khi gửi duyệt; quản lý sửa xong bấm "予約する" thì coi như đã duyệt; quá giờ thì dời sang khung kế tiếp; báo tài năng là chữ đã được sửa.
 - Mẫu danh sách từ cấm do FutureCore đưa (Q&A No.13, No.27).
+
+
+</details>

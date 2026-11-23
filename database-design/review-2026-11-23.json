@@ -1,0 +1,436 @@
+{
+  "review_id": "DB-DOC-2026-11-23",
+  "date_utc": "2026-11-23",
+  "author": "Codex",
+  "status": "AUTHOR_REVIEW_COMPLETE_NOT_INDEPENDENTLY_VERIFIED",
+  "scope": "Review/update existing database-design documentation against current QA/KS and delivery23112026; no code, schema, migration or live database change.",
+  "source_inventory": {
+    "path": "docs/requirement-review/source-inventory-current.json",
+    "sha256": "b138964552070e86e7e34d5cd85481935a9f9b97a302ab0a7c8d03097270b7bb",
+    "file_count": 20
+  },
+  "source_files": [
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "bytes": 9780674,
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "comparison_18nov": "unchanged",
+      "embedded_media_files": 26,
+      "cover_version_date": "0.1版　2026年11月13日　FutureCore Partners",
+      "source_code": "YK2",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "bytes": 1354473,
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181",
+      "comparison_18nov": "unchanged",
+      "pages": 12,
+      "source_code": "AG",
+      "document_date": "2026-11-12",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "bytes": 14742,
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0",
+      "comparison_18nov": "unchanged",
+      "source_code": "GJ",
+      "document_date": "2026-11-17",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "bytes": 6529985,
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "pages": 28,
+      "source_code": "SD-T18",
+      "document_date": "2026-11-18",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "bytes": 8903332,
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "pages": 34,
+      "source_code": "SD-M18",
+      "document_date": "2026-11-18",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "bytes": 184455,
+      "sha256": "960a8e8e229ae46d8aaa492ea610e56a4c9a3c31c7fc18982348d3540e5ecc6e",
+      "comparison_18nov": "unchanged",
+      "sheets": [
+        "Q&A",
+        "保留",
+        "デザインFB",
+        "お知らせ・メール文章",
+        "追加要件"
+      ],
+      "source_code": "QA",
+      "use": "living_log; inspect current statements and statuses",
+      "previous_versions": [
+        {
+          "sha256": "d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765",
+          "bytes": 170073,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "git show HEAD:source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx"
+        },
+        {
+          "sha256": "004199e07e8b66e8a8374662eac12e976e8c4502c24abf5eb16041f4d15b0077",
+          "bytes": 170399,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "Các giá trị ô của snapshot trước nằm trong hồ sơ delta new-delivery-intake.json; không giả định HEAD chứa phiên bản này."
+        }
+      ],
+      "checked_at": "2026-11-20T07:26:43.748512+00:00",
+      "checked_by": "Codex — tiếp nhận và lọc trùng Q&A",
+      "comparison_current": "QA: cập nhật trả lời No.4/8/65, thêm No.78–92; so cả năm sheet.",
+      "previous_sha256": "c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "bytes": 58058,
+      "sha256": "0530779f96acf1c1534110e5e57b15d4f35fff056a913d76fd6670a43878019e",
+      "comparison_18nov": "unchanged",
+      "sheets": [
+        "確認事項",
+        "20261120",
+        "プロジェクトを進めるために決める事項"
+      ],
+      "source_code": "KS",
+      "use": "living_log; inspect current statements and statuses",
+      "previous_versions": [
+        {
+          "sha256": "b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82",
+          "bytes": 36242,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "git show HEAD:source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx"
+        }
+      ],
+      "checked_at": "2026-11-20T09:59:02+07:00",
+      "checked_by": "Codex — tiếp nhận nguồn",
+      "comparison_current": "QA: giá trị và công thức 5 sheet không đổi; KS: sửa 2 ô, thêm 2 sheet và bình luận FCP",
+      "previous_sha256": "b3d5a2688141d7d725dafd8e7ed49d892ba9efa2affdb73df3eb8590a5fd191c",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "bytes": 9092697,
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "embedded_media_files": 25,
+      "cover_version_date": "0.1版　2026年11月13日　FutureCore Partners",
+      "source_code": "YK1",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "bytes": 1231969,
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559",
+      "comparison_18nov": "unchanged",
+      "pages": 12,
+      "source_code": "TK-T",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "bytes": 1636447,
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab",
+      "comparison_18nov": "unchanged",
+      "pages": 18,
+      "source_code": "TK-M",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "bytes": 4468210,
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea",
+      "comparison_18nov": "unchanged",
+      "pages": 8,
+      "source_code": "GT",
+      "document_date": "2026-11-11",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "bytes": 4979499,
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae",
+      "comparison_18nov": "unchanged",
+      "pages": 42,
+      "source_code": "SM",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md",
+      "source_code": "GJ19",
+      "bytes": 14209,
+      "sha256": "3d168de54769e626ca7a47978a73add6876b05874997f6ba7d2626fcf5a54423",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11"
+    },
+    {
+      "path": "source_requiments/19112926/業務フロー_AI育成OS.pdf",
+      "source_code": "BF19",
+      "bytes": 7370214,
+      "sha256": "8c91d0d0e277578408d3bed6e664f9387cfe5facd2766be1ad46a0d1cb4b3245",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 21
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "source_code": "SD-T19",
+      "bytes": 4271239,
+      "sha256": "63b70d9b6fb1b5dae02d86b370af48ff28a218592f818348dcbabdd153d32530",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 33
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf",
+      "source_code": "SD-M19",
+      "bytes": 5482057,
+      "sha256": "bb6fe2c5b2a2e0be6bda54d82d26b229d8cdc32b42f5fe6bcd2f2104409ae4f7",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 27
+    },
+    {
+      "source_code": "UI-M20",
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc",
+      "bytes": 4453461,
+      "document_date": "2026-11-20",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề xuất màn Manager, không là screen definition đã duyệt",
+      "pages": 29
+    },
+    {
+      "source_code": "ISS22-D",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336",
+      "bytes": 23876,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề nghị/đánh giá và câu hỏi trước họp24/11, DOCX",
+      "embedded_media_files": 0
+    },
+    {
+      "source_code": "ISS22-P",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168",
+      "bytes": 947971,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Bản PDF cùng báo cáo đề nghị; không tính như xác nhận thứ hai",
+      "pages": 11
+    },
+    {
+      "source_code": "ADV22",
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f",
+      "bytes": 1263105,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Slide9lời khuyên,7vấn đề và8ưu tiên; đề nghị chuẩn bị24/11",
+      "pages": 12
+    }
+  ],
+  "source_locators": {
+    "KS": {
+      "確認事項": [
+        "K27",
+        "F38",
+        "K59",
+        "K65",
+        "K73",
+        "K77",
+        "K84",
+        "K85",
+        "K87",
+        "K93",
+        "K100",
+        "K104",
+        "K112",
+        "K116"
+      ],
+      "20261120": [
+        "F8",
+        "F11",
+        "F12",
+        "F13",
+        "F18",
+        "F19",
+        "F20",
+        "F22",
+        "F24",
+        "F25",
+        "F30",
+        "F31",
+        "F32",
+        "F33"
+      ]
+    },
+    "QA": {
+      "Q&A": [
+        "H8",
+        "G9",
+        "H9",
+        "H15"
+      ],
+      "open_existing_numbers": [
+        65,
+        69,
+        74,
+        78,
+        87,
+        88,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99
+      ]
+    },
+    "UI-M20": {
+      "pages": [
+        18,
+        20,
+        25,
+        27,
+        28,
+        29
+      ],
+      "document_date": "2026-11-20"
+    },
+    "ISS22-P": {
+      "pages": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "document_date": "2026-11-22"
+    },
+    "ADV22": {
+      "pages": [
+        5,
+        7
+      ],
+      "document_date": "2026-11-22"
+    }
+  },
+  "technical_inputs": [
+    {
+      "path": "apps/api/prisma/migrations/20261117000000_init/migration.sql",
+      "sha256": "2eb2e29825df23873ddf439432a27d369e6f0d2f25a5c8881f8549e6f4ea0953"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000100_lock_prisma_migrations/migration.sql",
+      "sha256": "a655cf5ec71d3bbdbd8343a56d1d60281ac90a7041d8201df07ef611285a3d4d"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000200_auth_ref_by_trigger/migration.sql",
+      "sha256": "09e2ad15aeeb3b1d18243b2229e24533b787604be876f384a9c23cc50add5eae"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000300_confirmed_scope_foundation/migration.sql",
+      "sha256": "5e0020bc6a1f73e3c7bac39a2fbc59af88691fdbe04d5f2c68d2c4c223037808"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000000_auth_pwa_demo/migration.sql",
+      "sha256": "1bc2a0f8e913d30a17ce42491f7a88e9ce1f277cbc542c05775ca693495e5714"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000100_technology_demo/migration.sql",
+      "sha256": "3897718c0debc9c85d0d51737ee7d47967c63e5e2a57424b57f99c7cd84a8cc7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000200_onedrive_delegated_demo/migration.sql",
+      "sha256": "f36d6493408a55bb1f02dd79a8175bd96edac36381aeecf858509f7628374ce7"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "f67b90bb6112f63a8b86eb006433bdb9d1e8615ccf3a37f055f23fb91d516859"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "database-design/01_confirmed_requirements.md",
+      "before_sha256": "b3f3cc160478764f85dade743778eab6c13f9c793f9eb081de59dd9bfcd6f535",
+      "sha256": "527810231cd597df612826999fe745004f45689de21f57e54fe94ca4303e97f1"
+    },
+    {
+      "path": "database-design/02_entity_inventory.md",
+      "before_sha256": "be0ecc3403e61e01d98f448dcf83b411c116c5b991920acf0d91af5ac8c5fe9c",
+      "sha256": "20ecdc8bc65a1f16cb46e45981157bbb867f388793a4271958937b30e3c20795"
+    },
+    {
+      "path": "database-design/03_erd.md",
+      "before_sha256": "175eb0e6118be1c9af8de65012d1141a6dc1bae4402b875c222edc9fda62a3bd",
+      "sha256": "f66e3fb8b7bda3da1e17896c6eb5f6d039d722b2fcef59631373ed4e7a5b19f7"
+    },
+    {
+      "path": "database-design/04_database_schema.md",
+      "before_sha256": "90bce688e3637c953085930fba9a1b98f3013311f3a4ece2b4451d99998a1eeb",
+      "sha256": "7fc5b42cdffa1f54aeaef6d9b94cf8c9ca5313e8a7a42f3c2b8a61e1f5e6b4d9"
+    },
+    {
+      "path": "database-design/05_data_dictionary.md",
+      "before_sha256": "7a27b7008aa4264a9a1503039e85e3495ede6dc10a64e241f424b4673c4db205",
+      "sha256": "4a30638d4f2d5f745db3fbd0c1cc9e99110cc04750eab1963039f692b5440b1f"
+    },
+    {
+      "path": "database-design/06_extensibility_review.md",
+      "before_sha256": "35891409bba1eee007b6573a21f211463d0403d6a7b9211c0d70344e5c55ad8e",
+      "sha256": "8987e35f44c8d7565dd91f92436082fbab0a1b2c75cf9007b20909d30353504c"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "before_sha256": "05476b613d7fb3cbfd79627a35ade81ee53200e5841386a63f7871992f4b95c1",
+      "sha256": "e028ca076076591b139219a2b1a1edefbb82620e3da9c8d2c8e833ba6f6d7f9e"
+    }
+  ],
+  "checks": {
+    "migration_files": 7,
+    "repository_application_tables": 40,
+    "public_tables": 25,
+    "private_tables": 15,
+    "generated_dictionary_sql_blocks_unchanged": true,
+    "implementation_ts_examples_unchanged": true,
+    "existing_erd_blocks_unchanged": true,
+    "source_agent_spec_prisma_and_review_register_hashes_unchanged": true,
+    "relative_file_links": "PASS",
+    "requirement_validator": "PASS:20source hashes,9CSVschemas,workflowlinks",
+    "diff_whitespace": "PASS: git -c core.whitespace=cr-at-eol diff --check -- database-design"
+  },
+  "limits": [
+    "No live DB/catalog/migration deployment check",
+    "No generator run, app tests or provider POC; documentation-only change",
+    "No new customer Q&A",
+    "No independent reviewer signature; no VERIFIED or G7/G8 approval",
+    "No gate state changed; inherited G1 BLOCKED, affected G2-G4 STALE, G5/G6 BLOCKED"
+  ],
+  "follow_up_owners": {
+    "Tech Lead": "Review target schema, source conflicts, provider contract and migration plan before implementation",
+    "Customer": "Resolve pending behavior/policy/scope under existing QA/findings",
+    "Independent reviewer": "Source-based review with signature for applicable gates"
+  }
+}

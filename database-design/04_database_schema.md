@@ -1,6 +1,8 @@
 # 04. Schema vật lý
 
-Bản 2.0 · 18/11/2026 · Bước 4. Schema vật lý **là SQL của các migration** trong `apps/api/prisma/migrations/` (đã áp lên Supabase dev). Tài liệu này giữ quy ước, danh sách migration, bảng tổng hợp và đề xuất chờ khách. Định nghĩa đầy đủ từng cột: `05_data_dictionary.md`. Phạm vi được làm và quy tắc khi viết mã: `07_implementation_scope_and_rules.md`. Lệnh migration: `apps/api/PRISMA.md`.
+> **Rà soát 23/11/2026:** Đối chiếu QA/KS hiện hành và bộ `23112026`; xem [kết quả tác động DB](06_extensibility_review.md) và [danh mục nguồn](../TAI_LIEU_NGUON.md). Tách schema trong repository, quyết định nguồn và đề xuất thiết kế. Lần rà này chỉ cập nhật tài liệu, chưa áp migration hoặc kiểm tra database đang chạy; không cấp phê duyệt nghiệp vụ, thương mại hay release.
+
+Bản 2.0 · 18/11/2026 · Bước 4. Schema vật lý **là SQL của các migration** trong `apps/api/prisma/migrations/` (sự thật cấu trúc trong repository; trạng thái áp hiện tại chưa xác minh). Tài liệu này giữ quy ước, danh sách migration, bảng tổng hợp và đề xuất chờ khách. Định nghĩa đầy đủ từng cột: `05_data_dictionary.md`. Phạm vi được làm và quy tắc khi viết mã: `07_implementation_scope_and_rules.md`. Lệnh migration: `apps/api/PRISMA.md`.
 
 Khối DDL tham khảo của bản 1.0 (25 bảng, trước khi sửa phạm vi) đã bỏ khỏi tài liệu; nó chính là migration `20261117000000_init`, các thay đổi sau đó nằm ở các migration tiếp theo.
 
@@ -31,7 +33,7 @@ Ràng buộc được đánh dấu trong `05`/migration:
 
 ## 2. Migration hiện hành
 
-Đã áp lên Supabase dev theo thứ tự (17–18/11/2026). Không sửa migration đã áp; thay đổi bằng migration mới (`07` §5).
+Danh sách 7 migration trong repository. Cột hiệu lực mô tả quan hệ giữa các file; thông tin áp dev bên dưới là ghi chép lịch sử 18/11, chưa kiểm lại ngày23/11. Không sửa migration đã áp; thay đổi bằng migration mới (`07` §5).
 
 | Migration | Nội dung | Còn hiệu lực |
 |---|---|---|
@@ -43,7 +45,7 @@ Ràng buộc được đánh dấu trong `05`/migration:
 | `20261118000100_technology_demo` | `tech_demo_sessions`, `tech_demo_push_subscriptions` cho demo công nghệ | Có (chỉ demo) |
 | `20261118000200_onedrive_delegated_demo` | `tech_demo_onedrive_connections` (một dòng duy nhất `slot='primary'`: kết nối tài khoản Microsoft chính dùng chung cho cả hệ thống, token đã mã hóa), `tech_demo_onedrive_oauth_states` (state + PKCE dùng một lần) cho demo OneDrive | **Chưa áp** lên Supabase dev (đã kiểm trên DB dùng một lần) |
 
-Tổng: 38 bảng (25 ở `public`, 13 ở `app_private`), không tính `_prisma_migrations`.
+Tổng cấu trúc sau cả 7 file: 40 bảng (25 `public`, 15 `app_private`), không tính `_prisma_migrations` và bảng Auth bên ngoài. Từ điển05 là snapshot catalog cũ 38 bảng, không phải kết quả kiểm database hiện tại.
 
 ## 3. Bảng tổng hợp
 
@@ -92,7 +94,7 @@ Chi tiết từng cột, ràng buộc, chỉ mục, trigger và quyền runtime:
 
 | Mã | Đề xuất | Lý do chưa đưa vào | Khi nào đưa vào |
 |---|---|---|---|
-| P-01 | UNIQUE (`talent_id`, `platform`) trên tài khoản đang kết nối | U-05: **đã chốt** một tài khoản mỗi mạng ([KS] 確認10) | [QA] No.23 đóng theo "một tài khoản" |
+| P-01 | UNIQUE có điều kiện cho tài khoản đang kết nối theo (`talent_id`, `platform`) | Một tài khoản mỗi SNS đã có quyết định [KS] 確認10; không tiếp tục chờ chốt số lượng | Khi thiết kế reconnect/disconnect và xử lý dữ liệu trùng; không tự gỡ trigger chặn ghi |
 | P-02 | CHECK độ dài tin nhắn của tài năng ≤ 1.000 ký tự | Con số §6 là giả định (R03-02) | Khi chốt trên màn hình |
 | P-03 | Cột đơn giá lúc yêu cầu ở `video_generations` | U-02 | [QA] No.2, No.62 đóng |
 | P-04 | Giới hạn định dạng, dung lượng tư liệu; số tư liệu mỗi bài; số ảnh mỗi loại video | UNKNOWN (R05-04) | Khi chốt S05-01, S05-07 |
@@ -103,12 +105,25 @@ Chi tiết từng cột, ràng buộc, chỉ mục, trigger và quyền runtime:
 | P-09 | Chia bảng theo tháng (partition) cho `coach_messages`, `ai_usage_events`, `activity_logs`, `post_metric_snapshots` | Tải thực tế chưa rõ; thời gian giữ dữ liệu chưa chốt (U-09) | Khi có số liệu tải và chính sách giữ dữ liệu |
 | P-11 | `approval_round` ở `posts` và `post_approval_decisions`, UNIQUE (`post_id`, `approval_round`) | Chỉ cần nếu [QA] No.58 chốt "gửi duyệt lại là cùng bài" (U-03) | Khi [QA] No.58 đóng theo hướng đó |
 | P-12 | Cách đăng: `talents.posting_mode` (`auto` / `confirm`), bảng khoảng đăng tự động (tài năng, chủ đề, ngày bắt đầu, ngày kết thúc, trạng thái, `version`), `posts.auto_post_period_id`; sửa CHECK `chk_posts_adopted` để bài tự động không cần `adopted_at`; tư liệu gắn với khoảng | [KS] 確認19, 25; chi tiết chờ U-16 (Q&A No.70, 71, 77) | Khi khách chốt luồng 自動投稿 |
-| P-13 | Giới hạn nhờ AI viết lại 2 lần: đếm theo chuỗi `revised_from_post_id` ở dịch vụ, hoặc cột `rewrite_count` + CHECK ≤ 2 | [KS] 確認29 | Làm được ngay (`posts` đang ghi được ở `draft`) |
+| P-13 | **RÚT đề xuất giới hạn 2 lần**; không tạo rewrite_count/CHECK giới hạn | KS `確認事項!K65`20/11 và DEC-0001 xác định không giới hạn | Không có migration giới hạn 2 lần trong repository để DROP; revision/audit là nhu cầu khác P-23 |
 | P-14 | `system_settings`: thêm giờ khung trưa và khung tối | [KS] 確認18; giờ chờ Q&A No.73 (đề xuất 8, 12, 20 giờ) | Khi có giờ |
-| P-15 | Nhóm tài năng: bảng nhóm (tên, màu, thứ tự), bảng nối tài năng – nhóm (N–N); quản lý phụ trách theo nhóm (bảng nối nhóm – quản lý) và/hoặc theo từng tài năng | [KS] 確認47, 34. Chưa rõ: cách nào (theo nhóm hay theo quản lý phụ trách từng tài năng) và khi chưa có người phụ trách thì gửi ai: chờ Q&A No.6; AMCOLAB đề xuất lấy quản lý phụ trách từng tài năng làm cơ bản (có trong báo giá No.42, 前提条件A9) | Thiết kế trước khi làm M-10 (thiết kế khách) / M-13 ([AG]) |
-| P-16 | Gửi yêu cầu duyệt đúng người: bảng người nhận của thông báo quản lý (thông báo – quản lý), vì `manager_notifications` hiện dùng chung cho mọi quản lý | [KS] 確認34; U-10 | Cùng lúc mở luồng duyệt (EP06) |
-| P-17 | Chỉ thị cho AI: bảng chỉ thị (phạm vi `global` / `category` / `talent`, nhóm hoặc tài năng, nội dung, phiên bản, đang dùng, người tạo) để thử, lưu, quay lại bản cũ. Thử thách: bảng thử thách (tài năng, nội dung, hạn, số lần, người đề xuất `ai` / `manager`, trạng thái `proposed` / `accepted` / `declined` / `completed` / `expired`) | [KS] 確認5, 6, 7, 8; Q&A No.72 (AMCOLAB đề xuất thử thách chỉ tính được khi đếm bằng số: ngày đăng liên tục, số bài, số người theo dõi tăng; trạng thái đề xuất / nhận / từ chối / đang làm / đạt / hết hạn; mỗi lúc một thử thách) | Chỉ thị: thiết kế ngay; thử thách: chờ khái niệm và No.72 |
-| P-18 | Tài năng đã ngừng: trigger chặn `talents.status` đổi từ `ended`; việc định kỳ xóa dữ liệu khi `status = 'ended'` và `status_changed_at` quá 6 tháng (phải quyết xóa hẳn hay ẩn danh với FK RESTRICT và bảng nhật ký chỉ ghi thêm) | [KS] 確認55, 56; U-09; Q&A No.69 (phạm vi xóa, đăng ký lại trong 6 tháng) | Trigger: làm được ngay. Việc xóa: thiết kế cùng U-09 sau No.69 |
-| P-19 | Quản lý làm thay chỉ cho tài khoản công ty: trigger kiểm `media_assets.uploaded_by_manager_id IS NOT NULL` thì tài năng phải có `account_type = 'office'` (tương tự cho lần tạo video do quản lý gửi) | [KS] 確認27 | Làm được ngay cho `media_assets` |
+| P-15 | Nhóm và membership; phân công Manager theo Talent cho yêu cầu duyệt | KS K77/K93 đã rõ nơi nhận duyệt; No.87/88 còn vận hành phân công, No.99 còn ưu tiên đa nhóm | Thiết kế cardinality, hiệu lực và thay người; không dùng nhóm Manager làm hàng rào quyền xem |
+| P-16 | Người nhận thông báo; tách trạng thái read/handled khi chính sách được chốt | Yêu cầu duyệt tới người phụ trách từng Talent; các thông báo khác No.87/88, đọc/xử lý No.97 còn mở | Trước mở notification Manager/EP06; giữ lịch sử người nhận, không suy từ assignment hiện tại cho mọi sự kiện cũ |
+| P-17 | Metadata/version chỉ thị AI và trạng thái thử thách cá nhân hóa, liên kết nội dung OneDrive | KS K27 và F30/F31: mẫu không là danh mục đóng. Bộ trạng thái, mỗi lúc một thử thách và tiêu chí đếm là đề xuất chưa chốt | Thiết kế ranh giới nội dung/trạng thái, precedence No.99, version/audit; không tự chốt enum dự phòng |
+| P-18 | Tài năng đã ngừng: trigger chặn `talents.status` đổi từ `ended`; việc định kỳ xóa dữ liệu khi `status = 'ended'` và `status_changed_at` quá 6 tháng (phải quyết xóa hẳn hay ẩn danh với FK RESTRICT và bảng nhật ký chỉ ghi thêm) | [KS] 確認55, 56; U-09; Q&A No.69 (phạm vi xóa, đăng ký lại trong 6 tháng) | Chưa triển khai trong đợt tài liệu. Kiểm cơ chế ended hiện có và thiết kế retention theo No.69/94/98, quyền/FK/log trước migration |
+| P-19 | Tạm giữ đề xuất trigger chỉ cho Manager gửi thay office để rà lại | KS 確認27 cũ khác hướng `20261120!F20`  | Chưa thêm/nới trigger; xác định phạm vi làm thay, quyền sở hữu và luồng video riêng trước triển khai |
 | P-20 | OneDrive: `app_private.onedrive_items`, `media_assets.sha256`, `media_assets.temp_deleted_at`, loại lệnh `storage.provision` | `agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md` §4 | Khi làm tích hợp OneDrive |
 | P-10 | Mã hóa ở tầng ứng dụng cho `push_subscriptions.p256dh_key`, `auth_secret` | [YK2] §10-2 yêu cầu mã hóa dữ liệu lưu; Supabase đã mã hóa ổ đĩa. Mã hóa thêm ở ứng dụng là lựa chọn | Khi đánh giá bảo mật yêu cầu |
+
+### Bổ sung thiết kế sau đợt23/11 — chưa có DDL
+
+| Mã | Đề xuất nội bộ cần đánh giá | Nguồn / giới hạn |
+|---|---|---|
+| P-21 | Mở rộng trạng thái Talent cho 一時停止; lịch sử hiệu lực và actor, tách khỏi autopost pause | KS K116/F32; vẫn thu phí. Tên token SQL, login, quyền chuyển và xử lý lịch đang chờ là thiết kế chưa chốt; cần kiểm dữ liệu, trigger thu hồi phiên và mọi reader trước migration |
+| P-22 | Hủy lịch bởi Talent/Manager: xác minh chủ từ phiên, ghi actor/reason/operation, xử lý optimistic version và hủy provider bất đồng bộ | KS K84/F12. Không dùng cancel_reason hiện có để thay danh tính actor; callback trễ không được phục hồi lịch đã hủy |
+| P-23 | Version nội dung/media, consent/approval gắn đúng version, từng đích SNS và từng lần thử; trạng thái aggregate không thay kết quả provider | ISS22-P p3/p7 đề nghị inbox TikTok và xác nhận AI sửa chưa được duyệt; KS K59 còn xung đột UI-M20 p18. Gửi inbox không đồng nghĩa published; chưa thêm enum/cột như quyết định cuối |
+| P-24 | Tham chiếu tài sản theo nơi lưu, ownership, version/readiness; ảnh chân dung và URL Adesso | QA No.8 G9/H9; UI-M20 p27. Không lưu public URL vĩnh viễn thay quyền; không tự fetch URL nhập vào. Chưa chốt field bắt buộc hay nơi lưu hồ sơ |
+| P-25 | Chưa tạo bảng ranking/đồng ý phụ huynh/so sánh liên Talent/voice/KPI hợp đồng | UI-M20 p28–29; ISS22-P p5–6/p8–10; FND-0051/0052/0053. Cần quyết định phạm vi, quyền, mục đích dùng và retention; không dùng JSON tùy ý để né quyết định |
+| P-26 | Ghi phiên bản bộ NG và kết quả kiểm theo revision, thay vì chỉ timestamp phát hiện | QA No.96; KS K59. Hiệu lực thay đổi NG lên lịch cũ chưa chốt; không tự kiểm lại hoặc hủy toàn bộ lịch |
+
+P-12 cần cập nhật theo KS K73/F18/F19: media có trước, chọn theo chủ đề, không FIFO hoặc tự sinh media AI; quan hệ khoảng đăng–media là thiết kế nội bộ. P-18 không cho phép tùy ý xóa/ẩn danh nhật ký: phạm vi Talent/office, ngoại lệ công nợ, bản sao và dữ liệu provider phải đối chiếu No.69/94/98 trước thiết kế dọn. P-20 là tích hợp nghiệp vụ dự kiến, khác hai bảng OneDrive demo đã có migration.

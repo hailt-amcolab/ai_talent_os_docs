@@ -40,15 +40,17 @@ model activity_logs {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model ai_usage_events {
-  id            BigInt   @id(map: "pk_ai_usage_events") @default(autoincrement())
-  talent_id     String   @db.Uuid
-  occurred_at   DateTime @default(now()) @db.Timestamptz(6)
-  model         String
-  input_tokens  Int      @default(0)
-  output_tokens Int      @default(0)
-  cost_amount   Decimal  @db.Decimal(14, 6)
-  cost_currency String   @db.Char(3)
-  talents       talents  @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_ai_usage_events_talent_id")
+  id                    BigInt                 @id(map: "pk_ai_usage_events") @default(autoincrement())
+  talent_id             String                 @db.Uuid
+  occurred_at           DateTime               @default(now()) @db.Timestamptz(6)
+  model                 String
+  input_tokens          Int                    @default(0)
+  output_tokens         Int                    @default(0)
+  cost_amount           Decimal                @db.Decimal(14, 6)
+  cost_currency         String                 @db.Char(3)
+  execution_attempt_id  String?                @unique(map: "uq_ai_usage_events_attempt") @db.Uuid
+  ai_execution_attempts ai_execution_attempts? @relation(fields: [execution_attempt_id, talent_id], references: [id, talent_id], onUpdate: NoAction, map: "fk_ai_usage_events_attempt")
+  talents               talents                @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_ai_usage_events_talent_id")
 
   @@index([talent_id, occurred_at], map: "idx_ai_usage_events_talent_id_occurred_at")
   @@schema("public")
@@ -77,6 +79,8 @@ model coach_messages {
   sender                                                                                 String
   body                                                                                   String
   created_at                                                                             DateTime                @default(now()) @db.Timestamptz(6)
+  ai_executions_ai_executions_input_message_id_talent_idTocoach_messages                 ai_executions[]          @relation("ai_executions_input_message_id_talent_idTocoach_messages")
+  ai_executions_ai_executions_output_message_id_talent_idTocoach_messages                ai_executions[]          @relation("ai_executions_output_message_id_talent_idTocoach_messages")
   talents                                                                                talents                 @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_coach_messages_talent_id")
   manager_notifications                                                                  manager_notifications[]
   manager_notifications_manager_notifications_coach_message_id_talent_idTocoach_messages manager_notifications[] @relation("manager_notifications_coach_message_id_talent_idTocoach_messages")
@@ -695,12 +699,14 @@ model domain_operations {
   created_at           DateTime              @default(now()) @db.Timestamptz(6)
   updated_at           DateTime              @default(now()) @db.Timestamptz(6)
   notification_id      String?               @db.Uuid
+  ai_executions        ai_executions[]
   auth_principals      auth_principals?      @relation(fields: [actor_auth_user_id], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
   talent_applications  talent_applications?  @relation(fields: [application_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
   talents              talents?              @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
   talent_notifications talent_notifications? @relation(fields: [notification_id, talent_id], references: [id, talent_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_operation_notification_owner")
   outbox_events        outbox_events[]
 
+  @@unique([id, talent_id], map: "uq_operations_id_talent")
   @@index([actor_auth_user_id], map: "idx_operations_actor")
   @@index([talent_id], map: "idx_operations_talent")
   @@schema("app_private")
@@ -709,24 +715,30 @@ model domain_operations {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model outbox_events {
-  id                String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  operation_id      String            @db.Uuid
-  generation        BigInt
-  event_type        String
-  state             String            @default("pending")
-  attempts          Int               @default(0)
-  available_at      DateTime          @default(now()) @db.Timestamptz(6)
-  lease_token       String?           @db.Uuid
-  lease_until       DateTime?         @db.Timestamptz(6)
-  last_error_code   String?
-  created_at        DateTime          @default(now()) @db.Timestamptz(6)
-  updated_at        DateTime          @default(now()) @db.Timestamptz(6)
-  domain_operations domain_operations @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
-  push_deliveries   push_deliveries[]
+  id                 String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  operation_id       String            @db.Uuid
+  generation         BigInt
+  event_type         String
+  state              String            @default("pending")
+  attempts           Int               @default(0)
+  available_at       DateTime          @default(now()) @db.Timestamptz(6)
+  lease_token        String?           @db.Uuid
+  lease_until        DateTime?         @db.Timestamptz(6)
+  last_error_code    String?
+  created_at         DateTime          @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime          @default(now()) @db.Timestamptz(6)
+  delivery_sequence  BigInt            @default(0)
+  next_dispatch_at   DateTime          @default(now()) @db.Timestamptz(6)
+  last_dispatched_at DateTime?         @db.Timestamptz(6)
+  ai_executions      ai_executions[]
+  domain_operations  domain_operations @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
+  push_deliveries    push_deliveries[]
 
   @@unique([operation_id, generation, event_type])
+  @@unique([id, operation_id], map: "uq_outbox_id_operation")
   @@index([available_at, id], map: "idx_outbox_due", where: raw("(state = 'pending'::text)"))
   @@index([lease_until, id], map: "idx_outbox_expired_lease", where: raw("(state = 'leased'::text)"))
+  @@index([next_dispatch_at, id], map: "idx_outbox_next_dispatch", where: raw("(state = 'pending'::text)"))
   @@schema("app_private")
 }
 
@@ -862,5 +874,80 @@ model tech_demo_onedrive_oauth_states {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   user auth_users @relation(fields: [auth_user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   @@index([auth_user_id], map: "idx_tech_onedrive_states_user")
+  @@schema("app_private")
+}
+
+/// AI Core execution ledger (migration 20261123000000_ai_core_executions; report AI Core §4.4). Checks/RLS live in SQL.
+model ai_executions {
+  id                                                                       String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  operation_id                                                             String                 @db.Uuid
+  event_id                                                                 String                 @unique @db.Uuid
+  talent_id                                                                String                 @unique(map: "uq_ai_executions_active_talent", where: raw("(state = ANY (ARRAY['running'::text, 'unknown'::text]))")) @db.Uuid
+  task_key                                                                 String
+  task_revision                                                            String
+  input_message_id                                                         BigInt?                 @unique
+  state                                                                    String                 @default("pending")
+  attempt_no                                                               Int                    @default(0)
+  version                                                                  BigInt                 @default(1)
+  lease_token                                                              String?                @db.Uuid
+  lease_until                                                              DateTime?              @db.Timestamptz(6)
+  heartbeat_at                                                             DateTime?              @db.Timestamptz(6)
+  cancel_requested_at                                                      DateTime?              @db.Timestamptz(6)
+  output_message_id                                                        BigInt?                @unique
+  last_error_code                                                          String?
+  created_at                                                               DateTime               @default(now()) @db.Timestamptz(6)
+  updated_at                                                               DateTime               @default(now()) @db.Timestamptz(6)
+  finished_at                                                              DateTime?              @db.Timestamptz(6)
+  ai_execution_attempts                                                    ai_execution_attempts[]
+  outbox_events                                                            outbox_events          @relation(fields: [event_id, operation_id], references: [id, operation_id], onUpdate: NoAction)
+  coach_messages_ai_executions_input_message_id_talent_idTocoach_messages  coach_messages?         @relation("ai_executions_input_message_id_talent_idTocoach_messages", fields: [input_message_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
+  domain_operations                                                        domain_operations      @relation(fields: [operation_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
+  coach_messages_ai_executions_output_message_id_talent_idTocoach_messages coach_messages?        @relation("ai_executions_output_message_id_talent_idTocoach_messages", fields: [output_message_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
+
+  @@unique([id, talent_id])
+  @@index([lease_until, id], map: "idx_ai_executions_lease", where: raw("(state = 'running'::text)"))
+  @@index([talent_id, created_at(sort: Desc), id], map: "idx_ai_executions_talent")
+  @@schema("app_private")
+}
+
+/// One row per execution lease; phase calling is written before the model HTTP call.
+model ai_execution_attempts {
+  id                       String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  execution_id             String           @unique(map: "uq_ai_attempts_active", where: raw("(phase = ANY (ARRAY['claimed'::text, 'calling'::text, 'response_received'::text]))")) @db.Uuid
+  talent_id                String           @db.Uuid
+  attempt_no               Int
+  lease_token              String           @db.Uuid
+  phase                    String           @default("claimed")
+  provider                 String?
+  model                    String?
+  context_revision         String?
+  provider_request_id      String?
+  provider_idempotency_key String?
+  usage_state              String           @default("not_called")
+  input_tokens             Int?
+  output_tokens            Int?
+  error_code               String?
+  started_at               DateTime         @default(now()) @db.Timestamptz(6)
+  call_started_at          DateTime?        @db.Timestamptz(6)
+  call_finished_at         DateTime?        @db.Timestamptz(6)
+  finished_at              DateTime?        @db.Timestamptz(6)
+  ai_executions            ai_executions    @relation(fields: [execution_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
+  ai_usage_events          ai_usage_events[]
+  @@unique([execution_id, attempt_no])
+  @@unique([id, talent_id])
+  @@schema("app_private")
+}
+
+/// CR-05 / Q&A No.38: today's news/trends from one AI web search per JST day, shared by every Talent (migration 20261123000300).
+model ai_daily_trends {
+  day           DateTime @id @db.Date
+  content       String
+  sources       Json     @default("[]")
+  provider      String
+  model         String
+  input_tokens  Int?
+  output_tokens Int?
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+
   @@schema("app_private")
 }

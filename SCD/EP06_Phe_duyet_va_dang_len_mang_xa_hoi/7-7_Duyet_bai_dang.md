@@ -1,5 +1,32 @@
 # 7-7 Duyệt bài đăng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Manager sửa và xác nhận TikTok — PROPOSAL của nguồn:** Đề nghị chỉ Talent xác nhận bài TikTok; Manager vẫn hủy lịch được; nội dung Manager sửa hoặc xác nhận thay cần Talent đồng ý lại. **Giới hạn:** Khác GJ19§12/QA No.90 về Manager sửa rồi đi tiếp; phải xét tài khoản office. Không tự xóa các quyền Manager đã nêu trong nguồn khác. Nguồn `ISS22-P PDFtrang3; ADV22 PDFtrang6`; EV `EV-1243;EV-1257`.
+
+**Xác nhận lại bài AI sửa từ cấm — PROPOSAL của nguồn:** Đề nghị bài có từ cấm phải được Talent xem lại sau AI sửa dù đang chọn không xác nhận từng bài. UI-M20 M-11 vẫn vẽ Manager sửa rồi AI kiểm lại. **Giới hạn:** Có ba nhánh: KS K59 AI sửa/đặt lịch; báo cáo 22/11 thêm Talent xác nhận; UI M-11 Manager sửa. Không tự chọn hoặc đóng No.57/71/90/96 bằng hình minh họa. Nguồn `ISS22-P PDFtrang7; ADV22 PDFtrang7; ADV22 PDFtrang10; UI-M20 PDFtrang18`; EV `EV-1247;EV-1258;EV-1261;EV-1228`.
+
+**Nhiều category và phân công Manager — FACT của nguồn:** M-13 cho gán nhiều category, M-19 hiện category Manager, M-10 có Manager phụ trách; M-14 nhắc ưu tiên Talent > category > toàn hệ thống. **Giới hạn:** UI vẫn thể hiện nhiều category trong khi QA No.99 hỏi lựa chọn và xử lý xung đột. Không tự chốt một category hoặc dùng category Manager làm rào cản quyền chung. Nguồn `UI-M20 PDFtrang17; UI-M20 PDFtrang20; UI-M20 PDFtrang21; UI-M20 PDFtrang22; UI-M20 PDFtrang25`; EV `EV-1227;EV-1230;EV-1231;EV-1232;EV-1235`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Duyệt bài công việc:** Chỉ bài liên quan công việc cần Manager duyệt. Với tự động, không thêm bước duyệt để phòng dùng nhầm ảnh công việc. **Còn mở/giới hạn:** Giữ hai phạm vi riêng; không suy mọi bài công việc được tự động bỏ duyệt. No.71/84 cần phản ánh ngoại lệ đã ghi; nhận diện bài công việc và chuyển nhánh chưa đủ chi tiết. Nguồn `KS 確認事項!K74;20261120!F10;20261120!F15`; bằng chứng `EV-0968`.
+
+- **Manager nhận yêu cầu duyệt:** Gán Manager phụ trách theo từng Talent; yêu cầu duyệt gửi người phụ trách. Mọi Manager vẫn xem dữ liệu Talent; trả bài có lý do để Talent sửa. **Còn mở/giới hạn:** Không suy mọi loại thông báo cùng người nhận. No.87/88 mở lại: người nhận thông báo chung, cách gán, chuyển phụ trách khi vô hiệu hóa và nhắc quá hạn chưa chốt. Nguồn `KS 確認事項!K77;確認事項!K93;20261120!F11`; bằng chứng `EV-0969`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Duyệt bài công việc khi Talent xin duyệt; trả lại phải có lý do; chờ duyệt không sửa theoGJ19§13. Quá giờ chưa duyệt thì không đăng/hủy và báo cả hai bên.
@@ -114,3 +141,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 - Q&A No.35, CR-03 (đã chốt): có trả lại kèm lý do, tài năng sửa và xin duyệt lại.
 - Q&A No.58 (đang hỏi): đề xuất trong Q&A là **bài xin duyệt lại vẫn là cùng một bài**, giữ lịch sử duyệt và giữ giờ cũ nếu còn kịp. Đặc tả này và C-01 đang cho bài bị trả lại sang 取り消し và tạo bài mới. Phải thống nhất trước khi làm.
 - Q&A No.6, CR-19: **làm** ([KS] 確認34): yêu cầu duyệt gửi theo nhóm hoặc theo quản lý phụ trách.
+
+
+</details>

@@ -1,0 +1,22 @@
+source_id,document_date,pdf_page,screen_id,title,evidence_id,status,limits
+UI-M20,2026-11-20,8,M-01,M-01 ログイン（二段階認証）,EV-1218,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,9,M-02,M-02 お知らせ一覧,EV-1219,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,10,M-03,M-03 申し込みの確認（承認・拒否）,EV-1220,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,11,M-04,M-04 承認待ち一覧,EV-1221,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,12,M-05,M-05 投稿の承認,EV-1222,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,13,M-06,M-06 タレント一覧,EV-1223,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,14,M-07,M-07 タレントの詳細（情報）,EV-1224,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,15,M-08,M-08 タレントの詳細（投稿）,EV-1225,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,16,M-09,M-09 タレントの詳細（会話）,EV-1226,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,17,M-10,M-10 タレントの詳細（設定）,EV-1227,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,18,M-11,M-11 使ってはいけない言葉が入っていた投稿の確認,EV-1228,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,19,M-12,M-12 事務所アカウントの作成,EV-1229,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,20,M-13,M-13 カテゴリーの管理,EV-1230,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,21,M-14,M-14 AIへの指示（一覧）,EV-1231,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,22,M-15,M-15 AIへの指示（入力）,EV-1232,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,23,M-17,M-17 全体の設定（時刻と日数）,EV-1233,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,24,M-18,M-18 使ってはいけない言葉の一覧,EV-1234,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,25,M-19,M-19 マネージャーの管理,EV-1235,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,26,M-20,M-20 閲覧の記録,EV-1236,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,27,M-21,M-21 タレントの情報の入力,EV-1237,SOURCE_PROPOSAL_NOT_APPROVED,Mã chỉ áp dụng UI-M20; hình/tên/số là mẫu; không cóM-16 trong tệp.
+UI-M20,2026-11-20,28,CHƯA CÓ MÃ,がんばっているタレント — xếp hạng cố gắng,EV-1238,NEW_SOURCE_PROPOSAL_NOT_APPROVED,Không tự cấpM-22; trọng số chờ xác nhận p29.

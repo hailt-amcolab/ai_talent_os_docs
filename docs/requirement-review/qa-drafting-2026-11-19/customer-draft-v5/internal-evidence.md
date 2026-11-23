@@ -1,3 +1,5 @@
+> **Cập nhật23/11:** Bốn ID nội bộ đã có tại QA No.93–96; không còn câu độc lập trong bản xuất. Nội dung dưới là lịch sử; xem [bản chính](../qa-draft.md) và [đối chiếu](../../corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
 # Kết quả lọc trùng toàn bộ QA hiện hành
 
 Còn WQA-076-01 (ngoại lệ tâm sự nghiêm trọng, liên quan KS No.21/27/28) và WQA-066-02 (chỉ thời hạn giữ dữ liệu văn phòng). 24 câu vừa rút có lý do trong questions.csv và bảng cuối bản Q&A. Nội dung chi tiết đợt lọc trước dưới đây là lịch sử; trạng thái hiện hành lấy internal-evidence.csv. Chưa có content ACCEPT hoặc Independent Verification.

@@ -1,5 +1,26 @@
 # 5-1 Tạo video
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Âm nhạc và hoàn tất trong ứng dụng SNS — PROPOSAL của nguồn:** Đề nghị hai đường: đăng qua API với nhạc gốc/đủ quyền và hoàn tất trong app SNS khi cần nhạc thịnh hành hoặc chỉnh sửa đặc biệt; video AI dùng nhạc phù hợp quyền sử dụng. **Giới hạn:** Không coi nhãn copyright-free là bảo đảm quyền thương mại. Chưa xác minh thao tác bàn giao Instagram/TikTok, tài khoản áp dụng và quyền từng bản nhạc. Nguồn `ISS22-P PDFtrang4; ISS22-P PDFtrang6; ADV22 PDFtrang6`; EV `EV-1244;EV-1246;EV-1257`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Video ngắn và slideshow:** Câu hỏi/đề xuất chỉnh còn video ngắn, bỏ mô tả chọn slideshow và ước tính chi phí slideshow. **Còn mở/giới hạn:** Đây là cột đề xuấtF, chưa có quyết địnhK cho việc xóa slideshow. Giữ khác biệt với QA No.36/CR-04; không ghi giảm phạm vi đã chốt. Nguồn `KS 確認事項!F72;確認事項!F86`; bằng chứng `EV-0986`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 T-14 bản 19/11 chỉ mô tả video ngắn từ ảnh; tạo khi Talent yêu cầu và xem giá trước.
@@ -124,3 +145,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 - Q&A No.36, CR-04 (đã chốt): hai loại video. **Video trình chiếu ảnh làm ở máy chủ bằng cách ghép ảnh, không gọi thêm dịch vụ AI** (không qua fal.ai). Video ngắn vẫn qua Kling. Đóng S05-05.
 - CR-09 (đã chốt làm ở SP1): quản lý tạo video thay từ màn quản trị, gọi cùng luồng với tài năng. **Bảng xác nhận 17/11 ([KS] 確認27) thu hẹp: chỉ làm thay cho tài khoản công ty**, nên phần "phí tính vào hóa đơn của tài năng" không còn dùng. Đóng B8.
 - Q&A No.2, No.62: đơn giá video là một giá trị cài đặt ở màn quản trị.
+
+
+</details>

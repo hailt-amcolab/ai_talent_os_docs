@@ -1,5 +1,18 @@
 # 3-4 Trò chuyện với huấn luyện viên AI
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**PWA: kiểm tra thông báo và phương án thay thế — PROPOSAL của nguồn:** Đề nghị hướng dẫn mở Safari, thêm màn hình chính, mở từ icon, cho phép và nhận thông báo thử; không cho phép thì báo trong app hoặc email; mở lại vẫn thấy lời nhắn. **Giới hạn:** PWA cơ bản đã có trong phạm vi; email dự phòng cho Talent và bước thử cần đối chiếu. 7:30 là ví dụ, không thay lịch cấu hình sáng/trưa/tối; tài liệu hỗ trợ WebPush không chứng minh thiết bị đã được kiểm thử. Nguồn `ISS22-P PDFtrang4; ADV22 PDFtrang3`; EV `EV-1244;EV-1254`.
+
+**Rải giờ và tối ưu theo chu kỳ 30 ngày — PROPOSAL của nguồn:** Đề nghị rải phút theo Talent/SNS, tránh giờ tròn, thử các khung trong 30 ngày rồi dùng kết quả cho 30 ngày tiếp; mục tiêu hiệu quả, phân tải và có thời gian giao lưu. **Giới hạn:** Không coi ví dụ 19:07/20:23 hoặc chu kỳ 30 ngày là mốc đã chốt. Dữ liệu watch time chưa được kiểm; chỉ thị AI không tự bảo đảm scheduler phân tải hoặc tuân thủ cap. Nguồn `ISS22-P PDFtrang5; ADV22 PDFtrang8; ADV22 PDFtrang11`; EV `EV-1245;EV-1259;EV-1262`.
+
+**Nhắc tương tác sau đăng — PROPOSAL của nguồn:** Đề nghị nhắc xem phản hồi sau 30 phút, trả lời/giao lưu vài giờ sau, phân tích hôm sau và báo cáo/thử thách hằng tuần; nhắc bình luận chưa trả lời. **Giới hạn:** Nhắc chung qua chỉ thị khác chức năng phát hiện từng bình luận chưa trả lời. Không tự mở API comment/auto-like/auto-follow; các mốc nhắc chưa được duyệt. Nguồn `ISS22-P PDFtrang6; ISS22-P PDFtrang8; ADV22 PDFtrang11`; EV `EV-1246;EV-1248;EV-1262`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Mỗi sáng báo kết quả hôm trước, follower tăng,3 chủ đề và thử thách; nhắc tư liệu trong ngày; kết quả sau đăng; tổng kết tuần. Giờ chung chỉnh tại M-17.

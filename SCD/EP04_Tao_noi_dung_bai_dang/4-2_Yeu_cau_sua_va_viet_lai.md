@@ -1,5 +1,17 @@
 # 4-2 Yêu cầu sửa và viết lại
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Viết lại không giới hạn:** Không giới hạn số lượt nhờ AI viết lại; nguồn ghi rõ đổi quyết định2lần ngày17/11. **Còn mở/giới hạn:** Khớp DEC-0001 đã có; không cấp quyết định trùng, không dùng số2cũ ở PDF/QA để chặn. Nguồn `KS 確認事項!K65`; bằng chứng `EV-0984`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Không giới hạn số lần AI viết lại theo DEC-0001; quyền sửa tay giữ nguyên. Các mô tả hai lượt trong PDF19/11 là lịch sử bị thay đúng chủ đề.
@@ -96,3 +108,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP04: 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.39, CR-21: tài năng sửa chữ trực tiếp **làm** ([KS] 確認28).
+
+
+</details>

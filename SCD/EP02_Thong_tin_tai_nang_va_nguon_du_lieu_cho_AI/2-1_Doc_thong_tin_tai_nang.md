@@ -1,5 +1,14 @@
 # 2-1 Đọc thông tin tài năng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Ảnh chân dung và liên kết profile Adesso — PROPOSAL của nguồn:** M-21 thêm một ảnh cận mặt, trường URL profile Adesso và nút mở profile; vẫn có năm nhóm thông tin, lịch sử và chỉnh qua ChatGPT. **Giới hạn:** SD-M19 p26 chưa nêu hai đầu vào này. Chưa chốt tính bắt buộc, định dạng/quyền ảnh, nơi lưu, URL chỉ mở hay được AI đọc. Không tự fetch/crawl URL hoặc mở quyền ghi ảnh qua MCP. Nguồn `UI-M20 PDFtrang27`; EV `EV-1237`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Folder Talent tạo tự động khi đăng ký thanh toán; folder office tạo ngay khi tạo tài khoản. Chưa nhập hồ sơ thì AI không tạo bài. Hồ sơ/chỉ thị đọc từ nguồn tương ứng; không yêu cầu Manager tạo folder thủ công.

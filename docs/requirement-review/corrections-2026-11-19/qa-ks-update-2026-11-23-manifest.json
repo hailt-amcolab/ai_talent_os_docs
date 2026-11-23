@@ -1,0 +1,304 @@
+{
+  "created_at": "2026-11-23T09:11:28+07:00",
+  "prepared_by": "Codex — đối chiếu nguồn, không reviewer độc lập",
+  "source_snapshot_ref": "docs/requirement-review/corrections-2026-11-19/qa-ks-update-2026-11-23.json",
+  "result": "AUTHOR_DELTA_REVIEW_NOT_APPROVED",
+  "validation": "python3 docs/requirement-review/validate.py",
+  "files": [
+    {
+      "path": "Phan_tich/00_Bao_cao_phan_tich_du_an.md",
+      "sha256": "6829166e410436c00e461a2f51dd46327c76eb003b04d8a006e3a4ae54c54688"
+    },
+    {
+      "path": "Phan_tich/04_Yeu_cau_chuc_nang.md",
+      "sha256": "11c01c8301b397dcd17f1eee7682ac4353c946a4f18c12f701e2e9b18e7e7c7a"
+    },
+    {
+      "path": "Phan_tich/05_Quy_tac_nghiep_vu.md",
+      "sha256": "a66a3565d3331dca5e18d082ef8c4c1318f252d5ab3851d080bbbc614fdcfc7d"
+    },
+    {
+      "path": "Phan_tich/06_Workflow.md",
+      "sha256": "da5ae7a50a21e43eca847e94f071114452f84ad1cbfdb0e023aa04b4d12d081c"
+    },
+    {
+      "path": "Phan_tich/10_Giao_dien.md",
+      "sha256": "5080b3433208fd28f862b4a01a4520d5ea006d24d7526d9d88afbd152e02a625"
+    },
+    {
+      "path": "SCD/EP01_Danh_tinh_va_quyen_truy_cap/1-4_Dang_ky_duyet_don_va_dang_nhap.md",
+      "sha256": "cbd68e3d8299cb8e812459894e5bd362b45919944c38c87f56bb8e606f2124cc"
+    },
+    {
+      "path": "SCD/EP01_Danh_tinh_va_quyen_truy_cap/6-2_Huong_dan_lan_dau_va_ket_noi_mang_xa_hoi.md",
+      "sha256": "3db824de03c712e972d8f464c3dc054d84d82ad4b1221294adec3a73b521b6ad"
+    },
+    {
+      "path": "SCD/EP01_Danh_tinh_va_quyen_truy_cap/7-3_Doi_trang_thai_tai_nang.md",
+      "sha256": "7176787330916d7d69296fb69b81ffad54386ef4455fc2f1b53de271fdb13cb0"
+    },
+    {
+      "path": "SCD/EP02_Thong_tin_tai_nang_va_nguon_du_lieu_cho_AI/7-1_Xem_thong_tin_tai_nang.md",
+      "sha256": "ddf192c492b6b051dc7c1f893a350d6242cfcdeeb6f87836088646d79f4b934c"
+    },
+    {
+      "path": "SCD/EP03_Huan_luyen_vien_AI/3-3_Gioi_han_chu_de_tro_chuyen.md",
+      "sha256": "e83a886015c263c11b487489fdecc748ba6e7e46b77acc9d54bff605e8a732bd"
+    },
+    {
+      "path": "SCD/EP03_Huan_luyen_vien_AI/3-9_Nhac_tai_nang_lau_khong_dang_bai.md",
+      "sha256": "416d6af12d0f850720ff2002946b6bd7a1130faeb0d2d5dcc8e5ea3a9dbbf1bd"
+    },
+    {
+      "path": "SCD/EP04_Tao_noi_dung_bai_dang/4-1_Tu_tao_ban_nhap.md",
+      "sha256": "e310d89d1cc5709120d50a8afbb9b578c06a0efdad0234371397699d5ff8f42f"
+    },
+    {
+      "path": "SCD/EP04_Tao_noi_dung_bai_dang/4-2_Yeu_cau_sua_va_viet_lai.md",
+      "sha256": "024f1626b10abb8f17d2cfbfbcef5ab01bce6f8b5612ff974f451a63f7f1bbfd"
+    },
+    {
+      "path": "SCD/EP04_Tao_noi_dung_bai_dang/4-3_Chap_nhan_ban_nhap.md",
+      "sha256": "d784736df1573e53d222e731699028e0950cdd6062383f687a49d25a954d6f9c"
+    },
+    {
+      "path": "SCD/EP04_Tao_noi_dung_bai_dang/4-4_Phat_hien_tu_cam.md",
+      "sha256": "e7a9cc4521d0d1367a3bdd8011e53977be7d68612d3f164cef2e29240be49ded"
+    },
+    {
+      "path": "SCD/EP05_Tu_lieu_va_video_AI/5-1_Tao_video.md",
+      "sha256": "db04b2b0f67193105709a6d1269da18f9d726fc900f35edd27574df4b8cd09b9"
+    },
+    {
+      "path": "SCD/EP05_Tu_lieu_va_video_AI/6-4_Luu_tu_lieu.md",
+      "sha256": "7fcad690bc32e14e4066f96ae02c55134e2339c69857047f34721793fb7248ce"
+    },
+    {
+      "path": "SCD/EP05_Tu_lieu_va_video_AI/6-5_Nhac_gui_tu_lieu.md",
+      "sha256": "d34040107902240738923859a3ffe92523962fa2847b0a66335e29c2fe2d36c6"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/7-2_Xem_va_huy_bai_dang.md",
+      "sha256": "2f9aa58242a9743b9fbb4e6b7656fbc6d9770f41469452e79aa14b402154ce0a"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/7-5_Dung_dang_tu_dong_toan_bo_hoac_tung_tai_nang.md",
+      "sha256": "1a72554b299f134df0ae1685702ab86a317f5aea976ddef7c023562a10ad24d4"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/7-7_Duyet_bai_dang.md",
+      "sha256": "2a414a34344bcf3a48d2c93de104fc2278af7f606d103b83ac36efb90f17a6db"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-3_Dang_len_3_mang_xa_hoi.md",
+      "sha256": "ce45364599b2434e6238c1282284be7a1eb7dfc5c752937c8a791f29bf80e560"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-4_Chong_bi_khoa_tai_khoan.md",
+      "sha256": "fcdd0adffe482b40acba8d66c9286e12864899c6fa76274a97e086a45d4904b3"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/8-5_Thong_bao_khi_dang_loi.md",
+      "sha256": "9a6b77219566ef2258894dd49a803acdc4cacb0e155efc343605c5eed03416b6"
+    },
+    {
+      "path": "SCD/EP06_Phe_duyet_va_dang_len_mang_xa_hoi/9-1_Dang_bai_bang_tai_khoan_cong_ty.md",
+      "sha256": "efb0d699bef3e74cd619f5489a66f64bdf09cd99eeff765e2719ff75f6b5f7a3"
+    },
+    {
+      "path": "SCD/EP08_Thu_phi/1-1_Thu_phi_thue_bao_thang.md",
+      "sha256": "53872d4df31b66b9996b894351bf68a063b63a33313dfe6e26145624fe55b7a9"
+    },
+    {
+      "path": "SCD/EP08_Thu_phi/5-4_Dem_so_lan_tao_video_va_thu_gop_voi_phi_thang.md",
+      "sha256": "b8854cc765b34968e570d397d9cc01e6cd78671285a9de93a9cfa16673f5e469"
+    },
+    {
+      "path": "SCD/EP09_Thong_bao_va_nen_tang_PWA/6-8_Nen_tang_PWA.md",
+      "sha256": "efabc13a2e4511345d54808189ba7a3ea29388e38e18c3a76343c2a453f1ee74"
+    },
+    {
+      "path": "SCD/EP09_Thong_bao_va_nen_tang_PWA/7-4_Danh_sach_thong_bao_cho_quan_ly.md",
+      "sha256": "2c539cfd30af07901c301e963325f5ba13ae3419d66f3b763b9d13554094270f"
+    },
+    {
+      "path": "SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-01_Bo_trang_thai.md",
+      "sha256": "0a6a60323315727a3ac606d2672d9d58bf2dc7a1326857eb08642e8f68e71eda"
+    },
+    {
+      "path": "SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-02_Cai_dat_do_quan_ly_tu_chinh.md",
+      "sha256": "ae0300ba8b22e244576eb4aa1dcb2cf895c2472bc8ee4a46a136d5ba67432365"
+    },
+    {
+      "path": "SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-04_Xu_ly_khi_dich_vu_ngoai_loi.md",
+      "sha256": "a491ccd83cc25c30e1dcd8ee101f8561a3a367baf72948ea2280d1ad908aae54"
+    },
+    {
+      "path": "SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-05_Danh_muc_thong_bao.md",
+      "sha256": "6e6eda8b94e55ab2336fea8bb5797ddb48fda806ebc2d42e2f93e99eb2890df4"
+    },
+    {
+      "path": "SCD/EP10_Nen_tang_chung_va_quan_tri_he_thong/C-06_Quy_tac_chung_cua_man_hinh.md",
+      "sha256": "73a58ceb1fc83015afb5549c4c4655f4765ca10dcd14902e984ad7332f2c2cb4"
+    },
+    {
+      "path": "SCD/README.md",
+      "sha256": "fb46ad525994c5c96746aef9eacd76de681557ed91af58d6486e965564819c5b"
+    },
+    {
+      "path": "TAI_LIEU_NGUON.md",
+      "sha256": "197471033bc9e9b85dada951861985317f9cc542a4e5f9ed86d931f1268ef2c6"
+    },
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "469a422d39a0c8409404389d6548e4a488e0c7c2eee4cb00691db5c1def7dc6e"
+    },
+    {
+      "path": "agent_spec/pwa-platform-spec/HUONG_DAN_TICH_HOP_VI.md",
+      "sha256": "638f096e061147a66c01fcb032990c23bd37c2d9158cdb508937e9607b13310e"
+    },
+    {
+      "path": "agent_spec/upload-post-agent-spec/HUONG_DAN_TICH_HOP_VI.md",
+      "sha256": "6ed075e672aae1387d68db7bf8156c643fd1efc8f4f1dd08575f5115637be2d8"
+    },
+    {
+      "path": "docs/qa/qa-quality-review.md",
+      "sha256": "5532d03825b0a7a38a3d2e8a82f73f0edf70d6d2ac65eb6649aab7ad3c93d307"
+    },
+    {
+      "path": "docs/requirement-review/READINESS_REPORT.md",
+      "sha256": "46417d4d0451ea881f14d4d5e0b41106a652c03cca6ac10e01500a073376fa3b"
+    },
+    {
+      "path": "docs/requirement-review/README.md",
+      "sha256": "42c0206e7a9100c01c44ffa1714bb62eea9ff7dc2b0ab903eb8648b6286af2cb"
+    },
+    {
+      "path": "docs/requirement-review/SOURCE_REGISTER.md",
+      "sha256": "e55c6b82b9fe4a545dbe27cd66656e129e5af98beaa9dcb4258c99989853d5cf"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/FLOW_INDEX.md",
+      "sha256": "a5fd7dba6766894b261a9ddc3ccf5b547f5749e4ca38842deb58229084c89eff"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/MISSING_INFORMATION_CURRENT.md",
+      "sha256": "d0e888abae72074896318965fa57c03474505096c72ae0cdbc30bf909e5b9116"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md",
+      "sha256": "6124bab6eaef2b66c6d343b08d586d240f25c1430ee1e459e6764a5e0c669138"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md",
+      "sha256": "a73f2493cafbb18ec5911238e5ee774d21fff6fbdc1025fadd02188b269858bd"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/REPORT.md",
+      "sha256": "4858af4f80cd659130b3665500981ec30e3a9a0f50bcfe59ce2015afa7d9180a"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/STATE_TRANSITION_TABLES.md",
+      "sha256": "2915910bd055d8adb87c0c37feaf055b3de953b81d4f8f9d98b4769145e317ad"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/changes.csv",
+      "sha256": "9e91ed4e59abf1f8c123c83f2f7b8ab9d351784b708ace9271323a75b2588b64"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/current-output-hashes.json",
+      "sha256": "430bf681bc63ef3bde500733f04ba1d45ce2bf15847cfe47fd8bdfa03f437b9c"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/current-view.json",
+      "sha256": "035ccc9fe3d14e115bb50b97ec91b0c1246e02c99c095166b5a1f25187695edd"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/finding-details.csv",
+      "sha256": "a27c71e31e7500f31be14f8d23e372eb6bb16b7cea54db416363f9bc9cd123b5"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/finding-review-applicability.csv",
+      "sha256": "d455dbe62c57021aaeb28332aafdc783dbb3f42cc627d81ce820600a601f86c3"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/new-delivery-intake.json",
+      "sha256": "d9e6c58ac741fb56174a75a36783e344b838c8f260259a74c3238619464bb581"
+    },
+    {
+      "path": "docs/requirement-review/corrections-2026-11-19/qa-ks-update-2026-11-23.json",
+      "sha256": "a75f29a93234485911c520c03d2571d54c7fe0c40f81131a6ef618800c750201"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/README.md",
+      "sha256": "074e5bafa9f6a8cf7331485e6f73af5de6f855f45da47f21cb9dd4a61fd6509e"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/current-export-manifest.json",
+      "sha256": "d3d98f7331e14ed57e4cd0f91cfa3fb9e789d8d50a4294eda5e68c7ec0aba71f"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/qa-draft.csv",
+      "sha256": "a58c051bfb7cc22f28484657934da72211ab0129ebff7a9e53bedbfb6fec97b1"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/csv-export/screen-traceability.csv",
+      "sha256": "9905953a3508422682849476a1c7521aa140e3a27f1d9b60c4229b6e6959d3ac"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv",
+      "sha256": "9c930243b9935401645293f458b90a430856ab8079388b3be1abf60cdd622474"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.md",
+      "sha256": "c8377de8080af27cb589958e022267dfa3fe3cdf7c16c35eca7ee62ea4e04734"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/questions.csv",
+      "sha256": "19870928a55ee87973f875c1a744d08cfe860c375fe58b724037278201e37586"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/internal-evidence.md",
+      "sha256": "8dada7bfe26b42f3540228a31a88b95d805ecbd7d5263a263e269d1a988b1e92"
+    },
+    {
+      "path": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
+      "sha256": "60e51836f0612f835eb57b0cb09138f89030e2436e0eeb191a44c8e17fab81c5"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-flows.csv",
+      "sha256": "08a07fe82d8c16059fd45b07a80d3120145a12be04b6172fc9f56c52d3381c2e"
+    },
+    {
+      "path": "docs/requirement-review/registers/business-rules.csv",
+      "sha256": "88a5759ac646a8b30e5a9d929f94cc95ec81cee40cdfd398682e8a7d608f421e"
+    },
+    {
+      "path": "docs/requirement-review/registers/evidence.csv",
+      "sha256": "d330c921984925c6ba3f547b1a783b86592748d483f3712e856783c2c2ee7cdd"
+    },
+    {
+      "path": "docs/requirement-review/registers/findings.csv",
+      "sha256": "96deba2a48341e290ea1a907b34d3c243fcb3de49e7d18dc1129a72d70e2de38"
+    },
+    {
+      "path": "docs/requirement-review/registers/gate-runs.csv",
+      "sha256": "7aa2addb032ad38c4847518b4c0fc0439ffe2102ac185318d731d204e2a4bb06"
+    },
+    {
+      "path": "docs/requirement-review/registers/requirements.csv",
+      "sha256": "d113ba7d8120b3305e0c5c5953ca422c0ee6a19c426360e6eac2ea9735680fd7"
+    },
+    {
+      "path": "docs/requirement-review/source-inventory-current.json",
+      "sha256": "d5518e12db69782ee88b8375185770dbda05d4be5b7ee4a655aefc804468ab4e"
+    }
+  ],
+  "limits": "Manifest không tự hash chính nó; giữ manifest các đợt cũ làm lịch sử; không chứng minh independent review hoặc phê duyệt khách.",
+  "checks": [
+    "16 current source hashes match; input workbooks preserved",
+    "9 register schemas and workflow links PASS",
+    "4 local QA IDs mapped to existing source93–96; 0 active duplicate drafts",
+    "git diff check with cr-at-eol for repository CSV convention"
+  ]
+}

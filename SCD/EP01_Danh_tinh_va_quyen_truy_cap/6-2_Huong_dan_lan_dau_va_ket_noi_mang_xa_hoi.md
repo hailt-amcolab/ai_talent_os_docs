@@ -1,5 +1,26 @@
 # 6-2 Hướng dẫn lần đầu và kết nối mạng xã hội
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**PWA: kiểm tra thông báo và phương án thay thế — PROPOSAL của nguồn:** Đề nghị hướng dẫn mở Safari, thêm màn hình chính, mở từ icon, cho phép và nhận thông báo thử; không cho phép thì báo trong app hoặc email; mở lại vẫn thấy lời nhắn. **Giới hạn:** PWA cơ bản đã có trong phạm vi; email dự phòng cho Talent và bước thử cần đối chiếu. 7:30 là ví dụ, không thay lịch cấu hình sáng/trưa/tối; tài liệu hỗ trợ WebPush không chứng minh thiết bị đã được kiểm thử. Nguồn `ISS22-P PDFtrang4; ADV22 PDFtrang3`; EV `EV-1244;EV-1254`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Khởi tạo PWA:** Đăng nhập bằng mật khẩu tạm → đổi mật khẩu → đăng ký phương thức thanh toán → thêm vào màn hình chính; hướng dẫn rõ bước tiếp theo, gồm iPhone. **Còn mở/giới hạn:** Không mặc định trình duyệt có thể tự cài PWA hoặc tự nhảy vào ứng dụng. Office giữ ngoại lệ thanh toán theo nguồn hiện có. Nguồn `KS 20261120!F7`; bằng chứng `EV-0965`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Bắt buộc đăng ký phương thức thanh toán và mở từ biểu tượng màn hình chính; thêm biểu tượng bằng hướng dẫn thủ công theo máy. SNS và cho phép thông báo có thể làm sau. Thanh toán đăng ký xong tự kích hoạt, tạo folder và báo Manager; sau khởi tạo mở Mypage T-08, không phải Home T-09. Office bỏ bước thanh toán.
@@ -113,3 +134,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 - [YK2] §6-1 (6-2), §9-1, UC-03, UC-03 前提, UC-01 前提, 確認11, 12, 13.
 - [AG] trang 2 (T-03, T-04), trang 3 (T-05).
 - [File 04](../../Phan_tich/04_Yeu_cau_chuc_nang.md) module 1.
+
+
+</details>

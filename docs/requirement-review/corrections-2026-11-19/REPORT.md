@@ -1,3 +1,5 @@
+> **Hiện hành — tiếp nhận23/11/2026:** đã rà QA đủ5sheet và KS đủ3sheet, so với kiểm kê20/11. QA thêm No.93–99; No.87/88 mở lại; KS thêm18ô quyết địnhK và33ô trả lời ở20261120. [Kết quả và giới hạn](QA_KS_UPDATE_2026-11-23.md). Bốn câu nội bộ đã có tại No.93–96, không xuất câu hỏi trùng. G1 BLOCKED chờ duyệt snapshot mới; G2–G4 STALE, G5/G6 BLOCKED; chưa cấp G7/G8 PASS. Các số liệu/phát biểu hiện hành20/11 bên dưới là lịch sử cho phần bị thay.
+
 # Sửa hồ sơ theo báo cáo kiểm chứng toàn bộ
 
 Hoàn tất phần sửa FV-001–012 ngày20/11/2026; thư mục phiên bản giữ ngày19/11 của đợt bắt đầu. Đây là bản sửa của Analyst, **chưa được Independent Reviewer kiểm lại hoặc phê duyệt phát hành**.

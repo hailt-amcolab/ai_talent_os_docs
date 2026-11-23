@@ -1,5 +1,17 @@
 # 1-4 Đăng ký, duyệt đơn và đăng nhập
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Email duyệt đơn và từ chối:** Manager duyệt/từ chối thì tự gửi email; email duyệt có mật khẩu tạm. Adesso cung cấp câu chữ, đội chuẩn bị bảng điền. Từ chối dùng cho người ngoài nhận được link; nguồn nói không trao đổi với người bị từ chối. **Còn mở/giới hạn:** Không suy từ đây quy tắc nộp lại hoặc quyền đảo quyết định; No.65/78 còn phải đối chiếu. Nguồn `KS 20261120!F3:F4`; bằng chứng `EV-0963`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Đơn chờ không có hạn; nộp lại lúc chờ thì báo đã nộp và báo Manager lần nữa. Email đã đăng ký (kể cả đang ngừng) chuyển đăng nhập, không gửi thông báo đơn mới. Đơn sau từ chối được tiếp nhận như đơn mới; trao đổi trước xét qua email ngoài app. Sau đặt mật khẩu phải quay về đăng nhập.
@@ -175,3 +187,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP01: 
 
 - Q&A No.11, CR-01 (đã chốt): tự đăng ký, quản lý duyệt.
 - Q&A No.65 (đang hỏi): mật khẩu tạm hạn 7 ngày, quản lý bấm gửi lại; email bị từ chối vẫn bị chặn, quản lý xóa đơn để người đó đăng ký lại.
+
+
+</details>

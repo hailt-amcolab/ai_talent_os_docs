@@ -1,5 +1,28 @@
 # 1-1 Thu phí thuê bao tháng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Trần phí và nhận định đã giải quyết thanh toán — FACT của nguồn:** Bảng hiện trạng mới ghi có trần video/tháng; phần so sánh ghi thanh toán đã giải quyết bằng thẻ. **Giới hạn:** QA No.3/17 và CR-12/16 nói không có trần video/AI tự dừng. Không dùng mô tả hồi tố để đảo chính sách. KS F25 chỉ ghi GMO là ứng viên; có phương thức thẻ không chứng minh cổng đã ký hoặc tích hợp. Nguồn `ISS22-P PDFtrang2; ISS22-P PDFtrang7`; EV `EV-1242;EV-1247`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Cổng thanh toán và đầu việc provider:** Có thanh toán nhà mạng; GMO là ứng viên, cần quyết sớm. Nhà mạng không hỗ trợ thì dùng thẻ hoặc PayPay theo nguồn. Đội tổng hợp câu hỏi cổng về trả trước, phí biến đổi, giữa kỳ và chưa thanh toán, đổi phương thức/lịch sử. **Còn mở/giới hạn:** GMO chưa được chọn/ký; không suy PayPay đã được duyệt toàn bộ hoặc tích hợp đã hoạt động. Nguồn `KS 確認事項!K100;確認事項!K105;20261120!F25:F27`; bằng chứng `EV-0979`.
+
+- **Trả trước và quá hạn:** Phí tháng theo hướng trả trước; nguồn ghi đang xem xét dừng sử dụng nếu1tháng chưa thanh toán. **Còn mở/giới hạn:** “検討します” chưa chốt tự khóa sau1tháng. Chu kỳ cụ thể, khả năng cổng và No.46/49/86 còn mở; không tự xây retry hay thu sau. Nguồn `KS 確認事項!K104;20261120!F24`; bằng chứng `EV-0978`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp.
@@ -119,3 +142,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: 
 
 - Q&A No.46 (đã chốt): tháng đầu thu đủ 1 tháng; thu lỗi thì báo tài năng và quản lý, không tự dừng.
 - Q&A No.49, No.53 (đang hỏi): đề xuất cũ "thu cùng ngày cuối tháng" **trái** với [KS] 確認48 (kỳ một tháng tính từ ngày đăng ký); làm theo [KS]. Phần "tính phí từ ngày đăng ký thanh toán" vẫn khớp.
+
+
+</details>

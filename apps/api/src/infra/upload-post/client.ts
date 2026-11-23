@@ -80,23 +80,16 @@ export class UploadPostClient {
     return parsed as T
   }
 
-  // Hosted connection page: https://app.upload-post.com/connect?token=… valid 48h.
-  // Docs: POST /api/uploadposts/users/generate-jwt. The page links the chosen network, then sends the browser to redirect_url.
+  // Connect API: https://docs.upload-post.com/api/connect-api
+  // Returns the network's own sign-in URL (Google, Instagram, TikTok); state is single use, valid 900 s.
+  // After consent the browser comes back to redirect_url with connect_status, platform, error_code.
   async startConnect(profile: string, platform: Platform, redirectUrl: string) {
-    const r = await this.call('POST', '/api/uploadposts/users/generate-jwt', {
-      json: {
-        username: profile,
-        redirect_url: redirectUrl,
-        platforms: [platform],
-        show_calendar: false,
-        redirect_button_text: 'Back to AI Talent OS',
-      },
-    })
-    const accessUrl = text(r.access_url)
+    const r = await this.call('POST', `/api/uploadposts/oauth/${platform}/start`, { json: { profile, redirect_url: redirectUrl } })
+    const authorizeUrl = text(r.authorize_url)
     let url: URL | null = null
-    try { if (accessUrl) url = new URL(accessUrl) } catch { url = null }
-    if (!url || url.protocol !== 'https:' || url.hostname !== 'app.upload-post.com') throw new UploadPostError('unavailable', 'BAD_RESPONSE')
-    return { authorizeUrl: url.toString(), expiresInSeconds: 48 * 60 * 60 }
+    try { if (authorizeUrl) url = new URL(authorizeUrl) } catch { url = null }
+    if (!url || url.protocol !== 'https:') throw new UploadPostError('unavailable', 'BAD_RESPONSE')
+    return { authorizeUrl: url.toString(), expiresInSeconds: typeof r.expires_in === 'number' ? r.expires_in : 900 }
   }
 
   async cancelSchedule(jobId: string) {

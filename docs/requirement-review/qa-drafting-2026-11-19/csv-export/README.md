@@ -1,3 +1,5 @@
-# Q&A hiện hành
+# Bản xuất hiện hành —23/11/2026
 
-4 mục nội bộ: 2 nháp trước và 2 ứng viên mới về SNS/lịch đăng và danh sách từ cấm/quy trình xử lý. Cột đề xuất tách riêng, chưa chốt. Ứng viên chưa có content ACCEPT đúng hash, chưa đủ điều kiện WORKING_DRAFT theo WCP-0001; không phê duyệt hoặc gửi khách. Giữ loại trừ câu trùng và câu giá tiền.
+Không có câu hỏi độc lập để xuất. Bốn ID nội bộ chuyển theo dõi QA No.93–96, đã có trong workbook nguồn; cả7câu93–99 còn Open. CSV chỉ giữ tiêu đề để tránh gửi lặp. Không có phê duyệt hoặc ủy quyền gửi.
+
+[Bản chính](../qa-draft.md) · [Đối chiếu](../../corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).

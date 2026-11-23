@@ -1,5 +1,14 @@
 # 3-8 Tổng kết tuần
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Nhắc tương tác sau đăng — PROPOSAL của nguồn:** Đề nghị nhắc xem phản hồi sau 30 phút, trả lời/giao lưu vài giờ sau, phân tích hôm sau và báo cáo/thử thách hằng tuần; nhắc bình luận chưa trả lời. **Giới hạn:** Nhắc chung qua chỉ thị khác chức năng phát hiện từng bình luận chưa trả lời. Không tự mở API comment/auto-like/auto-follow; các mốc nhắc chưa được duyệt. Nguồn `ISS22-P PDFtrang6; ISS22-P PDFtrang8; ADV22 PDFtrang11`; EV `EV-1246;EV-1248;EV-1262`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Tổng kết hằng tuần; ngày gửi chọn được trên M-17. Ngày thứ Hai là đề xuất trước, không phải lịch bất biến.

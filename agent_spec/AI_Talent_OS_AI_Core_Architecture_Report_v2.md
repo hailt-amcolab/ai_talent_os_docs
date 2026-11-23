@@ -1,29 +1,48 @@
 # AI Talent OS — Kiến trúc AI Core và kế hoạch tích hợp
 
-**Phiên bản:** 2.1 — review theo nguồn hiện hành và code repository. Bản trước: 2.0 ngày 19/11/2026.  
-**Trạng thái:** thiết kế nội bộ; BullMQ + Redis đã được người dùng chốt. Các lựa chọn khác giữ nhãn đề xuất; chưa Independent Verification, chưa phải đặc tả khách phê duyệt hoặc tính năng đã triển khai.  
+**Phiên bản:** 2.4 — 23/11/2026; bổ sung thiết kế execution/attempt và handoff BullMQ sau đối chiếu database-design. Bản2.3 làm rõ lựa chọn hàng đợi và kiến trúc lưu trữ.
+**Trạng thái:** thiết kế nội bộ; BullMQ + Redis là lựa chọn hàng đợi của kiến trúc (§1.1). Các lựa chọn khác giữ nhãn đề xuất; chưa Independent Verification, chưa phải đặc tả khách phê duyệt hoặc tính năng đã triển khai.
 **Phạm vi:** AI Coach, điều phối, MCP, OneDrive, Upload-Post, Postgres, worker và các ranh giới nghiệp vụ.
 
-## 1. Kết quả review và căn cứ
+## 1. Căn cứ thiết kế và các ràng buộc
 
 Giữ hướng **AI Core bằng TypeScript + service nghiệp vụ + worker BullMQ/Redis**. Cần chỉnh cách ghép dữ liệu, gửi job, phân quyền và thứ tự triển khai để phù hợp dự án; không cần tự xây nền tảng multi-agent hoặc thêm một backend song song.
 
 | Nội dung | Căn cứ và cách áp dụng |
 |---|---|
-| BullMQ + Redis | Người dùng chỉ định “chốt sử dụng bullmq đi”. Quyết định kỹ thuật nội bộ, thay pg-boss; chưa cài thư viện hoặc Redis. |
-| Next.js FE, Hono BE | Theo [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md) và repository: FE chỉ giao diện; API trong `apps/api`, worker dùng chung service/container. Không mặc định chuyển BE lên Vercel. |
+| BullMQ + Redis | Chọn làm lớp phân phối job cho worker TypeScript: queue chat/batch, concurrency, delayed jobs và retry kỹ thuật. Chấp nhận vận hành thêm Redis để dùng cơ chế queue có sẵn; Postgres/outbox vẫn giữ trạng thái nghiệp vụ và phục hồi. So sánh lựa chọn, đánh đổi và điều kiện áp dụng tại §1.1; chưa triển khai. |
+| Next.js FE, Hono BE | Theo [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md) và repository: FE chỉ giao diện; API trong `apps/api`, worker dùng chung mã nguồn/service, có entrypoint và container riêng. Không mặc định chuyển BE lên Vercel. |
 | Sửa hồ sơ và chỉ thị | BF19 trang PDF18; SD-M19 M-15 trang20, M-21 trang26: qua quản trị hoặc ChatGPT, không sửa trực tiếp file OneDrive. Phải có màn chỉ thị nghiệp vụ; việc không xây màn cấu hình Agent/Model không loại bỏ màn này. |
-| Ưu tiên chỉ thị | BF19 trang18: từng Talent → category → toàn bộ. Nhiều category xung đột hoặc hồ sơ trái chỉ thị chưa được tự giải quyết; QA No.92 vẫn mở. |
-| Thông tin và media | OneDrive phục vụ hồ sơ/chỉ thị; QA No.8 G9/H9 cho media lưu Supabase/OneDrive. Không tự bắt lưu kép mọi media hoặc coi Supabase Storage chỉ chứa tệp tạm. |
-| Quyền Manager | QA No.88 G88/H88 ghi Manager cùng cập nhật mọi Talent; assign không phải rào cản mọi thao tác. No.87/88 và SD-M19 trang1/8 còn lệch người nhận thông báo; chưa chọn một bên. |
+| Ưu tiên chỉ thị | BF19 trang18: từng Talent → category → toàn bộ. Hồ sơ trái chỉ thị tiếp tục QA No.92; nhiều category và ưu tiên xung đột tiếp tục QA No.99, không tự giải quyết bằng thứ tự prompt. |
+| Thông tin và media | Kế thừa phương án thiết kế tại [Kiến trúc lưu trữ OneDrive và Supabase](KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md) §1/§3: tài liệu nội dung AI ở OneDrive; media mới mặc định Supabase Storage private; quyền, metadata và trạng thái ở Postgres. Không lưu kép mặc định; media cũ ở OneDrive truy cập qua adapter. Đây là phương án kỹ thuật áp dụng cho AI Core, chưa là xác nhận khách về nơi lưu từng file hoặc kết quả triển khai. |
+| Quyền Manager | KS `確認事項!K77/K93`, `20261120!F11` (quyết định20/11): mọi Manager xem/cập nhật Talent; yêu cầu duyệt tới Manager phụ trách từng Talent. No.87/88 còn cách phân công, thay người và người nhận các thông báo khác; không tiếp tục coi nơi nhận yêu cầu duyệt là chưa rõ. |
 | Nhịp AI và số liệu | YK2 §5/§6/§7 mô tả đọc dữ liệu và nhập thống kê hằng ngày; SD-M19 M-17 trang22 có khung sáng/trưa/tối cấu hình được. Không cố định 08:00. Live fetch là tùy chọn kỹ thuật có kiểm soát, không thay daily ingestion. |
-| Nội dung đã duyệt | QA No.85: Talent không sửa bài đã xin duyệt/duyệt/đặt lịch. No.90/GJ19 §12: Manager sửa từ cấm có thể đi tiếp, không trả Talent xác nhận lại. Hai ứng viên về đổi SNS khi còn lịch và danh sách từ cấm mới chưa là quy tắc đã chốt. |
+| Nội dung đã duyệt và NG | QA No.85 giữ giới hạn sửa nội dung, khác quyền hủy lịch. KS K59: AI sửa rồi hẹn; UI-M20 p18 M-11: Manager sửa; ISS22-P p7/ADV22 p7: đề nghị Talent xác nhận lại. Ba nhánh chưa thống nhất, không dùng No.90/GJ19 cũ để tự chọn. No.95/96 còn tác động của đổi SNS/NG lên lịch cũ. |
+| Trạng thái và hủy lịch | KS K116/F32: thêm 一時停止, vẫn thu phí; dừng lời nhắc AI rồi khôi phục khi tiếp tục. K84/F12: Talent hủy lịch mình đặt, Manager cũng hủy; K85/F33: bỏ nút dừng autopost toàn bộ. Chưa suy ra tạm dừng cấm login hoặc đã hủy mọi job provider. |
 | Lượt viết lại | DEC-0001: người dùng chốt H65 không giới hạn số lần AI viết lại. Giới hạn kỹ thuật từng execution không được biến thành cap số lần Talent yêu cầu viết lại. |
-| Video, thanh toán, phạm vi hội thoại | Slideshow còn cần đối chiếu QA No.36/CR-04 với màn mới; provider thanh toán chưa chốt; tâm sự nghiêm trọng còn hỏi. Không mở chức năng bằng giả định hoặc lấy việc rút câu giá khỏi Q&A làm xác nhận nghiệp vụ. |
+| Video, thanh toán, phạm vi hội thoại | Slideshow còn cần đối chiếu QA No.36/CR-04 với màn mới; GMO là ứng viên theo KS K100/F25, chưa chọn provider. KS `20261120!F22` đã bỏ cảnh báo Manager về tư vấn nghiêm trọng; cách phản hồi/bản ghi tối thiểu còn No.93. Không mở chức năng bằng giả định hoặc lấy việc rút câu giá khỏi Q&A làm xác nhận nghiệp vụ. |
+
+Nguồn hiện hành tiếp nhận23/11 có20tệp; đối chiếu thêm [review QA/KS](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md) và [review bộ23112026](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). UI-M20 lập20/11; ISS22-D/P, ADV22 lập22/11 là đề nghị, không tự duyệt inbox TikTok, ranking, lưu đồng ý phụ huynh hoặc pilot.
 
 Nguồn chính: [catalog](../TAI_LIEU_NGUON.md), [kiểm kê/hash hiện hành](../docs/requirement-review/source-inventory-current.json), [QA](../source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx), [BF19](../source_requiments/19112926/業務フロー_AI育成OS.pdf), [SD-M19](../source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf), [GJ19](../source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md). Trang là trang PDF thực tế. Nguồn mô tả giao diện hoặc biên bản FCP–AMCOLAB không tự chứng minh khách đã phê duyệt mọi nội dung.
 
 **Hiện trạng code được đọc:** module demo Auth/PWA/OneDrive/Upload-Post gắn qua `ENABLE_AUTH_DEMO`; demo bị chặn production. Chưa có worker, Redis, BullMQ hoặc AI SDK trong cấu hình triển khai/dependencies hiện hành. Service nghiệp vụ AI/đăng bài không được coi là có sẵn chỉ vì schema đã có.
+
+### 1.1. So sánh và quyết định chọn hàng đợi
+
+Tiêu chí của dự án: worker Node.js/TypeScript, tách chat tương tác và batch, điều chỉnh concurrency/retry/lịch, phục hồi khi process chết và vận hành cùng BE trên một VPS. Chưa có benchmark để kết luận công nghệ nào nhanh hơn hoặc đáp ứng tải200Talent.
+
+| Phương án | Điểm phù hợp | Đánh đổi trong dự án | Đánh giá |
+|---|---|---|---|
+| Tự polling Postgres/outbox | Tận dụng DB và outbox hiện có; không thêm dịch vụ queue | Đội phải tự xây thêm phân phối, lịch, retry/backoff, theo dõi tiến độ và xử lý worker chết. Dễ mở rộng vai trò outbox thành một queue engine tự duy trì | Giữ polling cho dispatcher/reconciler, không tự xây toàn bộ nền tảng queue |
+| pg-boss + Postgres | Queue Node.js có scheduling, retry và concurrency; không cần Redis; có thể enqueue cùng transaction DB khi tích hợp đúng | Thêm workload/bảng queue vào Postgres; phải review quyền/schema, kết nối và vận hành trên Supabase. Đây là phương án hợp lệ nếu ưu tiên giảm số dịch vụ, không phải thiếu chức năng queue | Không chọn cho thiết kế hiện tại; cân nhắc lại nếu vận hành Redis không phù hợp |
+| **BullMQ + Redis** | Có cơ chế job/worker, delayed jobs, retry/backoff và concurrency cho Node.js; tách vận chuyển job khỏi dữ liệu nghiệp vụ | Thêm Redis, persistence, giám sát bộ nhớ và phục hồi qua ranh giới Postgres–Redis. Không có transaction chung với DB; queue không bảo đảm tác động provider chỉ xảy ra một lần | **Chọn**, với outbox/reconcile và worker fencing theo §4 |
+
+**Quyết định:** dùng BullMQ với Redis backend, triển khai API/worker/Redis riêng container nhưng cùng VPS. Lý do chọn là tận dụng cơ chế điều phối job có sẵn cho hai nhóm tác vụ interactive/batch, giữ service nghiệp vụ độc lập với queue và có thể tăng worker khi cần. Một VPS không bắt buộc dùng Redis; đây là đánh đổi được chọn, chấp nhận thêm thành phần vận hành thay cho tự xây queue. Chưa cần đưa thêm một message broker khác vào phạm vi so sánh khi chưa có nhu cầu tương ứng.
+
+Điều kiện áp dụng: Redis private có persistence/noeviction, ngân sách CPU/RAM theo §11, mapping outbox/execution có thiết kế DB và test phục hồi. Không cài thêm pg-boss song song; giữ Postgres là nguồn trạng thái nghiệp vụ, Redis chỉ vận chuyển job. Nếu không đáp ứng điều kiện vận hành, review lại quyết định thay vì chạy queue thiếu bền vững. Chốt/pin phiên bản và kiểm khả năng thư viện khi triển khai.
+
+Căn cứ tính năng: [BullMQ](https://docs.bullmq.io/), [vận hành BullMQ](https://docs.bullmq.io/guide/going-to-production), [pg-boss README](https://github.com/timgit/pg-boss). Đánh giá phù hợp và lựa chọn là quyết định thiết kế nội bộ; các nguồn thư viện không chứng minh benchmark hoặc phê duyệt khách.
 
 ## 2. Kiến trúc tổng thể
 
@@ -45,11 +64,11 @@ flowchart TB
   ORCH --> LLM["Model provider — chọn khi tích hợp"]
   WORK --> DB
   BIZ --> DRIVE["OneDrive / Graph"]
-  BIZ --> MEDIA["Supabase Storage hoặc OneDrive theo chính sách"]
+  BIZ --> MEDIA["Supabase Storage private — media mới"]
   BIZ --> SNS["SNS Service → Upload-Post"]
 ```
 
-API và worker là các entrypoint trong cùng `apps/api`, cùng composition root và service; đây là hướng triển khai theo cấu trúc hiện hành, chưa phải Docker đã chạy. Redis đặt trong mạng riêng; không đưa kết nối Redis hoặc khóa nhà cung cấp vào FE/model. Nơi triển khai API/worker thực tế và phiên bản thư viện vẫn cần chốt theo môi trường.
+API và worker dùng cùng `apps/api` và service, nhưng chạy ở hai tiến trình/container riêng trên **một VPS** theo ràng buộc người dùng. Composition root phải tách cách dựng phụ thuộc theo vai trò (§7.1), không khởi động HTTP/scheduler trong mọi tiến trình. Redis ở mạng Docker riêng; Postgres/Supabase và model provider ở bên ngoài theo giả định sizing §11. Chưa có cấu hình này trong Compose; phiên bản thư viện còn cần kiểm khi triển khai.
 
 ## 3. Chọn thư viện và ranh giới tự xây
 
@@ -93,19 +112,143 @@ Tham chiếu kỹ thuật: [danh sách provider của AI SDK](https://ai-sdk.dev
 
 **Postgres là nguồn trạng thái; Redis là phương tiện phân phối job.** Theo [phạm vi DB](../database-design/07_implementation_scope_and_rules.md) §4.4, đã có `domain_operations` và `outbox_events`; không ghi DB rồi gọi `queue.add()` như hai bước độc lập và coi đã bảo đảm giao việc.
 
-1. Service xác thực người gọi, kiểm trạng thái/điều kiện nghiệp vụ và version.
-2. Ghi thay đổi nghiệp vụ + operation + outbox trong cùng transaction.
-3. Dispatcher nhận lease outbox, gửi job có định danh ổn định. Sau khi Redis nhận, cập nhật trạng thái giao việc bằng cơ chế phù hợp; hết lease thì có thể gửi lại an toàn.
-4. Worker nhận job, tra lại operation/trạng thái trong DB và giành quyền xử lý bằng cập nhật có điều kiện. Job trùng không tạo execution hoặc tác động ngoài trùng.
-5. Ghi kết quả/lỗi và trạng thái nghiệp vụ trước khi xác nhận job hoàn tất; thất bại hoặc kết quả không rõ cần đối soát.
+### 4.1. Hợp đồng xử lý đích — chưa triển khai
 
-Các bước trên là yêu cầu thiết kế tích hợp, chưa là giao thức đã triển khai. Cần chốt mapping outbox event ↔ BullMQ job và bảo toàn outbox hiện hành: trạng thái đã giao Redis không đồng nghĩa tác vụ nghiệp vụ đã hoàn tất. Có khả năng phát lại từ operation/outbox còn lưu khi Redis mất dữ liệu; kiểm tra khoảng giữ, retention và đối soát trước khi dọn job.
+1. API kiểm quyền/trạng thái/version; ghi dữ liệu nghiệp vụ, operation và event trong cùng transaction. Khóa lệnh bao gồm actor/use case và hash payload; request trùng trả cùng operation, payload khác cùng khóa bị từ chối.
+2. Dispatcher claim event bằng lease, commit rồi mới enqueue. Job mang `operationId`, `eventId`, `generation`; `jobId` ổn định từ event/generation, dùng dấu gạch nối thay dấu hai chấm. Lease hết hạn trước khi xác nhận enqueue có thể giao lại; không chạy tác động nghiệp vụ trong dispatcher.
+3. **Enqueue thành công không chuyển outbox sang `done`.** Ghi bằng chứng handoff và mốc kiểm lại bền vững; event vẫn chưa hoàn tất tới khi kết quả được commit. Worker có thể nhận trước dispatcher ghi ack, nên cập nhật handoff phải có điều kiện, không ghi lùi trạng thái worker. Cần metadata handoff riêng khỏi lease thực thi; không nhét thêm trạng thái tùy ý vào CHECK hiện có.
+4. Worker kiểm lại quyền tài nguyên/trạng thái và claim execution bằng token lease riêng, có heartbeat và số thế hệ tăng. Mỗi thao tác ghi kết quả phải kiểm token/thế hệ còn hiệu lực. Worker đã mất lease không được commit kết quả, dù lời gọi model/provider vừa trả về. Lease thực thi khác lease enqueue và khóa BullMQ; hết khóa queue không tự cấp quyền gọi provider lần nữa.
+5. Trước gọi provider, lưu giai đoạn xử lý và request/idempotency reference nếu có; sau gọi ghi output đã kiểm schema, usage có chống trùng, operation và outbox trong cùng transaction. Chỉ chuyển event `done` khi xử lý event thực sự hoàn tất; `done` của event trung gian không đồng nghĩa cả chuỗi nghiệp vụ đã hoàn tất. Sau commit mới cho processor kết thúc để BullMQ xác nhận job.
+6. Lỗi xác định chưa có tác động ngoài có thể retry kỹ thuật có giới hạn. Timeout/mất worker sau khi có thể đã gọi provider chuyển nhánh `unknown` để đối soát. Không retry mù vì có thể lặp đăng bài hoặc phát sinh phí model. Nếu provider không hỗ trợ tra cứu/idempotency, ghi phần chưa biết và yêu cầu xử lý, không hứa phục hồi tự động tuyệt đối.
 
-- Job chỉ mang ID/tham chiếu và dữ liệu điều phối tối thiểu; không chứa token, mật khẩu, hồ sơ đầy đủ hoặc file media.
-- Dùng cấu hình lưu bền vững, dung lượng, eviction, backup và giám sát Redis được kiểm thử theo môi trường; chưa ấn định cấu hình production trong báo cáo này.
-- Worker chết sau khi provider đã xử lý nhưng trước khi ghi DB: ưu tiên idempotency provider hoặc tra kết quả theo request ID; không hứa xử lý “đúng một lần”.
-- BullMQ retry dùng cho lỗi kỹ thuật phù hợp, có backoff và giới hạn; **không tự đăng lại bài SNS lỗi**, vì QA No.15/CR-15 đã bỏ chức năng đó.
-- Chống trùng ở DB/service vẫn bắt buộc, kể cả khi queue có cơ chế chống lặp hoặc dọn job cũ.
+**Khoảng lệch schema cần thiết kế trước code:** `domain_operations` hiện có state/version/step/provider_ref nhưng chưa có execution lease/heartbeat/fencing đầy đủ; outbox có lease nhưng chưa có hợp đồng handoff độc lập. `kind`/`event_type` là tập CHECK đóng, hiện có `coach.respond` chứ không tự hỗ trợ mọi daily topic/metrics action. Mapping đích và phần bổ sung được xác định tại §4.4–§4.7; còn cần review DB, migration/quyền/test trước triển khai. Không coi các trường mô tả ở đây là cột đã tồn tại. Không mở các bảng đang chặn ghi để hoàn tất demo.
+
+### 4.2. Phục hồi, retry và dọn job
+
+| Tình huống | Cách xử lý đích |
+|---|---|
+| DB commit, Redis lỗi | Event còn bền vững; dispatcher gửi lại sau backoff. API trả trạng thái đã tiếp nhận, không khẳng định job đã chạy hoặc tạo operation mới |
+| Redis nhận nhưng mất ack dispatcher | Gửi lại cùng event/generation; DB claim và kết quả đã lưu quyết định có xử lý hay không |
+| Redis mất queue sau ack | Reconciler quét event chưa hoàn tất, handoff quá hạn và execution lease. Chỉ enqueue lại phần chắc chắn an toàn; không phụ thuộc duy nhất vào Redis để biết việc còn thiếu |
+| Worker chết trước/sau provider | Phân biệt chưa gọi, đã có kết quả, hoặc chưa biết kết quả. Kiểm/thu hồi lease có fencing; nhánh chưa biết phải đối soát trước chạy lại |
+| Job tồn tại failed/completed nhưng DB chưa hoàn tất | Không chỉ queue.add cùngID rồi coi đã phục hồi. Đối soát rồi dùng retry/requeue hoặc delivery generation mới có kiểm soát; operation nghiệp vụ/idempotency key vẫn giữ nguyên |
+| Job đã xóa khỏi Redis | jobId không còn chống trùng; terminal state, unique key và kết quả DB vẫn chặn lặp |
+
+Reconciler chạy trong worker demo với một lịch có lease/chống trùng; retention operation/outbox phải dài hơn cửa sổ replay/đối soát và không dọn event chưa giải quyết. Định kỳ quét cả `running` quá hạn, không chỉ outbox `pending`. Không giữ transaction DB trong lúc chờ Redis/HTTP/model.
+
+Job chỉ chứa ID/tham chiếu, không có token, mật khẩu, prompt đầy đủ hoặc media. Retry kỹ thuật không thành tự đăng lại SNS: KS K87/F13 xác định báo Talent và Talent chờ rồi đăng lại. Trường hợp provider chưa rõ đã đăng hay chưa phải đối soát. Redis/BullMQ chỉ phân phối, không quyết định trạng thái nghiệp vụ.
+
+Cơ chế jobId có giới hạn khi job bị dọn: [BullMQ Job IDs](https://docs.bullmq.io/guide/jobs/job-ids). Những nguyên tắc phục hồi trên là đề xuất nội bộ cần kiểm thử, không tuyên bố exactly-once hoặc đã chạy được.
+
+### 4.3. Kết quả kiểm tra database-design
+
+Kiểm23/11/2026: **đã có nền operation/outbox, chưa có thiết kế execution/handoff đủ để triển khai BullMQ**. Kết luận dựa trên file trong repository, không phải catalog DB đang chạy.
+
+| Căn cứ | Đã có | Còn thiếu |
+|---|---|---|
+| [DB scope §4.4](../database-design/07_implementation_scope_and_rules.md#44-tác-động-ra-ngoài-operation--outbox) | Transaction nghiệp vụ+operation+event; SKIP LOCKED, lease token, unknown và đối soát | Tách dispatcher enqueue với worker thực thi, heartbeat execution và lịch replay Redis |
+| [ERD §5](../database-design/03_erd.md#5-giá-trị-vật-lý-trong-migration-và-giới-hạn-vòng-đời), [từ điển](../database-design/05_data_dictionary.md) | Operation state/version, outbox lease/generation, bảng kết quả và usage | Chưa có execution/attempt liên kết chặt output/usage; chưa có handoff metadata |
+| Migration `20261117000300_confirmed_scope_foundation`, phần F05/ACL | `domain_operations`, `outbox_events`, quyền runtime/dispatcher; tập kind/event_type có CHECK | Không có bảng ai_executions/ai_execution_attempts; không có next_dispatch_at, delivery_sequence hoặc execution heartbeat |
+| `schema.prisma`: coach_messages/ai_usage_events | Tin nhắn và chi phí theo Talent | Usage chưa có unique provider-attempt key; kết quả chưa gắn execution để chống commit trùng |
+
+§4.4–§4.8 dưới đây bổ sung **thiết kế kỹ thuật đích cho demo coach.respond**, chưa là migration đã áp hoặc độc lập review. Giữ DB docs làm căn cứ schema hiện có; trước khi viết migration phải đồng bộ phần thiết kế mới vào bộ DB và review ACL/constraint. Không mở SNS, billing hoặc daily metrics từ thiết kế này. Tác vụ tạo chủ đề/bản nháp khác coach.respond cần mapping input/output và kind riêng, không gắn nhãn chat để vượt CHECK.
+
+### 4.4. Mô hình dữ liệu đích cho execution và attempt
+
+Giữ `domain_operations` là lệnh nghiệp vụ/idempotency, `outbox_events` là ý định bền vững; bổ sung **hai bảng kỹ thuật** vì còn thiếu lease thực thi và lịch sử lời gọi. Không tạo bảng ai_results trùng nội dung coach_messages. Demo đầu mỗi attempt tối đa một lời gọi model, chưa Agent loop nhiều tool/model; muốn mở loop phải thiết kế ledger theo từng call trước.
+
+**Bảng mới đề xuất `app_private.ai_executions`: một execution cho mỗi event AI.**
+
+| Trường | Kiểu/ràng buộc đích | Ý nghĩa |
+|---|---|---|
+| id | uuid PK, server sinh | Resource theo dõi tác vụ |
+| operation_id, event_id, talent_id | uuid NOT NULL; UNIQUE(event_id) | FK kép `(event_id,operation_id)` tới outbox và `(operation_id,talent_id)` tới operation; thêm unique đích tương ứng. Không để event/owner/operation lệch nhau |
+| task_key, task_revision | text NOT NULL, allowlist service | Demo chỉ coach.respond và revision code đã đăng ký; không nhận agent/model/tool tùy ý từ client |
+| input_message_id | bigint NOT NULL | FK kép `(input_message_id,talent_id)` tới coach_messages; request phải thuộc đúng Talent và được service kiểm sender. Nội dung input nằm ở bảng nghiệp vụ, không ở outbox |
+| state | text NOT NULL + CHECK | pending, running, succeeded, failed, unknown, cancelled; pending bao gồm đang đợi vận chuyển. QUEUED là trạng thái hiển thị suy từ handoff, không thêm vào operation.state |
+| attempt_no, version | integer NOT NULL DEFAULT0; bigint NOT NULL DEFAULT1 | attempt_no tăng mỗi lần claim mới; version tăng đúng1 mỗi UPDATE theo quy ước hiện có |
+| lease_token, lease_until, heartbeat_at | uuid/timestamptz nullable | Chỉ đầy đủ khi running; state khác phải xóa. Token+attempt_no là fencing tại DB; heartbeat không gia hạn sau khi lease đã hết |
+| cancel_requested_at | timestamptz nullable | Yêu cầu hủy, khác bằng chứng provider đã dừng |
+| output_message_id | bigint nullable, UNIQUE | FK kép cùng Talent tới coach_messages; chỉ succeeded có output. Lưu output một nơi, không chép toàn bộ response ở execution |
+| last_error_code, created_at, updated_at, finished_at | text nullable; timestamptz | Mã lỗi allowlist, không Error.message/secret. Terminal có finished_at; unknown chờ đối soát không coi đã kết thúc |
+
+**Bảng mới đề xuất `app_private.ai_execution_attempts`: một dòng cho mỗi lease thực thi.**
+
+| Trường | Kiểu/ràng buộc đích | Ý nghĩa |
+|---|---|---|
+| id | uuid PK | ID ổn định cho idempotency lời gọi/usage |
+| execution_id, talent_id, attempt_no | uuid, uuid, integer NOT NULL | FK kép cùng owner tới execution; UNIQUE(execution_id,attempt_no); attempt_no>0 |
+| lease_token | uuid NOT NULL | Token của lượt claim, không phải credential provider; chỉ nội bộ |
+| phase | text NOT NULL + CHECK | claimed, calling, response_received, succeeded, failed, unknown, cancelled. Chỉ một attempt active claimed/calling/response_received mỗi execution qua partial UNIQUE |
+| provider, model, context_revision | text nullable trước gọi | Phải xác định trước phase calling; context_revision tham chiếu snapshot bất biến đã thiết kế ở §6, không phải đường dẫn file đang thay đổi |
+| provider_request_id, provider_idempotency_key | text nullable, giới hạn độ dài | Lưu ref trước/sau gọi khi provider hỗ trợ; idempotency key dựa attempt ID và giữ nguyên khi đối soát cùng lần gọi. Không mặc định SDK/provider có idempotency |
+| started_at, call_started_at, call_finished_at, finished_at | timestamptz với CHECK theo phase | Ghi phase calling trước HTTP. Crash từ đây là có thể đã gọi; response_received không đồng nghĩa output đã commit |
+| error_code, usage_state | text; CHECK usage_state | usage_state: pending/recorded/unknown/not_called; không dùng cost0 để che phí chưa biết. Không lưu prompt, token hoặc response thô trong log attempt |
+
+Mapping trạng thái cho event coach.respond (transaction đồng bộ các bảng; không thêm enum vào operation/outbox):
+
+| Execution | Operation | Outbox | Lưu ý |
+|---|---|---|---|
+| pending | accepted; hoặc running nếu operation đã bắt đầu retry an toàn | pending/leased dispatch | Redis nhận chưa là hoàn tất |
+| running | running | pending/leased dispatch | Lease execution là quyền chạy, lease outbox chỉ quyền giao |
+| succeeded | completed | done | Có output và attempt succeeded; usage đã biết ghi cùng transaction |
+| failed | failed | failed | Không xuất bản output hợp lệ; usage đã phát sinh vẫn được ghi |
+| unknown | unknown | unknown | Thu hồi lease execution/dispatch; không tự đưa về pending. Attempt chưa rõ giữ phase unknown |
+| cancelled | failed, last_error_code=CANCELLED | done | done nghĩa event hủy đã được xử lý; operation không có state cancelled trong schema hiện tại. Không coi đây là thành công nghiệp vụ |
+
+Đối soát unknown chỉ chuyển các trạng thái liên quan trong cùng transaction có khóa/version: có kết quả kiểm chứng thì hoàn tất; có bằng chứng chưa thực hiện thì có thể quay pending/accepted và tạo attempt mới khi claim. Không có bằng chứng thì giữ unknown. Mọi attempt được khép khỏi phase active trước khi mở attempt mới; nếu worker đã gọi nhưng thiếu cost thì usage_state còn pending/unknown để kế toán kỹ thuật đối soát riêng.
+
+Dùng NOT NULL/CHECK cho trạng thái và mốc hiệu lực; FK ON DELETE RESTRICT. Thêm UNIQUE(id,talent_id) tại execution/attempt và các khóa đích cần cho FK kép. Constraint không thay kiểm quyền/sender/context hợp lệ trong service. Những trường nullable chỉ dành giai đoạn chưa có dữ liệu, không là lý do mặc định giá trị giả.
+
+**Gắn kết quả/usage:** thêm `ai_usage_events.execution_attempt_id uuid NULL` để giữ tương thích dòng cũ; UNIQUE(execution_attempt_id) và FK kép `(execution_attempt_id,talent_id)` tới attempt. Một attempt có tối đa một usage event vì demo chỉ có một lời gọi model; retry an toàn trước gọi không phát sinh usage. Provider đã trả nhưng output sai schema vẫn cần ghi usage đã biết, execution failed và không tạo câu trả lời hợp lệ. Chỉ ghi cost khi có nguồn giá/chi phí đủ căn cứ; nếu chưa biết giữ usage_state pending/unknown và đối soát, không bịa số0. Usage là chi phí kỹ thuật, không tự thành hóa đơn Talent. Một lần gọi khác được chủ động cho phép phải có attempt ID mới và giữ lịch sử lần cũ.
+
+Khi trả lời thành công, INSERT coach_messages AI, gắn output_message_id, ghi usage đã biết và đổi trạng thái execution/attempt/operation/event trong **cùng transaction** có fencing. Khóa execution trước kiểm terminal; execution đã succeeded chỉ trả output cũ, không insert lại message. Unique event/attempt/usage là lớp bảo vệ bổ sung. Metadata execution không thay quyền owner ở mọi truy vấn.
+
+### 4.5. Bổ sung handoff trên outbox và chỉ mục
+
+Giữ nguyên ý nghĩa `generation` hiện có: thế hệ event trong operation. Không đổi generation để biểu diễn mỗi lần gửi Redis. Bổ sung trên outbox:
+
+| Trường đích | Kiểu/ràng buộc | Vai trò |
+|---|---|---|
+| delivery_sequence | bigint NOT NULL DEFAULT0, CHECK>=0 | Tăng trong transaction trước mỗi lần dispatcher claim vận chuyển mới; jobId là eventId-deliverySequence. Đổi sequence không tạo operation/execution mới |
+| next_dispatch_at | timestamptz NOT NULL | Mốc được xem xét vận chuyển lại; backfill từ available_at, không enqueue trước available_at |
+| last_dispatched_at | timestamptz nullable | Bằng chứng Redis nhận; không là bằng chứng tác vụ hoàn tất |
+
+Lease hiện có trên outbox chỉ dùng cho **dispatcher**, còn lease execution ở bảng mới. `attempts` outbox đếm claim vận chuyển, không đếm lời gọi model; BullMQ attempts không thay attempt_no execution. Tách namespace môi trường và queue routing bằng registry event_type, không cho payload model chọn queue.
+
+Chỉ mục đích theo truy vấn: outbox `(next_dispatch_at,id)` WHERE state=pending; giữ chỉ mục lease hết hạn; executions `(lease_until,id)` WHERE state=running và `(talent_id,created_at DESC,id)` cho tra cứu; attempts `(execution_id,attempt_no)` UNIQUE; `(provider,provider_request_id)` khi có nhu cầu đối soát, không giả định request ID unique toàn cầu. Không tạo partition hoặc index JSON khi chưa có truy vấn cần.
+
+Không giữ hai poller cùng xử lý event AI: poller trực tiếp cũ phải loại event đã chuyển BullMQ. API tạo input message, operation, event và execution pending trong cùng transaction, hoặc trả nguyên operation/execution nếu khóa lệnh đã có. Chỉ các event mới thuộc kind được cho phép đi qua giao thức này; event legacy thiếu execution phải được phân loại/backfill riêng, không tự replay toàn bộ.
+
+### 4.6. Claim, heartbeat, hoàn tất và phục hồi cụ thể
+
+Thứ tự khóa trong một transaction: đối tượng nghiệp vụ/owner → operation → outbox → execution → attempt → usage. Dispatcher chỉ khóa outbox; transaction dùng SKIP LOCKED và commit trước Redis/HTTP. Worker claim theo thứ tự trên, không giữ transaction trong khi gọi model.
+
+1. **Dispatch:** chọn event pending đến cả available_at/next_dispatch_at, có execution pending; set leased, token mới, lease_until, tăng delivery_sequence/attempts. Commit rồi enqueue job tương ứng sequence. Enqueue có thể xảy ra nhiều lần; chỉ execution claim cho phép gọi model.
+2. **Ack dispatch:** UPDATE outbox khi state=leased và token/sequence còn khớp; về pending, xóa lease, ghi last_dispatched_at và next_dispatch_at sau khoảng chờ. Worker đã hoàn tất event trước ack thì UPDATE không khớp, dispatcher không ghi lùi done. Nếu Redis lỗi, backoff và giữ event phục hồi được; lease hết hạn của dispatcher có thể phát lại vì chưa chạy tác động nghiệp vụ tại đây.
+3. **Claim execution:** job cũ/trùng vẫn tra DB; terminal trả kết quả cũ/no-op, unknown không chạy. Pending đủ điều kiện mới đổi running, tăng attempt_no/version, cấp lease và INSERT attempt claimed atomically. Không cần ack dispatch đã ghi trước. Chỉ một attempt active được phép; cùng event có nhiều job Redis không tăng số lần gọi model.
+4. **Heartbeat:** UPDATE execution khi running, token/attempt_no đúng và lease_until còn lớn hơn giờ DB. Mất điều kiện thì worker ngừng bước tiếp theo; không tự giành lại lease cũ. Trước HTTP, transaction khóa execution và ghi attempt calling với refs/config/context đã xác định; chỉ tiếp tục nếu chưa có cancel và điều kiện nghiệp vụ còn đúng.
+5. **Commit:** khóa lại operation/event/execution/attempt, kiểm token/attempt_no và lease còn hạn. Worker cũ không được ghi output hoặc chuyển terminal. Nếu cancel_requested trước commit, không công bố output như thành công; lưu usage đã biết và trạng thái hủy nếu kết quả đã rõ. Cancellation không chứng minh provider chưa tính phí.
+6. **Reconcile:** lease execution hết hạn ở phase claimed có thể khép attempt failed/not_called rồi đưa execution pending và event đến hạn; transaction/fencing phải thắng mọi bước chuyển calling của worker cũ. Phase calling/response_received chuyển unknown và thu hồi lease, không gọi model lại. Query provider theo ref khi có; chỉ chuyển pending sau bằng chứng chưa thực hiện/an toàn. Chưa biết thì giữ unknown và báo xử lý. Unknown không tự hết hạn thành retry.
+7. **Redis mất queue:** quét event pending/leased handoff quá hạn và execution state. Pending có thể vận chuyển lại; running còn lease không enqueue thêm công việc thực thi; running hết lease đi bước6. Succeeded có output hợp lệ thì event/operation phải cùng terminal; lệch trạng thái cần đối soát, không tạo output mới. Replay job Redis failed/completed cần queue retry/requeue hoặc sequence mới, không chỉ add cùng jobId rồi coi đã giao.
+
+Đề xuất ban đầu: execution lease30giây, heartbeat5giây, giới hạn execution60giây; dispatcher lease15giây và reconcile tick10giây. Các số là cấu hình kỹ thuật cần test event-loop/provider thực, không phải SLA; đồng hồ so sánh dùng DB. Hết60giây sau khi đã gọi provider là unknown khi kết quả chưa rõ, không coi AbortSignal bảo đảm chưa phát sinh phí. Tổng shutdown ở §11 vẫn dài hơn deadline này.
+
+**Tuần tự theo Talent:** trong transaction claim, khóa dòng talents trước rồi kiểm không có execution running/unknown khác cùng Talent cho demo coach. Partial UNIQUE trên ai_executions(talent_id) WHERE state IN(running,unknown) là hàng rào bổ sung; unknown giữ chặn cho tới đối soát. Chọn request pending cũ nhất theo input_message_id, không dựa thứ tự Redis; job đến sớm sai thứ tự được hoãn, không đánh completed mất request. Đây là tuần tự hóa thận trọng cho demo, chưa tạo conversation model mới. Mọi request mới là intent riêng, không áp cap số lần viết lại.
+
+### 4.7. Quyền, migration và tương thích
+
+- Hai bảng mới nằm app_private, bật RLS, thu hồi PUBLIC/anon/authenticated; không mở Data API. API/worker có role và policy tường minh, không dùng role owner/migration hoặc mặc định cấp BYPASSRLS. Policy backend không thay owner predicate tại service.
+- Dispatcher chỉ SELECT phần operation/event/execution cần routing và UPDATE handoff/lease outbox. Không cấp ghi coach_messages/ai_usage_events hoặc đổi execution terminal. Reconciler cần credential/role worker riêng; không dùng quyền dispatcher để sửa kết quả. Các role/service factory theo §7.1 phải kiểm đúng quyền đã cấp.
+- Worker cần quyền tối thiểu trên input/context refs/owner state, execution/attempt và ghi output/usage/operation/event. Nếu cấp UPDATE rộng, quyền không tự hạn chế từng trường: cần review column grants hoặc các hàm nghiệp vụ SECURITY INVOKER có transaction/fencing; không dùng SECURITY DEFINER để né ACL. Test trực tiếp quyền role, không chỉ test với owner.
+- Chỉ migration mới, không sửa migration nền. Kiểm dữ liệu/backfill trước unique/FK/CHECK, bảo toàn event/usage cũ; tạo bảng và quyền, thêm cột nullable để backfill có kiểm, rồi mới siết NOT NULL theo phạm vi. Không tạo execution giả cho mọi operation cũ hoặc xóa legacy unknown để migration qua.
+- Trong rollout, tắt claim của poller cũ cho event chuyển giao, kiểm không còn lease cũ rồi bật dispatcher/worker mới. Rollback dừng nhận việc mới và drain/đối soát, không drop bảng đang có attempt hoặc phát lại unknown bằng poller cũ. Giữ metadata/refs tới hết cửa sổ support/retention được duyệt; không dọn unknown hay input/output còn dùng.
+
+### 4.8. Tiêu chí kiểm thiết kế trước tích hợp demo
+
+Cần test trên Postgres thử đủ migration với các role thật: request trùng/payload khác; FK chéo Talent/event; hai dispatcher hoặc hai worker cùng claim; worker nhận trước ack; heartbeat hết lease và worker cũ trả kết quả; crash giữa calling/response/commit; Redis mất/đầy/failed job còn tồn tại; usage/output ghi trùng; request đến sai thứ tự; unknown chặn cùng Talent; cancel trước/sau HTTP; backfill legacy và deploy drain. Mỗi test phải kiểm invariant ở DB, không chỉ HTTP200/job completed.
+
+Đầu ra mong đợi: không mất intent đã commit, không tạo hai output/usage cho cùng lần gọi đã biết, worker hết lease không commit, không tự chạy lại trường hợp provider chưa rõ. Không cam kết đúng-một-lần với provider. Những ca trên **chưa chạy** trong lần sửa tài liệu này; phần API contract, SDK/model và tenant/permission thực vẫn là điều kiện riêng trước triển khai.
 
 ## 5. AI Orchestrator và ghép context
 
@@ -128,11 +271,12 @@ Giới hạn mỗi execution: thời gian, số bước/tool calls, token và co
 Hồ sơ/chỉ thị được cập nhật qua **màn quản trị hoặc ChatGPT/MCP**, cùng một service kiểm tra quyền, validation và version. Không hướng dẫn Manager sửa trực tiếp file OneDrive. BF19 trang18 đã mô tả cách làm này.
 
 - Context builder đọc qua adapter OneDrive, không gọi Graph trực tiếp từ model.
-- Snapshot context gắn profile/instruction versions, eTag và thời điểm đọc; tránh trộn một nửa phiên bản cũ với một nửa phiên bản mới trong một lần chạy.
+- Một eTag cho mỗi file không bảo đảm snapshot nhất quán giữa nhiều file. Đề xuất manifest revision chứa tập item/version/hash của profile và các lớp chỉ thị, được công bố sau khi cập nhật xong. Builder đọc một manifest cố định, lấy đúng phiên bản và kiểm hash; revision đổi hoặc thiếu phiên bản thì đọc lại có giới hạn/hoãn, không ghép tùy ý. Metadata/manifest cần thiết kế theo bộ OneDrive và DB, chưa có sẵn.
+- Demo đầu có thể giới hạn một tài liệu context có version cho mỗi Talent, dùng dữ liệu mẫu được chỉ rõ; không giả lập rằng đã hoàn tất đồng bộ nhiều file. Cache key gồm Talent và context revision; truy xuất cache vẫn kiểm quyền. Các tiến trình có cache riêng phải nhận invalidation hoặc revalidate revision trước dùng, không chỉ xóa cache trong một tiến trình.
 - Cache có invalidation sau ghi từ cả quản trị và MCP. Xung đột version trả lại cho Manager kiểm tra, không ghi đè thay đổi mới hơn.
 - Ghi từ ChatGPT theo bộ [MCP](chatgpt-mcp-spec/README.md): chuẩn bị thay đổi → xem Talent đích và phần thay đổi → xác nhận → commit có kiểm lại quyền/version. Hội thoại “đồng ý” hoặc một tool read không tự trở thành quyền ghi.
 - OAuth/Graph dùng adapter và cấu hình theo [bộ OneDrive](onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md); các trạng thái live cần kiểm lại trước triển khai.
-- Media dùng adapter lưu trữ được chọn theo QA No.8; không bắt buộc nằm trong cây hồ sơ OneDrive. DB giữ owner, storage reference và metadata cần thiết. Không tự cấp link công khai lâu dài để model hoặc dịch vụ ngoài lấy file.
+- Media theo [kiến trúc lưu trữ](KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md) §3/§6: media mới mặc định Supabase Storage private; OneDrive giữ tài liệu AI và media cũ/archive khi có chính sách. DB giữ owner, location/version và metadata; delivery copy có vòng đời riêng. Không tự lưu kép hoặc cấp link công khai lâu dài cho model/provider.
 
 Cấu trúc file và quyền OAuth chi tiết tái sử dụng bộ tích hợp hiện có; không tạo một cây thư mục chuẩn thứ hai chỉ từ ví dụ AI Core.
 
@@ -146,6 +290,14 @@ Ba lớp kiểm tra: danh tính/phiên người dùng; tool allowlist; quyền v
 - Không mở tool tùy ý như `execute_sql`, `read_any_file`, `call_arbitrary_url` hay cho model chọn API key.
 - Trước ghi hoặc tác động ngoài, kiểm lại trạng thái Talent, operation, version bài, lịch và tài khoản SNS hiện hành. Thay đổi quyền hoặc việc dừng đăng sau enqueue phải có hiệu lực ở worker, theo quy tắc nghiệp vụ đã chốt.
 - Không ghi token/QR/TOTP/secret hoặc hội thoại đầy đủ vào log kỹ thuật. Audit và dữ liệu hội thoại nghiệp vụ có chính sách giữ riêng.
+
+### 7.1. Khởi tạo theo vai trò và ngân sách kết nối
+
+**FACT từ code:** `container.ts` hiện gọi `connectDatabase()` và dựng các adapter demo theo `ENABLE_AUTH_DEMO`. Hàm DB kiểm membership `talent_runtime`; một LOGIN chỉ có `talent_dispatcher` sẽ không qua kiểm tra này. Role dispatcher hiện chỉ SELECT operation và SELECT/UPDATE outbox; không đủ ghi kết quả AI.
+
+**Thiết kế đích:** giữ factory adapter/service chung, thêm factory hoặc tham số vai trò tường minh cho API, dispatcher và worker. Mỗi vai trò có kiểm tra ACL khởi động riêng, không bỏ kiểm tra role hoặc cấp thêm `talent_runtime` chỉ để dispatcher khởi động được. Worker chỉ được dựng service/tool phục vụ event được phép; không khởi tạo HTTP, demo auth hay scheduler như tác dụng phụ. Nếu cùng một tiến trình demo chạy cả dispatcher/worker, dùng pool/credentials riêng cho hai vai trò; phương án hợp nhất quyền phải được review và ghi rõ, không mặc định hợp nhất.
+
+Ngân sách client DB là tổng pool của mọi tiến trình, kể cả khi đi qua Supabase pooler; không đồng nhất với số kết nối Postgres vật lý. Hiện mặc định5/pool. Đề xuất đầu demo: API pool3, execution pool2, dispatch/reconcile pool1, một bộ factory tương ứng; đo số chờ trước tăng. Không giữ kết nối/transaction trong thời gian gọi model. Thay đổi này chưa có trong config/code và còn phụ thuộc giới hạn project Supabase thực tế.
 
 ## 8. Dữ liệu SNS: nhập hằng ngày và đọc theo nhu cầu
 
@@ -177,27 +329,67 @@ sequenceDiagram
   W-->>Q: Xác nhận job hoàn tất
 ```
 
-Daily Coach: lịch theo múi giờ nghiệp vụ đã cấu hình; không dùng giờ máy chủ làm ngày Talent và không đóng cứng 08:00. Kiểm Talent đủ điều kiện sử dụng và có hồ sơ trước khi tạo đề xuất. Tạo ba chủ đề theo nguồn là use case khác với tự động tạo/đăng bài trong một kỳ; không gộp chúng thành cùng job làm phát sinh bài ngoài ý muốn.
+Daily Coach: lịch theo múi giờ nghiệp vụ đã cấu hình; không dùng giờ máy chủ làm ngày Talent và không đóng cứng 08:00. Kiểm Talent đủ điều kiện sử dụng và có hồ sơ trước khi tạo đề xuất. Với 一時停止, không chạy lời nhắc AI theo KS K116/F32; không tự suy ra cấm mọi chat thủ công. Ma trận tác vụ được phép trong tạm dừng còn phải chốt trước mở từng use case. Tạo ba chủ đề theo nguồn là use case khác với tự động tạo/đăng bài trong một kỳ; không gộp chúng thành cùng job làm phát sinh bài ngoài ý muốn.
 
 Tách trạng thái execution với trạng thái bài/duyệt/lịch/SNS. Worker hoàn tất AI không đồng nghĩa đã được phép đăng. Việc chọn chế độ, duyệt bài công việc và xử lý quá giờ tiếp tục theo No.71/84/56/58; không lấp phần còn mở bằng quyết định của model.
 
-Execution có thể dùng khung `PENDING → QUEUED → RUNNING → COMPLETED | FAILED | TIMED_OUT | CANCELLED`, nhưng đây chỉ là đề xuất lifecycle kỹ thuật. Cancel execution không tự hủy được lịch đã gửi Upload-Post hoặc thu hồi tác động ngoài đã thực hiện; phải đi qua use case hủy/đối soát phù hợp. Khi provider chưa rõ đã thực hiện hay chưa, giữ trạng thái cần đối soát thay vì retry mù.
+Execution có thể dùng khung `PENDING → QUEUED → RUNNING → COMPLETED | FAILED | TIMED_OUT | CANCELLED | UNKNOWN`, nhưng đây chỉ là đề xuất lifecycle kỹ thuật. Cancel execution không tự hủy được lịch đã gửi Upload-Post hoặc thu hồi tác động ngoài đã thực hiện; phải đi qua use case hủy/đối soát phù hợp. Khi provider chưa rõ đã thực hiện hay chưa, giữ trạng thái cần đối soát thay vì retry mù.
+
+### 9.1. Tách chat và tác vụ theo lịch
+
+Đề xuất hai queue có namespace môi trường: interactive cho chat/yêu cầu trực tiếp, batch cho lời nhắc/tổng hợp/ingestion. Demo chạy một tiến trình worker nhưng dùng consumer và ngân sách concurrency riêng: khởi đầu1interactive +1batch (tổng2lời gọi AI đang chạy); slot batch không chiếm slot interactive. Chưa cam kết SLA hoặc tăng concurrency chỉ từ số Talent đăng ký.
+
+Thao tác cần thứ tự trong cùng hội thoại/Talent phải có claim/khóa nghiệp vụ bền vững và kiểm revision; BullMQ concurrency không bảo đảm tuần tự theo Talent. Trả lời dùng context cũ sau khi người dùng đã thay đổi phải được phát hiện. Retry và lease cần tương thích hợp đồng §4, không giữ khóa DB xuyên lời gọi AI.
+
+API tiếp nhận và trả operation ID; FE đọc trạng thái/kết quả qua endpoint có kiểm owner. Demo đầu dùng polling có backoff và timeout hiển thị rõ; SSE/streaming là bước sau, không mặc định giữ HTTP mở trong toàn bộ queue wait. Mất kết nối trình duyệt không tự hủy job; nút hủy, nếu có, ghi yêu cầu hủy và worker kiểm trước tác động ngoài. Chặn backlog/tốc độ kỹ thuật phải báo trạng thái bận rõ ràng, không biến thành giới hạn số lượt viết lại nghiệp vụ.
 
 ## 10. Dữ liệu AI và API: mở rộng trên nền hiện có
 
-Không tạo ngay ba bảng `ai_executions`, `ai_tool_calls`, `ai_results` như thể dự án chưa có dữ liệu liên quan. Schema hiện đã có `coach_messages`, `theme_suggestions`, `ai_usage_events`, `domain_operations`, `outbox_events`, dữ liệu bài/video và snapshot SNS.
+Không tạo đồng loạt execution/tool-call/result mà bỏ qua dữ liệu nền. §4.4 chọn bổ sung hai bảng ai_executions/ai_execution_attempts cho demo một lời gọi model mỗi attempt; kết quả giữ tại coach_messages, chưa tạo ai_results hoặc tool-call ledger cho Agent loop. Schema hiện đã có `coach_messages`, `theme_suggestions`, `ai_usage_events`, `domain_operations`, `outbox_events`, dữ liệu bài/video và snapshot SNS.
 
-Đề xuất execution/tool-call cần được map với operation, kết quả nghiệp vụ và audit hiện có. Chỉ thêm cấu trúc khi chứng minh thiếu thông tin phục hồi/truy vết; không lưu cùng output đầy đủ ở nhiều bảng. Quyết định DDL thuộc đợt thiết kế DB riêng, theo [phạm vi DB](../database-design/07_implementation_scope_and_rules.md), không được cấp quyền/migration chỉ từ báo cáo này. Các phần DEFERRED vẫn bị chặn cho tới khi tái đánh giá theo nguồn mới.
+Mapping execution/attempt với operation và kết quả hiện có theo §4.4; tool-call ledger cho Agent loop nhiều lời gọi chưa thuộc demo này. Chỉ thêm cấu trúc khi chứng minh thiếu thông tin phục hồi/truy vết; không lưu cùng output đầy đủ ở nhiều bảng. Quyết định DDL thuộc đợt thiết kế DB riêng, theo [phạm vi DB](../database-design/07_implementation_scope_and_rules.md), không được cấp quyền/migration chỉ từ báo cáo này. Các phần DEFERRED vẫn bị chặn cho tới khi tái đánh giá theo nguồn mới.
 
 API dùng `/api/v1/me/...` cho Talent và `/api/v1/admin/...` cho Manager theo tech stack; execution chỉ là resource của use case, không mặc định expose endpoint cho người dùng tự chọn agent/model/tool. Nếu cần endpoint theo dõi execution, kiểm owner/actor và không lộ prompt, bí mật hoặc dữ liệu Talent khác. Lệnh API/MCP/worker gọi chung service. Không bắt buộc mở `/internal/sns/analytics` qua HTTP chỉ để cùng module đọc metrics.
 
 ## 11. Triển khai và cấu hình
 
-Đề xuất mở rộng Docker Compose hiện có: `api`, `web`, `migrate` vẫn giữ; thêm `worker`, dispatcher/scheduler entrypoint phù hợp và `redis`. Có thể gộp dispatcher/scheduler trong tiến trình worker nếu đã kiểm cơ chế lease/leader và chống chạy lặp; chưa cần container MCP nội bộ riêng. Remote MCP gắn trong backend hoặc entrypoint riêng nếu có lý do vận hành, dùng chung quyền/service.
+### 11.1. Một VPS và giả định sizing
 
-Cấu hình cần thiết kế thêm: Redis connection/persistence, cấu hình model/provider, concurrency, timeout, tool limits, queue namespace theo môi trường. Tên biến chính thức phải đồng bộ `config/env.ts` và `.env.example` khi triển khai; không tạo một bộ env thứ hai trong báo cáo. Secret ở backend/worker, không đưa vào `NEXT_PUBLIC_*`, payload job hoặc log. DB runtime dùng `DATABASE_URL` của role riêng; `DIRECT_URL` chỉ dành migration.
+Người dùng xác định chỉ một VPS dùng chung BE. Đề xuất triển khai: reverse proxy HTTPS → `web` và `api`; cùng máy có `worker` và `redis` trong mạng riêng; `migrate` là one-shot. Worker chứa dispatcher/reconciler/scheduler có lease, không cần thêm container MCP hoặc orchestrator. API/worker có thể dùng cùng image, khác command và dependencies theo vai trò. VPS hỏng thì cả dịch vụ dừng: volume/backup/replay không tạo high availability.
 
-Quan sát: operation/event/job/execution/request IDs xuyên suốt; độ trễ outbox, queue backlog, job lặp, worker stale, retry, lỗi provider, token/usage và dữ liệu snapshot cũ. Redis mất dữ liệu, provider timeout và deploy khi đang có job đều phải có phương án phục hồi được thử. Không dùng demo pass thay kiểm môi trường production.
+| Cấu hình đề xuất | Điều kiện sử dụng |
+|---|---|
+| 2vCPU/4GB RAM | Chỉ thử demo nhỏ, ít request, concurrency thấp; phải đo và không xem là cấu hình đủ cho mọi tác vụ |
+| **4vCPU/8GB RAM, SSD khoảng80GB** | Cấu hình khởi đầu khuyến nghị nếu FE cũng cùng VPS; dành chỗ cho OS, proxy, log, Redis persistence và đợt restart |
+
+Đây là dự toán nội bộ chưa benchmark, không phải cấu hình đã mua hoặc cam kết tải200Talent. Giả định Postgres/Supabase, LLM và tạo video dùng dịch vụ bên ngoài; không host model/GPU hoặc render video nặng trên VPS. Nếu DB hoặc xử lý media nặng chuyển lên cùng máy phải sizing lại. Ưu tiên build image ở CI/máy khác; build Next.js/TypeScript trên máy đang phục vụ demo có thể tranh CPU/RAM. Tăng disk theo số đo log/AOF/media tạm, không mặc định lưu media lâu dài trên VPS.
+
+Đặt CPU/RAM limit thực tế cho container và kiểm bằng Docker; PM2 `max_memory_restart` hiện có không phải giới hạn RAM toàn VPS. Khởi đầu một process API, một process worker, tổng concurrency AI2 theo §9.1. Theo dõi RAM/RSS, CPU, event-loop lag, queue wait, DB pool wait và lỗi quota; chưa tăng API_INSTANCES để giải quyết job chậm do provider.
+
+### 11.2. Redis và hành vi khi mất kết nối
+
+Đề xuất Redis riêng cho queue, không dùng chung cache có eviction: volume bền vững, AOF với fsync mỗi giây, `maxmemory-policy noeviction`. Khởi đầu dự toán `maxmemory`256MB, container RAM768MB trên máy8GB; đây là thông số thử cần đo AOF rewrite/buffer/fragmentation và giữ headroom, không phải mức đủ mọi tải. Khi đầy, enqueue có thể lỗi; ghi nhận backlog ở DB và báo động, không cho Redis tự xóa khóa BullMQ. Giới hạn retention completed/failed job theo cửa sổ hỗ trợ nhưng không dọn bằng chứng DB chưa đối soát. Backup ngoài VPS và thử replay/restore; AOF không bảo đảm không mất một job nào khi máy hỏng.
+
+Tách Redis client phục vụ HTTP/dispatcher khỏi client worker: request-facing có timeout/fail-fast, không treo request chờ reconnect vô hạn; worker có reconnect phù hợp. Với ioredis dùng cho BullMQ worker, tuân thủ `maxRetriesPerRequest: null`; không áp cùng policy cho API. Vì API ghi outbox trước, Redis tạm lỗi không làm mất yêu cầu đã commit. Redis không publish port ra Internet, chỉ worker/dispatcher được kết nối theo cấu hình môi trường.
+
+Căn cứ: [BullMQ triển khai](https://docs.bullmq.io/guide/going-to-production), [kết nối Redis](https://docs.bullmq.io/guide/connections). Chốt/pin phiên bản và kiểm tùy chọn khi triển khai, không cài theo cấu hình mẫu chưa kiểm.
+
+### 11.3. Command, healthcheck và dừng tiến trình
+
+**FACT từ repository:** Dockerfile API mặc định `pm2-runtime ecosystem.config.cjs`, healthcheck HTTP8080; ecosystem hiện chỉ có API và `kill_timeout`10giây. Không sao chép nguyên defaults đó sang worker hoặc thêm worker vào ecosystem rồi vô tình chạy cả API+worker ở mọi container.
+
+- API chỉ chạy entrypoint API; worker chỉ chạy entrypoint worker. Nếu dùng PM2 phải chọn `--only` đúng app; có thể chạy Node trực tiếp trong container worker với restart policy của Compose. Dùng cùng image không có nghĩa dùng cùng command.
+- Worker có healthcheck riêng: vòng lặp/event-loop và heartbeat điều phối còn hoạt động, dependency failures được báo readiness/degraded; không yêu cầu HTTP8080 hoặc coi queue trống là lỗi. HTTP health của API tách liveness/readiness để không biến Redis lỗi thành restart cả BE liên tục. Docker unhealthy cần giám sát/hành động vận hành riêng, không mặc định tự restart container.
+- Khi SIGTERM: ngừng scheduler/dispatch và nhận job mới, tiếp tục heartbeat cho job đang xử lý, chờ `worker.close()`, sau đó đóng Redis/DB. Có deadline tổng và timeout provider/AbortSignal; không dùng Promise.race để giả định provider đã bị hủy.
+- Đề xuất execution deadline tối đa60giây cho tác vụ AI đầu demo; PM2 worker kill_timeout75giây nếu dùng, Compose stop_grace_period90giây. Đây là ngưỡng kỹ thuật thử nghiệm: phải kiểm thời gian drain và điều chỉnh, không áp lại timeout10giây API. Worker.close của TypeScript không có timeout tự động. Bị kill trước khi xong đi qua phục hồi §4, không hứa deploy không gián đoạn.
+
+Căn cứ: [BullMQ graceful shutdown](https://docs.bullmq.io/guide/workers/graceful-shutdown), [Docker Compose stop_grace_period](https://docs.docker.com/reference/compose-file/services/#stop_grace_period).
+
+### 11.4. Cấu hình và quan sát
+
+Tên env chính thức phải được thêm vào `config/env.ts`/`.env.example` khi triển khai; các số ở đây là đề xuất, chưa phải config đang có. Secret chỉ ở backend/worker, không ở NEXT_PUBLIC, payload/log; DIRECT_URL chỉ migration. Quan sát operation/event/generation/job/request ID, owner lease còn hiệu lực, outbox lag, queue wait, running quá hạn, provider errors/usage và snapshot stale. Có log rotation và báo động Redis memory/disk/backlog. Một tác vụ AI lỗi phải hiện được kết quả lỗi ở demo và không làm hỏng Auth/PWA/OneDrive đang chạy.
+
+Demo hiện gắn qua ENABLE_AUTH_DEMO và bị chặn khi NODE_ENV=production; Compose mặc định production. Cần profile demo tách rõ và truy cập được kiểm soát khi triển khai, không bỏ guard production để mở demo. Danh tính demo không tự là Talent nghiệp vụ: map đúng principal/Talent hoặc dùng fixture tách biệt có đánh dấu; không tự mở quyền ghi các bảng DEFERRED.
 
 ## 12. Thứ tự triển khai đề xuất
 
@@ -205,21 +397,25 @@ Quan sát: operation/event/job/execution/request IDs xuyên suốt; độ trễ 
 |---|---|---|
 | P0 — Chốt ranh giới | Đối chiếu use case, phần nguồn còn mở, tài khoản provider, schema và quyền | Scope rõ; không dùng code/demo như xác nhận khách |
 | P1 — Nền tảng worker | BullMQ/Redis + outbox dispatcher + quyền + chống trùng + quan sát | Kiểm crash, mất enqueue, gửi lặp, replay, dừng tác vụ |
-| P2 — Dữ liệu/context | OneDrive, version/cache, daily SNS snapshot, quyền tài nguyên | Đúng Talent/account, ghi xung đột được phát hiện, không lộ bí mật |
-| P3 — AI tối thiểu | Chốt SDK/model theo benchmark; tác vụ đọc và tạo chủ đề | Output hợp lệ, ghi đúng usage, hồi phục lỗi, không tự đăng |
-| P4 — Kết nối nghiệp vụ | Duyệt/đăng/video/thông báo chỉ theo scope đã chốt | Gate yêu cầu và kiểm provider đạt cho đúng phần; tác động ngoài chống trùng |
+| P2 — Context demo nhỏ | Một context có version cho Talent, đọc hồ sơ thật khi adapter đủ; dữ liệu mẫu ghi rõ nguồn. Chưa cần hoàn tất daily SNS để demo chat không phụ thuộc metrics | Đúng owner/revision, thiếu dữ liệu báo thiếu; không trình bày dữ liệu mẫu như live |
+| P3 — AI tối thiểu | Chọn/pin SDK/model qua thử tiếng Nhật; chat và gợi ý/bản nháp, lưu kết quả/usage, trạng thái async. Chưa dùng Agent loop khi một lời gọi đủ | Output hợp lệ, hồi phục lỗi; kiểm schema/operation kind/quyền trước ghi. Không adopt, tự đăng, tạo video thu phí hoặc thu tiền |
+| P4 — Mở rộng dữ liệu và nghiệp vụ | Daily SNS/context nhiều file trước các use case cần chúng; duyệt/đăng/video/thông báo chỉ theo scope đã chốt | Gate yêu cầu và kiểm provider đạt cho đúng phần; tác động ngoài chống trùng |
 | P5 — ChatGPT/MCP | OAuth + chuẩn bị/xác nhận/commit qua service chung | Theo bộ MCP, còn quyền/version/scope khi commit; không ghi tùy ý |
 | P6 — Vận hành | Tải thực, bảo mật, Redis restart, deploy, backup/replay | Kết quả được review độc lập; UAT/release có điều kiện riêng |
+
+Demo đầu kết thúc ở P3 sau kiểm các lỗi phục hồi/vận hành thiết yếu; không đợi P4/P5 mới kiểm Redis restart hoặc shutdown. Chỉ triển khai sau khi hợp đồng §4 được map vào schema/ACL có test; báo cáo này chưa là migration. Phạm vi tự đăng và thanh toán không được bật để trình diễn AI Core.
 
 Các giai đoạn trên là kế hoạch kỹ thuật đề xuất, không tự cấp G1–G8 PASS hoặc mở phạm vi chưa có quyết định. Không đưa estimate trước khi kiểm tải và các adapter thật.
 
 ## 13. Kiểm chứng cần có
 
 - API commit DB nhưng Redis lỗi: event còn và được gửi lại; Redis nhận job nhưng dispatcher chưa ghi ack: không tạo tác động ngoài trùng.
-- Worker chết trước/sau provider call; Redis restart/mất queue; scheduler chạy hai bản: có đối soát/replay an toàn.
+- Worker chết trước/sau provider call; Redis restart/mất queue; scheduler chạy hai bản: có đối soát/replay an toàn. JobID đã dọn, job failed còn tồn tại, worker cũ hết lease rồi trả kết quả: không lặp output/usage/tác động ngoài; không để operation running treo vô hạn.
 - Talent ngừng dùng, Manager bị vô hiệu hóa, bài bị hủy hoặc account mapping đổi sau enqueue: worker kiểm điều kiện lại, không dùng context cũ để vượt quyết định hiện hành.
 - AI timeout, tool vượt allowlist, prompt injection, output sai schema: không tự ghi kết quả hợp lệ hoặc tự duyệt bài.
 - Cả UI và MCP sửa hồ sơ/chỉ thị: version/cache đúng, không ghi đè; nhiều category/hồ sơ mâu thuẫn không được tự chọn quy tắc chưa chốt.
+- Batch đầy vẫn xử lý được chat theo ngân sách riêng; hai request cùng hội thoại giữ thứ tự; context nhiều file thay đổi giữa lần đọc không tạo snapshot lai.
+- Deploy có job đang chạy, Redis hết bộ nhớ, disk AOF đầy, DB pool chờ: API còn báo được trạng thái, shutdown/recovery có kiểm; container worker không chạy nhầm API/healthcheck8080.
 - Daily snapshots và live fetch: phân biệt trường không có, dữ liệu cũ, rate limit và account ID; không trộn lịch sử hai tài khoản SNS.
 - Kỹ thuật retry không tạo thêm lần đăng; giới hạn từng execution không thành hạn hai lần viết lại; hủy execution không bị hiểu là đã hủy lịch ngoài.
 - Manager TOTP và quyền production không lấy optional MFA/self-registration demo làm baseline.
@@ -230,22 +426,41 @@ Các giai đoạn trên là kế hoạch kỹ thuật đề xuất, không tự 
 
 | Mã | Nội dung | Chủ xử lý / giới hạn |
 |---|---|---|
-| AIC-01 | Môi trường chạy API/worker, dung lượng và persistence Redis | Tech Lead/ops; API vẫn thuộc `apps/api`; không tự chọn Vercel |
+| AIC-01 | Một VPS dùng chung BE đã là ràng buộc; sizing/cấu hình tại §11 là đề xuất | Tech Lead/ops đo tải và chốt tài nguyên thực, chưa xác nhận mua VPS hoặc benchmark |
 | AIC-02 | Phần tool nào cần MCP nội bộ | Team; ưu tiên service/adapter trong tiến trình cho luồng cố định |
 | AIC-03 | Chính sách snapshot/live | Daily ingestion giữ nguyên; team đề xuất cache, khách chỉ quyết phần hành vi cần thay đổi |
 | AIC-04 | Endpoint metrics, quota, account thật | Team/provider kiểm trực tiếp; không hỏi khách thiết kế API |
 | AIC-05 | Tenant và phương thức Graph | Theo bộ OneDrive; kiểm cấu hình/tài khoản thật |
 | AIC-06 | Scope ghi ChatGPT/MCP và OAuth/commit | Theo bộ MCP; cần kiểm chứng và phê duyệt đúng phạm vi |
-| AIC-07 | Đồng bộ màn nghiệp vụ, thứ tự chỉ thị và phần mâu thuẫn | M-15/M-21 đã được mô tả, không hỏi lại có cần màn hay không. No.92 và nhiều category tiếp tục mở |
+| AIC-07 | Đồng bộ màn nghiệp vụ, thứ tự chỉ thị và phần mâu thuẫn | M-15/M-21 đã được mô tả, không hỏi lại có cần màn hay không. No.92/99 tiếp tục mở; UI-M20 p27 thêm ảnh/URL là đề nghị, không tự fetch URL vào AI |
 | AIC-08 | SDK/model, số bước, concurrency, SLA | Team benchmark; không tự biến thành giới hạn lượt viết lại hoặc trần chi phí nghiệp vụ |
-| AIC-09 | Fallback dữ liệu, lỗi provider và thông báo | Đề xuất kỹ thuật có giới hạn; No.87/88 còn lệch người nhận |
+| AIC-09 | Fallback dữ liệu, lỗi provider và thông báo | Đề xuất kỹ thuật có giới hạn; yêu cầu duyệt theo Talent đã rõ KS K77/K93; No.87/88 còn các loại thông báo khác và vận hành phân công |
+| AIC-10 | Hợp đồng lease/handoff/reconcile và mapping schema tại §4 | Team/Tech Lead review thiết kế DB, crash/replay test; chưa có migration hoặc dispatcher triển khai |
+| AIC-11 | Factory và ACL theo vai trò, queue interactive/batch, snapshot context | Team triển khai theo §6/§7.1/§9.1; không nới role hoặc dùng snapshot lai để chạy demo |
 
-**BullMQ + Redis không còn là quyết định mở.** Các nội dung trên không chặn sửa những lỗi mô tả đã rõ trong báo cáo, nhưng chặn tuyên bố sẵn sàng triển khai/release toàn bộ khi chưa kiểm chứng.
+**BullMQ + Redis và ràng buộc một VPS không còn là quyết định mở.** Các nội dung trên không chặn sửa những lỗi mô tả đã rõ trong báo cáo, nhưng chặn tuyên bố sẵn sàng triển khai/release toàn bộ khi chưa kiểm chứng.
 
 ## 15. Tài liệu tham chiếu và giới hạn review
 
+- [Kiến trúc lưu trữ OneDrive và Supabase](KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md): phân loại file, nơi lưu chính, delivery copy và retention.
 - [Tech stack và cấu trúc](TECH_STACK_VA_CAU_TRUC_DU_AN.md), [Prisma và DB runtime](../apps/api/PRISMA.md), [phạm vi DB](../database-design/07_implementation_scope_and_rules.md).
 - [ChatGPT/MCP](chatgpt-mcp-spec/README.md); các bộ tích hợp OneDrive/Upload-Post đang có trong `agent_spec`, tái sử dụng adapter/service phù hợp sau kiểm scope.
-- [Danh mục nguồn khách](../TAI_LIEU_NGUON.md), [báo cáo yêu cầu hiện hành](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md), [Q&A nội bộ](../docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md).
+- [Danh mục nguồn khách](../TAI_LIEU_NGUON.md), [báo cáo nguồn23112026](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md), [Q&A nội bộ](../docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md).
 
 `CLAUDE.md`, `TIEP_TUC.md`, code và báo cáo nội bộ không là nguồn khách phê duyệt. Review này đọc source/code để sửa kiến trúc và ghi phần còn mở; không kiểm live provider, không benchmark hoặc chốt phiên bản SDK, không sửa DB/code/dependencies và không ký Independent Verification. Bản trước được giữ trong nhật ký thay đổi hiện có.
+
+### Hồ sơ sửa bản2.2 — 23/11/2026
+
+Tác giả: Codex; sửa theo review với người dùng, chưa independent review/VERIFIED. Phạm vi chỉ tệp này: không sửa code, migration, Compose hoặc các bộ đặc tả khác. Sửa giao thức outbox/recovery, factory theo role, snapshot context, queue chat/batch, một VPS và kế hoạch demo nhỏ; không coi đề xuất sizing là quyết định đã mua hoặc chứng minh200Talent.
+
+Căn cứ code: `apps/api/src/container.ts`, `src/infra/database/client.ts`/`config.ts`, `src/config/env.ts`, `ecosystem.config.cjs`, `Dockerfile`, root `docker-compose.yml`, migration `20261117000300_confirmed_scope_foundation` (operation/outbox/ACL). Đây là snapshot repository đọc23/11, chưa kiểm live DB hoặc deploy. Căn cứ nghiệp vụ: QA/KS theo catalog20tệp hiện hành, KS `確認事項!K59/K77/K93/K116` và `20261120!F22` và locator PDF đã dẫn ở §1; hash nguồn tại kiểm kê và hồ sơ review QA/KS/23112026 liên kết phía trên. Không thêm Q&A hoặc thay gate; các điểm còn mở giữ QA No. cũ. Nguồn thay đổi phải review lại phần bị ảnh hưởng.
+
+Kiểm lần sửa tài liệu: đối chiếu nguồn/code và link/Markdown; chưa chạy crash test, load test, provider POC hoặc xác nhận thông số VPS. Trước triển khai, Tech Lead review hợp đồng kỹ thuật/schema/ACL và thử phục hồi. G1–G8/phê duyệt nghiệp vụ, thương mại và release không được cấp bởi lần sửa này.
+
+### Điều chỉnh bản2.3 — 23/11/2026
+
+Đổi tên §1 để thể hiện căn cứ thiết kế; thay ghi chú hội thoại bằng so sánh polling Postgres/pg-boss/BullMQ và quyết định có đánh đổi tại §1.1. Phần thông tin/media, sơ đồ và §6 dẫn theo phương án của tài liệu lưu trữ hiện hành, không tự nâng trạng thái phê duyệt của tài liệu đó. Chỉ sửa báo cáo này; chưa đổi code, dependency hoặc cấu hình.
+
+### Bổ sung bản2.4 — 23/11/2026
+
+Kiểm database-design và migration/schema: nền operation/outbox đã có, execution/handoff đầy đủ chưa có. Bổ sung §4.3–§4.8 với mapping dữ liệu, constraints/index, claim/heartbeat/fencing, unknown, usage/output, ACL và rollout; phạm vi mới chỉ coach.respond demo một lời gọi mỗi attempt. Tác giả Codex, chưa independent review; chưa tạo migration, thay schema/code hoặc xác minh DB live. Thiết kế đích cần đồng bộ/review trong bộ DB trước triển khai; không thay hash snapshot DB đã ghi trước đây hoặc tự cấp VERIFIED/gate PASS.

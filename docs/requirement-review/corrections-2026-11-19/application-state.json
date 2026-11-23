@@ -131,5 +131,24 @@
   ],
   "source_freshness": "PENDING_DELIVERY_19NOV_RECONCILIATION",
   "completed_at": "2026-11-20T09:35:35+07:00",
-  "completion_scope": "FV-001–012 implemented; independent review and incoming19Nov reconciliation remain pending"
+  "completion_scope": "FV-001–012 implemented; independent review and incoming19Nov reconciliation remain pending",
+  "delivery_23112026": {
+    "review_report": "docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md",
+    "source_snapshot_ref": "docs/requirement-review/corrections-2026-11-19/delivery-23112026-intake.json",
+    "status": "NEW_SOURCE_IMPACT_NOT_APPROVED",
+    "gate_run_ids": [
+      "GATE-0049",
+      "GATE-0050",
+      "GATE-0051",
+      "GATE-0052",
+      "GATE-0053",
+      "GATE-0054"
+    ],
+    "new_findings": [
+      "FND-0051",
+      "FND-0052",
+      "FND-0053"
+    ],
+    "boundary": "Giữ phần applied lịch sử; không kế thừa G5/G8, guard/AC cũ cho nhánh mới."
+  }
 }

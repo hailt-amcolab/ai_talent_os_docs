@@ -1,5 +1,14 @@
 # 3-1 Hiểu tài năng và thuật toán
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Chống giống nhau và phân tích chéo Talent — PROPOSAL của nguồn:** Đề nghị cá nhân hóa giọng/chủ đề và so nội dung/ý tưởng video của 200 Talent trước khi đăng, đề xuất khác khi giống nhau. **Giới hạn:** Cá nhân hóa đã có hướng; so chéo 200 người là phần dữ liệu/chi phí khác, không bảo đảm bằng một prompt. Không đưa dữ liệu Talent khác vào hội thoại/output hoặc tự nới quyền truy cập. Nguồn `ISS22-P PDFtrang5; ADV22 PDFtrang3; ADV22 PDFtrang11`; EV `EV-1245;EV-1254;EV-1262`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Chỉ thị toàn bộ/category/Talent, ưu tiên Talent > category > toàn bộ; mọi trường hợp vẫn kiểm từ cấm. Có thử trên Talent, lưu, lịch sử và quay một phiên bản; sửa qua quản trị hoặc ChatGPT.

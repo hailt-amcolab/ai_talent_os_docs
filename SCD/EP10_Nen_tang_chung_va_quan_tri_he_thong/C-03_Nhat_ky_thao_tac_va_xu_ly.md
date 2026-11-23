@@ -1,5 +1,16 @@
 # C-03 Nhật ký thao tác và xử lý
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Đồng ý và quyền riêng tư theo từng SNS — PROPOSAL của nguồn:** Đề nghị hiện tài khoản TikTok, cho người dùng chọn mức công khai không chọn sẵn, cấu hình tương tác/nội dung thương mại và ghi nhận nội dung, media, SNS, thời điểm đồng ý. **Giới hạn:** OAuth kết nối không đồng nghĩa đồng ý cho từng nội dung. Cần UI và phiên bản nội dung được xác nhận; chưa tự thêm schema/API hoặc quyền Manager xác nhận thay. Nguồn `ISS22-P PDFtrang3; ISS22-P PDFtrang7; ISS22-P PDFtrang10`; EV `EV-1243;EV-1247;EV-1250`.
+
+**Hàng đợi, chống trùng và ghi thao tác — FACT của nguồn:** Nguồn yêu cầu hàng đợi theo SNS, chống đăng hai lần, bảo vệ token và ghi thao tác Talent/Manager/AI; đánh dấu vài phần chưa xác nhận. **Giới hạn:** Đó là đánh giá của nguồn, không chứng minh repo thiếu hay đã có. BullMQ/Redis là quyết định kỹ thuật nội bộ đã có; retry vận chuyển/đối soát khác tự đăng lại nghiệp vụ. Chưa thay schema/code hoặc tuyên bố test đạt. Nguồn `ISS22-P PDFtrang7; ISS22-P PDFtrang8; ISS22-P PDFtrang10`; EV `EV-1247;EV-1248;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Ghi tự động Manager/thời điểm/màn/Talent khi xem thông tin, hội thoại, kết quả. Lọc khoảng thời gian và Talent, nhật ký xem không được sửa.

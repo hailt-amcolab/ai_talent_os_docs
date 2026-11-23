@@ -1,5 +1,17 @@
 # 8-5 Thông báo khi đăng lỗi
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Talent đăng lại bài lỗi:** Lỗi lúc tới giờ đăng thì thông báo Talent; Talent đợi rồi đăng lại. Lỗi SNS hoặc mạng của Talent không cần thông báo Adesso. **Còn mở/giới hạn:** Không đồng nhất Adesso với mọi tài khoản Manager nếu chưa rõ. Không tự đặt thời gian chờ, số lần thử hoặc đích SNS; No.59 còn mở. Quyền Manager đăng lại trong bản19/11 chưa bị xóa bằng suy luận. Nguồn `KS 確認事項!K87;20261120!F13`; bằng chứng `EV-0971`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Manager thao tác đăng lại tại M-08; nguồn mới mô tả đăng lại ngay, không có màn chọn giờ. Không tự động thử lại khi lỗi.
@@ -98,3 +110,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 - TikTok từ chối riêng một bài (`content_rejected`: `spam_risk`, `spam_risk_text`): báo tài năng sửa chú thích hoặc hashtag qua AI (4-2) rồi chấp nhận lại. Không gửi lại nguyên bài.
 - Upload-Post tự tạm dừng tài khoản (`account_restricted`, ví dụ Instagram nghi spam 24 giờ, TikTok đăng quá nhiều 1 giờ): lỗi cho riêng mạng đó, ghi thời điểm hết tạm dừng. Upload-Post tự thử lại YouTube sau 2 giờ khi chạm giới hạn ngày của kênh; hệ thống không gửi thêm.
 - Chi tiết: bộ Upload-Post §9, §12 (U19, U26).
+
+
+</details>

@@ -1,5 +1,7 @@
 # Ca kiểm thử OneDrive
 
+> **Đối chiếu lưu trữ23/11/2026:** xem [kiến trúc OneDrive/Supabase](../KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md) về phân loại file, nguồn dữ liệu và phương án media mới. Nội dung dưới giữ lịch sử; không mặc định Supabase chỉ lưu tạm, phải chuyển mọi media sang OneDrive hoặc dùng ROPC cho production. Chính sách/ca kiểm liên quan cần review trước triển khai, chưa có kết quả test mới.
+
 Bản 2.1 · 18/11/2026 · Đi kèm [HUONG_DAN_TICH_HOP_VI.md](HUONG_DAN_TICH_HOP_VI.md) (viết tắt HD).
 
 **Loại kiểm thử:**

@@ -1,5 +1,26 @@
 # C-06 Quy tắc chung của màn hình
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Manager responsive và phạm vi tablet — PROPOSAL của nguồn:** Đề xuất PC đầy đủ, smartphone bốn tab Home/duyệt/Talent/menu, tablet có danh sách và chi tiết cạnh nhau, menu bên trái và home chia ưu tiên. **Giới hạn:** Trang 29 vẫn hỏi xác nhận bốn tab và phạm vi tablet. Giữ quyết định PC là chính, duyệt/chỉ thị AI dùng trên smartphone; chưa coi hình là UX đã duyệt hoặc chọn breakpoint. Nguồn `UI-M20 PDFtrang1; UI-M20 PDFtrang2; UI-M20 PDFtrang3; UI-M20 PDFtrang5; UI-M20 PDFtrang6; UI-M20 PDFtrang29`; EV `EV-1211;EV-1212;EV-1213;EV-1215;EV-1216;EV-1239`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Nội dung và hình minh họa:** Adesso cung cấp tài liệu hướng dẫn đăng ký/biểu thị giao dịch và câu chữ email tự động; đội chuẩn bị bảng điền theo tình huống. Nếu có đổi nhân vật thì Adesso cung cấp tranh. **Còn mở/giới hạn:** Câu điều kiện về nhân vật không tự xác nhận cho đổi tên hoặc làm chức năng mới; KS No.34 còn thiếu một phần. Nguồn `KS 20261120!F6;20261120!F35;20261120!F39`; bằng chứng `EV-0982`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 T19 có 19 màn, M19 có 21 màn; đăng nhập xong mở Mypage; thanh điều hướng 5 mục Home/AI/tư liệu/lịch/Mypage; chuông ở Home/Mypage. Số/chữ/tên trong hình là minh họa.
@@ -47,3 +68,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 ## Nguồn
 
 - [YK2] §6-14, §9-1. [AG] trang 1 (danh sách màn), trang 11. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A10.
+
+
+</details>

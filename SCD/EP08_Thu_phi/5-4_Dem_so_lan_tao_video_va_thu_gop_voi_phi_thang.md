@@ -1,5 +1,30 @@
 # 5-4 Đếm số lần tạo video và thu gộp với phí tháng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Đồng ý phụ huynh và trần phí theo tuổi — PROPOSAL của nguồn:** Đề nghị quản lý liên hệ và ghi nhận đồng ý phụ huynh cho dưới 18 tuổi, phạm vi sử dụng media, trần phí và mục tiêu khác cho dưới 16 tuổi. **Giới hạn:** Khác KS確認事項 F38: Adesso lấy đồng ý ngoài app, hệ thống không lưu. Khách/chuyên trách cần quyết quyền, retention và chính sách tuổi; chưa xác minh toàn bộ nhận định pháp lý hoặc triển khai lưu. Nguồn `ISS22-P PDFtrang6; ISS22-P PDFtrang10; ADV22 PDFtrang3; ADV22 PDFtrang10`; EV `EV-1246;EV-1250;EV-1254;EV-1261`.
+
+**Trần phí và nhận định đã giải quyết thanh toán — FACT của nguồn:** Bảng hiện trạng mới ghi có trần video/tháng; phần so sánh ghi thanh toán đã giải quyết bằng thẻ. **Giới hạn:** QA No.3/17 và CR-12/16 nói không có trần video/AI tự dừng. Không dùng mô tả hồi tố để đảo chính sách. KS F25 chỉ ghi GMO là ứng viên; có phương thức thẻ không chứng minh cổng đã ký hoặc tích hợp. Nguồn `ISS22-P PDFtrang2; ISS22-P PDFtrang7`; EV `EV-1242;EV-1247`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Trả trước và quá hạn:** Phí tháng theo hướng trả trước; nguồn ghi đang xem xét dừng sử dụng nếu1tháng chưa thanh toán. **Còn mở/giới hạn:** “検討します” chưa chốt tự khóa sau1tháng. Chu kỳ cụ thể, khả năng cổng và No.46/49/86 còn mở; không tự xây retry hay thu sau. Nguồn `KS 確認事項!K104;20261120!F24`; bằng chứng `EV-0978`.
+
+- **Phí video office:** Nguồn quyết định20/11 ghi không tính tiền tạo video của tài khoản văn phòng. **Còn mở/giới hạn:** Không thu tiền tài khoản office không đồng nghĩa chi phí provider bằng0. Đối chiếu QA No.48 cũ về quyết toán nội bộ; chưa tự xóa thống kê lượt. Nguồn `KS 確認事項!K112`; bằng chứng `EV-0985`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Phí tháng cộng phí video; giá AI video từ lượt đầu; tạo lại tính thêm, lỗi dịch vụ không tính. Không lưu thẻ; đổi thanh toán/lịch sử qua nhà cung cấp.
@@ -89,3 +114,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP08: 
 
 - Q&A No.1, No.3 (đã chốt): đếm lúc gửi yêu cầu, tạo lại cũng tính, lỗi phía dịch vụ không tính; không lượt miễn phí, không trần. CR-09: video quản lý tạo thay tính cho tài năng đó.
 - Q&A No.62 (đang hỏi): tính theo đơn giá tại lúc gửi yêu cầu; lượt lỗi trừ ngay khi dịch vụ báo lỗi.
+
+
+</details>

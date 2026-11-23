@@ -1,5 +1,26 @@
 # 7-5 Dừng đăng tự động, toàn bộ hoặc từng tài năng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Dừng hệ thống và lịch bên dịch vụ — FACT của nguồn:** Nguồn giữ quyết định không có nút dừng toàn bộ, yêu cầu kiểm lịch đã gửi có dừng khi hệ thống ngừng không; bảng kỹ thuật vẫn liệt kê dừng toàn bộ/từng người/SNS. **Giới hạn:** Không khôi phục nút global từ bảng khái quát. Tắt API/worker không chứng minh lịch bên dịch vụ đã hủy; chưa cam kết dừng khi provider không truy cập được hoặc bài đang publish. Nguồn `ISS22-P PDFtrang2; ISS22-P PDFtrang7; ADV22 PDFtrang8; ADV22 PDFtrang10`; EV `EV-1242;EV-1247;EV-1259;EV-1261`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Bỏ dừng đăng toàn hệ thống:** Không có chức năng dừng tự động toàn hệ thống; vẫn dừng theo từng Talent. Khi cần dừng toàn bộ thì vận hành dừng hệ thống. **Còn mở/giới hạn:** Thay đề xuất giữ nút toàn bộ ở QA No.77/91; không suy người thao tác, cơ chế hạ tầng hay SLA dừng. Cách xử lý lịch đã gửi còn cần thiết kế/provider. Nguồn `KS 確認事項!K85;20261120!F33`; bằng chứng `EV-0981`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Dừng riêng hoặc toàn bộ ngăn lịch mới và hủy lịch đã có; chạy lại không phục hồi bài đã hủy; tự làm video cũng dừng theo BF19 trang 19.
@@ -91,3 +112,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 
 - Q&A No.60 (đang hỏi): khi đang dừng, AI vẫn chạy, tài năng vẫn chấp nhận được, bài ở trạng thái giữ lại; mở lại thì hẹn giờ nếu còn kịp.
 - Q&A No.61 (đang hỏi): báo tài năng khi bài bị hủy; bài bị hủy về lại bản nháp.
+
+
+</details>

@@ -1,5 +1,17 @@
 # 3-9 Nhắc tài năng lâu không đăng bài
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Đếm ngày đăng tự động:** Ngày có đăng tự động được tính là ngày đã đăng; trong thời gian vẫn có bài tự động thì không nhắc hoặc báo lâu không đăng. **Còn mở/giới hạn:** Không suy cả kỳ tự động đều được miễn nhắc khi thực tế không đăng; ngưỡng3/7 vẫn chưa được nguồn trả lời riêng. Nguồn `KS 20261120!F21`; bằng chứng `EV-0976`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 3 ngày nhắc Talent/7 ngày báo Manager là giá trị ban đầu chỉnh tại M-17; không phải con số cố định cho mọi đợt.
@@ -87,3 +99,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 ## Nguồn
 
 - [YK2] §5-2, §6-5 (3-9), UC-04, UC-09, 別紙A, 確認19, 43.
+
+
+</details>

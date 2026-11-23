@@ -1,3 +1,23 @@
+> **Đợt23112026:** Nguồn mới có đề nghị và 18 mục cần FCP/đội kiểm tra; không tạo câu hỏi khách mới hoặc đóng No.93–99. [Review và định tuyến](../corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Guard/transition/AC ở nhánh bị ảnh hưởng giữ STALE; chưa có review độc lập.
+
+# Q&A hiện hành — theo dõi nhật ký nguồn sau cập nhật23/11/2026
+
+**NỘI BỘ — CHƯA PHÊ DUYỆT, KHÔNG GỬI KHÁCH.** Không còn câu hỏi độc lập trong bản xuất hiện hành: cả4mục đã có trong nhật ký nguồn ở No.93–96. Chuyển sang theo dõi số nguồn hiện có, không hỏi lại hoặc kế thừa phê duyệt của bản nháp. Bảy câu No.93–99 đều Open, G/H trống; không coi việc được đưa vào workbook là khách đã trả lời.
+
+| ID nội bộ | Theo dõi nguồn | Kết quả đối chiếu |
+|---|---|---|
+| WQA-076-01 | QA No.93 | KS20261120 F22 đã ghi không làm thông báo tâm sự nghiêm trọng; phần AI tiếp nhận/chuyển hướng còn cần đối chiếu F28/F29. Không giữ phương án A là mặc định. |
+| WQA-066-02 | QA No.94 | Vẫn chờ quy tắc giữ dữ liệu office; phụ thuộc No.66/69. |
+| WQA-081-01 | QA No.95 | Đã có câu hỏi xử lý lịch khi đổi/ngắt SNS; phương án chặn vẫn chỉ là đề xuất. |
+| WQA-013-01 | QA No.96 | Đã có câu hỏi hiệu lực từ cấm mới; KS K59 đổi người sửa thành AI, phải đối chiếu trước dùng quy trình Manager sửa cũ. |
+
+No.97–99 là các câu bổ sung đã có trong nguồn (trạng thái thông báo, kết thúc khi còn phí, nhiều category). Không tạo câu hỏi nội bộ trùng. Các nhận định “ngoài báo giá” trong No.93/96/98 chỉ là nội dung được ghi trong workbook; chưa có văn bản ký độc lập để xác nhận thương mại.
+
+G1 BLOCKED chờ người duyệt cho snapshot mới; G2–G4 STALE, G5/G6 BLOCKED; chưa cấp G7/G8 PASS. Chi tiết: [đối chiếu nguồn](../corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Bản nháp trước23/11 — lịch sử, không dùng để hỏi lại</summary>
+
 # Q&A hiện hành — 2 nháp trước và 2 ứng viên bổ sung
 
 **NỘI BỘ — CHƯA PHÊ DUYỆT, KHÔNG GỬI KHÁCH.** Hai câu mới được ghi theo yêu cầu người dùng ở cấp CANDIDATE_PENDING_CONTENT_REVIEW, chưa đủ điều kiện WORKING_DRAFT theo WCP-0001 vì thiếu content ACCEPT đúng hash. Hai nháp trước cũng đang giữ nội bộ; G1–G4 STALE, G5/G6 BLOCKED. Không tự ký Independent Verification hoặc xác nhận nghiệp vụ.
@@ -96,3 +116,6 @@ Giữ các No. gốc; không cấp số khách mới. Các câu về giá tiền
 ## Điểm nguồn chưa nhất quán
 
 No.87 ghi thông báo gửi mọi Manager; No.88 ghi assign để nhận thông báo. No.88 xác nhận mọi Manager có thể cập nhật mọi Talent, nhưng không tự giải quyết sự khác nhau về người nhận thông báo. No.65/78 cũng khác cách xử lý đăng ký lại trong mô tả trước đây. Các điểm này giữ trong hồ sơ đối chiếu; không tự chọn một bên hoặc tạo câu hỏi thay thế ở lượt lọc này.
+
+
+</details>

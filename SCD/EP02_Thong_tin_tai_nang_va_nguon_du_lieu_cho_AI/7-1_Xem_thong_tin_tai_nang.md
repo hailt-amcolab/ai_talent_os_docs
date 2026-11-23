@@ -1,5 +1,30 @@
 # 7-1 Xem thông tin tài năng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Nhiều category và phân công Manager — FACT của nguồn:** M-13 cho gán nhiều category, M-19 hiện category Manager, M-10 có Manager phụ trách; M-14 nhắc ưu tiên Talent > category > toàn hệ thống. **Giới hạn:** UI vẫn thể hiện nhiều category trong khi QA No.99 hỏi lựa chọn và xử lý xung đột. Không tự chốt một category hoặc dùng category Manager làm rào cản quyền chung. Nguồn `UI-M20 PDFtrang17; UI-M20 PDFtrang20; UI-M20 PDFtrang21; UI-M20 PDFtrang22; UI-M20 PDFtrang25`; EV `EV-1227;EV-1230;EV-1231;EV-1232;EV-1235`.
+
+**Manager responsive và phạm vi tablet — PROPOSAL của nguồn:** Đề xuất PC đầy đủ, smartphone bốn tab Home/duyệt/Talent/menu, tablet có danh sách và chi tiết cạnh nhau, menu bên trái và home chia ưu tiên. **Giới hạn:** Trang 29 vẫn hỏi xác nhận bốn tab và phạm vi tablet. Giữ quyết định PC là chính, duyệt/chỉ thị AI dùng trên smartphone; chưa coi hình là UX đã duyệt hoặc chọn breakpoint. Nguồn `UI-M20 PDFtrang1; UI-M20 PDFtrang2; UI-M20 PDFtrang3; UI-M20 PDFtrang5; UI-M20 PDFtrang6; UI-M20 PDFtrang29`; EV `EV-1211;EV-1212;EV-1213;EV-1215;EV-1216;EV-1239`.
+
+**Đồng ý phụ huynh và trần phí theo tuổi — PROPOSAL của nguồn:** Đề nghị quản lý liên hệ và ghi nhận đồng ý phụ huynh cho dưới 18 tuổi, phạm vi sử dụng media, trần phí và mục tiêu khác cho dưới 16 tuổi. **Giới hạn:** Khác KS確認事項 F38: Adesso lấy đồng ý ngoài app, hệ thống không lưu. Khách/chuyên trách cần quyết quyền, retention và chính sách tuổi; chưa xác minh toàn bộ nhận định pháp lý hoặc triển khai lưu. Nguồn `ISS22-P PDFtrang6; ISS22-P PDFtrang10; ADV22 PDFtrang3; ADV22 PDFtrang10`; EV `EV-1246;EV-1250;EV-1254;EV-1261`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Manager nhận yêu cầu duyệt:** Gán Manager phụ trách theo từng Talent; yêu cầu duyệt gửi người phụ trách. Mọi Manager vẫn xem dữ liệu Talent; trả bài có lý do để Talent sửa. **Còn mở/giới hạn:** Không suy mọi loại thông báo cùng người nhận. No.87/88 mở lại: người nhận thông báo chung, cách gán, chuyển phụ trách khi vô hiệu hóa và nhắc quá hạn chưa chốt. Nguồn `KS 確認事項!K77;確認事項!K93;20261120!F11`; bằng chứng `EV-0969`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Danh sách gồm Talent và office; lọc tên/trạng thái/ngày không đăng/category/người phụ trách. M-07 có nút sang M-21 để sửa hồ sơ; không còn mô tả hồ sơ chỉ nhập qua ChatGPT.
@@ -112,3 +137,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP02: 
 
 - Q&A No.22: màn chi tiết tài năng có thêm ô **tình trạng đọc file OneDrive** (xem 2-1).
 - Q&A No.7 (đóng 17/11): quản lý xem toàn bộ hội thoại, tài năng được báo lần đầu mở ứng dụng (確認13, 42). Không làm hội thoại riêng tư (CR-24).
+
+
+</details>

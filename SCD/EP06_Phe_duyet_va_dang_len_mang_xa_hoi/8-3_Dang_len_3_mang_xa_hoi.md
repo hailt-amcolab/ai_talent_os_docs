@@ -1,5 +1,30 @@
 # 8-3 Đăng lên 3 mạng xã hội
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**TikTok: tách gửi nháp và đăng công khai — PROPOSAL của nguồn:** Đề nghị gửi TikTok vào inbox/nháp để Talent hoàn tất trong app, thay nhánh tự động không xác nhận; nguồn đề nghị Instagram/YouTube giữ hai chế độ. **Giới hạn:** Chưa chọn phương án thay thế quyết định hai chế độ đã có. Gửi nháp chưa phải đã đăng; cần kiểm đồng ý trước khi gửi, quyền upload, ảnh/video, lịch, caption và đối soát. Draft không tự giải quyết điều kiện sử dụng cho agency. Nguồn `ISS22-P PDFtrang2; ISS22-P PDFtrang3; ADV22 PDFtrang5; ADV22 PDFtrang10`; EV `EV-1242;EV-1243;EV-1256;EV-1261`.
+
+**Âm nhạc và hoàn tất trong ứng dụng SNS — PROPOSAL của nguồn:** Đề nghị hai đường: đăng qua API với nhạc gốc/đủ quyền và hoàn tất trong app SNS khi cần nhạc thịnh hành hoặc chỉnh sửa đặc biệt; video AI dùng nhạc phù hợp quyền sử dụng. **Giới hạn:** Không coi nhãn copyright-free là bảo đảm quyền thương mại. Chưa xác minh thao tác bàn giao Instagram/TikTok, tài khoản áp dụng và quyền từng bản nhạc. Nguồn `ISS22-P PDFtrang4; ISS22-P PDFtrang6; ADV22 PDFtrang6`; EV `EV-1244;EV-1246;EV-1257`.
+
+**Audit TikTok và quota YouTube — FACT của nguồn:** Nguồn nêu giới hạn TikTok trước audit là 5 người/24 giờ và quota YouTube mặc định 100 upload/ngày; dùng kịch bản 200–600 video/ngày cho 200 người và yêu cầu xác nhận bằng văn bản cho agency. **Giới hạn:** Giới hạn có phạm vi theo API client/project/route, không phải quota hợp đồng Upload-Post hoặc cap từng Talent. 200/600 là kịch bản, không là quy mô/tần suất đã chốt; bài ảnh không gửi YouTube. Nguồn `ISS22-P PDFtrang3; ISS22-P PDFtrang4; ISS22-P PDFtrang9; ISS22-P PDFtrang10`; EV `EV-1243;EV-1244;EV-1249;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Ảnh và YouTube:** Bài ảnh đăng Instagram/TikTok, không gửi YouTube; video Talent tạo có thể đăng YouTube. **Còn mở/giới hạn:** Đây là hành vi nêu trong nguồn, không phải xác minh năng lực API của nhà cung cấp. Nguồn `KS 20261120!F2`; bằng chứng `EV-0962`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Đăng cùng tư liệu/chữ tới SNS đã nối; ảnh không YouTube, video có YouTube. Kết quả từng SNS, không tự đăng lại.
@@ -84,3 +109,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 ## Nguồn
 
 - [YK2] §5-1, §6-10 (8-3), §9-3, UC-05 前提, UC-08, UC-08 前提. [SM] trang 9. [AG] trang 5 (T-13), trang 7 (M-08).
+
+
+</details>

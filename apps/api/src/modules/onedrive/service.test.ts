@@ -43,7 +43,11 @@ function fakeGraph() {
       for (const name of m[1].split('/')) cur = [...items.values()].find(i => i.parent === cur?.id && i.name === name)
       return cur ? out(cur) : Response.json({ error: { code: 'itemNotFound' } }, { status: 404 })
     }
-    if ((m = p.match(/^\/items\/([^/:]+)$/))) { const i = items.get(m[1]); return i ? out(i) : Response.json({ error: { code: 'itemNotFound' } }, { status: 404 }) }
+    if ((m = p.match(/^\/items\/([^/:]+)$/))) {
+      const i = items.get(m[1])
+      if (i && method === 'DELETE') { items.delete(i.id); return new Response(null, { status: 204 }) }
+      return i ? out(i) : Response.json({ error: { code: 'itemNotFound' } }, { status: 404 })
+    }
     throw new Error('unhandled ' + method + ' ' + p)
   }) as typeof fetch
   return { http, ranges, cancelled: () => cancelled }
@@ -53,13 +57,13 @@ const MP4 = [0, 0, 0, 0x18, 0x66, 0x74, 0x79, 0x70, 0x69, 0x73, 0x6f, 0x6d] // .
 
 test('OneDrive demo: tree, scope, eTag, chunked upload, MIME check', async () => {
   const g = fakeGraph(), source: TokenSource = { token: async () => 't', unauthorized: async () => new AppError('X', 401) }
-  const demo = new OneDriveDemo(new DriveClient(new Graph(source, g.http), 'd'), 'AI育成OS_test')
+  const demo = new OneDriveDemo(new DriveClient(new Graph(source, g.http), 'd'), 'AI_Talent_OS_test')
   const t = await demo.createTalent('花子')
   assert.equal(t.displayName, '花子')
-  assert.deepEqual((await demo.children(t.id)).map(i => i.name).sort(), ['AIメモ.md', 'プロフィール.md', '実績', '添付', '素材'].sort())
+  assert.deepEqual((await demo.children(t.id)).map(i => i.name).sort(), ['AI_Memo.md', 'Profile.md'])
   assert.equal((await demo.talents()).length, 1)
 
-  // Outside タレント/ → 404, even with a valid drive item ID.
+  // Outside Talents/ → 404, even with a valid drive item ID.
   await assert.rejects(demo.readText('secret'), { code: 'NOT_FOUND' })
 
   const f = await demo.createText(t.id, 'note.md', 'v1')
@@ -70,7 +74,7 @@ test('OneDrive demo: tree, scope, eTag, chunked upload, MIME check', async () =>
   await assert.rejects(demo.createText(t.id, 'x.exe', ''), { code: 'FILE_TYPE_NOT_ALLOWED' })
   await assert.rejects(demo.createText(t.id, '../a.md', ''), { code: 'NAME_INVALID' })
 
-  const media = (await demo.children(t.id)).find(i => i.name === '素材')!, size = CHUNK * 2 + 123
+  const media = t, size = CHUNK * 2 + 123 // the demo uploads into any folder under Talents/; no Media/ is created any more
   await demo.uploadMedia(media.id, 'clip.mp4', 'video/mp4', size, bytes(size, MP4))
   assert.deepEqual(g.ranges, [`bytes 0-${CHUNK - 1}/${size}`, `bytes ${CHUNK}-${2 * CHUNK - 1}/${size}`, `bytes ${2 * CHUNK}-${size - 1}/${size}`])
 
@@ -100,4 +104,39 @@ test('Graph: 401 → one forced token refresh; Retry-After honoured; SPO licence
   calls = 0; assert.deepEqual(await g.json('t', 'https://graph.test/busy'), { ok: 1 })
   await assert.rejects(g.request('t', 'https://graph.test/slow'), { code: 'ONEDRIVE_THROTTLED' }) // too long to wait inside a request
   await assert.rejects(g.request('t', 'https://graph.test/spo'), { code: 'ONEDRIVE_DRIVE_UNSUPPORTED' })
+})
+
+test('layout upgrade (ai:talent --link-onedrive): old Japanese names are reported, never duplicated; re-runnable', async () => {
+  const g = fakeGraph(), source: TokenSource = { token: async () => 't', unauthorized: async () => new AppError('X', 401) }
+  const drive = new DriveClient(new Graph(source, g.http), 'd')
+  const demo = new OneDriveDemo(drive, 'AI_Talent_OS_dev')
+  // Old root only → stop and ask for the rename (nothing is created).
+  const oldRoot = await drive.ensureFolder('root', 'AI育成OS_dev')
+  assert.deepEqual(await demo.legacyLayout(), ['AI育成OS_dev → AI_Talent_OS_dev (or set ONEDRIVE_ROOT_FOLDER=AI育成OS_dev)'])
+  assert.equal(await drive.byPath('AI_Talent_OS_dev'), null)
+  // New root but old タレント/ and 共通/ inside.
+  const root = await drive.ensureFolder('root', 'AI_Talent_OS_dev')
+  await drive.ensureFolder(root.id, 'タレント'); await drive.ensureFolder(root.id, '共通')
+  assert.deepEqual((await demo.legacyLayout()).slice(1), ['AI_Talent_OS_dev/タレント → Talents', 'AI_Talent_OS_dev/共通 → Common'])
+  assert.match((await demo.legacyLayout())[0], /both AI育成OS_dev\/ and AI_Talent_OS_dev\/ exist/)
+  await drive.remove(oldRoot.id, oldRoot.eTag)
+  assert.deepEqual(await demo.legacyLayout(), ['AI_Talent_OS_dev/タレント → Talents', 'AI_Talent_OS_dev/共通 → Common'])
+  // A talent folder renamed only partly: プロフィール.md kept its old name.
+  const talents = await drive.ensureFolder(root.id, 'Talents')
+  const t = await drive.createFolder(talents.id, '0f1e2d3c-4b5a-6978-8796-a5b4c3d2e1f0_花子')
+  await drive.createFile(t.id, 'プロフィール.md', '## 方向性\n\nカフェ', 'text/markdown')
+  await drive.ensureFolder(t.id, '素材') // a folder AI Core does not use: left alone, not renamed or reported
+  const first = await demo.ensureStructure(t.id)
+  assert.deepEqual(first.created, ['AI_Memo.md'])
+  assert.deepEqual(first.rename, [`${t.name}/プロフィール.md → Profile.md`])
+  const names = (await demo.children(t.id)).map(i => i.name)
+  assert.ok(!names.includes('Profile.md'), 'old-named items are not duplicated')
+  assert.ok(names.includes('素材'), 'unused folders are kept')
+  assert.deepEqual((await demo.ensureStructure(t.id)).created, [], 're-run creates nothing new')
+  assert.match((await new OneDriveDemo(drive, 'AI育成OS_dev').legacyLayout())[0], /still the old name/)
+  // Common/: three agency files, old name reported.
+  const common = await drive.ensureFolder(root.id, 'Common')
+  await drive.createFile(common.id, 'ノウハウ.md', 'x', 'text/markdown')
+  const c = await demo.ensureCommon()
+  assert.deepEqual(c, { created: ['Common/Algorithm.md', 'Common/AI_Instructions.md'], rename: ['Common/ノウハウ.md → Knowhow.md'] })
 })

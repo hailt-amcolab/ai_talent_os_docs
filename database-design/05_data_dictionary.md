@@ -1,6 +1,8 @@
 # 05. Từ điển dữ liệu
 
-Bản 2.0 · 18/11/2026 · Bước 5. **Sinh tự động** từ catalog sau khi chạy đủ 6 migration tới `20261118000100_technology_demo` (script `gen_tu_dien.py`; đừng sửa tay phần bảng, sửa mô tả trong script hoặc trong tệp này rồi chạy lại). Nguồn đúng nhất là SQL migration ở `apps/api/prisma/migrations/`. Cột "Yêu cầu" dùng mã ở `01_confirmed_requirements.md`; "KT" là cột kỹ thuật, không có yêu cầu nghiệp vụ riêng. Phạm vi được làm: `07_implementation_scope_and_rules.md`.
+> **Rà soát 23/11/2026:** Đối chiếu QA/KS hiện hành và bộ `23112026`; xem [kết quả tác động DB](06_extensibility_review.md) và [danh mục nguồn](../TAI_LIEU_NGUON.md). Tách schema trong repository, quyết định nguồn và đề xuất thiết kế. Lần rà này chỉ cập nhật tài liệu, chưa áp migration hoặc kiểm tra database đang chạy; không cấp phê duyệt nghiệp vụ, thương mại hay release.
+
+Bản 2.0 · 18/11/2026 · Bước 5. **Sinh tự động** từ catalog sau khi chạy đủ 6 migration tới `20261118000100_technology_demo` (script `gen_tu_dien.py`; đừng sửa tay phần bảng, sửa mô tả trong script hoặc trong tệp này rồi chạy lại). SQL migration mô tả cấu trúc trong repository; xác nhận DB đang chạy cần catalog riêng. Cột "Yêu cầu" dùng mã ở `01_confirmed_requirements.md`; "KT" là cột kỹ thuật, không có yêu cầu nghiệp vụ riêng. Phạm vi được làm: `07_implementation_scope_and_rules.md`.
 
 Viết tắt: PK khóa chính, FK khóa ngoại (mọi khóa ngoại là ON DELETE RESTRICT trừ khi DDL ghi khác), FK kép = khóa ngoại nhiều cột (thường là `id` + `talent_id` để bảo đảm cùng chủ), UQ duy nhất, CK CHECK. "Quyền runtime" là quyền của nhóm `talent_runtime` (LOGIN `talent_api` của BE). "**Chặn ghi**" = trigger `reject_deferred_write` từ chối INSERT/UPDATE/DELETE (SQLSTATE 55000). Mọi bảng bật RLS; `anon`, `authenticated` không có quyền.
 
@@ -1326,3 +1328,14 @@ demo_auth_deliveries_receipt_hash_key: UNIQUE (receipt_hash)
 ```
 
 </details>
+
+## Bổ sung23/11 — giới hạn snapshot và hai bảng demo
+
+Phần sinh tự động phía trên là snapshot lịch sử38bảng tới migration `20261118000100`, giữ nguyên định nghĩa cột/DDL để không nhầm thiết kế đích với cấu trúc đã có. Không truy vấn DB hoặc chạy lại generator trong đợt này. Sau7migration trong repository có40bảng ứng dụng; hai bảng dưới lấy trực tiếp SQL `20261118000200_onedrive_delegated_demo`, không phải catalog mới và không chứng minh đã áp lên môi trường nào.
+
+| Bảng trong app_private | Trường / ràng buộc chính theo SQL | Giới hạn |
+|---|---|---|
+| `tech_demo_onedrive_connections` | `slot text` PK chỉ primary; `connected_by uuid` FK auth.users SET NULL; `ms_account_id`, `display_name`, `drive_id`, `drive_type`; `status`; `token_box bytea`; `access_expires_at timestamptz`; `version integer`; `connected_at`, `updated_at timestamptz`. CHECK trạng thái connected tương đương token_box khác NULL; drive_type personal/business/documentLibrary | Một kết nối primary cho demo, token mã hóa; không dùng thay mô hình lưu trữ nghiệp vụ |
+| `tech_demo_onedrive_oauth_states` | `state_hash bytea` PK dài32byte; `auth_user_id uuid` FK auth.users CASCADE; `session_id uuid`; `verifier_box bytea`; `expires_at`, `created_at timestamptz`; index auth_user_id | State/PKCE demo, không đưa token/secret vào báo cáo. Hai bảng bật RLS và runtime CRUD theo migration; không quyền PUBLIC/anon/authenticated |
+
+Các mô tả yêu cầu cạnh cột ở snapshot cũ cần đọc cùng [01](01_confirmed_requirements.md) và [06](06_extensibility_review.md). Cụ thể: CHECK `talents.status` còn3giá trị dù nghiệp vụ thêm 一時停止; cờ global stop còn vật lý nhưng không còn nút sản phẩm; cancel_reason cũ chưa biểu diễn đủ actor Talent; `post_deliveries` chưa là lịch sử lần thử/inbox; `manager_notifications.handled_at` chưa giải quyết No.97; tham chiếu OneDrive/temp chưa quyết định nơi lưu duy nhất. Không tự sửa DDL trong từ điển để giả lập migration đã chạy.

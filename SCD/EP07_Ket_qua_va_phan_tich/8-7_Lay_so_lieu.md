@@ -1,5 +1,14 @@
 # 8-7 Lấy số liệu
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Tăng trưởng, dashboard và KPI kinh doanh — PROPOSAL của nguồn:** Đề nghị Momo phân tích điểm yếu, tạo chiến lược/thử thách cá nhân; dashboard ưu tiên vấn đề; KPI gồm tăng follower, engagement, số hợp đồng doanh nghiệp và doanh thu mỗi Talent. **Giới hạn:** Coaching/thử thách/số liệu đã có ngữ cảnh cũ; ghép nhãn hiệu, hợp đồng và doanh thu cần phạm vi/định nghĩa/nguồn mới. Không coi toàn bộ dữ liệu lấy được qua Upload-Post hoặc được duyệt giai đoạn 1. Nguồn `ISS22-P PDFtrang8; ISS22-P PDFtrang9; ISS22-P PDFtrang10`; EV `EV-1248;EV-1249;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Lấy số liệu/follower 1 lần ngày trong phạm vi dịch vụ; ghi kết quả vào file Talent, sáng hôm sau AI dùng.

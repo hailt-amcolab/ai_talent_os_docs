@@ -1,3 +1,7 @@
+> **Đợt23112026:** Nguồn mới có đề nghị và 18 mục cần FCP/đội kiểm tra; không tạo câu hỏi khách mới hoặc đóng No.93–99. [Review và định tuyến](../corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Guard/transition/AC ở nhánh bị ảnh hưởng giữ STALE; chưa có review độc lập.
+
+> **Cập nhật23/11:** Bốn ID nội bộ đã có tại QA No.93–96; không còn câu độc lập trong bản xuất. Nội dung dưới là lịch sử; xem [bản chính](qa-draft.md) và [đối chiếu](../corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
 # Internal Evidence — IE-QAD-0001
 
 ## Kết quả kiểm tra đầu vào

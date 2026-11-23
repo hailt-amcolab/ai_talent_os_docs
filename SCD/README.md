@@ -1,3 +1,7 @@
+> **Hiện hành — đợt23112026:** Có 20 tệp nguồn; đã đọc bốn tệp mới gồm 52 trang PDF và DOCX 356 đoạn. UI-M20 lập20/11; báo cáo/slide lập22/11 để chuẩn bị24/11. TikTok nháp, xác nhận lại bài AI sửa, ranking, lưu đồng ý phụ huynh và pilot là các đề nghị chưa được duyệt phạm vi. [Kết quả, locator và giới hạn](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). G1 BLOCKED chờ duyệt phạm vi; G2–G4 STALE ở nhánh bị ảnh hưởng, G5/G6 BLOCKED; chưa có G7/G8 PASS. Các đợt trước giữ làm lịch sử.
+
+> **Hiện hành — tiếp nhận23/11/2026:** đã rà QA đủ5sheet và KS đủ3sheet, so với kiểm kê20/11. QA thêm No.93–99; No.87/88 mở lại; KS thêm18ô quyết địnhK và33ô trả lời ở20261120. [Kết quả và giới hạn](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md). Bốn câu nội bộ đã có tại No.93–96, không xuất câu hỏi trùng. G1 BLOCKED chờ duyệt snapshot mới; G2–G4 STALE, G5/G6 BLOCKED; chưa cấp G7/G8 PASS. Các số liệu/phát biểu hiện hành20/11 bên dưới là lịch sử cho phần bị thay.
+
 # Đặc tả từng chức năng (SCD) – AI育成OS
 
 > **Đã đối chiếu nguồn19/11 và QA/KS20/11:** mọi đặc tả chức năng có mục cập nhật hiện hành và căn cứ. Các câu hỏi module đã gom về một bản Q&A chính. Nội dung nguồn mới có thể còn là mô tả/đề xuất; màu R1–R9 trước đây không thay review/G8. [Kết quả đối chiếu](../docs/requirement-review/corrections-2026-11-19/NEW_DELIVERY_IMPACT.md).

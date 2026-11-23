@@ -1,5 +1,14 @@
 # 6-7 Số liệu và mức đạt cho tài năng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Màn Manager xếp hạng cố gắng — PROPOSAL của nguồn:** Trang 28 có màn mới chưa mã: top 3 và bảng tăng follower/ngày đăng/thử thách, tổng hợp hoặc từng chỉ số, chu kỳ 7/30 ngày; trang 29 hỏi trọng số. **Giới hạn:** Không tự cấp M-22 hoặc hiển thị ranking trong app Talent. KPI, trọng số, hòa hạng, thiếu số liệu, quyền và nghiệm thu chưa chốt; QA bảo lưu No.50 nêu ngoài phạm vi theo SOW/báo giá chưa có bản ký độc lập. Nguồn `UI-M20 PDFtrang3; UI-M20 PDFtrang28; UI-M20 PDFtrang29; ISS22-P PDFtrang9`; EV `EV-1213;EV-1238;EV-1239;EV-1249`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Mục tiêu ban đầu 10000 mỗi SNS; Manager đổi theo Talent. Follower hiện tại có thể giảm; tổng bài là lũy kế; bài cũ xem được. Chỉ số thực tế giới hạn theo dịch vụ.

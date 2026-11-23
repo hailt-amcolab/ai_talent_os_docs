@@ -1,5 +1,26 @@
 # 7-2 Xem và hủy bài đăng
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Manager sửa và xác nhận TikTok — PROPOSAL của nguồn:** Đề nghị chỉ Talent xác nhận bài TikTok; Manager vẫn hủy lịch được; nội dung Manager sửa hoặc xác nhận thay cần Talent đồng ý lại. **Giới hạn:** Khác GJ19§12/QA No.90 về Manager sửa rồi đi tiếp; phải xét tài khoản office. Không tự xóa các quyền Manager đã nêu trong nguồn khác. Nguồn `ISS22-P PDFtrang3; ADV22 PDFtrang6`; EV `EV-1243;EV-1257`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Talent được hủy lịch:** Talent được hủy bài mình đã đặt lịch; Manager cũng kiểm tra và hủy trên quản trị; phải hủy lịch tương ứng ở dịch vụ đăng. **Còn mở/giới hạn:** Thay quy tắc cũ chỉ Manager hủy. Thời điểm không thể hủy, bài đang gửi và thông báo/tái dùng còn No.61 và thiết kế đội. Nguồn `KS 確認事項!K84;20261120!F12`; bằng chứng `EV-0970`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Manager hủy trên M-08, hệ thống hủy lịch dịch vụ; Talent xem hướng dẫn liên hệ Manager, không có nút hủy trong app.
@@ -66,3 +87,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 ## Nguồn
 
 - [YK2] §6-10 (7-2), UC-08 前提. [AG] trang 5 (T-13), trang 7 (M-08).
+
+
+</details>

@@ -42,7 +42,11 @@ export class PwaService {
     const items = await this.db.$queryRaw<Array<{ id: string; label: string; updated_at: Date; current: boolean }>>`SELECT p.id,p.label,p.updated_at,p.session_id=${a.sessionId}::uuid AS current FROM app_private.tech_demo_push_subscriptions p JOIN app_private.tech_demo_sessions s ON s.session_id=p.session_id WHERE p.auth_user_id=${a.userId}::uuid AND p.is_active AND s.revoked_at IS NULL ORDER BY p.updated_at DESC LIMIT 50`
     return { items: items.map(d => ({ id: d.id, label: d.label, updatedAt: d.updated_at.toISOString(), current: d.current })), configured: !!this.vapid }
   }
-  async testPush(a: DemoIdentity, recipientUserId: string) {
+  async testPush(_a: DemoIdentity, recipientUserId: string) {
+    return this.notify(recipientUserId, { title: 'PWA test notification', body: 'A test notification sent from another device.', url: '/pwa/home' })
+  }
+  // Sends to every active device of one login (also used by the AI Core worker for 毎朝の声かけ).
+  async notify(recipientUserId: string, message: { title: string; body: string; url: string }) {
     if (!this.vapid) throw new AppError('PUSH_NOT_CONFIGURED', 503)
     const devices = await this.db.$queryRaw<Device[]>`SELECT p.id,p.endpoint,p.p256dh_key,p.auth_secret,p.session_id FROM app_private.tech_demo_push_subscriptions p JOIN app_private.tech_demo_sessions s ON s.session_id=p.session_id WHERE p.auth_user_id=${recipientUserId}::uuid AND p.is_active AND s.revoked_at IS NULL ORDER BY p.id LIMIT 51`
     if (!devices.length) throw new AppError('NO_PUSH_DEVICES', 409)
@@ -52,7 +56,7 @@ export class PwaService {
     for (let i = 0; i < devices.length; i += 5) await Promise.all(devices.slice(i, i + 5).map(async d => {
       const active = await this.db.$queryRaw<Array<{ active: boolean }>>`SELECT p.is_active AND s.revoked_at IS NULL AS active FROM app_private.tech_demo_push_subscriptions p JOIN app_private.tech_demo_sessions s ON s.session_id=p.session_id WHERE p.id=${d.id}::uuid AND p.auth_user_id=${recipientUserId}::uuid`
       if (!active[0]?.active) { result.failed++; return }
-      const sent = isAllowedPushEndpoint(d.endpoint) ? await this.sender(this.vapid!, { endpoint: d.endpoint, keys: { p256dh: d.p256dh_key, auth: d.auth_secret } }, { title: 'PWA test notification', body: 'A test notification sent from another device.', url: '/pwa/home', tag }) : { outcome: 'gone' as const }
+      const sent = isAllowedPushEndpoint(d.endpoint) ? await this.sender(this.vapid!, { endpoint: d.endpoint, keys: { p256dh: d.p256dh_key, auth: d.auth_secret } }, { ...message, tag }) : { outcome: 'gone' as const }
       if (sent.outcome === 'sent') result.accepted++
       else if (sent.outcome === 'gone') {
         result.gone++

@@ -1,5 +1,14 @@
 # 5-2 Định dạng video
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Âm nhạc và hoàn tất trong ứng dụng SNS — PROPOSAL của nguồn:** Đề nghị hai đường: đăng qua API với nhạc gốc/đủ quyền và hoàn tất trong app SNS khi cần nhạc thịnh hành hoặc chỉnh sửa đặc biệt; video AI dùng nhạc phù hợp quyền sử dụng. **Giới hạn:** Không coi nhãn copyright-free là bảo đảm quyền thương mại. Chưa xác minh thao tác bàn giao Instagram/TikTok, tài khoản áp dụng và quyền từng bản nhạc. Nguồn `ISS22-P PDFtrang4; ISS22-P PDFtrang6; ADV22 PDFtrang6`; EV `EV-1244;EV-1246;EV-1257`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Video có thể đăng 3 SNS đã nối; video AI cần ghi nhãn.

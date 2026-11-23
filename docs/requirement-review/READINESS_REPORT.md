@@ -1,3 +1,7 @@
+> **Hiện hành — đợt23112026:** Có 20 tệp nguồn; đã đọc bốn tệp mới gồm 52 trang PDF và DOCX 356 đoạn. UI-M20 lập20/11; báo cáo/slide lập22/11 để chuẩn bị24/11. TikTok nháp, xác nhận lại bài AI sửa, ranking, lưu đồng ý phụ huynh và pilot là các đề nghị chưa được duyệt phạm vi. [Kết quả, locator và giới hạn](corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). G1 BLOCKED chờ duyệt phạm vi; G2–G4 STALE ở nhánh bị ảnh hưởng, G5/G6 BLOCKED; chưa có G7/G8 PASS. Các đợt trước giữ làm lịch sử.
+
+> **Hiện hành — tiếp nhận23/11/2026:** đã rà QA đủ5sheet và KS đủ3sheet, so với kiểm kê20/11. QA thêm No.93–99; No.87/88 mở lại; KS thêm18ô quyết địnhK và33ô trả lời ở20261120. [Kết quả và giới hạn](corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md). Bốn câu nội bộ đã có tại No.93–96, không xuất câu hỏi trùng. G1 BLOCKED chờ duyệt snapshot mới; G2–G4 STALE, G5/G6 BLOCKED; chưa cấp G7/G8 PASS. Các số liệu/phát biểu hiện hành20/11 bên dưới là lịch sử cho phần bị thay.
+
 > **Cập nhật QA mới — 2026-11-20:** đã lọc trùng 5 sheet; bản nháp còn 2 câu, rút thêm 24 câu (gồm 6 câu phí/thanh toán theo yêu cầu). Các số đếm và gate ở nội dung đợt trước bên dưới là lịch sử; G1–G4 hiện STALE, G5/G6 BLOCKED. Bản chính: `docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md`.
 
 # Trạng thái sẵn sàng hiện hành

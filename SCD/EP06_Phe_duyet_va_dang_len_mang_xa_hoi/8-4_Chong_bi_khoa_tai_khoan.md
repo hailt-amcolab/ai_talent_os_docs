@@ -1,5 +1,26 @@
 # 8-4 Chống bị khóa tài khoản
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Audit TikTok và quota YouTube — FACT của nguồn:** Nguồn nêu giới hạn TikTok trước audit là 5 người/24 giờ và quota YouTube mặc định 100 upload/ngày; dùng kịch bản 200–600 video/ngày cho 200 người và yêu cầu xác nhận bằng văn bản cho agency. **Giới hạn:** Giới hạn có phạm vi theo API client/project/route, không phải quota hợp đồng Upload-Post hoặc cap từng Talent. 200/600 là kịch bản, không là quy mô/tần suất đã chốt; bài ảnh không gửi YouTube. Nguồn `ISS22-P PDFtrang3; ISS22-P PDFtrang4; ISS22-P PDFtrang9; ISS22-P PDFtrang10`; EV `EV-1243;EV-1244;EV-1249;EV-1250`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Video ngắn và slideshow:** Câu hỏi/đề xuất chỉnh còn video ngắn, bỏ mô tả chọn slideshow và ước tính chi phí slideshow. **Còn mở/giới hạn:** Đây là cột đề xuấtF, chưa có quyết địnhK cho việc xóa slideshow. Giữ khác biệt với QA No.36/CR-04; không ghi giảm phạm vi đã chốt. Nguồn `KS 確認事項!F72;確認事項!F86`; bằng chứng `EV-0986`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Không đảm bảo không bị khóa SNS; không đặt trần bài/ngày vì chi phí đã bỏ theo quyết định cũ.
@@ -81,3 +102,6 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 ## Nguồn
 
 - [YK2] §6-10 (8-4), §9-5, §11, UC-08 前提, 別紙B, 確認37. [File 15](../../Phan_tich/15_Cau_hoi_lam_ro_luong.xlsx) A5.
+
+
+</details>

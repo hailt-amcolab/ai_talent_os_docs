@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-23T10:30:04+07:00",
+  "checked_by": "Codex — review tác giả, không independent reviewer",
+  "method": "Đọc trực tiếp trang chính thức bằng web tool; không gọi API tài khoản/không gửi liên lạc provider",
+  "checks": [
+    {
+      "id": "TT-GUIDELINES",
+      "url": "https://developers.tiktok.com/docs/en/content-sharing-guidelines",
+      "locator": "Direct Post / Intended Use / Required UX",
+      "summary_vi": "Direct Post yêu cầu người dùng kiểm soát nội dung, tự chọn quyền riêng tư và đồng ý rõ trước khi gửi. Hạn chế internal/private-use có trong hướng dẫn; chưa kết luận toàn bộ mô hình agency quaUpload-Post bị cấm hoặc được duyệt.",
+      "result": "DOC_CONFIRMED_ACCOUNT_AND_ROUTE_PENDING"
+    },
+    {
+      "id": "TT-UPLOAD",
+      "url": "https://developers.tiktok.com/docs/en/content-posting-api-reference-upload-video",
+      "locator": "Overview; Initialize Video Upload; Error codes",
+      "summary_vi": "TikTok có API tải vào inbox; người dùng cần mở thông báo trongapp để hoàn tất. Gửi nháp chưa đồng nghĩa bài công khai. Tài liệu video ghi giới hạn nháp chờ, không coi là đường vô hạn.",
+      "result": "DOC_CONFIRMED_NOT_PROJECT_TESTED"
+    },
+    {
+      "id": "UP-DRAFT",
+      "url": "https://docs.upload-post.com/api/upload-video/",
+      "locator": "TikTok / post_mode / Draft mode",
+      "summary_vi": "Upload-Post mô tả MEDIA_UPLOAD và alias tiktok_upload_to_draft cho video. Video nháp không mangcaption/quyền riêng tư; cần hoàn tất trongapp. Đây là khả năng theo tài liệu, chưa có xác nhận riêng tài khoản/gói/hợp đồng.",
+      "result": "PUBLIC_DOC_SUPPORT_NOT_PROVIDER_REPLY_OR_POC"
+    },
+    {
+      "id": "UP-PHOTO",
+      "url": "https://docs.upload-post.com/api/upload-photo/",
+      "locator": "TikTok / post_mode / Draft mode",
+      "summary_vi": "Tài liệu ảnh cũng có MEDIA_UPLOAD; không tự dùng kết luận video cho mọi metadataảnh. Cần thử caption/album và kết quả perSNS trên môi trường dự án.",
+      "result": "PUBLIC_DOC_SUPPORT_NOT_PROJECT_TESTED"
+    },
+    {
+      "id": "UP-STATUS",
+      "url": "https://docs.upload-post.com/api/upload-status/",
+      "locator": "TikTok inbox fallback",
+      "summary_vi": "Upload thành công hoặc fallback_to_inbox có thể chỉ là vào nháp. Cần phân biệt gửi thành công với đăng công khai và đối soát bài thật; không tăng thành tích đăng chỉ vì success=true.",
+      "result": "DOC_CONFIRMED_MAPPING_PENDING"
+    },
+    {
+      "id": "YT-QUOTA",
+      "url": "https://developers.google.com/youtube/data/determine_quota_cost",
+      "locator": "Quota Calculator / quota allocation, page updated2026-11-12",
+      "summary_vi": "Google ghi quota mặc định100videos.insert/ngày/project; search cóbucketriêng. Điều này hỗ trợ nhận định quota mặc định trong nguồn, không chứng minh quota thực tế của Upload-Post hoặc gói200Talent.",
+      "result": "DEFAULT_DOC_CONFIRMED_PROVIDER_CAPACITY_PENDING"
+    },
+    {
+      "id": "META-PUBLISH",
+      "url": "https://developers.facebook.com/documentation/instagram-platform/content-publishing",
+      "locator": "Content Publishing / Requirements",
+      "summary_vi": "Tài liệu xuất bản mô tả professional accounts, media server và các cơ chế đăng nhập. Trang này không đủ chứng minh mọi tùy chọn nhạc thịnh hành quaUpload-Post hoặc cam kết quyền nhạc.",
+      "result": "PARTIAL_DOC_CHECK_MUSIC_PROVIDER_PENDING"
+    },
+    {
+      "id": "WEBKIT-PUSH",
+      "url": "https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/",
+      "locator": "Web Push for Web Apps added to the Home Screen",
+      "summary_vi": "WebKit mô tả WebPush choHomeScreenapp từiOS/iPadOS16.4, xin quyền từthao tácngười dùng. Không chứng minh gửi giờ cụ thể hoặc delivery100%; cần test thiết bị và fallback.",
+      "result": "DOC_CONFIRMED_DEVICE_TEST_PENDING"
+    }
+  ],
+  "authority": "Bằng chứng kỹ thuật bổ sung; không là quyết định khách hoặc hợp đồng",
+  "limitations": "Chưa xác minh toàn bộ quy định tuổi/luật, quyền nhạc hoặc phê duyệt audit/gói/tài khoản. Không sao chép trang web vào thư mục nguồn khách."
+}

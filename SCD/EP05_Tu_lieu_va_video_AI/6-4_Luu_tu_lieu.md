@@ -1,5 +1,21 @@
 # 6-4 Lưu tư liệu
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Ngày thiếu tư liệu:** Không gửi ảnh mới thì dùng ảnh đã lưu; ảnh không hợp chủ đề thì đổi chủ đề theo ảnh; không có ảnh thì hướng dẫn chức năng tạo ảnh/video. **Còn mở/giới hạn:** Chưa mặc định phạm vi chức năng tạo ảnh đã được duyệt; QA No.56/83 vẫn có đề xuất dừng ngày đó, hạn tái dùng, nhắc còn2ngày và tự chạy ngày sau chưa được chốt. Nguồn `KS 確認事項!K62;20261120!F9`; bằng chứng `EV-0967`.
+
+- **Tư liệu Manager gửi:** Talent xem bản nháp AI tạo từ tư liệu Manager gửi trong màn AI coach, có thể dùng để đăng Instagram/TikTok; không xem danh sách tư liệu Manager lưu. **Còn mở/giới hạn:** Không suy thành thư viện media chung được Talent truy cập hoặc phủ nhận video YouTube ở nhánh khác. Nguồn `KS 20261120!F20`; bằng chứng `EV-0975`.
+
+- **Nguồn media cho tự động:** Tự động không sinh ảnh/video AI; dùng video trả phí đã tạo hoặc video tự làm đã lưu. Chọn ảnh/video hợp chủ đề thay vì thứ tự lưu. **Còn mở/giới hạn:** Không mặc định một bài/ngày hoặc dùng FIFO; tần suất tại KS No.40 còn trống. Nguồn `KS 確認事項!K73;20261120!F18:F19`; bằng chứng `EV-0974`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Dùng lại ảnh/video đã gửi; OneDrive vẫn là kho hồ sơ/chỉ thị. GJ19§14 cho phép cân nhắc kho ảnh/video khác nếu không thêm chi phí.
@@ -109,3 +125,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP05: 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.37, CR-23: phần **video tự làm được lưu và mỗi ngày 1 video tự thành bản nháp** là thay đổi ngoài báo giá, **chưa làm** tới khi khách quyết (No.50). Phần lưu và xem lại tư liệu vẫn làm.
+
+
+</details>

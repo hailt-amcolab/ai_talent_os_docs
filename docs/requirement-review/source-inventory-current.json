@@ -1,9 +1,9 @@
 {
-  "snapshot_date": "2026-11-20",
+  "snapshot_date": "2026-11-23",
   "source_root": "source_requiments",
   "catalog": "TAI_LIEU_NGUON.md",
-  "file_count": 16,
-  "notice": "16 tệp; QA vừa đổi phiên bản. G1–G4 cần tái đánh giá; lọc trùng không thay xác minh nghiệp vụ hoặc Independent Verification.",
+  "file_count": 20,
+  "notice": "20tệp:16nguồn trước giữ hash;4tệp mới23112026 (UI-M20 ngày20/11;ISS22-D/P,ADV22 ngày22/11). Bản đề nghị không tự duyệt scope; DOCX/PDF không là hai quyết định.",
   "comparison_to_18nov": {
     "previous_catalog_files_unchanged": 9,
     "historical_docx_newly_cataloged": 1,
@@ -61,8 +61,8 @@
     },
     {
       "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
-      "bytes": 175105,
-      "sha256": "c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda",
+      "bytes": 184455,
+      "sha256": "960a8e8e229ae46d8aaa492ea610e56a4c9a3c31c7fc18982348d3540e5ecc6e",
       "comparison_18nov": "unchanged",
       "sheets": [
         "Q&A",
@@ -89,17 +89,20 @@
       ],
       "checked_at": "2026-11-20T07:26:43.748512+00:00",
       "checked_by": "Codex — tiếp nhận và lọc trùng Q&A",
-      "comparison_current": "QA: cập nhật trả lời No.4/8/65, thêm No.78–92; so cả năm sheet."
+      "comparison_current": "QA: cập nhật trả lời No.4/8/65, thêm No.78–92; so cả năm sheet.",
+      "previous_sha256": "c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
     },
     {
       "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
-      "bytes": 54813,
-      "sha256": "b3d5a2688141d7d725dafd8e7ed49d892ba9efa2affdb73df3eb8590a5fd191c",
+      "bytes": 58058,
+      "sha256": "0530779f96acf1c1534110e5e57b15d4f35fff056a913d76fd6670a43878019e",
       "comparison_18nov": "unchanged",
       "sheets": [
         "確認事項",
         "20261120",
-        "費用と利用の規模"
+        "プロジェクトを進めるために決める事項"
       ],
       "source_code": "KS",
       "use": "living_log; inspect current statements and statuses",
@@ -113,7 +116,10 @@
       ],
       "checked_at": "2026-11-20T09:59:02+07:00",
       "checked_by": "Codex — tiếp nhận nguồn",
-      "comparison_current": "QA: giá trị và công thức 5 sheet không đổi; KS: sửa 2 ô, thêm 2 sheet và bình luận FCP"
+      "comparison_current": "QA: giá trị và công thức 5 sheet không đổi; KS: sửa 2 ô, thêm 2 sheet và bình luận FCP",
+      "previous_sha256": "b3d5a2688141d7d725dafd8e7ed49d892ba9efa2affdb73df3eb8590a5fd191c",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
     },
     {
       "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
@@ -196,6 +202,50 @@
       "document_date": "2026-11-19",
       "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
       "pages": 27
+    },
+    {
+      "source_code": "UI-M20",
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc",
+      "bytes": 4453461,
+      "document_date": "2026-11-20",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề xuất màn Manager, không là screen definition đã duyệt",
+      "pages": 29
+    },
+    {
+      "source_code": "ISS22-D",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336",
+      "bytes": 23876,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề nghị/đánh giá và câu hỏi trước họp24/11, DOCX",
+      "embedded_media_files": 0
+    },
+    {
+      "source_code": "ISS22-P",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168",
+      "bytes": 947971,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Bản PDF cùng báo cáo đề nghị; không tính như xác nhận thứ hai",
+      "pages": 11
+    },
+    {
+      "source_code": "ADV22",
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f",
+      "bytes": 1263105,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Slide9lời khuyên,7vấn đề và8ưu tiên; đề nghị chuẩn bị24/11",
+      "pages": 12
     }
   ],
   "qa_snapshot": {
@@ -547,5 +597,6 @@
         32
       ]
     }
-  }
+  },
+  "current_review_ref": "docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md"
 }

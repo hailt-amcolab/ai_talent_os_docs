@@ -1,5 +1,14 @@
 # 2-3 Nhập thông tin từ ChatGPT
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Ảnh chân dung và liên kết profile Adesso — PROPOSAL của nguồn:** M-21 thêm một ảnh cận mặt, trường URL profile Adesso và nút mở profile; vẫn có năm nhóm thông tin, lịch sử và chỉnh qua ChatGPT. **Giới hạn:** SD-M19 p26 chưa nêu hai đầu vào này. Chưa chốt tính bắt buộc, định dạng/quyền ảnh, nơi lưu, URL chỉ mở hay được AI đọc. Không tự fetch/crawl URL hoặc mở quyền ghi ảnh qua MCP. Nguồn `UI-M20 PDFtrang27`; EV `EV-1237`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 M-21 (SD-M19 trang 26) nhập hồ sơ, định hướng, sở thích/sở trường, mục tiêu tương lai, giọng văn; có lưu/hủy/lịch sử. Xem/sửa được từ quản trị và ChatGPT, không sửa trực tiếp file OneDrive.

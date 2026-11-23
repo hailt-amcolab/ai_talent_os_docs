@@ -1,5 +1,28 @@
 # 3-3 Giới hạn chủ đề trò chuyện
 
+## Đợt23112026 — đề nghị và điểm cần đối chiếu
+
+**Không tự thay quyết định20/11 bằng đề nghị/hình minh họa mới.** Các mục dưới ghi nội dung nguồn mới và phần còn mở; chưa là AC hoặc phạm vi được phê duyệt.
+
+**Ứng xử tối thiểu với tâm sự nghiêm trọng — PROPOSAL của nguồn:** Không đề nghị khôi phục thông báo Manager; đề nghị Momo hướng dẫn liên hệ phụ huynh/Manager/kênh hỗ trợ và lưu dấu có hội thoại. **Giới hạn:** Không tự thêm lại cảnh báo Manager đã bị loại bởi KS F22. Câu chữ, loại dấu vết, quyền xem và retention còn No.93; nguồn không cung cấp địa chỉ hỗ trợ cụ thể đã được xác minh. Nguồn `ISS22-P PDFtrang7; ADV22 PDFtrang7`; EV `EV-1247;EV-1258`.
+
+**Thông báo: mở là xử lý và hình cảnh báo cũ — FACT của nguồn:** M-02 mới vẫn ghi mở thông báo là 対応済み; hình tablet/PC vẫn có cảnh báo tâm sự nghiêm trọng và từ cấm. **Giới hạn:** QA No.97 vẫn Open, không tự chọn A/B. Hình không khôi phục chức năng KS F22 đã bỏ; email và người phụ trách còn No.75/87/88. Nguồn `UI-M20 PDFtrang5; UI-M20 PDFtrang9; UI-M20 PDFtrang29`; EV `EV-1215;EV-1219;EV-1239`.
+
+[Đối chiếu và phân tuyến](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md).
+
+
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Không báo tâm sự nghiêm trọng:** Không làm chức năng báo Manager khi có tâm sự nghiêm trọng. Hội thoại phục vụ tăng follower, tập trung hoạt động nghệ thuật/công việc và cảm quan; không tư vấn tình yêu. Ban đầu chưa đặt ranh giới quá chi tiết. **Còn mở/giới hạn:** No.93 còn Open, không tự chọn trọn phương ánB vì nguồn chỉ loại thông báo, chưa quy định đầy đủ cách tiếp nhận/chuyển hướng. Không suy số lượt chat không giới hạn từ đây. Nguồn `KS 20261120!F22;確認事項!K56;20261120!F28:F29`; bằng chứng `EV-0977`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 Phạm vi hội thoại ngoài đăng bài, sức khỏe/rời công ty và thông báo tâm sự nghiêm trọng vẫn được hỏi tại KS 20261120 No.21,27,28.
@@ -110,3 +133,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.18 (đã chốt): quy tắc chủ đề, cách nói và câu từ chối với tài năng vị thành niên **không phải chức năng của hệ thống**. アデッソ viết vào file chỉ thị cho AI ([YK2] 7-5). Hệ thống chỉ tính tuổi từ ngày sinh và hiển thị tham khảo. Không làm logic riêng cho vị thành niên.
+
+
+</details>

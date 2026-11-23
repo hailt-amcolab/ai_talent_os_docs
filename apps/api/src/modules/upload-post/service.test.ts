@@ -42,20 +42,14 @@ test('connected, expired and empty networks are read from the profile', async ()
   ])
 })
 
-test('connect creates the profile (409 = already there) then opens the hosted page for that network', async () => {
-  const { demo, calls } = fake([[409, { success: false, message: 'Username already in use' }], [200, { success: true, access_url: 'https://app.upload-post.com/connect?token=abc', duration: '48h' }]])
-  const r = await demo.connect(USER, 'youtube', 'https://localhost:3000/pwa/sns/return')
-  assert.equal(r.authorizeUrl, 'https://app.upload-post.com/connect?token=abc')
-  assert.equal(r.expiresInSeconds, 48 * 60 * 60)
+test('connect creates the profile (409 = already there) then starts the Connect API for that network', async () => {
+  const { demo, calls } = fake([[409, { success: false, message: 'Username already in use' }], [200, { success: true, platform: 'instagram', authorize_url: 'https://www.instagram.com/oauth/authorize?x=1', state: 's', expires_in: 900 }]])
+  const r = await demo.connect(USER, 'instagram', 'https://localhost:3000/pwa/sns/return')
+  assert.equal(r.authorizeUrl, 'https://www.instagram.com/oauth/authorize?x=1')
+  assert.equal(r.expiresInSeconds, 900)
   assert.equal(calls[0].url, 'https://api.upload-post.com/api/uploadposts/users')
-  assert.equal(calls[1].url, 'https://api.upload-post.com/api/uploadposts/users/generate-jwt')
-  assert.deepEqual(calls[1].body, {
-    username: profileName(USER),
-    redirect_url: 'https://localhost:3000/pwa/sns/return',
-    platforms: ['youtube'],
-    show_calendar: false,
-    redirect_button_text: 'Back to AI Talent OS',
-  })
+  assert.equal(calls[1].url, 'https://api.upload-post.com/api/uploadposts/oauth/instagram/start')
+  assert.deepEqual(calls[1].body, { profile: profileName(USER), redirect_url: 'https://localhost:3000/pwa/sns/return' })
 })
 
 test('plan limit on profile creation stops before starting OAuth', async () => {
@@ -69,7 +63,7 @@ test('another plan refusal on profile creation keeps the generic plan error', as
   await assert.rejects(demo.connect(USER, 'instagram', 'https://localhost:3000/pwa/sns/return'), (e: unknown) => e instanceof UploadPostError && e.code === 'UPLOAD_POST_PLAN')
 })
 
-test('a hosted page URL outside app.upload-post.com is rejected', async () => {
-  const { demo } = fake([[201, { success: true }], [200, { access_url: 'https://accounts.google.com/o/oauth2/auth?x=1' }]])
+test('a non-https authorize URL is rejected', async () => {
+  const { demo } = fake([[201, { success: true }], [200, { authorize_url: 'javascript:alert(1)' }]])
   await assert.rejects(demo.connect(USER, 'youtube', 'https://localhost:3000/pwa/sns/return'), (e: unknown) => e instanceof UploadPostError && e.kind === 'unavailable')
 })

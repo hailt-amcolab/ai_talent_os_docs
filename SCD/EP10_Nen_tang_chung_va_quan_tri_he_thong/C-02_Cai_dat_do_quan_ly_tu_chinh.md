@@ -1,5 +1,17 @@
 # C-02 Cài đặt do quản lý tự chỉnh
 
+## Cập nhật nguồn tiếp nhận23/11/2026
+
+**FACT về nội dung nguồn; bản tác giả chưa qua G5/G8.** Phần này thay mô tả cũ bên dưới cho đúng chủ đề có căn cứ; không kế thừa màu sẵn sàng/AC cũ hoặc xác nhận thương mại.
+
+- **Bỏ dừng đăng toàn hệ thống:** Không có chức năng dừng tự động toàn hệ thống; vẫn dừng theo từng Talent. Khi cần dừng toàn bộ thì vận hành dừng hệ thống. **Còn mở/giới hạn:** Thay đề xuất giữ nút toàn bộ ở QA No.77/91; không suy người thao tác, cơ chế hạ tầng hay SLA dừng. Cách xử lý lịch đã gửi còn cần thiết kế/provider. Nguồn `KS 確認事項!K85;20261120!F33`; bằng chứng `EV-0981`.
+
+Đối chiếu/hash và khác biệt nguồn: [báo cáo23/11](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md).
+
+<details>
+<summary>Đặc tả trước tiếp nhận23/11 — giữ để truy vết; không dùng phần mâu thuẫn làm hành vi hiện hành</summary>
+
+
 ## Đối chiếu nguồn hiện hành — 20/11/2026
 
 M-17 cấu hình giờ chung, nhắc tư liệu 2 giờ và ngày 3/7 ban đầu, ngày tổng kết; M-18 danh sách từ cấm. Mục tiêu/quyền duyệt/dừng theoTalent tại M-10.
@@ -67,3 +79,6 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP10: 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.41, CR-07 (đã chốt): màn cài đặt chung có giờ nhắn, giờ nhắc, số ngày không đăng, danh sách từ cấm. Q&A No.2, No.62: thêm **đơn giá video**. Q&A No.25: giờ nhắn chung theo khung sáng, trưa, tối; đổi theo từng tài năng xem xét sau khi vận hành ([KS] 確認18).
+
+
+</details>
