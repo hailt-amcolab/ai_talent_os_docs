@@ -1,14 +1,9 @@
 {
-  "snapshot_date": "2026-11-23",
+  "snapshot_date": "2026-11-25",
   "source_root": "source_requiments",
   "catalog": "TAI_LIEU_NGUON.md",
-  "file_count": 20,
-  "notice": "20tệp:16nguồn trước giữ hash;4tệp mới23112026 (UI-M20 ngày20/11;ISS22-D/P,ADV22 ngày22/11). Bản đề nghị không tự duyệt scope; DOCX/PDF không là hai quyết định.",
-  "comparison_to_18nov": {
-    "previous_catalog_files_unchanged": 9,
-    "historical_docx_newly_cataloged": 1,
-    "screen_definition_pdfs_newly_cataloged": 2
-  },
+  "file_count": 23,
+  "notice": "23 tệp; QA/KS cập nhật, KS24 trùng byte KS trong Q&A; YK3 0.3 chưa đồng bộ QA101/Square. Giữ lịch sử và giới hạn phê duyệt.",
   "files": [
     {
       "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
@@ -61,15 +56,30 @@
     },
     {
       "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
-      "bytes": 184455,
-      "sha256": "960a8e8e229ae46d8aaa492ea610e56a4c9a3c31c7fc18982348d3540e5ecc6e",
+      "bytes": 246498,
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
       "comparison_18nov": "unchanged",
       "sheets": [
-        "Q&A",
-        "保留",
-        "デザインFB",
-        "お知らせ・メール文章",
-        "追加要件"
+        {
+          "name": "Q&A",
+          "nonempty_cells": 889
+        },
+        {
+          "name": "保留",
+          "nonempty_cells": 17
+        },
+        {
+          "name": "デザインFB",
+          "nonempty_cells": 11
+        },
+        {
+          "name": "お知らせ・メール文章",
+          "nonempty_cells": 11
+        },
+        {
+          "name": "追加要件",
+          "nonempty_cells": 201
+        }
       ],
       "source_code": "QA",
       "use": "living_log; inspect current statements and statuses",
@@ -96,13 +106,30 @@
     },
     {
       "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
-      "bytes": 58058,
-      "sha256": "0530779f96acf1c1534110e5e57b15d4f35fff056a913d76fd6670a43878019e",
+      "bytes": 71832,
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
       "comparison_18nov": "unchanged",
       "sheets": [
-        "確認事項",
-        "20261120",
-        "プロジェクトを進めるために決める事項"
+        {
+          "name": "確認事項",
+          "nonempty_cells": 608
+        },
+        {
+          "name": "20261120",
+          "nonempty_cells": 179
+        },
+        {
+          "name": "20261122",
+          "nonempty_cells": 289
+        },
+        {
+          "name": "プロジェクトを進めるために決める事項",
+          "nonempty_cells": 17
+        },
+        {
+          "name": "アクション一覧",
+          "nonempty_cells": 105
+        }
       ],
       "source_code": "KS",
       "use": "living_log; inspect current statements and statuses",
@@ -246,357 +273,59 @@
       "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
       "use": "Slide9lời khuyên,7vấn đề và8ưu tiên; đề nghị chuẩn bị24/11",
       "pages": 12
-    }
-  ],
-  "qa_snapshot": {
-    "main_sheet": "Q&A",
-    "question_rows": 76,
-    "Close": 43,
-    "Open": 33,
-    "held_question": {
-      "sheet": "保留",
-      "No": 50,
-      "status": "Open"
     },
-    "additional_requirements_rows": 25,
-    "unchanged_since_previous_catalog": true
-  },
-  "screen_indexes": {
-    "SD-T18": {
-      "screens": [
-        {
-          "screen_id": "T-01",
-          "page": 5,
-          "name_ja": "利用の申し込み",
-          "name_vi": "Đơn đăng ký sử dụng"
-        },
-        {
-          "screen_id": "T-02",
-          "page": 6,
-          "name_ja": "ログイン",
-          "name_vi": "Đăng nhập"
-        },
-        {
-          "screen_id": "T-03",
-          "page": 7,
-          "name_ja": "パスワードの設定（最初のログイン）",
-          "name_vi": "Đặt mật khẩu lần đầu"
-        },
-        {
-          "screen_id": "T-04",
-          "page": 8,
-          "name_ja": "はじめに行うこと",
-          "name_vi": "Các bước bắt đầu sử dụng"
-        },
-        {
-          "screen_id": "T-05",
-          "page": 9,
-          "name_ja": "SNS の接続",
-          "name_vi": "Kết nối mạng xã hội"
-        },
-        {
-          "screen_id": "T-06",
-          "page": 10,
-          "name_ja": "マイページ",
-          "name_vi": "Trang cá nhân"
-        },
-        {
-          "screen_id": "T-07",
-          "page": 11,
-          "name_ja": "ホーム",
-          "name_vi": "Trang chủ"
-        },
-        {
-          "screen_id": "T-08",
-          "page": 12,
-          "name_ja": "自動投稿の設定",
-          "name_vi": "Thiết lập đăng tự động"
-        },
-        {
-          "screen_id": "T-09",
-          "page": 13,
-          "name_ja": "AIコーチとの会話",
-          "name_vi": "Hội thoại với AI coach"
-        },
-        {
-          "screen_id": "T-10",
-          "page": 14,
-          "name_ja": "投稿案の詳細",
-          "name_vi": "Chi tiết bản nháp"
-        },
-        {
-          "screen_id": "T-11",
-          "page": 15,
-          "name_ja": "写真・動画の送付",
-          "name_vi": "Gửi ảnh/video"
-        },
-        {
-          "screen_id": "T-12",
-          "page": 16,
-          "name_ja": "動画の作成",
-          "name_vi": "Tạo video"
-        },
-        {
-          "screen_id": "T-13",
-          "page": 17,
-          "name_ja": "動画の確認",
-          "name_vi": "Kiểm tra video"
-        },
-        {
-          "screen_id": "T-14",
-          "page": 18,
-          "name_ja": "投稿の予定と結果",
-          "name_vi": "Lịch và kết quả đăng"
-        },
-        {
-          "screen_id": "T-15",
-          "page": 19,
-          "name_ja": "お知らせ",
-          "name_vi": "Thông báo"
-        },
-        {
-          "screen_id": "T-16",
-          "page": 20,
-          "name_ja": "ご利用とお支払い",
-          "name_vi": "Sử dụng và thanh toán"
-        }
-      ],
-      "workflows": [
-        {
-          "page": 21,
-          "name_ja": "利用を始めるまで"
-        },
-        {
-          "page": 22,
-          "name_ja": "毎日の投稿"
-        },
-        {
-          "page": 23,
-          "name_ja": "自動投稿"
-        },
-        {
-          "page": 24,
-          "name_ja": "AI で動画を作る"
-        },
-        {
-          "page": 25,
-          "name_ja": "実績と目標を確かめる"
-        },
-        {
-          "page": 26,
-          "name_ja": "お知らせに対応する"
-        },
-        {
-          "page": 27,
-          "name_ja": "毎月の支払い"
-        },
-        {
-          "page": 28,
-          "name_ja": "利用をやめる"
-        }
-      ],
-      "pages_with_confirmation_marker": [
-        1,
-        5,
-        11,
-        12,
-        13,
-        15,
-        20,
-        21,
-        22,
-        23,
-        26,
-        27
-      ]
+    {
+      "path": "source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx",
+      "source_code": "EXT24",
+      "document_date": "2026-11-24",
+      "use": "Source input; not blanket approval",
+      "sha256": "255bf76e74cc621ce4d2bafa4f408edc89aec07f80806e5076d823f7b51ddbd0",
+      "bytes": 4887340,
+      "embedded_media_files": 13,
+      "visual_review": "Embedded media inspected at contact-sheet scale; small labels require full-size recheck before AC approval",
+      "slides": 14
     },
-    "SD-M18": {
-      "screens": [
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "source_code": "YK3",
+      "document_date": "2026-11-24",
+      "use": "Source input; not blanket approval",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+      "bytes": 28775470,
+      "embedded_media_files": 57,
+      "visual_review": "Embedded media inspected at contact-sheet scale; small labels require full-size recheck before AC approval",
+      "paragraphs": 1411,
+      "version": "0.3"
+    },
+    {
+      "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
+      "source_code": "KS24",
+      "document_date": "Nhiều ngày; xem từng sheet/ô",
+      "use": "Source input; not blanket approval",
+      "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122",
+      "bytes": 71980,
+      "sheets": [
         {
-          "screen_id": "M-01",
-          "page": 4,
-          "name_ja": "ログイン（二段階認証）",
-          "name_vi": "Đăng nhập hai bước"
+          "name": "確認事項",
+          "nonempty_cells": 608
         },
         {
-          "screen_id": "M-02",
-          "page": 5,
-          "name_ja": "お知らせ一覧",
-          "name_vi": "Danh sách thông báo"
+          "name": "20261120",
+          "nonempty_cells": 179
         },
         {
-          "screen_id": "M-03",
-          "page": 6,
-          "name_ja": "申し込みの確認（承認・拒否）",
-          "name_vi": "Xét đơn đăng ký"
+          "name": "20261122",
+          "nonempty_cells": 289
         },
         {
-          "screen_id": "M-04",
-          "page": 7,
-          "name_ja": "承認待ち一覧",
-          "name_vi": "Danh sách chờ duyệt"
+          "name": "プロジェクトを進めるために決める事項",
+          "nonempty_cells": 17
         },
         {
-          "screen_id": "M-05",
-          "page": 8,
-          "name_ja": "投稿の承認",
-          "name_vi": "Duyệt bài đăng"
-        },
-        {
-          "screen_id": "M-06",
-          "page": 9,
-          "name_ja": "タレント一覧",
-          "name_vi": "Danh sách Talent"
-        },
-        {
-          "screen_id": "M-07",
-          "page": 10,
-          "name_ja": "タレントの詳細（情報）",
-          "name_vi": "Thông tin Talent"
-        },
-        {
-          "screen_id": "M-08",
-          "page": 11,
-          "name_ja": "タレントの詳細（投稿）",
-          "name_vi": "Bài đăng của Talent"
-        },
-        {
-          "screen_id": "M-09",
-          "page": 12,
-          "name_ja": "タレントの詳細（会話）",
-          "name_vi": "Hội thoại của Talent"
-        },
-        {
-          "screen_id": "M-10",
-          "page": 13,
-          "name_ja": "タレントの詳細（設定）",
-          "name_vi": "Cài đặt Talent"
-        },
-        {
-          "screen_id": "M-11",
-          "page": 14,
-          "name_ja": "使ってはいけない言葉が入っていた投稿の確認",
-          "name_vi": "Kiểm tra bài có từ cấm"
-        },
-        {
-          "screen_id": "M-12",
-          "page": 15,
-          "name_ja": "事務所アカウントの作成",
-          "name_vi": "Tạo tài khoản công ty"
-        },
-        {
-          "screen_id": "M-13",
-          "page": 16,
-          "name_ja": "カテゴリーの管理",
-          "name_vi": "Quản lý nhóm"
-        },
-        {
-          "screen_id": "M-14",
-          "page": 17,
-          "name_ja": "AIへの指示（一覧）",
-          "name_vi": "Danh sách chỉ thị AI"
-        },
-        {
-          "screen_id": "M-15",
-          "page": 18,
-          "name_ja": "AIへの指示（入力）",
-          "name_vi": "Nhập chỉ thị AI"
-        },
-        {
-          "screen_id": "M-16",
-          "page": 19,
-          "name_ja": "すべての自動投稿の停止",
-          "name_vi": "Dừng toàn bộ đăng tự động"
-        },
-        {
-          "screen_id": "M-17",
-          "page": 20,
-          "name_ja": "全体の設定",
-          "name_vi": "Cài đặt chung"
-        },
-        {
-          "screen_id": "M-18",
-          "page": 21,
-          "name_ja": "マネージャーの管理",
-          "name_vi": "Quản lý Manager"
-        },
-        {
-          "screen_id": "M-19",
-          "page": 22,
-          "name_ja": "閲覧の記録",
-          "name_vi": "Nhật ký xem"
-        },
-        {
-          "screen_id": "M-20",
-          "page": 23,
-          "name_ja": "タレントの情報の入力",
-          "name_vi": "Nhập thông tin Talent"
+          "name": "アクション一覧",
+          "nonempty_cells": 105
         }
-      ],
-      "workflows": [
-        {
-          "page": 24,
-          "name_ja": "利用を始めるまで"
-        },
-        {
-          "page": 25,
-          "name_ja": "毎日の投稿"
-        },
-        {
-          "page": 26,
-          "name_ja": "実績と目標を確かめる"
-        },
-        {
-          "page": 27,
-          "name_ja": "お知らせに対応する"
-        },
-        {
-          "page": 28,
-          "name_ja": "毎月の支払い"
-        },
-        {
-          "page": 29,
-          "name_ja": "使ってはいけない言葉が見つかったとき"
-        },
-        {
-          "page": 30,
-          "name_ja": "AIコーチへの指示と設定"
-        },
-        {
-          "page": 31,
-          "name_ja": "利用をやめる"
-        },
-        {
-          "page": 32,
-          "name_ja": "自動投稿を止める・再開する"
-        },
-        {
-          "page": 33,
-          "name_ja": "事務所アカウントで投稿する"
-        },
-        {
-          "page": 34,
-          "name_ja": "マネージャーの利用と、閲覧の記録"
-        }
-      ],
-      "pages_with_confirmation_marker": [
-        1,
-        5,
-        6,
-        9,
-        13,
-        17,
-        19,
-        21,
-        23,
-        24,
-        25,
-        27,
-        28,
-        30,
-        32
       ]
     }
-  },
-  "current_review_ref": "docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md"
+  ]
 }

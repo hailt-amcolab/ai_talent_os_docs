@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-25",
+  "author": "Codex",
+  "input_sha256": "00ac1ba514ba90c91048e2e7d951aad1aa6af76d46773e5c9942cc370f7adfad",
+  "artifact": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+  "independent_review": "NOT_PERFORMED; author documentation repair only",
+  "scope": "User demo feedback items1–7; documentation only, no application/schema/source/CLAUDE edits",
+  "output_sha256": "6952fe49c663fb0ffbc45baa22a74e48cecba5e83ceecc10fbfe5217862a1041",
+  "inputs": [
+    {
+      "path": "CLAUDE.md",
+      "sha256": "426eda8f9e2eab03575432b31232aed49493ac22f701ff6d67f11f2206edece2"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "839d530cd19ebab81e8456f17c611d1d6649abef2bef9e7828cefa5bfa0e1f10"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/runner.ts",
+      "sha256": "fc35ffc6832adef092c8229216dad850a1b07b044b24d9ecd92d4da446376348"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/changes.ts",
+      "sha256": "cfb7310bc685a08a8606821f2d3b7198ba99ae21e4e0d074a34c22431d7c9c0a"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/tools.ts",
+      "sha256": "b9abb7e47488f5b227535f8837cae8d27d772b7ec2d2c425606976f81f8e8c99"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/context.ts",
+      "sha256": "53210a60349b1d60464cf0991aa9e7c38199d3011f067281f0ceaf38aa75fa2b"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/routes.ts",
+      "sha256": "aa7309f1a0eb322a5eccbd08c036bb0e2fd6d6fbb1b3e7419ff33e5dd6c02183"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/store.ts",
+      "sha256": "19d96008142090ebb90d0d492585fe4927bd13646e356bd202ebafa65375f52e"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/effects.ts",
+      "sha256": "48aa13bdf4ee49bb7815fc728d2920e2b1c226073f48705ca707f12860851c0b"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/agent.integration.test.ts",
+      "sha256": "1f3c63128c13800de18c40e62ee3df50ad306f145f025b323cebca80bee20af5"
+    },
+    {
+      "path": "apps/api/src/config/env.ts",
+      "sha256": "95b57278477fe380a4b52461b300867073654c17a5b852a02ed27543118bceea"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000000_ai_core_executions/migration.sql",
+      "sha256": "fc9de33070b55bf8f82245dc96266631a6c9bea526bfe000723ff7d1cc54c8b7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261125000000_agent_core/migration.sql",
+      "sha256": "94c2afdd9ccffcef121553faad5dacefc5919d701fcce419b891e7ec96bfe4dd"
+    },
+    {
+      "path": "apps/web/components/demo/AgentDemo.tsx",
+      "sha256": "43f4d5d4b6cdd5027e5d920358c3d058c85ecc94095295ad57f192091eabd9b0"
+    }
+  ],
+  "feedback_disposition": [
+    {
+      "item": 1,
+      "assessment": "ACCEPT; documented contradiction fixed",
+      "contract": "Backend commit on resume before model; no required model change_commit",
+      "sections": [
+        "2.3",
+        "2.4",
+        "4.3",
+        "5.1",
+        "7.2"
+      ],
+      "observed_code": "runner.ts commitConfirmed; changes.ts commit"
+    },
+    {
+      "item": 2,
+      "assessment": "ACCEPT",
+      "contract": "issues with field path and message; strict args; corrected retry max2 within run budget",
+      "sections": [
+        "7.3",
+        "7.4"
+      ],
+      "observed_code": "tools.ts has issues; bounded per-tool repair counter not established by this review"
+    },
+    {
+      "item": 3,
+      "assessment": "ACCEPT",
+      "contract": "Explicit step_ledger CHECK branches, phases/finished_at and active index; design vs applied migration distinguished",
+      "sections": [
+        "4",
+        "4.1",
+        "4.2.1"
+      ],
+      "observed_code": "20261125000000_agent_core migration; live apply not checked"
+    },
+    {
+      "item": 4,
+      "assessment": "ACCEPT as scoped demo technical choices",
+      "contract": "Auth demo allowed isolated/nonproduction; OneDrive Profile.md one-way export; Talent read-only; production blockers explicit",
+      "sections": [
+        "opening scope",
+        "6.0",
+        "7.2",
+        "11.1",
+        "12"
+      ]
+    },
+    {
+      "item": 5,
+      "assessment": "ACCEPT user demo preference",
+      "contract": "English UI in lib/messages.ts; Japanese AI/action conversation; locale production not inferred",
+      "sections": [
+        "opening scope",
+        "7.3",
+        "10.3"
+      ]
+    },
+    {
+      "item": 6,
+      "assessment": "ACCEPT",
+      "contract": "profile text readiness; persistent action request key contract; owner/runtime disposable test connections; restore via conversation runs",
+      "sections": [
+        "6.1",
+        "10.1",
+        "10.1.1",
+        "13"
+      ],
+      "observed_gaps": [
+        "confirm/reject/cancel require requestKey but do not persist it",
+        "test ownerUrl fallback does not prove runtime ACL",
+        "run list exists in code with LIMIT20 and no id tie-break",
+        "readiness policy revision is target metadata; current demo predicate profile.trim()"
+      ]
+    },
+    {
+      "item": 7,
+      "assessment": "ACCEPT editorial repair",
+      "contract": "Spacing fixed; repeated source locators concentrated in section1; scope/conditions stated directly",
+      "sections": [
+        "whole document"
+      ]
+    }
+  ],
+  "code_gaps_to_verify": [
+    "action request persistence and hash replay checks",
+    "bounded argument repair counter",
+    "task/step_ledger consistency trigger",
+    "stable run-list tie-break ordering",
+    "OneDrive stale-version concurrency and conditional writes",
+    "MCP no-run auto-commit command wake; MCP remains not enabled",
+    "strict owner/runtime setup without ACL-test fallback"
+  ],
+  "validation": {
+    "editorial_and_feedback_checks": {
+      "backend_commit_before_model": true,
+      "invalid_issues_and_bounded_repair": true,
+      "attempt_mode": true,
+      "demo_boundaries": true,
+      "language": true,
+      "readiness": true,
+      "action_request_persistence": true,
+      "two_test_roles": true,
+      "run_restore_route": true
+    },
+    "local_links": "PASS",
+    "markdown_fences": "PASS",
+    "protected_input_hashes": "PASS",
+    "workflow_validator": "NOTICE: 815 historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied\nPASS: 23 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n",
+    "diff_whitespace": "PASS (cr-at-eol convention)",
+    "application_tests": "NOT_RUN; no code/schema changes in this turn",
+    "live_model_or_database": "NOT_RUN"
+  }
+}

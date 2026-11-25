@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### YK3: luồng và mã màn
+
+Bản0.3 ngày24/11 có16luồng nghiệp vụ, T-01–T-19 và M-01–M-21; đây là bộ mã của YK3. Ví dụ T-08 My Page, T-10 autopost, T-11 chat, M-08 nhập Talent, M-15 danh sách chỉ thị, M-16 nhập, M-17 chat, M-21 audit.
+
+**Còn mở/giới hạn:** Không đổi mã AG/SD18/SD19 theo số trùng. YK3 dẫn screen/flow20/11 nhưng chưa có bộ độc lập đó trong24112026. Hình nhúng chỉ xem ở mức tổng quan, không đủ ký AC chi tiết. Căn cứ: `YK3 §2-4; w:p96–110; §2-5; phụ lụcA–D`; `EV-1327`; YK3 §2-4.
+
+<!-- /DELIVERY24112026 -->
+
 # Luồng nghiệp vụ hiện hành — đối chiếu19/11 và QA/KS20/11
 
 Đã đối chiếu30luồng. Mỗi mục dưới là phần cập nhật hiện hành; liên kết chi tiết cũ dùng tra lịch sử và không thay thế phần này. Bước/scenario trong các sổ hiện hành được gắn nguồn mới; nhánh chưa chốt không tự thành quyết định khách. Chưa có Independent Review cho phiên bản này.

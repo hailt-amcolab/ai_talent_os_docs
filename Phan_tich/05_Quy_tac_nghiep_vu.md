@@ -1,3 +1,58 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### AI agent và dữ liệu
+
+G/H ghi xác nhận24/11: AI Coach là agent đọc/ghi Supabase; nhận chỉ thị, khen, đề xuất và ghi tiến độ Challenge, nhập chỉ thị qua hội thoại M-17 trong phạm vi; dữ liệu trong DB có backup; Adesso trả token và chỉnh prompt; không bảo đảm phán đoán đúng. J101 là phân vai NỘI BỘ25/11: OS nhập dữ liệu dịch vụ ngoài; agent quyết định giờ rồi ghi lịch để OS thực thi.
+
+**Còn mở/giới hạn:** YK3 §2-5/3-3/3-8/AC chưa đồng bộ. Không suy agent được SQL tùy ý hoặc bỏ kiểm quyền. Vị trí byte media và vai trò OneDrive chưa chốt lại toàn bộ. Căn cứ: `QA Q&A!G101:J101 (No.101)`; `EV-1311`; QA No.101;TR-2-1;TR-2-2;TR-2-3;TR-2-4;TR-3-1;TR-3-2;TR-3-5;TR-8-8.
+
+### Từ cấm sau AI sửa
+
+Quyết định24/11: AI viết lại rồi đặt lịch; không thêm bước Talent xác nhận lại, không chuyển Manager sửa.
+
+**Còn mở/giới hạn:** Không tự chốt số lần sửa khi vẫn lỗi, thất bại hoặc tương tác với duyệt bài công việc; No.96 vẫn theo dõi hiệu lực danh sách đổi. Căn cứ: `KS 20261122!G4:I4 (No.3)`; `EV-1313`; QA No.40;QA No.90;QA No.96;TR-4-4.
+
+### Video và âm nhạc
+
+Nhạc chỉ dùng loại không bản quyền theo cách gọi của nguồn; video cơ bản làm ảnh Talent chuyển động, một dạng cố định; video cầu kỳ làm ngoài rồi nhập vào. Khi provider không nhận ảnh trẻ em thì dùng video Talent tự quay.
+
+**Còn mở/giới hạn:** Độ dài/chất lượng 確認61 và số ảnh 確認62 vẫn chưa quyết. Nhạc thịnh hành do Talent thêm ở app SNS. Không xác nhận điều khoản bản quyền/provider độc lập trong đợt này. Căn cứ: `KS 20261122!G3:I9 (No.2,5–8)`; `EV-1315`; QA No.36;QA No.60;確認61;確認62;TR-5-1;TR-5-2.
+
+### Giới hạn chi tiêu dưới18
+
+Nguồn ghi quyết định24/11: không đặt trần chi tiêu riêng cho Talent dưới18.
+
+**Còn mở/giới hạn:** Không suy bỏ kiểm soát sử dụng kỹ thuật hoặc điều kiện tuổi của SNS/provider; không phải xác nhận pháp lý. Căn cứ: `KS 20261122!G5:I5 (No.4)`; `EV-1316`; QA No.60;TR-5-4.
+
+### Tâm sự nghiêm trọng
+
+Không làm thông báo Manager về tâm sự nghiêm trọng. G17 nói chỉ dẫn AI có thể hướng dẫn tìm hỗ trợ; toàn bộ hội thoại được lưu và Manager đọc được.
+
+**Còn mở/giới hạn:** H/I chỉ chốt không thông báo, không chọn trọn mọi phương án của QA No.93 hoặc bảo đảm AI phát hiện đúng. Căn cứ: `KS 20261122!G17:I17 (No.16)`; `EV-1318`; QA No.93;TR-3-3.
+
+### Giờ đăng
+
+Giờ đăng lệch vài phút giữa Talent và chia khung theo SNS; Manager ghi khoảng giờ trong chỉ thị, AI dùng thực tích để chọn giờ. G16 nói Talent chỉ hủy lịch.
+
+**Còn mở/giới hạn:** H16 không lặp riêng quyền hủy. Không tự chốt thuật toán, jitter cụ thể hoặc thời điểm đổi lịch đang có. Căn cứ: `KS 20261122!G16:I16 (No.15)`; `EV-1319`; QA No.61;QA No.70;TR-8-1;TR-8-3.
+
+### PR
+
+Talent tự thêm PR vào bài; OS không tự phân loại bài công việc hoặc xác định bài cần PR. Nguồn báo đã thử nhãn video AI qua provider.
+
+**Còn mở/giới hạn:** Không dùng nguồn này để tự xác nhận kết quả thử hoặc tuân thủ pháp lý; duyệt bài công việc vẫn do Talent yêu cầu. Căn cứ: `KS 20261122!G33:I33 (No.32)`; `EV-1322`; TR-7-7;TR-5-5.
+
+### YK3: không tự đăng lại
+
+Khi đăng lỗi, OS không tự đăng lại; Talent thử lại sau, Manager vẫn có đặt lịch lại tại M-09. Hủy lịch do cả Talent/Manager.
+
+**Còn mở/giới hạn:** Retry kỹ thuật trước khi xác định kết quả khác việc tự đăng lại bài đã thất bại; cần thiết kế chống trùng và kiểm provider. Căn cứ: `YK3 §2-4-6 w:p386–431`; `EV-1329`; QA No.59;QA No.61;TR-8-5;TR-7-2.
+
+<!-- /DELIVERY24112026 -->
+
 > **Đợt23112026:** Đã đối chiếu nguồn mới; TikTok nháp/consent, ranking, lưu đồng ý phụ huynh và giọng nói là đề nghị chưa chốt. Không khôi phục Manager sửa, cảnh báo tâm sự hoặc trần phí từ hình/nhận định hồi tố. [Đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Mã màn phải kèm UI-M20/ngày20/11/trangPDF; không đổi mã AG/SD18/SD19.
 
 > **Cập nhật nguồn23/11/2026:** QA/KS đã đổi phiên bản; nội dung bên dưới giữ lịch sử, phần mâu thuẫn phải theo [đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md). Talent được hủy lịch/đăng lại bài lỗi; thêm tạm dừng vẫn tính phí; AI tự sửa từ cấm; bỏ dừng đăng toàn hệ thống và thông báo tâm sự nghiêm trọng; chọn media theo chủ đề. Không suy GMO, slideshow hoặc đề xuất đang xem xét đã được duyệt.

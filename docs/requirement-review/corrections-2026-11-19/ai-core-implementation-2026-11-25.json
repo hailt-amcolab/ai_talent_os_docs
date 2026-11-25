@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-25",
+  "author": "Codex",
+  "input_sha256": "8f6b5d202d5ab8dfa74e117002ed20f84b52b90d357d208bad0ed94a453dadd5",
+  "artifact": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+  "status": "IMPLEMENTATION_CONTRACTS_PREPARED; scoped prerequisites and readiness remain explicit",
+  "independent_review": "NOT_ASSIGNED",
+  "output_sha256": "00ac1ba514ba90c91048e2e7d951aad1aa6af76d46773e5c9942cc370f7adfad",
+  "scope": "Documentation only; technical contracts for core implementation; no app/schema/migration/environment edits",
+  "not_done": [
+    "independent review",
+    "application implementation",
+    "live OAuth/provider proof",
+    "load/crash/restore tests",
+    "business decisions in section14",
+    "gate approval"
+  ],
+  "input_refs": [
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03"
+    },
+    {
+      "path": "apps/api/package.json",
+      "sha256": "0c69d1c83412f699f26f0e9fbf7f542f7775a09ad232f20b845b6665357f9635"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/routes.ts",
+      "sha256": "6b1760e64df189f0d82e2678a83f3967f4cc36b3c1c972bc476654431fbc113b"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/store.ts",
+      "sha256": "21e1e66d6266d802336833dbcdeaff680f7b3f128baedf77c88e5fb6b60c8953"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/runner.ts",
+      "sha256": "ac9264c0c24a58a4410b6c15f43bdf66c602ddf79f3341205f9f214bda232594"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/coach.ts",
+      "sha256": "24273573b4ef7613503e7b33c3c51be549158c6401edfc8882faa899efd74f61"
+    },
+    {
+      "path": "apps/api/src/config/env.ts",
+      "sha256": "20eb03c28a0add6e6bb87994c7b0a412820b3720485b202a5c915677a13750dc"
+    },
+    {
+      "path": "apps/api/src/http/app.ts",
+      "sha256": "cc6319c1032bdb49868e9ce3a9cb93525046bd0f5f47caeb49bac3b5fa71592f"
+    },
+    {
+      "path": "apps/api/src/container.ts",
+      "sha256": "9699b91fbaa128b0d14b267e3aa906f2d68fca057cf14af9366685922462479d"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "c72c8d224a2101c53a771550cb9ee39cb682bc5af859f235d72c6dfd8a1d74a1"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000000_ai_core_executions/migration.sql",
+      "sha256": "fc9de33070b55bf8f82245dc96266631a6c9bea526bfe000723ff7d1cc54c8b7"
+    },
+    {
+      "path": "apps/api/PRISMA.md",
+      "sha256": "e1a05571c41abe21600195729653f5684782e673a860d875d70785a127141452"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "e028ca076076591b139219a2b1a1edefbb82620e3da9c8d2c8e833ba6f6d7f9e"
+    }
+  ],
+  "technical_sources": [
+    "https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling",
+    "https://developers.openai.com/api/docs/guides/function-calling",
+    "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+    "https://supabase.com/changelog.md"
+  ],
+  "coverage": {
+    "state_persistence_migration": "4.1–4.4",
+    "runtime_continuation_limits": "5.1–5.2",
+    "context": "6.1",
+    "tools_permissions_user_feedback": "7–7.3",
+    "http_mcp_modules": "10.1–10.3",
+    "config_observability": "11.1",
+    "validation_oracles": "13",
+    "remaining_decisions": "14"
+  },
+  "validation": {
+    "local_links": "PASS",
+    "markdown_fences": "PASS",
+    "requested_editorial_structure": "PASS",
+    "mechanical_workflow_validator": "NOTICE: 815 historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied\nPASS: 23 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n",
+    "diff_check": "PASS",
+    "app_tests": "NOT_RUN; documentation-only change; no readiness assertion from a test run"
+  }
+}

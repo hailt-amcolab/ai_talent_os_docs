@@ -1,3 +1,5 @@
+> **Đối chiếu25/11/2026:** vẫn0câu xuất độc lập; QA nguồn đã có No.100 (ranking, Open) và No.101 (agent/DB/backup, có trả lời24/11, Close). KS20261122 bổ sung trả lời cho từ cấm, phụ huynh, tâm sự nghiêm trọng; chỉ tiếp tục phần chưa trả lời theo No. cũ. CR hiện hành01–14 đã đổi nghĩa, không dùng ID cũ ngoài phiên bản. [Báo cáo nguồn24/11](../corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa duyệt/gửi Q&A mới; G5/G6 BLOCKED.
+
 > **Đợt23112026:** Nguồn mới có đề nghị và 18 mục cần FCP/đội kiểm tra; không tạo câu hỏi khách mới hoặc đóng No.93–99. [Review và định tuyến](../corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Guard/transition/AC ở nhánh bị ảnh hưởng giữ STALE; chưa có review độc lập.
 
 # Q&A hiện hành — theo dõi nhật ký nguồn sau cập nhật23/11/2026

@@ -1,5 +1,7 @@
 # 05. Từ điển dữ liệu
 
+> **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
+
 > **Rà soát 23/11/2026:** Đối chiếu QA/KS hiện hành và bộ `23112026`; xem [kết quả tác động DB](06_extensibility_review.md) và [danh mục nguồn](../TAI_LIEU_NGUON.md). Tách schema trong repository, quyết định nguồn và đề xuất thiết kế. Lần rà này chỉ cập nhật tài liệu, chưa áp migration hoặc kiểm tra database đang chạy; không cấp phê duyệt nghiệp vụ, thương mại hay release.
 
 Bản 2.0 · 18/11/2026 · Bước 5. **Sinh tự động** từ catalog sau khi chạy đủ 6 migration tới `20261118000100_technology_demo` (script `gen_tu_dien.py`; đừng sửa tay phần bảng, sửa mô tả trong script hoặc trong tệp này rồi chạy lại). SQL migration mô tả cấu trúc trong repository; xác nhận DB đang chạy cần catalog riêng. Cột "Yêu cầu" dùng mã ở `01_confirmed_requirements.md`; "KT" là cột kỹ thuật, không có yêu cầu nghiệp vụ riêng. Phạm vi được làm: `07_implementation_scope_and_rules.md`.
@@ -140,7 +142,7 @@ Quyền runtime: SELECT, INSERT, UPDATE
 | onedrive_folder_id | text | Có |  | UQ | Mã thư mục riêng trên OneDrive | R02-01 |
 | onedrive_folder_created_at | timestamp with time zone | Có |  |  | Lúc tạo thư mục OneDrive | R02-01 |
 | posting_service_profile_ref | text | Có |  | UQ | Mã hồ sơ của tài năng ở Upload-Post | R06-09 |
-| posting_service_registered_at | timestamp with time zone | Có |  |  | Lúc đăng ký với Upload-Post (thời điểm còn chờ S06-02) | R06-09 |
+| posting_service_registered_at | timestamp with time zone | Có |  |  | Lúc đăng ký với Upload-Post (thời điểm còn chờ S 06-02) | R06-09 |
 | status_changed_at | timestamp with time zone | Không | now() |  | Lần đổi trạng thái gần nhất | R01-11 |
 | version | integer | Không | 1 | CK `chk_talents_positive_version` | Khóa lạc quan | KT |
 | created_at | timestamp with time zone | Không | now() |  |  | KT |
@@ -289,7 +291,7 @@ Quyền runtime: SELECT, INSERT
 
 | Cột | Kiểu | Null | Mặc định | Ràng buộc | Mô tả | Yêu cầu |
 |---|---|---|---|---|---|---|
-| email_hash | text | Không |  | CK `auth_login_identifiers_email_hash_check`; PK | HMAC-SHA256 hex của email đã chuẩn hóa (khóa `LOGIN_HMAC_KEY`) | R01-08 |
+| email_hash | text | Không |  | CK `auth_login_identifiers_email_hash_check`; PK | HMAC-SHA 256 hex của email đã chuẩn hóa (khóa `LOGIN_HMAC_KEY`) | R01-08 |
 | auth_user_id | uuid | Không |  | FK `app_private.auth_principals`; UQ | Người dùng ứng với email | R01-08 |
 
 <details><summary>Ràng buộc, chỉ mục, trigger (định nghĩa đầy đủ)</summary>
@@ -483,7 +485,7 @@ Quyền runtime: SELECT, INSERT, UPDATE
 | kind | text | Không |  | CK `chk_media_assets_ai_is_video`; CK `chk_media_assets_kind` | `photo` hoặc `video` | R05-01 |
 | source | text | Không |  | CK `chk_media_assets_ai_is_video`; CK `chk_media_assets_source` | Nguồn; `ai_generated` dùng để ghi nhãn AI khi đăng | R05-10 |
 | uploaded_by_manager_id | uuid | Có |  | FK `managers` | Quản lý gửi thay | R05-01 |
-| mime_type | text | Không |  |  | Kiểu tệp (image/jpeg, video/mp4…) | R05-04 |
+| mime_type | text | Không |  |  | Kiểu tệp (image/jpeg, video/mp 4…) | R05-04 |
 | size_bytes | bigint | Không |  | CK `chk_media_assets_size` | Dung lượng (byte), > 0 | R05-04 |
 | onedrive_item_id | text | Có |  | CK `chk_media_assets_location`; UQ | Mã tệp trên OneDrive sau khi chuyển | R05-02 |
 | temp_object_path | text | Có |  | CK `chk_media_assets_location` | Đường dẫn bản tạm ở Supabase Storage | R05-03 |
@@ -639,7 +641,7 @@ Quyền runtime: SELECT, INSERT, UPDATE
 | id | uuid | Không | gen_random_uuid() | PK |  | KT |
 | talent_id | uuid | Không |  | FK `talents`; FK kép (talent_id, owner_auth_user_id) `talents` | Tham chiếu `talents` | R09-01 |
 | endpoint | text | Không |  | CK `chk_push_subscriptions_endpoint`; UQ | Địa chỉ nhận của máy chủ đẩy | R09-01 |
-| p256dh_key | text | Không |  |  | Khóa mã hóa của đăng ký Web Push | R09-01, R10-06 |
+| p 256 dh_key | text | Không |  |  | Khóa mã hóa của đăng ký Web Push | R09-01, R10-06 |
 | auth_secret | text | Không |  |  | Khóa mã hóa của đăng ký Web Push | R09-01, R10-06 |
 | is_active | boolean | Không | true | CK `chk_push_active_binding`; CK `chk_push_subscriptions_deactivated` | false khi đăng xuất, tắt thông báo, hoặc máy chủ đẩy trả 404/410 | R09-01 |
 | last_success_at | timestamp with time zone | Có |  |  | Lần gửi thành công gần nhất | KT |
@@ -705,11 +707,11 @@ Quyền runtime: không · **Chặn ghi**
 | Cột | Kiểu | Null | Mặc định | Ràng buộc | Mô tả | Yêu cầu |
 |---|---|---|---|---|---|---|
 | id | uuid | Không | gen_random_uuid() | PK |  | KT |
-| kind | text | Không |  |  | Đơn mới, yêu cầu duyệt, từ cấm, đăng lỗi, lâu không đăng, chuyện nghiêm trọng, đạt mục tiêu, thu tiền lỗi | R09-02 |
+| kind | text | Không |  |  | Mô tả legacy đã thay: catalog hiện hành theo YK3 phụ lục B; không phát cảnh báo tư vấn nghiêm trọng hoặc Manager sửa NG. Approval request ở queue riêng; xem 04 §5 | R09-02 |
 | talent_id | uuid | Có |  | CK `chk_manager_notifications_owned_subject`; CK `chk_manager_notifications_subject`; CK `chk_manager_notifications_subject_family`; FK kép (coach_message_id, talent_id) `coach_messages`; FK kép (post_id, talent_id) `posts`; FK `talents` | Tài năng liên quan | R09-02 |
 | talent_application_id | uuid | Có |  | CK `chk_manager_notifications_subject`; CK `chk_manager_notifications_subject_family`; FK `talent_applications` | Với thông báo "đơn mới" | R09-02 |
 | post_id | uuid | Có |  | CK `chk_manager_notifications_owned_subject`; CK `chk_manager_notifications_subject_family`; FK `posts`; FK kép (post_id, talent_id) `posts` | Với yêu cầu duyệt, từ cấm, đăng lỗi | R09-02 |
-| coach_message_id | bigint | Có |  | CK `chk_manager_notifications_owned_subject`; CK `chk_manager_notifications_subject_family`; FK `coach_messages`; FK kép (coach_message_id, talent_id) `coach_messages` | Với chuyện nghiêm trọng | R03-03 |
+| coach_message_id | bigint | Có |  | CK `chk_manager_notifications_owned_subject`; CK `chk_manager_notifications_subject_family`; FK `coach_messages`; FK kép (coach_message_id, talent_id) `coach_messages` | FK legacy tới coach_messages; không dùng để tạo cảnh báo tư vấn nghiêm trọng | R03-03 |
 | event_key | text | Không |  | UQ | Khóa chống tạo trùng | KT |
 | handled_at | timestamp with time zone | Có |  | CK `chk_manager_notifications_handled` | Đã xử lý (dùng chung cho mọi quản lý, U-10) | R09-02 |
 | handled_by_manager_id | uuid | Có |  | CK `chk_manager_notifications_handled`; FK `managers` | Tham chiếu `managers` | R09-02 |
@@ -1176,7 +1178,7 @@ Quyền runtime: không · **Chặn ghi**
 | talent_id | uuid | Không |  | FK kép (result_media_asset_id, talent_id) `media_assets`; FK `talents`; UQ (id, talent_id) | Lượt được tính cho tài năng này (kể cả khi quản lý tạo thay) | R05-07, CR-09 |
 | video_type | text | Không |  | CK `chk_video_generations_video_type` | `short` (video ngắn AI) hoặc `slide` (trình chiếu) | BR-12 |
 | status | text | Không | 'requested'::text | CK `chk_video_generations_completed`; CK `chk_video_generations_result`; CK `chk_video_generations_status` | `requested` → `processing` → `succeeded` / `failed` | R05-06〜R05-09 |
-| is_counted | boolean | Không | true |  | Đếm vào số lần tạo video trong tháng; false khi dịch vụ tạo video lỗi. Chỉ tính tiền khi tài năng là loại `talent` (tài khoản công ty được đếm, không thu tiền) | BR-13, R08-04, R08-07 |
+| is_counted | boolean | Không | true |  | Projection legacy đếm lượt; false khi dịch vụ tạo video lỗi. Thời điểm ghi/đảo lượt còn mâu thuẫn YK3 P475/P485/P644; không thay ledger tài chính. Chỉ tính tiền khi tài năng là loại `talent` (tài khoản công ty được đếm, không thu tiền) | BR-13, R08-04, R08-07 |
 | requested_by_manager_id | uuid | Có |  | FK `managers` | Quản lý tạo thay | CR-09 |
 | idempotency_key | text | Không |  | UQ | Chống tạo hai lượt khi bấm lặp | KT |
 | provider_job_ref | text | Có |  |  | Mã việc ở fal.ai (video ngắn) | R05-06 |
@@ -1279,7 +1281,7 @@ Quyền runtime: SELECT, INSERT, UPDATE
 | auth_user_id | uuid | Không |  | FK kép (session_id, auth_user_id) `app_private.tech_demo_sessions` | Demo: chủ đăng ký | Demo |
 | session_id | uuid | Không |  | FK kép (session_id, auth_user_id) `app_private.tech_demo_sessions` | Demo: phiên tạo đăng ký | Demo |
 | endpoint | text | Không |  | CK `tech_demo_push_subscriptions_endpoint_check`; UQ | Demo: địa chỉ máy chủ đẩy | Demo |
-| p256dh_key | text | Không |  |  | Demo: khóa mã hóa nội dung | Demo |
+| p 256 dh_key | text | Không |  |  | Demo: khóa mã hóa nội dung | Demo |
 | auth_secret | text | Không |  |  | Demo: khóa bí mật của đăng ký | Demo |
 | label | text | Không | 'Browser'::text | CK `tech_demo_push_subscriptions_label_check` | Demo: tên máy hiển thị | Demo |
 | is_active | boolean | Không | true |  | Demo: còn bật | Demo |
@@ -1329,13 +1331,342 @@ demo_auth_deliveries_receipt_hash_key: UNIQUE (receipt_hash)
 
 </details>
 
-## Bổ sung23/11 — giới hạn snapshot và hai bảng demo
+## Bổ sung 23/11 — giới hạn snapshot và hai bảng demo
 
-Phần sinh tự động phía trên là snapshot lịch sử38bảng tới migration `20261118000100`, giữ nguyên định nghĩa cột/DDL để không nhầm thiết kế đích với cấu trúc đã có. Không truy vấn DB hoặc chạy lại generator trong đợt này. Sau7migration trong repository có40bảng ứng dụng; hai bảng dưới lấy trực tiếp SQL `20261118000200_onedrive_delegated_demo`, không phải catalog mới và không chứng minh đã áp lên môi trường nào.
+Phần sinh tự động phía trên là snapshot lịch sử 38 bảng tới migration `20261118000100`, giữ nguyên định nghĩa cột/DDL để không nhầm thiết kế đích với cấu trúc đã có. Không truy vấn DB hoặc chạy lại generator trong đợt này. Sau 7 migration trong repository có 40 bảng ứng dụng; hai bảng dưới lấy trực tiếp SQL `20261118000200_onedrive_delegated_demo`, không phải catalog mới và không chứng minh đã áp lên môi trường nào.
 
 | Bảng trong app_private | Trường / ràng buộc chính theo SQL | Giới hạn |
 |---|---|---|
 | `tech_demo_onedrive_connections` | `slot text` PK chỉ primary; `connected_by uuid` FK auth.users SET NULL; `ms_account_id`, `display_name`, `drive_id`, `drive_type`; `status`; `token_box bytea`; `access_expires_at timestamptz`; `version integer`; `connected_at`, `updated_at timestamptz`. CHECK trạng thái connected tương đương token_box khác NULL; drive_type personal/business/documentLibrary | Một kết nối primary cho demo, token mã hóa; không dùng thay mô hình lưu trữ nghiệp vụ |
-| `tech_demo_onedrive_oauth_states` | `state_hash bytea` PK dài32byte; `auth_user_id uuid` FK auth.users CASCADE; `session_id uuid`; `verifier_box bytea`; `expires_at`, `created_at timestamptz`; index auth_user_id | State/PKCE demo, không đưa token/secret vào báo cáo. Hai bảng bật RLS và runtime CRUD theo migration; không quyền PUBLIC/anon/authenticated |
+| `tech_demo_onedrive_oauth_states` | `state_hash bytea` PK dài 32 byte; `auth_user_id uuid` FK auth.users CASCADE; `session_id uuid`; `verifier_box bytea`; `expires_at`, `created_at timestamptz`; index auth_user_id | State/PKCE demo, không đưa token/secret vào báo cáo. Hai bảng bật RLS và runtime CRUD theo migration; không quyền PUBLIC/anon/authenticated |
 
-Các mô tả yêu cầu cạnh cột ở snapshot cũ cần đọc cùng [01](01_confirmed_requirements.md) và [06](06_extensibility_review.md). Cụ thể: CHECK `talents.status` còn3giá trị dù nghiệp vụ thêm 一時停止; cờ global stop còn vật lý nhưng không còn nút sản phẩm; cancel_reason cũ chưa biểu diễn đủ actor Talent; `post_deliveries` chưa là lịch sử lần thử/inbox; `manager_notifications.handled_at` chưa giải quyết No.97; tham chiếu OneDrive/temp chưa quyết định nơi lưu duy nhất. Không tự sửa DDL trong từ điển để giả lập migration đã chạy.
+Các mô tả yêu cầu cạnh cột ở snapshot cũ cần đọc cùng [01](01_confirmed_requirements.md) và [06](06_extensibility_review.md). Cụ thể: CHECK `talents.status` còn 3 giá trị dù nghiệp vụ thêm 一時停止; cờ global stop còn vật lý nhưng không còn nút sản phẩm; cancel_reason cũ chưa biểu diễn đủ actor Talent; `post_deliveries` chưa là lịch sử lần thử/inbox; `manager_notifications.handled_at` chưa giải quyết No.97; tham chiếu OneDrive/temp chưa quyết định nơi lưu duy nhất. Không tự sửa DDL trong từ điển để giả lập migration đã chạy.
+
+## Cập nhật quyết định 25/11 và giới hạn từ điển
+
+Khối SQL catalog trước đây giữ nguyên để không giả là đã regenerate. Các quyết định mới áp vào mô tả và thiết kế đích ở 04 §5: DB nghiệp vụ agent; paused vẫn thu phí; giờ riêng từng SNS; AI sửa NG không xác nhận lại; Square; không lưu đồng ý phụ huynh. **Chưa có cột/bảng thì không được truy vấn như đã triển khai.**
+
+Những cột hiện có cần đọc lại nghĩa: `talents.status` vẫn 3 giá trị, `system_settings` còn cờ global legacy không mở nút sản phẩm; `posts.scheduled_at` chưa biểu diễn lịch riêng SNS; `manager_notifications` chưa đủ recipient/read/handled; `video_generations.is_counted` chưa là ledger; `follower_goals` đã có SELECT runtime theo migration 23/11 nhưng trigger chặn ghi vẫn giữ.
+
+### Bổ sung 13 bảng AI từ DDL nguồn
+
+Các trích đoạn dưới là CREATE TABLE gốc để tra cứu cột/constraint, **không phải catalog sau ALTER** và không dùng làm script tạo lại bảng. Riêng execution/attempt phải đọc tiếp ALTER ở migration 23/11/25/11. RLS/grants và trigger xemfilemigration đầy đủ; không suy các quyền từ snapshot 05 cũ. Chưa replay/liveverify.
+
+### app_private.ai_executions
+
+Run: task/revision, actor/channel/scope, conversation và lease; mở rộng từ legacy. Nguồn: `apps/api/prisma/migrations/20261123000000_ai_core_executions/migration.sql`.
+
+```sql
+CREATE TABLE app_private.ai_executions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  operation_id uuid NOT NULL,
+  event_id uuid NOT NULL UNIQUE,
+  talent_id uuid NOT NULL,
+  task_key text NOT NULL CHECK (task_key IN ('coach.respond')),
+  task_revision text NOT NULL CHECK (length(task_revision) BETWEEN 1 AND 50),
+  input_message_id bigint NOT NULL UNIQUE,
+  state text NOT NULL DEFAULT 'pending' CHECK (state IN ('pending','running','succeeded','failed','unknown','cancelled')),
+  attempt_no integer NOT NULL DEFAULT 0 CHECK (attempt_no>=0),
+  version bigint NOT NULL DEFAULT 1 CHECK (version>0),
+  lease_token uuid,
+  lease_until timestamptz,
+  heartbeat_at timestamptz,
+  cancel_requested_at timestamptz,
+  output_message_id bigint UNIQUE,
+  last_error_code text CHECK (length(last_error_code)<=60),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  finished_at timestamptz,
+  UNIQUE (id,talent_id),
+  FOREIGN KEY (event_id,operation_id) REFERENCES app_private.outbox_events(id,operation_id) ON DELETE RESTRICT,
+  FOREIGN KEY (operation_id,talent_id) REFERENCES app_private.domain_operations(id,talent_id) ON DELETE RESTRICT,
+  FOREIGN KEY (input_message_id,talent_id) REFERENCES public.coach_messages(id,talent_id) ON DELETE RESTRICT,
+  FOREIGN KEY (output_message_id,talent_id) REFERENCES public.coach_messages(id,talent_id) ON DELETE RESTRICT,
+  CHECK ((state='running')=(lease_token IS NOT NULL AND lease_until IS NOT NULL AND heartbeat_at IS NOT NULL)),
+  CHECK ((state='succeeded')=(output_message_id IS NOT NULL)),
+  CHECK ((state IN ('succeeded','failed','cancelled'))=(finished_at IS NOT NULL))
+);
+```
+
+### app_private.ai_execution_attempts
+
+Lượt worker sở hữu lease; agent dùng step_ledger, không đồng nhất một attempt với một model call. Nguồn: `apps/api/prisma/migrations/20261123000000_ai_core_executions/migration.sql`.
+
+```sql
+CREATE TABLE app_private.ai_execution_attempts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  execution_id uuid NOT NULL,
+  talent_id uuid NOT NULL,
+  attempt_no integer NOT NULL CHECK (attempt_no>0),
+  lease_token uuid NOT NULL,
+  phase text NOT NULL DEFAULT 'claimed' CHECK (phase IN ('claimed','calling','response_received','succeeded','failed','unknown','cancelled')),
+  provider text CHECK (length(provider)<=40),
+  model text CHECK (length(model)<=100),
+  context_revision text CHECK (length(context_revision)<=100),
+  provider_request_id text CHECK (length(provider_request_id)<=200),
+  provider_idempotency_key text CHECK (length(provider_idempotency_key)<=200),
+  -- Never fake 0: pending/unknown until a known usage (and cost) is recorded.
+  usage_state text NOT NULL DEFAULT 'not_called' CHECK (usage_state IN ('pending','recorded','unknown','not_called')),
+  -- ponytail: token counts kept here because ai_usage_events needs a cost; a usage row is inserted only when AI_PRICE_* is configured.
+  input_tokens integer CHECK (input_tokens>=0),
+  output_tokens integer CHECK (output_tokens>=0),
+  error_code text CHECK (length(error_code)<=60),
+  started_at timestamptz NOT NULL DEFAULT now(),
+  call_started_at timestamptz,
+  call_finished_at timestamptz,
+  finished_at timestamptz,
+  UNIQUE (execution_id,attempt_no),
+  UNIQUE (id,talent_id),
+  FOREIGN KEY (execution_id,talent_id) REFERENCES app_private.ai_executions(id,talent_id) ON DELETE RESTRICT,
+  CHECK (phase='claimed' OR (phase IN ('failed','cancelled') AND call_started_at IS NULL)
+         OR (provider IS NOT NULL AND model IS NOT NULL AND context_revision IS NOT NULL AND call_started_at IS NOT NULL)),
+  CHECK ((call_started_at IS NULL)=(usage_state='not_called')),
+  CHECK ((phase IN ('claimed','calling','response_received'))=(finished_at IS NULL))
+);
+```
+
+### app_private.ai_daily_trends
+
+Cache tin/chủ đề theo ngày; không thay provenance từng bài. Nguồn: `apps/api/prisma/migrations/20261123000300_ai_daily_trends/migration.sql`.
+
+```sql
+CREATE TABLE app_private.ai_daily_trends (
+  day date PRIMARY KEY,                                   -- JST date
+  content text NOT NULL CHECK (length(content) BETWEEN 1 AND 8000),
+  sources jsonb NOT NULL DEFAULT '[]' CHECK (jsonb_typeof(sources)='array'), -- [{url,title}] returned by the search
+  provider text NOT NULL CHECK (length(provider)<=40),
+  model text NOT NULL CHECK (length(model)<=100),
+  input_tokens integer CHECK (input_tokens>=0),
+  output_tokens integer CHECK (output_tokens>=0),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+### app_private.agent_conversations
+
+Hội thoại thuộc actor; Talent có subject cố định, Manager chọn đối tượng qua tool. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_conversations (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  actor_user_id uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  channel text NOT NULL CHECK (channel IN ('talent','manager_ui')),
+  talent_id uuid REFERENCES public.talents(id) ON DELETE RESTRICT,
+  request_key uuid NOT NULL,
+  next_sequence bigint NOT NULL DEFAULT 1 CHECK (next_sequence>0),
+  version bigint NOT NULL DEFAULT 1 CHECK (version>0),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (actor_user_id,request_key),
+  UNIQUE (id,actor_user_id),
+  -- A Talent conversation is about that Talent only; a Manager conversation picks targets per tool call.
+  CHECK ((channel='talent')=(talent_id IS NOT NULL))
+);
+```
+
+### app_private.agent_entries
+
+Tin user/assistant theo sequence; attachment/action typed còn cần bổ sung. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_entries (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  conversation_id uuid NOT NULL REFERENCES app_private.agent_conversations(id) ON DELETE RESTRICT,
+  sequence bigint NOT NULL CHECK (sequence>0),
+  role text NOT NULL CHECK (role IN ('user','assistant')),
+  body text NOT NULL CHECK (length(body) BETWEEN 1 AND 8000),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (conversation_id,sequence),
+  UNIQUE (id,conversation_id)
+);
+```
+
+### app_private.agent_talent_profiles
+
+Hồ sơ 5 trường allowlist trong DB, có version và người cập nhật. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_talent_profiles (
+  talent_id uuid PRIMARY KEY REFERENCES public.talents(id) ON DELETE RESTRICT,
+  profile jsonb NOT NULL CHECK (jsonb_typeof(profile)='object'
+    AND profile - ARRAY['profile','direction','hobbiesSkills','futureGoal','tone'] = '{}'::jsonb),
+  version bigint NOT NULL DEFAULT 1 CHECK (version>0),
+  updated_by uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+### app_private.agent_talent_profile_versions
+
+Snapshot lịch sử profile theo Talent/version, append-only ở quyền runtime. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_talent_profile_versions (
+  talent_id uuid NOT NULL REFERENCES app_private.agent_talent_profiles(talent_id) ON DELETE RESTRICT,
+  version bigint NOT NULL CHECK (version>0),
+  profile jsonb NOT NULL,
+  actor_user_id uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (talent_id,version)
+);
+```
+
+### app_private.agent_instructions
+
+Chỉ thị scope+situation, enable/version; category hiện bị CHECK chặn. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_instructions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  scope_kind text NOT NULL CHECK (scope_kind IN ('global','category','talent')),
+  scope_id uuid,
+  talent_id uuid REFERENCES public.talents(id) ON DELETE RESTRICT,
+  situation text NOT NULL CHECK (situation IN ('daily_greeting','theme_suggestions','post_writing','post_results','challenge_suggestions','media_reminder','posting_window_frequency','conversation_limits')),
+  text text NOT NULL CHECK (length(text) BETWEEN 1 AND 1000),
+  enabled boolean NOT NULL,
+  version bigint NOT NULL DEFAULT 1 CHECK (version>0),
+  updated_by uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT chk_agent_instructions_category_not_ready CHECK (scope_kind<>'category'),
+  CHECK ((scope_kind='global' AND scope_id IS NULL AND talent_id IS NULL) OR (scope_kind='talent' AND scope_id IS NOT NULL AND talent_id=scope_id) OR scope_kind='category')
+);
+```
+
+### app_private.agent_instruction_versions
+
+Lịch sử nội dung/enable theo instruction/version; restore phải tạo revision mới. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_instruction_versions (
+  instruction_id uuid NOT NULL REFERENCES app_private.agent_instructions(id) ON DELETE RESTRICT,
+  version bigint NOT NULL CHECK (version>0),
+  text text NOT NULL,
+  enabled boolean NOT NULL,
+  actor_user_id uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (instruction_id,version)
+);
+```
+
+### app_private.agent_profile_exports
+
+Version profile đã xuất sang OneDrive; không là nguồn đọc ngược vào DB. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_profile_exports (
+  talent_id uuid PRIMARY KEY REFERENCES app_private.agent_talent_profiles(talent_id) ON DELETE RESTRICT,
+  version bigint NOT NULL CHECK (version>0),
+  item_ref text NOT NULL CHECK (length(item_ref) BETWEEN 1 AND 200),
+  exported_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+### app_private.agent_steps
+
+Checkpoint model/tool, input/output, usage và kết quả; liên kết execution/attempt. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_steps (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  execution_id uuid NOT NULL REFERENCES app_private.ai_executions(id) ON DELETE RESTRICT,
+  attempt_id uuid NOT NULL,
+  sequence integer NOT NULL CHECK (sequence>0),
+  kind text NOT NULL CHECK (kind IN ('model','tool')),
+  state text NOT NULL CHECK (state IN ('calling','succeeded','waiting','denied','invalid','conflict','unavailable','failed','unknown')),
+  source_model_step_id uuid,
+  call_id text CHECK (length(call_id) BETWEEN 1 AND 200),
+  tool_name text CHECK (length(tool_name) BETWEEN 1 AND 64),
+  input jsonb,
+  output jsonb,
+  provider text CHECK (length(provider)<=40),
+  model text CHECK (length(model)<=100),
+  provider_request_ref text CHECK (length(provider_request_ref)<=200),
+  input_tokens integer CHECK (input_tokens>=0),
+  output_tokens integer CHECK (output_tokens>=0),
+  cached_tokens integer CHECK (cached_tokens>=0),
+  usage_state text NOT NULL DEFAULT 'not_called' CHECK (usage_state IN ('not_called','known','unknown')),
+  cost_amount numeric(20,8) CHECK (cost_amount>=0),
+  currency char(3),
+  error_code text CHECK (length(error_code)<=60),
+  started_at timestamptz NOT NULL DEFAULT now(),
+  finished_at timestamptz,
+  UNIQUE (execution_id,sequence),
+  UNIQUE (id,execution_id),
+  UNIQUE (source_model_step_id,call_id),
+  FOREIGN KEY (attempt_id,execution_id) REFERENCES app_private.ai_execution_attempts(id,execution_id) ON DELETE RESTRICT,
+  FOREIGN KEY (source_model_step_id,execution_id) REFERENCES app_private.agent_steps(id,execution_id) ON DELETE RESTRICT,
+  CHECK ((kind='tool')=(source_model_step_id IS NOT NULL AND call_id IS NOT NULL AND tool_name IS NOT NULL)),
+  CHECK (kind='model' OR (provider IS NULL AND usage_state='not_called')),
+  CHECK (kind='tool' OR (provider IS NOT NULL AND model IS NOT NULL AND usage_state<>'not_called')),
+  CHECK ((state IN ('calling','waiting'))=(finished_at IS NULL)),
+  CHECK (kind='model' OR state<>'calling'),
+  CHECK (kind='tool' OR state IN ('calling','succeeded','failed','unknown')),
+  CHECK ((cost_amount IS NULL)=(currency IS NULL))
+);
+```
+
+### app_private.agent_change_proposals
+
+Đề xuất thay profile/instruction với hash/base version/expiry và xác nhận actor. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_change_proposals (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  actor_user_id uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  channel text NOT NULL CHECK (channel IN ('manager_ui','manager_mcp')),
+  execution_id uuid REFERENCES app_private.ai_executions(id) ON DELETE RESTRICT,
+  tool_step_id uuid UNIQUE REFERENCES app_private.agent_steps(id) ON DELETE RESTRICT,
+  command_type text NOT NULL CHECK (command_type IN ('profile.update','instruction.write')),
+  scope_kind text NOT NULL CHECK (scope_kind IN ('talent','global')),
+  scope_id uuid,
+  target_label text NOT NULL CHECK (length(target_label) BETWEEN 1 AND 200),
+  before jsonb,
+  patch jsonb NOT NULL,
+  payload_hash text NOT NULL CHECK (payload_hash ~ '^[0-9a-f]{64}$'),
+  base_version bigint NOT NULL CHECK (base_version>=0),
+  expires_at timestamptz NOT NULL,
+  state text NOT NULL DEFAULT 'prepared' CHECK (state IN ('prepared','confirmed','consumed','rejected','expired','conflicted')),
+  confirmed_by uuid REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  confirmed_at timestamptz,
+  decided_at timestamptz,
+  version bigint NOT NULL DEFAULT 1 CHECK (version>0),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  CHECK ((scope_kind='global')=(scope_id IS NULL)),
+  -- Only the Manager who saw the proposal can confirm it (an approval is never transferred).
+  CHECK (state NOT IN ('confirmed','consumed') OR (confirmed_by=actor_user_id AND confirmed_at IS NOT NULL)),
+  CHECK (state IN ('confirmed','consumed','conflicted') OR confirmed_by IS NULL),
+  CHECK ((state='prepared')=(decided_at IS NULL))
+);
+```
+
+### app_private.agent_commands
+
+Receipt lệnh đã commit, unique proposal; lát cắt hiện chỉ profile.update/instruction.write. Nguồn: `apps/api/prisma/migrations/20261125000000_agent_core/migration.sql`.
+
+```sql
+CREATE TABLE app_private.agent_commands (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  operation_id uuid NOT NULL REFERENCES app_private.domain_operations(id) ON DELETE RESTRICT,
+  proposal_id uuid NOT NULL UNIQUE REFERENCES app_private.agent_change_proposals(id) ON DELETE RESTRICT,
+  execution_id uuid REFERENCES app_private.ai_executions(id) ON DELETE RESTRICT,
+  actor_user_id uuid NOT NULL REFERENCES app_private.auth_principals(auth_user_id) ON DELETE RESTRICT,
+  kind text NOT NULL CHECK (kind IN ('profile.update','instruction.write')),
+  target_label text NOT NULL,
+  payload_hash text NOT NULL CHECK (payload_hash ~ '^[0-9a-f]{64}$'),
+  resource_version bigint NOT NULL CHECK (resource_version>0),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+```
+
+### Các ALTER liên quan cần tra cùng snapshot
+
+- Migration 23/11 thêm dispatch metadata vào outbox, execution_attempt_id vào ai_usage_events; dailythemes mở task/inputprofile; followergoals cấp SELECT; demoreset cấp DELETE lịch sử.
+- Migration 25/11 mở nullableTalent/actor/channel/scope/conversation/input-outputentries/wakesequence/waitingproposal/completionkind choexecution; step_ledger và FK đơn choattempt; phaseexecuting/waiting;10 bảng agent; thu hồi DELETE demo.
+- Đây là chỉ mục thay đổi; constraint cuối phải tính toàn chuỗi SQL. Generation từ catalog sạch là bước kiểm chứng riêng, chưa thực hiện ở nhiệm vụ cập nhật quyết định.
+
+## Từ điển thiết kế đích
+
+Các cột/bảng chưa migrate được quản lý tại [10](10_target_data_dictionary.md), gắn protocol ở [09](09_technical_design.md). Không trộn vào snapshot catalog/SQL nguồn ở05 hoặc generator vật lý trước khi migration được viết và replay.

@@ -1,0 +1,6918 @@
+{
+  "design_id": "DB-TECH-DESIGN-2026-11-25",
+  "status": "PROPOSAL_NOT_MIGRATED",
+  "author": "Codex",
+  "date": "2026-11-25",
+  "existing_snapshot": "13 migration / 53 application tables from repository, not live catalog",
+  "shared_conventions": {
+    "new_primary_key": "uuid DEFAULT gen_random_uuid()",
+    "timestamps": "timestamptz UTC; business day Asia/Tokyo proposal",
+    "mutable_version": "bigint default1; CAS expectedVersion plus trigger increment exactly1",
+    "foreign_keys": "ON DELETE RESTRICT unless explicitly reviewed purge detachment",
+    "nullable": "Explicit ? in author DSL; exported bool in columns",
+    "jsonb": "Strict versioned service schema plus DB type checks; no secrets; owner/ref checks via FK/trigger/transaction",
+    "money": "AI/provider costs numeric(20,8); billed amounts bigint minor units with currency+exponent+approved rounding",
+    "identity": "Existing auth_principals/roles used, no duplicate auth table",
+    "security": "RLS enabled; PUBLIC/anon/authenticated no direct DML; scoped backend grants; no owner/BYPASSRLS/SECURITY DEFINER shortcut"
+  },
+  "tables": [
+    {
+      "table": "app_private.ai_executions",
+      "domain": "agent",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Policy version resolved for task"
+        },
+        {
+          "name": "cursor",
+          "type": "bigint",
+          "nullable": true,
+          "purpose": "Next durable step"
+        },
+        {
+          "name": "execution_generation",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Distinguish explicit retry generation"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Agent and legacy task profiles have separate CHECK shapes; task revision fixes ledger mode.",
+        "Actor/channel/conversation and target scope must match; system batch has no user conversation.",
+        "Only running owns lease; waiting releases lease; unknown blocks blind replay.",
+        "Use existing idempotent operation and current wake event, not a second queue."
+      ],
+      "indexes": [
+        "Existing active conversation unique; lease_until,id partial running; task_key,state,created_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.agent_steps",
+      "domain": "agent",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "tool_schema_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Tool contract"
+        },
+        {
+          "name": "input_hash",
+          "type": "char(64)",
+          "nullable": true,
+          "purpose": "Canonical input"
+        },
+        {
+          "name": "output_hash",
+          "type": "char(64)",
+          "nullable": true,
+          "purpose": "Stored output"
+        },
+        {
+          "name": "price_revision_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Cost basis"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Model/tool shape CHECK; same-run composite FKs for attempt and source step; source must be model kind (trigger).",
+        "Unique execution+sequence and source_model_step+call_id; prepared->calling durable before HTTP.",
+        "usage_state known does not require known price; monetary amount NULL until priced."
+      ],
+      "indexes": [
+        "execution_id,sequence; provider,provider_request_ref partial not null"
+      ],
+      "references": [
+        {
+          "columns": [
+            "price_revision_id"
+          ],
+          "table": "app_private.ai_price_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.agent_change_proposals",
+      "domain": "authorization",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "client_id",
+          "type": "text",
+          "nullable": true,
+          "purpose": "MCP client identity"
+        },
+        {
+          "name": "grant_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Inbound delegated grant"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Policy snapshot"
+        },
+        {
+          "name": "target_version_hash",
+          "type": "char(64)",
+          "nullable": true,
+          "purpose": "All resource versions covered"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "MCP channel requires client_id/grant_id; UI channel requires verified server session binding in command context.",
+        "Immutable actor/scope/patch/hash/base version/policy/grant after prepared; edits create new proposal.",
+        "DB clock expiry; only same actor confirms; consume once; verify grant again at commit."
+      ],
+      "indexes": [
+        "actor_user_id,state,expires_at; grant_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "grant_id"
+          ],
+          "table": "app_private.mcp_grants",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.agent_commands",
+      "domain": "authorization",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "idempotency_key",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Logical action identity"
+        },
+        {
+          "name": "command_state",
+          "type": "text",
+          "nullable": true,
+          "purpose": "committed or denied"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "nullable": true,
+          "purpose": "Strict receipt"
+        },
+        {
+          "name": "tool_step_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Source tool result"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Policy used"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Widen existing proposal_id to nullable only for commands not needing Manager approval.",
+        "Unique idempotency_key after backfill; same key+different hash returns409; proposal remains unique when present.",
+        "Mutation, command receipt, proposal consume, tool result, audit and outbox commit together.",
+        "Kind allowlist per command; no generic SQL mutation; MCP commands can omit execution.",
+        "idempotency_key NOT NULL for new task revisions; legacy nullable only until explicit backfill/constraint wave."
+      ],
+      "indexes": [
+        "Unique idempotency_key; proposal unique; execution_id; tool_step_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "tool_step_id"
+          ],
+          "table": "app_private.agent_steps",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.mcp_grants",
+      "domain": "authorization",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Verified Manager principal"
+        },
+        {
+          "name": "client_id",
+          "type": "text",
+          "nullable": false,
+          "purpose": "OAuth client"
+        },
+        {
+          "name": "external_grant_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Issuer-scoped identity"
+        },
+        {
+          "name": "issuer",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Trusted issuer"
+        },
+        {
+          "name": "scopes",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict capability set"
+        },
+        {
+          "name": "subject_talent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Optional narrower Talent"
+        },
+        {
+          "name": "security_version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Invalidate prior authority"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB check"
+        },
+        {
+          "name": "revoked_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Revocation"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique issuer+external_grant_ref; no bearer or refresh tokens here.",
+        "Current Manager active + current AAL2 policy + grant scope checked at query/prepare/confirm/commit; JWT claims alone insufficient."
+      ],
+      "indexes": [
+        "Unique issuer,external_grant_ref; actor_user_id,revoked_at,expires_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "subject_talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.provider_effects",
+      "domain": "provider",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "operation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Intent owner"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Beneficiary"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter key"
+        },
+        {
+          "name": "provider_account_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Provider tenant/account scope"
+        },
+        {
+          "name": "effect_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Allowlisted action"
+        },
+        {
+          "name": "logical_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Stable effect identity"
+        },
+        {
+          "name": "request_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Canonical request"
+        },
+        {
+          "name": "payload_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Schema version"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "planned/sending/acknowledged/succeeded/failed/unknown/cancelled"
+        },
+        {
+          "name": "lease_token",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Effect fence"
+        },
+        {
+          "name": "lease_until",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "DB lease"
+        },
+        {
+          "name": "attempt_no",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Ownership counter"
+        },
+        {
+          "name": "provider_request_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Reconciliation ref"
+        },
+        {
+          "name": "provider_resource_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Created object"
+        },
+        {
+          "name": "sending_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Commit before send"
+        },
+        {
+          "name": "resolved_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Known terminal"
+        },
+        {
+          "name": "last_error_code",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Sanitized error"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique provider+provider_account_ref+logical_key; same key/different request_hash conflicts.",
+        "Only sending has lease; lease loss after sending -> unknown, no blind retry.",
+        "Provider success is assigned only by verified callback/reconciliation adapter, never model."
+      ],
+      "indexes": [
+        "Unique provider,provider_account_ref,logical_key; state,lease_until partial sending; provider,provider_resource_ref"
+      ],
+      "references": [
+        {
+          "columns": [
+            "operation_id"
+          ],
+          "table": "app_private.domain_operations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.provider_effect_attempts",
+      "domain": "provider",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical effect"
+        },
+        {
+          "name": "attempt_no",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Transport attempt"
+        },
+        {
+          "name": "request_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Exact request"
+        },
+        {
+          "name": "provider_request_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Returned ref"
+        },
+        {
+          "name": "outcome",
+          "type": "text",
+          "nullable": false,
+          "purpose": "succeeded/failed/unknown"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Call start"
+        },
+        {
+          "name": "finished_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Call end"
+        },
+        {
+          "name": "error_code",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Sanitized"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique effect+attempt_no; append-only completed observations, in-flight state belongs to provider_effects.",
+        "Definitive pre-send transport failure may retry same logical effect; ambiguous outcome must reconcile."
+      ],
+      "indexes": [
+        "Unique effect_id,attempt_no; provider_request_ref"
+      ],
+      "references": [
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.provider_callbacks",
+      "domain": "provider",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter"
+        },
+        {
+          "name": "provider_account_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Authenticated provider scope"
+        },
+        {
+          "name": "event_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Provider event ID or documented canonical digest"
+        },
+        {
+          "name": "payload_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Detect collision"
+        },
+        {
+          "name": "payload",
+          "type": "jsonb",
+          "nullable": true,
+          "purpose": "Redacted normalized payload"
+        },
+        {
+          "name": "authenticated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Server-verified signature"
+        },
+        {
+          "name": "provider_occurred_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "External clock"
+        },
+        {
+          "name": "received_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Resolved mapping"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/applied/ignored/quarantined/failed"
+        },
+        {
+          "name": "processed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Projection transaction"
+        },
+        {
+          "name": "error_code",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Reason"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique provider+provider_account_ref+event_key; same key/different hash -> quarantine.",
+        "Unauthenticated requests never insert accepted callbacks; unknown account mapping -> quarantine, no cross-Talent update.",
+        "Projection monotonic by transition rules and provider version; external timestamps alone do not authorize regression."
+      ],
+      "indexes": [
+        "Unique provider,provider_account_ref,event_key; state,received_at; effect_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.provider_capability_revisions",
+      "domain": "provider",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter"
+        },
+        {
+          "name": "capability",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Specific operation or metric"
+        },
+        {
+          "name": "api_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Version"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "purpose": "unverified/supported/unsupported/limited"
+        },
+        {
+          "name": "evidence_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "POC report"
+        },
+        {
+          "name": "checked_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Verification time"
+        },
+        {
+          "name": "checked_by",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Responsible person"
+        },
+        {
+          "name": "limits",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict account/format constraints"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Immutable evidence revisions; supported requires evidence_ref+checked_at+checked_by; unknown is not false proof or true support.",
+        "No customer policy encoded as provider capability; configuration cannot override missing business approval."
+      ],
+      "indexes": [
+        "provider,capability,created_at desc"
+      ],
+      "references": []
+    },
+    {
+      "table": "app_private.categories",
+      "domain": "registry",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Visible name"
+        },
+        {
+          "name": "color",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Validated color token"
+        },
+        {
+          "name": "sort_order",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Display order"
+        },
+        {
+          "name": "retired_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Hidden catalog entry"
+        },
+        {
+          "name": "updated_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Principal"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Nonblank name; sort_order>=0; unique lower(name) among non-retired.",
+        "Delete in UI retires category, closes memberships; keep historical refs. Removal/instruction effect reviewed against UX before release."
+      ],
+      "indexes": [
+        "Partial unique lower(name) where retired_at null; sort_order,id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "updated_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.talent_category_memberships",
+      "domain": "registry",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "category_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Category"
+        },
+        {
+          "name": "valid_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Effective start"
+        },
+        {
+          "name": "valid_to",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Effective end"
+        },
+        {
+          "name": "assigned_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager principal"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "valid_to NULL or >valid_from; one current row per talent/category; serialize edits by Talent lock.",
+        "Category cannot be newly assigned when retired."
+      ],
+      "indexes": [
+        "Partial unique talent_id,category_id where valid_to null; category_id,valid_to,talent_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "category_id"
+          ],
+          "table": "app_private.categories",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "assigned_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.talent_manager_assignments",
+      "domain": "registry",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "manager_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Recipient Manager"
+        },
+        {
+          "name": "valid_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Start"
+        },
+        {
+          "name": "valid_to",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "End"
+        },
+        {
+          "name": "assigned_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Actor"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "At most one current responsible Manager per Talent (technical mapping of singular assignee); history is not retroactively rewritten.",
+        "No overlapping intervals per Talent via GiST exclusion on half-open tstzrange; btree_gist prerequisite validated.",
+        "Manager disable never invents replacement; unresolved routing waits for policy/authorized reassignment."
+      ],
+      "indexes": [
+        "Partial unique talent_id where valid_to null; manager_id,valid_to,talent_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "manager_id"
+          ],
+          "table": "public.managers",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "assigned_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.agent_instructions",
+      "domain": "registry",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "category_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Canonical category when scope category"
+        },
+        {
+          "name": "display_name",
+          "type": "text",
+          "nullable": true,
+          "purpose": "UI label"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Replace category_not_ready CHECK only after catalog and adapter complete.",
+        "CHECK scope_kind category iff category_id non-null and scope_id=category_id; talent scope matches talent_id; global all subject IDs null.",
+        "Existing partial unique scope+situation retained; no active duplicate instruction."
+      ],
+      "indexes": [
+        "category_id,situation"
+      ],
+      "references": [
+        {
+          "columns": [
+            "category_id"
+          ],
+          "table": "app_private.categories",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.instruction_test_runs",
+      "domain": "registry",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Sandbox subject"
+        },
+        {
+          "name": "candidate_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Unsaved input"
+        },
+        {
+          "name": "candidate",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict scope/situation/text"
+        },
+        {
+          "name": "context_manifest",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Source versions"
+        },
+        {
+          "name": "execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Agent sandbox task"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/running/succeeded/failed/unknown"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "nullable": true,
+          "purpose": "Redacted example"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Technical retention limit"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "No live instruction mutation or publish/video/payment effects; sandbox tool allowlist read-only.",
+        "Usage is real and counted to Adesso; test result is not confirmation for production save."
+      ],
+      "indexes": [
+        "actor_user_id,created_at desc; execution_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.talent_profile_readiness",
+      "domain": "registry",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "profile_version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Evaluated version"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Rule reference"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "unassessed/ready/incomplete"
+        },
+        {
+          "name": "missing_fields",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict list"
+        },
+        {
+          "name": "evaluated_by",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Manager or NULL system"
+        },
+        {
+          "name": "evaluated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "As-of"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique talent+profile_version+policy_revision; ready requires approved readiness criteria, not merely a nonempty profile.",
+        "No ready policy while QA54/92 unresolved; editing profile requires reassessment."
+      ],
+      "indexes": [
+        "Unique talent_id,profile_version,policy_revision"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "app_private.agent_talent_profiles",
+          "target_columns": [
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "evaluated_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.context_manifests",
+      "domain": "memory",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "NULL for Manager global"
+        },
+        {
+          "name": "scope_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "talent/category/global"
+        },
+        {
+          "name": "scope_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Resolved subject"
+        },
+        {
+          "name": "manifest",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Typed profile/instruction/goal/metric/memory refs"
+        },
+        {
+          "name": "manifest_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Content identity"
+        },
+        {
+          "name": "as_of",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Cutoff"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Policy used"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Strict JSON schema with versioned typed refs; forbid secrets/raw signed URLs.",
+        "Service validates every resource owner at build and consumption; hashes cannot substitute authorization.",
+        "Execution.context_manifest stores this manifest_id/hash; existing inline manifests remain legacy."
+      ],
+      "indexes": [
+        "talent_id,as_of desc; manifest_hash"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.memory_observations",
+      "domain": "memory",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "observation_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Stable logical insight"
+        },
+        {
+          "name": "revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Immutable revision"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "explicit_user/manager_fact/ai_inference"
+        },
+        {
+          "name": "content",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Typed fact/insight"
+        },
+        {
+          "name": "source_refs",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Typed message/post/metric refs"
+        },
+        {
+          "name": "confidence",
+          "type": "numeric(5,4)",
+          "nullable": true,
+          "purpose": "Model assessment"
+        },
+        {
+          "name": "supersedes_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Prior observation"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Start"
+        },
+        {
+          "name": "invalidated_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "No longer usable"
+        },
+        {
+          "name": "invalidated_by",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Actor"
+        },
+        {
+          "name": "source_execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Provenance"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique talent+observation_key+revision; immutable content/source; invalidation only mutable fields with audit.",
+        "confidence in[0,1]; inference never overwrites Manager profile/instruction; owner validated for every source.",
+        "No embeddings or cross-Talent corpus in this proposal."
+      ],
+      "indexes": [
+        "Unique talent_id,observation_key,revision; talent_id,effective_from desc partial invalidated_at null"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "supersedes_id"
+          ],
+          "table": "app_private.memory_observations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "invalidated_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.challenges",
+      "domain": "challenge",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Task label"
+        },
+        {
+          "name": "specification",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict target/unit/timezone/evidence policy"
+        },
+        {
+          "name": "specification_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Frozen terms"
+        },
+        {
+          "name": "starts_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Proposed period"
+        },
+        {
+          "name": "ends_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "End"
+        },
+        {
+          "name": "source_execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Agent proposal"
+        },
+        {
+          "name": "context_manifest_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Decision context"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "proposed/accepted/declined/assessment_pending/completed/cancelled"
+        },
+        {
+          "name": "assessment_policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Evidence interpretation"
+        },
+        {
+          "name": "accepted_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Decision timestamp"
+        },
+        {
+          "name": "declined_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Decision timestamp"
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Evidence-backed completion"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique(id,talent_id); ends_at>starts_at when both known; accepted specification immutable, change requires new challenge linked in specification.",
+        "Multiple concurrent instances allowed structurally; no invented one-active cap.",
+        "Unknown measurement/streak/partial-SNS rules -> assessment_pending, not model-confirmed completion."
+      ],
+      "indexes": [
+        "talent_id,state,created_at desc; talent_id,ends_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "context_manifest_id"
+          ],
+          "table": "app_private.context_manifests",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "assessment_policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.challenge_events",
+      "domain": "challenge",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "challenge_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Instance"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "event_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Logical command/evidence identity"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "accepted/declined/evidence_recorded/evidence_retracted/assessed/completed/praised/cancelled"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "NULL for system"
+        },
+        {
+          "name": "actor_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "talent/manager/system"
+        },
+        {
+          "name": "payload",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict evidence/result"
+        },
+        {
+          "name": "source_entry_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Conversation evidence"
+        },
+        {
+          "name": "command_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Mutation receipt"
+        },
+        {
+          "name": "recorded_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB time"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique challenge+event_key; composite owner FK; corrections are compensating events, no overwrite/delete.",
+        "User self-report is labeled, not equivalent to published provider evidence; only one praised event per assessment identity.",
+        "Store ordered evidence and assessment refs; aggregate progress can rebuild from events."
+      ],
+      "indexes": [
+        "Unique challenge_id,event_key; challenge_id,recorded_at,id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "challenge_id",
+            "talent_id"
+          ],
+          "table": "app_private.challenges",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_entry_id"
+          ],
+          "table": "app_private.agent_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "command_id"
+          ],
+          "table": "app_private.agent_commands",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "public.media_assets",
+      "domain": "media",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "current_revision",
+          "type": "bigint",
+          "nullable": true,
+          "purpose": "Ready metadata revision"
+        },
+        {
+          "name": "readiness",
+          "type": "text",
+          "nullable": true,
+          "purpose": "pending_upload/validating/ready/rejected/deleting/deleted"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Existing source metadata preserved; file refs migrate to immutable versions.",
+        "No signed URL as canonical reference; no publish from asset not ready or revision changed."
+      ],
+      "indexes": [
+        "talent_id,readiness,created_at desc"
+      ],
+      "references": []
+    },
+    {
+      "table": "app_private.media_asset_versions",
+      "domain": "media",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "asset_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical asset"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Immutable content"
+        },
+        {
+          "name": "storage_provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "supabase/onedrive"
+        },
+        {
+          "name": "container_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Bucket or drive"
+        },
+        {
+          "name": "object_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Key or item ID"
+        },
+        {
+          "name": "provider_version_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "ETag/version"
+        },
+        {
+          "name": "sha256",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Byte checksum"
+        },
+        {
+          "name": "mime_type",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Validated MIME"
+        },
+        {
+          "name": "size_bytes",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Validated size"
+        },
+        {
+          "name": "origin",
+          "type": "text",
+          "nullable": false,
+          "purpose": "upload/ai_generated"
+        },
+        {
+          "name": "validation_result",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict scan/type results"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique asset+revision; Unique(id,talent_id); size>0; hash valid; immutable.",
+        "Composite asset/owner FK requires unique media_assets(id,talent_id); reuse across posts never changes owner.",
+        "Provider ETag opaque; not assumed checksum."
+      ],
+      "indexes": [
+        "Unique asset_id,revision; talent_id,created_at desc; storage_provider,container_ref,object_ref"
+      ],
+      "references": [
+        {
+          "columns": [
+            "asset_id",
+            "talent_id"
+          ],
+          "table": "public.media_assets",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.media_upload_intents",
+      "domain": "media",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Beneficiary"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Uploader"
+        },
+        {
+          "name": "asset_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Preallocated asset"
+        },
+        {
+          "name": "operation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Idempotent command"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "issued/uploaded/validating/completed/rejected/expired"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Ticket deadline"
+        },
+        {
+          "name": "max_bytes",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Technical cap"
+        },
+        {
+          "name": "allowed_mime",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Allowlist"
+        },
+        {
+          "name": "object_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Server-selected key"
+        },
+        {
+          "name": "result_version_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Validated version"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "No client chosen bucket/owner/path; complete rechecks size/type/hash; ticket is scoped and expires.",
+        "Manager uploader distinct from subject; duplicate complete returns same version."
+      ],
+      "indexes": [
+        "Unique operation_id; state,expires_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "asset_id"
+          ],
+          "table": "public.media_assets",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "operation_id"
+          ],
+          "table": "app_private.domain_operations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "result_version_id"
+          ],
+          "table": "app_private.media_asset_versions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.agent_entry_resources",
+      "domain": "media",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "entry_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Message"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Required for Talent-owned attachment"
+        },
+        {
+          "name": "resource_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "media/post/challenge/video/command"
+        },
+        {
+          "name": "media_version_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Typed ref"
+        },
+        {
+          "name": "post_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Typed ref"
+        },
+        {
+          "name": "challenge_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Typed ref"
+        },
+        {
+          "name": "video_generation_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Typed ref"
+        },
+        {
+          "name": "command_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Typed ref"
+        },
+        {
+          "name": "position",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "UI order"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Exactly one typed resource ref matching kind; unique entry+position; attachment access revalidated on every read.",
+        "Composite FKs for resource+talent where resource owned; conversation subject match via trigger/service.",
+        "Global Manager command links may omit Talent only for command kind."
+      ],
+      "indexes": [
+        "Unique entry_id,position; media_version_id; post_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "entry_id"
+          ],
+          "table": "app_private.agent_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "media_version_id",
+            "talent_id"
+          ],
+          "table": "app_private.media_asset_versions",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "post_id",
+            "talent_id"
+          ],
+          "table": "public.posts",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "challenge_id",
+            "talent_id"
+          ],
+          "table": "app_private.challenges",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "video_generation_id",
+            "talent_id"
+          ],
+          "table": "public.video_generations",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "command_id"
+          ],
+          "table": "app_private.agent_commands",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.media_analyses",
+      "domain": "media",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "media_version_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Exact bytes"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "pipeline_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Image/video preprocessing"
+        },
+        {
+          "name": "model",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter model"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/running/succeeded/failed/unsupported/unknown"
+        },
+        {
+          "name": "execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Usage/checkpoint"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "nullable": true,
+          "purpose": "Strict annotations"
+        },
+        {
+          "name": "result_hash",
+          "type": "char(64)",
+          "nullable": true,
+          "purpose": "Integrity"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique media_version+pipeline_revision+model; same-owner FK; failed/unsupported never treated as successful analysis.",
+        "Video preprocessing capability tested; metadata inference is not evidence full video read."
+      ],
+      "indexes": [
+        "Unique media_version_id,pipeline_revision,model; state,created_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "media_version_id",
+            "talent_id"
+          ],
+          "table": "app_private.media_asset_versions",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.document_exports",
+      "domain": "media",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "document_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "profile/instructions/goals/metrics/memory"
+        },
+        {
+          "name": "source_revision_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "DB version/hash"
+        },
+        {
+          "name": "content_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Rendered bytes"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Export effect"
+        },
+        {
+          "name": "container_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Drive"
+        },
+        {
+          "name": "item_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Item"
+        },
+        {
+          "name": "provider_version_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "ETag"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/exported/failed/unknown"
+        },
+        {
+          "name": "exported_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Receipt"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique talent+document_kind+source_revision_ref; projection only, never read file back to replace authoritative DB.",
+        "Existing agent_profile_exports remains latest-profile projection and is updated from successful receipt."
+      ],
+      "indexes": [
+        "Unique talent_id,document_kind,source_revision_ref; state,created_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.talent_posting_preferences",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "review_mode",
+          "type": "text",
+          "nullable": false,
+          "purpose": "confirm/no_confirm"
+        },
+        {
+          "name": "changed_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "User principal"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Applicable review policy"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique talent_id; retain history via immutable policy_snapshots in post_reviews; actor must own Talent or explicit allowed Manager capability.",
+        "Review preference independent from post source daily/autopost/office."
+      ],
+      "indexes": [
+        "Unique talent_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "changed_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.auto_post_periods",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "starts_on",
+          "type": "date",
+          "nullable": false,
+          "purpose": "Inclusive local date"
+        },
+        {
+          "name": "ends_on",
+          "type": "date",
+          "nullable": false,
+          "purpose": "Inclusive local date"
+        },
+        {
+          "name": "timezone",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Default Asia/Tokyo technical choice"
+        },
+        {
+          "name": "theme",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Current theme"
+        },
+        {
+          "name": "theme_revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Content version"
+        },
+        {
+          "name": "instruction_manifest_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Scheduling context"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "planned/active/ended/cancelled"
+        },
+        {
+          "name": "ended_event_key",
+          "type": "text",
+          "nullable": true,
+          "purpose": "End notice identity"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique(id,talent_id); end>=start; no hardcoded one-post-per-day or FIFO.",
+        "Overlapping periods not automatically merged; branch requiring overlap policy blocked until reviewed.",
+        "Theme edits CAS period; existing plans not silently revised while QA70/83 unresolved."
+      ],
+      "indexes": [
+        "talent_id,state,starts_on; state,ends_on"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "instruction_manifest_id"
+          ],
+          "table": "app_private.context_manifests",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.auto_post_period_media",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "period_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Period"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "media_version_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Specific bytes"
+        },
+        {
+          "name": "added_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Actor"
+        },
+        {
+          "name": "removed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "No longer candidate"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique period+media_version; same-owner composite FKs; no destructive deletion of asset already planned.",
+        "Selection by theme; no implicit reuse-count/FIFO business rule."
+      ],
+      "indexes": [
+        "Unique period_id,media_version_id; period_id,removed_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "period_id",
+            "talent_id"
+          ],
+          "table": "app_private.auto_post_periods",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "media_version_id",
+            "talent_id"
+          ],
+          "table": "app_private.media_asset_versions",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "added_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "public.posts",
+      "domain": "posting",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "current_revision_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Exact editable content"
+        },
+        {
+          "name": "auto_post_period_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Optional period"
+        },
+        {
+          "name": "source_kind",
+          "type": "text",
+          "nullable": true,
+          "purpose": "daily/autopost/office"
+        },
+        {
+          "name": "topic",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Chosen or freeform topic"
+        },
+        {
+          "name": "topic_source_entry_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Conversation choice"
+        },
+        {
+          "name": "is_work_post",
+          "type": "boolean",
+          "nullable": true,
+          "purpose": "User-declared business post"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Existing id/talent owner, status and optimistic version retained; backfill legacy before enforcing new fields.",
+        "Adopted/approved content immutable through revisions; work flag set by Talent, not model PR classification.",
+        "Post current_revision must belong to same post and Talent; deferred FK/trigger handles insert cycle."
+      ],
+      "indexes": [
+        "talent_id,created_at desc; auto_post_period_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "current_revision_id"
+          ],
+          "table": "app_private.post_content_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "auto_post_period_id"
+          ],
+          "table": "app_private.auto_post_periods",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "topic_source_entry_id"
+          ],
+          "table": "app_private.agent_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.post_content_revisions",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "post_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical post"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Immutable content version"
+        },
+        {
+          "name": "caption",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Text"
+        },
+        {
+          "name": "hashtags",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict ordered string list"
+        },
+        {
+          "name": "content_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Text+media+targets"
+        },
+        {
+          "name": "media_set",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Ordered media_version IDs"
+        },
+        {
+          "name": "target_platforms",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict list"
+        },
+        {
+          "name": "created_by",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Actor or NULL system"
+        },
+        {
+          "name": "source_step_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Generation step"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique post+revision; Unique(id,post_id,talent_id); immutable; no revision overwrite.",
+        "JSON refs validate same-owner media ready + immutable versions in transaction; materialized joins possible later, no raw URLs.",
+        "No photo target YouTube; same text/hashtags across applicable SNS; only allowed platforms."
+      ],
+      "indexes": [
+        "Unique post_id,revision; post_id,created_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "post_id",
+            "talent_id"
+          ],
+          "table": "public.posts",
+          "target_columns": [
+            "id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "created_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_step_id"
+          ],
+          "table": "app_private.agent_steps",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.post_reviews",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "post_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical post"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "content_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Snapshot"
+        },
+        {
+          "name": "review_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "talent_adopt/manager_approval"
+        },
+        {
+          "name": "round_no",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Request round"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "requested/approved/returned/expired/invalidated"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Actual deciding actor"
+        },
+        {
+          "name": "assignee_snapshot_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Routing snapshot"
+        },
+        {
+          "name": "decision_reason",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Required return"
+        },
+        {
+          "name": "decided_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Decision"
+        },
+        {
+          "name": "deadline_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Approval deadline"
+        },
+        {
+          "name": "policy_snapshot",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Mode/version and exceptions"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique post+review_kind+round_no; FK revision/post/talent; returned requires nonblank reason; decision identity immutable.",
+        "Manager reviews only work-post branch; office/autopost do not acquire requirement just because table exists.",
+        "New content invalidates affected approval; NG automatic rewrite records separate policy lineage without adding Talent re-confirm."
+      ],
+      "indexes": [
+        "Unique post_id,review_kind,round_no; state,deadline_at; assignee_snapshot_id,state"
+      ],
+      "references": [
+        {
+          "columns": [
+            "content_revision_id",
+            "post_id",
+            "talent_id"
+          ],
+          "table": "app_private.post_content_revisions",
+          "target_columns": [
+            "id",
+            "post_id",
+            "talent_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "assignee_snapshot_id"
+          ],
+          "table": "app_private.talent_manager_assignments",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.ng_rule_revisions",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Ruleset identity"
+        },
+        {
+          "name": "rules",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict snapshot"
+        },
+        {
+          "name": "rules_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Integrity"
+        },
+        {
+          "name": "created_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique revision; ng_words remains editable source, publish ruleset atomically on edit; no implicit retroactive rescan."
+      ],
+      "indexes": [
+        "Unique revision"
+      ],
+      "references": [
+        {
+          "columns": [
+            "created_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.post_ng_checks",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "content_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Exact input"
+        },
+        {
+          "name": "ruleset_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Rule snapshot"
+        },
+        {
+          "name": "execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Model check"
+        },
+        {
+          "name": "outcome",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pass/rewrite_required/failed/unknown"
+        },
+        {
+          "name": "rewritten_revision_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "AI rewrite output"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Workflow"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Redacted finding"
+        },
+        {
+          "name": "command_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical NG check command"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Immutable result; output revision same post/owner; repeat detection uses logical command idempotency.",
+        "Recheck rewrite output before publication; unresolved cycle -> blocked NG workflow, never silent approve."
+      ],
+      "indexes": [
+        "content_revision_id,ruleset_id,created_at desc",
+        "Unique command_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "content_revision_id"
+          ],
+          "table": "app_private.post_content_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "ruleset_id"
+          ],
+          "table": "app_private.ng_rule_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "rewritten_revision_id"
+          ],
+          "table": "app_private.post_content_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "command_id"
+          ],
+          "table": "app_private.agent_commands",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.post_delivery_plans",
+      "domain": "posting",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "post_delivery_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical SNS destination"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "content_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Exact content"
+        },
+        {
+          "name": "plan_revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Immutable intent"
+        },
+        {
+          "name": "planned_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Per-SNS time"
+        },
+        {
+          "name": "connection_revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Account binding"
+        },
+        {
+          "name": "context_manifest_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Scheduling basis"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "planned/blocked/submitting/scheduled/cancelling/cancelled/published/failed/unknown"
+        },
+        {
+          "name": "blocked_reason",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Unresolved precondition"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Schedule/publish effect"
+        },
+        {
+          "name": "cancel_effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Cancellation effect"
+        },
+        {
+          "name": "supersedes_plan_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Explicit replan"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique delivery+plan_revision; same-owner content and delivery by composite FK/trigger.",
+        "Logical delivery unique post/platform remains; retry new plan revision only after authorized user command, never OS auto-repost after failed.",
+        "One current nonterminal plan per delivery by partial unique planned/blocked/submitting/scheduled/cancelling/unknown.",
+        "Provider scheduled != published; cancel intent != cancelled ack; stale callbacks cannot resurrect superseded plan."
+      ],
+      "indexes": [
+        "Unique post_delivery_id,plan_revision; partial active unique post_delivery_id; state,planned_at; effect_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "post_delivery_id"
+          ],
+          "table": "public.post_deliveries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "content_revision_id"
+          ],
+          "table": "app_private.post_content_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "context_manifest_id"
+          ],
+          "table": "app_private.context_manifests",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "cancel_effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "supersedes_plan_id"
+          ],
+          "table": "app_private.post_delivery_plans",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "public.social_accounts",
+      "domain": "posting",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "connection_revision",
+          "type": "bigint",
+          "nullable": true,
+          "purpose": "Identity revision"
+        },
+        {
+          "name": "provider_account_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Adapter user scope"
+        },
+        {
+          "name": "connection_state",
+          "type": "text",
+          "nullable": true,
+          "purpose": "not_connected/connected/disconnected"
+        },
+        {
+          "name": "last_verified_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Reconcile time"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Partial unique talent+platform when connected; reconnect same account retains stable logical identity.",
+        "Account switch with pending plans is blocked on QA95; do not reuse historical external_post binding for another account."
+      ],
+      "indexes": [
+        "Partial unique talent_id,platform where connection_state connected; provider_account_ref"
+      ],
+      "references": []
+    },
+    {
+      "table": "app_private.video_proposals",
+      "domain": "video",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Beneficiary"
+        },
+        {
+          "name": "scenario",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict title/scenes"
+        },
+        {
+          "name": "scenario_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Frozen after consent"
+        },
+        {
+          "name": "model_config_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Provider model/format"
+        },
+        {
+          "name": "input_versions",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Ordered media version refs"
+        },
+        {
+          "name": "context_manifest_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Basis"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "editing/ready/consented/superseded"
+        },
+        {
+          "name": "source_entry_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Chat origin"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Ideas/revisions never create provider effect or charge; validate referenced media owner.",
+        "New scenario/assets/model after consent require new proposal+consent; not mutation of consented row."
+      ],
+      "indexes": [
+        "talent_id,state,created_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "context_manifest_id"
+          ],
+          "table": "app_private.context_manifests",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_entry_id"
+          ],
+          "table": "app_private.agent_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.price_revisions",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "charge_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "monthly_fee/video_estimate/video_charge"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "ISO currency"
+        },
+        {
+          "name": "minor_unit_exponent",
+          "type": "smallint",
+          "nullable": false,
+          "purpose": "Provider currency precision"
+        },
+        {
+          "name": "unit_amount_minor",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Amount per unit"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Start"
+        },
+        {
+          "name": "policy_status",
+          "type": "text",
+          "nullable": false,
+          "purpose": "proposed/approved/retired"
+        },
+        {
+          "name": "approval_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Authorized policy evidence"
+        },
+        {
+          "name": "created_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager principal"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Immutable price version; >=0 amounts; exponent0..6; approved requires approval_ref, not model output.",
+        "Estimate vs actual charge separate kinds; no using estimated setting as silently approved billable price.",
+        "Effective overlap resolved by approved agreement reference, not choosing latest timestamp in invoice query."
+      ],
+      "indexes": [
+        "charge_kind,currency,effective_from desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "created_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.video_cost_consents",
+      "domain": "video",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Beneficiary"
+        },
+        {
+          "name": "proposal_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Exact scenario"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Person asking generation"
+        },
+        {
+          "name": "estimate_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Displayed estimate"
+        },
+        {
+          "name": "disclosure_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Wording"
+        },
+        {
+          "name": "payload_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Scenario+media+model+price"
+        },
+        {
+          "name": "confirmed_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Server time"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Technical expiry"
+        },
+        {
+          "name": "command_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical request"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique command_id; one request cannot consume same consent twice via video_generations unique consent_id.",
+        "Manager actor beneficiary separate per CR02; revoke/change/expiry before send blocks generation.",
+        "Price/amount disclaimer visible and recorded; plain chat intent alone not cost consent."
+      ],
+      "indexes": [
+        "Unique command_id; talent_id,confirmed_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "proposal_id"
+          ],
+          "table": "app_private.video_proposals",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "estimate_revision_id"
+          ],
+          "table": "app_private.price_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "command_id"
+          ],
+          "table": "app_private.agent_commands",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "public.video_generations",
+      "domain": "video",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "proposal_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Frozen scenario"
+        },
+        {
+          "name": "consent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Unique consumed cost consent"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Generation provider effect"
+        },
+        {
+          "name": "remade_from_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Prior generation"
+        },
+        {
+          "name": "model_config_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Exact model/format"
+        },
+        {
+          "name": "disposition",
+          "type": "text",
+          "nullable": true,
+          "purpose": "unreviewed/use/discard"
+        },
+        {
+          "name": "provider_cost_amount",
+          "type": "numeric(20,8)",
+          "nullable": true,
+          "purpose": "Observed cost"
+        },
+        {
+          "name": "provider_cost_currency",
+          "type": "char(3)",
+          "nullable": true,
+          "purpose": "Cost currency"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Backfill legacy before enforcing new write shape; new request requires valid same-owner consent/proposal.",
+        "Failed/unknown costs and Talent billable usage separate; is_counted remains legacy projection.",
+        "Output asset ready before use; use action creates post draft, never auto-publish."
+      ],
+      "indexes": [
+        "Unique consent_id partial non-null; effect_id; remade_from_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "proposal_id"
+          ],
+          "table": "app_private.video_proposals",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "consent_id"
+          ],
+          "table": "app_private.video_cost_consents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "remade_from_id"
+          ],
+          "table": "public.video_generations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.billing_agreements",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Paying Talent"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Square adapter selection"
+        },
+        {
+          "name": "provider_customer_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "External ID"
+        },
+        {
+          "name": "provider_subscription_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Only if provider confirmed"
+        },
+        {
+          "name": "monthly_price_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Approved price"
+        },
+        {
+          "name": "anchor_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Registration anchor"
+        },
+        {
+          "name": "timezone",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Cycle calculation"
+        },
+        {
+          "name": "cycle_policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Approved boundary rules"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/active/ended"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Start"
+        },
+        {
+          "name": "effective_to",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "End"
+        },
+        {
+          "name": "policy_approval_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Authority evidence"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Office cannot have billed Talent agreement; composite owner/account-type or trigger, never infer from payer name.",
+        "No active overlap per Talent; month-end anchor/day-roll semantics must have approved policy.",
+        "Paused retains agreement billing eligibility; ended stops future fee generation, historical debt retained per policy."
+      ],
+      "indexes": [
+        "talent_id,state; Unique provider,provider_customer_ref,talent_id,effective_from"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "monthly_price_id"
+          ],
+          "table": "app_private.price_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "cycle_policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.billing_cycles",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "agreement_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Contract"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "period_start",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Inclusive"
+        },
+        {
+          "name": "period_end",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Exclusive"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "open/prepared/finalized/void"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Calculation rules"
+        },
+        {
+          "name": "closed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Finalization"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique agreement+period_start; end>start; cycles for same agreement nonoverlap via exclusion.",
+        "Finalized cycle immutable apart from provider projections; later changes are linked adjustment lines.",
+        "Billing month does not assume calendar month; source charge coverage recorded separately."
+      ],
+      "indexes": [
+        "Unique agreement_id,period_start; talent_id,period_start desc; state,period_end"
+      ],
+      "references": [
+        {
+          "columns": [
+            "agreement_id"
+          ],
+          "table": "app_private.billing_agreements",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.video_usage_entries",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "generation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Source request"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Beneficiary"
+        },
+        {
+          "name": "entry_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "requested/completed/failed/billable/adjustment"
+        },
+        {
+          "name": "event_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Deduplication"
+        },
+        {
+          "name": "quantity",
+          "type": "numeric(12,4)",
+          "nullable": false,
+          "purpose": "Signed event units"
+        },
+        {
+          "name": "price_revision_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Frozen billable price"
+        },
+        {
+          "name": "cycle_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Allocation after policy approval"
+        },
+        {
+          "name": "reverses_entry_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Correction"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Billability rules"
+        },
+        {
+          "name": "source_callback_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Verified result"
+        },
+        {
+          "name": "recorded_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB time"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique generation+event_key; immutable facts; billable/adjustment only after approved usage policy.",
+        "Failed video is not billable under source; timing/late adjustment follows QA1/62, no default assumed.",
+        "Office usage recorded, not invoiced through Talent billing; adjustment uses reversal reference, never mutate prior is_counted as ledger."
+      ],
+      "indexes": [
+        "Unique generation_id,event_key; talent_id,recorded_at; cycle_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "generation_id"
+          ],
+          "table": "public.video_generations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "price_revision_id"
+          ],
+          "table": "app_private.price_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "cycle_id"
+          ],
+          "table": "app_private.billing_cycles",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "reverses_entry_id"
+          ],
+          "table": "app_private.video_usage_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "source_callback_id"
+          ],
+          "table": "app_private.provider_callbacks",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.billing_charge_lines",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "cycle_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Accounting cycle"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "source_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Logical monthly/video/adjustment identity"
+        },
+        {
+          "name": "charge_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "monthly/video/adjustment"
+        },
+        {
+          "name": "usage_entry_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Video basis"
+        },
+        {
+          "name": "price_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Actual price"
+        },
+        {
+          "name": "quantity",
+          "type": "numeric(12,4)",
+          "nullable": false,
+          "purpose": "Units"
+        },
+        {
+          "name": "amount_minor",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Signed exact charge"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "Currency"
+        },
+        {
+          "name": "reverses_line_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Correction"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Computation/rounding"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique source_key; amount sign/quantity constrained by kind; monthly/video nonnegative, adjustment signed.",
+        "Currency/owner/cycle/price consistency checked transactionally; use decimal multiplication and explicit currency rounding once into minor units.",
+        "Append-only; after finalize no edit/delete, add approved adjustment into eligible future cycle."
+      ],
+      "indexes": [
+        "Unique source_key; cycle_id,created_at; usage_entry_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "cycle_id"
+          ],
+          "table": "app_private.billing_cycles",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "usage_entry_id"
+          ],
+          "table": "app_private.video_usage_entries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "price_revision_id"
+          ],
+          "table": "app_private.price_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "reverses_line_id"
+          ],
+          "table": "app_private.billing_charge_lines",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.billing_invoices",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "cycle_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Frozen charge set"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "invoice_revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "External send revision"
+        },
+        {
+          "name": "line_snapshot",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Exact line IDs/hash"
+        },
+        {
+          "name": "total_minor",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Charge sum"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "Single currency"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "prepared/sending/issued/paid/failed/unknown/void"
+        },
+        {
+          "name": "provider_invoice_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "External receipt"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Invoice effect"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique cycle+invoice_revision; one active payable invoice per cycle; exact sum checked with locked cycle and immutable line snapshot.",
+        "No paid from model/browser redirect; adapter verified provider payment observations only.",
+        "No retransmission/new invoice for unknown outcome; reconcile first."
+      ],
+      "indexes": [
+        "Unique cycle_id,invoice_revision; effect_id; provider_invoice_ref; talent_id,created_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "cycle_id"
+          ],
+          "table": "app_private.billing_cycles",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.payment_attempts",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "invoice_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Payable invoice"
+        },
+        {
+          "name": "attempt_no",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Business collection action"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Same send identity"
+        },
+        {
+          "name": "amount_minor",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Requested sum"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "Match invoice"
+        },
+        {
+          "name": "provider_payment_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "External payment"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "planned/sending/succeeded/failed/unknown/cancelled"
+        },
+        {
+          "name": "observed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Verified result"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique invoice+attempt_no; unique effect; same invoice amount/currency.",
+        "No automatic recollection after ambiguous payment or no approved retry policy; reconcile partial/multiple payments instead of setting paid by latest callback.",
+        "Provider payment unique within account scope on effect ledger; out-of-order failure cannot undo successful settlement."
+      ],
+      "indexes": [
+        "Unique invoice_id,attempt_no; Unique effect_id; state,created_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "invoice_id"
+          ],
+          "table": "app_private.billing_invoices",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.ai_price_revisions",
+      "domain": "cost",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Model provider"
+        },
+        {
+          "name": "model",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Model ID"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "Cost currency"
+        },
+        {
+          "name": "input_per_million",
+          "type": "numeric(20,8)",
+          "nullable": false,
+          "purpose": "Input rate"
+        },
+        {
+          "name": "cached_per_million",
+          "type": "numeric(20,8)",
+          "nullable": true,
+          "purpose": "Cached rate"
+        },
+        {
+          "name": "output_per_million",
+          "type": "numeric(20,8)",
+          "nullable": false,
+          "purpose": "Output rate"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Valid start"
+        },
+        {
+          "name": "evidence_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Provider price record"
+        },
+        {
+          "name": "rounding_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Reporting method"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "All rates >=0; immutable; referenced explicitly by step, not retroactively lookup latest.",
+        "Cached_tokens subset of input; formula excludes cached subset from uncached rate. Provider-hosted tool fees recorded from receipt separately, not invented token conversion."
+      ],
+      "indexes": [
+        "provider,model,effective_from desc"
+      ],
+      "references": []
+    },
+    {
+      "table": "app_private.metric_ingest_runs",
+      "domain": "metrics",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "social_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Account"
+        },
+        {
+          "name": "connection_revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Binding"
+        },
+        {
+          "name": "capture_on",
+          "type": "date",
+          "nullable": false,
+          "purpose": "Local day"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/running/succeeded/partial/failed"
+        },
+        {
+          "name": "attempt_no",
+          "type": "integer",
+          "nullable": false,
+          "purpose": "Read retry counter"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Fetch start"
+        },
+        {
+          "name": "finished_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Fetch end"
+        },
+        {
+          "name": "capability_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Provider evidence"
+        },
+        {
+          "name": "error_code",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Sanitized"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique account+connection_revision+capture_on; retries update run metadata, observations immutable per fetch.",
+        "Read retry allowed with quota/backoff, different from forbidden automatic business repost."
+      ],
+      "indexes": [
+        "Unique social_account_id,connection_revision,capture_on; state,created_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "social_account_id"
+          ],
+          "table": "public.social_accounts",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "capability_revision_id"
+          ],
+          "table": "app_private.provider_capability_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.metric_observations",
+      "domain": "metrics",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "ingest_run_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Fetch provenance"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "social_account_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Exact account"
+        },
+        {
+          "name": "post_delivery_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "NULL for follower account metric"
+        },
+        {
+          "name": "metric_name",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Canonical allowlist"
+        },
+        {
+          "name": "value",
+          "type": "numeric(24,6)",
+          "nullable": true,
+          "purpose": "Observed number"
+        },
+        {
+          "name": "availability",
+          "type": "text",
+          "nullable": false,
+          "purpose": "available/missing/unsupported/error"
+        },
+        {
+          "name": "provider_observed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Observation time"
+        },
+        {
+          "name": "fetched_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Receipt time"
+        },
+        {
+          "name": "source_schema_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter mapping"
+        },
+        {
+          "name": "raw_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Restricted provider payload ref"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique ingest_run+subject kind+subject ID+metric name+fetched_at with NULLS NOT DISTINCT for absent post.",
+        "available iff value not null; nonnegative values for count metrics. Stale computed from age, not value0.",
+        "Same-owner account/delivery validation; follower snapshots/post_metric_snapshots derived compatibility projections, never counted twice."
+      ],
+      "indexes": [
+        "social_account_id,metric_name,fetched_at desc; post_delivery_id,metric_name,fetched_at desc; ingest_run_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "ingest_run_id"
+          ],
+          "table": "app_private.metric_ingest_runs",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "social_account_id"
+          ],
+          "table": "public.social_accounts",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "post_delivery_id"
+          ],
+          "table": "public.post_deliveries",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.follower_goal_revisions",
+      "domain": "metrics",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "goal_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Existing follower goal"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Owner"
+        },
+        {
+          "name": "platform",
+          "type": "text",
+          "nullable": false,
+          "purpose": "SNS"
+        },
+        {
+          "name": "revision",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Immutable version"
+        },
+        {
+          "name": "target_count",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Target"
+        },
+        {
+          "name": "deadline_on",
+          "type": "date",
+          "nullable": true,
+          "purpose": "Due"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Start"
+        },
+        {
+          "name": "created_by",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique goal+revision; target>0; same Talent/platform as follower_goals.",
+        "Current goal projection changes immediately; achievement records refer exact revision."
+      ],
+      "indexes": [
+        "Unique goal_id,revision; talent_id,platform,effective_from desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "goal_id"
+          ],
+          "table": "public.follower_goals",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "created_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.goal_achievements",
+      "domain": "metrics",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "goal_revision_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Target revision"
+        },
+        {
+          "name": "metric_observation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Evidence"
+        },
+        {
+          "name": "event_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Notification identity"
+        },
+        {
+          "name": "achieved_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Evidence time"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique goal_revision; verify current account/platform, available metric>=target and effective revision before event.",
+        "Changing goal creates revision, never rewrites prior achievement; intermediate25/50/75percent not presumed approved."
+      ],
+      "indexes": [
+        "Unique goal_revision_id; Unique event_key"
+      ],
+      "references": [
+        {
+          "columns": [
+            "goal_revision_id"
+          ],
+          "table": "app_private.follower_goal_revisions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "metric_observation_id"
+          ],
+          "table": "app_private.metric_observations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.notification_events",
+      "domain": "notifications",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "event_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Canonical domain event"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "No Talent for application"
+        },
+        {
+          "name": "application_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "New application"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Allowlist16 source triggers"
+        },
+        {
+          "name": "resource_refs",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Typed IDs only"
+        },
+        {
+          "name": "cause",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Normalized reason classification"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Routing policy"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Domain time"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique event_key; exactly applicable subject family; no severe-consultation kind.",
+        "Approval request projects to approval queue; period-end to conversation; not every event creates generic inbox.",
+        "Recipient snapshot resolves at event time; SNS/network publishing failure excludes Manager per source."
+      ],
+      "indexes": [
+        "Unique event_key; talent_id,occurred_at desc; application_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "application_id"
+          ],
+          "table": "public.talent_applications",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.manager_notification_recipients",
+      "domain": "notifications",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "event_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Event"
+        },
+        {
+          "name": "notification_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Existing Manager inbox content"
+        },
+        {
+          "name": "manager_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Frozen recipient"
+        },
+        {
+          "name": "assignment_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Routing source"
+        },
+        {
+          "name": "read_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Opened"
+        },
+        {
+          "name": "handled_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Business action"
+        },
+        {
+          "name": "handled_by",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Actor"
+        },
+        {
+          "name": "handling_policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Decision for QA97"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "active/suppressed/routing_pending"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique event+manager; handled fields paired; read never implies handled without approved policy.",
+        "Disabled Manager delivery suppressed, history retained; replacement requires explicit policy, not all-manager fallback.",
+        "manager_notifications.handled_at becomes compatibility projection only after semantics approved."
+      ],
+      "indexes": [
+        "Unique event_id,manager_id; manager_id,read_at,created_at desc; manager_id,handled_at,created_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "event_id"
+          ],
+          "table": "app_private.notification_events",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "notification_id"
+          ],
+          "table": "public.manager_notifications",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "manager_id"
+          ],
+          "table": "public.managers",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "assignment_id"
+          ],
+          "table": "app_private.talent_manager_assignments",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "handled_by"
+          ],
+          "table": "public.managers",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "handling_policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.email_deliveries",
+      "domain": "notifications",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "event_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Source"
+        },
+        {
+          "name": "manager_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Manager recipient"
+        },
+        {
+          "name": "application_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Applicant recipient"
+        },
+        {
+          "name": "recipient_address_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Restricted address reference"
+        },
+        {
+          "name": "template_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Approved content"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Email send effect"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/sending/accepted/delivered/failed/unknown/suppressed"
+        },
+        {
+          "name": "provider_message_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Receipt"
+        },
+        {
+          "name": "failure_code",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Sanitized"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Exactly one recipient family; unique event+recipient+template revision; address/payload not put in logs/outbox.",
+        "Accepted/delivered are transport facts, not read/handled. No repeat temporary password email just because callback lost; secret delivery contract external to this ledger."
+      ],
+      "indexes": [
+        "event_id; manager_id,state; effect_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "event_id"
+          ],
+          "table": "app_private.notification_events",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "manager_id"
+          ],
+          "table": "public.managers",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "application_id"
+          ],
+          "table": "public.talent_applications",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.talent_status_events",
+      "domain": "lifecycle",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "from_status",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Existing token"
+        },
+        {
+          "name": "to_status",
+          "type": "text",
+          "nullable": false,
+          "purpose": "before_use/in_use/paused/ended"
+        },
+        {
+          "name": "actor_user_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Manager"
+        },
+        {
+          "name": "operation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Idempotent command"
+        },
+        {
+          "name": "effective_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB time"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Non-sensitive note"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Capability matrix"
+        },
+        {
+          "name": "resource_version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "New Talent version"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique operation_id; no transition out of ended; API may display terminated but SQL token remains ended.",
+        "Paused != posting pause != payment delinquency; payment failure does not imply ended or paused.",
+        "State change and outbox commit together; provider cancellation completion tracked separately."
+      ],
+      "indexes": [
+        "Unique operation_id; talent_id,effective_at desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "actor_user_id"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "operation_id"
+          ],
+          "table": "app_private.domain_operations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.lifecycle_actions",
+      "domain": "lifecycle",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject"
+        },
+        {
+          "name": "status_event_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Termination source"
+        },
+        {
+          "name": "action_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Idempotent saga identity"
+        },
+        {
+          "name": "action_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "revoke_sessions/stop_reminders/cancel_plan/end_billing/purge"
+        },
+        {
+          "name": "target_ref",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict typed target"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "External effect"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/running/completed/failed/unknown/blocked"
+        },
+        {
+          "name": "blocked_reason",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Decision/dependency"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique action_key; cancellation unknown never declares lifecycle fully complete; identity revoke transaction separate from provider HTTP.",
+        "No backfill publication on resume; overdue behavior remains unenabled without policy."
+      ],
+      "indexes": [
+        "Unique action_key; talent_id,state; effect_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "status_event_id"
+          ],
+          "table": "app_private.talent_status_events",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.retention_cases",
+      "domain": "lifecycle",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "talent_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Subject until final purge"
+        },
+        {
+          "name": "subject_digest",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "HMAC audit identity with separate retention"
+        },
+        {
+          "name": "terminated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Anchor"
+        },
+        {
+          "name": "eligible_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Six calendar months proposal"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Authorized deletion scope"
+        },
+        {
+          "name": "scope_manifest",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Tables/objects/providers"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "scheduled/blocked/running/completed/unknown"
+        },
+        {
+          "name": "hold_reason",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Debt/shared asset/missing scope"
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "All required receipts"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique talent_id; no deletion before eligible_at; calendar-month interpretation needs policy review, not fixed180days assumption.",
+        "Financial/audit obligations and office scope gate destructive work; no indefinite hold declared approved.",
+        "FK to Talent intentionally RESTRICT while case active; final minimal receipt detached in same finalization transaction before removing Talent."
+      ],
+      "indexes": [
+        "Unique talent_id; state,eligible_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "talent_id"
+          ],
+          "table": "public.talents",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.retention_receipts",
+      "domain": "lifecycle",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "case_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "NULL only after finalized case purge"
+        },
+        {
+          "name": "subject_digest",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Minimal erased-subject marker"
+        },
+        {
+          "name": "resource_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "db/storage/onedrive/provider/cache/backup"
+        },
+        {
+          "name": "resource_digest",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "No PII path"
+        },
+        {
+          "name": "action_key",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Deduplicate deletion"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/deleted/not_found/failed/unknown"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "External deletion"
+        },
+        {
+          "name": "checked_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Proof time"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Approved minimal marker retention"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique action_key; no raw names/email/path in post-purge receipts; digest key retention and revocation reviewed.",
+        "Case FK detached before case/Talent delete; original owner-independent marker allows restore re-apply deletion.",
+        "Backup deletion means scheduled backup expiry or explicit provider receipt, never claim immediate erased historical backups.",
+        "Detach nullable effect_id as part of approved final purge before deleting effect rows; preserve only resource digest and external evidence digest."
+      ],
+      "indexes": [
+        "Unique action_key; subject_digest,resource_kind; expires_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "case_id"
+          ],
+          "table": "app_private.retention_cases",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.backup_restore_runs",
+      "domain": "lifecycle",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "CAS; default1, tăng đúng1 mỗi UPDATE"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "backup/restore_drill/production_restore"
+        },
+        {
+          "name": "environment",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Isolated environment label"
+        },
+        {
+          "name": "provider_snapshot_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "External backup handle"
+        },
+        {
+          "name": "storage_manifest_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Byte/DB consistency manifest"
+        },
+        {
+          "name": "cutoff_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Consistency point"
+        },
+        {
+          "name": "deletion_watermark",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Reapplied receipts cutoff"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "pending/running/validated/failed"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Execution"
+        },
+        {
+          "name": "finished_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "End"
+        },
+        {
+          "name": "evidence_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Restore drill report"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Validated requires evidence_ref and consistency/deletion/effect reconciliation checks.",
+        "Restore environment starts with outbound workers disabled; only authorized reconciliation can re-enable.",
+        "Secrets and encryption keys backed up in controlled separate mechanism, not table fields."
+      ],
+      "indexes": [
+        "kind,started_at desc; state"
+      ],
+      "references": []
+    },
+    {
+      "table": "public.activity_logs",
+      "domain": "audit",
+      "change": "EXTEND",
+      "columns": [
+        {
+          "name": "operation_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Domain intent"
+        },
+        {
+          "name": "execution_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Agent run"
+        },
+        {
+          "name": "command_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Receipt"
+        },
+        {
+          "name": "effect_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "External effect"
+        },
+        {
+          "name": "resource_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Version/hash"
+        },
+        {
+          "name": "policy_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Decision basis"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Append-only runtime; actor true principal distinct from model actor label; audit allowlist and redaction.",
+        "FKs before purge follow approved audit retention strategy; do not bypass append-only to perform ordinary writes."
+      ],
+      "indexes": [
+        "operation_id; command_id; effect_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "operation_id"
+          ],
+          "table": "app_private.domain_operations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "execution_id"
+          ],
+          "table": "app_private.ai_executions",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "command_id"
+          ],
+          "table": "app_private.agent_commands",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "effect_id"
+          ],
+          "table": "app_private.provider_effects",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "policy_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.application_consents",
+      "domain": "enrollment",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "application_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Submitted application"
+        },
+        {
+          "name": "terms_revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Presented version"
+        },
+        {
+          "name": "terms_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Exact content"
+        },
+        {
+          "name": "terms_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Approved location"
+        },
+        {
+          "name": "consented_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Server receipt"
+        },
+        {
+          "name": "operation_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Logical submission"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique application+terms_revision+operation; consent true represented by record existence; no parental consent fields.",
+        "Display location remains確認57; new terms do not automatically create re-consent obligation."
+      ],
+      "indexes": [
+        "Unique application_id,terms_revision,operation_id"
+      ],
+      "references": [
+        {
+          "columns": [
+            "application_id"
+          ],
+          "table": "public.talent_applications",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "operation_id"
+          ],
+          "table": "app_private.domain_operations",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.payment_settlements",
+      "domain": "billing",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "invoice_id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "Invoice subject"
+        },
+        {
+          "name": "payment_attempt_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Initiating collection"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Adapter"
+        },
+        {
+          "name": "provider_account_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "External merchant scope"
+        },
+        {
+          "name": "provider_transaction_ref",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Unique actual money movement"
+        },
+        {
+          "name": "amount_minor",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Signed settled amount"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "nullable": false,
+          "purpose": "Invoice currency"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "payment/reversal"
+        },
+        {
+          "name": "reverses_settlement_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Original movement"
+        },
+        {
+          "name": "provider_settled_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Observed accounting time"
+        },
+        {
+          "name": "callback_id",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Verified receipt"
+        },
+        {
+          "name": "reconciliation_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Verified query evidence"
+        }
+      ],
+      "mutable": false,
+      "invariants": [
+        "Unique provider+provider_account_ref+provider_transaction_ref; immutable actual settlements, not requested attempt amount.",
+        "Payment>0, reversal<0 and referenced original; currency and owner match invoice; reversal total cannot exceed original via locked invoice transaction.",
+        "At least callback_id or reconciliation_ref; invoice paid projection from net settled sum and approved collection policy; overpayment quarantined, no automatic refund."
+      ],
+      "indexes": [
+        "Unique provider,provider_account_ref,provider_transaction_ref; invoice_id,provider_settled_at"
+      ],
+      "references": [
+        {
+          "columns": [
+            "invoice_id"
+          ],
+          "table": "app_private.billing_invoices",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "payment_attempt_id"
+          ],
+          "table": "app_private.payment_attempts",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "reverses_settlement_id"
+          ],
+          "table": "app_private.payment_settlements",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "callback_id"
+          ],
+          "table": "app_private.provider_callbacks",
+          "target_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    },
+    {
+      "table": "app_private.policy_revisions",
+      "domain": "authorization",
+      "change": "NEW",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "purpose": "PK, gen_random_uuid()"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "DB clock; default now()"
+        },
+        {
+          "name": "revision",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Unique immutable policy key"
+        },
+        {
+          "name": "policy_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "Allowlisted capability/assessment/billing/routing/retention/rounding"
+        },
+        {
+          "name": "payload",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Strict rule schema"
+        },
+        {
+          "name": "payload_hash",
+          "type": "char(64)",
+          "nullable": false,
+          "purpose": "Exact rules"
+        },
+        {
+          "name": "authority_kind",
+          "type": "text",
+          "nullable": false,
+          "purpose": "technical/business/commercial"
+        },
+        {
+          "name": "approval_state",
+          "type": "text",
+          "nullable": false,
+          "purpose": "proposed/approved"
+        },
+        {
+          "name": "source_refs",
+          "type": "jsonb",
+          "nullable": false,
+          "purpose": "Exact source path/hash/locator/decision evidence"
+        },
+        {
+          "name": "approval_ref",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Authorized approval artifact"
+        },
+        {
+          "name": "effective_from",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Start of approved policy"
+        },
+        {
+          "name": "supersedes_revision",
+          "type": "text",
+          "nullable": true,
+          "purpose": "Prior revision"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false,
+          "purpose": "Revocation CAS only; content and approval immutable"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "purpose": "Revocation timestamp maintenance"
+        },
+        {
+          "name": "revoked_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "purpose": "Publisher revocation; service rejects execution after this time"
+        },
+        {
+          "name": "revoked_by",
+          "type": "uuid",
+          "nullable": true,
+          "purpose": "Authorized publishing principal"
+        }
+      ],
+      "mutable": true,
+      "invariants": [
+        "Unique revision; approved requires approval_ref and effective_from plus verified authority evidence in controlled publishing workflow.",
+        "Only policy publisher deployment role may INSERT; no API/agent/effect writer mutation or approval; immutable revisions.",
+        "Row label alone does not establish customer approval; publisher validates source/authority/hash, unresolved business rule remains proposed and cannot execute.",
+        "Commands resolve exact policy revision and authority kind; technical policy cannot authorize unresolved business/commercial action.",
+        "Content/source/approval fields remain immutable; only authorized policy publisher may set revoked_at/revoked_by with audit and version CAS. Revocation fields paired.",
+        "Service checks approved/effective/not-revoked on every commit/send; referenced historical policy can remain stored but cannot newly authorize effects."
+      ],
+      "indexes": [
+        "Unique revision; policy_kind,effective_from desc"
+      ],
+      "references": [
+        {
+          "columns": [
+            "supersedes_revision"
+          ],
+          "table": "app_private.policy_revisions",
+          "target_columns": [
+            "revision"
+          ],
+          "on_delete": "RESTRICT"
+        },
+        {
+          "columns": [
+            "revoked_by"
+          ],
+          "table": "app_private.auth_principals",
+          "target_columns": [
+            "auth_user_id"
+          ],
+          "on_delete": "RESTRICT"
+        }
+      ]
+    }
+  ]
+}

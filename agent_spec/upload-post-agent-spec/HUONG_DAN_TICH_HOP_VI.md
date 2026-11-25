@@ -1,3 +1,28 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Từ cấm sau AI sửa
+
+Quyết định24/11: AI viết lại rồi đặt lịch; không thêm bước Talent xác nhận lại, không chuyển Manager sửa.
+
+**Còn mở/giới hạn:** Không tự chốt số lần sửa khi vẫn lỗi, thất bại hoặc tương tác với duyệt bài công việc; No.96 vẫn theo dõi hiệu lực danh sách đổi. Căn cứ: `KS 20261122!G4:I4 (No.3)`; `EV-1313`; QA No.40;QA No.90;QA No.96;TR-4-4.
+
+### TikTok: giữ đăng trực tiếp
+
+Nguồn ghi tiếp tục đăng trực tiếp qua Upload-Post, không gửi nháp; giữ lịch/autopost và không thêm ô Talent chọn phạm vi công khai từng bài. Nguồn đồng thời ghi câu trả lời TikTok và Upload-Post khác nhau.
+
+**Còn mở/giới hạn:** Đây là hướng đi và lời thuật lại của nguồn, không chứng minh TikTok duyệt mô hình. Giữ rủi ro hạn chế bài/tài khoản và kiểm provider; không ghi tuân thủ đã xác minh. Căn cứ: `KS 20261122!G20:H24 (No.19–23)`; `EV-1320`; QA No.70;QA No.71;TR-8-2;TR-8-3;TR-8-4.
+
+### Dừng hệ thống và lịch ngoài
+
+Sau họp24/11 xác nhận không làm nút hủy toàn bộ lịch; dừng từng Talent vẫn có. Dừng hệ thống phải hủy cả lịch đã gửi Upload-Post, vì tắt OS không tự hủy lịch ngoài.
+
+**Còn mở/giới hạn:** Đội thiết kế trình tự hủy/đối soát trước shutdown và xử lý thất bại, không hứa tắt VPS là dừng được mọi bài. Căn cứ: `KS 20261122!G30:H30;G35:I35 (No.29,34)`; `EV-1321`; QA No.77;QA No.91;TR-7-5.
+
+<!-- /DELIVERY24112026 -->
+
 # Hướng dẫn tích hợp Upload-Post
 
 Bản 2.0 · 19/11/2026 · Dành cho AI agent lập trình. Thay bộ 1.1 (17/11/2026: `UPLOAD_POST_IMPLEMENTATION_SPEC_VI.md`, `API_CONTRACTS.schema.json`, `TEST_CASES.csv`, `README.md`, `SOURCE_MANIFEST.json`, `VALIDATION.md`; xem lịch sử git).

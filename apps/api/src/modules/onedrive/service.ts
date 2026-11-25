@@ -178,6 +178,13 @@ export class OneDriveDemo {
     const { item } = await this.scoped(id)
     return dto(await this.drive.replaceFile(id, content, this.textType(item.name), eTag))
   }
+  // Agent profile export (ai-coach/effects.ts): replace the file if it exists, else create it. Returns the item id.
+  // A human edit between list and replace fails the If-Match; the effect worker retries with the new eTag.
+  async writeText(folderId: string, name: string, content: string) {
+    const folder = await this.folder(folderId), file = safeName(name)
+    const old = (await this.drive.children(folder.id)).find(i => i.name === file && i.file)
+    return (old ? await this.drive.replaceFile(old.id, content, this.textType(file), old.eTag) : await this.drive.createFile(folder.id, file, content, this.textType(file))).id
+  }
 
   async uploadMedia(folderId: string, rawName: string, type: string, size: number, body: AsyncIterable<Uint8Array>) {
     const name = safeName(rawName)

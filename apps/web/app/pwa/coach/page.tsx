@@ -1,2 +1,2 @@
-import { CoachDemo } from '@/components/demo/CoachDemo'
-export default function Page() { return <CoachDemo /> }
+import { AgentDemo } from '@/components/demo/AgentDemo'
+export default function Page() { return <AgentDemo /> }

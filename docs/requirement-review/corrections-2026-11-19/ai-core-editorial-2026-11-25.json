@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-25",
+  "author": "Codex",
+  "scope": "User-requested architecture document restructuring; no business requirement change",
+  "artifact": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+  "input_sha256": "ba559b0bb8336258a5d8661d92af76c4737edb4d206ddf7892a10a7978772739",
+  "output_sha256": "8f6b5d202d5ab8dfa74e117002ed20f84b52b90d357d208bad0ed94a453dadd5",
+  "changes": [
+    "Removed1.1 and version-comparison narrative",
+    "Added component responsibilities and three channel-specific flows in2",
+    "Replaced3 with selected libraries and reasons",
+    "Replaced11 with infrastructure proposal, separate from infrastructure decisions"
+  ],
+  "approval": "Internal editorial/design update only; no gate or independent review approval",
+  "validation": {
+    "local_links": "PASS",
+    "requested_sections": "PASS",
+    "workflow_validator": "PASS; mechanical only",
+    "diff_whitespace": "PASS using cr-at-eol for repository CSV convention"
+  }
+}

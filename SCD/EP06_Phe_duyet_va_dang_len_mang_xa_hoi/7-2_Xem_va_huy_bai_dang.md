@@ -1,3 +1,22 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Giờ đăng
+
+Giờ đăng lệch vài phút giữa Talent và chia khung theo SNS; Manager ghi khoảng giờ trong chỉ thị, AI dùng thực tích để chọn giờ. G16 nói Talent chỉ hủy lịch.
+
+**Còn mở/giới hạn:** H16 không lặp riêng quyền hủy. Không tự chốt thuật toán, jitter cụ thể hoặc thời điểm đổi lịch đang có. Căn cứ: `KS 20261122!G16:I16 (No.15)`; `EV-1319`; QA No.61;QA No.70;TR-8-1;TR-8-3.
+
+### YK3: không tự đăng lại
+
+Khi đăng lỗi, OS không tự đăng lại; Talent thử lại sau, Manager vẫn có đặt lịch lại tại M-09. Hủy lịch do cả Talent/Manager.
+
+**Còn mở/giới hạn:** Retry kỹ thuật trước khi xác định kết quả khác việc tự đăng lại bài đã thất bại; cần thiết kế chống trùng và kiểm provider. Căn cứ: `YK3 §2-4-6 w:p386–431`; `EV-1329`; QA No.59;QA No.61;TR-8-5;TR-7-2.
+
+<!-- /DELIVERY24112026 -->
+
 # 7-2 Xem và hủy bài đăng
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

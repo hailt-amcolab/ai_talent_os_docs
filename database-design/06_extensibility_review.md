@@ -1,15 +1,17 @@
 # 06. Tác động yêu cầu mới và khả năng mở rộng DB
 
-Bản1.2 · Rà soát23/11/2026 · Người thực hiện: Codex (tác giả cập nhật, chưa có reviewer độc lập).
+> **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
 
-**Có ảnh hưởng đến thiết kế database.** Phần thay đổi chắc chắn ở mức quyết định nguồn gồm trạng thái tạm dừng, quyền hủy lịch, nơi nhận yêu cầu duyệt và bỏ các quy tắc cũ. Inbox TikTok, ranking và lưu đồng ý phụ huynh mới là đề nghị hoặc xung đột, chưa đủ căn cứ tạo schema nghiệp vụ.
+Bản 1.3 · Cập nhật 25/11/2026 · Người thực hiện: Codex (tác giả cập nhật, chưa có reviewer độc lập).
+
+**Có ảnh hưởng đến thiết kế database.** Phần thay đổi chắc chắn ở mức quyết định nguồn gồm trạng thái tạm dừng, quyền hủy lịch, nơi nhận yêu cầu duyệt và bỏ các quy tắc cũ. Đề nghị inbox TikTok và lưu đồng ý phụ huynh đã có trả lời: giữ direct Upload-Post và không lưu hồ sơ phụ huynh. Ranking/voice ngoài phase hiện tại; không giữ ba mục này như quyết định còn chờ khách.
 
 ## 1. Phạm vi và căn cứ
 
-Đối chiếu7tài liệu DB,7migration SQL và Prisma schema trong repository với QA/KS tiếp nhận23/11 và đợt `23112026`. Catalog hiện hành có20tệp, xem [TAI_LIEU_NGUON](../TAI_LIEU_NGUON.md), [review QA/KS](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md), [review đợt23112026](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Hash input/output và locator được ghi tại [review-2026-11-23.json](review-2026-11-23.json).
+Lần 23/11 đối chiếu 7 tài liệu DB,7 migration SQL; bản 25/11 bổ sung nguồn 24/11 và 13 migration. Phần kiểm kê 23/11 dưới đây là lịch sử: đối chiếu 7 tài liệu DB,7 migration SQL và Prisma schema trong repository với QA/KS tiếp nhận 23/11 và đợt `23112026`. Catalog hiện hành có 20 tệp, xem [TAI_LIEU_NGUON](../TAI_LIEU_NGUON.md), [review QA/KS](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md), [review đợt 23112026](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Hash input/output và locator được ghi tại [review-2026-11-23.json](review-2026-11-23.json).
 
-- **FACT về repository:** 7migration tạo40bảng ứng dụng (25public+15app_private), chưa tính `_prisma_migrations` và Auth bên ngoài. Hai bảng tăng thêm là demo OneDrive; không chứng minh tính năng khách đã hoàn tất. Từ điển05 giữ snapshot catalog38bảng và bổ sung mô tả2bảng từ SQL.
-- **FACT về nguồn:** KS cộtK và sheet20261120 có quyết định20/11; QA có No.93–99 còn mở. UI-M20 lập20/11; ISS22-D/P và ADV22 lập22/11, chuẩn bị họp24/11. Ngày thư mục không phải ngày duyệt.
+- **FACT lịch sử 23/11:** 7 migration tạo 40 bảng ứng dụng (25 public+15 app_private), chưa tính `_prisma_migrations` và Auth bên ngoài. Hai bảng tăng thêm là demo OneDrive; không chứng minh tính năng khách đã hoàn tất. Từ điển 05 giữ snapshot catalog 38 bảng và bổ sung mô tả 2 bảng từ SQL.
+- **FACT về nguồn:** KS cộtK và sheet 20261120 có quyết định 20/11; QA có No.93–99 còn mở. UI-M20 lập 20/11; ISS22-D/P và ADV22 lập 22/11, chuẩn bị họp 24/11. Ngày thư mục không phải ngày duyệt.
 - **INFERENCE:** các gap bên dưới cần được xử lý trước khi mở luồng tương ứng. Không suy ra code/guard/worker đã thực hiện từ việc schema có cột.
 - **PROPOSAL:** P-21–P-26 và các thực thể đích là thiết kế nội bộ để review, chưa là migration hay phê duyệt khách.
 
@@ -21,49 +23,49 @@ Locator trang dưới đây là số trang PDF thực tế; KS/QA là ô trong w
 
 | Chủ đề | Nguồn và trạng thái | Hiện có / khoảng lệch | Hướng cập nhật thiết kế, chưa triển khai |
 |---|---|---|---|
-| Tạm dừng Talent | KS `確認事項!K116`, `20261120!F32`: thêm 一時停止, vẫn trả phí | `talents.status` chỉ3giá trị; cờ pause đăng không cùng nghĩa | R01-11/BR-05/P-21: trạng thái và lịch sử hiệu lực; chốt ma trận chức năng/login/lịch, kiểm trigger/session và billing trước migration |
-| Không giới hạn viết lại | KS K65, thay quyết định2lần17/11; DEC-0001 | P-13 cũ đề nghị CHECK/counter2lần; SQL chưa có giới hạn này | Rút P-13; không tạo migration DROP giới hạn không tồn tại. Revision/audit vẫn cần thiết kế riêng |
+| Tạm dừng Talent | KS `確認事項!K116`, `20261120!F32`: thêm 一時停止, vẫn trả phí | `talents.status` chỉ 3 giá trị; cờ pause đăng không cùng nghĩa | R01-11/BR-05/P-21: trạng thái và lịch sử hiệu lực; chốt ma trận chức năng/login/lịch, kiểm trigger/session và billing trước migration |
+| Không giới hạn viết lại | KS K65, thay quyết định 2 lần 17/11; DEC-0001 | P-13 cũ đề nghị CHECK/counter 2 lần; SQL chưa có giới hạn này | Rút P-13; không tạo migration DROP giới hạn không tồn tại. Revision/audit vẫn cần thiết kế riêng |
 | Hủy lịch | KS K84, F12: Talent hủy lịch mình đặt, Manager cũng hủy | cancel_reason hiện có chưa là bằng chứng actor/ownership/ack provider | P-22: actor từ phiên, operation, version, kết quả hủy và xử lý callback trễ; hủy không là quyền sửa nội dung |
 | Bỏ dừng toàn hệ thống | KS K85, F33; dừng từng Talent còn | Cột global pause còn trong system_settings | Không làm nút sản phẩm; cột legacy chưa bị xóa. Dừng vận hành không chứng minh job đã gửi provider bị hủy |
 | Người nhận duyệt | KS K77/K93, F11: Manager phụ trách từng Talent | manager_notifications hiện một dòng/sự kiện chung; chưa có recipient | P-15/P-16: phân công và recipient lịch sử. Quyền mọi Manager xem/cập nhật khác routing; No.87/88 còn mở |
 | Đăng lỗi | KS K87, F13: báo Talent, Talent chờ rồi đăng lại; lỗi SNS/mạng không cần báo Adesso | Aggregate delivery không thay lịch sử từng lần thử | P-23: chống trùng, outcome unknown và đối soát; không tự chốt timer/retry tự động |
-| NG và xác nhận lại | KS K59: AI sửa rồi hẹn; UI-M20 p18: Manager sửa; ISS22-P p7: đề nghị Talent xác nhận | Ba nhánh khác nhau; timestamp NG không giữ bộ rule/revision | Giữ FND-0002/0003/0050; P-23/P-26. Hiệu lực NG mới với lịch cũ vẫn No.96; không tự chọn nhánh |
-| Theo từng SNS và TikTok inbox | ISS22-P p3/p7; ADV22 p5: đề nghị | posts6state/deliveryaggregate chưa diễn tả consent/revision và người dùng hoàn tất trong TikTok | Chỉ thiết kế phương án P-23; inbox được gửi không là bài published. Kiểm provider/account riêng, không coi tài liệu công khai là POC |
-| Media trước, chọn theo chủ đề | KS F8, K73, F18/F19: không FIFO hoặc tự sinh media AI trong autopost | Đề xuất hàng đợi mỗi ngày1video và quan hệ khoảng đăng chưa phù hợp | R05-05/P-12/U-13: tập media của khoảng đăng và bản tham chiếu khi gửi; không thêm counter FIFO |
+| NG và xác nhận lại | KS `20261122!G4:I4`; YK3 P688: AI sửa rồi đặt lịch, không Manager sửa, không Talent xác nhận lại | Luồng chính đã rõ; chỉ timestamp chưa đủ provenance | P-23/P-26; rút xung đột ba nhánh của snapshot 23/11. Giữ vòng sửa lỗi/tương tác duyệt và QA96 riêng. |
+| Theo từng SNS và TikTok inbox | KS `20261122!G16:I16/G20:H20`; YK3 P249–250 | Giờ khác nhau theoSNS; hướng TikTok direct đã rõ, chưa có plan/attempt đầy đủ | Thiết kế plan/delivery/effect theoSNS; không tạo inbox baseline. Provider capability/tuân thủ do đội kiểm. |
+| Media trước, chọn theo chủ đề | KS F8, K73, F18/F19: không FIFO hoặc tự sinh media AI trong autopost | Đề xuất hàng đợi mỗi ngày 1 video và quan hệ khoảng đăng chưa phù hợp | R05-05/P-12/U-13: tập media của khoảng đăng và bản tham chiếu khi gửi; không thêm counter FIFO |
 | Lưu media | QA No.8 `Q&A!G9/H9`19/11: Supabase/OneDrive | media_assets thiên OneDrive và đường dẫn tạm | P-24: tham chiếu nơi lưu, ownership, URL có hạn, dọn tệp/đối soát; không quy định Supabase luôn chỉ tạm |
-| Profile/readiness | UI-M20 p27 M-21: ảnh chân dung, URL Adesso, lịch sử thay đổi | Không thể tiếp tục nói chưa có đề xuất màn; cột readiness/version chưa có | R02-09/P-24: ranh giới nội dung OneDrive và metadata DB; trường bắt buộc/nơi lưu chưa chốt; không tự fetch URL |
-| Nhóm và chỉ thị | UI-M20 p20 M-13/p25 M-19; QA No.99 còn mở | Chưa có bảng nhóm/assignment/chỉ thị version | P-15/P-17: chưa tự chốt precedence đa nhóm; nhóm Manager không là hàng rào truy cập |
-| Mục tiêu follower | QA No.14 `Q&A!H15`: theo từngSNS, mặc định10000 | follower_goals đã có hướng này nhưng chặn ghi | R02-04: rút blocker tổng/theo mạng; vẫn cần version/tích hợp và reconnect No.95. Ngưỡng25/50/75% chưa chốt |
+| Profile/readiness | QA101; YK3 P728–735 | Profile/history đã có SQL 25/11; readiness còn No.54/92 | DB nghiệp vụ; OneDrive export versioned. Không chờ khách duyệt lại việc lưu DB. |
+| Nhóm và chỉ thị | YK3 P679/P705/P741/P783–797; QA99 | SQL đã có instruction global/Talent/history; category/membership/assignment còn thiếu | N:N category đã rõ, precedence Talent > category > global đã rõ; chỉ xung đột giữa category còn QA99. |
+| Mục tiêu follower | QA No.14 `Q&A!H15`: theo từng SNS, mặc định 10000 | follower_goals đã có hướng này nhưng chặn ghi | R02-04: rút blocker tổng/theo mạng; vẫn cần version/tích hợp và reconnect No.95. Ngưỡng 25/50/75% chưa chốt |
 | Hội thoại | QA No.7 `Q&A!H8`: Manager xem, Talent được báo trước | Mâu thuẫn riêng tư cũ đã rút | R01-15: không hỏi lại; kiểm guard và manager_view_logs khi triển khai |
-| Tư vấn nghiêm trọng | KS F22: bỏ cảnh báo Manager; ISS22-P p7 đề nghị hướng dẫn/ghi nhận | Catalog thông báo cũ còn loại cảnh báo | R03-03: không khôi phục alert; cách ứng xử/bản ghi tối thiểu còn No.93, không thêm bảng nhạy cảm tự động |
-| Thử thách | KS K27, F30/F31: AI cá nhân hóa, mẫu không là catalog đóng | Chưa có vòng đời trạng thái cấu trúc | P-17: tách nội dung/chỉ thị OneDrive khỏi dữ liệu tiến độ; trạng thái, tiêu chí đo và giới hạn đồng thời chưa chốt |
-| Thu phí | KS K104/F24: hướng trả trước; cân nhắc ngừng sau1tháng nợ; K100/F25: GMO ứng viên; K112: office miễn phí tạo video | billing_accounts/is_counted không đủ hợp đồng, giá lịch sử, kỳ thu, đối soát | U-01/U-02: hóa đơn/dòng hóa đơn/lần thu và snapshot giá trước mở EP08. Không bật auto-lock; office miễn thu không chứng minh chi phí provider bằng0 |
+| Tư vấn nghiêm trọng | KS F22: bỏ cảnh báo Manager; ISS22-P p 7 đề nghị hướng dẫn/ghi nhận | Catalog thông báo cũ còn loại cảnh báo | R03-03: không khôi phục alert; cách ứng xử/bản ghi tối thiểu còn No.93, không thêm bảng nhạy cảm tự động |
+| Thử thách | QA `Q&A!G101:H101`; YK3 P296/P709–722 | Đã xác nhận chức năng và lưu tiến độ DB; chưa có entity | P-17: đội thiết kế instance/decision/progress/provenance/receipt; không chuyển việc chọn schema thành câu hỏi khách. |
+| Thu phí | KS actionNo.16/G17 chọn Square được thuật lại; YK3 P661/P803–809/P819 | Paused vẫn thu phí; Manager đặt giá ước tính; billing ledger còn thiếu | Không chờ chọn lại cổng/nơi đặt giá. Đội kiểm Square; kỳ thu/adjustment/công nợ giữ QA49/53/62/98. |
 | Đọc/xử lý thông báo | QA No.97 còn mở | handled_at dùng chung chưa trả lời read/handled hoặc per-manager | R09-05/P-16: không mặc định mở là xử lý xong; recipients và read state là quyết định khác nhau |
 | Kết thúc/retention | KS 確認55/56; QA No.69/94/98 còn mở | FK RESTRICT, nhật ký append-only; quy tắc office/công nợ/bản sao còn thiếu | P-18: không tùy ý bypass trigger hoặc ẩn danh thay xóa; thiết kế phạm vi dọn và proof sau quyết định |
-| Ranking | UI-M20 p28: top3,7/30ngày; p29: trọng số cần xác nhận | Chưa có bảng; KPI nguồn khác rankingUI | FND-0051/P-25: chưa tạo score/materialized view khi công thức, đối tượng và visibility chưa duyệt; không tự đặt mãM-22 |
-| Đồng ý phụ huynh | KS `確認事項!F38`: không lưu; ISS22-P p6 đề nghị lưu | Xung đột dữ liệu nhạy cảm | FND-0052/P-25: chưa thêm bảng/cột; khách quyết phạm vi, đội thiết kế quyền/retention sau |
-| So sánh liên Talent, KPI/voice/pilot | ISS22-P p5/p8–10: đề nghị | Không thể mở rộng quyền truy cập vì có nhu cầu chống trùng nội dung | FND-0053/P-25: giữ cách ly Talent; chưa tạo kho embedding/KPI/voice chỉ để đón đầu; pilot không tự thay phạm vi thương mại |
+| Ranking | YK3 P62–65; QA100/action 15 | Ranking/reward/voice ngoài phase; đề nghị danh sách Talent nỗ lực vẫn việc đội | Không tạo bảng score/rank; không coiQA 100 Open là cho phép triển khai hoặc hỏi lại phase đã loại. |
+| Đồng ý phụ huynh | KS `20261122!G18:H18` | Adesso lấy đồng ý ngoài app; hệ thống không lưu | R10-07/P-25: không tạo bảng; thay đánh giá xung đột của 23/11 đúng chủ đề. |
+| So sánh liên Talent, KPI/voice/pilot | ISS22-P p 5/p 8–10: đề nghị | Không thể mở rộng quyền truy cập vì có nhu cầu chống trùng nội dung | FND-0053/P-25: giữ cách ly Talent; chưa tạo kho embedding/KPI/voice chỉ để đón đầu; pilot không tự thay phạm vi thương mại |
 
 ## 3. Thứ tự xử lý thiết kế và rủi ro
 
 1. **Nền trạng thái:** P-21, kiểm dữ liệu cũ và reader/trigger liên quan; tách tạm dừng tự nguyện, dừng đăng, ngừng sử dụng và ngừng vì nợ. Token SQL và chính sách chuyển là thiết kế chưa duyệt.
 2. **EP06:** thiết kế revision/consent/approval/cancel và từng SNS/lần thử; kiểm race giữa hủy, gửi, callback và retry. Giữ khóa chủ sở hữu, optimistic version, operation/outbox; không giữ transaction DB trong lúc gọi provider.
-3. **EP08:** snapshot hợp đồng/giá/kỳ và usage bất biến trước khi tính tiền. Không suy giá quá khứ từ system_settings hiện tại; nguồn nói có trần video trong ISS22-P p7 không tự lật QA No.3/17 và CR-12/16.
+3. **EP08:** snapshot hợp đồng/giá/kỳ và usage bất biến trước khi tính tiền. Không suy giá quá khứ từ system_settings hiện tại; nguồn nói có trần video trong ISS22-P p 7 không tự lật QA No.3/17 và CR-12/16.
 4. **Profile/notification/group:** tách dữ liệu gốc và bản đọc; quyền xem khác nơi nhận thông báo; chờ quyết định đúng QA No.87/88/95–99 cho phần còn mở.
-5. **Chức năng đề nghị22/11:** khách quyết định phạm vi; Tech Lead đánh giá thiết kế và provider. Chưa triển khai ranking/parental/crossTalent/voice.
+5. **Chức năng đề nghị 22/11:** khách quyết định phạm vi; Tech Lead đánh giá thiết kế và provider. Chưa triển khai ranking/parental/crossTalent/voice.
 
-Thêm cột nullable hoặc nới CHECK không mặc định ít rủi ro: phải xét khóa bảng, dữ liệu cũ, backfill, reader cũ, index, quyền runtime/RLS, callback và rollback. Thay provider có thể thay vòng đời consent/quota/inbox nên không chỉ đổi mã tham chiếu. Giữ khóa hiện có; chỉ thêm index theo truy vấn/đo tải thực, không tối ưu suy đoán từ200Talent.
+Thêm cột nullable hoặc nới CHECK không mặc định ít rủi ro: phải xét khóa bảng, dữ liệu cũ, backfill, reader cũ, index, quyền runtime/RLS, callback và rollback. Thay provider có thể thay vòng đời consent/quota/inbox nên không chỉ đổi mã tham chiếu. Giữ khóa hiện có; chỉ thêm index theo truy vấn/đo tải thực, không tối ưu suy đoán từ 200 Talent.
 
 ## 4. Xác minh và việc còn thiếu
 
-Đợt này ghi nhận đối chiếu của tác giả, **không đánh VERIFIED hay tự ký independent review**. Kiểm cơ học gồm7migration/40bảng, giữ nguyên khối SQL trong từ điển và mã ví dụ, link nội bộ, source hashes và validator repository. Kết quả thực chạy ghi trong manifest.
+Đợt này ghi nhận đối chiếu của tác giả, **không đánh VERIFIED hay tự ký independent review**. Kiểm cơ học gồm 7 migration/40 bảng, giữ nguyên khối SQL trong từ điển và mã ví dụ, link nội bộ, source hashes và validator repository. Kết quả thực chạy ghi trong manifest.
 
 G1 BLOCKED; G2–G4 STALE ở phạm vi nguồn thay đổi; G5/G6 BLOCKED, chưa có G7/G8 PASS. Không sửa gate để hợp thức hóa cập nhật DB. Cần reviewer độc lập và người duyệt đúng phạm vi; Tech Lead chịu trách nhiệm thiết kế/migration/provider, khách chịu trách nhiệm các chính sách/phạm vi còn mở. Không tạo câu hỏi trùng các QA đã có.
 
 <details>
-<summary>Lịch sử đánh giá18/11 — không dùng thay ma trận hiện hành phía trên</summary>
+<summary>Lịch sử đánh giá 18/11 — không dùng thay ma trận hiện hành phía trên</summary>
 
-Các nhận xét bên dưới được giữ làm lịch sử. Mục tiêu follower, hội thoại riêng tư,3trạng thái, giới hạn viết lại, global stop và rủi ro migration đã được đánh giá lại phía trên; không áp dụng kết luận cũ cho nguồn23/11.
+Các nhận xét bên dưới được giữ làm lịch sử. Mục tiêu follower, hội thoại riêng tư,3 trạng thái, giới hạn viết lại, global stop và rủi ro migration đã được đánh giá lại phía trên; không áp dụng kết luận cũ cho nguồn 23/11.
 
 > **Cập nhật 18/11/2026:** Các luồng thu phí, giá video, duyệt/đăng đang bị chặn ghi; trước khi mở phải thiết kế lại theo `07_implementation_scope_and_rules.md` §3 (giữ giá chụp lại, phiên bản nội dung, lần thử theo mạng), không chỉ thêm cột. Thêm cột không tự khôi phục được dữ liệu quá khứ.
 
@@ -124,7 +126,7 @@ Mức rủi ro migration:
 
 | Quyết định | Vì sao có thể phá vỡ | Cách giảm |
 |---|---|---|
-| D-01: tài năng và tài khoản công ty chung một bảng | Nếu khách muốn tài khoản công ty có quy trình hoàn toàn khác (ví dụ nhiều quản lý dùng chung, xem [QA] No.66, S06-07) | Khác biệt hiện chỉ ở CHECK; thêm cột riêng cho tài khoản công ty vẫn dễ hơn tách bảng |
+| D-01: tài năng và tài khoản công ty chung một bảng | Nếu khách muốn tài khoản công ty có quy trình hoàn toàn khác (ví dụ nhiều quản lý dùng chung, xem [QA] No.66, S 06-07) | Khác biệt hiện chỉ ở CHECK; thêm cột riêng cho tài khoản công ty vẫn dễ hơn tách bảng |
 | D-02: bản nháp và bài đăng là một thực thể | Nếu bản nháp cần vòng đời riêng (ví dụ nhiều phiên bản, sửa trực tiếp CR-21 cần lịch sử chỉnh sửa) | `revised_from_post_id` đã giữ chuỗi phiên bản; lịch sử sửa có thể thêm bảng riêng  Sửa chữ trực tiếp đã chốt ([KS] 確認28): vẫn sửa trên cùng dòng `posts`, không cần thực thể riêng. |
 | BR-10: mục tiêu theo từng mạng | Xem R02-04 ở §2 (rủi ro cao) | Chốt với khách trước khi làm 3-10 (kết hợp câu hỏi ở cột Comment của [QA] No.14) |
 | BR-01: email duy nhất cho cả đơn bị từ chối | Xem R01-03 ở §2 | Chờ [QA] No.65 trước khi làm luồng từ chối |
@@ -145,3 +147,14 @@ Các câu [QA] đóng ngày 15/11 là AMCOLAB tự chốt theo [YK2]; khách v�
 | No.46 | Tháng đầu thu đủ; thu lỗi không tự dừng | Bảng hóa đơn (BLOCKED) | Ảnh hưởng thiết kế hóa đơn khi mở khóa |
 
 </details>
+
+## 5. Phân tuyến hiện hành sau cập nhật 25/11
+
+- **Đã có căn cứ nghiệp vụ:** agent/DB/backup và token doAdesso chịu; Challenge/progress/M-17 trong phạm vi; NG rewrite không xác nhận lại; direct TikTok; không lưu đồng ý phụ huynh; không trần riêng dưới 18; giờ theoSNS; paused vẫn thu phí; category N:N; giá ước tính doManager đặt. Không chờ khách trả lời lại các ý này.
+- **Đội thiết kế/triển khai:** hoàn thiện data contract, constraint, ACL, snapshot/version, outbox/effect, price/usage ledger, recipient/email và backup/restore. Chưa có DDL không đồng nghĩa chưa có quyết định khách.
+- **Còn mở đúng nhánh:** video確認61/62 và ghi/đảo lượt, giá lịch sử/điều chỉnh kỳ, đa category xung đột QA99, reconnectQA 95, thayNGQA 96, read/handledQA 97, công nợ QA98, purge/re-registrationQA 69/94 và các nhánh lịch cũ/thiếu media. Không tự đóng toàn bộ QA chỉ vì một phần được trả lời.
+- **Trạng thái vật lý:**13 migration/53 bảng trong repository; chưa replay/live verify. SQL legacy giữ trigger hoãn tới khi module đủ thiết kế, migration và kiểm thử. G5 vẫn BLOCKED, không cấp G7/G8.
+
+## 6. Kết quả thiết kế nhóm đội/provider
+
+Phần đội xử lý đã có [phương án09](09_technical_design.md), [từ điển đích10](10_target_data_dictionary.md) và [12case provider](technical-provider-checks-2026-11-25.csv). Owner/schema/state/transaction/ACL/restore đã được đề xuất; providerchecks vẫn NOT_TESTED. Review này không chuyển QA hoặc G5/G8 sangPASS. Khi nguồn/providerproof đổi, reassess đúng contract và wave.

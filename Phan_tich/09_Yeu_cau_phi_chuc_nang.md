@@ -1,3 +1,22 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Đồng ý phụ huynh
+
+Adesso lấy đồng ý khi ký với Talent; H18 ghi đã lấy đầy đủ; ứng dụng không giữ hồ sơ đồng ý.
+
+**Còn mở/giới hạn:** Thay đề nghị lưu hồ sơ phụ huynh tại ISS22/ADV22 đúng chủ đề này; không tự kết luận đủ điều kiện pháp lý. Căn cứ: `KS 20261122!G18:H18 (No.17)`; `EV-1317`; QA No.69;TR-1-4.
+
+### YK3: giới hạn và nghiệm thu
+
+Ưu tiên cao/trung/thấp và số giới hạn là phương án/giả định FCP. Phụ lụcC còn確認57 (điều khoản),61 (dài/chất lượng video),62 (số ảnh). Mục tiêu go-live cuối02/2027; AC từng chức năng còn chờ thêm; provider chưa ký/xét duyệt có thể tách release theo văn bản nguồn.
+
+**Còn mở/giới hạn:** Không suy chỉ còn3vấn đề toàn dự án: QA/CR/provider vẫn mở. Quy mô300/1000 trong YK3 chưa thay giới hạn150 ở CR-09. Chưa duyệt baseline, lịch hoặc điều khoản nghiệm thu/thương mại. Căn cứ: `YK3 w:p101–105; §3-2/3-3; §4-1–4-3; phụ lụcC`; `EV-1328`; YK3 §3;YK3 §4;CR-09.
+
+<!-- /DELIVERY24112026 -->
+
 > **Đợt23112026:** Đã đối chiếu nguồn mới; TikTok nháp/consent, ranking, lưu đồng ý phụ huynh và giọng nói là đề nghị chưa chốt. Không khôi phục Manager sửa, cảnh báo tâm sự hoặc trần phí từ hình/nhận định hồi tố. [Đối chiếu hiện hành](../docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Mã màn phải kèm UI-M20/ngày20/11/trangPDF; không đổi mã AG/SD18/SD19.
 
 # Yêu cầu phi chức năng

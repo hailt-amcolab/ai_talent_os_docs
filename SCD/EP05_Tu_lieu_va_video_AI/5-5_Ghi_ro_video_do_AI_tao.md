@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### PR
+
+Talent tự thêm PR vào bài; OS không tự phân loại bài công việc hoặc xác định bài cần PR. Nguồn báo đã thử nhãn video AI qua provider.
+
+**Còn mở/giới hạn:** Không dùng nguồn này để tự xác nhận kết quả thử hoặc tuân thủ pháp lý; duyệt bài công việc vẫn do Talent yêu cầu. Căn cứ: `KS 20261122!G33:I33 (No.32)`; `EV-1322`; TR-7-7;TR-5-5.
+
+<!-- /DELIVERY24112026 -->
+
 # 5-5 Ghi rõ video do AI tạo
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

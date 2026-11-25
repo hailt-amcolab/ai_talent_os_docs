@@ -2478,75 +2478,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/me/coach/messages": {
+    "/api/v1/me/agent/conversations": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description Success */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["CoachConversation"];
-                    };
-                };
-                /** @description Authentication required */
-                401: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Not a Talent / origin not allowed */
-                403: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Not found */
-                404: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Conflict */
-                409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Invalid input */
-                422: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Too many pending requests */
-                429: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
+        get?: never;
         put?: never;
         post: {
             parameters: {
@@ -2560,8 +2499,6 @@ export interface paths {
                     "application/json": {
                         /** Format: uuid */
                         requestKey: string;
-                        body: string;
-                        simulate?: boolean;
                     };
                 };
             };
@@ -2572,7 +2509,16 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CoachExecution"];
+                        "application/json": components["schemas"]["AgentConversation"];
+                    };
+                };
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentConversation"];
                     };
                 };
                 /** @description Authentication required */
@@ -2582,22 +2528,29 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Not a Talent / origin not allowed */
+                /** @description Wrong role / MFA required */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found */
+                /** @description Not found or not yours */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Conflict */
+                /** @description Busy / version / key conflict */
                 409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2610,8 +2563,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Too many pending requests */
-                429: {
+                /** @description Feature not ready */
+                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2625,7 +2578,178 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/me/coach/executions/{id}": {
+    "/api/v1/me/agent/conversations/{id}/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: {
+                    after?: string;
+                    limit?: number;
+                };
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            items: components["schemas"]["AgentEntry"][];
+                            nextAfter: string;
+                            hasMore: boolean;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                        body: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/agent/conversations/{id}/runs": {
         parameters: {
             query?: never;
             header?: never;
@@ -2649,7 +2773,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CoachExecution"];
+                        "application/json": {
+                            items: components["schemas"]["AgentRun"][];
+                        };
                     };
                 };
                 /** @description Authentication required */
@@ -2659,22 +2785,29 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Not a Talent / origin not allowed */
+                /** @description Wrong role / MFA required */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found */
+                /** @description Not found or not yours */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Conflict */
+                /** @description Busy / version / key conflict */
                 409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2687,8 +2820,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Too many pending requests */
-                429: {
+                /** @description Feature not ready */
+                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2704,7 +2837,810 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/me/coach/executions/{id}/close": {
+    "/api/v1/me/agent/runs/{runId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    runId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/agent/runs/{runId}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    runId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/conversations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentConversation"];
+                    };
+                };
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentConversation"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/conversations/{id}/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: {
+                    after?: string;
+                    limit?: number;
+                };
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            items: components["schemas"]["AgentEntry"][];
+                            nextAfter: string;
+                            hasMore: boolean;
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                        body: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/conversations/{id}/runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            items: components["schemas"]["AgentRun"][];
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/runs/{runId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    runId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/runs/{runId}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    runId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRun"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/proposals/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentProposal"];
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Busy / version / key conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Feature not ready */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/agent/proposals/{id}/confirm": {
         parameters: {
             query?: never;
             header?: never;
@@ -2722,7 +3658,15 @@ export interface paths {
                 };
                 cookie?: never;
             };
-            requestBody?: never;
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: uuid */
+                        requestKey: string;
+                        proposalHash: string;
+                    };
+                };
+            };
             responses: {
                 /** @description Success */
                 200: {
@@ -2730,7 +3674,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CoachExecution"];
+                        "application/json": components["schemas"]["AgentDecision"];
                     };
                 };
                 /** @description Authentication required */
@@ -2740,22 +3684,29 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Not a Talent / origin not allowed */
+                /** @description Wrong role / MFA required */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found */
+                /** @description Not found or not yours */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Conflict */
+                /** @description Busy / version / key conflict */
                 409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2768,8 +3719,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Too many pending requests */
-                429: {
+                /** @description Feature not ready */
+                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2783,7 +3734,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/me/coach/daily": {
+    "/api/v1/admin/agent/proposals/{id}/reject": {
         parameters: {
             query?: never;
             header?: never;
@@ -2796,15 +3747,16 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path: {
+                    id: string;
+                };
                 cookie?: never;
             };
             requestBody: {
                 content: {
                     "application/json": {
-                        /** Format: date */
-                        date?: string;
-                        simulate?: boolean;
+                        /** Format: uuid */
+                        requestKey: string;
                     };
                 };
             };
@@ -2815,7 +3767,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CoachExecution"];
+                        "application/json": components["schemas"]["AgentDecision"];
                     };
                 };
                 /** @description Authentication required */
@@ -2825,22 +3777,29 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Not a Talent / origin not allowed */
+                /** @description Wrong role / MFA required */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found */
+                /** @description Not found or not yours */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Conflict */
+                /** @description Busy / version / key conflict */
                 409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2853,8 +3812,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Too many pending requests */
-                429: {
+                /** @description Feature not ready */
+                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2868,7 +3827,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/me/coach/daily/reset": {
+    "/api/v1/admin/agent/proposals/{id}/commit": {
         parameters: {
             query?: never;
             header?: never;
@@ -2881,14 +3840,16 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path?: never;
+                path: {
+                    id: string;
+                };
                 cookie?: never;
             };
             requestBody: {
                 content: {
                     "application/json": {
-                        /** Format: date */
-                        date?: string;
+                        /** Format: uuid */
+                        requestKey: string;
                     };
                 };
             };
@@ -2899,7 +3860,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CoachDailyReset"];
+                        "application/json": components["schemas"]["AgentReceipt"];
                     };
                 };
                 /** @description Authentication required */
@@ -2909,22 +3870,29 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Not a Talent / origin not allowed */
+                /** @description Wrong role / MFA required */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found */
+                /** @description Not found or not yours */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Conflict */
+                /** @description Busy / version / key conflict */
                 409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Proposal expired */
+                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2937,8 +3905,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Too many pending requests */
-                429: {
+                /** @description Feature not ready */
+                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3082,38 +4050,59 @@ export interface components {
             authorizeUrl: string;
             expiresInSeconds: number;
         };
-        CoachConversation: {
-            messages: components["schemas"]["CoachMessage"][];
-            executions: components["schemas"]["CoachExecution"][];
-            themesDay: string | null;
-            themes: components["schemas"]["CoachTheme"][];
+        AgentConversation: {
+            conversationId: string;
+            version: string;
         };
-        CoachMessage: {
+        AgentRun: {
             id: string;
+            operationId: string;
+            conversationId: string;
+            /** @enum {string|null} */
+            completionKind: "answer_only" | "action_result" | null;
             /** @enum {string} */
-            sender: "talent" | "coach";
+            state: "pending" | "running" | "waiting_confirmation" | "succeeded" | "failed" | "unknown" | "cancelled";
+            version: string;
+            outputEntryId: string | null;
+            proposalId: string | null;
+            errorCode: string | null;
+            receipts: components["schemas"]["AgentReceipt"][];
+            retryAfterMs: number | null;
+        };
+        AgentReceipt: {
+            commandId: string;
+            action: string;
+            targetLabel: string;
+            changed: boolean;
+            resourceVersion: string | null;
+        };
+        AgentEntry: {
+            id: string;
+            sequence: string;
+            /** @enum {string} */
+            role: "user" | "assistant";
             body: string;
             createdAt: string;
         };
-        CoachExecution: {
-            id: string;
-            /** @enum {string} */
-            state: "pending" | "running" | "succeeded" | "failed" | "unknown" | "cancelled";
-            inputMessageId: string | null;
-            outputMessageId: string | null;
-            errorCode: string | null;
-            attemptNo: number;
+        AgentProposal: {
+            proposalId: string;
+            state: string;
+            commandType: string;
+            targetLabel: string;
+            changes: {
+                field: string;
+                before: string | null;
+                after: string | null;
+            }[];
+            baseVersion: string;
+            expiresAt: string;
+            proposalHash: string;
+            runId: string | null;
+            allowedActions: ("confirm" | "reject" | "commit")[];
         };
-        CoachTheme: {
-            id: string;
-            position: number;
-            content: string;
-        };
-        CoachDailyReset: {
-            day: string;
-            runs: number;
-            messages: number;
-            themes: number;
+        AgentDecision: {
+            proposalId: string;
+            state: string;
         };
     };
     responses: never;

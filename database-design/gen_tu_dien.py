@@ -33,12 +33,16 @@ NHOM = {
     'Thông báo': ['public.talent_notifications', 'public.push_subscriptions', 'app_private.push_deliveries', 'public.manager_notifications'],
     'Tác vụ bên ngoài (operation, outbox)': ['app_private.domain_operations', 'app_private.outbox_events'],
     'Cài đặt và nhật ký': ['public.system_settings', 'public.manager_view_logs', 'public.activity_logs'],
-    'Chưa chốt: bảng giữ sẵn, đang chặn ghi': ['public.billing_accounts', 'public.social_accounts', 'public.follower_goals',
+    'Module còn chặn ghi: có quyết định nghiệp vụ nhưng chưa đủ triển khai': ['public.billing_accounts', 'public.social_accounts', 'public.follower_goals',
                                                'public.follower_snapshots', 'public.post_approval_decisions', 'public.post_deliveries',
                                                'public.post_metric_snapshots', 'public.video_generations', 'public.video_generation_inputs'],
     'Chỉ dùng cho demo công nghệ: không dùng cho tính năng thật': ['app_private.tech_demo_sessions', 'app_private.tech_demo_push_subscriptions',
                                                                    'app_private.demo_auth_deliveries'],
 }
+
+# Cập nhật25/11: danh mục SQL hiện có; không suy đã áp lên DB live.
+NHOM['AI runtime và dữ liệu nghiệp vụ agent'] = ['app_private.ai_executions', 'app_private.ai_execution_attempts', 'app_private.ai_daily_trends', 'app_private.agent_conversations', 'app_private.agent_entries', 'app_private.agent_talent_profiles', 'app_private.agent_talent_profile_versions', 'app_private.agent_instructions', 'app_private.agent_instruction_versions', 'app_private.agent_profile_exports', 'app_private.agent_steps', 'app_private.agent_change_proposals', 'app_private.agent_commands']
+NHOM['Chỉ dùng cho demo công nghệ: không dùng cho tính năng thật'] += ['app_private.tech_demo_onedrive_connections', 'app_private.tech_demo_onedrive_oauth_states']
 
 MO_TA_BANG = {
     'app_private.auth_principals': 'Danh tính ứng dụng: một dòng cho mỗi người dùng Supabase Auth được cấp quyền. Quyết định là quản lý hay tài năng; buộc đổi mật khẩu; `security_version` tăng thì mọi phiên cũ hết hiệu lực.',
@@ -54,7 +58,7 @@ MO_TA_BANG = {
     'public.theme_suggestions': '3 chủ đề AI đề xuất mỗi ngày cho mỗi tài năng.',
     'public.posts': 'Bản nháp bài đăng. Đợt 1 chỉ tạo và sửa bản nháp; trigger chặn adopt, hẹn giờ, đăng.',
     'public.post_media': 'Tư liệu gắn vào bài, có thứ tự.',
-    'public.media_assets': 'Ảnh, video của tài năng (tài năng hoặc quản lý gửi); bản tạm ở Supabase Storage rồi chuyển sang OneDrive (CR-09, CR-10).',
+    'public.media_assets': 'Ảnh/video có owner; byte media theo adapter Supabase/OneDrive (QA8). Không suy dữ liệu agent trongDB nghĩa byte media trongPostgres.',
     'public.coach_messages': 'Tin nhắn giữa tài năng và AI coach (chỉ thêm, không sửa).',
     'public.ai_usage_events': 'Một dòng cho mỗi lần gọi nhà cung cấp AI: token và chi phí ([QA] No.17, CR-16).',
     'public.ng_words': 'Danh sách từ cấm chung toàn hệ thống.',
@@ -80,6 +84,8 @@ MO_TA_BANG = {
     'app_private.tech_demo_push_subscriptions': 'Đăng ký push của bản demo. Tính năng thật dùng `public.push_subscriptions`.',
     'app_private.demo_auth_deliveries': 'Giao mật khẩu tạm của bản demo cũ (đã thu gọn). Không dùng.',
 }
+
+MO_TA_BANG.update({'app_private.ai_executions': 'Run: task/revision, actor/channel/scope, conversation và lease; mở rộng từ legacy.', 'app_private.ai_execution_attempts': 'Lượt worker sở hữu lease; agent dùng step_ledger, không đồng nhất một attempt với một model call.', 'app_private.ai_daily_trends': 'Cache tin/chủ đề theo ngày; không thay provenance từng bài.', 'app_private.agent_conversations': 'Hội thoại thuộc actor; Talent có subject cố định, Manager chọn đối tượng qua tool.', 'app_private.agent_entries': 'Tin user/assistant theo sequence; attachment/action typed còn cần bổ sung.', 'app_private.agent_talent_profiles': 'Hồ sơ5trường allowlist trong DB, có version và người cập nhật.', 'app_private.agent_talent_profile_versions': 'Snapshot lịch sử profile theo Talent/version, append-only ở quyền runtime.', 'app_private.agent_instructions': 'Chỉ thị scope+situation, enable/version; category hiện bị CHECK chặn.', 'app_private.agent_instruction_versions': 'Lịch sử nội dung/enable theo instruction/version; restore phải tạo revision mới.', 'app_private.agent_profile_exports': 'Version profile đã xuất sang OneDrive; không là nguồn đọc ngược vào DB.', 'app_private.agent_steps': 'Checkpoint model/tool, input/output, usage và kết quả; liên kết execution/attempt.', 'app_private.agent_change_proposals': 'Đề xuất thay profile/instruction với hash/base version/expiry và xác nhận actor.', 'app_private.agent_commands': 'Receipt lệnh đã commit, unique proposal; lát cắt hiện chỉ profile.update/instruction.write.'})
 
 # Mô tả cột mới (sau `05` cũ) hoặc cần ghi đè. Khóa: "schema.bảng.cột"
 MO_TA_COT = {

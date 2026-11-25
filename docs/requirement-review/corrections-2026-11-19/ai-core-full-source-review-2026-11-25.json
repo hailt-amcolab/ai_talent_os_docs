@@ -1,0 +1,187 @@
+{
+  "review_date": "2026-11-25",
+  "author": "Codex",
+  "scope": "AI Core and whole-system integration architecture; not implementation or approval",
+  "version": "2.10",
+  "input_architecture": {
+    "before_sha256": "104aa7e9ce0d8c649d806dd3b6890cbbd43a84c0897da8ba5d8c18bfeb017816"
+  },
+  "sources": [
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "source_id": "YK2",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181",
+      "source_id": "AG",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0",
+      "source_id": "GJ",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8",
+      "source_id": "SD-T18",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67",
+      "source_id": "SD-M18",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md",
+      "sha256": "3d168de54769e626ca7a47978a73add6876b05874997f6ba7d2626fcf5a54423",
+      "source_id": "GJ19",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/19112926/業務フロー_AI育成OS.pdf",
+      "sha256": "8c91d0d0e277578408d3bed6e664f9387cfe5facd2766be1ad46a0d1cb4b3245",
+      "source_id": "BF19",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "63b70d9b6fb1b5dae02d86b370af48ff28a218592f818348dcbabdd153d32530",
+      "source_id": "SD-T19",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "bb6fe2c5b2a2e0be6bda54d82d26b229d8cdc32b42f5fe6bcd2f2104409ae4f7",
+      "source_id": "SD-M19",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc",
+      "source_id": "UI-M20",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336",
+      "source_id": "ISS22-D",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168",
+      "source_id": "ISS22-P",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f",
+      "source_id": "ADV22",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx",
+      "sha256": "255bf76e74cc621ce4d2bafa4f408edc89aec07f80806e5076d823f7b51ddbd0",
+      "source_id": "EXT24",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+      "source_id": "YK3",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122",
+      "source_id": "KS24",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+      "source_id": "QA",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+      "source_id": "KS",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16",
+      "source_id": "YK1",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559",
+      "source_id": "TK-T",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab",
+      "source_id": "TK-M",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea",
+      "source_id": "GT",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae",
+      "source_id": "SM",
+      "read_scope": "Reopened original; extracted text/XML/cells; cross-reference against current catalog and superseding topic decisions. Not blanket atomic VERIFIED."
+    }
+  ],
+  "counts": {
+    "files": 23,
+    "yk3_appendix_a_function_rows": 61,
+    "yk3_business_flows": 16,
+    "yk3_appendix_b_notifications": 16,
+    "qa_sheets": 5,
+    "ks_sheets": 5
+  },
+  "output": {
+    "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+    "sha256": "ff22ff6b9b7fb8b62fc8bedba750335972502ea660b45299be15ea1fdd212669"
+  },
+  "coverage": {
+    "path": "docs/requirement-review/corrections-2026-11-19/ai-core-full-source-coverage-2026-11-25.csv",
+    "sha256": "871de128e731bb73a13d4b562631074b426fcad7099d6fa0c3b068c9f92cc8c0"
+  },
+  "verification": "AUTHOR_DESIGN_REVIEW; no blanket VERIFIED",
+  "limits": [
+    "All 23 source files reopened for text/XML/cells. All 57 YK3 embedded images reviewed via overview contact sheets; not all small labels or PDF/PPT visuals re-reviewed at readable resolution.",
+    "Function/flow mappings are architecture coverage, not atomic verification of every source statement or customer approval.",
+    "No provider/API/live DB/model/load/UAT tests run.",
+    "Module contracts and unresolved policy/commercial/provider dependencies remain.",
+    "No independent reviewer; no gate or approval states changed."
+  ],
+  "gates": {
+    "G1": "BLOCKED",
+    "affected_G2_G4": "STALE",
+    "G5_G6": "BLOCKED",
+    "G7_G8": "NOT_GRANTED"
+  },
+  "validation": {
+    "source_hashes": "PASS 23 unchanged against inventory",
+    "function_ids": "PASS 61 unique mappings",
+    "flows": "16 YK3 ranges matched to headings",
+    "notifications": "16 source trigger mappings",
+    "application_tests": "NOT_RUN documentation-only",
+    "independent_review": "NOT_PERFORMED"
+  }
+}

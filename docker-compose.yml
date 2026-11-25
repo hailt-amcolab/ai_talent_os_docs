@@ -79,7 +79,7 @@ services:
       timeout: 3s
       retries: 5
 
-  # Worker AI Core: cùng image với api nhưng chạy dist/worker.js (dispatcher + reconciler + BullMQ), không có HTTP.
+  # Worker agent: cùng image với api nhưng chạy dist/worker.js (dispatcher + reconciler + BullMQ + xuất OneDrive), không có HTTP. Cần ENABLE_AGENT_CORE=true.
   worker:
     build: ./apps/api
     env_file: ./apps/api/.env
@@ -89,9 +89,6 @@ services:
       NODE_ENV: ${APP_ENV:-production}
       DIRECT_URL: ''
       REDIS_URL: redis://redis:6379
-    # AI_INPUT_AUDIT=true (dev only) writes one file per coach run here, readable on the host under apps/api/var/ai-input-log/.
-    volumes:
-      - ./apps/api/var/ai-input-log:/app/var/ai-input-log
     stop_grace_period: 90s
     # Worker ghi /tmp/worker-alive sau mỗi vòng điều phối; quá 60 giây không cập nhật = unhealthy.
     healthcheck:

@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### CR hiện hành và đổi nghĩa ID
+
+Danh sách hiện hành còn14 CR; mười mục01–04,06,10–14 ghi đồng ý trong hợp đồng hiện tại, không thêm phí. CR-05/07/08/09 vẫn chờ quyết định. Mã CR cũ đã đổi nghĩa: CR-04 nay màn chỉ thị, CR-06 nay lưu video, không dùng tên cũ để tra bản mới.
+
+**Còn mở/giới hạn:** CR-07/08 ghi I là trong phạm vi nhưng J là CR và M vẫn chờ; CR-09 vận hành thiết kế phương ánA, chưa là khách duyệt300người. Chưa có hợp đồng/SOW/báo giá ký độc lập. No.50 bị xóa ở 保留, không suy là đã chốt toàn bộ. Căn cứ: `QA 追加要件!A2:N15 (CR-01–14)`; `EV-1324`; CR-01;CR-02;CR-03;CR-04;CR-05;CR-06;CR-07;CR-08;CR-09;CR-10;CR-11;CR-12;CR-13;CR-14;QA No.50.
+
+<!-- /DELIVERY24112026 -->
+
 # Đối chiếu file Q&A với [YK2] v2 và đặc tả – phạm vi theo bản báo giá
 
 ## Đối chiếu nguồn mới — 20/11/2026

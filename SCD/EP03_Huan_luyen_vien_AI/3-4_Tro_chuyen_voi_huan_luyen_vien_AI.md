@@ -1,3 +1,28 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### AI agent và dữ liệu
+
+G/H ghi xác nhận24/11: AI Coach là agent đọc/ghi Supabase; nhận chỉ thị, khen, đề xuất và ghi tiến độ Challenge, nhập chỉ thị qua hội thoại M-17 trong phạm vi; dữ liệu trong DB có backup; Adesso trả token và chỉnh prompt; không bảo đảm phán đoán đúng. J101 là phân vai NỘI BỘ25/11: OS nhập dữ liệu dịch vụ ngoài; agent quyết định giờ rồi ghi lịch để OS thực thi.
+
+**Còn mở/giới hạn:** YK3 §2-5/3-3/3-8/AC chưa đồng bộ. Không suy agent được SQL tùy ý hoặc bỏ kiểm quyền. Vị trí byte media và vai trò OneDrive chưa chốt lại toàn bộ. Căn cứ: `QA Q&A!G101:J101 (No.101)`; `EV-1311`; QA No.101;TR-2-1;TR-2-2;TR-2-3;TR-2-4;TR-3-1;TR-3-2;TR-3-5;TR-8-8.
+
+### Ảnh AI và gửi trong chat
+
+Không làm chức năng AI tạo ảnh; đặt nút ảnh/camera trong chat để đưa ảnh chụp vào hội thoại.
+
+**Còn mở/giới hạn:** Không đồng nhất chức năng tạo video theo yêu cầu với tự sinh media trong autopost. CR-11 ghi làm trong giá hợp đồng hiện tại, không thêm phí. Căn cứ: `KS 20261122!G10:I10 (No.9)`; `EV-1314`; QA No.56;QA No.83;CR-11;TR-6-3;TR-3-4.
+
+### Nhân vật và mobile Manager
+
+CR-13 ghi làm mobile cho hai nhóm màn: M-04/M-05 duyệt và M-15/M-16 chỉ thị; màn khác dùng hiển thị PC có cuộn ngang. CR-14 ghi chọn từ nhân vật do Adesso chuẩn bị, gồm hình/cách nói; không thêm phí.
+
+**Còn mở/giới hạn:** Không hiểu “2 màn” thành chỉ hai mã màn. Đổi tên nhân vật còn mở; YK3 §2-3 ghi cố định Momo phải sửa phần bị thay. Căn cứ: `QA 追加要件!D14:N15 (CR-13/14)`; `EV-1325`; CR-13;CR-14.
+
+<!-- /DELIVERY24112026 -->
+
 # 3-4 Trò chuyện với huấn luyện viên AI
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

@@ -29,7 +29,8 @@
     "demo:smoke": "node tools/demo-smoke.ts",
     "worker": "node --env-file-if-exists=.env --watch src/worker.ts",
     "start:worker": "node dist/worker.js",
-    "ai:talent": "node --env-file-if-exists=.env tools/ai-talent.ts"
+    "ai:talent": "node --env-file-if-exists=.env tools/ai-talent.ts",
+    "agent:smoke": "node tools/agent-smoke.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "4.0.122",

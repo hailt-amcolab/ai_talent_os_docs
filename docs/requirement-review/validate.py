@@ -88,6 +88,9 @@ def main():
                 if row is None:
                     errors.append(f'Missing current evidence: {evidence_id}')
                     continue
+                if row['verification_status'] == 'STALE':
+                    # Preserve historical evidence without treating it as current.
+                    continue
                 source = ROOT / row['source_path']
                 if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != row['source_sha256']:
                     errors.append(f'Current evidence source hash differs: {evidence_id}')
@@ -96,6 +99,25 @@ def main():
                 artifact = ROOT / item['path']
                 if not artifact.is_file() or hashlib.sha256(artifact.read_bytes()).hexdigest() != item['sha256']:
                     errors.append(f'Current Q&A export hash differs: {item["path"]}')
+    delivery_path = DOCS / 'corrections-2026-11-19/delivery-24112026-intake.json'
+    if delivery_path.exists():
+        delivery = json.loads(delivery_path.read_text())
+        for relative, expected_hash in delivery['source_hashes'].items():
+            source = ROOT / relative
+            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != expected_hash:
+                errors.append(f'Latest delivery source hash differs: {relative}')
+        with (DOCS / 'registers/evidence.csv').open(newline='') as handle:
+            by_id = {row['evidence_id']: row for row in csv.DictReader(handle)}
+        for evidence_id in delivery['evidence_ids']:
+            row = by_id.get(evidence_id)
+            if row is None or row['verification_status'] == 'STALE':
+                errors.append(f'Latest delivery evidence missing or stale: {evidence_id}')
+                continue
+            source = ROOT / row['source_path']
+            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != row['source_sha256']:
+                errors.append(f'Latest delivery evidence hash differs: {evidence_id}')
+        stale_count = sum(row['verification_status'] == 'STALE' for row in by_id.values())
+        print(f'NOTICE: {stale_count} historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied')
     if errors:
         print('FAIL: structural checks only')
         print('\n'.join(errors))

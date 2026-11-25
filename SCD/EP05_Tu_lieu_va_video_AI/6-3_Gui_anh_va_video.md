@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Ảnh AI và gửi trong chat
+
+Không làm chức năng AI tạo ảnh; đặt nút ảnh/camera trong chat để đưa ảnh chụp vào hội thoại.
+
+**Còn mở/giới hạn:** Không đồng nhất chức năng tạo video theo yêu cầu với tự sinh media trong autopost. CR-11 ghi làm trong giá hợp đồng hiện tại, không thêm phí. Căn cứ: `KS 20261122!G10:I10 (No.9)`; `EV-1314`; QA No.56;QA No.83;CR-11;TR-6-3;TR-3-4.
+
+<!-- /DELIVERY24112026 -->
+
 # 6-3 Gửi ảnh và video
 
 ## Đối chiếu nguồn hiện hành — 20/11/2026

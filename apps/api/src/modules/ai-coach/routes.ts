@@ -1,57 +1,81 @@
 import { createRoute, z } from '@hono/zod-openapi'
+import type { Context } from 'hono'
 import type { AppDeps } from '../../container.ts'
 import { apiModule } from '../../http/module.ts'
 import { bearer } from '../../http/auth.ts'
 import { AppError } from '../../core/errors.ts'
+import { managerActor, talentActor, type Actor, type ManagerActor } from './access.ts'
+import { BODY_MAX, type Channel } from './store.ts'
 
-// AI Coach chat (task coach.respond): /api/v1/me/coach/*. The API only writes Postgres (message + operation + outbox);
-// the worker answers asynchronously and the PWA polls the execution (report §9.1). No Redis call on this path.
-const errors = { 401: { description: 'Authentication required' }, 403: { description: 'Not a Talent / origin not allowed' }, 404: { description: 'Not found' }, 409: { description: 'Conflict' }, 422: { description: 'Invalid input' }, 429: { description: 'Too many pending requests' } }
-const ok = (schema: z.ZodType) => ({ 200: { description: 'Success', content: { 'application/json': { schema } } }, ...errors })
-const Execution = z.object({ id: z.string(), state: z.enum(['pending', 'running', 'succeeded', 'failed', 'unknown', 'cancelled']), inputMessageId: z.string().nullable(), outputMessageId: z.string().nullable(), errorCode: z.string().nullable(), attemptNo: z.number() }).openapi('CoachExecution')
-const Message = z.object({ id: z.string(), sender: z.enum(['talent', 'coach']), body: z.string(), createdAt: z.string() }).openapi('CoachMessage')
-const Theme = z.object({ id: z.string(), position: z.number(), content: z.string() }).openapi('CoachTheme')
-const Conversation = z.object({ messages: z.array(Message), executions: z.array(Execution), themesDay: z.string().nullable(), themes: z.array(Theme) }).openapi('CoachConversation')
-const jstToday = () => new Date(Date.now() + 9 * 3_600_000).toISOString().slice(0, 10)
-const IdParam = z.object({ id: z.uuid() })
+// Agent REST (report §10.1). The API only writes Postgres (entry + operation + outbox); the worker runs the agent and the UI polls.
+// Middleware is fixed by the route, never by a body field: /me = Talent session, /admin = active Manager with an MFA (aal2) session.
+const errors = { 401: { description: 'Authentication required' }, 403: { description: 'Wrong role / MFA required' }, 404: { description: 'Not found or not yours' },
+  409: { description: 'Busy / version / key conflict' }, 410: { description: 'Proposal expired' }, 422: { description: 'Invalid input' }, 503: { description: 'Feature not ready' } }
+const res = (status: 200 | 201 | 202, schema: z.ZodType) => ({ [status]: { description: 'Success', content: { 'application/json': { schema } } } })
+const json = (status: 200 | 201 | 202, schema: z.ZodType) => ({ ...res(status, schema), ...errors })
+const body = <T extends z.ZodType>(schema: T) => ({ body: { required: true, content: { 'application/json': { schema } } } })
+const Key = z.object({ requestKey: z.uuid() }).strict()
+const ConvOut = z.object({ conversationId: z.string(), version: z.string() }).openapi('AgentConversation')
+const Receipt = z.object({ commandId: z.string(), action: z.string(), targetLabel: z.string(), changed: z.boolean(), resourceVersion: z.string().nullable() }).openapi('AgentReceipt')
+const Run = z.object({ id: z.string(), operationId: z.string(), conversationId: z.string(), completionKind: z.enum(['answer_only', 'action_result']).nullable(),
+  state: z.enum(['pending', 'running', 'waiting_confirmation', 'succeeded', 'failed', 'unknown', 'cancelled']), version: z.string(), outputEntryId: z.string().nullable(),
+  proposalId: z.string().nullable(), errorCode: z.string().nullable(), receipts: z.array(Receipt), retryAfterMs: z.number().nullable() }).openapi('AgentRun')
+const Entry = z.object({ id: z.string(), sequence: z.string(), role: z.enum(['user', 'assistant']), body: z.string(), createdAt: z.string() }).openapi('AgentEntry')
+const Proposal = z.object({ proposalId: z.string(), state: z.string(), commandType: z.string(), targetLabel: z.string(),
+  changes: z.array(z.object({ field: z.string(), before: z.string().nullable(), after: z.string().nullable() })), baseVersion: z.string(),
+  expiresAt: z.string(), proposalHash: z.string(), runId: z.string().nullable(), allowedActions: z.array(z.enum(['confirm', 'reject', 'commit'])) }).openapi('AgentProposal')
+const Decision = z.object({ proposalId: z.string(), state: z.string() }).openapi('AgentDecision')
+const Conv = z.object({ id: z.uuid() }), RunId = z.object({ runId: z.uuid() }), Id = z.object({ id: z.uuid() })
 
-export function aiCoachModule(deps: AppDeps) {
-  const app = apiModule(), auth = deps.auth!, store = deps.aiCoach!
-  const actor = (c: Parameters<typeof bearer>[0]) => auth.authenticate(bearer(c), true)
-  const base = '/api/v1/me/coach'
+export function agentModule(deps: AppDeps) {
+  const app = apiModule(), auth = deps.auth!, { store, changes } = deps.agent!, db = deps.db
+  const actorOf = async (c: Context, channel: Channel): Promise<Actor> => {
+    const id = await auth.authenticate(bearer(c), true)
+    if (channel === 'talent') return talentActor(db, id.userId)
+    // Manager MFA = TOTP (decision 2026-11-18): an aal1 session never reaches the admin agent.
+    if (id.aal !== 'aal2') throw new AppError('MFA_REQUIRED', 403)
+    return managerActor(db, id.userId)
+  }
+  const manager = async (c: Context) => (await actorOf(c, 'manager_ui')) as ManagerActor
 
-  app.openapi(createRoute({ method: 'get', path: `${base}/messages`, responses: ok(Conversation) }), async c => {
-    const userId = (await actor(c)).userId
-    const [r, t] = await Promise.all([store.conversation(userId), store.latestThemes(userId)])
-    return c.json({ executions: r.executions, messages: r.messages.map(m => ({ ...m, createdAt: m.createdAt.toISOString() })), themesDay: t.day, themes: t.themes }, 200)
+  for (const [channel, base] of [['talent', '/api/v1/me/agent'], ['manager_ui', '/api/v1/admin/agent']] as const) {
+    app.openapi(createRoute({ method: 'post', path: `${base}/conversations`, request: body(Key), responses: { ...res(200, ConvOut), ...json(201, ConvOut) } }), async c => {
+      const r = await store.createConversation(await actorOf(c, channel), channel, c.req.valid('json').requestKey)
+      return c.json({ conversationId: r.conversationId, version: r.version }, r.created ? 201 : 200)
+    })
+    app.openapi(createRoute({ method: 'post', path: `${base}/conversations/{id}/messages`, request: { params: Conv, ...body(z.object({ requestKey: z.uuid(), body: z.string().min(1).max(BODY_MAX) }).strict()) }, responses: json(202, Run) }), async c => {
+      const b = c.req.valid('json')
+      return c.json(await store.submit(await actorOf(c, channel), channel, c.req.valid('param').id, b.requestKey, b.body), 202)
+    })
+    app.openapi(createRoute({ method: 'get', path: `${base}/conversations/{id}/messages`, request: { params: Conv, query: z.object({ after: z.string().regex(/^\d{1,18}$/).optional(), limit: z.coerce.number().int().min(1).max(100).optional() }) },
+      responses: json(200, z.object({ items: z.array(Entry), nextAfter: z.string(), hasMore: z.boolean() })) }), async c => {
+      const q = c.req.valid('query')
+      return c.json(await store.entries(await actorOf(c, channel), channel, c.req.valid('param').id, BigInt(q.after ?? '0'), q.limit ?? 20), 200)
+    })
+    app.openapi(createRoute({ method: 'get', path: `${base}/conversations/{id}/runs`, request: { params: Conv }, responses: json(200, z.object({ items: z.array(Run) })) }), async c => {
+      return c.json({ items: await store.runs(await actorOf(c, channel), channel, c.req.valid('param').id) }, 200)
+    })
+    app.openapi(createRoute({ method: 'get', path: `${base}/runs/{runId}`, request: { params: RunId }, responses: json(200, Run) }), async c => {
+      return c.json(await store.runView(await actorOf(c, channel), channel, c.req.valid('param').runId), 200)
+    })
+    app.openapi(createRoute({ method: 'post', path: `${base}/runs/{runId}/cancel`, request: { params: RunId, ...body(Key) }, responses: json(202, Run) }), async c => {
+      return c.json(await store.cancel(await actorOf(c, channel), channel, c.req.valid('param').runId), 202)
+    })
+  }
+
+  // Confirmation channel of M-17 (report §7.1). The model has no confirm/reject tool; only these authenticated UI actions.
+  // ponytail: requestKey is required but not stored; a replay is harmless because each action is idempotent on the proposal state.
+  const p = '/api/v1/admin/agent/proposals/{id}'
+  app.openapi(createRoute({ method: 'get', path: p, request: { params: Id }, responses: json(200, Proposal) }), async c => c.json(await changes.view(await manager(c), c.req.valid('param').id), 200))
+  app.openapi(createRoute({ method: 'post', path: `${p}/confirm`, request: { params: Id, ...body(z.object({ requestKey: z.uuid(), proposalHash: z.string().regex(/^[0-9a-f]{64}$/) }).strict()) }, responses: json(200, Decision) }), async c => {
+    return c.json(await changes.confirm(await manager(c), c.req.valid('param').id, c.req.valid('json').proposalHash), 200)
   })
-  // requestKey: generated once per send by the client; resending the same key returns the same execution.
-  app.openapi(createRoute({ method: 'post', path: `${base}/messages`, request: { body: { required: true, content: { 'application/json': { schema: z.object({ requestKey: z.uuid(), body: z.string().min(1).max(1000), simulate: z.boolean().optional() }).strict() } } } }, responses: ok(Execution) }), async c => {
-    const a = await actor(c), b = c.req.valid('json')
-    return c.json(await store.submit(a.userId, b.requestKey, b.body, b.simulate ?? false), 200)
+  app.openapi(createRoute({ method: 'post', path: `${p}/reject`, request: { params: Id, ...body(Key) }, responses: json(200, Decision) }), async c => {
+    return c.json(await changes.reject(await manager(c), c.req.valid('param').id), 200)
   })
-  app.openapi(createRoute({ method: 'get', path: `${base}/executions/{id}`, request: { params: IdParam }, responses: ok(Execution) }), async c => {
-    return c.json(await store.execution((await actor(c)).userId, c.req.valid('param').id), 200)
-  })
-  app.openapi(createRoute({ method: 'post', path: `${base}/executions/{id}/close`, request: { params: IdParam }, responses: ok(Execution) }), async c => {
-    return c.json(await store.closeUnknown((await actor(c)).userId, c.req.valid('param').id), 200)
-  })
-  // Test helper for the morning run (coach.daily_themes): run it now for my Talent instead of waiting for the M-17 time.
-  // date defaults to today (JST); up to 7 days ahead so the same day can be tested again. Same day twice returns the same run.
-  // The whole module is only mounted with ENABLE_AUTH_DEMO (never in production).
-  app.openapi(createRoute({ method: 'post', path: `${base}/daily`, request: { body: { required: true, content: { 'application/json': { schema: z.object({ date: z.iso.date().optional(), simulate: z.boolean().optional() }).strict() } } } }, responses: ok(Execution) }), async c => {
-    const userId = (await actor(c)).userId, today = jstToday(), b = c.req.valid('json'), day = b.date ?? today
-    const ahead = (Date.parse(day) - Date.parse(today)) / 86_400_000
-    if (ahead < 0 || ahead > 7) throw new AppError('DATE_OUT_OF_RANGE', 422)
-    return c.json((await store.scheduleDaily(day, userId, b.simulate ?? false))[0], 200)
-  })
-  // DEMO ONLY test reset (decided with the user 2026-11-23): removes EVERY Talent's morning runs, messages and themes of that day,
-  // keeps the shared trends. Mounted only with ENABLE_AUTH_DEMO (never in production); needs migration 20261123000400.
-  app.openapi(createRoute({ method: 'post', path: `${base}/daily/reset`, request: { body: { required: true, content: { 'application/json': { schema: z.object({ date: z.iso.date().optional() }).strict() } } } },
-    responses: ok(z.object({ day: z.string(), runs: z.number(), messages: z.number(), themes: z.number() }).openapi('CoachDailyReset')) }), async c => {
-    await store.conversation((await actor(c)).userId) // must be a Talent login
-    const day = c.req.valid('json').date ?? jstToday()
-    return c.json({ day, ...await store.resetDay(day) }, 200)
+  // Same service as the change_commit tool: fallback when a run ended before saving a confirmed proposal.
+  app.openapi(createRoute({ method: 'post', path: `${p}/commit`, request: { params: Id, ...body(Key) }, responses: json(200, Receipt) }), async c => {
+    return c.json(await changes.commit(await manager(c), c.req.valid('param').id), 200)
   })
   return app
 }

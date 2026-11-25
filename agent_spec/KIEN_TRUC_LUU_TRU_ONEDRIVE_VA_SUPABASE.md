@@ -1,3 +1,27 @@
+# Kiến trúc lưu trữ: dữ liệu agent, OneDrive và Supabase
+
+**Bản1.1 —25/11/2026.** Thiết kế nội bộ, cập nhật theo QA No.101 ghi xác nhận24/11; chưa triển khai hoặc duyệt baseline. Phần hiện hành dưới đây thay mặc định dữ liệu AI trên OneDrive của bản1.0; chi tiết adapter cũ giữ ở phần lịch sử.
+
+## Phân chia hiện hành theo nguồn
+
+**DB của hệ thống là nơi lưu dữ liệu nghiệp vụ agent và phải có backup.** QA `Q&A!G101:H101` xác nhận AI Coach là agent đọc/ghi Supabase, gồm chỉ thị hội thoại, lời khen, đề xuất/tiến độ Challenge và nhập chỉ thị M-17; Adesso chịu token, tự chỉnh prompt, không bảo đảm phán đoán đúng. `J101` là phân vai nội bộ25/11: OS nhập dữ liệu bên ngoài vào DB; agent quyết định rồi ghi lịch, OS thực hiện lịch đã lưu.
+
+| Loại dữ liệu | Cách áp dụng | Tính chất và phần chưa quyết |
+|---|---|---|
+| Hồ sơ, mục tiêu, chỉ thị, điều agent học, thực tích, hội thoại, Challenge/tiến độ | Lưu DB hệ thống; agent đọc/ghi trong phạm vi được phân quyền | Theo QA101. YK3 §2-5 còn ghi OneDrive, cần đội phản ánh vào bản yêu cầu cuối; không dùng bản0.3 để buộc agent chỉ dùng tệp. |
+| Lịch đăng và trạng thái dịch vụ | OS lưu dữ liệu lấy từ Upload-Post/SNS/cổng/video; agent ghi giờ dự kiến, OS đặt lịch/đăng theo dữ liệu đã lưu | Phân vai J101 là nội bộ. Kiểm quyền, xác thực dữ liệu, chống trùng và guard trước tác động ngoài vẫn thuộc thiết kế đội; không cho model thực thi SQL tùy ý. |
+| OneDrive | Vai trò tài liệu/media tích hợp hoặc bản xuất phải được đội xác định lại theo QA101 | Không còn mặc định là nguồn gốc bắt buộc cho profile/chỉ thị/bộ nhớ. Cây tệp bản1.0 bên dưới là phương án trước, không tự tạo/di chuyển/xóa dữ liệu. |
+| Byte ảnh/video | QA No.8 cho phép Supabase/OneDrive; YK3 §2-4-4 và §2-5 vẫn ghi OneDrive | QA101 chốt dữ liệu trong DB không tự quyết byte media. Supabase Storage private vẫn là đề xuất kỹ thuật; cần chốt chính sách lưu, dung lượng và chi phí trước áp dụng. Không lưu byte video vào Postgres theo suy luận. |
+| Backup | Bắt buộc có backup dữ liệu DB theo QA101 | Tần suất, retention, RPO/RTO, kiểm phục hồi và quan hệ với media/OneDrive do đội thiết kế; chưa có kết quả kiểm phục hồi. |
+| Đồng ý phụ huynh | Không xây kho đồng ý trong app | KS `20261122!G18:H18`: Adesso đã lấy khi ký với Talent. Không phục hồi đề nghị lưu hồ sơ ở báo cáo22/11. |
+
+Các yêu cầu không bảo đảm phán đoán của agent không loại trách nhiệm lưu dữ liệu đúng, kiểm quyền hay thực thi chức năng theo đặc tả. Bản này không thay schema, bucket hoặc cấu hình live. Giới hạn xóa tự động/tạm dừng thuộc CR-08 còn chờ quyết định; không lấy mô tả0.3 làm duyệt thương mại.
+
+[Báo cáo đợt24/11 và bằng chứng](../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md), [kiểm kê23nguồn](../docs/requirement-review/source-inventory-current.json). G1 BLOCKED, G2–G4 STALE phần phụ thuộc, G5/G6 BLOCKED; chưa G7/G8 PASS.
+
+<details>
+<summary>Bản1.0 ngày23/11 — thiết kế trước QA101; chỉ tham chiếu chi tiết kỹ thuật sau khi đối chiếu phần hiện hành</summary>
+
 # Kiến trúc lưu trữ file: OneDrive và Supabase
 
 **Bản:** 1.0 · 23/11/2026 · Tác giả: Codex.  
@@ -207,3 +231,5 @@ Trước báo hoàn tất: kiểm truy cập chéo Talent, URL/ticket hết hạ
 Đọc kèm [AI Core](AI_Talent_OS_AI_Core_Architecture_Report_v2.md), [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md), [DB scope](../database-design/07_implementation_scope_and_rules.md), [MCP](chatgpt-mcp-spec/README.md). Không tạo một bộ biến môi trường/cây thư mục/schema cạnh tranh với các bộ này.
 
 Soạn23/11/2026 bởi Codex theo yêu cầu người dùng; dùng skill requirement-review và supabase. Đã đọc QA No.8 G9/H9, bộ OneDrive/code và các căn cứ liên kết; tham chiếu chính thức Microsoft/Supabase kiểm23/11. Đã đọc [changelog Supabase](https://supabase.com/changelog.md) để đối chiếu thay đổi gần đây; không kết luận tương thích mọi phiên bản hoặc đã kiểm cấu hình project. Không truy cập tenant/project live, tạo bucket, chạy migration hoặc đổi code. Chưa có reviewer độc lập/VERIFIED, không đổi G1–G8 hoặc phê duyệt thương mại/release. Các đề xuất còn mở được nêu ở §10.
+
+</details>

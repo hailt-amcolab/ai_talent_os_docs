@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Tâm sự nghiêm trọng
+
+Không làm thông báo Manager về tâm sự nghiêm trọng. G17 nói chỉ dẫn AI có thể hướng dẫn tìm hỗ trợ; toàn bộ hội thoại được lưu và Manager đọc được.
+
+**Còn mở/giới hạn:** H/I chỉ chốt không thông báo, không chọn trọn mọi phương án của QA No.93 hoặc bảo đảm AI phát hiện đúng. Căn cứ: `KS 20261122!G17:I17 (No.16)`; `EV-1318`; QA No.93;TR-3-3.
+
+<!-- /DELIVERY24112026 -->
+
 # 3-3 Giới hạn chủ đề trò chuyện
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

@@ -20,7 +20,7 @@ function Content() {
   async function send(e: FormEvent<HTMLFormElement>) { e.preventDefault(); setBusy(true); setError(''); setResult(null); const recipient=String(new FormData(e.currentTarget).get('recipient')); try { setResult(await pwaApi.test(await token(), recipient)) } catch(e) { setError(errorText(e)) } finally { setBusy(false) } }
   return <main><DemoHeader /><div className="notification-toolbar"><h1>{t.demo.dashboard}</h1><button onClick={() => logout().then(() => window.location.replace('/pwa/login')).catch(e => setError(errorText(e)))}>{t.demo.logout}</button></div>
     <section className="card"><p>{auth.auth?.email}</p><p>{t.demo.receiverCode}</p><code className="auth-key" id="receiver-code">{auth.auth?.userId}</code><p>{t.demo.shareReceiver}</p><p><Link href="/pwa/mfa">{auth.auth?.totpEnabled ? t.demo.mfaTitle : t.demo.enroll}</Link> · {auth.auth?.currentAal}</p></section>
-    <section className="card"><h2>{t.coach.open}</h2><p>{t.coach.help}</p><p><Link href="/pwa/coach">{t.coach.title}</Link></p></section>
+    <section className="card"><h2>{t.agent.open}</h2><p>{t.agent.help}</p><p><Link href="/pwa/coach">{t.agent.title}</Link></p></section>
     <section className="card"><h2>{t.sns.open}</h2><p>{t.sns.help}</p><p><Link href="/pwa/sns">{t.sns.title}</Link></p></section>
     <section className="card"><h2>{t.onedrive.open}</h2><p>{t.onedrive.help}</p><p><Link href="/pwa/onedrive">{t.onedrive.title}</Link></p></section>
     <section className="card"><h2>{t.home.installHeading}</h2><InstallGuide /></section>

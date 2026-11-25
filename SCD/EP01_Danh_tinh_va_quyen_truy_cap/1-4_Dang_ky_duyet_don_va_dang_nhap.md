@@ -1,3 +1,16 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Đồng ý phụ huynh
+
+Adesso lấy đồng ý khi ký với Talent; H18 ghi đã lấy đầy đủ; ứng dụng không giữ hồ sơ đồng ý.
+
+**Còn mở/giới hạn:** Thay đề nghị lưu hồ sơ phụ huynh tại ISS22/ADV22 đúng chủ đề này; không tự kết luận đủ điều kiện pháp lý. Căn cứ: `KS 20261122!G18:H18 (No.17)`; `EV-1317`; QA No.69;TR-1-4.
+
+<!-- /DELIVERY24112026 -->
+
 # 1-4 Đăng ký, duyệt đơn và đăng nhập
 
 ## Cập nhật nguồn tiếp nhận23/11/2026

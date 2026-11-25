@@ -1,3 +1,28 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Cổng thanh toán
+
+G17 ghi khách thông báo qua điện thoại sau họp sẽ chọn Square; GMO trong YK3 §2-4-11 và sheet dự án là ứng viên cũ.
+
+**Còn mở/giới hạn:** Ngày cuộc điện thoại chưa rõ; chưa chứng minh đã ký/xét duyệt. Đội/provider kiểm Square đáp ứng nhà mạng, trả trước, phí biến đổi, giữa kỳ, quá hạn và lịch sử. Không mặc định Square hỗ trợ các yêu cầu này. Căn cứ: `KS アクション一覧!B17:G17 (No.16)`; `EV-1312`; QA No.46;QA No.49;QA No.86;TR-1-1;TR-5-4.
+
+### Giới hạn chi tiêu dưới18
+
+Nguồn ghi quyết định24/11: không đặt trần chi tiêu riêng cho Talent dưới18.
+
+**Còn mở/giới hạn:** Không suy bỏ kiểm soát sử dụng kỹ thuật hoặc điều kiện tuổi của SNS/provider; không phải xác nhận pháp lý. Căn cứ: `KS 20261122!G5:I5 (No.4)`; `EV-1316`; QA No.60;TR-5-4.
+
+### YK3: video tính lượt
+
+Nguồn vừa nói thời điểm tính lượt còn chờ kiểm chứng, vừa mô tả nút tạo tính1lượt lúc yêu cầu; mục thanh toán loại video tạo lỗi khỏi số lượt.
+
+**Còn mở/giới hạn:** Giữ điểm chưa nhất quán về ghi nhận/đảo lượt/phí khi lỗi; không tự chọn lúc request hay thành công. Tiếp tục No.60 và thiết kế provider. Căn cứ: `YK3 §2-4-8 w:p475,485; §2-4-11 w:p644`; `EV-1330`; QA No.60;TR-5-4;TR-5-1.
+
+<!-- /DELIVERY24112026 -->
+
 # 5-4 Đếm số lần tạo video và thu gộp với phí tháng
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

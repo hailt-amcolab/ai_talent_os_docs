@@ -1,5 +1,5 @@
 {
-  "version": "CORRECTION-1+DEC-0001+DELIVERY23112026",
+  "version": "CORRECTION-1+DEC-0001+DELIVERY23112026+DELIVERY24112026",
   "requirements": "docs/requirement-review/registers/requirements.csv",
   "business_rules": "docs/requirement-review/registers/business-rules.csv",
   "flow_index": "docs/requirement-review/corrections-2026-11-19/FLOW_INDEX.md",
@@ -14,15 +14,18 @@
     "DEC-0001 —20/11/2026, không giới hạn số lượt AI viết lại"
   ],
   "decision_register": "docs/requirement-review/registers/customer-decisions.csv",
-  "current_limitations": "Review tác giả4nguồn mới,52trangvàDOCX356đoạn. Đề nghị/phạm vi mới chưa phê duyệt;28flow chưa tái dựng đầy đủ guard/AC. G1BLOCKED;G2–G4STALE;G5/G6BLOCKED;khôngG7/G8PASS.",
+  "current_limitations": "23 sources; QA/KS changed; current-source decisions recorded as FACT; G1 BLOCKED, affected G2–G4 STALE; G5/G6 BLOCKED; no G7/G8 PASS. See current impact register; historical review not inherited.",
   "finding_details": "docs/requirement-review/corrections-2026-11-19/finding-details.csv",
   "reconciliation": "docs/requirement-review/corrections-2026-11-19/new-delivery-intake.json#reconciliation",
-  "source_update_report": "docs/requirement-review/corrections-2026-11-19/DELIVERY_23112026_REVIEW.md",
-  "source_update_manifest": "docs/requirement-review/corrections-2026-11-19/delivery-23112026-manifest.json",
+  "source_update_report": "docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md",
+  "source_update_manifest": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-manifest.json",
   "artifact_freshness": {
     "steps": "STALE_FOR_QA_KS_AFFECTED_BRANCHES",
     "state_transitions": "STALE_FOR_QA_KS_AFFECTED_BRANCHES",
-    "scenarios": "STALE_FOR_QA_KS_AFFECTED_BRANCHES"
+    "scenarios": "STALE_FOR_QA_KS_AFFECTED_BRANCHES",
+    "requirements": "STALE_FOR_QA_KS_AFFECTED_RECORDS",
+    "business_rules": "STALE_FOR_QA_KS_AFFECTED_RECORDS"
   },
-  "latest_delivery": "docs/requirement-review/corrections-2026-11-19/delivery-23112026-intake.json"
+  "latest_delivery": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-intake.json",
+  "delivery_impact": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-impact.csv"
 }

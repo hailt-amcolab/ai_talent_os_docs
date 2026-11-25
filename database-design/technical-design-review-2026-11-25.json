@@ -1,0 +1,322 @@
+{
+  "design_id": "DB-TECH-DESIGN-2026-11-25",
+  "version": "1.0",
+  "author": "Codex",
+  "checked_at": "2026-11-25",
+  "status": "AUTHOR_DESIGN_PROPOSAL_NOT_INDEPENDENTLY_REVIEWED",
+  "scope": "Technical/provider group design for12domains; canonical09 and target dictionary10, machine contracts, provider validation cases, links01–07. No application schema/code/liveDB changes.",
+  "approval": {
+    "business": "NOT_GRANTED_BY_THIS_DESIGN",
+    "design": "PENDING_TECH_LEAD_AND_INDEPENDENT_REVIEW",
+    "commercial": "NOT_GRANTED",
+    "release": "NOT_GRANTED"
+  },
+  "before": [
+    {
+      "path": "database-design/01_confirmed_requirements.md",
+      "sha256": "6c875fb1130d1b19f50314d3c9b7614d6b0c022cde943f97093b233dd34fad50"
+    },
+    {
+      "path": "database-design/02_entity_inventory.md",
+      "sha256": "60c4fc947d3d1713a5530565f2d6c75242e24689b5aac26e30bf394a5ab4912b"
+    },
+    {
+      "path": "database-design/03_erd.md",
+      "sha256": "56c49b2e1d2a6562c35492b2f9cd13cf52a3684a9e71336fefc62864cce7896f"
+    },
+    {
+      "path": "database-design/04_database_schema.md",
+      "sha256": "dc0f97515e41eab75cd9d57110a9e9f7afeebe778ef9f396a9940f244a740194"
+    },
+    {
+      "path": "database-design/05_data_dictionary.md",
+      "sha256": "6e841101e6bc656343bff1f213986cae9cd1284dbcca361afaea50a13914bfff"
+    },
+    {
+      "path": "database-design/06_extensibility_review.md",
+      "sha256": "395068e40a0035773c8ec5f143f2e46888ff7105e5153f0ed09a28a1c073b786"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "de8f7e4d53f69f3ff209ae73ec2f98aff51247dff06c2790d99d1817dc5bb333"
+    },
+    {
+      "path": "database-design/08_full_review_2026-11-25.md",
+      "sha256": "ec16a4e140e13e0cf7a768a23a7c18b8c8d78713817fdca9665bd55b6114c94a"
+    }
+  ],
+  "history_ref": "database-design/history/technical-design-2026-11-25",
+  "source_files": [
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3"
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181"
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67"
+    },
+    {
+      "path": "source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md",
+      "sha256": "3d168de54769e626ca7a47978a73add6876b05874997f6ba7d2626fcf5a54423"
+    },
+    {
+      "path": "source_requiments/19112926/業務フロー_AI育成OS.pdf",
+      "sha256": "8c91d0d0e277578408d3bed6e664f9387cfe5facd2766be1ad46a0d1cb4b3245"
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "63b70d9b6fb1b5dae02d86b370af48ff28a218592f818348dcbabdd153d32530"
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "bb6fe2c5b2a2e0be6bda54d82d26b229d8cdc32b42f5fe6bcd2f2104409ae4f7"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168"
+    },
+    {
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f"
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx",
+      "sha256": "255bf76e74cc621ce4d2bafa4f408edc89aec07f80806e5076d823f7b51ddbd0"
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf"
+    },
+    {
+      "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03"
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab"
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea"
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae"
+    }
+  ],
+  "source_recheck": {
+    "method": "Reopened QA/KS workbooks (5sheets each) and YK3 originalDOCX; extracted selected decision rows and paragraphs; no full image re-verification.",
+    "locators": [
+      "QA Q&A!G101:J101",
+      "KS 20261122!G4:I4/G16:I16/G18:H18/G20:H20/G35:I35",
+      "KS アクション一覧!A17:G17",
+      "YK3 P116/P148/P159/P247/P249/P250/P296/P359/P475/P485/P644/P660–671/P679–680/P688/P705/P709/P728–744/P783/P803/P819/P885/P913"
+    ],
+    "limits": "No full visualverification or customer gateapproval; J101 remains internal authority."
+  },
+  "internal_inputs": [
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "ff22ff6b9b7fb8b62fc8bedba750335972502ea660b45299be15ea1fdd212669"
+    },
+    {
+      "path": "agent_spec/KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md",
+      "sha256": "891310a877c7dfbab89e5450d8e3ff4257615217e9363501d5b9852537a1ccbf"
+    },
+    {
+      "path": "agent_spec/TECH_STACK_VA_CAU_TRUC_DU_AN.md",
+      "sha256": "75c728863ec8e9a922104c5ad1c763d39dfd489e2a8975ee8aee65740c065b16"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "4d23ac353bc6dcc73997a244ae64bae6dcac51465e75c5d7ccb321889369a502"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000000_init/migration.sql",
+      "sha256": "2eb2e29825df23873ddf439432a27d369e6f0d2f25a5c8881f8549e6f4ea0953"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000100_lock_prisma_migrations/migration.sql",
+      "sha256": "a655cf5ec71d3bbdbd8343a56d1d60281ac90a7041d8201df07ef611285a3d4d"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000200_auth_ref_by_trigger/migration.sql",
+      "sha256": "09e2ad15aeeb3b1d18243b2229e24533b787604be876f384a9c23cc50add5eae"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261117000300_confirmed_scope_foundation/migration.sql",
+      "sha256": "5e0020bc6a1f73e3c7bac39a2fbc59af88691fdbe04d5f2c68d2c4c223037808"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000000_auth_pwa_demo/migration.sql",
+      "sha256": "1bc2a0f8e913d30a17ce42491f7a88e9ce1f277cbc542c05775ca693495e5714"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000100_technology_demo/migration.sql",
+      "sha256": "3897718c0debc9c85d0d51737ee7d47967c63e5e2a57424b57f99c7cd84a8cc7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261118000200_onedrive_delegated_demo/migration.sql",
+      "sha256": "f36d6493408a55bb1f02dd79a8175bd96edac36381aeecf858509f7628374ce7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000000_ai_core_executions/migration.sql",
+      "sha256": "fc9de33070b55bf8f82245dc96266631a6c9bea526bfe000723ff7d1cc54c8b7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000100_ai_core_daily_themes/migration.sql",
+      "sha256": "45b6496ae0910b2fc02fd912fb4373c3a9c971faa232f0ce0491eaf4aa56bd25"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000200_ai_core_read_follower_goals/migration.sql",
+      "sha256": "058c64dc6fcffe25715ac44452ea938ca391bc7e620982302caccd89dee268b8"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000300_ai_daily_trends/migration.sql",
+      "sha256": "14e025f555caadf465a41f3e442c15d171e3f65ee8f24fbb7358213b782ee7a8"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261123000400_ai_core_demo_reset_grant/migration.sql",
+      "sha256": "533b80ca10448e44e2832245a82bb096becb0dc56a4b74a7493621e1ebc4bcf9"
+    },
+    {
+      "path": "apps/api/prisma/migrations/20261125000000_agent_core/migration.sql",
+      "sha256": "94c2afdd9ccffcef121553faad5dacefc5919d701fcce419b891e7ec96bfe4dd"
+    }
+  ],
+  "technical_docs": [
+    {
+      "url": "https://supabase.com/changelog.md",
+      "read_at": "2026-11-25",
+      "use": "Scan relevant changes; no upgrade or hosted commands"
+    },
+    {
+      "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "read_at": "2026-11-25",
+      "use": "RLS/grants distinction; no customer authority"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/ddl-constraints.html",
+      "read_at": "2026-11-25",
+      "use": "FK/unique/NULL/cross-row CHECK boundary"
+    }
+  ],
+  "mechanical_validation": {
+    "status": "PASS",
+    "migration_files_read": 13,
+    "existing_create_table_count": 53,
+    "proposed_tables_by_change": {
+      "EXTEND": 10,
+      "NEW": 52
+    },
+    "foreign_key_shapes_and_types_checked": 173,
+    "dictionary_table_mapping": "PASS",
+    "relative_file_links": "PASS",
+    "limits": "Not SQL replay, candidate-key proof, business verification, provider test or independent review."
+  },
+  "additional_checks": {
+    "source_hashes_23": "PASS",
+    "old_SQL_TS_code_blocks": "PASS",
+    "provider_cases": "12 NOT_TESTED; no fabricated POC",
+    "technical_test_plan": "34 planned cases; not executed",
+    "workflow_validator": "PASS sources23/CSV9; 815historicalSTALE notice; no gateapproval"
+  },
+  "limits": [
+    "No SQL generated/applied or local/liveDB replay; schema target is a proposal.",
+    "FK shape/type checker is a static approximation of migration source, not catalog parsing or unique/exclusion/trigger proof.",
+    "Provider capabilities and staging operational defaults require real tests and owner review before production.",
+    "Current runtime schema remains53tables; proposed52NEW/10EXTEND are separately labeled; generator unchanged by this task.",
+    "Unresolved policy remains blocked at relevant command; config does not substitute approval.",
+    "G5 blocked without independent reviewer; no G7/G8 or baseline granted."
+  ],
+  "outputs": [
+    {
+      "path": "database-design/01_confirmed_requirements.md",
+      "sha256": "182fb82a905067b4ddc897aa37b3e737ecd872761864ad699d714e7968bca7d6"
+    },
+    {
+      "path": "database-design/02_entity_inventory.md",
+      "sha256": "7d5f35c06db4df9111d683ebfbdc6f1a9571667b9bedc5d262d2cba706a18333"
+    },
+    {
+      "path": "database-design/03_erd.md",
+      "sha256": "beda618526e893428d7392a4e9ef5143a7c6759c3e39cda1b7a0897813d1cf65"
+    },
+    {
+      "path": "database-design/04_database_schema.md",
+      "sha256": "b552741f4902de54156e7c60d30dfde68fd3f5f1c69c2aef7f9979b4ca3c2f19"
+    },
+    {
+      "path": "database-design/05_data_dictionary.md",
+      "sha256": "6cf0b00808e7328068c4a084b16676648aca9e85e22d1123e234f0f6539f53ad"
+    },
+    {
+      "path": "database-design/06_extensibility_review.md",
+      "sha256": "e921278c6162155ec8885adb25c12d06e2cc47b46aafc00a83feb0b3c6426a11"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "124a8fcf3c4f39d89e7986a93f57ff0a53b0f5f74025c920dd93aa63d88ce13c"
+    },
+    {
+      "path": "database-design/08_full_review_2026-11-25.md",
+      "sha256": "ec16a4e140e13e0cf7a768a23a7c18b8c8d78713817fdca9665bd55b6114c94a"
+    },
+    {
+      "path": "database-design/09_technical_design.md",
+      "sha256": "0cd050edc4351126583bdcc3cef0b271b01a5423f5bea2f89e8c43901aa75591"
+    },
+    {
+      "path": "database-design/10_target_data_dictionary.md",
+      "sha256": "af007d165918950919719edfc7e8b8ee9582316831d65b0500ca44edad758440"
+    },
+    {
+      "path": "database-design/technical-design-contracts-2026-11-25.json",
+      "sha256": "450d13dd9f9fd863ff1f0fb29e797d0e3b0f36b115986f61353b064d5a1194e5"
+    },
+    {
+      "path": "database-design/technical-provider-checks-2026-11-25.csv",
+      "sha256": "b32f46ee443bba35f92f34a608eca23772001676a11d9bb407f7955544ad8cbf"
+    },
+    {
+      "path": "database-design/validate_technical_design.py",
+      "sha256": "68b81004e8829d8865bc8d6b1bff7535f6f4da62ea26de34a5cbd9915538396e"
+    }
+  ]
+}

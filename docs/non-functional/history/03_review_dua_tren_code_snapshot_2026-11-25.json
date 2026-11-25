@@ -1,0 +1,424 @@
+{
+  "review_date": "2026-11-25",
+  "recorded_at": "2026-11-25T11:33:47.548017+00:00",
+  "author": "Codex",
+  "independent_reviewer": null,
+  "scope": "Technical feasibility of YK3 §3-1–3-8; no source/code mutations",
+  "classification": {
+    "direct_read": "FACT",
+    "technical_assessment": "INFERENCE",
+    "additions": "PROPOSAL"
+  },
+  "files": [
+    {
+      "path": "DOCKER.md",
+      "sha256": "a04d6060e751c8327555623f7cf019448a383d01e8e75ea098d2e47adb503cfe"
+    },
+    {
+      "path": "TAI_LIEU_NGUON.md",
+      "sha256": "0637d59b927caabc52dd4e544ab132aad67a5bac632ed6121738ecdd775ec320"
+    },
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "ff22ff6b9b7fb8b62fc8bedba750335972502ea660b45299be15ea1fdd212669"
+    },
+    {
+      "path": "agent_spec/KIEN_TRUC_LUU_TRU_ONEDRIVE_VA_SUPABASE.md",
+      "sha256": "891310a877c7dfbab89e5450d8e3ff4257615217e9363501d5b9852537a1ccbf"
+    },
+    {
+      "path": "apps/api/ecosystem.config.cjs",
+      "sha256": "c8b9068d6c84bd3286c362219a515bd006becdfa1bd73616fdee97f25ad795c6"
+    },
+    {
+      "path": "apps/api/src/config/env.ts",
+      "sha256": "95b57278477fe380a4b52461b300867073654c17a5b852a02ed27543118bceea"
+    },
+    {
+      "path": "apps/api/src/container.ts",
+      "sha256": "596402fcf6a3ecfe9d182d88dabae422c689a4838118b4763e3dbf47c4a53204"
+    },
+    {
+      "path": "apps/api/src/http/app.ts",
+      "sha256": "76d934f93eb3e31c92be21dace9c010f6e7ab74d08ae372dc0aec6f0b945dceb"
+    },
+    {
+      "path": "apps/api/src/infra/database/check.ts",
+      "sha256": "bae10ceb7d92fe969da6221c8162f7ff073bc6189a6c1b499fe004ebf528749d"
+    },
+    {
+      "path": "apps/api/src/infra/database/client.ts",
+      "sha256": "bd947c9ce2b16a082d1e7476d5d90c796ffb314f8e14e47c1eaf30118960abbf"
+    },
+    {
+      "path": "apps/api/src/infra/database/config.test.ts",
+      "sha256": "f5b22adecbe89cf3c289f6a5c94f990509d352968a16b0efd60439b1a6885135"
+    },
+    {
+      "path": "apps/api/src/infra/database/config.ts",
+      "sha256": "5ea422db360426b85d61f75b806ce3cded61719e4a5899b81999838b685259d9"
+    },
+    {
+      "path": "apps/api/src/infra/database/foundation.integration.test.ts",
+      "sha256": "3d8be007ab857600d86d941e9807a5e2500b36cb732680747dea0bbd0d9f48f8"
+    },
+    {
+      "path": "apps/api/src/infra/onedrive/graph.ts",
+      "sha256": "4333b299c8ab3367c31e28c9261c428d2087ca96997114ae2a9970ed737ea832"
+    },
+    {
+      "path": "apps/api/src/infra/onedrive/identity.ts",
+      "sha256": "e5a688ac7816942669e505c0623083c65ff2206f4befe44f7b38174bdd3b5a8f"
+    },
+    {
+      "path": "apps/api/src/infra/onedrive/log.ts",
+      "sha256": "e03f87f8af138c19dc1fd8a6085ea9633bb7b6611734a2ccb5f43063ceb0d842"
+    },
+    {
+      "path": "apps/api/src/infra/upload-post/client.ts",
+      "sha256": "8c0319844e0885c15e22245f9326c5db022e3646a696686fbb4700c8182c9734"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/access.ts",
+      "sha256": "322042c5e8c319ee2f25f2804a063cb5493475e7393fd95b7a64454ca019ebb3"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/agent.integration.test.ts",
+      "sha256": "1f3c63128c13800de18c40e62ee3df50ad306f145f025b323cebca80bee20af5"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/changes.ts",
+      "sha256": "cfb7310bc685a08a8606821f2d3b7198ba99ae21e4e0d074a34c22431d7c9c0a"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/context.ts",
+      "sha256": "53210a60349b1d60464cf0991aa9e7c38199d3011f067281f0ceaf38aa75fa2b"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/effects.ts",
+      "sha256": "48aa13bdf4ee49bb7815fc728d2920e2b1c226073f48705ca707f12860851c0b"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/model.test.ts",
+      "sha256": "cebeefcc76b0d2243e398571494438d3559196629c0269c54059c3829a341aef"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/model.ts",
+      "sha256": "e98b7de11fe9accd240c2c45106ccbf93889e2ae37242e03f02453acaf97d468"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/routes.ts",
+      "sha256": "aa7309f1a0eb322a5eccbd08c036bb0e2fd6d6fbb1b3e7419ff33e5dd6c02183"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/runner.ts",
+      "sha256": "fc35ffc6832adef092c8229216dad850a1b07b044b24d9ecd92d4da446376348"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/store.ts",
+      "sha256": "19d96008142090ebb90d0d492585fe4927bd13646e356bd202ebafa65375f52e"
+    },
+    {
+      "path": "apps/api/src/modules/ai-coach/tools.ts",
+      "sha256": "b9abb7e47488f5b227535f8837cae8d27d772b7ec2d2c425606976f81f8e8c99"
+    },
+    {
+      "path": "apps/api/src/modules/onedrive/connections.ts",
+      "sha256": "562b42179e73afce8e06fa47402c729fc7580c482c271b1bdfa626d27ecac920"
+    },
+    {
+      "path": "apps/api/src/modules/onedrive/service.ts",
+      "sha256": "a8741128c8493736284103d76bce1908bf298f4877eff120bbff8af06827351a"
+    },
+    {
+      "path": "apps/api/src/modules/pwa/service.ts",
+      "sha256": "0e13ad33eb506cf6b4b88224728b3f1b4dde9d70e592fb9b21b05da8861fbe3c"
+    },
+    {
+      "path": "apps/api/src/modules/system/routes.ts",
+      "sha256": "a2d20d3d6e15ab324de4bc355a2e3ac8f9e23c7f83345a1a23ec3e43e37f9278"
+    },
+    {
+      "path": "apps/api/src/modules/upload-post/service.ts",
+      "sha256": "8f42ec88ddc008adfe87915faca4cb658689fa1f20d6bc606689dbec3184066f"
+    },
+    {
+      "path": "apps/api/src/worker.ts",
+      "sha256": "6f6f9acb9afca6fce174031a01552a5532f2c8f4399298fa0d2de6ebe7ea9e43"
+    },
+    {
+      "path": "apps/web/lib/pwa/platform.ts",
+      "sha256": "e0c4ab645e5dc444f456fe6824b81c2995640a4041ee820402d9d1dbbdf6aaa7"
+    },
+    {
+      "path": "apps/web/lib/pwa/push.ts",
+      "sha256": "62aac2ebad88b628ef8cdc4cb6f65b13c38f60b510252a138d78f5c309507248"
+    },
+    {
+      "path": "apps/web/public/sw.js",
+      "sha256": "2933dd90204408aa1dea1a696604d4391510b40f991d6a32f728472f80927ee3"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "8a37be12f9c90ed69e48bd858254f2b59e6cdf425dcabeb8d54a32c93a539b80"
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03"
+    }
+  ],
+  "requirement_evidence": [
+    {
+      "locator": "w:p899",
+      "text": "3. 非機能要件"
+    },
+    {
+      "locator": "w:p900",
+      "text": "3-1 使う端末と環境"
+    },
+    {
+      "locator": "w:p901",
+      "text": "タレントのアプリ：スマートフォン（iPhone、Android）のブラウザで開き、ホーム画面に追加して使う。iPhone で通知を受け取るには、iOS 16.4 以降が必要である。対象の OS とブラウザの版は、設計の中で決める。"
+    },
+    {
+      "locator": "w:p902",
+      "text": "管理画面：ウェブの画面とし、パソコンでの利用を基本とする。スマートフォンでも表示がずれずに情報を確かめられるようにし、承認の画面と AIコーチへの指示の画面は、スマートフォンでも操作できるようにする。スマートフォンの機種によって表示が変わるため、見た目を細部まで同じにすることはしない。"
+    },
+    {
+      "locator": "w:p903",
+      "text": "環境：本番用とテスト用の環境を用意する。"
+    },
+    {
+      "locator": "w:p904",
+      "text": "稼働中のシステム：稼働中の InstagramDM自動化アプリに、影響を出さない。"
+    },
+    {
+      "locator": "w:p905",
+      "text": "3-2 性能と規模"
+    },
+    {
+      "locator": "w:p906",
+      "text": "利用人数：最低30人ほどで始め、1か月に10人ずつ増やす。すぐに100人規模になる予定である。目標は200〜300人、将来は1,000人とする。"
+    },
+    {
+      "locator": "w:p907",
+      "text": "毎朝の処理：声をかける時刻までに、タレントの情報と実績の読み込みと、テーマの候補の作成を終える。決めた時刻までに終わることを、最初に始める人数で確かめる。"
+    },
+    {
+      "locator": "w:p908",
+      "text": "写真・動画の容量：1件あたりの上限と、保存する容量の合計は、設計の中で決める。"
+    },
+    {
+      "locator": "w:p909",
+      "text": "人数が増えたときに毎月かかる外部サービスの費用の目安は、別にお示しする。"
+    },
+    {
+      "locator": "w:p910",
+      "text": "3-3 稼働時間と障害時の対応"
+    },
+    {
+      "locator": "w:p911",
+      "text": "使える時間帯：設計の中で決める。"
+    },
+    {
+      "locator": "w:p912",
+      "text": "外部サービスの障害：外部サービスに障害が起きたときは、その機能を止め、ほかの機能は使えるようにする。"
+    },
+    {
+      "locator": "w:p913",
+      "text": "バックアップ：対象・頻度・保存期間は、設計の中で決める。"
+    },
+    {
+      "locator": "w:p914",
+      "text": "3-4 操作と処理の記録"
+    },
+    {
+      "locator": "w:p915",
+      "text": "閲覧の記録：2章の業務要件 16-4 のとおり。"
+    },
+    {
+      "locator": "w:p916",
+      "text": "操作の記録：承認、ステータスの切り替え、投稿の停止と再開、設定の変更などの操作を記録する。"
+    },
+    {
+      "locator": "w:p917",
+      "text": "処理の記録：投稿、実績の取り込み、動画生成、請求の結果を記録する。"
+    },
+    {
+      "locator": "w:p918",
+      "text": "記録の保存期間は、設計の中で決める。"
+    },
+    {
+      "locator": "w:p919",
+      "text": "3-5 セキュリティ"
+    },
+    {
+      "locator": "w:p920",
+      "text": "ログインの決まりは、2章の機能要件「タレントのログイン」（2-4-2）と「マネージャーのログインと権限」（2-4-16）に書く。"
+    },
+    {
+      "locator": "w:p921",
+      "text": "通信と、保存する情報を暗号化する。"
+    },
+    {
+      "locator": "w:p922",
+      "text": "外部サービスに接続するための認証情報（API キー）は、画面や記録に表示しない形で管理する。"
+    },
+    {
+      "locator": "w:p923",
+      "text": "AI に渡す情報は、会話と投稿案の作成に必要な範囲にする。AI のサービスには、渡した情報を学習に使わせない設定をする。"
+    },
+    {
+      "locator": "w:p924",
+      "text": "3-6 個人情報の扱い"
+    },
+    {
+      "locator": "w:p925",
+      "text": "所属のタレントからは、ご契約の時点で、個人情報と肖像権の扱いを委託いただいている。"
+    },
+    {
+      "locator": "w:p926",
+      "text": "タレントの情報を外部サービス（AI など）に渡すことへの同意は、アデッソ様がタレントからいただく。すでに同意をいただいていて、外部サービスへの提供も含まれていれば、改めての手続きは要らない。"
+    },
+    {
+      "locator": "w:p927",
+      "text": "未成年のタレントの保護者の同意は、アデッソ様がタレントとのご契約のときにいただく。本システムには、同意の記録を持たない。"
+    },
+    {
+      "locator": "w:p928",
+      "text": "開発とテストでは、原則として試験用のデータを使う。タレントの情報を使う場合は、事前に書面でご承諾いただいた範囲だけを使う。"
+    },
+    {
+      "locator": "w:p929",
+      "text": "3-7 SNS のアカウントの凍結対策"
+    },
+    {
+      "locator": "w:p930",
+      "text": "投稿の頻度の制限などの対策を行います。対策の内容は、2章の「2-5 共通の機能要件」の凍結対策のとおり、設計の中で決めます。"
+    },
+    {
+      "locator": "w:p931",
+      "text": "3-8 前提条件と制約事項"
+    },
+    {
+      "locator": "w:p932",
+      "text": "アデッソ様にご用意いただくもの"
+    },
+    {
+      "locator": "w:p933",
+      "text": "利用規約（アデッソ様に作成いただいた文面を使います）、申し込みの案内とアデッソ様のページ・QR コード、料金・課金の表示、特定商取引法にもとづく表記"
+    },
+    {
+      "locator": "w:p934",
+      "text": "メールとお知らせの文言。弊社が、ご用意いただく文言を場面ごとにまとめた表をお送りします"
+    },
+    {
+      "locator": "w:p935",
+      "text": "マネージャーへのメールの送り先のメールアドレス"
+    },
+    {
+      "locator": "w:p936",
+      "text": "ロゴの画像データと使う色の指定、AIコーチのキャラクターの絵"
+    },
+    {
+      "locator": "w:p937",
+      "text": "使ってはいけない言葉の一覧の見直し。弊社が、一般的な内容のサンプルを作ってお渡しします"
+    },
+    {
+      "locator": "w:p938",
+      "text": "本番での利用開始の前の、タレントの情報・目標・ノウハウ・AIコーチへの指示の登録"
+    },
+    {
+      "locator": "w:p939",
+      "text": "動画生成1回あたりの金額の決定"
+    },
+    {
+      "locator": "w:p940",
+      "text": "外部サービスのご契約と審査の手続き（アデッソ様の名義。開発とテストの期間の利用料も含みます）、開発とテストに使うアカウントと接続情報"
+    },
+    {
+      "locator": "w:p941",
+      "text": "保証しない範囲"
+    },
+    {
+      "locator": "w:p942",
+      "text": "スマートフォンへの通知は、端末・OS の種類と設定、通信の状態により、遅れたり届かなかったりすることがあります。"
+    },
+    {
+      "locator": "w:p943",
+      "text": "凍結対策を行っても、SNS のアカウントが凍結されないことを保証するものではありません。TikTok への投稿のうち、予約投稿、「確認しないで投稿」、自動投稿、公開範囲の指定は、TikTok から2026年11月にいただいた回答の内容に合いません。今の仕様のまま進めるため、TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。"
+    },
+    {
+      "locator": "w:p944",
+      "text": "AI が作る文章・動画の内容の正確性と品質を保証するものではありません。決めた機能が決めたとおりに動かない場合は、不具合として直します。"
+    },
+    {
+      "locator": "w:p945",
+      "text": "使ってはいけない言葉の確かめと、AI が判断して出すお知らせ（投稿のない日が続いたタレント、目標の達成）は、AI の判断のため、外れる場合があります。"
+    },
+    {
+      "locator": "w:p946",
+      "text": "キャリア決済は、携帯会社やご契約の内容によって、使えない場合があります。"
+    },
+    {
+      "locator": "w:p947",
+      "text": "そのほかの前提"
+    },
+    {
+      "locator": "w:p948",
+      "text": "名称とロゴは、既存のアデッソアプリのものを使います。既存のシステムは使いません。"
+    },
+    {
+      "locator": "w:p949",
+      "text": "各 SNS の年齢の条件に合うアカウントが対象です。"
+    },
+    {
+      "locator": "w:p950",
+      "text": "投稿の内容と素材が第三者の権利を侵害していないかを確認する方法は、設計の中で決めます。"
+    },
+    {
+      "locator": "w:p951",
+      "text": "リリース後の保守は、別の契約で決めます。外部サービスの仕様・料金・規約が変わった場合の対応は、保守の契約で扱います。"
+    }
+  ],
+  "external_sources": [
+    "https://webkit.org/blog/13966/webkit-features-in-safari-16-4/",
+    "https://supabase.com/docs/guides/platform/backups",
+    "https://developers.openai.com/api/docs/guides/your-data",
+    "https://developers.tiktok.com/docs/en/content-sharing-guidelines",
+    "https://learn.microsoft.com/en-us/graph/throttling"
+  ],
+  "tests": {
+    "command": "node --test src/modules/ai-coach/model.test.ts src/http/app.test.ts src/modules/upload-post/service.test.ts",
+    "cwd": "apps/api",
+    "node": "22.20.0",
+    "exit_code": 0,
+    "reported_file_tests_pass": 3,
+    "network_provider_tests": false
+  },
+  "not_verified": [
+    "live cloud settings and plans",
+    "deployed topology and shared Instagram DM resources",
+    "load and deadlines",
+    "media backups and restore",
+    "real devices",
+    "provider acceptance of exact workflow",
+    "all screen definitions/workbook15 and independent G4 validity"
+  ],
+  "gates": {
+    "G5": "BLOCKED: no independent reviewer and no assertion G1–G4 passed for this scope",
+    "G8": "NOT_GRANTED"
+  },
+  "output": {
+    "path": "docs/non-functional/03_technical_design_review.md",
+    "sha256": "d92258e82392d3ac098eaaa6adf1de96c45a757b5f56d7b9737d758dccaf0e1f"
+  }
+}

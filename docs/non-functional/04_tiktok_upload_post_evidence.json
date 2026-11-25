@@ -1,0 +1,334 @@
+{
+  "scope": "TikTok draft/direct posting and Upload-Post feasibility; user request 2026-11-25",
+  "checked_by": "Codex",
+  "checked_at": "2026-11-25T11:49:40.675067+00:00",
+  "report": "docs/non-functional/04_tiktok_upload_post_research.md",
+  "report_sha256": "c8f2967fd94dcd498aa067ebeca0569e4caf054132902167a55bc8d13ac1321f",
+  "classification": "Internal technical research; not customer decision or independent review",
+  "local_sources": [
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "version": "0.3 / 2026-11-24",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+      "locator_convention": "1-based all w:p, including blank; not Word pages",
+      "excerpts": [
+        {
+          "locator": "paragraph 929",
+          "text": "3-7 SNS のアカウントの凍結対策"
+        },
+        {
+          "locator": "paragraph 930",
+          "text": "投稿の頻度の制限などの対策を行います。対策の内容は、2章の「2-5 共通の機能要件」の凍結対策のとおり、設計の中で決めます。"
+        },
+        {
+          "locator": "paragraph 931",
+          "text": "3-8 前提条件と制約事項"
+        },
+        {
+          "locator": "paragraph 940",
+          "text": "外部サービスのご契約と審査の手続き（アデッソ様の名義。開発とテストの期間の利用料も含みます）、開発とテストに使うアカウントと接続情報"
+        },
+        {
+          "locator": "paragraph 943",
+          "text": "凍結対策を行っても、SNS のアカウントが凍結されないことを保証するものではありません。TikTok への投稿のうち、予約投稿、「確認しないで投稿」、自動投稿、公開範囲の指定は、TikTok から2026年11月にいただいた回答の内容に合いません。今の仕様のまま進めるため、TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。"
+        },
+        {
+          "locator": "paragraph 949",
+          "text": "各 SNS の年齢の条件に合うアカウントが対象です。"
+        },
+        {
+          "locator": "paragraph 950",
+          "text": "投稿の内容と素材が第三者の権利を侵害していないかを確認する方法は、設計の中で決めます。"
+        }
+      ],
+      "limits": "Text only for these clauses; 57 embedded images not reviewed in this task."
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+      "sheets": [
+        {
+          "name": "Q&A",
+          "rows_scanned": 998,
+          "keyword_matched_rows": 7
+        },
+        {
+          "name": "保留",
+          "rows_scanned": 1000,
+          "keyword_matched_rows": 0
+        },
+        {
+          "name": "デザインFB",
+          "rows_scanned": 1000,
+          "keyword_matched_rows": 0
+        },
+        {
+          "name": "お知らせ・メール文章",
+          "rows_scanned": 1000,
+          "keyword_matched_rows": 0
+        },
+        {
+          "name": "追加要件",
+          "rows_scanned": 996,
+          "keyword_matched_rows": 0
+        }
+      ],
+      "excerpts": [],
+      "limits": "Keyword scan all sheets; detailed excerpts limited to relevant KS rows; no edits and no Q&A state changes."
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+      "sheets": [
+        {
+          "name": "確認事項",
+          "rows_scanned": 119,
+          "keyword_matched_rows": 19
+        },
+        {
+          "name": "20261120",
+          "rows_scanned": 34,
+          "keyword_matched_rows": 3
+        },
+        {
+          "name": "20261122",
+          "rows_scanned": 35,
+          "keyword_matched_rows": 13
+        },
+        {
+          "name": "プロジェクトを進めるために決める事項",
+          "rows_scanned": 4,
+          "keyword_matched_rows": 0
+        },
+        {
+          "name": "アクション一覧",
+          "rows_scanned": 60,
+          "keyword_matched_rows": 1
+        }
+      ],
+      "excerpts": [
+        {
+          "sheet": "20261122",
+          "row": 20,
+          "cells": {
+            "A20": "19.0",
+            "B20": "ご報告",
+            "C20": "FutureCore Partners さんへの確認事項_4",
+            "D20": "アデッソ様",
+            "E20": "TikTok への投稿",
+            "F20": "TikTok の「確認しないで投稿」と自動投稿：TikTok だけは下書きで送り、タレントが TikTok のアプリで投稿する形にするか（ご質問：「確認しないで投稿」・自動投稿の場合に、TikTok だけ下書きで送れるか）",
+            "G20": "TikTok も、今の仕様のまま、Upload-Post を通して直接投稿する形で進めます。下書きで送る形にはしません。\n理由：TikTok の回答のとおりにすると、TikTok への予約投稿と自動投稿ができなくなるためです。\n注意点：今の仕様（予約投稿、「確認しないで投稿」、自動投稿）は、TikTok の回答の内容に合いません。TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。\n\n【TikTok の回答】\n・予約投稿には対応していません。投稿は、タレントが内容を確認して承認した後、同じ流れの中で行う必要があります。\n・直接投稿でも下書きでも、タレントの確認と承認を示す必要があります。\n・投稿サービスを通して投稿する場合も、TikTok が決めている投稿画面（公開範囲の選択、コメントなどの設定、投稿前の同意の表示など）が必要です。\n【Upload-Post の回答】\n・Upload-Post の TikTok 連携は、TikTok の直接投稿の審査を通っています。予約した投稿は、予約の時刻に Upload-Post から TikTok に送られます。\n・TikTok が決めている投稿画面を、AI育成OS の側で作る必要はありません。\n\n【下書きで送る場合の動き】下書きで送ることはできます。タレントの TikTok のアプリに通知が届き、タレントが TikTok のアプリで仕上げて投稿します。動画の下書きには投稿文が付かないため、タレントが TikTok のアプリで投稿文を入れます。写真の下書きには投稿文が付きます。下書きは、タレント1人につき24時間に5件までです。",
+            "H20": "TikTok と Upload-Post から回答をいただきました。TikTok への投稿は、今の仕様のまま進める方針です。"
+          }
+        },
+        {
+          "sheet": "20261122",
+          "row": 21,
+          "cells": {
+            "A21": "20.0",
+            "B21": "ご報告",
+            "C21": "FutureCore Partners さんへの確認事項_15",
+            "D21": "アデッソ様",
+            "E21": "TikTok への投稿",
+            "F21": "TikTok でのマネージャーの投稿の確認：TikTok の投稿の確認はタレントだけが行い、マネージャーが内容を変えた場合はタレントの承認を取り直す形にするか（ご質問：マネージャーの操作の範囲と、タレントの承認の記録）",
+            "G21": "11月20日の決定のとおり、投稿の確認と予約の取り消しを、マネージャーも行える形で進めます。マネージャーの操作（承認、ステータスの切り替え、停止と再開など）は記録します。\n注意点：タレントの確認を取らない投稿（「確認しないで投稿」、自動投稿）は、TikTok の回答の内容に合いません。TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。\n\n【TikTok の回答】\n・自社や自社のチームが管理するアカウントに投稿するためのツールは、認められません。\n・アカウントが独立したクリエイターのもので、クリエイターが自分の投稿を確認して同意する流れは、TikTok が想定している使い方に近くなります。ただし、認められるかどうかを事前に確約することはできません。\n・直接投稿でも下書きでも、クリエイターの確認と承認を示す必要があります。",
+            "H21": "TikTok から回答をいただきました。11月20日の決定のまま進める方針です。"
+          }
+        },
+        {
+          "sheet": "20261122",
+          "row": 22,
+          "cells": {
+            "A22": "21.0",
+            "B22": "ご報告",
+            "C22": "FutureCore Partners さんへの確認事項_1",
+            "D22": "アデッソ様",
+            "E22": "投稿基盤",
+            "F22": "TikTok 用の投稿サービスの正式な名前・契約先・TikTok の審査の状況",
+            "G22": "Upload-Post です。運営会社は TONVI TECH SL（スペイン）で、アデッソ様の名義でご契約いただきます。Upload-Post は、TikTok の審査を通ったアプリであると公表しています。",
+            "H22": "ご報告です。想定と違う場合は、ご意見をお書きください。"
+          }
+        },
+        {
+          "sheet": "20261122",
+          "row": 23,
+          "cells": {
+            "A23": "22.0",
+            "B23": "ご報告",
+            "C23": "FutureCore Partners さんへの確認事項_2",
+            "D23": "アデッソ様",
+            "E23": "投稿基盤",
+            "F23": "芸能事務所の管理下にある200アカウントで使ってよいか（書面で）",
+            "G23": "本プロジェクトでは、使う形で進めます。TikTok の決まりに合うかどうかについて、TikTok から明確な回答がなかったためです。\n\n【Upload-Post】使えるとの回答をいただきました。Upload-Post の利用規約（1.1項・2.2項、https://upload-post.com/terms-of-use）は、代理店の利用と、お客様が自分の SNS アカウントをつないで使う形を、別の許可なしに認めています。Business プランでは、225人分のアカウントをつなげます。\n【TikTok】自社や自社のチームが管理するアカウントに投稿するためのツールは、認められないとの回答です。アカウントが独立したクリエイターのもので、クリエイターが自分の投稿を確認して同意する流れは、想定している使い方に近いが、認められるかどうかを事前に確約することはできないとの回答です。\n\n注意点：TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。タレントは、自分の TikTok にログインしてつなぎます。",
+            "H23": "ご報告です。想定と違う場合は、ご意見をお書きください。"
+          }
+        },
+        {
+          "sheet": "20261122",
+          "row": 24,
+          "cells": {
+            "A24": "23.0",
+            "B24": "ご報告",
+            "C24": "FutureCore Partners さんへの確認事項_3",
+            "D24": "アデッソ様",
+            "E24": "投稿基盤",
+            "F24": "タレントによる投稿の承認と、公開範囲の選択に対応できるか",
+            "G24": "公開範囲とコメントなどの設定は、投稿サービスで投稿ごとに指定できます。タレントが投稿ごとに公開範囲を選ぶ欄は、今の仕様のまま、設けません。\n注意点：この形は、TikTok の回答の内容に合いません。TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。\n\n【TikTok の回答】投稿サービスを通して投稿する場合も、タレントが公開範囲を選ぶ欄（最初から選ばれていないもの）、コメントなどの設定、投稿前の同意の表示を入れた投稿画面が必要です。\n【Upload-Post の回答】この投稿画面を、AI育成OS の側で作る必要はありません。",
+            "H24": "TikTok と Upload-Post から回答をいただきました。今の仕様のまま進める方針です。"
+          }
+        },
+        {
+          "sheet": "20261122",
+          "row": 25,
+          "cells": {
+            "A25": "24.0",
+            "B25": "ご報告",
+            "C25": "FutureCore Partners さんへの確認事項_5",
+            "D25": "アデッソ様",
+            "E25": "投稿基盤",
+            "F25": "TikTok の投稿数・利用者数の上限と、追加の料金",
+            "G25": "追加の料金はかかりません。投稿の上限は、タレント1人のアカウントにつき24時間で15本・1分6本です。Upload-Post の今の投稿の方式には、アプリごとの1日の投稿者数の上限はかかりません（Upload-Post に確認しました）。",
+            "H25": "ご報告です。想定と違う場合は、ご意見をお書きください。"
+          }
+        }
+      ],
+      "limits": "Keyword scan all sheets; detailed excerpts limited to relevant KS rows; no edits and no Q&A state changes."
+    }
+  ],
+  "web_evidence": [
+    {
+      "url": "https://developers.tiktok.com/docs/en/content-posting-api-get-started",
+      "locator": "Prerequisites",
+      "displayed_update": "2026-08-04",
+      "short_excerpt": "Your app must be approved for the `video.publish` scope.",
+      "excerpt_sha256": "a820e20350dc7fef4d6aade13154c3eb135ddd8b5d1540e434789ee7249fee75",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Official API support; not approval evidence for TalentOS."
+    },
+    {
+      "url": "https://developers.tiktok.com/docs/en/content-posting-api-get-started-upload-content",
+      "locator": "Upload draft to TikTok",
+      "displayed_update": "2026-08-04",
+      "short_excerpt": "This section demonstrates how to successfully upload videos or photos to TikTok for the user to review and post.",
+      "excerpt_sha256": "1349be157403cc9d053d957694c23b3b1055adf678a1c516806ba57651d4999b",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Official upload workflow, not a published post."
+    },
+    {
+      "url": "https://developers.tiktok.com/docs/en/content-sharing-guidelines",
+      "locator": "Required UX Implementation in Your App, 2b",
+      "displayed_update": "2026-08-04",
+      "short_excerpt": "Users must manually select the privacy status from a dropdown and there should be no default value.",
+      "excerpt_sha256": "ed5de6d7a261427c2d404921676062bbb85aca23990dc9c9fa8542a5500369ec",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Applies as documented; provider route/exception not established."
+    },
+    {
+      "url": "https://www.upload-post.com/platforms/tiktok/",
+      "locator": "FAQ: Do I need TikTok developer approval to use it?",
+      "displayed_update": null,
+      "short_excerpt": "Upload-Post operates an approved TikTok Content Posting API integration",
+      "excerpt_sha256": "59125204a08b2bda68b78fdc1341c17325bece56304ba2a294735f27b12e41e4",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Provider assertion, not independent TikTok audit record."
+    },
+    {
+      "url": "https://docs.upload-post.com/api/upload-video/",
+      "locator": "TikTok parameters / post_mode",
+      "displayed_update": null,
+      "short_excerpt": "`DIRECT_POST` publishes immediately.",
+      "excerpt_sha256": "31456ddbe6c07f4d0a23c59b4321addf81f78c15b82c054ee83a52b8246b571c",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "API contract only; no real publish executed."
+    },
+    {
+      "url": "https://docs.upload-post.com/guides/reached-active-user-cap-error/",
+      "locator": "Automatic fallback",
+      "displayed_update": null,
+      "short_excerpt": "the TikTok result includes \"fallback_to_inbox\": true",
+      "excerpt_sha256": "da393f83a16a72d36ba3f640e0c588f82907dcffb55c66258c2e5cea51b9118b",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Route-dependent provider documentation."
+    },
+    {
+      "url": "https://www.upload-post.com/terms-of-use/",
+      "locator": "Important Notice - Third-Party Platforms",
+      "displayed_update": "2026-10-02",
+      "short_excerpt": "Your use of these platforms through our Services is subject to their respective terms of service and policies.",
+      "excerpt_sha256": "f96363dade9902264a91a36fa3d670ae6c955cc8727f1c78ca7c9966a1a6496c",
+      "source_sha256": null,
+      "hash_scope": "UTF-8 short_excerpt only, not whole webpage",
+      "checked_by": "Codex",
+      "checked_at": "2026-11-25T11:49:40.675067+00:00",
+      "status": "READ_NOT_INDEPENDENTLY_VERIFIED",
+      "limits": "Provider terms cannot grant an exemption from TikTok policies."
+    }
+  ],
+  "web_catalog": [
+    "https://api.upload-post.com/api/upload'",
+    "https://developers.tiktok.com/docs/en/content-posting-api-get-started",
+    "https://developers.tiktok.com/docs/en/content-posting-api-get-started-upload-content",
+    "https://developers.tiktok.com/docs/en/content-posting-api-media-transfer-guide",
+    "https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post",
+    "https://developers.tiktok.com/docs/en/content-posting-api-reference-get-video-status",
+    "https://developers.tiktok.com/docs/en/content-posting-api-reference-query-creator-info",
+    "https://developers.tiktok.com/docs/en/content-posting-api-reference-upload-video",
+    "https://developers.tiktok.com/docs/en/content-sharing-guidelines",
+    "https://developers.tiktok.com/docs/en/our-guidelines-developer-guidelines",
+    "https://docs.upload-post.com/api/get-tiktok-settings/",
+    "https://docs.upload-post.com/api/schedule-posts",
+    "https://docs.upload-post.com/api/upload-history",
+    "https://docs.upload-post.com/api/upload-photo",
+    "https://docs.upload-post.com/api/upload-status",
+    "https://docs.upload-post.com/api/upload-video/",
+    "https://docs.upload-post.com/api/user-profiles/",
+    "https://docs.upload-post.com/api/webhooks",
+    "https://docs.upload-post.com/guides/ai-content-labeling",
+    "https://docs.upload-post.com/guides/rate-limits",
+    "https://docs.upload-post.com/guides/reached-active-user-cap-error/",
+    "https://docs.upload-post.com/guides/user-profile-integration",
+    "https://www.tiktok.com/community-guidelines/ja/",
+    "https://www.tiktok.com/legal/page/global/bc-policy/en",
+    "https://www.tiktok.com/legal/page/global/music-usage-confirmation/en",
+    "https://www.tiktok.com/legal/page/global/tik-tok-developer-terms-of-service/en",
+    "https://www.tiktok.com/legal/page/row/terms-of-service/ja",
+    "https://www.upload-post.com/data-and-privacy-policy/",
+    "https://www.upload-post.com/platforms/tiktok/",
+    "https://www.upload-post.com/terms-of-use/",
+    "https://www.upload-post.com/whitelabel/"
+  ],
+  "web_capture_limits": "Browsed using web tool; no complete HTML snapshots or webpage hashes. URL catalog is not a claim of exhaustive Internet coverage. Old TikTok Developer Terms URL robots-blocked; replacement legal page read. Japanese AIGC help page unreadable and excluded from conclusions. Host shell network DNS unavailable. No source_sha256 invented.",
+  "verification": {
+    "live_api_calls": false,
+    "actual_posts_created": false,
+    "provider_contacted": false,
+    "gate_states_modified": false,
+    "independent_reviewer": null,
+    "overall_workflow_compliance": "NOT_ESTABLISHED",
+    "technical_capability": "DOCUMENTED_BY_TIKTOK_AND_PROVIDER"
+  }
+}

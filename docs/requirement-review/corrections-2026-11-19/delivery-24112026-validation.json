@@ -1,0 +1,14 @@
+{
+  "checked_date": "2026-11-25",
+  "command": "python3 docs/requirement-review/validate.py",
+  "exit_code": 0,
+  "output": "NOTICE: 815 historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied\nPASS: 23 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n",
+  "source_files_unchanged_during_review": true,
+  "protected_workbook15_equals_HEAD": true,
+  "scope": "Mechanical only; no source-authority, provider, independent-review or gate approval",
+  "diff_check": {
+    "command": "git -c core.whitespace=cr-at-eol diff --check",
+    "exit_code": 0,
+    "note": "CSV uses existing CRLF convention"
+  }
+}

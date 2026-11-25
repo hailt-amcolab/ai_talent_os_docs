@@ -1,3 +1,34 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Ảnh AI và gửi trong chat
+
+Không làm chức năng AI tạo ảnh; đặt nút ảnh/camera trong chat để đưa ảnh chụp vào hội thoại.
+
+**Còn mở/giới hạn:** Không đồng nhất chức năng tạo video theo yêu cầu với tự sinh media trong autopost. CR-11 ghi làm trong giá hợp đồng hiện tại, không thêm phí. Căn cứ: `KS 20261122!G10:I10 (No.9)`; `EV-1314`; QA No.56;QA No.83;CR-11;TR-6-3;TR-3-4.
+
+### Đồng ý phụ huynh
+
+Adesso lấy đồng ý khi ký với Talent; H18 ghi đã lấy đầy đủ; ứng dụng không giữ hồ sơ đồng ý.
+
+**Còn mở/giới hạn:** Thay đề nghị lưu hồ sơ phụ huynh tại ISS22/ADV22 đúng chủ đề này; không tự kết luận đủ điều kiện pháp lý. Căn cứ: `KS 20261122!G18:H18 (No.17)`; `EV-1317`; QA No.69;TR-1-4.
+
+### Ranking
+
+Thêm No.100 còn Open: hỏi phạm vi màn ranking mới ở UI-M20 p28–29. YK3 §1-3 tiếp tục ghi ranking ngoài giai đoạn này; action No.15 yêu cầu đội đề xuất cách xem Talent nỗ lực.
+
+**Còn mở/giới hạn:** Không coi đề xuất lọc/sắp xếp là đã duyệt ranking; không sinh câu hỏi mới trùng No.100. Căn cứ: `QA Q&A!A100:J100 (No.100)`; `EV-1323`; QA No.100.
+
+### CR hiện hành và đổi nghĩa ID
+
+Danh sách hiện hành còn14 CR; mười mục01–04,06,10–14 ghi đồng ý trong hợp đồng hiện tại, không thêm phí. CR-05/07/08/09 vẫn chờ quyết định. Mã CR cũ đã đổi nghĩa: CR-04 nay màn chỉ thị, CR-06 nay lưu video, không dùng tên cũ để tra bản mới.
+
+**Còn mở/giới hạn:** CR-07/08 ghi I là trong phạm vi nhưng J là CR và M vẫn chờ; CR-09 vận hành thiết kế phương ánA, chưa là khách duyệt300người. Chưa có hợp đồng/SOW/báo giá ký độc lập. No.50 bị xóa ở 保留, không suy là đã chốt toàn bộ. Căn cứ: `QA 追加要件!A2:N15 (CR-01–14)`; `EV-1324`; CR-01;CR-02;CR-03;CR-04;CR-05;CR-06;CR-07;CR-08;CR-09;CR-10;CR-11;CR-12;CR-13;CR-14;QA No.50.
+
+<!-- /DELIVERY24112026 -->
+
 # Phạm vi dự án: Trong phạm vi / Ngoài phạm vi / Chưa rõ
 
 ## Đối chiếu nguồn mới — 20/11/2026

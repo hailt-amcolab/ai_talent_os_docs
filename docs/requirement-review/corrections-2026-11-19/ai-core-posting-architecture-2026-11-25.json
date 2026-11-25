@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-25",
+  "author": "Codex",
+  "artifact": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+  "input_sha256": "6952fe49c663fb0ffbc45baa22a74e48cecba5e83ceecc10fbfe5217862a1041",
+  "output_sha256": "104aa7e9ce0d8c649d806dd3b6890cbbd43a84c0897da8ba5d8c18bfeb017816",
+  "scope": "Architecture coverage of Talent conversational posting; distinguish target architecture from demo capability",
+  "source_locator": "YK3 v0.3 2026-11-24 §2-3 P86; §2-4-4 P245–250,274,294–295,303–333; §2-4-5 P355–359; §2-4-6 P386–387",
+  "source_sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+  "assessment": "Foundation supports the workflow; prior architecture document coverage was incomplete. Added media/posting/review/delivery component contracts; module API/schema/provider verification still required.",
+  "independent_review": "NOT_PERFORMED",
+  "application_changes": "NONE",
+  "validation": {
+    "local_links": "PASS",
+    "markdown_fences": "PASS",
+    "workflow_structural_checks": "NOTICE: 815 historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied\nPASS: 23 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n",
+    "diff_whitespace": "PASS",
+    "application_or_provider_tests": "NOT_RUN; architecture documentation only"
+  }
+}

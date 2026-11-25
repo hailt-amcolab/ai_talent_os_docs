@@ -1,3 +1,22 @@
+<!-- DELIVERY24112026 -->
+## Cập nhật nguồn24/11 — đối chiếu25/11/2026
+
+Phần cập nhật này thay nhận định cũ trên đúng chủ đề bên dưới; giữ nội dung trước để truy vết. [Báo cáo và hash](../../docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa là baseline/AC đã duyệt.
+
+### Video và âm nhạc
+
+Nhạc chỉ dùng loại không bản quyền theo cách gọi của nguồn; video cơ bản làm ảnh Talent chuyển động, một dạng cố định; video cầu kỳ làm ngoài rồi nhập vào. Khi provider không nhận ảnh trẻ em thì dùng video Talent tự quay.
+
+**Còn mở/giới hạn:** Độ dài/chất lượng 確認61 và số ảnh 確認62 vẫn chưa quyết. Nhạc thịnh hành do Talent thêm ở app SNS. Không xác nhận điều khoản bản quyền/provider độc lập trong đợt này. Căn cứ: `KS 20261122!G3:I9 (No.2,5–8)`; `EV-1315`; QA No.36;QA No.60;確認61;確認62;TR-5-1;TR-5-2.
+
+### YK3: video tính lượt
+
+Nguồn vừa nói thời điểm tính lượt còn chờ kiểm chứng, vừa mô tả nút tạo tính1lượt lúc yêu cầu; mục thanh toán loại video tạo lỗi khỏi số lượt.
+
+**Còn mở/giới hạn:** Giữ điểm chưa nhất quán về ghi nhận/đảo lượt/phí khi lỗi; không tự chọn lúc request hay thành công. Tiếp tục No.60 và thiết kế provider. Căn cứ: `YK3 §2-4-8 w:p475,485; §2-4-11 w:p644`; `EV-1330`; QA No.60;TR-5-4;TR-5-1.
+
+<!-- /DELIVERY24112026 -->
+
 # 5-1 Tạo video
 
 ## Đợt23112026 — đề nghị và điểm cần đối chiếu

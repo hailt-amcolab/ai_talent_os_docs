@@ -1,449 +1,394 @@
-import { createHash, randomUUID } from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 import type { Database } from '../../infra/database/client.ts'
 import { AppError } from '../../core/errors.ts'
-import { DAILY_TASK, TASK, type Turn } from './coach.ts'
-import type { PostResult, Results, TalentInfo, Trends } from './context.ts'
+import { managerActor, talentActor, type Actor } from './access.ts'
+import { wake, type Receipt, type Tx } from './changes.ts'
+import { managerSnapshot, revisionOf, sha256, talentSnapshot, type Profile, type Snapshot } from './context.ts'
 
-// AI Core, Postgres side (agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md §4.4–§4.6).
-// Tables: coach_messages, domain_operations, outbox_events, ai_executions, ai_execution_attempts, ai_usage_events.
-// A coach reply is ordered right after the talent message that produced it (not by id), in the UI and in the model history.
-// Lock order in every transaction: talents → domain_operations → outbox_events → ai_executions → ai_execution_attempts.
-// Every write after a claim is fenced by lease_token + attempt_no + lease_until > now() (DB clock).
-export type ExecState = 'pending' | 'running' | 'succeeded' | 'failed' | 'unknown' | 'cancelled'
-export type Message = { id: string; sender: 'talent' | 'coach'; body: string; createdAt: Date }
-export type TaskKey = typeof TASK.key | typeof DAILY_TASK.key
-export type Execution = { id: string; state: ExecState; inputMessageId: string | null; outputMessageId: string | null; errorCode: string | null; attemptNo: number }
-// day: JST date of a coach.daily_themes run (from its operation key). folderId: talents.onedrive_folder_id. userId: the Talent's login (push).
-// simulated: demo switch "no AI call" (task_revision ends with +simulated): the worker waits like a real call and returns sample text.
-export type Claim = { executionId: string; operationId: string; eventId: string; task: TaskKey; day: string | null; simulated: boolean; userId: string; folderId: string | null; talent: TalentInfo; token: string; attemptId: string; attemptNo: number; turns: Turn[] }
-export type Outcome =
-  // called=false: no model call (e.g. morning message without a profile). themes: the 3 theme_suggestions of a daily run.
-  | { kind: 'succeeded'; text: string; inputTokens: number | undefined; outputTokens: number | undefined; requestId?: string; called?: boolean; themes?: string[]; simulated?: boolean }
-  | { kind: 'failed'; code: string; usage?: { inputTokens: number | undefined; outputTokens: number | undefined }; called?: boolean } // no valid output; called=false: model never reached
-  | { kind: 'unknown'; code: string } // may have reached the provider: never re-called automatically (§4.1 step 6)
-export type Price = { inputPerMTok: number; outputPerMTok: number; currency: string }
+// Agent runs on Postgres (report §4, §10.1). Redis/BullMQ only carries event IDs; this store decides who may run what.
+// Lock order: conversation → operation → outbox event → run → attempt/step. Every write after a claim is fenced by
+// lease_token + attempt_no + lease_until > now() (DB clock); a worker that lost its lease writes nothing.
+export type Channel = 'talent' | 'manager_ui'
+export type RunState = 'pending' | 'running' | 'waiting_confirmation' | 'succeeded' | 'failed' | 'unknown' | 'cancelled'
+export type EntryView = { id: string; sequence: string; role: 'user' | 'assistant'; body: string; createdAt: string }
+export type RunView = { id: string; operationId: string; conversationId: string; completionKind: 'answer_only' | 'action_result' | null; state: RunState; version: string
+  outputEntryId: string | null; proposalId: string | null; errorCode: string | null; receipts: Receipt[]; retryAfterMs: number | null }
+export type StepRow = { id: string; sequence: number; kind: 'model' | 'tool'; state: string; sourceModelStepId: string | null; callId: string | null; toolName: string | null; input: unknown; output: unknown; errorCode: string | null }
+export type Claim = { runId: string; operationId: string; eventId: string; channel: Channel; actor: Actor; token: string; attemptId: string; attemptNo: number
+  snapshot: Snapshot; history: Array<{ role: 'user' | 'assistant'; body: string }>; steps: StepRow[] }
+export type Finish = { kind: 'succeeded'; body: string; completion: 'answer_only' | 'action_result' } | { kind: 'failed' | 'unknown' | 'cancelled'; code: string }
 
-export const SIMULATED = '+simulated'
-const revision = (base: string, simulate: boolean) => simulate ? base + SIMULATED : base
-export const LEASE_SECONDS = 30
-export const DISPATCH_LEASE_SECONDS = 15
-export const REDISPATCH_SECONDS = 30
-const MAX_PENDING_PER_TALENT = 5 // ponytail: infrastructure backlog guard (busy state), not a rewrite cap (DEC-0001)
-const HISTORY = 30 // SCD 3-1: 30 most recent messages
-const BODY_MAX = 1000
+export const LEASE_SECONDS = 60 // report §4.4 staging defaults: lease 60 s, heartbeat 5 s
+const DISPATCH_LEASE_SECONDS = 15
+const REDISPATCH_SECONDS = 30
+const EFFECT_LEASE_SECONDS = 60
+const HISTORY = 30
+export const BODY_MAX = 1000
+const TASK = { talent: { key: 'agent.talent', revision: 'agent.talent@1' }, manager_ui: { key: 'agent.manager', revision: 'agent.manager@1' } } as const
 
-type Tx = Pick<Database, '$queryRaw' | '$executeRaw'>
-type ExecRow = { id: string; state: ExecState; input_message_id: bigint | null; output_message_id: bigint | null; last_error_code: string | null; attempt_no: number }
-const toExec = (r: ExecRow): Execution => ({ id: r.id, state: r.state, inputMessageId: r.input_message_id === null ? null : String(r.input_message_id), outputMessageId: r.output_message_id === null ? null : String(r.output_message_id), errorCode: r.last_error_code, attemptNo: r.attempt_no })
-const toMsg = (r: { id: bigint; sender: 'talent' | 'coach'; body: string; created_at: Date }): Message => ({ id: String(r.id), sender: r.sender, body: r.body, createdAt: r.created_at })
-const sha256 = (s: string) => createHash('sha256').update(s).digest('hex')
+type StepDb = { id: string; sequence: number; kind: 'model' | 'tool'; state: string; source_model_step_id: string | null; call_id: string | null; tool_name: string | null; input: unknown; output: unknown; error_code: string | null }
+const toStep = (r: StepDb): StepRow => ({ id: r.id, sequence: r.sequence, kind: r.kind, state: r.state, sourceModelStepId: r.source_model_step_id, callId: r.call_id, toolName: r.tool_name, input: r.input, output: r.output, errorCode: r.error_code })
+type ReceiptDb = { id: string; kind: Receipt['action']; target_label: string; resource_version: bigint }
+const toReceipt = (c: ReceiptDb): Receipt => ({ commandId: c.id, action: c.kind, targetLabel: c.target_label, changed: true, resourceVersion: String(c.resource_version) })
 
-export class AiCoachStore {
+export class RunStore {
   private readonly db: Database
-  private readonly price: Price | null
-  constructor(db: Database, price: Price | null = null) { this.db = db; this.price = price }
+  constructor(db: Database) { this.db = db }
 
-  // Only an in-use Talent mapped to this login may talk to the coach (report §11.4: a login is not a Talent by itself).
-  private async talentOf(tx: Tx, userId: string, lock: boolean) {
-    const rows = lock
-      ? await tx.$queryRaw<Array<{ id: string; status: string }>>`SELECT id::text,status FROM public.talents WHERE auth_user_id=${userId}::uuid FOR UPDATE`
-      : await tx.$queryRaw<Array<{ id: string; status: string }>>`SELECT id::text,status FROM public.talents WHERE auth_user_id=${userId}::uuid`
-    if (!rows[0]) throw new AppError('TALENT_REQUIRED', 403)
-    return rows[0]
+  // ---- API side
+  async createConversation(a: Actor, channel: Channel, requestKey: string) {
+    const talentId = a.kind === 'talent' ? a.talentId : null
+    const [row] = await this.db.$queryRaw<Array<{ id: string; version: bigint; channel: Channel; created: boolean }>>`
+      WITH ins AS (INSERT INTO app_private.agent_conversations(actor_user_id,channel,talent_id,request_key) VALUES(${a.userId}::uuid,${channel},${talentId}::uuid,${requestKey}::uuid)
+        ON CONFLICT (actor_user_id,request_key) DO NOTHING RETURNING id,version,channel)
+      SELECT id::text,version,channel,true AS created FROM ins
+      UNION ALL SELECT id::text,version,channel,false FROM app_private.agent_conversations WHERE actor_user_id=${a.userId}::uuid AND request_key=${requestKey}::uuid AND NOT EXISTS (SELECT 1 FROM ins)`
+    if (row.channel !== channel) throw new AppError('REQUEST_KEY_REUSED', 409)
+    return { conversationId: row.id, version: String(row.version), created: row.created }
   }
 
-  // §4.1 step 1: message + operation + outbox event + pending execution in ONE transaction. No Redis here.
-  async submit(userId: string, requestKey: string, body: string, simulate = false): Promise<Execution> {
+  // Report §4.3 Submit: user entry + operation + pending run + wake outbox in ONE transaction. Same key+body → same run.
+  async submit(a: Actor, channel: Channel, conversationId: string, requestKey: string, body: string): Promise<RunView> {
     const text = body.trim()
-    if (!text || text.length > BODY_MAX) throw new AppError('MESSAGE_INVALID', 422)
-    const hash = sha256(text)
-    return this.db.$transaction(async tx => {
-      const talent = await this.talentOf(tx, userId, true)
-      if (talent.status !== 'in_use') throw new AppError('TALENT_NOT_ACTIVE', 409)
-      const key = `coach.respond:${talent.id}:${requestKey}`
-      const old = await tx.$queryRaw<Array<ExecRow & { payload_hash: string }>>`
-        SELECT e.id,e.state,e.input_message_id,e.output_message_id,e.last_error_code,e.attempt_no,o.payload_hash
-        FROM app_private.domain_operations o JOIN app_private.ai_executions e ON e.operation_id=o.id WHERE o.operation_key=${key}`
-      if (old[0]) { if (old[0].payload_hash !== hash) throw new AppError('REQUEST_KEY_REUSED', 409); return toExec(old[0]) }
-      const [{ n }] = await tx.$queryRaw<Array<{ n: bigint }>>`SELECT count(*) AS n FROM app_private.ai_executions WHERE talent_id=${talent.id}::uuid AND state='pending'`
-      if (n >= MAX_PENDING_PER_TALENT) throw new AppError('AI_BUSY', 429)
-      const [msg] = await tx.$queryRaw<Array<{ id: bigint }>>`INSERT INTO public.coach_messages(talent_id,sender,body) VALUES(${talent.id}::uuid,'talent',${text}) RETURNING id`
+    if (!text || text.length > BODY_MAX) throw new AppError('INPUT_INVALID', 422)
+    const key = `agent.run:${conversationId}:${requestKey}`, hash = sha256(text)
+    const runId = await this.db.$transaction(async tx => {
+      const [conv] = await tx.$queryRaw<Array<{ next_sequence: bigint }>>`
+        SELECT next_sequence FROM app_private.agent_conversations WHERE id=${conversationId}::uuid AND actor_user_id=${a.userId}::uuid AND channel=${channel} FOR UPDATE`
+      if (!conv) throw new AppError('NOT_FOUND_OR_FORBIDDEN', 404)
+      const [old] = await tx.$queryRaw<Array<{ id: string; payload_hash: string }>>`
+        SELECT e.id::text,o.payload_hash FROM app_private.domain_operations o JOIN app_private.ai_executions e ON e.operation_id=o.id WHERE o.operation_key=${key}`
+      if (old) { if (old.payload_hash !== hash) throw new AppError('REQUEST_KEY_REUSED', 409); return old.id }
+      if (a.kind === 'talent' && a.status !== 'in_use') throw new AppError('TALENT_NOT_ACTIVE', 409)
+      const [busy] = await tx.$queryRaw<unknown[]>`SELECT 1 FROM app_private.ai_executions WHERE conversation_id=${conversationId}::uuid AND state IN ('pending','running','waiting_confirmation','unknown')`
+      if (busy) throw new AppError('RUN_BUSY', 409) // nothing written yet: no orphan user entry
+      const [entry] = await tx.$queryRaw<Array<{ id: string }>>`
+        INSERT INTO app_private.agent_entries(conversation_id,sequence,role,body) VALUES(${conversationId}::uuid,${conv.next_sequence},'user',${text}) RETURNING id::text`
+      await tx.$executeRaw`UPDATE app_private.agent_conversations SET next_sequence=next_sequence+1,version=version+1 WHERE id=${conversationId}::uuid`
+      const talentId = a.kind === 'talent' ? a.talentId : null, task = TASK[channel]
       const [op] = await tx.$queryRaw<Array<{ id: string }>>`
-        INSERT INTO app_private.domain_operations(actor_auth_user_id,operation_key,kind,talent_id,payload_hash)
-        VALUES(${userId}::uuid,${key},'coach.respond',${talent.id}::uuid,${hash}) RETURNING id::text`
-      const [ev] = await tx.$queryRaw<Array<{ id: string }>>`
-        INSERT INTO app_private.outbox_events(operation_id,generation,event_type) VALUES(${op.id}::uuid,1,'coach.respond') RETURNING id::text`
-      const [row] = await tx.$queryRaw<ExecRow[]>`
-        INSERT INTO app_private.ai_executions(operation_id,event_id,talent_id,task_key,task_revision,input_message_id)
-        VALUES(${op.id}::uuid,${ev.id}::uuid,${talent.id}::uuid,${TASK.key},${revision(TASK.revision, simulate)},${msg.id})
-        RETURNING id::text,state,input_message_id,output_message_id,last_error_code,attempt_no`
-      return toExec(row)
+        INSERT INTO app_private.domain_operations(actor_auth_user_id,operation_key,kind,talent_id,payload_hash) VALUES(${a.userId}::uuid,${key},'agent.run',${talentId}::uuid,${hash}) RETURNING id::text`
+      const [ev] = await tx.$queryRaw<Array<{ id: string }>>`INSERT INTO app_private.outbox_events(operation_id,generation,event_type) VALUES(${op.id}::uuid,1,'agent.run.wake') RETURNING id::text`
+      const [run] = await tx.$queryRaw<Array<{ id: string }>>`
+        INSERT INTO app_private.ai_executions(operation_id,event_id,talent_id,task_key,task_revision,actor_user_id,channel,scope_kind,scope_id,conversation_id,input_entry_id)
+        VALUES(${op.id}::uuid,${ev.id}::uuid,${talentId}::uuid,${task.key},${task.revision},${a.userId}::uuid,${channel},${talentId ? 'talent' : 'global'},${talentId}::uuid,${conversationId}::uuid,${entry.id}::uuid)
+        RETURNING id::text`
+      return run.id
     })
+    return this.runView(a, channel, runId)
   }
 
-  async conversation(userId: string): Promise<{ messages: Message[]; executions: Execution[] }> {
-    const talent = await this.talentOf(this.db, userId, false)
-    const messages = await this.db.$queryRaw<Array<{ id: bigint; sender: 'talent' | 'coach'; body: string; created_at: Date }>>`
-      SELECT * FROM (SELECT m.id,m.sender,m.body,m.created_at,COALESCE(x.input_message_id,m.id) AS turn FROM public.coach_messages m
-        LEFT JOIN app_private.ai_executions x ON x.output_message_id=m.id WHERE m.talent_id=${talent.id}::uuid ORDER BY turn DESC,m.id DESC LIMIT 50) m ORDER BY turn,id`
-    const executions = await this.db.$queryRaw<ExecRow[]>`
-      SELECT id::text,state,input_message_id,output_message_id,last_error_code,attempt_no FROM app_private.ai_executions
-      WHERE talent_id=${talent.id}::uuid ORDER BY created_at DESC LIMIT 50`
-    return { messages: messages.map(toMsg), executions: executions.map(toExec) }
+  async entries(a: Actor, channel: Channel, conversationId: string, after: bigint, limit: number) {
+    await this.owned(conversationId, a, channel)
+    const rows = await this.db.$queryRaw<Array<{ id: string; sequence: bigint; role: 'user' | 'assistant'; body: string; created_at: Date }>>`
+      SELECT id::text,sequence,role,body,created_at FROM app_private.agent_entries WHERE conversation_id=${conversationId}::uuid AND sequence>${after} ORDER BY sequence LIMIT ${limit + 1}`
+    const items: EntryView[] = rows.slice(0, limit).map(r => ({ id: r.id, sequence: String(r.sequence), role: r.role, body: r.body, createdAt: r.created_at.toISOString() }))
+    return { items, nextAfter: items.at(-1)?.sequence ?? String(after), hasMore: rows.length > limit }
+  }
+  // Latest runs of a conversation, so a reloaded page finds what is still pending/waiting (report §10.1 polling).
+  async runs(a: Actor, channel: Channel, conversationId: string) {
+    await this.owned(conversationId, a, channel)
+    const ids = await this.db.$queryRaw<Array<{ id: string }>>`SELECT id::text FROM app_private.ai_executions WHERE conversation_id=${conversationId}::uuid ORDER BY created_at DESC LIMIT 20`
+    return Promise.all(ids.map(r => this.runView(a, channel, r.id)))
   }
 
-  async execution(userId: string, id: string): Promise<Execution> {
-    const talent = await this.talentOf(this.db, userId, false)
-    const rows = await this.db.$queryRaw<ExecRow[]>`
-      SELECT id::text,state,input_message_id,output_message_id,last_error_code,attempt_no FROM app_private.ai_executions
-      WHERE id=${id}::uuid AND talent_id=${talent.id}::uuid`
-    if (!rows[0]) throw new AppError('EXECUTION_NOT_FOUND', 404)
-    return toExec(rows[0])
+  async runView(a: Actor, channel: Channel, runId: string): Promise<RunView> {
+    const [r] = await this.db.$queryRaw<Array<{ id: string; operation_id: string; conversation_id: string; completion_kind: RunView['completionKind']; state: RunState; version: bigint
+      output_entry_id: string | null; waiting_proposal_id: string | null; last_proposal_id: string | null; last_error_code: string | null }>>`
+      SELECT e.id::text,e.operation_id::text,e.conversation_id::text,e.completion_kind,e.state,e.version,e.output_entry_id::text,e.waiting_proposal_id::text,e.last_error_code,
+        (SELECT p.id::text FROM app_private.agent_change_proposals p WHERE p.execution_id=e.id ORDER BY p.created_at DESC LIMIT 1) AS last_proposal_id
+      FROM app_private.ai_executions e JOIN app_private.agent_conversations c ON c.id=e.conversation_id
+      WHERE e.id=${runId}::uuid AND c.actor_user_id=${a.userId}::uuid AND c.channel=${channel}`
+    if (!r) throw new AppError('NOT_FOUND_OR_FORBIDDEN', 404)
+    return {
+      id: r.id, operationId: r.operation_id, conversationId: r.conversation_id, completionKind: r.completion_kind, state: r.state, version: String(r.version),
+      outputEntryId: r.output_entry_id, proposalId: r.waiting_proposal_id ?? r.last_proposal_id, errorCode: r.last_error_code,
+      receipts: await this.receipts(runId), retryAfterMs: r.state === 'pending' || r.state === 'running' ? 1000 : null,
+    }
   }
 
-  // A person closes an unknown outcome WITHOUT calling the model again (§4.6 step 6). Attempt usage stays unknown.
-  async closeUnknown(userId: string, id: string): Promise<Execution> {
-    const r = await this.db.$transaction(async tx => {
-      const talent = await this.talentOf(tx, userId, true)
-      const ids = await tx.$queryRaw<Array<{ operation_id: string; event_id: string }>>`
-        SELECT operation_id::text,event_id::text FROM app_private.ai_executions WHERE id=${id}::uuid AND talent_id=${talent.id}::uuid AND state='unknown'`
-      if (!ids[0]) throw new AppError('EXECUTION_NOT_UNKNOWN', 409)
-      const chain = { executionId: id, operationId: ids[0].operation_id, eventId: ids[0].event_id }
-      await this.lockChain(tx, chain)
-      await this.finish(tx, chain, 'failed', 'UNKNOWN_CLOSED_BY_USER')
-      return talent.id
+  // Pending/waiting → cancelled now; running → cancel request, checked by the runner before its next step (no effect is recalled).
+  async cancel(a: Actor, channel: Channel, runId: string): Promise<RunView> {
+    await this.runView(a, channel, runId) // owner check
+    await this.db.$transaction(async tx => {
+      const [r] = await tx.$queryRaw<Array<{ state: RunState; operation_id: string; event_id: string; waiting_proposal_id: string | null }>>`
+        SELECT state,operation_id::text,event_id::text,waiting_proposal_id::text FROM app_private.ai_executions WHERE id=${runId}::uuid`
+      if (!r || !['pending', 'running', 'waiting_confirmation'].includes(r.state)) return
+      const ids = { runId, operationId: r.operation_id, eventId: r.event_id }
+      await lockChain(tx, ids)
+      if (r.state === 'running') { await tx.$executeRaw`UPDATE app_private.ai_executions SET cancel_requested_at=now(),version=version+1 WHERE id=${runId}::uuid AND state='running' AND cancel_requested_at IS NULL`; return }
+      if (r.waiting_proposal_id) {
+        await tx.$executeRaw`UPDATE app_private.agent_change_proposals SET state='rejected',decided_at=now(),version=version+1 WHERE id=${r.waiting_proposal_id}::uuid AND state='prepared'`
+        await tx.$executeRaw`UPDATE app_private.agent_steps s SET state='failed',error_code='CANCELLED',finished_at=now() FROM app_private.agent_change_proposals p WHERE p.id=${r.waiting_proposal_id}::uuid AND s.id=p.tool_step_id AND s.state='waiting'`
+        await tx.$executeRaw`UPDATE app_private.ai_executions SET waiting_proposal_id=NULL,state='pending',version=version+1 WHERE id=${runId}::uuid`
+      }
+      await finishIn(tx, ids, { kind: 'cancelled', code: 'CANCELLED' })
     })
-    await this.nudge(r)
-    return this.execution(userId, id)
+    return this.runView(a, channel, runId)
   }
 
-  // ---- Dispatcher (§4.6 steps 1–2). Holds only the outbox lease; never runs the task.
-  async leaseDue(limit: number): Promise<Array<{ eventId: string; sequence: bigint; token: string; task: string }>> {
-    const rows = await this.db.$queryRaw<Array<{ id: string; delivery_sequence: bigint; lease_token: string; event_type: string }>>`
+  private async owned(conversationId: string, a: Actor, channel: Channel) {
+    const [c] = await this.db.$queryRaw<unknown[]>`SELECT 1 FROM app_private.agent_conversations WHERE id=${conversationId}::uuid AND actor_user_id=${a.userId}::uuid AND channel=${channel}`
+    if (!c) throw new AppError('NOT_FOUND_OR_FORBIDDEN', 404)
+  }
+
+  // ---- Dispatcher (outbox → BullMQ). Holds only the outbox lease; Redis accepting a job is not completion.
+  async leaseDue(limit: number): Promise<Array<{ eventId: string; sequence: bigint; token: string }>> {
+    const rows = await this.db.$queryRaw<Array<{ id: string; delivery_sequence: bigint; lease_token: string }>>`
       UPDATE app_private.outbox_events o SET state='leased',lease_token=gen_random_uuid(),lease_until=now()+(${DISPATCH_LEASE_SECONDS}::int * interval '1 second'),
         delivery_sequence=o.delivery_sequence+1,attempts=o.attempts+1,updated_at=now()
       WHERE o.id IN (
         SELECT o2.id FROM app_private.outbox_events o2 JOIN app_private.ai_executions e ON e.event_id=o2.id AND e.state='pending'
-        WHERE o2.state='pending' AND o2.event_type IN ('coach.respond','coach.daily_themes') AND o2.available_at<=now() AND o2.next_dispatch_at<=now()
+        WHERE o2.state='pending' AND o2.event_type='agent.run.wake' AND o2.available_at<=now() AND o2.next_dispatch_at<=now()
         ORDER BY o2.next_dispatch_at,o2.id LIMIT ${limit} FOR UPDATE OF o2 SKIP LOCKED)
-      RETURNING o.id::text,o.delivery_sequence,o.lease_token::text,o.event_type`
-    return rows.map(r => ({ eventId: r.id, sequence: r.delivery_sequence, token: r.lease_token, task: r.event_type }))
+      RETURNING o.id::text,o.delivery_sequence,o.lease_token::text`
+    return rows.map(r => ({ eventId: r.id, sequence: r.delivery_sequence, token: r.lease_token }))
   }
-
-  // Conditional on the same lease: if the worker already finished the event, this matches nothing (no write-back).
-  // enqueued: Redis accepted a new job. failed: Redis error, retry soon. still_queued: the previous job of this event is still
-  // waiting/active in Redis, so no new job was added: the sequence goes back (no hand-off happened) and we look again later.
   async releaseDispatch(eventId: string, token: string, outcome: 'enqueued' | 'failed' | 'still_queued') {
-    const enqueued = outcome === 'enqueued', back = outcome === 'still_queued' ? 1 : 0
     await this.db.$executeRaw`
       UPDATE app_private.outbox_events SET state='pending',lease_token=NULL,lease_until=NULL,updated_at=now(),
-        delivery_sequence=delivery_sequence-${back}::int,
-        last_dispatched_at=CASE WHEN ${enqueued} THEN now() ELSE last_dispatched_at END,
+        delivery_sequence=delivery_sequence-${outcome === 'still_queued' ? 1 : 0}::int,
+        last_dispatched_at=CASE WHEN ${outcome === 'enqueued'} THEN now() ELSE last_dispatched_at END,
         next_dispatch_at=now()+(${outcome === 'failed' ? 5 : REDISPATCH_SECONDS}::int * interval '1 second')
       WHERE id=${eventId}::uuid AND state='leased' AND lease_token=${token}::uuid`
   }
 
-  // ---- Worker (§4.6 step 3). The job says "event X"; the OLDEST pending request of that Talent runs, not Redis order.
-  async claim(eventId: string): Promise<Claim | 'busy' | 'nothing'> {
+  // ---- Worker claim (report §4.4 pending → running). Re-checks the actor; builds the context snapshot once per run.
+  async claim(eventId: string): Promise<Claim | 'nothing'> {
+    const [peek] = await this.db.$queryRaw<Array<{ id: string; operation_id: string; state: RunState }>>`SELECT id::text,operation_id::text,state FROM app_private.ai_executions WHERE event_id=${eventId}::uuid`
+    if (!peek || peek.state !== 'pending') return 'nothing' // redelivered / stale job: no lock taken
     return this.db.$transaction(async tx => {
-      const owner = await tx.$queryRaw<Array<{ talent_id: string }>>`SELECT talent_id::text FROM app_private.ai_executions WHERE event_id=${eventId}::uuid`
-      if (!owner[0]) return 'nothing'
-      const [t] = await tx.$queryRaw<Array<{ id: string; auth_user_id: string; status: string; display_name: string; minor: boolean | null; version: number; onedrive_folder_id: string | null }>>`
-        SELECT id::text,auth_user_id::text,status,display_name,(birth_date > current_date - interval '18 years') AS minor,version,onedrive_folder_id
-        FROM public.talents WHERE id=${owner[0].talent_id}::uuid FOR UPDATE`
-      const active = await tx.$queryRaw<unknown[]>`SELECT 1 FROM app_private.ai_executions WHERE talent_id=${t.id}::uuid AND state IN ('running','unknown')`
-      if (active.length) return 'busy'
-      const next = await tx.$queryRaw<Array<{ id: string; operation_id: string; event_id: string; input_message_id: bigint | null; task_key: TaskKey; task_revision: string; operation_key: string }>>`
-        SELECT e.id::text,e.operation_id::text,e.event_id::text,e.input_message_id,e.task_key,e.task_revision,o.operation_key FROM app_private.ai_executions e
-        JOIN app_private.domain_operations o ON o.id=e.operation_id
-        WHERE e.talent_id=${t.id}::uuid AND e.state='pending' ORDER BY e.created_at,e.id LIMIT 1`
-      if (!next[0]) return 'nothing'
-      const n = next[0], ids = { executionId: n.id, operationId: n.operation_id, eventId: n.event_id }
-      // Re-check the business state at run time (§13): a Talent that stopped using the app gets no AI call.
-      if (t.status !== 'in_use') { await this.lockChain(tx, ids); await this.finish(tx, ids, 'failed', 'TALENT_NOT_ACTIVE'); return 'nothing' }
-      await this.lockChain(tx, ids)
-      await tx.$executeRaw`UPDATE app_private.domain_operations SET state='running',step='claimed',version=version+1,updated_at=now() WHERE id=${ids.operationId}::uuid AND state IN ('accepted','running')`
+      const ids = { runId: peek.id, operationId: peek.operation_id, eventId }
+      await lockChain(tx, ids)
+      const [r] = await tx.$queryRaw<Array<{ state: RunState; event_id: string; channel: Channel; actor_user_id: string; talent_id: string | null; conversation_id: string; input_entry_id: string; context_manifest: Snapshot | null; cancel: boolean }>>`
+        SELECT state,event_id::text,channel,actor_user_id::text,talent_id::text,conversation_id::text,input_entry_id::text,context_manifest,cancel_requested_at IS NOT NULL AS cancel
+        FROM app_private.ai_executions WHERE id=${ids.runId}::uuid`
+      if (r.state !== 'pending' || r.event_id !== eventId) return 'nothing'
+      if (r.cancel) { await finishIn(tx, ids, { kind: 'cancelled', code: 'CANCELLED' }); return 'nothing' }
+      let actor: Actor | null = null
+      try { actor = r.channel === 'talent' ? await talentActor(tx, r.actor_user_id) : await managerActor(tx, r.actor_user_id) } catch { /* disabled below */ }
+      if (!actor || (actor.kind === 'talent' && (actor.status !== 'in_use' || actor.talentId !== r.talent_id))) {
+        await finishIn(tx, ids, { kind: 'failed', code: 'ACTOR_DISABLED' }); return 'nothing'
+      }
+      // Manifest is fixed at the first claim; a resume keeps the context it started with (report §6.1).
+      const snapshot = r.context_manifest ?? (actor.kind === 'talent' ? await talentSnapshot(tx, actor.talentId) : managerSnapshot())
       const token = randomUUID()
       const [ex] = await tx.$queryRaw<Array<{ attempt_no: number }>>`
-        UPDATE app_private.ai_executions SET state='running',attempt_no=attempt_no+1,lease_token=${token}::uuid,
-          lease_until=now()+(${LEASE_SECONDS}::int * interval '1 second'),heartbeat_at=now(),version=version+1
-        WHERE id=${ids.executionId}::uuid AND state='pending' RETURNING attempt_no`
-      const [attempt] = await tx.$queryRaw<Array<{ id: string }>>`
-        INSERT INTO app_private.ai_execution_attempts(execution_id,talent_id,attempt_no,lease_token)
-        VALUES(${ids.executionId}::uuid,${t.id}::uuid,${ex.attempt_no},${token}::uuid) RETURNING id::text`
-      // Chat: history up to its own input (replies right after their question). Morning run: the latest messages.
-      const history = n.input_message_id !== null
-        ? await tx.$queryRaw<Array<{ sender: 'talent' | 'coach'; body: string }>>`
-          SELECT m.sender,m.body FROM public.coach_messages m LEFT JOIN app_private.ai_executions x ON x.output_message_id=m.id
-          WHERE m.talent_id=${t.id}::uuid AND (m.id<=${n.input_message_id} OR x.input_message_id<${n.input_message_id})
-          ORDER BY COALESCE(x.input_message_id,m.id) DESC,m.id DESC LIMIT ${HISTORY}`
-        : await tx.$queryRaw<Array<{ sender: 'talent' | 'coach'; body: string }>>`
-          SELECT sender,body FROM public.coach_messages WHERE talent_id=${t.id}::uuid ORDER BY id DESC LIMIT ${HISTORY}`
-      return {
-        ...ids, task: n.task_key, simulated: n.task_revision.endsWith(SIMULATED), day: n.task_key === DAILY_TASK.key ? n.operation_key.split(':')[2] : null, userId: t.auth_user_id, folderId: t.onedrive_folder_id,
-        talent: { talentId: t.id, displayName: t.display_name, isMinor: t.minor, version: t.version }, token, attemptId: attempt.id, attemptNo: ex.attempt_no, turns: history.reverse(),
-      }
+        UPDATE app_private.ai_executions SET state='running',attempt_no=attempt_no+1,lease_token=${token}::uuid,lease_until=now()+(${LEASE_SECONDS}::int * interval '1 second'),heartbeat_at=now(),
+          context_manifest=${JSON.stringify(snapshot)}::jsonb,context_revision=${revisionOf(snapshot)},version=version+1
+        WHERE id=${ids.runId}::uuid AND state='pending' RETURNING attempt_no`
+      const [att] = await tx.$queryRaw<Array<{ id: string }>>`
+        INSERT INTO app_private.ai_execution_attempts(execution_id,talent_id,attempt_no,lease_token,phase,step_ledger,context_revision)
+        VALUES(${ids.runId}::uuid,${r.talent_id}::uuid,${ex.attempt_no},${token}::uuid,'executing',true,${revisionOf(snapshot)}) RETURNING id::text`
+      await tx.$executeRaw`UPDATE app_private.domain_operations SET state='running',step='running',version=version+1,updated_at=now() WHERE id=${ids.operationId}::uuid AND state IN ('accepted','running','unknown')`
+      const history = await tx.$queryRaw<Array<{ role: 'user' | 'assistant'; body: string }>>`
+        SELECT role,body FROM (SELECT role,body,sequence FROM app_private.agent_entries WHERE conversation_id=${r.conversation_id}::uuid
+          AND sequence<=(SELECT sequence FROM app_private.agent_entries WHERE id=${r.input_entry_id}::uuid) ORDER BY sequence DESC LIMIT ${HISTORY}) h ORDER BY sequence`
+      const steps = await tx.$queryRaw<StepDb[]>`
+        SELECT id::text,sequence,kind,state,source_model_step_id::text,call_id,tool_name,input,output,error_code FROM app_private.agent_steps WHERE execution_id=${ids.runId}::uuid ORDER BY sequence`
+      return { ...ids, channel: r.channel, actor, token, attemptId: att.id, attemptNo: ex.attempt_no, snapshot, history, steps: steps.map(toStep) }
     })
   }
 
-  // Heartbeat never revives an expired lease (§4.6 step 4).
-  async heartbeat(c: Claim): Promise<boolean> {
-    const n = await this.db.$executeRaw`
+  async heartbeat(c: Claim): Promise<'ok' | 'lost' | 'cancel'> {
+    const [r] = await this.db.$queryRaw<Array<{ cancel: boolean }>>`
       UPDATE app_private.ai_executions SET lease_until=now()+(${LEASE_SECONDS}::int * interval '1 second'),heartbeat_at=now(),version=version+1
-      WHERE id=${c.executionId}::uuid AND state='running' AND lease_token=${c.token}::uuid AND attempt_no=${c.attemptNo} AND lease_until>now() AND cancel_requested_at IS NULL`
-    return n === 1
+      WHERE id=${c.runId}::uuid AND state='running' AND lease_token=${c.token}::uuid AND attempt_no=${c.attemptNo} AND lease_until>now() RETURNING cancel_requested_at IS NOT NULL AS cancel`
+    return !r ? 'lost' : r.cancel ? 'cancel' : 'ok'
   }
 
-  // Written BEFORE the HTTP call: from here a crash means "may have called the provider" → unknown, never re-called.
-  async markCalling(c: Claim, provider: string, model: string, contextRevision: string): Promise<boolean> {
+  // Model step: 'calling' committed BEFORE the provider HTTP call. From here a crash means "may have been called/charged" → unknown.
+  async beginModelStep(c: Claim, sequence: number, provider: string, model: string): Promise<string | null> {
     return this.db.$transaction(async tx => {
-      await this.lockChain(tx, c)
-      if (!await this.holds(tx, c)) return false
-      await tx.$executeRaw`UPDATE app_private.domain_operations SET step='calling',version=version+1,updated_at=now() WHERE id=${c.operationId}::uuid`
-      const n = await tx.$executeRaw`
-        UPDATE app_private.ai_execution_attempts SET phase='calling',provider=${provider},model=${model},context_revision=${contextRevision},call_started_at=now(),usage_state='pending'
-        WHERE id=${c.attemptId}::uuid AND phase='claimed'`
-      return n === 1
+      if (!await holds(tx, c)) return null
+      const [s] = await tx.$queryRaw<Array<{ id: string }>>`
+        INSERT INTO app_private.agent_steps(execution_id,attempt_id,sequence,kind,state,provider,model,usage_state) VALUES(${c.runId}::uuid,${c.attemptId}::uuid,${sequence},'model','calling',${provider},${model},'unknown') RETURNING id::text`
+      return s.id
     })
   }
-
-  // §4.6 step 5: output, usage and every state in one fenced transaction. false = lease lost, nothing written.
-  async complete(c: Claim, o: Outcome, model: string): Promise<boolean> {
-    const done = await this.db.$transaction(async tx => {
-      await this.lockChain(tx, c)
-      if (!await this.holds(tx, c)) return false
-      const usage = o.kind === 'succeeded' ? o : o.kind === 'failed' ? o.usage : undefined
-      const known = usage?.inputTokens !== undefined && usage.outputTokens !== undefined
-      const priced = known && this.price && !(o.kind === 'succeeded' && o.simulated) // a simulated run costs nothing: no usage row
-      const notCalled = o.kind !== 'unknown' && o.called === false
-      const usageState = notCalled ? 'not_called' : o.kind === 'unknown' ? 'unknown' : priced ? 'recorded' : known ? 'pending' : 'unknown'
-      let output: bigint | null = null
-      if (o.kind === 'succeeded') [{ id: output }] = await tx.$queryRaw<Array<{ id: bigint }>>`INSERT INTO public.coach_messages(talent_id,sender,body) VALUES(${c.talent.talentId}::uuid,'coach',${o.text}) RETURNING id`
-      if (o.kind === 'succeeded' && o.themes) for (const [i, content] of o.themes.entries()) {
-        await tx.$executeRaw`INSERT INTO public.theme_suggestions(talent_id,suggested_on,position,content) VALUES(${c.talent.talentId}::uuid,${c.day}::date,${i + 1},${content})`
-      }
-      const phase = o.kind === 'succeeded' ? 'succeeded' : o.kind
+  // Response persisted (all items needed to continue + usage) BEFORE any tool of it runs.
+  async endModelStep(c: Claim, stepId: string, r: { state: 'succeeded' | 'failed' | 'unknown'; output?: unknown; requestRef?: string; inputTokens?: number; outputTokens?: number; cachedTokens?: number; errorCode?: string; cost?: { amount: number; currency: string } | null }): Promise<boolean> {
+    return this.db.$transaction(async tx => {
+      if (!await holds(tx, c)) return false
+      const known = r.inputTokens !== undefined && r.outputTokens !== undefined
       await tx.$executeRaw`
-        UPDATE app_private.ai_execution_attempts SET phase=${phase},usage_state=${usageState},error_code=${o.kind === 'succeeded' ? null : o.code},
-          input_tokens=${known ? usage!.inputTokens! : null},output_tokens=${known ? usage!.outputTokens! : null},
-          provider_request_id=${o.kind === 'succeeded' ? o.requestId ?? null : null},
-          call_finished_at=CASE WHEN ${o.kind !== 'unknown' && !notCalled} THEN now() END,finished_at=now()
-        WHERE id=${c.attemptId}::uuid`
-      if (priced) {
-        const cost = (usage!.inputTokens! * this.price!.inputPerMTok + usage!.outputTokens! * this.price!.outputPerMTok) / 1_000_000
-        await tx.$executeRaw`
-          INSERT INTO public.ai_usage_events(talent_id,model,input_tokens,output_tokens,cost_amount,cost_currency,execution_attempt_id)
-          VALUES(${c.talent.talentId}::uuid,${model},${usage!.inputTokens!},${usage!.outputTokens!},${cost},${this.price!.currency},${c.attemptId}::uuid)`
-      }
-      await this.finish(tx, c, o.kind, o.kind === 'succeeded' ? null : o.code, output)
+        UPDATE app_private.agent_steps SET state=${r.state},output=${r.output === undefined ? null : JSON.stringify(r.output)}::jsonb,provider_request_ref=${r.requestRef ?? null},
+          input_tokens=${r.inputTokens ?? null},output_tokens=${r.outputTokens ?? null},cached_tokens=${r.cachedTokens ?? null},usage_state=${known ? 'known' : 'unknown'},
+          cost_amount=${known && r.cost ? r.cost.amount : null},currency=${known && r.cost ? r.cost.currency : null},error_code=${r.errorCode ?? null},finished_at=now()
+        WHERE id=${stepId}::uuid AND state='calling'`
       return true
     })
-    if (done && o.kind !== 'unknown') await this.nudge(c.talent.talentId)
-    return done
   }
-
-  // ---- coach.daily_themes. One operation per Talent per JST day (operation_key is UNIQUE), so re-running is harmless.
-  // M-17: the morning time is system_settings.morning_message_time, in JST.
-  async morningDue(): Promise<{ day: string; due: boolean }> {
-    const [r] = await this.db.$queryRaw<Array<{ day: string; due: boolean }>>`
-      SELECT to_char((now() AT TIME ZONE 'Asia/Tokyo')::date,'YYYY-MM-DD') AS day,(now() AT TIME ZONE 'Asia/Tokyo')::time >= morning_message_time AS due
-      FROM public.system_settings WHERE id=1`
-    return r ?? { day: '', due: false }
-  }
-
-  // Every in-use Talent (or only this login's Talent) gets the day's morning run. Returns the executions created or found.
-  async scheduleDaily(day: string, userId?: string, simulate = false): Promise<Execution[]> {
-    const talents = userId
-      ? [await this.talentOf(this.db, userId, false)]
-      : await this.db.$queryRaw<Array<{ id: string; status: string }>>`SELECT id::text,status FROM public.talents WHERE status='in_use' ORDER BY id`
-    const out: Execution[] = []
-    for (const t of talents) {
-      if (t.status !== 'in_use') throw new AppError('TALENT_NOT_ACTIVE', 409)
-      const key = `${DAILY_TASK.key}:${t.id}:${day}`
-      out.push(await this.db.$transaction(async tx => {
-        const [op] = await tx.$queryRaw<Array<{ id: string }>>`
-          INSERT INTO app_private.domain_operations(operation_key,kind,talent_id,payload_hash) VALUES(${key},${DAILY_TASK.key},${t.id}::uuid,${sha256(key)})
-          ON CONFLICT (operation_key) DO NOTHING RETURNING id::text`
-        if (!op) return toExec((await tx.$queryRaw<ExecRow[]>`
-          SELECT e.id::text,e.state,e.input_message_id,e.output_message_id,e.last_error_code,e.attempt_no FROM app_private.ai_executions e
-          JOIN app_private.domain_operations o ON o.id=e.operation_id WHERE o.operation_key=${key}`)[0])
-        const [ev] = await tx.$queryRaw<Array<{ id: string }>>`INSERT INTO app_private.outbox_events(operation_id,generation,event_type) VALUES(${op.id}::uuid,1,${DAILY_TASK.key}) RETURNING id::text`
-        return toExec((await tx.$queryRaw<ExecRow[]>`
-          INSERT INTO app_private.ai_executions(operation_id,event_id,talent_id,task_key,task_revision) VALUES(${op.id}::uuid,${ev.id}::uuid,${t.id}::uuid,${DAILY_TASK.key},${revision(DAILY_TASK.revision, simulate)})
-          RETURNING id::text,state,input_message_id,output_message_id,last_error_code,attempt_no`)[0])
-      }))
+  // Tool step with its result. Called inside the service transaction for writes (prepare/commit), alone for reads/denials.
+  async toolStep(tx: Tx | null, c: Claim, s: { sequence: number; sourceModelStepId: string; callId: string; toolName: string; input: unknown; state: string; output: unknown; errorCode?: string }): Promise<string> {
+    const run = async (t: Tx) => {
+      if (!await holds(t, c)) throw new LeaseLost()
+      const [row] = await t.$queryRaw<Array<{ id: string }>>`
+        INSERT INTO app_private.agent_steps(execution_id,attempt_id,sequence,kind,state,source_model_step_id,call_id,tool_name,input,output,error_code,finished_at)
+        VALUES(${c.runId}::uuid,${c.attemptId}::uuid,${s.sequence},'tool',${s.state},${s.sourceModelStepId}::uuid,${s.callId},${s.toolName},${JSON.stringify(s.input ?? null)}::jsonb,
+          ${JSON.stringify(s.output)}::jsonb,${s.errorCode ?? null},CASE WHEN ${s.state}='waiting' THEN NULL ELSE now() END) RETURNING id::text`
+      return row.id
     }
-    return out
+    return tx ? run(tx) : this.db.$transaction(run)
   }
-
-  // 3-6 / 8-7 inputs, read-only. Days are JST. Metrics are whatever numeric fields the provider snapshot holds; nothing is filled in.
-  async results(talentId: string, day: string): Promise<Results> {
-    // The three reads are independent: run them together (one round trip of latency instead of three).
-    const [rows, followers, goals] = await Promise.all([this.db.$queryRaw<Array<{ platform: string; published_at: Date; pub_day: string; caption: string; metrics: unknown }>>`
-      SELECT d.platform,d.published_at,to_char((d.published_at AT TIME ZONE 'Asia/Tokyo')::date,'YYYY-MM-DD') AS pub_day,p.caption,
-        (SELECT m.metrics FROM public.post_metric_snapshots m WHERE m.post_delivery_id=d.id ORDER BY m.captured_on DESC,m.id DESC LIMIT 1) AS metrics
-      FROM public.post_deliveries d JOIN public.posts p ON p.id=d.post_id
-      WHERE d.talent_id=${talentId}::uuid AND d.provider_state='published'
-        AND (d.published_at AT TIME ZONE 'Asia/Tokyo')::date BETWEEN ${day}::date-14 AND ${day}::date-1
-      ORDER BY d.published_at DESC LIMIT 50`,
-    this.db.$queryRaw<Array<{ platform: string; count: number; prev: number | null; captured_on: string }>>`
-      SELECT a.platform,f.follower_count AS count,
-        (SELECT g.follower_count FROM public.follower_snapshots g WHERE g.social_account_id=a.id AND g.captured_on=f.captured_on-1) AS prev,
-        to_char(f.captured_on,'YYYY-MM-DD') AS captured_on
-      FROM public.social_accounts a JOIN LATERAL (SELECT * FROM public.follower_snapshots s WHERE s.social_account_id=a.id AND s.captured_on<${day}::date ORDER BY s.captured_on DESC LIMIT 1) f ON true
-      WHERE a.talent_id=${talentId}::uuid AND a.status='connected' ORDER BY a.platform`,
-    this.db.$queryRaw<Array<{ platform: string; target_followers: number; deadline_on: string | null; achieved: boolean }>>`
-      SELECT platform,target_followers,to_char(deadline_on,'YYYY-MM-DD') AS deadline_on,achieved_at IS NOT NULL AS achieved
-      FROM public.follower_goals WHERE talent_id=${talentId}::uuid ORDER BY platform`])
-    const numeric = (v: unknown) => v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).filter(([, x]) => typeof x === 'number' && Number.isFinite(x))) as Record<string, number> : null
-    const posts = rows.map(r => ({ platform: r.platform, publishedAt: r.published_at.toISOString(), caption: r.caption, metrics: numeric(r.metrics), day: r.pub_day }))
-    const shift = (n: number) => new Date(Date.parse(day + 'T00:00:00Z') - n * 86_400_000).toISOString().slice(0, 10)
-    const yesterday = shift(1), weekStart = shift(8)
-    const strip = ({ day: _d, ...p }: PostResult & { day: string }): PostResult => p
-    const average7d: Results['average7d'] = {}
-    for (const platform of new Set(posts.map(p => p.platform))) {
-      const week = posts.filter(p => p.platform === platform && p.day >= weekStart && p.day < yesterday && p.metrics)
-      const keys = new Set(week.flatMap(p => Object.keys(p.metrics!)))
-      const avg: Record<string, number> = {}
-      for (const k of keys) { const v = week.map(p => p.metrics![k]).filter(x => x !== undefined); if (v.length) avg[k] = Math.round(v.reduce((a, b) => a + b, 0) / v.length) }
-      if (Object.keys(avg).length) average7d[platform] = avg
-    }
-    return {
-      yesterday,
-      goals: goals.map(g => ({ platform: g.platform, targetFollowers: g.target_followers, deadlineOn: g.deadline_on, achieved: g.achieved })),
-      yesterdayPosts: posts.filter(p => p.day === yesterday).map(strip),
-      average7d,
-      recentPosts: posts.slice(0, 20).map(strip),
-      followers: followers.map(f => ({ platform: f.platform, count: f.count, delta: f.prev === null ? null : f.count - f.prev, capturedOn: f.captured_on })),
-    }
+  // Inside the prepare transaction: link proposal ↔ waiting step, release lease and compute (report §4.3 Wait/resume).
+  async suspend(tx: Tx, c: Claim, proposalId: string, stepId: string) {
+    await tx.$executeRaw`UPDATE app_private.agent_change_proposals SET tool_step_id=${stepId}::uuid,version=version+1 WHERE id=${proposalId}::uuid`
+    await this.toWaiting(tx, c, proposalId)
   }
-
-  // DEMO ONLY (migration 20261123000400 grants DELETE): remove every Talent's morning run of one day so it can run again.
-  // Deletes the runs, their attempts/usage, the morning messages, the day's themes, outbox events and operations.
-  // Keeps app_private.ai_daily_trends (the shared search of that day is reused; a day without trends still searches next run).
-  async resetDay(day: string): Promise<{ runs: number; messages: number; themes: number }> {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new AppError('DATE_INVALID', 422)
-    const key = `${DAILY_TASK.key}:%:${day}`
+  // A run claimed again while its proposal is still open (e.g. reconciler requeued it): back to waiting, no new proposal.
+  async resuspend(c: Claim, proposalId: string): Promise<boolean> {
     return this.db.$transaction(async tx => {
-      await tx.$executeRaw`DELETE FROM public.ai_usage_events u USING app_private.ai_execution_attempts a, app_private.ai_executions e, app_private.domain_operations o
-        WHERE u.execution_attempt_id=a.id AND a.execution_id=e.id AND e.operation_id=o.id AND o.operation_key LIKE ${key}`
-      await tx.$executeRaw`DELETE FROM app_private.ai_execution_attempts a USING app_private.ai_executions e, app_private.domain_operations o
-        WHERE a.execution_id=e.id AND e.operation_id=o.id AND o.operation_key LIKE ${key}`
-      // One statement: executions go first, then the messages they pointed to (FKs are checked at the end of the statement).
-      const [r] = await tx.$queryRaw<Array<{ runs: number; messages: number }>>`
-        WITH gone AS (DELETE FROM app_private.ai_executions e USING app_private.domain_operations o WHERE e.operation_id=o.id AND o.operation_key LIKE ${key} RETURNING e.output_message_id),
-             msgs AS (DELETE FROM public.coach_messages c USING gone WHERE c.id=gone.output_message_id RETURNING 1)
-        SELECT (SELECT count(*)::int FROM gone) AS runs,(SELECT count(*)::int FROM msgs) AS messages`
-      const themes = await tx.$executeRaw`DELETE FROM public.theme_suggestions WHERE suggested_on=${day}::date`
-      await tx.$executeRaw`DELETE FROM app_private.outbox_events v USING app_private.domain_operations o WHERE v.operation_id=o.id AND o.operation_key LIKE ${key}`
-      await tx.$executeRaw`DELETE FROM app_private.domain_operations WHERE kind='coach.daily_themes' AND operation_key LIKE ${key}`
-      return { ...r, themes }
+      if (!await holds(tx, c)) return false
+      await this.toWaiting(tx, c, proposalId)
+      return true
+    })
+  }
+  private async toWaiting(tx: Tx, c: Claim, proposalId: string) {
+    await tx.$executeRaw`
+      UPDATE app_private.ai_executions SET state='waiting_confirmation',waiting_proposal_id=${proposalId}::uuid,lease_token=NULL,lease_until=NULL,heartbeat_at=NULL,version=version+1
+      WHERE id=${c.runId}::uuid AND state='running' AND lease_token=${c.token}::uuid`
+    await tx.$executeRaw`UPDATE app_private.ai_execution_attempts SET phase='waiting',finished_at=now() WHERE id=${c.attemptId}::uuid`
+    await tx.$executeRaw`UPDATE app_private.outbox_events SET state='done',lease_token=NULL,lease_until=NULL,updated_at=now() WHERE id=${c.eventId}::uuid`
+  }
+  async proposalState(id: string) {
+    const [p] = await this.db.$queryRaw<Array<{ state: string; expired: boolean }>>`SELECT state,expires_at<=now() AS expired FROM app_private.agent_change_proposals WHERE id=${id}::uuid`
+    return p
+  }
+  async resolveStep(c: Claim, stepId: string, output: unknown): Promise<boolean> {
+    return this.db.$transaction(async tx => {
+      if (!await holds(tx, c)) return false
+      await tx.$executeRaw`UPDATE app_private.agent_steps SET state='succeeded',output=${JSON.stringify(output)}::jsonb,finished_at=now() WHERE id=${stepId}::uuid AND state='waiting'`
+      return true
+    })
+  }
+  // The confirmed prepare step gets the commit result, in the commit transaction (tx) or alone after a refusal.
+  async setToolResult(tx: Tx | null, c: Claim, stepId: string, state: string, output: unknown, errorCode: string | null = null) {
+    const run = async (t: Tx) => {
+      if (!await holds(t, c)) throw new LeaseLost()
+      await t.$executeRaw`UPDATE app_private.agent_steps SET state=${state},output=${JSON.stringify(output)}::jsonb,error_code=${errorCode},finished_at=COALESCE(finished_at,now()) WHERE id=${stepId}::uuid AND kind='tool'`
+    }
+    return tx ? run(tx) : this.db.$transaction(run)
+  }
+  async receipts(runId: string): Promise<Receipt[]> {
+    return (await this.db.$queryRaw<ReceiptDb[]>`SELECT id::text,kind,target_label,resource_version FROM app_private.agent_commands WHERE execution_id=${runId}::uuid ORDER BY created_at`).map(toReceipt)
+  }
+  async proposalsOf(runId: string) {
+    return this.db.$queryRaw<Array<{ target_label: string; state: string }>>`SELECT target_label,state FROM app_private.agent_change_proposals WHERE execution_id=${runId}::uuid ORDER BY created_at`
+  }
+
+  // Terminal (or unknown) state + assistant entry, all in one fenced transaction. false = lease lost, nothing written.
+  async finish(c: Claim, o: Finish): Promise<boolean> {
+    return this.db.$transaction(async tx => {
+      const [conv] = await tx.$queryRaw<Array<{ id: string }>>`
+        SELECT c.id::text FROM app_private.agent_conversations c JOIN app_private.ai_executions e ON e.conversation_id=c.id WHERE e.id=${c.runId}::uuid FOR UPDATE OF c`
+      await lockChain(tx, c)
+      if (!await holds(tx, c)) return false
+      await finishIn(tx, c, o, conv.id, c.attemptId)
+      return true
     })
   }
 
-  // Queue figures for one day (load test): states, waiting time (created → first claim) and run time (claim → finished).
-  async dayStats(day: string) {
-    const key = `${DAILY_TASK.key}:%:${day}`
-    const [r] = await this.db.$queryRaw<Array<Record<string, number | null>>>`
-      SELECT count(*)::int AS total,
-        count(*) FILTER (WHERE e.state='pending')::int AS pending, count(*) FILTER (WHERE e.state='running')::int AS running,
-        count(*) FILTER (WHERE e.state='succeeded')::int AS succeeded, count(*) FILTER (WHERE e.state='failed')::int AS failed,
-        count(*) FILTER (WHERE e.state='unknown')::int AS unknown,
-        max(e.attempt_no)::int AS max_attempts,
-        round(avg(extract(epoch FROM a.started_at-e.created_at))::numeric,1)::float AS avg_wait_s,
-        round(max(extract(epoch FROM a.started_at-e.created_at))::numeric,1)::float AS max_wait_s,
-        round(avg(extract(epoch FROM e.finished_at-a.started_at))::numeric,1)::float AS avg_run_s,
-        round(max(extract(epoch FROM e.finished_at-a.started_at))::numeric,1)::float AS max_run_s,
-        round(extract(epoch FROM max(e.finished_at)-min(e.created_at))::numeric,1)::float AS total_s
-      FROM app_private.ai_executions e JOIN app_private.domain_operations o ON o.id=e.operation_id
-      LEFT JOIN app_private.ai_execution_attempts a ON a.execution_id=e.id AND a.attempt_no=1
-      WHERE o.operation_key LIKE ${key}`
-    return r
-  }
-
-  // ---- Shared daily trends (CR-05 / Q&A No.38): one row per JST day, written once (first writer wins).
-  async trends(day: string): Promise<Trends | null> {
-    const [r] = await this.db.$queryRaw<Array<{ content: string; sources: Array<{ url: string; title?: string }>; model: string; created_at: Date }>>`
-      SELECT content,sources,model,created_at FROM app_private.ai_daily_trends WHERE day=${day}::date`
-    return r ? { day, content: r.content, sources: r.sources, source: `Postgres app_private.ai_daily_trends day=${day} (web search by ${r.model} at ${r.created_at.toISOString()})` } : null
-  }
-  async saveTrends(day: string, t: { content: string; sources: Array<{ url: string; title?: string }>; provider: string; model: string; inputTokens?: number; outputTokens?: number }) {
-    await this.db.$executeRaw`
-      INSERT INTO app_private.ai_daily_trends(day,content,sources,provider,model,input_tokens,output_tokens)
-      VALUES(${day}::date,${t.content},${JSON.stringify(t.sources)}::jsonb,${t.provider},${t.model},${t.inputTokens ?? null},${t.outputTokens ?? null})
-      ON CONFLICT (day) DO NOTHING`
-    return this.trends(day)
-  }
-
-  // The most recent day's 3 themes (T-07 今日のテーマの候補). Latest, not "today", so a test run for a later date shows too.
-  async latestThemes(userId: string): Promise<{ day: string | null; themes: Array<{ id: string; position: number; content: string }> }> {
-    const talent = await this.talentOf(this.db, userId, false)
-    const rows = await this.db.$queryRaw<Array<{ id: string; position: number; content: string; day: string }>>`
-      SELECT id::text,position::int,content,to_char(suggested_on,'YYYY-MM-DD') AS day FROM public.theme_suggestions
-      WHERE talent_id=${talent.id}::uuid AND suggested_on=(SELECT max(suggested_on) FROM public.theme_suggestions WHERE talent_id=${talent.id}::uuid) ORDER BY position`
-    return { day: rows[0]?.day ?? null, themes: rows.map(({ day: _d, ...t }) => t) }
-  }
-
-  // §4.6 steps 6–7. Candidates are read without locks, then each is re-checked under the normal lock order.
-  async reconcile(limit = 20): Promise<{ released: number; unknown: number; dispatch: number }> {
+  // ---- Reconciler (report §4.4): expired dispatch leases; expired run leases (calling → unknown, else requeue).
+  async reconcile(limit = 20): Promise<{ requeued: number; unknown: number; dispatch: number }> {
     const dispatch = await this.db.$executeRaw`
       UPDATE app_private.outbox_events SET state='pending',lease_token=NULL,lease_until=NULL,next_dispatch_at=now(),updated_at=now()
-      WHERE state='leased' AND lease_until<now() AND event_type IN ('coach.respond','coach.daily_themes')`
+      WHERE state='leased' AND lease_until<now() AND event_type IN ('agent.run.wake','agent.profile.export')`
     const expired = await this.db.$queryRaw<Array<{ id: string; operation_id: string; event_id: string }>>`
-      SELECT id::text,operation_id::text,event_id::text FROM app_private.ai_executions WHERE state='running' AND lease_until<now() ORDER BY lease_until LIMIT ${limit}`
-    let released = 0, unknown = 0
-    for (const e of expired) {
-      await this.db.$transaction(async tx => {
-        const ids = { executionId: e.id, operationId: e.operation_id, eventId: e.event_id }
-        await this.lockChain(tx, ids)
-        const rows = await tx.$queryRaw<Array<{ attempt_id: string; phase: string }>>`
-          SELECT a.id::text AS attempt_id,a.phase FROM app_private.ai_executions x
-          JOIN app_private.ai_execution_attempts a ON a.execution_id=x.id AND a.attempt_no=x.attempt_no
-          WHERE x.id=${e.id}::uuid AND x.state='running' AND x.lease_until<now() FOR UPDATE OF x`
-        if (!rows[0]) return
-        if (rows[0].phase === 'claimed') { // never reached the provider: safe to run again with a NEW attempt
-          await tx.$executeRaw`UPDATE app_private.ai_execution_attempts SET phase='failed',error_code='LEASE_EXPIRED',finished_at=now() WHERE id=${rows[0].attempt_id}::uuid`
-          await tx.$executeRaw`UPDATE app_private.ai_executions SET state='pending',lease_token=NULL,lease_until=NULL,heartbeat_at=NULL,version=version+1 WHERE id=${e.id}::uuid`
-          await tx.$executeRaw`UPDATE app_private.outbox_events SET next_dispatch_at=now(),updated_at=now() WHERE id=${e.event_id}::uuid AND state='pending'`
-          released++
-        } else {
-          await tx.$executeRaw`UPDATE app_private.ai_execution_attempts SET phase='unknown',error_code='LEASE_EXPIRED_AFTER_CALL',usage_state='unknown',finished_at=now() WHERE id=${rows[0].attempt_id}::uuid`
-          await this.finish(tx, ids, 'unknown', 'LEASE_EXPIRED_AFTER_CALL')
-          unknown++
-        }
-      })
-    }
-    return { released, unknown, dispatch }
+      SELECT id::text,operation_id::text,event_id::text FROM app_private.ai_executions WHERE state='running' AND lease_until<now() AND task_key LIKE 'agent.%' ORDER BY lease_until LIMIT ${limit}`
+    let requeued = 0, unknown = 0
+    for (const e of expired) await this.db.$transaction(async tx => {
+      const ids = { runId: e.id, operationId: e.operation_id, eventId: e.event_id }
+      await lockChain(tx, ids)
+      const [still] = await tx.$queryRaw<Array<{ attempt_id: string }>>`
+        SELECT a.id::text AS attempt_id FROM app_private.ai_executions x JOIN app_private.ai_execution_attempts a ON a.execution_id=x.id AND a.attempt_no=x.attempt_no
+        WHERE x.id=${e.id}::uuid AND x.state='running' AND x.lease_until<now()`
+      if (!still) return
+      const calling = await tx.$executeRaw`UPDATE app_private.agent_steps SET state='unknown',usage_state='unknown',error_code='LEASE_EXPIRED_AFTER_CALL',finished_at=now() WHERE execution_id=${e.id}::uuid AND state='calling'`
+      if (calling) { await finishIn(tx, ids, { kind: 'unknown', code: 'LEASE_EXPIRED_AFTER_CALL' }, null, still.attempt_id); unknown++; return }
+      // Nothing in flight: everything done so far is committed in the ledger, a new attempt resumes from it.
+      await tx.$executeRaw`UPDATE app_private.ai_execution_attempts SET phase='failed',error_code='LEASE_EXPIRED',finished_at=now() WHERE id=${still.attempt_id}::uuid`
+      await tx.$executeRaw`UPDATE app_private.ai_executions SET state='pending',lease_token=NULL,lease_until=NULL,heartbeat_at=NULL,version=version+1 WHERE id=${e.id}::uuid`
+      await tx.$executeRaw`UPDATE app_private.outbox_events SET state='pending',lease_token=NULL,lease_until=NULL,next_dispatch_at=now(),updated_at=now() WHERE id=${e.event_id}::uuid`
+      requeued++
+    })
+    return { requeued, unknown, dispatch }
   }
 
-  private async lockChain(tx: Tx, ids: { operationId: string; eventId: string; executionId: string }) {
-    await tx.$queryRaw`SELECT 1 FROM app_private.domain_operations WHERE id=${ids.operationId}::uuid FOR UPDATE`
-    await tx.$queryRaw`SELECT 1 FROM app_private.outbox_events WHERE id=${ids.eventId}::uuid FOR UPDATE`
-    await tx.$queryRaw`SELECT 1 FROM app_private.ai_executions WHERE id=${ids.executionId}::uuid FOR UPDATE`
+  // Operator decision on an unknown run (report §4.4 "keep unknown and reconcile"). retry = a new model call may be charged again.
+  async resolveUnknown(runId: string, action: 'retry' | 'fail'): Promise<RunState> {
+    return this.db.$transaction(async tx => {
+      const [r] = await tx.$queryRaw<Array<{ operation_id: string; event_id: string; wake_sequence: bigint }>>`
+        SELECT operation_id::text,event_id::text,wake_sequence FROM app_private.ai_executions WHERE id=${runId}::uuid AND state='unknown' AND task_key LIKE 'agent.%'`
+      if (!r) throw new AppError('RUN_NOT_UNKNOWN', 409)
+      const ids = { runId, operationId: r.operation_id, eventId: r.event_id }
+      await lockChain(tx, ids)
+      if (action === 'fail') { await finishIn(tx, ids, { kind: 'failed', code: 'UNKNOWN_CLOSED_BY_OPERATOR' }); return 'failed' }
+      await tx.$executeRaw`UPDATE app_private.domain_operations SET state='running',step='operator_retry',last_error_code=NULL,version=version+1,updated_at=now() WHERE id=${r.operation_id}::uuid`
+      await wake(tx, { id: runId, operation_id: r.operation_id, wake_sequence: r.wake_sequence })
+      return 'pending'
+    })
   }
 
-  private async holds(tx: Tx, c: Claim): Promise<boolean> {
-    const rows = await tx.$queryRaw<unknown[]>`
-      SELECT 1 FROM app_private.ai_executions WHERE id=${c.executionId}::uuid AND state='running' AND lease_token=${c.token}::uuid AND attempt_no=${c.attemptNo} AND lease_until>now()`
-    return rows.length === 1
+  // ---- Provider effect: OneDrive Profile.md export (outbox agent.profile.export). Idempotent: always writes the LATEST version.
+  async leaseEffects(limit: number): Promise<Array<{ eventId: string; token: string; attempts: number; talentId: string }>> {
+    return (await this.db.$queryRaw<Array<{ id: string; lease_token: string; attempts: number; talent_id: string }>>`
+      UPDATE app_private.outbox_events o SET state='leased',lease_token=gen_random_uuid(),lease_until=now()+(${EFFECT_LEASE_SECONDS}::int * interval '1 second'),attempts=o.attempts+1,updated_at=now()
+      FROM app_private.domain_operations d
+      WHERE d.id=o.operation_id AND o.id IN (SELECT id FROM app_private.outbox_events WHERE state='pending' AND event_type='agent.profile.export' AND available_at<=now() ORDER BY available_at,id LIMIT ${limit} FOR UPDATE SKIP LOCKED)
+      RETURNING o.id::text,o.lease_token::text,o.attempts,d.talent_id::text`).map(r => ({ eventId: r.id, token: r.lease_token, attempts: r.attempts, talentId: r.talent_id }))
   }
+  async exportJob(talentId: string) {
+    const [r] = await this.db.$queryRaw<Array<{ display_name: string; folder: string | null; profile: Profile; version: bigint; exported: bigint | null }>>`
+      SELECT t.display_name,t.onedrive_folder_id AS folder,p.profile,p.version,x.version AS exported FROM public.talents t
+      JOIN app_private.agent_talent_profiles p ON p.talent_id=t.id LEFT JOIN app_private.agent_profile_exports x ON x.talent_id=t.id WHERE t.id=${talentId}::uuid`
+    return r
+  }
+  // done: written (or a newer export already covers it). retry: back to pending after a backoff. failed: give up, keep the reason.
+  async endEffect(e: { eventId: string; token: string; talentId: string }, outcome: 'done' | 'retry' | 'failed', code: string | null, written?: { version: bigint; itemRef: string }, retryInSeconds = 30) {
+    await this.db.$transaction(async tx => {
+      if (written) await tx.$executeRaw`
+        INSERT INTO app_private.agent_profile_exports(talent_id,version,item_ref) VALUES(${e.talentId}::uuid,${written.version},${written.itemRef})
+        ON CONFLICT (talent_id) DO UPDATE SET version=EXCLUDED.version,item_ref=EXCLUDED.item_ref,exported_at=now() WHERE agent_profile_exports.version<EXCLUDED.version`
+      await tx.$executeRaw`
+        UPDATE app_private.outbox_events SET state=${outcome === 'retry' ? 'pending' : outcome},lease_token=NULL,lease_until=NULL,last_error_code=${code},updated_at=now(),
+          available_at=CASE WHEN ${outcome === 'retry'} THEN now()+(${retryInSeconds}::int * interval '1 second') ELSE available_at END
+        WHERE id=${e.eventId}::uuid AND state='leased' AND lease_token=${e.token}::uuid`
+    })
+  }
+}
 
-  // State mapping of §4.4: execution → operation / outbox. Terminal outbox rows carry no lease (CHECK).
-  private async finish(tx: Tx, ids: { operationId: string; eventId: string; executionId: string }, state: 'succeeded' | 'failed' | 'unknown', code: string | null, output: bigint | null = null) {
-    const op = state === 'succeeded' ? 'completed' : state
-    const ev = state === 'succeeded' ? 'done' : state
-    await tx.$executeRaw`UPDATE app_private.domain_operations SET state=${op},step=NULL,last_error_code=${code},version=version+1,updated_at=now() WHERE id=${ids.operationId}::uuid`
-    await tx.$executeRaw`UPDATE app_private.outbox_events SET state=${ev},lease_token=NULL,lease_until=NULL,last_error_code=${code},updated_at=now() WHERE id=${ids.eventId}::uuid`
-    await tx.$executeRaw`
-      UPDATE app_private.ai_executions SET state=${state},output_message_id=${output},last_error_code=${code},lease_token=NULL,lease_until=NULL,heartbeat_at=NULL,
-        finished_at=CASE WHEN ${state !== 'unknown'} THEN now() END,version=version+1
-      WHERE id=${ids.executionId}::uuid`
-  }
+export class LeaseLost extends Error { constructor() { super('LEASE_LOST') } }
 
-  // The next request of this Talent may run now instead of waiting for its redispatch time.
-  private async nudge(talentId: string) {
-    await this.db.$executeRaw`
-      UPDATE app_private.outbox_events o SET next_dispatch_at=now(),updated_at=now() FROM app_private.ai_executions e
-      WHERE e.event_id=o.id AND e.talent_id=${talentId}::uuid AND e.state='pending' AND o.state='pending' AND o.next_dispatch_at>now()`
+async function lockChain(tx: Tx, ids: { operationId: string; eventId: string; runId: string }) {
+  await tx.$queryRaw`SELECT 1 FROM app_private.domain_operations WHERE id=${ids.operationId}::uuid FOR UPDATE`
+  await tx.$queryRaw`SELECT 1 FROM app_private.outbox_events WHERE id=${ids.eventId}::uuid FOR UPDATE`
+  await tx.$queryRaw`SELECT 1 FROM app_private.ai_executions WHERE id=${ids.runId}::uuid FOR UPDATE`
+}
+export async function holds(tx: Tx, c: Claim): Promise<boolean> {
+  const rows = await tx.$queryRaw<unknown[]>`
+    SELECT 1 FROM app_private.ai_executions WHERE id=${c.runId}::uuid AND state='running' AND lease_token=${c.token}::uuid AND attempt_no=${c.attemptNo} AND lease_until>now() FOR UPDATE`
+  return rows.length === 1
+}
+
+// Run → operation / outbox mapping (report §4.4). Operation has no 'cancelled': failed + CANCELLED.
+async function finishIn(tx: Tx, ids: { operationId: string; eventId: string; runId: string }, o: Finish, conversationId: string | null = null, attemptId: string | null = null) {
+  let entry: string | null = null
+  if (o.kind === 'succeeded') {
+    const [e] = await tx.$queryRaw<Array<{ id: string }>>`
+      INSERT INTO app_private.agent_entries(conversation_id,sequence,role,body)
+      SELECT id,next_sequence,'assistant',${o.body} FROM app_private.agent_conversations WHERE id=${conversationId}::uuid RETURNING id::text`
+    await tx.$executeRaw`UPDATE app_private.agent_conversations SET next_sequence=next_sequence+1,version=version+1 WHERE id=${conversationId}::uuid`
+    entry = e.id
   }
+  const code = o.kind === 'succeeded' ? null : o.code
+  const op = o.kind === 'succeeded' ? 'completed' : o.kind === 'unknown' ? 'unknown' : 'failed'
+  const ev = o.kind === 'succeeded' || o.kind === 'cancelled' ? 'done' : o.kind
+  await tx.$executeRaw`UPDATE app_private.domain_operations SET state=${op},step=NULL,last_error_code=${code},version=version+1,updated_at=now() WHERE id=${ids.operationId}::uuid`
+  await tx.$executeRaw`UPDATE app_private.outbox_events SET state=${ev},lease_token=NULL,lease_until=NULL,last_error_code=${code},updated_at=now() WHERE id=${ids.eventId}::uuid`
+  await tx.$executeRaw`
+    UPDATE app_private.ai_executions SET state=${o.kind},output_entry_id=${entry}::uuid,completion_kind=${o.kind === 'succeeded' ? o.completion : null},last_error_code=${code},
+      lease_token=NULL,lease_until=NULL,heartbeat_at=NULL,finished_at=CASE WHEN ${o.kind !== 'unknown'} THEN now() END,version=version+1
+    WHERE id=${ids.runId}::uuid`
+  if (attemptId) await tx.$executeRaw`UPDATE app_private.ai_execution_attempts SET phase=${o.kind},error_code=${code},finished_at=now() WHERE id=${attemptId}::uuid`
 }

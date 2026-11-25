@@ -1,0 +1,221 @@
+{
+  "id": "DB-DECISIONS-UPDATE-2026-11-25",
+  "author": "Codex",
+  "checked_at": "2026-11-25",
+  "scope": "Apply known source decisions to database-design01–07 and generator; document SQL already present and target design separately. No migrations/code/liveDB/source edits.",
+  "status": "AUTHOR_UPDATE_NOT_INDEPENDENTLY_REVIEWED",
+  "independent_reviewer": null,
+  "approval": "NOT_GRANTED",
+  "before": [
+    {
+      "path": "database-design/01_confirmed_requirements.md",
+      "sha256": "c8d98b0be329c53b1fecb8d9a59a656e11fe8ed2088374c0860b182ed1bc7c9a"
+    },
+    {
+      "path": "database-design/02_entity_inventory.md",
+      "sha256": "4ec59450cbf74a3d6f4147a96697b951eb21ce2eee808311c3535f48ce18d8b4"
+    },
+    {
+      "path": "database-design/03_erd.md",
+      "sha256": "1cf28d4ab4d05b8eb8fe2d8310bb887161f762cff19a48480f3c554305297910"
+    },
+    {
+      "path": "database-design/04_database_schema.md",
+      "sha256": "50087cb2e50809535e804428bc456b2bf61e78c1eafcd0414afdfa9ea4e6f740"
+    },
+    {
+      "path": "database-design/05_data_dictionary.md",
+      "sha256": "774b0d2950beaf7aac4970bb74b380e46a283a3ea0c6fb3b56c90f931f755621"
+    },
+    {
+      "path": "database-design/06_extensibility_review.md",
+      "sha256": "59e095873f60d9a559839aefb779c3efc3081199a4ca230eb70f51703da942e1"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "bda686760d75256151ea55a880c0f3233ef6958144bbbd47ba029e0d829d808e"
+    },
+    {
+      "path": "database-design/08_full_review_2026-11-25.md",
+      "sha256": "bb9b79009c541f549417f71cbe0e885a5ee00808a9c1326585b930141f637017"
+    },
+    {
+      "path": "database-design/gen_tu_dien.py",
+      "sha256": "ab91bfe74e7e59291b6de8516a090f4404ac3d1d6187fb65665d44d7a9e31378"
+    }
+  ],
+  "before_directory": "database-design/history/decisions-update-2026-11-25",
+  "sources": [
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3"
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181"
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67"
+    },
+    {
+      "path": "source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md",
+      "sha256": "3d168de54769e626ca7a47978a73add6876b05874997f6ba7d2626fcf5a54423"
+    },
+    {
+      "path": "source_requiments/19112926/業務フロー_AI育成OS.pdf",
+      "sha256": "8c91d0d0e277578408d3bed6e664f9387cfe5facd2766be1ad46a0d1cb4b3245"
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "sha256": "63b70d9b6fb1b5dae02d86b370af48ff28a218592f818348dcbabdd153d32530"
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf",
+      "sha256": "bb6fe2c5b2a2e0be6bda54d82d26b229d8cdc32b42f5fe6bcd2f2104409ae4f7"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336"
+    },
+    {
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168"
+    },
+    {
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f"
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx",
+      "sha256": "255bf76e74cc621ce4d2bafa4f408edc89aec07f80806e5076d823f7b51ddbd0"
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf"
+    },
+    {
+      "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03"
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab"
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea"
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae"
+    }
+  ],
+  "evidence": [
+    {
+      "source": "QA",
+      "locator": "Q&A!G101:J101",
+      "supports": "Agent/DB/backup/Challenge/M17/token payer; J101 remains internal authority"
+    },
+    {
+      "source": "KS",
+      "locator": "20261122!G4:I4",
+      "supports": "AI rewrite then schedule; no Talent re-confirm"
+    },
+    {
+      "source": "KS",
+      "locator": "20261122!G5:I5;G18:H18;G20:H20;G16:I16;G35:I35",
+      "supports": "No under18 spending cap; no parental record; direct TikTok; per-SNS time; no global stop button"
+    },
+    {
+      "source": "KS",
+      "locator": "アクション一覧!A17:G17",
+      "supports": "Square selection reported; not provider capability approval"
+    },
+    {
+      "source": "YK3",
+      "locator": "P116/P148/P159/P247/P250/P661/P679–680/P705/P728–744/P783/P803–809",
+      "supports": "Terms consent; activation; mode split; paused still billed; category/assignment/instruction/price estimate settings"
+    }
+  ],
+  "checks": {
+    "preserved_existing_code_blocks": "PASS",
+    "relative_file_links": "PASS",
+    "13_source_ddl_table_extracts": "PASS",
+    "generator_syntax_and_53_unique_tables": "PASS",
+    "canonical_R_BR_U_ids": "PASS",
+    "markdown_table_shape": "checked; notices if existing inline pipes"
+  },
+  "limits": [
+    "No complete image re-verification; no VERIFIED state issued.",
+    "No local catalog replay or live database checks; dictionary uses clearly labeled source DDL supplements.",
+    "Only resolved subjects updated; existing QA and independent-review/gate/approval states are not closed or promoted.",
+    "Review-2026-11-25.json remains historical; new hashes tracked here."
+  ],
+  "outputs": [
+    {
+      "path": "database-design/01_confirmed_requirements.md",
+      "sha256": "6c875fb1130d1b19f50314d3c9b7614d6b0c022cde943f97093b233dd34fad50"
+    },
+    {
+      "path": "database-design/02_entity_inventory.md",
+      "sha256": "60c4fc947d3d1713a5530565f2d6c75242e24689b5aac26e30bf394a5ab4912b"
+    },
+    {
+      "path": "database-design/03_erd.md",
+      "sha256": "56c49b2e1d2a6562c35492b2f9cd13cf52a3684a9e71336fefc62864cce7896f"
+    },
+    {
+      "path": "database-design/04_database_schema.md",
+      "sha256": "dc0f97515e41eab75cd9d57110a9e9f7afeebe778ef9f396a9940f244a740194"
+    },
+    {
+      "path": "database-design/05_data_dictionary.md",
+      "sha256": "6e841101e6bc656343bff1f213986cae9cd1284dbcca361afaea50a13914bfff"
+    },
+    {
+      "path": "database-design/06_extensibility_review.md",
+      "sha256": "395068e40a0035773c8ec5f143f2e46888ff7105e5153f0ed09a28a1c073b786"
+    },
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "de8f7e4d53f69f3ff209ae73ec2f98aff51247dff06c2790d99d1817dc5bb333"
+    },
+    {
+      "path": "database-design/08_full_review_2026-11-25.md",
+      "sha256": "ec16a4e140e13e0cf7a768a23a7c18b8c8d78713817fdca9665bd55b6114c94a"
+    },
+    {
+      "path": "database-design/gen_tu_dien.py",
+      "sha256": "1bb306e4fe9aeac86a2ca2eebc07e2cd6833d819512107e94ee8364da5ed59a7"
+    }
+  ]
+}

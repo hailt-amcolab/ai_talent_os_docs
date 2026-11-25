@@ -1,3 +1,15 @@
+## Tiếp nhận24112026 — kiểm25/11/2026
+
+| Mã | Nguồn mới | Phiên bản và giới hạn |
+|---|---|---|
+| YK3 | [AI育成OS_要件定義書.docx](../../source_requiments/24112026/AI育成OS_要件定義書.docx) | 0.3,24/11/2026;1411đoạn XML gồm đoạn trống;57ảnh;16luồng; mô tả yêu cầu, còn chờ rà/duyệt |
+| EXT24 | [AI育成OS_外部サービスの比較_20261124.pptx](../../source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx) | 14slide,24/11/2026;13ảnh minh họa; so sánh do FCP trình, không tự xác nhận giá/quy định/provider |
+| KS24 | [要件定義確認シート_AI育成OS.xlsx](../../source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx) | 5sheet, trùng byte KS trong Q&A; không tính là hai xác nhận |
+
+QA hiện hành100câu chính (53Close/47Open); No.50 đã bỏ khỏi保留, không là quyết định đóng. KS có確認事項,20261120,20261122,プロジェクトを進めるために決める事項,アクション一覧. Ngày thư mục không tự là ngày quyết định; J101 là phân vai nội bộ25/11.
+
+> **Hiện hành — nguồn24/11, kiểm25/11/2026:** 23 tệp; QA đủ5sheet, KS đủ5sheet. YK3 bản0.3 và14slide EXT24; KS24 trùng byte KS đang sống. QA No.101 xác nhận agent/DB/backup; actionKS No.16 ghi Square sau họp. CR hiện hành01–14 đổi nghĩa so với snapshot cũ. [Kết quả, phần còn mở và tác động](corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). G1 BLOCKED, phần phụ thuộc G2–G4 STALE, G5/G6 BLOCKED; chưa cấp G7/G8 PASS. Những thông báo “hiện hành” cũ bên dưới là lịch sử ở phần đã thay.
+
 > **Hiện hành — đợt23112026:** Có 20 tệp nguồn; đã đọc bốn tệp mới gồm 52 trang PDF và DOCX 356 đoạn. UI-M20 lập20/11; báo cáo/slide lập22/11 để chuẩn bị24/11. TikTok nháp, xác nhận lại bài AI sửa, ranking, lưu đồng ý phụ huynh và pilot là các đề nghị chưa được duyệt phạm vi. [Kết quả, locator và giới hạn](corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). G1 BLOCKED chờ duyệt phạm vi; G2–G4 STALE ở nhánh bị ảnh hưởng, G5/G6 BLOCKED; chưa có G7/G8 PASS. Các đợt trước giữ làm lịch sử.
 
 ## Nguồn nhận trong23112026 — hiện hành20 tệp

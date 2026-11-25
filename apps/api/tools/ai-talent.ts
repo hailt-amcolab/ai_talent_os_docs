@@ -1,4 +1,4 @@
-// AI Coach fixtures (/api/v1/me/coach/*). Development data only: the real path is sign-up → manager approval (EP01).
+// Agent fixtures (/api/v1/me/agent/*, /api/v1/admin/agent/*). Development data only: the real path is sign-up → manager approval (EP01).
 // Refuses NODE_ENV=production.
 // No Talent needs a specific Manager ([KS] K77/K93: every Manager sees every Talent). The DB still needs WHO APPROVED the
 // application (chk_talents_origin / chk_talent_applications_decision, BR-02), so an existing active Manager is used as approver
@@ -7,12 +7,10 @@
 //   npm run ai:talent -- --talent <loginUserId> [--name 名前] [--birth 2000-01-01]
 // Map EVERY login that has no role yet (e.g. the one you test with):
 //   npm run ai:talent -- --all-logins
-// Run the morning message now for every in-use Talent (the worker processes it; same day twice = same run).
-// --simulate: no AI call (sample text after a realistic wait), for queue/load tests:
-//   npm run ai:talent -- --morning [--date 2026-11-25] [--simulate]
-// Queue figures of a day / remove every Talent's morning runs of a day (DEMO ONLY, keeps the shared trends):
-//   npm run ai:talent -- --stats [--date …]      npm run ai:talent -- --reset-today [--date …]
-// --link-onedrive --test-profile also writes a fictional profile (tools/fixtures/test-profiles.ts) into every EMPTY Profile.md.
+// Make an existing login an active Manager (for M-17 / admin agent tests; the admin routes also need a TOTP/aal2 session):
+//   npm run ai:talent -- --make-manager <loginUserId>
+// Operator decision on an agent run left 'unknown' (model may have been called; report §4.4). retry = new model call, may be charged:
+//   npm run ai:talent -- --agent-resolve <runId> --action retry|fail
 // Or create N NEW confirmed Talent logins (needs SUPABASE_URL + SUPABASE_SECRET_KEY), passwords printed once:
 //   npm run ai:talent -- --seed 3
 // Bring OneDrive to the current layout for every in-use Talent: create + link a folder when missing, add a missing
@@ -25,11 +23,9 @@ import { createClient } from '@supabase/supabase-js'
 import { createDatabase, type Database } from '../src/infra/database/client.ts'
 import { loadEnv } from '../src/config/env.ts'
 import { createOneDrive } from '../src/modules/onedrive/connections.ts'
-import { AiCoachStore } from '../src/modules/ai-coach/store.ts'
-import { hasProfile, TALENT_FILES } from '../src/modules/ai-coach/context.ts'
-import { TEST_PROFILE_NOTE, TEST_PROFILES } from './fixtures/test-profiles.ts'
+import { RunStore } from '../src/modules/ai-coach/store.ts'
 
-const { values: a } = parseArgs({ options: { talent: { type: 'string' }, manager: { type: 'string' }, email: { type: 'string' }, name: { type: 'string', default: 'デモタレント' }, birth: { type: 'string', default: '2000-01-01' }, seed: { type: 'string' }, 'link-onedrive': { type: 'boolean' }, 'all-logins': { type: 'boolean' }, morning: { type: 'boolean' }, date: { type: 'string' }, simulate: { type: 'boolean' }, stats: { type: 'boolean' }, 'reset-today': { type: 'boolean' }, 'test-profile': { type: 'boolean' } } })
+const { values: a } = parseArgs({ options: { talent: { type: 'string' }, manager: { type: 'string' }, email: { type: 'string' }, name: { type: 'string', default: 'デモタレント' }, birth: { type: 'string', default: '2000-01-01' }, seed: { type: 'string' }, 'link-onedrive': { type: 'boolean' }, 'all-logins': { type: 'boolean' }, 'make-manager': { type: 'string' }, 'agent-resolve': { type: 'string' }, action: { type: 'string' } } })
 if (process.env.NODE_ENV === 'production') throw new Error('Refusing to create Talent fixtures in production')
 
 const supabaseAdmin = () => {
@@ -102,16 +98,6 @@ try {
           continue
         }
         rename.push(...r.rename)
-        if (a['test-profile']) {
-          // Only an empty Profile.md (template headings) gets the fictional profile; a filled one is never touched.
-          const file = (await od.children(folderId)).find(i => i.name === TALENT_FILES.profile)
-          const current = file ? await od.readText(file.id) : null
-          if (file && current && !hasProfile({ agency: [], profile: { name: file.name, eTag: file.eTag, text: current.content.replace(/<!--[\s\S]*?-->/g, ''), source: '' }, memo: null })) {
-            const names = Object.keys(TEST_PROFILES), body = TEST_PROFILES[t.display_name] ?? TEST_PROFILES[names[report.length % names.length]]
-            await od.updateText(file.id, TEST_PROFILE_NOTE + body + '\n', current.eTag)
-            action += '; test profile written'
-          }
-        }
         report.push({ talent: t.display_name, folder: folderId, action: r.created.length ? `${action}; added ${r.created.join(', ')}` : action })
       }
       console.table(report.length ? report : [{ result: 'no in-use Talent' }])
@@ -148,20 +134,13 @@ try {
     const rows: Array<Record<string, string>> = []
     for (const u of users.filter(u => !taken.has(u.id) && u.email)) rows.push({ login: u.email!, userId: u.id, talentId: await link(db, { talent: u.id, email: u.email, birth: a.birth! }) })
     console.table(rows.length ? rows : [{ result: 'every login already has a role' }])
-  } else if (a.morning || a.stats || a['reset-today']) {
-    const store = new AiCoachStore(db)
-    const day = a.date ?? (await store.morningDue()).day
-    if (a['reset-today']) console.log(JSON.stringify({ day, ...await store.resetDay(day) }))
-    if (a.morning) {
-      const t0 = Date.now(), runs = await store.scheduleDaily(day, undefined, a.simulate ?? false)
-      const fresh = runs.filter(r => r.state === 'pending' && r.attemptNo === 0).length
-      console.log(JSON.stringify({ day, talents: runs.length, newRuns: fresh, simulate: !!a.simulate, scheduleSeconds: (Date.now() - t0) / 1000 }))
-      if (runs.length <= 20) console.table(runs.map(r => ({ execution: r.id, state: r.state, error: r.errorCode ?? '' })))
-      console.log('The worker picks these up (it must be running). Same day again = same runs; --reset-today or --date to run again.')
-    }
-    if (a.stats) console.table([{ day, ...await store.dayStats(day) }])
+  } else if (a['make-manager']) {
+    console.log(JSON.stringify({ managerId: await approver(db, a['make-manager']) }))
+  } else if (a['agent-resolve']) {
+    if (a.action !== 'retry' && a.action !== 'fail') throw new Error('--action retry|fail')
+    console.log(JSON.stringify({ runId: a['agent-resolve'], state: await new RunStore(db).resolveUnknown(a['agent-resolve'], a.action) }))
   } else {
-    if (!a.talent) throw new Error('Need --talent <loginUserId>, --all-logins, --seed N, --link-onedrive or --morning')
+    if (!a.talent) throw new Error('Need --talent <loginUserId>, --all-logins, --seed N, --link-onedrive, --make-manager or --agent-resolve')
     console.log(JSON.stringify({ talentId: await link(db, { talent: a.talent, manager: a.manager, email: a.email, name: a.name === 'デモタレント' ? undefined : a.name, birth: a.birth! }) }))
   }
 } finally {
