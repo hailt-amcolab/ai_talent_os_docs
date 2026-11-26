@@ -1,3 +1,46 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Đăng lại bài lỗi
+
+Không tự đăng lại bài đã thất bại. Talent bấm T-17 ❹「投稿し直す」, Manager bấm M-09 ❹「予約し直す」. Chỉ đăng lại SNS lỗi; giờ mới là khung tiếp theo do AI quyết, giữ kết quả đã thành công của SNS khác.
+
+**Phần còn mở/giới hạn:** Retry kỹ thuật/unknown chống trùng do đội và provider kiểm chứng, không được coi timeout là chắc chắn chưa đăng.
+
+Căn cứ: QA `Q&A!A59:J59 (No.59)`; `EV-1339` / `DEC-0023`.
+
+### Đơn giá, ghi lượt và điều chỉnh phí video
+
+Manager đặt một đơn giá video chung tại cài đặt toàn hệ thống M-18 ❺; Adesso quyết giá cụ thể sau kiểm Kling. Lượt tính theo giá tại thời điểm 依頼, đổi giá không tính lại lượt cũ. Lỗi dịch vụ trừ lượt ngay khi báo lỗi; nếu đã tổng hợp thì trừ vào kỳ sau. Yêu cầu sau ngày chốt kỳ vào kỳ sau, theo ngày 依頼. Tổng hợp phí video tháng vào cuối hoặc đầu tháng để chuyển Square.
+
+**Phần còn mở/giới hạn:** No.2 vẫn Open về số tiền; No.4/49 còn chờ khả năng Square và ngày chốt cụ thể. Không đồng nhất đơn giá thu Talent với chi phí provider.
+
+Căn cứ: QA `Q&A!A3:J3 (No.2); Q&A!A62:J62 (No.62)`; `EV-1342` / `DEC-0026`.
+
+### Chu kỳ và nhà cung cấp còn mở
+
+Square là hướng tích hợp đang được FCP xem xét theo trả lời26/11; phí tháng cố định trả trước, không chia theo ngày. Ngày thu tháng, ngày bắt đầu thu và ngày tổng hợp phí video chưa chốt; xác định sau kiểm khả năng cổng.
+
+**Phần còn mở/giới hạn:** Không chốt GMO, không khẳng định Square hỗ trợ carrier hoặc phí video hậu trả. No.4/49 vẫn Open; việc kiểm kỹ thuật thuộc FCP/provider. No.53 Close không đồng nghĩa đã chốt ngày bắt đầu thu.
+
+Căn cứ: QA `Q&A!A5:J5 (No.4); Q&A!A50:J50 (No.49); Q&A!A53:J53 (No.53)`; `EV-1343` / `DEC-0027`.
+
+### Ngắt hoặc đổi SNS còn lịch
+
+Chặn ngắt kết nối hoặc đổi tài khoản của đúng SNS còn bài đã đặt lịch. Hiện danh sách bài liên quan để Talent tự huỷ trước rồi mới ngắt; không bắt buộc chỉ Manager huỷ. T-07 có nút 「接続を解除」. SNS không có lịch không chịu chặn này.
+
+**Phần còn mở/giới hạn:** Không áp dụng thao tác người dùng này để suy cách xử lý SNS tự hết hạn/mất kết nối; cơ chế phát hiện do đội/provider.
+
+Căn cứ: QA `Q&A!A95:J95 (No.95)`; `EV-1346` / `DEC-0030`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 
@@ -236,3 +279,5 @@ Mức ưu tiên dưới đây là đề xuất của mình: **Gấp** là việc
 | OneDrive và OpenAI bị giới hạn tốc độ khi xử lý cho nhiều tài năng cùng khung giờ (sáng, trưa, tối, [KS] 確認18) | Tin nhắn bị trễ | 9-2, [KS] 確認18 |
 | Chưa chọn cách gửi thông báo đẩy, và trên iPhone phải thêm ứng dụng vào màn hình chính | Huấn luyện viên AI mất tác dụng nếu tin nhắn không tới được tài năng | 8, 9-1, 11 |
 | Dịch vụ ngoài đổi đặc tả, giá hoặc điều khoản | Do hợp đồng bảo trì xử lý, nằm ngoài phạm vi dự án | 11 |
+
+</details>

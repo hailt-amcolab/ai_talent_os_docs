@@ -543,11 +543,21 @@
           "id": {
             "type": "string"
           },
-          "operationId": {
-            "type": "string"
-          },
           "conversationId": {
             "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "running",
+              "succeeded",
+              "failed",
+              "cancelled"
+            ]
           },
           "completionKind": {
             "type": [
@@ -560,34 +570,7 @@
               null
             ]
           },
-          "state": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "running",
-              "waiting_confirmation",
-              "succeeded",
-              "failed",
-              "unknown",
-              "cancelled"
-            ]
-          },
-          "version": {
-            "type": "string"
-          },
-          "outputEntryId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "proposalId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "errorCode": {
+          "finalText": {
             "type": [
               "string",
               "null"
@@ -599,6 +582,18 @@
               "$ref": "#/components/schemas/AgentReceipt"
             }
           },
+          "proposals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentProposalSummary"
+            }
+          },
+          "errorCode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "retryAfterMs": {
             "type": [
               "number",
@@ -608,15 +603,14 @@
         },
         "required": [
           "id",
-          "operationId",
           "conversationId",
-          "completionKind",
-          "state",
           "version",
-          "outputEntryId",
-          "proposalId",
-          "errorCode",
+          "state",
+          "completionKind",
+          "finalText",
           "receipts",
+          "proposals",
+          "errorCode",
           "retryAfterMs"
         ]
       },
@@ -626,7 +620,7 @@
           "commandId": {
             "type": "string"
           },
-          "action": {
+          "commandType": {
             "type": "string"
           },
           "targetLabel": {
@@ -635,22 +629,53 @@
           "changed": {
             "type": "boolean"
           },
-          "resourceVersion": {
+          "resultVersion": {
             "type": [
               "string",
               "null"
             ]
+          },
+          "createdAt": {
+            "type": "string"
           }
         },
         "required": [
           "commandId",
-          "action",
+          "commandType",
           "targetLabel",
           "changed",
-          "resourceVersion"
+          "resultVersion",
+          "createdAt"
         ]
       },
-      "AgentEntry": {
+      "AgentProposalSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "commandType": {
+            "type": "string"
+          },
+          "targetLabel": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "commandType",
+          "targetLabel",
+          "state",
+          "expiresAt"
+        ]
+      },
+      "AgentMessage": {
         "type": "object",
         "properties": {
           "id": {
@@ -666,28 +691,41 @@
               "assistant"
             ]
           },
-          "body": {
+          "text": {
             "type": "string"
           },
           "createdAt": {
             "type": "string"
+          },
+          "runId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "sdk",
+              "control_receipt",
+              "pending"
+            ]
           }
         },
         "required": [
           "id",
           "sequence",
           "role",
-          "body",
-          "createdAt"
+          "text",
+          "createdAt",
+          "runId",
+          "source"
         ]
       },
-      "AgentProposal": {
+      "Proposal": {
         "type": "object",
         "properties": {
           "proposalId": {
-            "type": "string"
-          },
-          "state": {
             "type": "string"
           },
           "commandType": {
@@ -733,10 +771,14 @@
           "proposalHash": {
             "type": "string"
           },
-          "runId": {
-            "type": [
-              "string",
-              "null"
+          "state": {
+            "type": "string",
+            "enum": [
+              "prepared",
+              "consumed",
+              "rejected",
+              "expired",
+              "conflicted"
             ]
           },
           "allowedActions": {
@@ -745,38 +787,102 @@
               "type": "string",
               "enum": [
                 "confirm",
-                "reject",
-                "commit"
+                "reject"
               ]
             }
+          },
+          "origin": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string"
+              },
+              "runId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "channel",
+              "runId"
+            ]
           }
         },
         "required": [
           "proposalId",
-          "state",
           "commandType",
           "targetLabel",
           "changes",
           "baseVersion",
           "expiresAt",
           "proposalHash",
-          "runId",
-          "allowedActions"
+          "state",
+          "allowedActions",
+          "origin"
         ]
       },
-      "AgentDecision": {
+      "CommandReceipt": {
         "type": "object",
         "properties": {
-          "proposalId": {
+          "commandId": {
             "type": "string"
           },
-          "state": {
+          "commandType": {
+            "type": "string"
+          },
+          "targetLabel": {
+            "type": "string"
+          },
+          "changed": {
+            "type": "boolean"
+          },
+          "resultVersion": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
             "type": "string"
           }
         },
         "required": [
-          "proposalId",
-          "state"
+          "commandId",
+          "commandType",
+          "targetLabel",
+          "changed",
+          "resultVersion",
+          "createdAt"
+        ]
+      },
+      "InstructionTest": {
+        "type": "object",
+        "properties": {
+          "output": {},
+          "promptVersion": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "object",
+            "properties": {
+              "inputTokens": {
+                "type": "number"
+              },
+              "outputTokens": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "inputTokens",
+              "outputTokens"
+            ]
+          }
+        },
+        "required": [
+          "promptVersion",
+          "usage"
         ]
       }
     },
@@ -2340,16 +2446,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2414,16 +2517,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       },
@@ -2469,7 +2569,13 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AgentEntry"
+                        "$ref": "#/components/schemas/AgentMessage"
+                      }
+                    },
+                    "pending": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AgentMessage"
                       }
                     },
                     "nextAfter": {
@@ -2481,6 +2587,7 @@
                   },
                   "required": [
                     "items",
+                    "pending",
                     "nextAfter",
                     "hasMore"
                   ]
@@ -2498,16 +2605,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2557,16 +2661,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2605,16 +2706,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2673,16 +2771,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2740,16 +2835,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2814,16 +2906,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       },
@@ -2869,7 +2958,13 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AgentEntry"
+                        "$ref": "#/components/schemas/AgentMessage"
+                      }
+                    },
+                    "pending": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AgentMessage"
                       }
                     },
                     "nextAfter": {
@@ -2881,6 +2976,7 @@
                   },
                   "required": [
                     "items",
+                    "pending",
                     "nextAfter",
                     "hasMore"
                   ]
@@ -2898,16 +2994,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -2957,16 +3050,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -3005,16 +3095,13 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Busy / key reused / account not active"
           },
           "422": {
             "description": "Invalid input"
           },
-          "503": {
-            "description": "Feature not ready"
+          "429": {
+            "description": "Rate limited"
           }
         }
       }
@@ -3073,21 +3160,90 @@
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
+            "description": "Busy / key reused / account not active"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/proposals": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "prepared",
+                "consumed",
+                "rejected",
+                "expired",
+                "conflicted"
+              ]
+            },
+            "required": false,
+            "name": "state",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Proposal"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Wrong role / MFA required / actor disabled"
+          },
+          "404": {
+            "description": "Not found or not yours"
+          },
+          "409": {
+            "description": "Not pending / hash mismatch / version conflict / key reused"
           },
           "410": {
             "description": "Proposal expired"
           },
           "422": {
             "description": "Invalid input"
-          },
-          "503": {
-            "description": "Feature not ready"
           }
         }
       }
     },
-    "/api/v1/admin/agent/proposals/{id}": {
+    "/api/v1/admin/proposals/{id}": {
       "get": {
         "parameters": [
           {
@@ -3106,7 +3262,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentProposal"
+                  "$ref": "#/components/schemas/Proposal"
                 }
               }
             }
@@ -3115,27 +3271,24 @@
             "description": "Authentication required"
           },
           "403": {
-            "description": "Wrong role / MFA required"
+            "description": "Wrong role / MFA required / actor disabled"
           },
           "404": {
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
+            "description": "Not pending / hash mismatch / version conflict / key reused"
           },
           "410": {
             "description": "Proposal expired"
           },
           "422": {
             "description": "Invalid input"
-          },
-          "503": {
-            "description": "Feature not ready"
           }
         }
       }
     },
-    "/api/v1/admin/agent/proposals/{id}/confirm": {
+    "/api/v1/admin/proposals/{id}/confirm": {
       "post": {
         "parameters": [
           {
@@ -3179,7 +3332,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentDecision"
+                  "type": "object",
+                  "properties": {
+                    "proposal": {
+                      "$ref": "#/components/schemas/Proposal"
+                    },
+                    "receipt": {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    }
+                  },
+                  "required": [
+                    "proposal",
+                    "receipt"
+                  ]
                 }
               }
             }
@@ -3188,27 +3353,24 @@
             "description": "Authentication required"
           },
           "403": {
-            "description": "Wrong role / MFA required"
+            "description": "Wrong role / MFA required / actor disabled"
           },
           "404": {
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
+            "description": "Not pending / hash mismatch / version conflict / key reused"
           },
           "410": {
             "description": "Proposal expired"
           },
           "422": {
             "description": "Invalid input"
-          },
-          "503": {
-            "description": "Feature not ready"
           }
         }
       }
     },
-    "/api/v1/admin/agent/proposals/{id}/reject": {
+    "/api/v1/admin/proposals/{id}/reject": {
       "post": {
         "parameters": [
           {
@@ -3231,6 +3393,10 @@
                   "requestKey": {
                     "type": "string",
                     "format": "uuid"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 200
                   }
                 },
                 "required": [
@@ -3247,7 +3413,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentDecision"
+                  "type": "object",
+                  "properties": {
+                    "proposal": {
+                      "$ref": "#/components/schemas/Proposal"
+                    }
+                  },
+                  "required": [
+                    "proposal"
+                  ]
                 }
               }
             }
@@ -3256,39 +3430,25 @@
             "description": "Authentication required"
           },
           "403": {
-            "description": "Wrong role / MFA required"
+            "description": "Wrong role / MFA required / actor disabled"
           },
           "404": {
             "description": "Not found or not yours"
           },
           "409": {
-            "description": "Busy / version / key conflict"
+            "description": "Not pending / hash mismatch / version conflict / key reused"
           },
           "410": {
             "description": "Proposal expired"
           },
           "422": {
             "description": "Invalid input"
-          },
-          "503": {
-            "description": "Feature not ready"
           }
         }
       }
     },
-    "/api/v1/admin/agent/proposals/{id}/commit": {
+    "/api/v1/admin/ai/instruction-tests": {
       "post": {
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3299,10 +3459,29 @@
                   "requestKey": {
                     "type": "string",
                     "format": "uuid"
+                  },
+                  "talentId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "situation": {
+                    "type": "string",
+                    "enum": [
+                      "theme_suggestions",
+                      "daily_greeting"
+                    ]
+                  },
+                  "candidateText": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
                   }
                 },
                 "required": [
-                  "requestKey"
+                  "requestKey",
+                  "talentId",
+                  "situation",
+                  "candidateText"
                 ],
                 "additionalProperties": false
               }
@@ -3311,11 +3490,11 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Output of the AI task with the candidate instruction",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentReceipt"
+                  "$ref": "#/components/schemas/InstructionTest"
                 }
               }
             }
@@ -3324,22 +3503,19 @@
             "description": "Authentication required"
           },
           "403": {
-            "description": "Wrong role / MFA required"
+            "description": "Manager with MFA only"
           },
           "404": {
-            "description": "Not found or not yours"
+            "description": "Talent not found"
           },
           "409": {
-            "description": "Busy / version / key conflict"
-          },
-          "410": {
-            "description": "Proposal expired"
+            "description": "Request key reused"
           },
           "422": {
             "description": "Invalid input"
           },
           "503": {
-            "description": "Feature not ready"
+            "description": "AI not configured"
           }
         }
       }

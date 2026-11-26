@@ -1,3 +1,38 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Thử thách và chuỗi ngày
+
+Chấp thuận cả ba điểm: chỉ tự xác định đạt cho thử thách đếm được bằng số (ngày liên tục, số bài, follower tăng); loại khác là lời nhắn, không tự chúc mừng đạt. Trạng thái: đề xuất/đã nhận/từ chối/đang thực hiện/đạt/hết hạn; AI đặt hạn khi đề xuất, chỉ một thử thách đang thực hiện. Chuỗi ngày đếm ngày có ít nhất một bài thành công trên một SNS đã nối; ngắt ngày thì lần tiếp theo về ngày1. FCP cho tiếp tục mà không chờ văn bản của Nonaka.
+
+**Phần còn mở/giới hạn:** FCP vẫn xác nhận với Adesso ngày27/11 việc prompt đã nhận có đúng quan điểm thử thách của Nonaka. Không coi câu đó chặn ba quy tắc đã được chấp thuận; không tuyên bố prompt đã được Adesso xác nhận. QA101 về agent ghi tiến độ vẫn giữ.
+
+Căn cứ: QA `Q&A!A72:J72 (No.72)`; `EV-1347` / `DEC-0031`.
+
+### Khung lời nhắn hằng ngày
+
+Giờ sáng/trưa/tối chỉnh ở M-18 ❶, mặc định 8/12/20. Sáng có kết quả hôm trước, chuỗi ngày, gợi ý chủ đề và thử thách. Trưa AI quyết nội dung theo chỉ thị 毎日の声かけ, không mặc định trưa là nhắc gửi ảnh. Tối nhắc nhiều ngày không đăng và báo đạt mục tiêu. Nhắc ảnh/video theo M-18 ❷, trước giờ đăng2giờ. Bài đăng auto không có lời nhắn theo7-7.
+
+**Phần còn mở/giới hạn:** Không diễn giải ngoại lệ lời nhắn của bài auto thành dừng mọi hội thoại hay mọi báo cáo của Talent dùng auto.
+
+Căn cứ: QA `Q&A!A73:J73 (No.73)`; `EV-1348` / `DEC-0032`.
+
+### Giới hạn hội thoại và tâm sự nghiêm trọng
+
+Không giới hạn số lượt hội thoại; yêu cầu ngoài bài đăng được chuyển về chủ đề bài đăng theo chỉ thị AI. Không có chức năng báo Manager khi Talent tâm sự nghiêm trọng; phạm vi ứng xử nằm trong phần giới hạn hội thoại của chỉ thị. Không khôi phục nhãn/cảnh báo cũ chỉ vì còn trong màn18/11.
+
+**Phần còn mở/giới hạn:** Không suy thông báo đã có phê duyệt thương mại hoặc AI luôn phát hiện/ứng xử đúng. No.93 là đối chiếu0.3 ngày25/11, không tự gán là khách chọn toàn bộ câu chữ phương án B.
+
+Căn cứ: QA `Q&A!A76:J76 (No.76); Q&A!A93:J93 (No.93)`; `EV-1350` / `DEC-0034`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 
@@ -173,3 +208,5 @@ Câu hỏi gửi khách, đề xuất và kiểm tra phạm vi của cả EP03: 
 ## Quyết định từ Q&A (bản ngày 15/11/2026)
 
 - Q&A No.7 (đóng 17/11): quản lý xem toàn bộ hội thoại, tài năng được báo lần đầu mở ứng dụng (確認13, 42). Không làm hội thoại riêng tư (CR-24).
+
+</details>

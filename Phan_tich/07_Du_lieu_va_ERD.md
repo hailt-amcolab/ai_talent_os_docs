@@ -1,3 +1,62 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Nhập thông tin và ưu tiên chỉ thị
+
+Manager nhập/sửa 5 nhóm thông tin tại M-08 (YK3 bản 0.3), có lịch sử thay đổi; ChatGPT cũng xem/sửa cùng thông tin. Thông tin ngoài M-08 như sinh nhật/lịch xuất hiện được truyền qua hội thoại M-17 và lưu MD trong thư mục Talent trên OneDrive; không có thao tác sửa file OneDrive trực tiếp. Khi thông tin Talent mâu thuẫn chỉ thị AI, ưu tiên chỉ thị AI.
+
+**Phần còn mở/giới hạn:** No.74 là đối chiếu YK3 ngày25/11; No.92 là trả lời FCP26/11. Giữ QA101 về DB và backup: không suy toàn bộ dữ liệu chuyển về OneDrive; phạm vi đồng bộ DB/MD là thiết kế đội cần làm rõ. Phạm vi/chi phí màn mới chưa tự được duyệt thương mại.
+
+Căn cứ: QA `Q&A!A74:J74 (No.74); Q&A!A92:J92 (No.92)`; `EV-1332` / `DEC-0016`.
+
+### Quyền, phân công và khôi phục Manager
+
+Mọi Manager có thể duyệt và cập nhật mọi Talent. Mỗi Talent có một Manager phụ trách, gán thủ công tại M-11 ❺, không gán theo category. Trước khi vô hiệu hoá Manager phải chuyển Talent sang người khác; chặn tự vô hiệu hoá và vô hiệu hoá Manager cuối. Quên mật khẩu đặt lại qua email; mất thiết bị xác thực thì Manager khác đặt lại 2FA. Lần đăng nhập đầu M-01: sau kiểm mật khẩu hiện QR và ô mã 6 số. M-02/M-04 mặc định chỉ hiện Talent phụ trách, có lọc xem tất cả.
+
+**Phần còn mở/giới hạn:** Yêu cầu duyệt gửi Manager phụ trách; dự phòng khi nghỉ/bỏ sót và nơi nhận các thông báo khác vẫn chờ Adesso tại No.87/88, KS20261122 No.35. Quyền thao tác mọi Talent không đồng nghĩa gửi thông báo cho mọi Manager. FCP còn phải bổ sung màn QR.
+
+Căn cứ: QA `Q&A!A7:J7 (No.6); Q&A!A67:J67 (No.67); Q&A!A87:J87 (No.87); Q&A!A88:J88 (No.88); Q&A!A89:J89 (No.89)`; `EV-1333` / `DEC-0017`.
+
+### Kiểm và sửa từ cấm
+
+Kiểm từ cấm trước khi đặt lịch; phát hiện thì AI viết lại rồi đặt lịch. Không dùng nhánh Manager sửa, không thông báo Manager vì phát hiện này và không bắt Talent xác nhận lại sau AI sửa. Danh sách từ cấm mới chỉ áp dụng từ lần kiểm tiếp theo; bài đã kiểm và đặt lịch giữ nguyên, Manager muốn dừng thì huỷ lịch. Không tự quét lại toàn bộ lịch khi sửa danh sách.
+
+**Phần còn mở/giới hạn:** Quy tắc26/11 thay đề nghị22/11 yêu cầu xác nhận lại và nhánh Manager sửa tại QA90/GJ19 trên đúng chủ đề. Số vòng tự sửa nếu vẫn không sạch/lỗi AI là thiết kế lỗi còn cần đội xác định; không tự đặt bảo đảm AI sửa luôn thành công.
+
+Căn cứ: QA `Q&A!A57:J57 (No.57); Q&A!A71:J71 (No.71); Q&A!A96:J96 (No.96)`; `EV-1337` / `DEC-0021`.
+
+### Chờ thanh toán và khôi phục
+
+Khi Square thanh toán lại mà vẫn chưa xác nhận được thanh toán, báo Talent và Manager rồi tự chuyển 支払い待ち (Chờ thanh toán). Dừng AI coach, tạo video và đăng bài; vẫn thu phí tháng. Talent vẫn đăng nhập để đổi phương thức thanh toán. Xác nhận đã thanh toán thì tự trở lại 利用中. Trong lúc dừng không đăng; các bài lỡ giờ không tự đăng bù sau mở lại. Dùng cơ chế thu lại của cổng nếu có, không làm cơ chế thu lại riêng.
+
+**Phần còn mở/giới hạn:** Thay đúng câu trả lời No.46 về không tự dừng. Không tự đặt số lần/ngày thu lại vì No.4/49 còn chờ kiểm Square. H86 bản Việt nói rõ bài tương lai tiếp tục; G86 không mô tả riêng chi tiết đó, không suy phục hồi các bài đã huỷ vì lý do khác.
+
+Căn cứ: QA `Q&A!A63:J63 (No.63); Q&A!A86:J86 (No.86)`; `EV-1341` / `DEC-0025`.
+
+### Kết thúc sử dụng và khoản phí cuối
+
+Talent đã 利用終了 không trở lại 利用中 trực tiếp; email còn đăng ký không được đăng ký lại trong thời gian giữ dữ liệu. Dữ liệu Talent/office giữ 6 tháng rồi tự xoá. Có phí đã phát sinh chưa thu vẫn được kết thúc ngay; thu khoản cuối (phí tháng cuối và video) một lần ở lần thu tiếp theo, sau đó ngừng thu.
+
+**Phần còn mở/giới hạn:** No.98 mới chấp thuận việc kết thúc và khoản thu cuối; có lưu lịch sử thu tiền riêng trong OS và giữ bao lâu còn chờ Adesso (KS20261122 No.36). Không tự xoá hoặc giữ vô hạn dữ liệu tài chính.
+
+Căn cứ: QA `Q&A!A69:J69 (No.69); Q&A!A94:J94 (No.94); Q&A!A98:J98 (No.98)`; `EV-1345` / `DEC-0029`.
+
+### Thông báo, email và thao tác mở
+
+Thông báo Manager hiện trong quản trị và gửi email theo mô tả0.3; yêu cầu duyệt có danh sách chờ duyệt. Adesso cung cấp câu chữ và địa chỉ email nhận. Bấm dòng thông báo mở màn liên quan và tự đánh dấu 対応済み; bỏ tick 未対応 xem cả đã mở. Không thêm nút xử lý thủ công hoặc hai trạng thái nghiệp vụ đọc/xử lý độc lập. Đạt mục tiêu báo Talent và Manager.
+
+**Phần còn mở/giới hạn:** No.87/88 ngày26/11 còn hỏi người nhận các loại ngoài duyệt và fallback, nên không coi mặc định Manager phụ trách ở No.75 là chốt mọi ngoại lệ. Thiết kế email rộng hơn đề xuất cũ cần xử lý thương mại riêng. Gửi thành công là trạng thái kỹ thuật khác thao tác mở.
+
+Căn cứ: QA `Q&A!A75:J75 (No.75); Q&A!A76:J76 (No.76); Q&A!A97:J97 (No.97)`; `EV-1349` / `DEC-0033`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 
@@ -468,3 +527,5 @@ Có 13 điểm. 7 điểm đầu ảnh hưởng tới cấu trúc ERD, nên cầ
 | 11 | **Thời gian giữ và xóa** cho từng loại dữ liệu (mục 5), kể cả đơn bị từ chối. Tài năng rời đi: 6 tháng ([KS] 確認55) | Thiết kế việc xóa tự động và lưu trữ | 7-3, 9-3, 9-4, [KS] 確認55 |
 | 12 | **Dữ liệu cá nhân gửi cho dịch vụ ngoài:** gửi những trường nào cho OpenAI, Upload-Post, fal.ai, cổng thanh toán? V2 thêm ngày sinh để AI biết tuổi, nên cần quyết gửi ngày sinh hay chỉ tuổi | Cần đánh dấu trường nhạy cảm | 10-2, 10-3, UC-01 前提 |
 | 13 | **Mã tài năng trên Upload-Post được tạo lúc nào:** khi duyệt đơn, khi thanh toán, hay khi bấm kết nối | Thời điểm có giá trị của cột ma_upload_post | 6-10 (8-2), UC-01 |
+
+</details>

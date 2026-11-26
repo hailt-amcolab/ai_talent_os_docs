@@ -1,68 +1,68 @@
 import { writeFileSync } from 'node:fs'
+import OpenAI from 'openai'
 import { Queue, Worker } from 'bullmq'
 import { Redis } from 'ioredis'
 import { loadEnv } from './config/env.ts'
 import { connectDatabase } from './infra/database/client.ts'
-import { agentServices } from './container.ts'
-import { openAiGateway } from './modules/ai-coach/model.ts'
-import { runEvent, type RunnerDeps } from './modules/ai-coach/runner.ts'
-import { runEffects, type ProfileExporter } from './modules/ai-coach/effects.ts'
+import { agentServices, controlServices, runEventsFor } from './container.ts'
 import { createOneDrive } from './modules/onedrive/connections.ts'
+import { reclaimExports, runProfileExports, type ProfileExporter } from './modules/coach-config/export.ts'
+import { DailyTopicsService } from './modules/coach-daily/service.ts'
+import { runAgentEvent, type RuntimeDeps } from './ai/runtime/run-agent.ts'
 
-// Agent worker process (report §2.1, §11): outbox dispatcher + reconciler + BullMQ consumer 'agent-interactive' + OneDrive export effects.
-// No HTTP server. Run: node dist/worker.js (Docker service `worker`). Never started by the API container.
+// Worker process (agent_spec/ai-core/AI_CORE_ARCHITECTURE.md §10): outbox dispatchers + BullMQ consumers 'agent-interactive'
+// (Agents SDK runs) and 'ai-tasks' (AI Task Mode) + scheduler + reconciler + OneDrive profile export. No HTTP server.
 const env = loadEnv()
 const missing: string[] = (['REDIS_URL', 'OPENAI_API_KEY', 'AI_COACH_MODEL'] as const).filter(k => !env[k])
 if (!env.ENABLE_AGENT_CORE) missing.push('ENABLE_AGENT_CORE=true')
 if (missing.length) { console.error(JSON.stringify({ level: 'error', code: 'WORKER_CONFIG_MISSING', missing })); process.exit(1) }
-
 const log = (level: 'info' | 'warn' | 'error', code: string, extra: Record<string, unknown> = {}) => console.log(JSON.stringify({ level, code, ...extra }))
 const prefix = env.AI_QUEUE_PREFIX ?? `talentos-${env.NODE_ENV}`
-const QUEUE = 'agent-interactive' // ponytail: one queue; add 'agent-batch' with its own concurrency when a batch task exists (report §11.1)
 
-// ponytail: one pool (talent_runtime) for dispatcher + worker + effects (report §4.2 allows it for the first step).
+// ponytail: one pool (talent_runtime) for dispatchers + workers + effects.
 const db = await connectDatabase(env.DATABASE_URL)
-const { store, changes } = agentServices(env, db)
+const events = runEventsFor(env), { proposals } = controlServices(env, db), { conversations } = agentServices(db, env, events)
 const price = env.AI_PRICE_INPUT_PER_MTOK !== undefined && env.AI_PRICE_OUTPUT_PER_MTOK !== undefined
   ? { inputPerMTok: env.AI_PRICE_INPUT_PER_MTOK, outputPerMTok: env.AI_PRICE_OUTPUT_PER_MTOK, currency: env.AI_PRICE_CURRENCY } : null
-const deps: RunnerDeps = { db, store, changes, gateway: openAiGateway(env.OPENAI_API_KEY!, env.AI_COACH_MODEL!, env.OPENAI_BASE_URL), cfg: {
-  maxModelSteps: env.AGENT_MODEL_MAX_STEPS, maxToolCalls: env.AGENT_MAX_TOOL_CALLS, computeMs: env.AGENT_COMPUTE_TIMEOUT_MS, modelTimeoutMs: env.AGENT_MODEL_TIMEOUT_MS,
-  maxOutputTokens: 4000, heartbeatMs: 5_000, writesEnabled: env.ENABLE_AGENT_WRITES, price } }
-// OneDrive export target (Profile.md in the Talent folder). Unset → effects stay pending with ONEDRIVE_NOT_CONFIGURED and retry later.
+// Trace settings (no sensitive data, ADR-10): traceConfig in ai/runtime/run-agent.ts.
+const runtime: RuntimeDeps = { db, store: conversations, proposals, cfg: {
+  model: env.AI_COACH_MODEL!, modelName: env.AI_COACH_MODEL!, maxTurns: env.AGENT_MODEL_MAX_STEPS, computeMs: env.AGENT_COMPUTE_TIMEOUT_MS, heartbeatMs: 5_000,
+  maxOutputTokens: 1200, reasoningEffort: 'low', writesEnabled: env.ENABLE_AGENT_WRITES, history: { items: 30, chars: 16_000 }, price },
+  onDelta: (runId, text) => events?.publish(runId, text) }
+const daily = new DailyTopicsService(db, new OpenAI({ apiKey: env.OPENAI_API_KEY, baseURL: env.OPENAI_BASE_URL }) as never,
+  { prepHourJst: 6, deadlineHourJst: 8, model: env.AI_COACH_MODEL!, timeoutMs: env.AGENT_MODEL_TIMEOUT_MS, price })
 const onedrive = createOneDrive(env, db)
 const exporter: ProfileExporter | null = onedrive ? async (folderId, name, md) => (await onedrive.demo()).writeText(folderId, name, md) : null
 
-// Two Redis clients: the dispatcher fails fast, the BullMQ worker reconnects forever (maxRetriesPerRequest: null).
+// Two Redis clients: dispatchers fail fast, BullMQ workers reconnect forever (maxRetriesPerRequest: null).
 const dispatchRedis = new Redis(env.REDIS_URL!, { maxRetriesPerRequest: 1, enableOfflineQueue: false })
 const workerRedis = new Redis(env.REDIS_URL!, { maxRetriesPerRequest: null })
 for (const r of [dispatchRedis, workerRedis]) r.on('error', () => log('warn', 'REDIS_ERROR'))
-const queue = new Queue(QUEUE, { connection: dispatchRedis, prefix })
+type Source = { leaseDue(n: number): Promise<Array<{ eventId: string; sequence: bigint; token: string }>>; releaseDispatch(id: string, token: string, o: 'enqueued' | 'failed' | 'still_queued'): Promise<void> }
+// attempts=1: a job is only transport; recovery goes through the DB, never a blind BullMQ retry.
+const lanes = [
+  { name: 'agent-interactive', source: conversations as Source, handle: (id: string) => runAgentEvent(runtime, id), concurrency: env.AGENT_INTERACTIVE_CONCURRENCY },
+  { name: 'ai-tasks', source: daily as Source, handle: (id: string) => daily.run(id), concurrency: 2 },
+].map(l => {
+  const queue = new Queue(l.name, { connection: dispatchRedis, prefix })
+  const worker = new Worker(l.name, async job => { const result = await l.handle(String(job.data.eventId)); log('info', 'JOB_DONE', { queue: l.name, jobId: job.id, result }); return result },
+    { connection: workerRedis, prefix, concurrency: l.concurrency, lockDuration: env.AGENT_COMPUTE_TIMEOUT_MS + 30_000 })
+  worker.on('failed', (job, e) => log('error', 'JOB_FAILED', { queue: l.name, jobId: job?.id, error: e.name }))
+  return { ...l, queue, worker }
+})
 
-// attempts=1: a job is only transport; recovery goes through the DB ledger, never a blind BullMQ retry of the agent loop.
-const worker = new Worker(QUEUE, async job => {
-  const result = await runEvent(deps, String(job.data.eventId))
-  log('info', 'AGENT_JOB_DONE', { jobId: job.id, result })
-  return result
-}, { connection: workerRedis, prefix, concurrency: env.AGENT_INTERACTIVE_CONCURRENCY, lockDuration: env.AGENT_COMPUTE_TIMEOUT_MS + 30_000 })
-worker.on('failed', (job, e) => log('error', 'AGENT_JOB_FAILED', { jobId: job?.id, error: e.name }))
-
-// Dispatcher: lease due wake events, enqueue (jobId = <event>-<delivery_sequence>), release. A new job only when the previous
-// one of that event is no longer live in Redis (lost after a Redis restart → re-sent from the DB intent).
+// Dispatcher: lease due events, enqueue (jobId = <event>-<delivery_sequence>), release. A new job only when the previous one of
+// that event is no longer live in Redis (lost after a Redis restart → re-sent from the DB intent).
 const LIVE = new Set(['waiting', 'active', 'delayed', 'prioritized', 'waiting-children'])
 async function dispatch() {
-  for (const d of await store.leaseDue(10)) {
+  for (const l of lanes) for (const d of await l.source.leaseDue(10)) {
     try {
-      if (d.sequence > 1n && LIVE.has(await queue.getJobState(`${d.eventId}-${d.sequence - 1n}`))) { await store.releaseDispatch(d.eventId, d.token, 'still_queued'); continue }
-      await queue.add('agent.run.wake', { eventId: d.eventId }, { jobId: `${d.eventId}-${d.sequence}`, attempts: 1, removeOnComplete: { age: 86_400, count: 1000 }, removeOnFail: { age: 7 * 86_400 } })
-      await store.releaseDispatch(d.eventId, d.token, 'enqueued')
-    } catch {
-      log('warn', 'DISPATCH_ENQUEUE_FAILED', { eventId: d.eventId })
-      await store.releaseDispatch(d.eventId, d.token, 'failed')
-    }
+      if (d.sequence > 1n && LIVE.has(await l.queue.getJobState(`${d.eventId}-${d.sequence - 1n}`))) { await l.source.releaseDispatch(d.eventId, d.token, 'still_queued'); continue }
+      await l.queue.add(l.name, { eventId: d.eventId }, { jobId: `${d.eventId}-${d.sequence}`, attempts: 1, removeOnComplete: { age: 86_400, count: 1000 }, removeOnFail: { age: 7 * 86_400 } })
+      await l.source.releaseDispatch(d.eventId, d.token, 'enqueued')
+    } catch { log('warn', 'DISPATCH_ENQUEUE_FAILED', { queue: l.name, eventId: d.eventId }); await l.source.releaseDispatch(d.eventId, d.token, 'failed') }
   }
 }
-
-// Ticks never overlap; each also refreshes the healthcheck file (Docker checks its age).
 function every(ms: number, name: string, fn: () => Promise<unknown>) {
   let busy = false
   return setInterval(() => {
@@ -73,15 +73,16 @@ function every(ms: number, name: string, fn: () => Promise<unknown>) {
 }
 const timers = [
   every(1_000, 'DISPATCH', dispatch),
+  every(60_000, 'SCHEDULE', async () => { const n = await daily.schedule(); if (n) log('info', 'SCHEDULED', { dailyTopics: n }) }),
   every(10_000, 'RECONCILE', async () => {
-    const r = await store.reconcile(), expired = await changes.expireDue()
-    if (r.requeued || r.unknown || r.dispatch || expired) log('info', 'RECONCILED', { ...r, expiredProposals: expired })
+    const runs = await conversations.reconcile(), tasks = await daily.reconcile(), expired = await proposals.expireDue(), exports = await reclaimExports(db)
+    if (runs.requeued || runs.lost || runs.dispatch || tasks || expired || exports) log('info', 'RECONCILED', { runs, tasks, expiredProposals: expired, exports })
   }),
-  every(3_000, 'EFFECTS', async () => { const r = await runEffects(store, exporter); if (Object.keys(r).length) log('info', 'EFFECTS', r) }),
+  every(3_000, 'EFFECTS', async () => { const r = await runProfileExports(db, exporter); if (Object.keys(r).length) log('info', 'EFFECTS', r) }),
 ]
-log('info', 'WORKER_STARTED', { queue: QUEUE, prefix, model: env.AI_COACH_MODEL, concurrency: env.AGENT_INTERACTIVE_CONCURRENCY, writes: env.ENABLE_AGENT_WRITES, onedrive: !!exporter, usagePriced: !!price })
+log('info', 'WORKER_STARTED', { queues: lanes.map(l => l.name), prefix, model: env.AI_COACH_MODEL, writes: env.ENABLE_AGENT_WRITES, onedrive: !!exporter, usagePriced: !!price })
 
-// Stop taking work, let the running job finish (heartbeat keeps going), then close Redis and DB. Hard deadline > model timeout.
+// Stop taking work, let running jobs finish (heartbeats keep going), then close Redis and DB. Hard deadline > model timeout.
 let stopping = false
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.on(signal, () => {
   if (stopping) return
@@ -89,8 +90,7 @@ for (const signal of ['SIGINT', 'SIGTERM'] as const) process.on(signal, () => {
   timers.forEach(clearInterval)
   setTimeout(() => process.exit(1), env.AGENT_MODEL_TIMEOUT_MS + 40_000).unref()
   void (async () => {
-    await worker.close()
-    await queue.close()
+    for (const l of lanes) { await l.worker.close(); await l.queue.close() }
     workerRedis.disconnect(); dispatchRedis.disconnect()
     await db.$disconnect()
     process.exit(0)

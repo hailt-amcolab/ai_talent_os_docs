@@ -9,8 +9,6 @@
 //   npm run ai:talent -- --all-logins
 // Make an existing login an active Manager (for M-17 / admin agent tests; the admin routes also need a TOTP/aal2 session):
 //   npm run ai:talent -- --make-manager <loginUserId>
-// Operator decision on an agent run left 'unknown' (model may have been called; report §4.4). retry = new model call, may be charged:
-//   npm run ai:talent -- --agent-resolve <runId> --action retry|fail
 // Or create N NEW confirmed Talent logins (needs SUPABASE_URL + SUPABASE_SECRET_KEY), passwords printed once:
 //   npm run ai:talent -- --seed 3
 // Bring OneDrive to the current layout for every in-use Talent: create + link a folder when missing, add a missing
@@ -23,9 +21,8 @@ import { createClient } from '@supabase/supabase-js'
 import { createDatabase, type Database } from '../src/infra/database/client.ts'
 import { loadEnv } from '../src/config/env.ts'
 import { createOneDrive } from '../src/modules/onedrive/connections.ts'
-import { RunStore } from '../src/modules/ai-coach/store.ts'
 
-const { values: a } = parseArgs({ options: { talent: { type: 'string' }, manager: { type: 'string' }, email: { type: 'string' }, name: { type: 'string', default: 'デモタレント' }, birth: { type: 'string', default: '2000-01-01' }, seed: { type: 'string' }, 'link-onedrive': { type: 'boolean' }, 'all-logins': { type: 'boolean' }, 'make-manager': { type: 'string' }, 'agent-resolve': { type: 'string' }, action: { type: 'string' } } })
+const { values: a } = parseArgs({ options: { talent: { type: 'string' }, manager: { type: 'string' }, email: { type: 'string' }, name: { type: 'string', default: 'デモタレント' }, birth: { type: 'string', default: '2000-01-01' }, seed: { type: 'string' }, 'link-onedrive': { type: 'boolean' }, 'all-logins': { type: 'boolean' }, 'make-manager': { type: 'string' } } })
 if (process.env.NODE_ENV === 'production') throw new Error('Refusing to create Talent fixtures in production')
 
 const supabaseAdmin = () => {
@@ -136,11 +133,8 @@ try {
     console.table(rows.length ? rows : [{ result: 'every login already has a role' }])
   } else if (a['make-manager']) {
     console.log(JSON.stringify({ managerId: await approver(db, a['make-manager']) }))
-  } else if (a['agent-resolve']) {
-    if (a.action !== 'retry' && a.action !== 'fail') throw new Error('--action retry|fail')
-    console.log(JSON.stringify({ runId: a['agent-resolve'], state: await new RunStore(db).resolveUnknown(a['agent-resolve'], a.action) }))
   } else {
-    if (!a.talent) throw new Error('Need --talent <loginUserId>, --all-logins, --seed N, --link-onedrive, --make-manager or --agent-resolve')
+    if (!a.talent) throw new Error('Need --talent <loginUserId>, --all-logins, --seed N, --link-onedrive, or --make-manager')
     console.log(JSON.stringify({ talentId: await link(db, { talent: a.talent, manager: a.manager, email: a.email, name: a.name === 'デモタレント' ? undefined : a.name, birth: a.birth! }) }))
   }
 } finally {

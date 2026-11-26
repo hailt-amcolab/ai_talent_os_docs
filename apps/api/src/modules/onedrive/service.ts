@@ -1,11 +1,11 @@
 import { randomUUID, createHash } from 'node:crypto'
 import { AppError, notFound } from '../../core/errors.ts'
 import type { DriveClient, DriveItem } from '../../infra/onedrive/graph.ts'
-import { AGENCY_FILES, ONEDRIVE_FOLDERS as F, TALENT_FILES, type ContextFile, type TalentFiles } from '../ai-coach/context.ts'
+import { AGENCY_FILES, ONEDRIVE_FOLDERS as F, TALENT_FILES, type ContextFile, type TalentFiles } from '../coach-config/export.ts'
 
 // OneDrive technology demo (agent_spec/onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md §2, §7).
 // Tree: <root>/Talents/<uuid>_<display name>/{Profile.md, AI_Memo.md}; <root>/Common/{Knowhow.md, Algorithm.md, AI_Instructions.md}
-// (names: ai-coach/context.ts). Only the AI documents live here (storage doc §3); other folders users made are left alone.
+// (names: coach-config/export.ts). Only the AI documents live here (storage doc §3); other folders users made are left alone.
 // ponytail: no DB binding yet; Graph item IDs are the only keys and the drive is the registry.
 // Real feature: store drive_id+item_id per talent (talents.onedrive_folder_id) and run creation in the worker.
 const BAD = /["*:<>?/\\|#%\u0000-\u001f]/
@@ -178,7 +178,7 @@ export class OneDriveDemo {
     const { item } = await this.scoped(id)
     return dto(await this.drive.replaceFile(id, content, this.textType(item.name), eTag))
   }
-  // Agent profile export (ai-coach/effects.ts): replace the file if it exists, else create it. Returns the item id.
+  // Agent profile export (coach-config/export.ts): replace the file if it exists, else create it. Returns the item id.
   // A human edit between list and replace fails the If-Match; the effect worker retries with the new eTag.
   async writeText(folderId: string, name: string, content: string) {
     const folder = await this.folder(folderId), file = safeName(name)

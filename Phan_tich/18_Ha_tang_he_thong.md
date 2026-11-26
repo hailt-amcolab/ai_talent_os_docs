@@ -246,3 +246,96 @@ Các câu đã có trong file 15 cũng ảnh hưởng hạ tầng:
 3. Kết nối Microsoft Graph (I3) và dịch vụ gửi thư (C1). EP01 và EP02 cần hai phần này.
 4. Kết nối OpenAI, Upload-Post, fal.ai, GMO theo thứ tự module trong file 16 mục 4.
 5. Dựng môi trường thật trước kiểm thử chấp nhận (giữa tháng 1/2027, §14-1).
+
+## 12. Yêu cầu hạ tầng từ kiến trúc AI Core [Đề xuất]
+
+Yêu cầu hạ tầng để vận hành [AI Core](../agent_spec/ai-core/README.md). Cấu hình ứng dụng của AI Core (biến môi trường, hàng đợi, giới hạn) ở [Runtime §8](../agent_spec/ai-core/AI_RUNTIME_DESIGN.md) và [Kiến trúc §10–§12](../agent_spec/ai-core/AI_CORE_ARCHITECTURE.md).
+
+### 12.1. Thành phần hạ tầng để vận hành kiến trúc
+
+Mục này xác định các thành phần và điều kiện vận hành cần có. Quyết định nhà cung cấp, nơi đặt FE/BE, cấu hình máy và topology triển khai được quản lý riêng trong thiết kế hạ tầng.
+
+| Thành phần hạ tầng | Đề xuất vận hành | Điều kiện cần đáp ứng |
+|---|---|---|
+| Frontend Next.js | Triển khai riêng theo phương án web của dự án | HTTPS; gọi REST BE; không đưa API nghiệp vụ vào Next API routes/server actions |
+| API/MCP Hono | Một service HTTP, có thể cùng image/mã nguồn với worker nhưng entrypoint riêng | URL HTTPS ổn định cho REST/MCP/webhook; chuyển đúng Authorization và header giao thức; cấu hình timeout theo request |
+| Worker agent/effect | Tiến trình/container riêng khỏi HTTP; tách consumer và ngân sách interactive/batch | Chat không bị batch chiếm hết slot; timeout model/provider, heartbeat/fencing, graceful shutdown và restart |
+| Dispatcher/scheduler/reconciler | Có thể cùng deployment worker để khởi đầu, tách vai trò khi tải tăng | Claim/lease bền vững, chống chạy trùng khi nhiều process; phục hồi backlog từ DB |
+| Redis dành cho BullMQ | Mạng riêng; persistence và volume bền vững; `noeviction` | Không mở cổng công khai; đủ RAM/headroom và disk; theo dõi enqueue lỗi, lag và queue backlog |
+| Supabase Postgres/Auth | Dịch vụ DB/xác thực bên ngoài application host | Pool connection được chia theo vai trò; backup và kiểm restore; quyền DB tối thiểu, không dùng role owner cho agent |
+| Media/OneDrive | Kho ngoài application host, truy cập qua adapter | Quyền theo asset/owner/version; URL truy cập có hạn phù hợp provider; backup/retention riêng khỏi DB |
+| OpenAI và dịch vụ ngoài | Gọi API qua mạng từ BE/worker | Credential ở backend, timeout/quota, request reference và đối soát; không cần GPU hoặc chạy model trên máy BE |
+| Giám sát và backup | Log/metric/alert cùng nơi lưu backup ngoài application host | Theo dõi lỗi, queue wait, run quá hạn, usage, RAM/disk; không ghi secret hoặc toàn hội thoại vào log kỹ thuật |
+
+**Phương án khởi đầu tham khảo:** nếu API, worker và Redis cùng một VPS, có thể bắt đầu đánh giá ở mức4 vCPU/8 GB RAM, dành dung lượng SSD cho OS/image/log/Redis persistence; build image ngoài máy phục vụ. Đây là dự toán kỹ thuật chưa benchmark, không là cấu hình đã chốt hoặc cam kết tải. DB, model, video và kho media đặt ngoài VPS; không giữ media lâu dài trên máy ứng dụng. Một VPS cần chấp nhận điểm lỗi chung, persistence không thay high availability.
+
+Sizing dựa trên số lượt giờ cao điểm, model/tool calls mỗi run, latency provider, concurrency agent và kích thước backlog. Khi vượt ngân sách CPU/RAM hoặc queue wait mục tiêu, tăng worker/tài nguyên hoặc tách Redis/worker theo quyết định hạ tầng; phải kiểm DB pool và quota provider trước tăng concurrency.
+
+API trả operation ID; UI nhận tiến độ/kết quả qua polling hoặc stream có kiểm quyền. Nếu chọn SSE, proxy phải hỗ trợ stream, reconnect và đọc lại trạng thái; mất kết nối UI không hủy command đã commit. Trạng thái “đã lưu” dựa trên kết quả service, không dựa vào token model đang stream.
+
+### 12.2. Yêu cầu vận hành và bảo vệ dữ liệu xuyên module
+
+| Yêu cầu nguồn | Thiết kế và phép kiểm phải có trước production |
+|---|---|
+| Buổi sáng sẵn sàng trước giờ chào; mở rộng quy mô | Tách hàng đợi interactive, daily, media/video và effect; giới hạn theo provider/account, ưu tiên job tới hạn. Lưu deadline/timezone/settings revision, đo queue wait và tổng thời gian đến message ready; test cohort khởi đầu và quy mô thương mại đã chốt. Nguồn nói 30→100→200–300→1.000 nhưng CR09 vẫn chờ; không cam kết 1.000 chỉ vì dùng queue |
+| Thời gian/lịch | Lưu instant UTC, business timezone cấu hình rõ theo deployment Nhật (đề xuất `Asia/Tokyo`), định nghĩa localDate/day boundary cho topics/metrics/streak/billing; kỳ ngày gồm bắt đầu/kết thúc phải có contract. Giờ SNS riêng trong khung Manager; user thấy giờ theo cùng timezone. Không lấy timezone máy worker hoặc timestamp ingest làm ngày đăng |
+| Provider hỏng chỉ ảnh hưởng chức năng tương ứng | Timeout/circuit breaker/rate limit và health/readiness theo adapter; không chặn chat đọc dữ liệu khi video/push lỗi. Distinguish unavailable/failed/partial/unknown; retry ingestion, retry delivery kỹ thuật và user tạo lượt đăng mới có policy riêng. Provider capability registry chứa bằng chứng sandbox/version, không dựa vào slide so sánh |
+| Auth và quyền | Talent email/password, đổi mật khẩu tạm và reset qua email; Manager MFA/TOTP, enrollment/recovery và disable có kiểm phiên. Giá trị 8 ký tự, 5 lần/15 phút, 30 ngày Talent, 30 phút Manager trong YK3 là dự kiến theo P105, cần kiểm cấu hình Auth/support và quyết định thiết kế trước dùng làm AC. Không giả định Supabase mặc định khớp. DB runtime role tối thiểu, RLS/quyền query theo đường truy cập thực, tách credential fixture/production |
+| Dữ liệu/secret | TLS, mã hóa lưu trữ/backup và secret quản lý riêng; URL media ký ngắn hạn, scope theo asset/version, log redact. Model/tool không có secret hoặc generic SQL/HTTP. Nội dung user/media/news chống prompt injection bằng scope/schema/service, eval vượt quyền. Cấu hình sử dụng dữ liệu/retention của model/video provider phải kiểm theo hợp đồng thực; không hứa no-training/no-storage chỉ từ prompt |
+| Giới hạn và chi phí | File count/type/size, tổng quota, context/output budget và concurrency do team thiết kế/kiểm provider, UI/API đồng bộ; technical run limits không thành giới hạn số lần Talent nhờ viết lại. Usage theo call/model/Talent/month, media analysis/news/video theo loại riêng; ChatGPT subscription tách phí API, office và global/Manager allocations không gán Talent giả |
+| Backup/restore, retention và nhật ký | Chốt RPO/RTO, chu kỳ/retention và chủ vận hành; backup DB cùng quyền/schema, object media/OneDrive theo phạm vi, mapping provider và secret recovery an toàn. Redis không là bản lưu duy nhất. Thử restore staging với pending approvals/outbox/effect và deletion manifest. View logs bất biến với Manager; access log, action log, processing log và AI ledger có quyền/retention riêng, CR07 chưa chốt phần mở rộng |
+| Môi trường và hệ thống đang chạy | Dev/test/prod tách DB/storage/Redis keys/provider users/OAuth redirect/secrets/webhooks; fixture giả, dữ liệu thật chỉ trong phạm vi chấp thuận bằng văn bản. Domain/network/resource tách ứng dụng Instagram DM, kiểm hồi quy OAuth/webhook/rate limit; không dùng chung user mapping hay đổi integration đang chạy khi chưa có thiết kế |
+| Thiết bị và bàn giao | Ma trận OS/browser được team chốt; test PWA install, reconnect callbacks, permission denied, notification mở đúng màn, đổi account và mobile Manager trên thiết bị thật. Asset/text/terms/pricing/NG/profile/goal/instruction/provider test credentials có checklist Adesso cung cấp. Test không tự thay phê duyệt thương mại hoặc quyền dùng dữ liệu thật |
+
+Căn cứ: YK3 P901–950, QA No.18/24/25/29/33/49/65/67/89; CR07/08/09/13; EXT24 là đầu vào so sánh, không là kiểm chứng nhà cung cấp. Những giá trị RPO/RTO/SLA/quota chưa có quyết định phải có owner và kết quả thiết kế trước release; tài liệu không tự đặt cam kết.
+
+
+## 12.3. Đề xuất cấu hình kiểm tải đồng thời ngày 26/11/2026
+
+**Mức thiết kế hiện hành theo chỉ đạo người dùng:** 30 Talent + 5 quản lý thao tác đồng thời; tối đa 10 agent run tương tác hoạt động trên toàn bộ worker, dùng chung Talent/Manager. Tổng tài khoản vẫn150 ban đầu, mục tiêu1.000. Tách slot batch khỏi10slot tương tác. Các con số155/1.010người,35/220request/giây và30/100slot dưới đây là lịch sử phương án trước, không tiếp tục dùng làm mục tiêu hiện hành; cấu hình cũ cũng không được coi là cấu hình đã chứng minh cho mức mới. Nội dung3-2 hiện hành ưu tiên khi lập kế hoạch; chưa đổi cấu hình chạy thực tế, quota hoặc gate.
+
+
+**PROPOSAL — chưa benchmark, chưa chốt mua hạ tầng hoặc phê duyệt thương mại.** Phần này cụ thể hóa mức tải mới của [mục 3-2](../docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md). Thay việc dùng mức tham khảo một VPS 4 vCPU/8 GB tại 12.1 làm mặc định cho tải mới; giữ nguyên 12.1 như phương án khởi đầu cần đánh giá.
+
+### Đính chính sau kiểm tra nghiệp vụ AI
+
+**Chưa đủ cơ sở xác nhận155/1.010người được phục vụ trọn nghiệp vụ, hoặc gọi cấu hình dưới đây là cấu hình đáp ứng.** Cấu hình và30/100slot là giả thuyết kiểm thử. Tài liệu runtime §6.4/8.2 và cấu hình mẫu `apps/api/.env.example` hiện ghi `AGENT_INTERACTIVE_CONCURRENCY=1`, tối đa8bước model, thời gian run tối đa120giây; limiter chung theo quota model còn được ghi chưa hoàn tất. Đây là cấu hình mẫu/thiết kế, không chứng minh deployment thực tế, nhưng không có bằng chứng đã chạy30/100slot với model thật.
+
+Phép tính35/220request/giây chỉ suy từ thao tác mỗi5giây, không quy đổi được thành lượt chat xử lý được. Ví dụ nếu150Talent mỗi người gửi1tin/phút và run chiếm slot trung bình20giây, riêng chat đã cần trung bình50run hoạt động cùng lúc (150÷60×20), chưa dự phòng và chưa tính Manager/batch.30slot không đủ ổn định cho giả định này. Nếu nhịp1tin/2phút thì trung bình25run, nhưng vẫn chưa chứng minh độ trễ95%đạt15/60giây. Với1.000Talent,1tin/phút và20giây/run thì trung bình khoảng334run. Cần đo phân bố latency, số model/tool calls, context/token, pool và tệp thay vì lấy trung bình làm cam kết.
+
+Giữ benchmark tách ordinary traffic và AI nhưng phải chạy kết hợp. Trước chốt cấu hình, lập profile chat ngắn, hội thoại dài, phân tích ảnh, tạo bài/chỉ dẫn qua quản lý, lô buổi sáng, xử lý tư liệu/video, webhook/đăng bài và tình huống provider chậm. Mỗi profile phải có tần suất, kích thước và tỷ lệ; số150Talent không tự xác định nhịp gửi tin. Chỉ sau đó xác nhận quota, số slot, tài nguyên và chi phí. Cập nhật nhận định “một worker concurrency4đủ” ở runtime §8.3 trong lần sizing được giao: đó cũng chỉ là ước tính theo số lượt/ngày, chưa chứng minh cao điểm hoặc150người cùng chat.
+
+### Mức tải và căn cứ
+
+Nguồn YK 3 ngày 24/11 §3-2, w:p 905–908 (đếm từ 0) nói số Talent, lô buổi sáng và chi phí, không chốt concurrent users. Người dùng yêu cầu 150 Talent ban đầu, mục tiêu 1.000 và tăng người đồng thời. Đề xuất mới:150 Talent+5 Manager và 1.000 Talent+10 Manager cùng thao tác, không gán đây là quyết định concurrency có sẵn của khách.
+
+Với một thao tác mỗi 5 giây/người,155 người tạo khoảng 31 request/giây;1.010 người khoảng 202 request/giây. Chọn mục tiêu kiểm 35 và 220 request/giây, là số đã làm tròn có dư nhỏ, chưa phải phép sizing hoàn chỉnh. Polling, làm mới phiên, webhook và traffic nội bộ phải tính thêm, đo riêng rồi chạy kết hợp; không dùng test đọc tĩnh để chứng minh toàn luồng. Kiểm đăng nhập đồng loạt riêng vì hạn mức xác thực khác tải CRUD.
+
+### Cấu hình dùng làm điểm bắt đầu kiểm thử
+
+- Giai đoạn 155 người: một máy API 4 vCPU/8 GBRAM; một máy worker 4 vCPU/8 GBRAM; Redis riêng 2 vCPU/4 GBRAM; Supabase compute Medium 4 GBRAM làm cấu hình DB khởi điểm để đo. Frontend và media đặt ngoài các máy này. Chưa có dự phòng API/worker nên không tự chứng minh high availability.
+- Giai đoạn 1.010 người: hai máy API, mỗi máy 4 vCPU/8 GBRAM, qua bộ cân bằng tải; hai máy worker, mỗi máy 8 vCPU/16 GBRAM, tách ngân sách chat và batch; Redis riêng 2 vCPU/4 GBRAM, cần cơ chế phục hồi/dự phòng phù hợp SLO; Supabase compute XL 4 vCPU/16 GBRAM làm điểm bắt đầu kiểm DB. Đây là lựa chọn có dư để thử, chưa chứng minh là cấu hình tối thiểu hoặc bảo đảm 220 request/giây.
+- Mỗi máy ứng dụng dự trù 80 GBSSD cho hệ điều hành, image và log luân phiên; Redis dự trù 40 GBSSD cho persistence và theo dõi tăng trưởng. Không dùng các dung lượng này làm quota media/DB. Tính dung lượng DB, media, backup và băng thông từ số file/lượt thực tế và retention trước khi báo giá.
+- Có thể thay cấu hình sau benchmark để giảm chi phí hoặc tăng năng lực. Gói Supabase trả phí không tự đồng nghĩa đã chọn đủ compute; theo tài liệu hiện tại, Medium là 4 GB/shared CPU, XL là 4 vCPU dedicated/16 GB. Phải chọn riêng compute, disk và backup.
+
+### AI và hạn mức nhà cung cấp
+
+Mục tiêu kiểm chat:30 và 100 yêu cầu đang chờ/xử lý; dự trù ban đầu tối đa 30 và 100 agent run đang hoạt động trên toàn bộ worker, điều chỉnh theo quota và số đo. Slot batch tách riêng, không được chiếm slot chat. Số lệnh model song song không đồng nhất agent run vì mỗi run có nhiều bước/tool calls. Tạo video tiếp nhận 20/50 việc nhưng số lệnh fal.ai thực chạy theo quota; không dựng GPU nội bộ chỉ để điều phối dịch vụ video bên ngoài.
+
+Ví dụ tính ngân sách **ASSUMPTION**: mỗi run chiếm slot trung bình 20 giây, gọi model trung bình 2 lần, mỗi lần tổng 4.000 token.30 slot tương ứng khoảng 90 run/phút,180 lần gọi/phút và 720.000 token/phút;100 slot khoảng 300 run/phút,600 lần gọi/phút và 2,4 triệu token/phút. Đây là nhu cầu minh họa trước phần dự phòng/batch/retry, không phải quota tài khoản đã được cấp hoặc dự đoán chi phí. Thay bằng prompt/model và số đo thực để xin quota. Tăng vCPU không tự tăng RPM/TPM.
+
+Burst 150/1.000 tin cùng lúc có thể làm hàng đợi chờ lâu hơn thời gian chat thường: nếu mỗi run 20 giây và 30/100 slot, mô hình đơn giản cho 150 tin có 5 đợt,1.000 tin có 10 đợt. Các đợt cuối có thể bắt đầu sau 80/180 giây, chưa tính retry/quota/tool. Không hứa trả lời đầu trong 15 giây cho toàn bộ burst bằng các slot này; phải đo và chốt riêng hoặc tăng slot/quota sau sizing.
+
+### Kết nối DB, truyền media và giám sát
+
+Đội chia ngân sách connection pool cho API, worker, scheduler, migration và vận hành theo khả năng gói DB. Dự trù cap pool ứng dụng 40 kết nối ở giai đoạn đầu và 80 kết nối ở giai đoạn mở rộng để kiểm; đây là tổng mọi process/replica, không phải mỗi máy. Đối chiếu phần quota còn lại sau các dịch vụ Supabase và kết quả chờ pool trước chốt. Không giữ transaction/kết nối DB trong lúc chờ model/provider. Không tạo một DB connection cho mỗi người dùng đang mở ứng dụng.
+
+Media tải trực tiếp tới kho thông qua quyền/đường dẫn do backend cấp nếu thiết kế được chọn cho phép; backend kiểm quyền và metadata. Nếu chuyển file qua backend hoặc ghép/chuyển mã video trên máy worker, sizing trên phải đo lại CPU, RAM và băng thông; không dùng kết quả điều phối thuần để cam kết xử lý media nặng.
+
+Khi CPU/RAM duy trì trên 70%, pool thường xuyên chờ, độ trễ/hàng đợi vượt chỉ tiêu hoặc quota provider gần đầy, đội điều tra nút thắt trước khi tăng máy.70% là ngưỡng cảnh báo thiết kế đề xuất, không là bằng chứng đủ dư tải. Nhiều API replica vẫn cần kiểm lưu phiên, stream, restart và webhook lặp; Redis đơn lẻ vẫn là điểm lỗi chung nếu chưa có phương án dự phòng.
+
+### Bằng chứng cần bổ sung trước cam kết
+
+Chạy kịch bản 155/1.010 người và 35/220 request/giây trong 60 phút, tải tăng gấp đôi 5 phút, chạy 8 giờ ở 50%tải, vừa chat vừa lô buổi sáng, có polling/webhook/thử đăng nhập. Đo thời gian phản hồi, tỷ lệ lỗi, slot/queue wait, DB pool/query, CPU/RAM, quota/token và chi phí. Tách test provider mô phỏng với thử tích hợp thật; kiểm cả tiếp nhận và xử lý hết burst 150/1.000 tin. Trước production chốt cấu hình, quota, chi phí và điều kiện đạt theo kết quả; chưa có các bằng chứng này thì chỉ là đề xuất sizing, không VERIFIED hoặc cam kếtSLA.
+
+Nguồn kỹ thuật tham khảo ngày26/11: [Microsoft performance targets](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/performance-targets), [BullMQ concurrency](https://docs.bullmq.io/guide/workers/concurrency), [Supabase compute](https://supabase.com/docs/guides/platform/compute-and-disk), [OpenAI rate limits](https://developers.openai.com/api/docs/guides/rate-limits), [Upload-Post limits](https://docs.upload-post.com/guides/rate-limits). Các nguồn mô tả cơ chế và cấu hình, không chứng minh ứng dụng đạt tải đề xuất.

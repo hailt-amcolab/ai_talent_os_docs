@@ -1,0 +1,331 @@
+{
+  "snapshot_date": "2026-11-25",
+  "source_root": "source_requiments",
+  "catalog": "TAI_LIEU_NGUON.md",
+  "file_count": 23,
+  "notice": "23 tệp; QA/KS cập nhật, KS24 trùng byte KS trong Q&A; YK3 0.3 chưa đồng bộ QA101/Square. Giữ lịch sử và giới hạn phê duyệt.",
+  "files": [
+    {
+      "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
+      "bytes": 9780674,
+      "sha256": "30e6533faaece81d16b857a95e56d9483d29fa771b64b231cbbc265a12717fe3",
+      "comparison_18nov": "unchanged",
+      "embedded_media_files": 26,
+      "cover_version_date": "0.1版　2026年11月13日　FutureCore Partners",
+      "source_code": "YK2",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/16112026/アプリ画面案_AI育成OS.pdf",
+      "bytes": 1354473,
+      "sha256": "4ac56463287f2d3087cac1f26a405ffb08e3c64469a238de15a8132c62cba181",
+      "comparison_18nov": "unchanged",
+      "pages": 12,
+      "source_code": "AG",
+      "document_date": "2026-11-12",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/17112026/20261117_アデッソ様定例会_確認シートの読み合わせ_議事録.md",
+      "bytes": 14742,
+      "sha256": "c62c678eb1b0c10a889b0d45ac6c051fe48b537023301932ad6023f86acf5ed0",
+      "comparison_18nov": "unchanged",
+      "source_code": "GJ",
+      "document_date": "2026-11-17",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "bytes": 6529985,
+      "sha256": "67d7d2d59d77f69eca75b4ad809213f049e074b675e1ef136d4ce7c8984275e8",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "pages": 28,
+      "source_code": "SD-T18",
+      "document_date": "2026-11-18",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/18112026/画面定義書_管理画面_AI育成OS.pdf",
+      "bytes": 8903332,
+      "sha256": "1d08a7cf797cdf0c3812c3f4eb60f9c841f82c13551fee04dd726c8a191e2d67",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "pages": 34,
+      "source_code": "SD-M18",
+      "document_date": "2026-11-18",
+      "use": "source_input; not blanket customer approval"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "bytes": 246498,
+      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+      "comparison_18nov": "unchanged",
+      "sheets": [
+        {
+          "name": "Q&A",
+          "nonempty_cells": 889
+        },
+        {
+          "name": "保留",
+          "nonempty_cells": 17
+        },
+        {
+          "name": "デザインFB",
+          "nonempty_cells": 11
+        },
+        {
+          "name": "お知らせ・メール文章",
+          "nonempty_cells": 11
+        },
+        {
+          "name": "追加要件",
+          "nonempty_cells": 201
+        }
+      ],
+      "source_code": "QA",
+      "use": "living_log; inspect current statements and statuses",
+      "previous_versions": [
+        {
+          "sha256": "d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765",
+          "bytes": 170073,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "git show HEAD:source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx"
+        },
+        {
+          "sha256": "004199e07e8b66e8a8374662eac12e976e8c4502c24abf5eb16041f4d15b0077",
+          "bytes": 170399,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "Các giá trị ô của snapshot trước nằm trong hồ sơ delta new-delivery-intake.json; không giả định HEAD chứa phiên bản này."
+        }
+      ],
+      "checked_at": "2026-11-20T07:26:43.748512+00:00",
+      "checked_by": "Codex — tiếp nhận và lọc trùng Q&A",
+      "comparison_current": "QA: cập nhật trả lời No.4/8/65, thêm No.78–92; so cả năm sheet.",
+      "previous_sha256": "c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "bytes": 71832,
+      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+      "comparison_18nov": "unchanged",
+      "sheets": [
+        {
+          "name": "確認事項",
+          "nonempty_cells": 608
+        },
+        {
+          "name": "20261120",
+          "nonempty_cells": 179
+        },
+        {
+          "name": "20261122",
+          "nonempty_cells": 289
+        },
+        {
+          "name": "プロジェクトを進めるために決める事項",
+          "nonempty_cells": 17
+        },
+        {
+          "name": "アクション一覧",
+          "nonempty_cells": 105
+        }
+      ],
+      "source_code": "KS",
+      "use": "living_log; inspect current statements and statuses",
+      "previous_versions": [
+        {
+          "sha256": "b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82",
+          "bytes": 36242,
+          "snapshot_date": "2026-11-20",
+          "retrieval": "git show HEAD:source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx"
+        }
+      ],
+      "checked_at": "2026-11-20T09:59:02+07:00",
+      "checked_by": "Codex — tiếp nhận nguồn",
+      "comparison_current": "QA: giá trị và công thức 5 sheet không đổi; KS: sửa 2 ô, thêm 2 sheet và bình luận FCP",
+      "previous_sha256": "b3d5a2688141d7d725dafd8e7ed49d892ba9efa2affdb73df3eb8590a5fd191c",
+      "received_at": "2026-11-23T09:11:28+07:00",
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+    },
+    {
+      "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
+      "bytes": 9092697,
+      "sha256": "06a94cc7cf6246d8a469735cb05deebeb2a603f93a404f4f573c844266d98c16",
+      "comparison_18nov": "not_in_previous_nine_file_catalog",
+      "embedded_media_files": 25,
+      "cover_version_date": "0.1版　2026年11月13日　FutureCore Partners",
+      "source_code": "YK1",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_タレントアプリ画面_かわいい版.pdf",
+      "bytes": 1231969,
+      "sha256": "f3b116720fa706bd2711ca96e5ddd5e7fed7b021767575ae48fb6e1cd1f46559",
+      "comparison_18nov": "unchanged",
+      "pages": 12,
+      "source_code": "TK-T",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/★AI育成OS_マネージャー管理画面_PC_携帯_カテゴリー_AI指示.pdf",
+      "bytes": 1636447,
+      "sha256": "d2461eaaf18467a63d515f2129b4ad4b31266c35838c8b7a5c893814981986ab",
+      "comparison_18nov": "unchanged",
+      "pages": 18,
+      "source_code": "TK-M",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/画面遷移図と画面案_AI育成OS.pdf",
+      "bytes": 4468210,
+      "sha256": "52fa6c9cda4de6574b97149abc8b17b75d6f17cb4fc7315ceff88c724ba90eea",
+      "comparison_18nov": "unchanged",
+      "pages": 8,
+      "source_code": "GT",
+      "document_date": "2026-11-11",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/base/要件説明資料_AI育成OS.pdf",
+      "bytes": 4979499,
+      "sha256": "8abc517d7e75ff026c365d0e0f8cff60b8c6c89c3e65206893ddef667d62dcae",
+      "comparison_18nov": "unchanged",
+      "pages": 42,
+      "source_code": "SM",
+      "use": "historical_input; reconcile before reuse"
+    },
+    {
+      "path": "source_requiments/19112926/20261119_AMCOLAB様打ち合わせ_画面定義書の確認_議事録.md",
+      "source_code": "GJ19",
+      "bytes": 14209,
+      "sha256": "3d168de54769e626ca7a47978a73add6876b05874997f6ba7d2626fcf5a54423",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11"
+    },
+    {
+      "path": "source_requiments/19112926/業務フロー_AI育成OS.pdf",
+      "source_code": "BF19",
+      "bytes": 7370214,
+      "sha256": "8c91d0d0e277578408d3bed6e664f9387cfe5facd2766be1ad46a0d1cb4b3245",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 21
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_タレントのアプリ_AI育成OS.pdf",
+      "source_code": "SD-T19",
+      "bytes": 4271239,
+      "sha256": "63b70d9b6fb1b5dae02d86b370af48ff28a218592f818348dcbabdd153d32530",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 33
+    },
+    {
+      "path": "source_requiments/19112926/画面定義書_管理画面_AI育成OS.pdf",
+      "source_code": "SD-M19",
+      "bytes": 5482057,
+      "sha256": "bb6fe2c5b2a2e0be6bda54d82d26b229d8cdc32b42f5fe6bcd2f2104409ae4f7",
+      "document_date": "2026-11-19",
+      "use": "Nguồn mới được nhận; cần đối chiếu theo chủ đề và thẩm quyền, không tự thay toàn bộ bản18/11",
+      "pages": 27
+    },
+    {
+      "source_code": "UI-M20",
+      "path": "source_requiments/23112026/AI育成OS_管理画面_全画面案1.pdf",
+      "sha256": "689686ad97b3a14edb241a92e50c73918c48c7b489c8531a39ddd5b278c441fc",
+      "bytes": 4453461,
+      "document_date": "2026-11-20",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề xuất màn Manager, không là screen definition đã duyệt",
+      "pages": 29
+    },
+    {
+      "source_code": "ISS22-D",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.docx",
+      "sha256": "6835dcfc3763e5a96609ff57ddb7478e0668e5d0a7eb3b4c715d94234c2a8336",
+      "bytes": 23876,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Đề nghị/đánh giá và câu hỏi trước họp24/11, DOCX",
+      "embedded_media_files": 0
+    },
+    {
+      "source_code": "ISS22-P",
+      "path": "source_requiments/23112026/AI育成OS_開発に向けた問題点と確認事項.pdf",
+      "sha256": "8437447447ba702925b170d0099c8737e200dffab20a26ebc496bca95ce14168",
+      "bytes": 947971,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Bản PDF cùng báo cáo đề nghị; không tính như xác nhận thứ hai",
+      "pages": 11
+    },
+    {
+      "source_code": "ADV22",
+      "path": "source_requiments/23112026/★ｎ11.22AI育成OS_問題点の整理と確認事項.pdf",
+      "sha256": "16d22f66a8cf2d20c6d107bde4addeff5bd52501716a581beed7ae0ea744498f",
+      "bytes": 1263105,
+      "document_date": "2026-11-22",
+      "received_at": "2026-11-23T10:30:04+07:00",
+      "authority": "Khách cung cấp tài liệu đề nghị/đánh giá; không tự là phê duyệt nghiệp vụ/thương mại/phát hành",
+      "use": "Slide9lời khuyên,7vấn đề và8ưu tiên; đề nghị chuẩn bị24/11",
+      "pages": 12
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_外部サービスの比較_20261124.pptx",
+      "source_code": "EXT24",
+      "document_date": "2026-11-24",
+      "use": "Source input; not blanket approval",
+      "sha256": "255bf76e74cc621ce4d2bafa4f408edc89aec07f80806e5076d823f7b51ddbd0",
+      "bytes": 4887340,
+      "embedded_media_files": 13,
+      "visual_review": "Embedded media inspected at contact-sheet scale; small labels require full-size recheck before AC approval",
+      "slides": 14
+    },
+    {
+      "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+      "source_code": "YK3",
+      "document_date": "2026-11-24",
+      "use": "Source input; not blanket approval",
+      "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+      "bytes": 28775470,
+      "embedded_media_files": 57,
+      "visual_review": "Embedded media inspected at contact-sheet scale; small labels require full-size recheck before AC approval",
+      "paragraphs": 1411,
+      "version": "0.3"
+    },
+    {
+      "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
+      "source_code": "KS24",
+      "document_date": "Nhiều ngày; xem từng sheet/ô",
+      "use": "Source input; not blanket approval",
+      "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122",
+      "bytes": 71980,
+      "sheets": [
+        {
+          "name": "確認事項",
+          "nonempty_cells": 608
+        },
+        {
+          "name": "20261120",
+          "nonempty_cells": 179
+        },
+        {
+          "name": "20261122",
+          "nonempty_cells": 289
+        },
+        {
+          "name": "プロジェクトを進めるために決める事項",
+          "nonempty_cells": 17
+        },
+        {
+          "name": "アクション一覧",
+          "nonempty_cells": 105
+        }
+      ]
+    }
+  ]
+}

@@ -23,7 +23,7 @@ const Env = z.object({
   VAPID_SUBJECT: z.string().optional(),
   // Upload-Post connect demo (/api/v1/dev/upload-post/*). Unset → 503 UPLOAD_POST_NOT_CONFIGURED. Never sent to the browser.
   UPLOAD_POST_API_KEY: z.preprocess(blank, z.string().min(1).optional()),
-  // AI Core (agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md). API only writes Postgres; these are read by the WORKER (src/worker.ts).
+  // AI Core (agent_spec/ai-core/). API only writes Postgres; these are read by the WORKER (src/worker.ts).
   // Redis for BullMQ: private network only, AOF + maxmemory-policy noeviction (report §11.2).
   REDIS_URL: z.preprocess(blank, z.string().url().optional()),
   // Key prefix in Redis, one per environment so dev/staging never share jobs.
@@ -47,6 +47,17 @@ const Env = z.object({
   AGENT_MODEL_TIMEOUT_MS: z.coerce.number().int().min(1_000).max(300_000).default(45_000),
   AGENT_APPROVAL_TTL_SECONDS: z.coerce.number().int().min(30).max(86_400).default(600),
   AGENT_INTERACTIVE_CONCURRENCY: z.coerce.number().int().min(1).max(50).default(1),
+  // Messages per person to the AI (AI_RUNTIME_DESIGN.md §6.4): technical abuse/cost guard, not a business limit.
+  AGENT_RATE_PER_MINUTE: z.coerce.number().int().min(1).max(1000).default(10),
+  AGENT_RATE_PER_DAY: z.coerce.number().int().min(1).max(100_000).default(200),
+  // Manager MCP for ChatGPT (agent_spec/ai-core/API_DESIGN.md §6). The OAuth authorization server is chosen at the POC (VT-08);
+  // until then only MCP_DEV_TOKENS ("token=managerLoginUserId:clientId,…") authenticate, and never in production.
+  ENABLE_MANAGER_MCP: z.enum(['true', 'false']).default('false').transform(v => v === 'true'),
+  MCP_RESOURCE_URL: z.preprocess(blank, z.url().optional()),
+  MCP_AUTH_ISSUER: z.preprocess(blank, z.url().optional()),
+  MCP_DEV_TOKENS: z.preprocess(blank, z.string().max(4000).optional()),
+  // Public web origin for links sent outside the PWA (MCP confirmation page). Default: first CORS origin.
+  PUBLIC_WEB_URL: z.preprocess(blank, z.url().optional()),
   // OneDrive demo (Microsoft Graph). Unset mode → ONEDRIVE_NOT_CONFIGURED. Modes never fall back to each other.
   //   app       = shared organization drive, client credentials (needs a Microsoft 365 tenant with SharePoint Online)
   //   delegated = each login connects its own Microsoft account (personal Outlook/Hotmail or work), auth code + PKCE
@@ -77,6 +88,7 @@ const Env = z.object({
       if (u.pathname !== '/pwa/onedrive/callback' || u.search || u.hash || !env.CORS_ORIGINS.includes(u.origin)) ctx.addIssue({ code: 'custom', path: ['ONEDRIVE_REDIRECT_URI'], message: 'Must be <FE origin in CORS_ORIGINS>/pwa/onedrive/callback' })
     }
   }
+  if (env.MCP_DEV_TOKENS && env.NODE_ENV === 'production') ctx.addIssue({ code: 'custom', path: ['MCP_DEV_TOKENS'], message: 'Dev MCP tokens cannot be used in production' })
   if (!env.ENABLE_AUTH_DEMO) return
   if (env.NODE_ENV === 'production') ctx.addIssue({ code: 'custom', message: 'Auth demo cannot run in production' })
   if (env.DEMO_AUTO_CONFIRM_EMAIL && !env.SUPABASE_SECRET_KEY) ctx.addIssue({code: 'custom', path: ['SUPABASE_SECRET_KEY'], message: 'Required for demo auto-confirm'})

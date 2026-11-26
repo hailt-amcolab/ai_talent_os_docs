@@ -1,3 +1,21 @@
+# Q&A hiện hành — đối chiếu26/11/2026
+
+**Nội bộ; không có câu hỏi mới để gửi.** Theo dõi câu đã có theo số nguồn; không hỏi lại phần đã trả lời. Bản xuất v5 và các phần trước26/11 bên dưới là lịch sử đối với các trạng thái đã thay, không kế thừa phê duyệt.
+
+| ID nội bộ | Số nguồn / vị trí | Nội dung đã trả lời |
+|---|---|---|
+| WQA-076-01 | No.93, Q&A!G93:H93 | Bản0.3 được đối chiếu25/11: không làm thông báo Manager về tâm sự nghiêm trọng; giới hạn hội thoại theo chỉ thị. Không còn hỏi lại việc thêm cảnh báo. |
+| WQA-066-02 | No.94, Q&A!F94:H94 | FCP26/11 chọn A: office giữ dữ liệu6tháng rồi tự xoá như Talent. |
+| WQA-081-01 | No.95, Q&A!F95:H95 | FCP chọn A có điều chỉnh: chặn ngắt/đổi SNS còn lịch, hiện bài để Talent tự huỷ trước. |
+| WQA-013-01 | No.96, Q&A!F96:H96 | FCP chọn A: danh sách từ cấm mới chỉ áp từ lần kiểm sau, lịch đã kiểm giữ nguyên; cần dừng thì Manager huỷ. |
+
+No.97 đã được đối chiếu: mở thông báo là 対応済み. No.98 chấp thuận kết thúc ngay và khoản thu cuối, còn chờ Adesso về giữ lịch sử thu trong OS/thời hạn. No.99 chỉ dự kiến nhiều category và thứ tự ưu tiên, chờ Adesso27/11. No.87/88 đã có phần gán tay/mỗi Talent1Manager/quyền dùng chung, còn fallback và đích tin ngoài duyệt. No.72 đã chấp thuận ba quy tắc thử thách/chuỗi ngày; chỉ việc xác nhận prompt Nonaka còn chờ.
+
+Các phần còn mở tiếp tục dưới số cũ; không sinh câu hỏi mới trong đợt sửa tài liệu này. Không tự thay lịch sử eligibility/content review, không APPROVED_QA hoặc gửi khách. [Bằng chứng và danh sách tài liệu cập nhật](../corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ lịch sử; không dùng trạng thái cũ để hỏi lại</summary>
+
 > **Đối chiếu25/11/2026:** vẫn0câu xuất độc lập; QA nguồn đã có No.100 (ranking, Open) và No.101 (agent/DB/backup, có trả lời24/11, Close). KS20261122 bổ sung trả lời cho từ cấm, phụ huynh, tâm sự nghiêm trọng; chỉ tiếp tục phần chưa trả lời theo No. cũ. CR hiện hành01–14 đã đổi nghĩa, không dùng ID cũ ngoài phiên bản. [Báo cáo nguồn24/11](../corrections-2026-11-19/DELIVERY_24112026_REVIEW.md). Chưa duyệt/gửi Q&A mới; G5/G6 BLOCKED.
 
 > **Đợt23112026:** Nguồn mới có đề nghị và 18 mục cần FCP/đội kiểm tra; không tạo câu hỏi khách mới hoặc đóng No.93–99. [Review và định tuyến](../corrections-2026-11-19/DELIVERY_23112026_REVIEW.md). Guard/transition/AC ở nhánh bị ảnh hưởng giữ STALE; chưa có review độc lập.
@@ -119,5 +137,7 @@ Giữ các No. gốc; không cấp số khách mới. Các câu về giá tiền
 
 No.87 ghi thông báo gửi mọi Manager; No.88 ghi assign để nhận thông báo. No.88 xác nhận mọi Manager có thể cập nhật mọi Talent, nhưng không tự giải quyết sự khác nhau về người nhận thông báo. No.65/78 cũng khác cách xử lý đăng ký lại trong mô tả trước đây. Các điểm này giữ trong hồ sơ đối chiếu; không tự chọn một bên hoặc tạo câu hỏi thay thế ở lượt lọc này.
 
+
+</details>
 
 </details>

@@ -2542,15 +2542,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2563,8 +2556,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2606,7 +2599,8 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            items: components["schemas"]["AgentEntry"][];
+                            items: components["schemas"]["AgentMessage"][];
+                            pending: components["schemas"]["AgentMessage"][];
                             nextAfter: string;
                             hasMore: boolean;
                         };
@@ -2633,15 +2627,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2654,8 +2641,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2713,15 +2700,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2734,8 +2714,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2799,15 +2779,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2820,8 +2793,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2885,15 +2858,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2906,8 +2872,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -2980,15 +2946,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3001,8 +2960,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3080,15 +3039,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3101,8 +3053,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3144,7 +3096,8 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            items: components["schemas"]["AgentEntry"][];
+                            items: components["schemas"]["AgentMessage"][];
+                            pending: components["schemas"]["AgentMessage"][];
                             nextAfter: string;
                             hasMore: boolean;
                         };
@@ -3171,15 +3124,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3192,8 +3138,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3251,15 +3197,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3272,8 +3211,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3337,15 +3276,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3358,8 +3290,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3423,15 +3355,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3444,8 +3369,8 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
+                /** @description Rate limited */
+                429: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3518,7 +3443,87 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Busy / key reused / account not active */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid input */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Rate limited */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/proposals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: {
+                    state?: "prepared" | "consumed" | "rejected" | "expired" | "conflicted";
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            items: components["schemas"]["Proposal"][];
+                        };
+                    };
+                };
+                /** @description Authentication required */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Wrong role / MFA required / actor disabled */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found or not yours */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not pending / hash mismatch / version conflict / key reused */
                 409: {
                     headers: {
                         [name: string]: unknown;
@@ -3539,22 +3544,17 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
             };
         };
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/api/v1/admin/agent/proposals/{id}": {
+    "/api/v1/admin/proposals/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -3578,7 +3578,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["AgentProposal"];
+                        "application/json": components["schemas"]["Proposal"];
                     };
                 };
                 /** @description Authentication required */
@@ -3588,7 +3588,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Wrong role / MFA required */
+                /** @description Wrong role / MFA required / actor disabled */
                 403: {
                     headers: {
                         [name: string]: unknown;
@@ -3602,7 +3602,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Not pending / hash mismatch / version conflict / key reused */
                 409: {
                     headers: {
                         [name: string]: unknown;
@@ -3623,13 +3623,6 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
             };
         };
         put?: never;
@@ -3640,7 +3633,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/admin/agent/proposals/{id}/confirm": {
+    "/api/v1/admin/proposals/{id}/confirm": {
         parameters: {
             query?: never;
             header?: never;
@@ -3674,7 +3667,10 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["AgentDecision"];
+                        "application/json": {
+                            proposal: components["schemas"]["Proposal"];
+                            receipt: components["schemas"]["CommandReceipt"];
+                        };
                     };
                 };
                 /** @description Authentication required */
@@ -3684,7 +3680,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Wrong role / MFA required */
+                /** @description Wrong role / MFA required / actor disabled */
                 403: {
                     headers: {
                         [name: string]: unknown;
@@ -3698,7 +3694,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Not pending / hash mismatch / version conflict / key reused */
                 409: {
                     headers: {
                         [name: string]: unknown;
@@ -3719,13 +3715,6 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
-                503: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
             };
         };
         delete?: never;
@@ -3734,7 +3723,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/admin/agent/proposals/{id}/reject": {
+    "/api/v1/admin/proposals/{id}/reject": {
         parameters: {
             query?: never;
             header?: never;
@@ -3757,6 +3746,7 @@ export interface paths {
                     "application/json": {
                         /** Format: uuid */
                         requestKey: string;
+                        reason?: string;
                     };
                 };
             };
@@ -3767,7 +3757,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["AgentDecision"];
+                        "application/json": {
+                            proposal: components["schemas"]["Proposal"];
+                        };
                     };
                 };
                 /** @description Authentication required */
@@ -3777,7 +3769,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Wrong role / MFA required */
+                /** @description Wrong role / MFA required / actor disabled */
                 403: {
                     headers: {
                         [name: string]: unknown;
@@ -3791,7 +3783,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Not pending / hash mismatch / version conflict / key reused */
                 409: {
                     headers: {
                         [name: string]: unknown;
@@ -3807,13 +3799,6 @@ export interface paths {
                 };
                 /** @description Invalid input */
                 422: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Feature not ready */
-                503: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3827,7 +3812,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/admin/agent/proposals/{id}/commit": {
+    "/api/v1/admin/ai/instruction-tests": {
         parameters: {
             query?: never;
             header?: never;
@@ -3840,9 +3825,7 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    id: string;
-                };
+                path?: never;
                 cookie?: never;
             };
             requestBody: {
@@ -3850,17 +3833,22 @@ export interface paths {
                     "application/json": {
                         /** Format: uuid */
                         requestKey: string;
+                        /** Format: uuid */
+                        talentId: string;
+                        /** @enum {string} */
+                        situation: "theme_suggestions" | "daily_greeting";
+                        candidateText: string;
                     };
                 };
             };
             responses: {
-                /** @description Success */
+                /** @description Output of the AI task with the candidate instruction */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["AgentReceipt"];
+                        "application/json": components["schemas"]["InstructionTest"];
                     };
                 };
                 /** @description Authentication required */
@@ -3870,29 +3858,22 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Wrong role / MFA required */
+                /** @description Manager with MFA only */
                 403: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Not found or not yours */
+                /** @description Talent not found */
                 404: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
                 };
-                /** @description Busy / version / key conflict */
+                /** @description Request key reused */
                 409: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-                /** @description Proposal expired */
-                410: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3905,7 +3886,7 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Feature not ready */
+                /** @description AI not configured */
                 503: {
                     headers: {
                         [name: string]: unknown;
@@ -4056,37 +4037,46 @@ export interface components {
         };
         AgentRun: {
             id: string;
-            operationId: string;
             conversationId: string;
+            version: string;
+            /** @enum {string} */
+            state: "pending" | "running" | "succeeded" | "failed" | "cancelled";
             /** @enum {string|null} */
             completionKind: "answer_only" | "action_result" | null;
-            /** @enum {string} */
-            state: "pending" | "running" | "waiting_confirmation" | "succeeded" | "failed" | "unknown" | "cancelled";
-            version: string;
-            outputEntryId: string | null;
-            proposalId: string | null;
-            errorCode: string | null;
+            finalText: string | null;
             receipts: components["schemas"]["AgentReceipt"][];
+            proposals: components["schemas"]["AgentProposalSummary"][];
+            errorCode: string | null;
             retryAfterMs: number | null;
         };
         AgentReceipt: {
             commandId: string;
-            action: string;
+            commandType: string;
             targetLabel: string;
             changed: boolean;
-            resourceVersion: string | null;
+            resultVersion: string | null;
+            createdAt: string;
         };
-        AgentEntry: {
+        AgentProposalSummary: {
+            id: string;
+            commandType: string;
+            targetLabel: string;
+            state: string;
+            expiresAt: string;
+        };
+        AgentMessage: {
             id: string;
             sequence: string;
             /** @enum {string} */
             role: "user" | "assistant";
-            body: string;
+            text: string;
             createdAt: string;
+            runId: string | null;
+            /** @enum {string} */
+            source: "sdk" | "control_receipt" | "pending";
         };
-        AgentProposal: {
+        Proposal: {
             proposalId: string;
-            state: string;
             commandType: string;
             targetLabel: string;
             changes: {
@@ -4097,12 +4087,29 @@ export interface components {
             baseVersion: string;
             expiresAt: string;
             proposalHash: string;
-            runId: string | null;
-            allowedActions: ("confirm" | "reject" | "commit")[];
+            /** @enum {string} */
+            state: "prepared" | "consumed" | "rejected" | "expired" | "conflicted";
+            allowedActions: ("confirm" | "reject")[];
+            origin: {
+                channel: string;
+                runId: string | null;
+            };
         };
-        AgentDecision: {
-            proposalId: string;
-            state: string;
+        CommandReceipt: {
+            commandId: string;
+            commandType: string;
+            targetLabel: string;
+            changed: boolean;
+            resultVersion: string | null;
+            createdAt: string;
+        };
+        InstructionTest: {
+            output?: unknown;
+            promptVersion: string;
+            usage: {
+                inputTokens: number;
+                outputTokens: number;
+            };
         };
     };
     responses: never;

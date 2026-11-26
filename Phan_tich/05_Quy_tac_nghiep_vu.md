@@ -1,3 +1,190 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Kích hoạt tài khoản và hồ sơ
+
+Talent được duyệt nhưng chưa đăng ký phương thức thanh toán vẫn ở 利用前; mỗi lần đăng nhập mở hướng dẫn khởi tạo. Đăng ký phương thức thanh toán xong tự chuyển 利用中, tạo thư mục riêng và báo Manager. Manager bấm 「登録完了」 để đánh dấu hoàn tất hồ sơ và bắt đầu AI coach; không tự kiểm đủ trường bắt buộc. M-08 của YK3 có hồ sơ, định hướng, sở thích/sở trường, mục tiêu tương lai, giọng điệu; không trường nào bắt buộc.
+
+**Phần còn mở/giới hạn:** Ngày bắt đầu thu và cách xử lý khởi đầu giữa tháng vẫn theo No.49; đăng ký phương thức thanh toán không tự chứng minh đã thu tiền.
+
+Căn cứ: QA `Q&A!A52:J52 (No.52); Q&A!A53:J53 (No.53); Q&A!A54:J54 (No.54); Q&A!A92:J92 (No.92)`; `EV-1331` / `DEC-0015`.
+
+### Nhập thông tin và ưu tiên chỉ thị
+
+Manager nhập/sửa 5 nhóm thông tin tại M-08 (YK3 bản 0.3), có lịch sử thay đổi; ChatGPT cũng xem/sửa cùng thông tin. Thông tin ngoài M-08 như sinh nhật/lịch xuất hiện được truyền qua hội thoại M-17 và lưu MD trong thư mục Talent trên OneDrive; không có thao tác sửa file OneDrive trực tiếp. Khi thông tin Talent mâu thuẫn chỉ thị AI, ưu tiên chỉ thị AI.
+
+**Phần còn mở/giới hạn:** No.74 là đối chiếu YK3 ngày25/11; No.92 là trả lời FCP26/11. Giữ QA101 về DB và backup: không suy toàn bộ dữ liệu chuyển về OneDrive; phạm vi đồng bộ DB/MD là thiết kế đội cần làm rõ. Phạm vi/chi phí màn mới chưa tự được duyệt thương mại.
+
+Căn cứ: QA `Q&A!A74:J74 (No.74); Q&A!A92:J92 (No.92)`; `EV-1332` / `DEC-0016`.
+
+### Quyền, phân công và khôi phục Manager
+
+Mọi Manager có thể duyệt và cập nhật mọi Talent. Mỗi Talent có một Manager phụ trách, gán thủ công tại M-11 ❺, không gán theo category. Trước khi vô hiệu hoá Manager phải chuyển Talent sang người khác; chặn tự vô hiệu hoá và vô hiệu hoá Manager cuối. Quên mật khẩu đặt lại qua email; mất thiết bị xác thực thì Manager khác đặt lại 2FA. Lần đăng nhập đầu M-01: sau kiểm mật khẩu hiện QR và ô mã 6 số. M-02/M-04 mặc định chỉ hiện Talent phụ trách, có lọc xem tất cả.
+
+**Phần còn mở/giới hạn:** Yêu cầu duyệt gửi Manager phụ trách; dự phòng khi nghỉ/bỏ sót và nơi nhận các thông báo khác vẫn chờ Adesso tại No.87/88, KS20261122 No.35. Quyền thao tác mọi Talent không đồng nghĩa gửi thông báo cho mọi Manager. FCP còn phải bổ sung màn QR.
+
+Căn cứ: QA `Q&A!A7:J7 (No.6); Q&A!A67:J67 (No.67); Q&A!A87:J87 (No.87); Q&A!A88:J88 (No.88); Q&A!A89:J89 (No.89)`; `EV-1333` / `DEC-0017`.
+
+### Vòng đời chủ đề và nháp
+
+Chủ đề cũ hết hạn khi có 3 chủ đề mới sáng hôm sau. Nháp chưa 採用 giữ 7 ngày rồi ẩn khỏi màn hình; không suy ẩn đồng nghĩa xoá vật lý. Ảnh/video giữ theo thời hạn dữ liệu sau kết thúc sử dụng: 6 tháng.
+
+**Phần còn mở/giới hạn:** Thời gian giữ bản ghi thu tiền là vấn đề riêng No.98; không áp thời hạn media cho mọi loại nhật ký.
+
+Căn cứ: QA `Q&A!A55:J55 (No.55)`; `EV-1334` / `DEC-0018`.
+
+### Giờ đăng và tư liệu đến muộn
+
+Giờ đăng chốt khi tạo nháp; bài thứ hai trở đi dùng khung tiếp theo, cách bài trước ít nhất 3 giờ theo đề xuất được chấp thuận. AI chọn giờ trong khoảng chỉ thị, lệch vài phút giữa Talent và tách khung theo SNS; 採用 quá giờ chuyển khung tiếp theo. Nếu chưa có tư liệu mới, AI chọn tư liệu đã lưu phù hợp bài. Không có thì không đăng, báo Talent trước và sau giờ dự kiến; gửi bổ sung sau đó chuyển khung tiếp theo. Không giới hạn số lần dùng lại tư liệu cho luồng này, AI chọn theo độ phù hợp, không bắt buộc chọn ảnh lâu chưa dùng nhất.
+
+**Phần còn mở/giới hạn:** Auto theo kỳ có giới hạn riêng tại No.83: không dùng cùng ảnh/video hai lần trong kỳ; không áp quy tắc tái sử dụng của No.56 để bỏ giới hạn đó. Thuật toán giờ chi tiết thuộc thiết kế đội.
+
+Căn cứ: QA `Q&A!A56:J56 (No.56)`; `EV-1335` / `DEC-0019`.
+
+### Đăng hằng ngày, tự động theo kỳ và cài đặt xác nhận
+
+Đăng hằng ngày luôn dùng được; đăng tự động theo kỳ chỉ chạy khi bắt đầu ở T-10; hai cách dùng đồng thời, không có cài đặt chuyển độc quyền giữa hai cách. T-08 ❺ chọn xác nhận trước khi đăng hay không và áp dụng cả hai. Auto lấy chủ đề qua hội thoại, tư liệu thêm tại T-10 ❹, nhịp theo chỉ thị. AI chọn ảnh hợp chủ đề rồi tạo chữ/hashtag; không dùng thứ tự tải lên và không dùng lại cùng ảnh/video hai lần trong kỳ. Tạo bài hằng ngày trước ngày đăng, không tạo tất cả từ đầu. Chủ đề đổi qua hội thoại trong kỳ. Báo khi còn tư liệu cho 2 ngày; ngày thiếu bỏ qua, thêm tư liệu thì chạy tiếp từ hôm sau. Hết kỳ kết thúc và báo Talent đặt kỳ mới. Đổi cài đặt xác nhận giữ lịch đã có, áp cài đặt mới từ bài chưa đặt lịch. Talent chưa xác nhận tới giờ thì không đăng và báo Talent.
+
+**Phần còn mở/giới hạn:** Mã T-08/T-10 ở đây theo YK3 được câu trả lời26/11 dẫn chiếu, không đổi mã lịch sử SD18/SD19. Auto không có Manager duyệt theo No.71/84; xác nhận Talent và duyệt Manager là hai việc khác nhau.
+
+Căn cứ: QA `Q&A!A70:J70 (No.70); Q&A!A71:J71 (No.71); Q&A!A83:J83 (No.83)`; `EV-1336` / `DEC-0020`.
+
+### Kiểm và sửa từ cấm
+
+Kiểm từ cấm trước khi đặt lịch; phát hiện thì AI viết lại rồi đặt lịch. Không dùng nhánh Manager sửa, không thông báo Manager vì phát hiện này và không bắt Talent xác nhận lại sau AI sửa. Danh sách từ cấm mới chỉ áp dụng từ lần kiểm tiếp theo; bài đã kiểm và đặt lịch giữ nguyên, Manager muốn dừng thì huỷ lịch. Không tự quét lại toàn bộ lịch khi sửa danh sách.
+
+**Phần còn mở/giới hạn:** Quy tắc26/11 thay đề nghị22/11 yêu cầu xác nhận lại và nhánh Manager sửa tại QA90/GJ19 trên đúng chủ đề. Số vòng tự sửa nếu vẫn không sạch/lỗi AI là thiết kế lỗi còn cần đội xác định; không tự đặt bảo đảm AI sửa luôn thành công.
+
+Căn cứ: QA `Q&A!A57:J57 (No.57); Q&A!A71:J71 (No.71); Q&A!A96:J96 (No.96)`; `EV-1337` / `DEC-0021`.
+
+### Duyệt bài và trả lại
+
+Auto theo kỳ không có bước Manager duyệt. Với bài hằng ngày của Talent chọn không cần xác nhận, vẫn mở lịch T-16 → chi tiết T-12 rồi tick T-12 ❼ để chuyển từ đặt lịch sang chờ Manager duyệt. Duyệt xong đăng giờ đã định; trả lại có lý do, Talent sửa và gửi lại. Gửi duyệt lại là cùng một bài, giữ lịch sử; giữ giờ nếu còn kịp, quá giờ chuyển khung tiếp theo.
+
+**Phần còn mở/giới hạn:** Không mặc định mọi bài công việc auto phải qua Manager. Fallback người nhận khi Manager vắng mặt vẫn No.87.
+
+Căn cứ: QA `Q&A!A58:J58 (No.58); Q&A!A71:J71 (No.71); Q&A!A84:J84 (No.84)`; `EV-1338` / `DEC-0022`.
+
+### Đăng lại bài lỗi
+
+Không tự đăng lại bài đã thất bại. Talent bấm T-17 ❹「投稿し直す」, Manager bấm M-09 ❹「予約し直す」. Chỉ đăng lại SNS lỗi; giờ mới là khung tiếp theo do AI quyết, giữ kết quả đã thành công của SNS khác.
+
+**Phần còn mở/giới hạn:** Retry kỹ thuật/unknown chống trùng do đội và provider kiểm chứng, không được coi timeout là chắc chắn chưa đăng.
+
+Căn cứ: QA `Q&A!A59:J59 (No.59)`; `EV-1339` / `DEC-0023`.
+
+### Dừng đăng, mở lại và huỷ lịch
+
+Manager dừng/mở lại việc đặt lịch theo từng Talent; dừng huỷ lịch đã có. Không có nút dừng toàn hệ thống; vận hành dừng hệ thống phải xử lý huỷ lịch ngoài theo KS20261122 No.29/34. Trong lúc chỉ dừng đăng, AI coach vẫn chạy, Talent vẫn 採用 được; bài mới ở 停止中のため保留. Mở lại: bài giữ còn kịp thì đặt lịch, bài quá giờ cần Talent 採用 lại. Bài đã huỷ không tự phục hồi; báo Talent trong app và đưa về nháp để 採用 lại. T-10 có nút Talent dừng kỳ auto, huỷ lịch theo kỳ đó.
+
+**Phần còn mở/giới hạn:** Chỉ dừng đăng khác 支払い待ち (No.63/86: dừng cả AI/video) và khác kết thúc sử dụng. No.77/91 là đối chiếu0.3 ngày25/11, không áp phần câu hỏi cũ về nút dừng toàn bộ.
+
+Căn cứ: QA `Q&A!A60:J60 (No.60); Q&A!A61:J61 (No.61); Q&A!A70:J70 (No.70); Q&A!A77:J77 (No.77); Q&A!A91:J91 (No.91)`; `EV-1340` / `DEC-0024`.
+
+### Chờ thanh toán và khôi phục
+
+Khi Square thanh toán lại mà vẫn chưa xác nhận được thanh toán, báo Talent và Manager rồi tự chuyển 支払い待ち (Chờ thanh toán). Dừng AI coach, tạo video và đăng bài; vẫn thu phí tháng. Talent vẫn đăng nhập để đổi phương thức thanh toán. Xác nhận đã thanh toán thì tự trở lại 利用中. Trong lúc dừng không đăng; các bài lỡ giờ không tự đăng bù sau mở lại. Dùng cơ chế thu lại của cổng nếu có, không làm cơ chế thu lại riêng.
+
+**Phần còn mở/giới hạn:** Thay đúng câu trả lời No.46 về không tự dừng. Không tự đặt số lần/ngày thu lại vì No.4/49 còn chờ kiểm Square. H86 bản Việt nói rõ bài tương lai tiếp tục; G86 không mô tả riêng chi tiết đó, không suy phục hồi các bài đã huỷ vì lý do khác.
+
+Căn cứ: QA `Q&A!A63:J63 (No.63); Q&A!A86:J86 (No.86)`; `EV-1341` / `DEC-0025`.
+
+### Đơn giá, ghi lượt và điều chỉnh phí video
+
+Manager đặt một đơn giá video chung tại cài đặt toàn hệ thống M-18 ❺; Adesso quyết giá cụ thể sau kiểm Kling. Lượt tính theo giá tại thời điểm 依頼, đổi giá không tính lại lượt cũ. Lỗi dịch vụ trừ lượt ngay khi báo lỗi; nếu đã tổng hợp thì trừ vào kỳ sau. Yêu cầu sau ngày chốt kỳ vào kỳ sau, theo ngày 依頼. Tổng hợp phí video tháng vào cuối hoặc đầu tháng để chuyển Square.
+
+**Phần còn mở/giới hạn:** No.2 vẫn Open về số tiền; No.4/49 còn chờ khả năng Square và ngày chốt cụ thể. Không đồng nhất đơn giá thu Talent với chi phí provider.
+
+Căn cứ: QA `Q&A!A3:J3 (No.2); Q&A!A62:J62 (No.62)`; `EV-1342` / `DEC-0026`.
+
+### Chu kỳ và nhà cung cấp còn mở
+
+Square là hướng tích hợp đang được FCP xem xét theo trả lời26/11; phí tháng cố định trả trước, không chia theo ngày. Ngày thu tháng, ngày bắt đầu thu và ngày tổng hợp phí video chưa chốt; xác định sau kiểm khả năng cổng.
+
+**Phần còn mở/giới hạn:** Không chốt GMO, không khẳng định Square hỗ trợ carrier hoặc phí video hậu trả. No.4/49 vẫn Open; việc kiểm kỹ thuật thuộc FCP/provider. No.53 Close không đồng nghĩa đã chốt ngày bắt đầu thu.
+
+Căn cứ: QA `Q&A!A5:J5 (No.4); Q&A!A50:J50 (No.49); Q&A!A53:J53 (No.53)`; `EV-1343` / `DEC-0027`.
+
+### Tài khoản office và lưu dữ liệu
+
+Manager nhập email khi tạo office, đăng nhập app office để nối SNS; hiện trong danh sách Talent với nhãn 事務所. Manager sửa email ở quản trị, mật khẩu đặt lại qua Quên mật khẩu. Kết thúc office huỷ lịch, khoá đăng nhập, gỡ SNS. Giữ dữ liệu 6 tháng rồi tự xoá như Talent theo phương án A của No.94; FCP sẽ bổ sung yêu cầu12-4.
+
+**Phần còn mở/giới hạn:** Office là loại riêng miễn phí tháng; không áp 支払い待ち chỉ vì các trạng thái tài khoản dùng chung. Phần dữ liệu thu tiền giữ riêng vẫn No.98.
+
+Căn cứ: QA `Q&A!A66:J66 (No.66); Q&A!A67:J67 (No.67); Q&A!A94:J94 (No.94)`; `EV-1344` / `DEC-0028`.
+
+### Kết thúc sử dụng và khoản phí cuối
+
+Talent đã 利用終了 không trở lại 利用中 trực tiếp; email còn đăng ký không được đăng ký lại trong thời gian giữ dữ liệu. Dữ liệu Talent/office giữ 6 tháng rồi tự xoá. Có phí đã phát sinh chưa thu vẫn được kết thúc ngay; thu khoản cuối (phí tháng cuối và video) một lần ở lần thu tiếp theo, sau đó ngừng thu.
+
+**Phần còn mở/giới hạn:** No.98 mới chấp thuận việc kết thúc và khoản thu cuối; có lưu lịch sử thu tiền riêng trong OS và giữ bao lâu còn chờ Adesso (KS20261122 No.36). Không tự xoá hoặc giữ vô hạn dữ liệu tài chính.
+
+Căn cứ: QA `Q&A!A69:J69 (No.69); Q&A!A94:J94 (No.94); Q&A!A98:J98 (No.98)`; `EV-1345` / `DEC-0029`.
+
+### Ngắt hoặc đổi SNS còn lịch
+
+Chặn ngắt kết nối hoặc đổi tài khoản của đúng SNS còn bài đã đặt lịch. Hiện danh sách bài liên quan để Talent tự huỷ trước rồi mới ngắt; không bắt buộc chỉ Manager huỷ. T-07 có nút 「接続を解除」. SNS không có lịch không chịu chặn này.
+
+**Phần còn mở/giới hạn:** Không áp dụng thao tác người dùng này để suy cách xử lý SNS tự hết hạn/mất kết nối; cơ chế phát hiện do đội/provider.
+
+Căn cứ: QA `Q&A!A95:J95 (No.95)`; `EV-1346` / `DEC-0030`.
+
+### Thử thách và chuỗi ngày
+
+Chấp thuận cả ba điểm: chỉ tự xác định đạt cho thử thách đếm được bằng số (ngày liên tục, số bài, follower tăng); loại khác là lời nhắn, không tự chúc mừng đạt. Trạng thái: đề xuất/đã nhận/từ chối/đang thực hiện/đạt/hết hạn; AI đặt hạn khi đề xuất, chỉ một thử thách đang thực hiện. Chuỗi ngày đếm ngày có ít nhất một bài thành công trên một SNS đã nối; ngắt ngày thì lần tiếp theo về ngày1. FCP cho tiếp tục mà không chờ văn bản của Nonaka.
+
+**Phần còn mở/giới hạn:** FCP vẫn xác nhận với Adesso ngày27/11 việc prompt đã nhận có đúng quan điểm thử thách của Nonaka. Không coi câu đó chặn ba quy tắc đã được chấp thuận; không tuyên bố prompt đã được Adesso xác nhận. QA101 về agent ghi tiến độ vẫn giữ.
+
+Căn cứ: QA `Q&A!A72:J72 (No.72)`; `EV-1347` / `DEC-0031`.
+
+### Khung lời nhắn hằng ngày
+
+Giờ sáng/trưa/tối chỉnh ở M-18 ❶, mặc định 8/12/20. Sáng có kết quả hôm trước, chuỗi ngày, gợi ý chủ đề và thử thách. Trưa AI quyết nội dung theo chỉ thị 毎日の声かけ, không mặc định trưa là nhắc gửi ảnh. Tối nhắc nhiều ngày không đăng và báo đạt mục tiêu. Nhắc ảnh/video theo M-18 ❷, trước giờ đăng2giờ. Bài đăng auto không có lời nhắn theo7-7.
+
+**Phần còn mở/giới hạn:** Không diễn giải ngoại lệ lời nhắn của bài auto thành dừng mọi hội thoại hay mọi báo cáo của Talent dùng auto.
+
+Căn cứ: QA `Q&A!A73:J73 (No.73)`; `EV-1348` / `DEC-0032`.
+
+### Thông báo, email và thao tác mở
+
+Thông báo Manager hiện trong quản trị và gửi email theo mô tả0.3; yêu cầu duyệt có danh sách chờ duyệt. Adesso cung cấp câu chữ và địa chỉ email nhận. Bấm dòng thông báo mở màn liên quan và tự đánh dấu 対応済み; bỏ tick 未対応 xem cả đã mở. Không thêm nút xử lý thủ công hoặc hai trạng thái nghiệp vụ đọc/xử lý độc lập. Đạt mục tiêu báo Talent và Manager.
+
+**Phần còn mở/giới hạn:** No.87/88 ngày26/11 còn hỏi người nhận các loại ngoài duyệt và fallback, nên không coi mặc định Manager phụ trách ở No.75 là chốt mọi ngoại lệ. Thiết kế email rộng hơn đề xuất cũ cần xử lý thương mại riêng. Gửi thành công là trạng thái kỹ thuật khác thao tác mở.
+
+Căn cứ: QA `Q&A!A75:J75 (No.75); Q&A!A76:J76 (No.76); Q&A!A97:J97 (No.97)`; `EV-1349` / `DEC-0033`.
+
+### Giới hạn hội thoại và tâm sự nghiêm trọng
+
+Không giới hạn số lượt hội thoại; yêu cầu ngoài bài đăng được chuyển về chủ đề bài đăng theo chỉ thị AI. Không có chức năng báo Manager khi Talent tâm sự nghiêm trọng; phạm vi ứng xử nằm trong phần giới hạn hội thoại của chỉ thị. Không khôi phục nhãn/cảnh báo cũ chỉ vì còn trong màn18/11.
+
+**Phần còn mở/giới hạn:** Không suy thông báo đã có phê duyệt thương mại hoặc AI luôn phát hiện/ứng xử đúng. No.93 là đối chiếu0.3 ngày25/11, không tự gán là khách chọn toàn bộ câu chữ phương án B.
+
+Căn cứ: QA `Q&A!A76:J76 (No.76); Q&A!A93:J93 (No.93)`; `EV-1350` / `DEC-0034`.
+
+### Phạm vi ranking và video xếp tuần tự
+
+Ranking không làm ở giai đoạn1: bỏ màn がんばっているタレント và nút menu/home khỏi phạm vi thiết kế giai đoạn này. Video tự làm/AI đã lưu được dùng cho auto; không làm chức năng tự lấy video theo thứ tự lưu, mỗi ngày tạo một nháp.
+
+**Phần còn mở/giới hạn:** Không đồng nghĩa đã duyệt mọi cách lọc/sắp xếp mới của danh sách Talent hoặc chi phí giai đoạn sau.
+
+Căn cứ: QA `Q&A!A38:J38 (No.37); Q&A!A100:J100 (No.100)`; `EV-1351` / `DEC-0035`.
+
+### Thay danh sách từ cấm sau đặt lịch
+
+Phương án A: danh sách sửa đổi chỉ áp dụng cho lần kiểm diễn ra sau thay đổi. Bài đã kiểm và đặt lịch không bị dừng hay tự quét lại; Manager cần dừng thì huỷ lịch.
+
+**Phần còn mở/giới hạn:** Không khôi phục nhánh Manager sửa từ cấm của No.90; quy tắc hiện hành là No.71.
+
+Căn cứ: QA `Q&A!A96:J96 (No.96)`; `EV-1352` / `DEC-0036`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 
@@ -260,3 +447,5 @@ Có 20 tình huống nghiệp vụ chắc chắn sẽ xảy ra nhưng tài liệ
 | 18 (mới) | **Đồng ý của người ngoài công ty và người vị thành niên tự đăng ký:** đồng ý về dữ liệu cá nhân, quyền hình ảnh và đồng ý của phụ huynh được lấy khi nào, ai lấy. Điều khoản sử dụng có đủ thay cho hợp đồng không | [YK2] 2-3, 10-3, UC-03 前提, 確認1, 2 |
 | 19 (mới) | **Đăng ký và xóa tài năng trên Upload-Post:** lúc nào đăng ký, lúc nào xóa (khi 退会, khi bỏ thanh toán). Upload-Post tính phí theo số tài năng đã đăng ký | [YK2] 6-10 (8-2), UC-08 前提 |
 | 20 (mới) | **Nguồn chỉ dẫn cho AI:** màn chỉ dẫn là CR-18, **làm** ([KS] 確認6–8); chỉ dẫn còn đi qua ChatGPT (MCP) và file OneDrive (御見積書 前提条件 A4, Q&A No.45). khi có cả màn hình chỉ dẫn cho AI, ChatGPT project và file OneDrive thì nguồn nào được ưu tiên. Nhóm tài năng do ai tạo, một tài năng thuộc nhiều nhóm thì chỉ dẫn nhóm nào thắng | [YK2] UC-02 前提, 確認6, 7, 8, 47 |
+
+</details>

@@ -1,3 +1,5 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 01. Phân loại yêu cầu và ma trận truy vết
 
 > **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
@@ -107,7 +109,7 @@ Cột "Thực thể liên quan" dùng tên bảng ở `04_database_schema.md`. M
 | R04-04 | [KS] `確認事項!K65` (20/11); DEC-0001 | CONFIRMED (không giới hạn lượt) | `posts.revised_from_post_id`, `posts.caption` | Bỏ giới hạn 2 lần đã bị thay thế. Không tạo CHECK/counter giới hạn; ghi revision để truy vết là thiết kế nội bộ, phải ràng buộc nội dung được duyệt khi mở luồng đăng |
 | R04-05 | [YK2] §6-6 4-3 | SOURCE_BASELINE | `posts`, `post_media` | Chỉ chấp nhận bản nháp có ảnh hoặc video; chấp nhận thì hẹn giờ |
 | R04-06 | [YK2] §6-6 4-3, §5-3 | SOURCE_BASELINE | `posts.approval_requested_at` | Tài năng cần duyệt chọn có gửi duyệt hay không khi chấp nhận |
-| R04-07 | [KS] `20261122!G4:I4`; [YK3] P688; [QA] No.96 | CONFIRMED (AI sửa, không duyệt lại) / PENDING (nhánh còn lại) | `ng_words`, `posts`; P-23/P-26 | AI sửa rồi đặt lịch, không Manager sửa và không Talent xác nhận lại. Không coi UI/đề nghị 22/11 là nhánh ngang quyền. Vòng sửa thất bại, tương tác duyệt công việc và NG đổi sau đặt lịch giữ riêng. |
+| R04-07 | [KS] `20261122!G4:I4`; [YK3] P688; [QA] No.96 | CONFIRMED (AI sửa, không duyệt lại) / PENDING (nhánh còn lại) | `ng_words`, `posts`; P-23/P-26 | AI sửa rồi đặt lịch, không Manager sửa và không Talent xác nhận lại. Không coi UI/đề nghị 22/11 là nhánh ngang quyền. QA71/84 ngày26/11 làm rõ auto không Manager duyệt; QA96 chọn A: NG mới chỉ áp từ lần kiểm sau, giữ lịch đã kiểm. Vòng AI sửa vẫn lỗi còn cần thiết kế đội. |
 | R04-08 | [YK3] P355–381/P688; [QA] No.57/58/96 | PARTIALLY_RESOLVED | `posts`, approval/revision thiết kế đích | Đã rõ AI sửa NG, không Manager sửa. Còn tương tác với bài công việc đã duyệt, lỗi sửa và deadline; không hỏi lại ai sửa. |
 | R04-09 | [KS] `20261122!G16:I16`; [YK3] P250 | CONFIRMED (giờ theo từng SNS) | `post_deliveries` plan thiết kế đích; `posts.scheduled_at` legacy | AI chọn theo khung giờ chỉ thị/metrics, lệch vài phút giữa Talent, chia giờ theo SNS. Một timestamp ở posts chưa đủ; thuật toán/jitter và thay lịch hiện có là việc thiết kế riêng. |
 | R04-10 | [QA] No.55, No.56 | PENDING | `posts`, `theme_suggestions` | Thời hạn của chủ đề và bản nháp; giờ của bài thứ hai trong ngày |
@@ -171,10 +173,10 @@ Cột "Thực thể liên quan" dùng tên bảng ở `04_database_schema.md`. M
 | R08-02 | [YK2] §6-3 1-1, §7-2, §10-2 | SOURCE_BASELINE | `billing_accounts` (chặn ghi) | Đăng ký thanh toán trên trang của công ty thanh toán; hệ thống không giữ thông tin thẻ |
 | R08-03 | [KS] `アクション一覧!A17:G17` No.16; [YK3] P620/P623 | SOURCE_DECISION_REPORTED (Square) / TEAM_PROVIDER_CHECK | `billing_accounts`; adapter provider | Nguồn thuật lại khách chọn Square qua điện thoại sau họp; GMO là ứng viên cũ. Chưa chứng minh ký hợp đồng hoặc Square hỗ trợ nhà mạng/trả trước/biến phí; đội/provider kiểm, không hỏi lại chọn cổng như chưa có hướng. |
 | R08-04 | [YK2] §5-4; [QA] No.3, No.46 (Close), CR-12 | CONFIRMED | `video_generations` (chặn ghi) | Hóa đơn tháng = phí tháng + phí tạo video; không lượt miễn phí, không trần; tháng đầu thu đủ |
-| R08-05 | [QA] No.46; [KS] `確認事項!K104`; `20261120!F24` | PENDING (chính sách nợ) | Thanh toán, trạng thái Talent | Baseline thu lỗi không tự dừng; hướng cân nhắc dừng khi quá 1 tháng chưa trả chưa được chốt thành auto-lock. Không trộn với tạm dừng tự nguyện vẫn thu phí |
-| R08-06 | [KS] `確認事項!K104`; `20261120!F24`; [QA] No.49/53/98 | CONFIRMED (hướng trả trước) / PENDING (hợp đồng kỳ) | Hóa đơn/kỳ thu (BLOCKED) | Phí tháng theo hướng trả trước; mốc kỳ, thu video, công nợ khi kết thúc và provider vẫn cần chốt. Không coi toàn bộ chu kỳ chưa có thông tin |
+| R08-05 | [QA] `Q&A!G63:H63;G86:H86`26/11 | ANSWER_ACCEPTED (nghiệp vụ); chưa G7 PASS | Thanh toán, trạng thái Talent | Square thu lại vẫn chưa xác nhận thanh toán → tự chuyển 支払い待ち, báo Talent/Manager, dừng AI/video/đăng; vẫn thu tháng, cho login đổi thanh toán; trả thành công tự về 利用中. No.86 thay câu trả lời No.46. Số lần/ngày thu lại còn kiểm provider. |
+| R08-06 | [KS] `確認事項!K104`; `20261120!F24`; [QA] No.49/53/98 | CONFIRMED (hướng trả trước) / PENDING (hợp đồng kỳ) | Hóa đơn/kỳ thu (BLOCKED) | Phí tháng theo hướng trả trước; mốc kỳ/provider còn No.4/49; No.62 đã chấp thuận giá lúc依頼 và điều chỉnh lỗi ở kỳ sau; No.98 chấp thuận kết thúc ngay và khoản thu cuối, chỉ lưu lịch sử trong OS/thời hạn còn chờ Adesso. Không coi toàn bộ chu kỳ chưa có thông tin |
 | R08-07 | [YK2] §6-3 5-4 | SOURCE_BASELINE | `video_generations` (chặn ghi) | Tài năng và quản lý xem số lần tạo video trong tháng; tài khoản công ty cũng hiện số lần |
-| R08-08 | [QA] No.63 | PENDING | `talents.status` | Trạng thái khi dừng vì thu lỗi |
+| R08-08 | [QA] `Q&A!G63:H63;G86:H86`26/11 | ANSWER_ACCEPTED (tên và hành vi); mapping enum chờ thiết kế | `talents.status` | 支払い待ち khác 利用終了/tạm dừng tự nguyện; mở lại tự động sau xác nhận thanh toán. Không thay DDL trong đợt này. |
 
 ### EP09. Thông báo và PWA
 
@@ -183,8 +185,8 @@ Cột "Thực thể liên quan" dùng tên bảng ở `04_database_schema.md`. M
 | R09-01 | [YK2] §6-12 6-1 | SOURCE_BASELINE | `talent_notifications`, `push_subscriptions` | Thông báo hiện trong ứng dụng; máy đã cho phép thì đẩy; mở thì tới đúng màn |
 | R09-02 | [YK3] P1277–1347; [KS] `20261122!G17:I17`; QA87/88/97 | SOURCE_REQUIREMENT (catalog/routing) / PENDING (ngoại lệ) | `manager_notifications`; recipient/email thiết kế đích P-16 | Thông báo Manager tới phụ trách Talent; bỏ alert tư vấn nghiêm trọng. Approval ở queue riêng, không generic inbox. Ngoại lệ đơn mới/Managerdisabled và read/handled còn thiết kế/quyết định. |
 | R09-03 | [YK3] phụ lục B P1277–1347 | SOURCE_REQUIREMENT (16 trigger) | `*_notifications`, approval queue, `agent_entries` | Dùng 16 trigger hiện hành; không 17 loại baseline cũ. Kết thúc kỳ autopost vào chat, approval request vào queue. Mapping tại 04 §5; không suy 16 trigger=16 bảng. |
-| R09-04 | [YK3] P1308–1327; phụ lục B | RESOLVED (catalog video/quá hạn duyệt) | `*_notifications.kind` | Bản 0.3 đã liệt kê video xong/lỗi và quá hạn duyệt; rút conflict do phụ lụcA cũ thiếu. Không đóng QA97 về handled. |
-| R09-05 | [QA] No.97 | PENDING | `manager_notifications`, P-16 | Mở thông báo là đã đọc hay đã xử lý; dùng chung hay theo từng Manager chưa chốt. Không để một handled_at thay cả hai khái niệm |
+| R09-04 | [YK3] P1308–1327; phụ lục B | RESOLVED (catalog video/quá hạn duyệt) | `*_notifications.kind` | Bản 0.3 đã liệt kê video xong/lỗi và quá hạn duyệt; rút conflict do phụ lụcA cũ thiếu. QA97 đã đối chiếu25/11: mở dòng thông báo là 対応済み, không hỏi lại bước đọc/xử lý. |
+| R09-05 | [QA] `Q&A!G97:H97;G76:H76`25/11 | SOURCE_ALIGNMENT (nghiệp vụ); chưa G7 PASS | `manager_notifications`, P-16 | Mở dòng sang màn liên quan tự thành 対応済み, bỏ tick 未対応 xem cả đã mở. Không yêu cầu hai bước đọc/xử lý độc lập; cách chiếu trạng thái giữa nhiều Manager là thiết kế cần truy vết, không mặc định mọi người đã xử lý. |
 | R09-06 | [YK2] §11 | SOURCE_BASELINE | — | Thông báo đẩy không đảm bảo luôn tới; luôn có danh sách trong ứng dụng |
 
 ### EP10. Nền tảng chung

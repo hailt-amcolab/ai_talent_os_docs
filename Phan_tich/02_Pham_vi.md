@@ -1,3 +1,46 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Nhập thông tin và ưu tiên chỉ thị
+
+Manager nhập/sửa 5 nhóm thông tin tại M-08 (YK3 bản 0.3), có lịch sử thay đổi; ChatGPT cũng xem/sửa cùng thông tin. Thông tin ngoài M-08 như sinh nhật/lịch xuất hiện được truyền qua hội thoại M-17 và lưu MD trong thư mục Talent trên OneDrive; không có thao tác sửa file OneDrive trực tiếp. Khi thông tin Talent mâu thuẫn chỉ thị AI, ưu tiên chỉ thị AI.
+
+**Phần còn mở/giới hạn:** No.74 là đối chiếu YK3 ngày25/11; No.92 là trả lời FCP26/11. Giữ QA101 về DB và backup: không suy toàn bộ dữ liệu chuyển về OneDrive; phạm vi đồng bộ DB/MD là thiết kế đội cần làm rõ. Phạm vi/chi phí màn mới chưa tự được duyệt thương mại.
+
+Căn cứ: QA `Q&A!A74:J74 (No.74); Q&A!A92:J92 (No.92)`; `EV-1332` / `DEC-0016`.
+
+### Đăng hằng ngày, tự động theo kỳ và cài đặt xác nhận
+
+Đăng hằng ngày luôn dùng được; đăng tự động theo kỳ chỉ chạy khi bắt đầu ở T-10; hai cách dùng đồng thời, không có cài đặt chuyển độc quyền giữa hai cách. T-08 ❺ chọn xác nhận trước khi đăng hay không và áp dụng cả hai. Auto lấy chủ đề qua hội thoại, tư liệu thêm tại T-10 ❹, nhịp theo chỉ thị. AI chọn ảnh hợp chủ đề rồi tạo chữ/hashtag; không dùng thứ tự tải lên và không dùng lại cùng ảnh/video hai lần trong kỳ. Tạo bài hằng ngày trước ngày đăng, không tạo tất cả từ đầu. Chủ đề đổi qua hội thoại trong kỳ. Báo khi còn tư liệu cho 2 ngày; ngày thiếu bỏ qua, thêm tư liệu thì chạy tiếp từ hôm sau. Hết kỳ kết thúc và báo Talent đặt kỳ mới. Đổi cài đặt xác nhận giữ lịch đã có, áp cài đặt mới từ bài chưa đặt lịch. Talent chưa xác nhận tới giờ thì không đăng và báo Talent.
+
+**Phần còn mở/giới hạn:** Mã T-08/T-10 ở đây theo YK3 được câu trả lời26/11 dẫn chiếu, không đổi mã lịch sử SD18/SD19. Auto không có Manager duyệt theo No.71/84; xác nhận Talent và duyệt Manager là hai việc khác nhau.
+
+Căn cứ: QA `Q&A!A70:J70 (No.70); Q&A!A71:J71 (No.71); Q&A!A83:J83 (No.83)`; `EV-1336` / `DEC-0020`.
+
+### Giới hạn hội thoại và tâm sự nghiêm trọng
+
+Không giới hạn số lượt hội thoại; yêu cầu ngoài bài đăng được chuyển về chủ đề bài đăng theo chỉ thị AI. Không có chức năng báo Manager khi Talent tâm sự nghiêm trọng; phạm vi ứng xử nằm trong phần giới hạn hội thoại của chỉ thị. Không khôi phục nhãn/cảnh báo cũ chỉ vì còn trong màn18/11.
+
+**Phần còn mở/giới hạn:** Không suy thông báo đã có phê duyệt thương mại hoặc AI luôn phát hiện/ứng xử đúng. No.93 là đối chiếu0.3 ngày25/11, không tự gán là khách chọn toàn bộ câu chữ phương án B.
+
+Căn cứ: QA `Q&A!A76:J76 (No.76); Q&A!A93:J93 (No.93)`; `EV-1350` / `DEC-0034`.
+
+### Phạm vi ranking và video xếp tuần tự
+
+Ranking không làm ở giai đoạn1: bỏ màn がんばっているタレント và nút menu/home khỏi phạm vi thiết kế giai đoạn này. Video tự làm/AI đã lưu được dùng cho auto; không làm chức năng tự lấy video theo thứ tự lưu, mỗi ngày tạo một nháp.
+
+**Phần còn mở/giới hạn:** Không đồng nghĩa đã duyệt mọi cách lọc/sắp xếp mới của danh sách Talent hoặc chi phí giai đoạn sau.
+
+Căn cứ: QA `Q&A!A38:J38 (No.37); Q&A!A100:J100 (No.100)`; `EV-1351` / `DEC-0035`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 
@@ -253,3 +296,5 @@ Các 確認 khác (đánh dấu ⚠ ở mục 2) chỉ thay đổi chi tiết b�
 | Thu phí gộp số tiền thay đổi theo tháng (5-4) | Phụ thuộc cổng thanh toán có hỗ trợ không | 5-4, 確認49 |
 | Cách gửi thông báo đẩy (6-1) | Chức năng thuộc phạm vi nhưng cách làm còn 今後検討 (sẽ xem xét sau) | 8 |
 | Biện pháp chống khóa tài khoản (8-4) | Chức năng thuộc phạm vi nhưng nội dung sẽ quyết sau khi xem quy định từng mạng | 6-10 (8-4), UC-08 前提 |
+
+</details>

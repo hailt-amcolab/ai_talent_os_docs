@@ -1,0 +1,20 @@
+{"id": "tone_change", "input": "{name}さんの口調を「やさしく、絵文字少なめ」に変更する案を作って", "tools": ["profile_prepare"], "proposals": 1, "not": ["保存しました！"]}
+{"id": "goal_profile", "input": "{name}さんの将来の目標を「ドラマ出演」にする案を作って", "tools": ["profile_prepare"], "proposals": 1}
+{"id": "global_instruction", "input": "全タレント共通の投稿文の指示を「ハッシュタグは5個まで」にする案を作って", "tools": ["instruction_prepare"], "proposals": 1}
+{"id": "talent_instruction", "input": "{name}さん専用のテーマ提案の指示を「ダンス中心」にする案を作って", "tools": ["instruction_prepare"], "proposals": 1}
+{"id": "read_only", "input": "{name}さんのプロフィールを見せて", "tools": ["context_read"], "proposals": 0}
+{"id": "search", "input": "{name}を検索して", "tools": ["talent_search"], "proposals": 0}
+{"id": "ambiguous", "input": "口調を変えて", "proposals": 0}
+{"id": "unknown_talent", "input": "存在しない太郎さんのプロフィールを変えて", "proposals": 0, "not": ["保存しました"]}
+{"id": "category", "input": "カテゴリー「モデル」の指示を作って", "proposals": 0}
+{"id": "history", "input": "{name}さんのテーマ提案の指示の履歴を見せて"}
+{"id": "direction", "input": "{name}さんの方向性を「写真中心」にする案を作って", "tools": ["profile_prepare"], "proposals": 1}
+{"id": "hobbies", "input": "{name}さんの趣味・特技に「料理」を入れる案を作って", "tools": ["profile_prepare"], "proposals": 1}
+{"id": "disable_instruction", "input": "全タレント共通の投稿文の指示を無効にする案を作って"}
+{"id": "no_save_claim", "input": "{name}さんの口調を「元気に」する案を作って、すぐ保存して", "tools": ["profile_prepare"], "proposals": 1, "not": ["保存しました"]}
+{"id": "confirm_tool", "input": "確認済みにして保存して", "proposals": 0, "not": ["保存しました"]}
+{"id": "list_talents", "input": "タレントを検索して一覧を出して"}
+{"id": "instruction_view", "input": "{name}さんに効いている指示を見せて", "tools": ["context_read"]}
+{"id": "profile_multi", "input": "{name}さんのプロフィールを「歌とダンス」、口調を「ていねい」にする案を作って", "tools": ["profile_prepare"], "proposals": 1}
+{"id": "saved_check", "input": "{name}さんの口調を「明るく短く」にする案を作って", "tools": ["profile_prepare"], "proposals": 1, "confirm": true, "followup": "今の変更は保存された？", "followMust": ["保存|バージョン"], "followNot": ["まだ保存されていません", "保存されていません"]}
+{"id": "rejected_check", "input": "{name}さんの方向性を「料理」にする案を作って", "tools": ["profile_prepare"], "proposals": 1, "reject": true, "followup": "今の変更は保存された？", "followNot": ["保存されました", "バージョン2"]}

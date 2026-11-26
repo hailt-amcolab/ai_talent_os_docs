@@ -40,19 +40,28 @@ model activity_logs {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model ai_usage_events {
-  id                    BigInt                 @id(map: "pk_ai_usage_events") @default(autoincrement())
-  talent_id             String                 @db.Uuid
-  occurred_at           DateTime               @default(now()) @db.Timestamptz(6)
-  model                 String
-  input_tokens          Int                    @default(0)
-  output_tokens         Int                    @default(0)
-  cost_amount           Decimal                @db.Decimal(14, 6)
-  cost_currency         String                 @db.Char(3)
-  execution_attempt_id  String?                @unique(map: "uq_ai_usage_events_attempt") @db.Uuid
-  ai_execution_attempts ai_execution_attempts? @relation(fields: [execution_attempt_id, talent_id], references: [id, talent_id], onUpdate: NoAction, map: "fk_ai_usage_events_attempt")
-  talents               talents                @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_ai_usage_events_talent_id")
+  id                  BigInt        @id(map: "pk_ai_usage_events") @default(autoincrement())
+  talent_id           String?       @db.Uuid
+  occurred_at         DateTime      @default(now()) @db.Timestamptz(6)
+  model               String
+  input_tokens        Int           @default(0)
+  output_tokens       Int           @default(0)
+  cost_amount         Decimal?      @db.Decimal(14, 6)
+  cost_currency       String?       @db.Char(3)
+  run_id              String?       @db.Uuid
+  request_ref         String?
+  cached_input_tokens Int           @default(0)
+  reasoning_tokens    Int           @default(0)
+  payer               String        @default("talent")
+  price_revision      String?
+  task_key            String?
+  task_run_id         String?       @db.Uuid
+  agent_runs          agent_runs?   @relation(fields: [run_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  ai_task_runs        ai_task_runs? @relation(fields: [task_run_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  talents             talents?      @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ai_usage_events_talent_id")
 
   @@index([talent_id, occurred_at], map: "idx_ai_usage_events_talent_id_occurred_at")
+  @@index([run_id], map: "idx_ai_usage_events_run", where: raw("(run_id IS NOT NULL)"))
   @@schema("public")
 }
 
@@ -79,8 +88,6 @@ model coach_messages {
   sender                                                                                 String
   body                                                                                   String
   created_at                                                                             DateTime                @default(now()) @db.Timestamptz(6)
-  ai_executions_ai_executions_input_message_id_talent_idTocoach_messages                 ai_executions[]         @relation("ai_executions_input_message_id_talent_idTocoach_messages")
-  ai_executions_ai_executions_output_message_id_talent_idTocoach_messages                ai_executions[]         @relation("ai_executions_output_message_id_talent_idTocoach_messages")
   talents                                                                                talents                 @relation(fields: [talent_id], references: [id], onUpdate: NoAction, map: "fk_coach_messages_talent_id")
   manager_notifications                                                                  manager_notifications[]
   manager_notifications_manager_notifications_coach_message_id_talent_idTocoach_messages manager_notifications[] @relation("manager_notifications_coach_message_id_talent_idTocoach_messages")
@@ -504,12 +511,8 @@ model talents {
   updated_at                                                                         DateTime                @default(now()) @db.Timestamptz(6)
   application_status                                                                 String                  @default("approved")
   principal_kind                                                                     String                  @default("talent")
-  agent_conversations                                                                agent_conversations[]
-  agent_instructions                                                                 agent_instructions[]
-  agent_talent_profiles                                                              agent_talent_profiles[]
   domain_operations                                                                  domain_operations[]
   activity_logs                                                                      activity_logs[]
-  ai_usage_events                                                                    ai_usage_events[]
   billing_accounts                                                                   billing_accounts?
   billing_accounts_billing_accounts_talent_id_account_typeTotalents                  billing_accounts[]      @relation("billing_accounts_talent_id_account_typeTotalents")
   coach_messages                                                                     coach_messages[]
@@ -529,6 +532,12 @@ model talents {
   auth_principals                                                                    auth_principals         @relation(fields: [auth_user_id, principal_kind], references: [auth_user_id, principal_kind], onUpdate: NoAction, map: "fk_talents_principal")
   theme_suggestions                                                                  theme_suggestions[]
   video_generations                                                                  video_generations[]
+  agent_conversations                                                                agent_conversations[]
+  agent_runs                                                                         agent_runs[]
+  ai_instructions                                                                    ai_instructions[]
+  ai_task_runs                                                                       ai_task_runs[]
+  talent_profiles                                                                    talent_profiles?
+  ai_usage_events                                                                    ai_usage_events[]
 
   @@unique([id, account_type], map: "uq_talents_id_account_type")
   @@unique([id, auth_user_id], map: "uq_talents_id_auth")
@@ -638,29 +647,31 @@ model auth_challenges {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model auth_principals {
-  auth_user_id                                                                 String                          @id @db.Uuid
-  principal_kind                                                               String
-  must_change_password                                                         Boolean                         @default(true)
-  security_version                                                             BigInt                          @default(1)
-  created_at                                                                   DateTime                        @default(now()) @db.Timestamptz(6)
-  updated_at                                                                   DateTime                        @default(now()) @db.Timestamptz(6)
-  mfa_enrollment_allowed                                                       Boolean                         @default(false)
-  agent_change_proposals_agent_change_proposals_actor_user_idToauth_principals agent_change_proposals[]        @relation("agent_change_proposals_actor_user_idToauth_principals")
-  agent_change_proposals_agent_change_proposals_confirmed_byToauth_principals  agent_change_proposals[]        @relation("agent_change_proposals_confirmed_byToauth_principals")
-  agent_commands                                                               agent_commands[]
-  agent_conversations                                                          agent_conversations[]
-  agent_instruction_versions                                                   agent_instruction_versions[]
-  agent_instructions                                                           agent_instructions[]
-  agent_talent_profile_versions                                                agent_talent_profile_versions[]
-  agent_talent_profiles                                                        agent_talent_profiles[]
-  ai_executions                                                                ai_executions[]
-  auth_login_identifiers                                                       auth_login_identifiers?
-  users                                                                        auth_users                      @relation(fields: [auth_user_id], references: [id], onUpdate: NoAction)
-  auth_session_registry                                                        auth_session_registry[]
-  domain_operations                                                            domain_operations[]
-  password_lock_state                                                          password_lock_state?
-  managers                                                                     managers[]
-  talents                                                                      talents[]
+  auth_user_id                                                         String                    @id @db.Uuid
+  principal_kind                                                       String
+  must_change_password                                                 Boolean                   @default(true)
+  security_version                                                     BigInt                    @default(1)
+  created_at                                                           DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at                                                           DateTime                  @default(now()) @db.Timestamptz(6)
+  mfa_enrollment_allowed                                               Boolean                   @default(false)
+  auth_login_identifiers                                               auth_login_identifiers?
+  users                                                                auth_users                @relation(fields: [auth_user_id], references: [id], onUpdate: NoAction)
+  auth_session_registry                                                auth_session_registry[]
+  domain_operations                                                    domain_operations[]
+  password_lock_state                                                  password_lock_state?
+  managers                                                             managers[]
+  talents                                                              talents[]
+  agent_conversations                                                  agent_conversations[]
+  agent_runs                                                           agent_runs[]
+  ai_instruction_versions                                              ai_instruction_versions[]
+  ai_instructions                                                      ai_instructions[]
+  business_commands                                                    business_commands[]
+  business_proposals_business_proposals_actor_user_idToauth_principals business_proposals[]      @relation("business_proposals_actor_user_idToauth_principals")
+  business_proposals_business_proposals_decided_byToauth_principals    business_proposals[]      @relation("business_proposals_decided_byToauth_principals")
+  idempotency_requests                                                 idempotency_requests[]
+  talent_profile_versions                                              talent_profile_versions[]
+  talent_profiles                                                      talent_profiles[]
+  mcp_grants                                                           mcp_grants[]
 
   @@unique([auth_user_id, principal_kind])
   @@schema("app_private")
@@ -696,29 +707,29 @@ model auth_session_registry {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model domain_operations {
-  id                                                          String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  actor_auth_user_id                                          String?               @db.Uuid
-  operation_key                                               String                @unique
-  kind                                                        String
-  application_id                                              String?               @unique(map: "uq_operations_application_provision", where: raw("(kind = 'application.provision'::text)")) @db.Uuid
-  talent_id                                                   String?               @db.Uuid
-  payload_hash                                                String
-  state                                                       String                @default("accepted")
-  step                                                        String?
-  provider_ref                                                String?
-  version                                                     BigInt                @default(1)
-  last_error_code                                             String?
-  created_at                                                  DateTime              @default(now()) @db.Timestamptz(6)
-  updated_at                                                  DateTime              @default(now()) @db.Timestamptz(6)
-  notification_id                                             String?               @db.Uuid
-  agent_commands                                              agent_commands[]
-  ai_executions                                               ai_executions[]
-  ai_executions_ai_executions_operation_idTodomain_operations ai_executions[]       @relation("ai_executions_operation_idTodomain_operations")
-  auth_principals                                             auth_principals?      @relation(fields: [actor_auth_user_id], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
-  talent_applications                                         talent_applications?  @relation(fields: [application_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  talents                                                     talents?              @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  talent_notifications                                        talent_notifications? @relation(fields: [notification_id, talent_id], references: [id, talent_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_operation_notification_owner")
-  outbox_events                                               outbox_events[]
+  id                   String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  actor_auth_user_id   String?               @db.Uuid
+  operation_key        String                @unique
+  kind                 String
+  application_id       String?               @unique(map: "uq_operations_application_provision", where: raw("(kind = 'application.provision'::text)")) @db.Uuid
+  talent_id            String?               @db.Uuid
+  payload_hash         String
+  state                String                @default("accepted")
+  step                 String?
+  provider_ref         String?
+  version              BigInt                @default(1)
+  last_error_code      String?
+  created_at           DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime              @default(now()) @db.Timestamptz(6)
+  notification_id      String?               @db.Uuid
+  auth_principals      auth_principals?      @relation(fields: [actor_auth_user_id], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
+  talent_applications  talent_applications?  @relation(fields: [application_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  talents              talents?              @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  talent_notifications talent_notifications? @relation(fields: [notification_id, talent_id], references: [id, talent_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_operation_notification_owner")
+  outbox_events        outbox_events[]
+  agent_runs           agent_runs?
+  ai_task_runs         ai_task_runs?
+  business_commands    business_commands[]
 
   @@unique([id, talent_id], map: "uq_operations_id_talent")
   @@index([actor_auth_user_id], map: "idx_operations_actor")
@@ -744,9 +755,10 @@ model outbox_events {
   delivery_sequence  BigInt            @default(0)
   next_dispatch_at   DateTime          @default(now()) @db.Timestamptz(6)
   last_dispatched_at DateTime?         @db.Timestamptz(6)
-  ai_executions      ai_executions[]
   domain_operations  domain_operations @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
   push_deliveries    push_deliveries[]
+  agent_runs         agent_runs?
+  ai_task_runs       ai_task_runs?
 
   @@unique([operation_id, generation, event_type])
   @@unique([id, operation_id], map: "uq_outbox_id_operation")
@@ -897,305 +909,282 @@ model tech_demo_onedrive_oauth_states {
   @@schema("app_private")
 }
 
-/// AI Core execution ledger (migration 20261123000000_ai_core_executions; report AI Core §4.4). Checks/RLS live in SQL.
-model ai_executions {
-  id                                                                                   String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  operation_id                                                                         String                   @db.Uuid
-  event_id                                                                             String                   @unique @db.Uuid
-  talent_id                                                                            String?                  @unique(map: "uq_ai_executions_active_talent", where: raw("((state = ANY (ARRAY['running'::text, 'unknown'::text])) AND (task_key ~~ 'coach.%'::text))")) @db.Uuid
-  task_key                                                                             String
-  task_revision                                                                        String
-  input_message_id                                                                     BigInt?                  @unique
-  state                                                                                String                   @default("pending")
-  attempt_no                                                                           Int                      @default(0)
-  version                                                                              BigInt                   @default(1)
-  lease_token                                                                          String?                  @db.Uuid
-  lease_until                                                                          DateTime?                @db.Timestamptz(6)
-  heartbeat_at                                                                         DateTime?                @db.Timestamptz(6)
-  cancel_requested_at                                                                  DateTime?                @db.Timestamptz(6)
-  output_message_id                                                                    BigInt?                  @unique
-  last_error_code                                                                      String?
-  created_at                                                                           DateTime                 @default(now()) @db.Timestamptz(6)
-  updated_at                                                                           DateTime                 @default(now()) @db.Timestamptz(6)
-  finished_at                                                                          DateTime?                @db.Timestamptz(6)
-  actor_user_id                                                                        String?                  @db.Uuid
-  channel                                                                              String?
-  scope_kind                                                                           String?
-  scope_id                                                                             String?                  @db.Uuid
-  conversation_id                                                                      String?                  @unique(map: "uq_ai_executions_active_conversation", where: raw("((state = ANY (ARRAY['pending'::text, 'running'::text, 'waiting_confirmation'::text, 'unknown'::text])) AND (conversation_id IS NOT NULL))")) @db.Uuid
-  input_entry_id                                                                       String?                  @db.Uuid
-  output_entry_id                                                                      String?                  @unique @db.Uuid
-  completion_kind                                                                      String?
-  context_manifest                                                                     Json?
-  context_revision                                                                     String?
-  wake_sequence                                                                        BigInt                   @default(1)
-  waiting_proposal_id                                                                  String?                  @db.Uuid
-  agent_change_proposals_agent_change_proposals_execution_idToai_executions            agent_change_proposals[] @relation("agent_change_proposals_execution_idToai_executions")
-  agent_commands                                                                       agent_commands[]
-  agent_steps                                                                          agent_steps[]
-  ai_execution_attempts                                                                ai_execution_attempts[]
-  ai_execution_attempts_ai_execution_attempts_execution_idToai_executions              ai_execution_attempts[]  @relation("ai_execution_attempts_execution_idToai_executions")
-  auth_principals                                                                      auth_principals?         @relation(fields: [actor_user_id], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
-  agent_conversations_ai_executions_conversation_idToagent_conversations               agent_conversations?     @relation("ai_executions_conversation_idToagent_conversations", fields: [conversation_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  outbox_events                                                                        outbox_events            @relation(fields: [event_id, operation_id], references: [id, operation_id], onUpdate: NoAction)
-  coach_messages_ai_executions_input_message_id_talent_idTocoach_messages              coach_messages?          @relation("ai_executions_input_message_id_talent_idTocoach_messages", fields: [input_message_id, talent_id], references: [id, talent_id], onDelete: Restrict, onUpdate: NoAction)
-  domain_operations                                                                    domain_operations?       @relation(fields: [operation_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
-  coach_messages_ai_executions_output_message_id_talent_idTocoach_messages             coach_messages?          @relation("ai_executions_output_message_id_talent_idTocoach_messages", fields: [output_message_id, talent_id], references: [id, talent_id], onDelete: Restrict, onUpdate: NoAction)
-  agent_conversations_ai_executions_conversation_id_actor_user_idToagent_conversations agent_conversations?     @relation("ai_executions_conversation_id_actor_user_idToagent_conversations", fields: [conversation_id, actor_user_id], references: [id, actor_user_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ai_executions_conversation_actor")
-  agent_entries_ai_executions_input_entry_id_conversation_idToagent_entries            agent_entries?           @relation("ai_executions_input_entry_id_conversation_idToagent_entries", fields: [input_entry_id, conversation_id], references: [id, conversation_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ai_executions_input_entry")
-  domain_operations_ai_executions_operation_idTodomain_operations                      domain_operations        @relation("ai_executions_operation_idTodomain_operations", fields: [operation_id], references: [id], onUpdate: NoAction, map: "fk_ai_executions_operation")
-  agent_entries_ai_executions_output_entry_id_conversation_idToagent_entries           agent_entries?           @relation("ai_executions_output_entry_id_conversation_idToagent_entries", fields: [output_entry_id, conversation_id], references: [id, conversation_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ai_executions_output_entry")
-  agent_change_proposals_ai_executions_waiting_proposal_idToagent_change_proposals     agent_change_proposals?  @relation("ai_executions_waiting_proposal_idToagent_change_proposals", fields: [waiting_proposal_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_ai_executions_waiting_proposal")
-
-  @@unique([id, talent_id])
-  @@index([lease_until, id], map: "idx_ai_executions_lease", where: raw("(state = 'running'::text)"))
-  @@index([talent_id, created_at(sort: Desc), id], map: "idx_ai_executions_talent")
-  @@index([conversation_id, created_at(sort: Desc)], map: "idx_ai_executions_conversation", where: raw("(conversation_id IS NOT NULL)"))
-  @@index([waiting_proposal_id], map: "idx_ai_executions_waiting", where: raw("(state = 'waiting_confirmation'::text)"))
-  @@schema("app_private")
-}
-
-/// One row per execution lease; phase calling is written before the model HTTP call.
-model ai_execution_attempts {
-  id                                                              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  execution_id                                                    String            @unique(map: "uq_ai_attempts_active", where: raw("(phase = ANY (ARRAY['claimed'::text, 'calling'::text, 'response_received'::text, 'executing'::text]))")) @db.Uuid
-  talent_id                                                       String?           @db.Uuid
-  attempt_no                                                      Int
-  lease_token                                                     String            @db.Uuid
-  phase                                                           String            @default("claimed")
-  provider                                                        String?
-  model                                                           String?
-  context_revision                                                String?
-  provider_request_id                                             String?
-  provider_idempotency_key                                        String?
-  usage_state                                                     String            @default("not_called")
-  input_tokens                                                    Int?
-  output_tokens                                                   Int?
-  error_code                                                      String?
-  started_at                                                      DateTime          @default(now()) @db.Timestamptz(6)
-  call_started_at                                                 DateTime?         @db.Timestamptz(6)
-  call_finished_at                                                DateTime?         @db.Timestamptz(6)
-  finished_at                                                     DateTime?         @db.Timestamptz(6)
-  step_ledger                                                     Boolean           @default(false)
-  agent_steps                                                     agent_steps[]
-  ai_executions                                                   ai_executions?    @relation(fields: [execution_id, talent_id], references: [id, talent_id], onUpdate: NoAction)
-  ai_executions_ai_execution_attempts_execution_idToai_executions ai_executions     @relation("ai_execution_attempts_execution_idToai_executions", fields: [execution_id], references: [id], onUpdate: NoAction, map: "fk_ai_execution_attempts_execution")
-  ai_usage_events                                                 ai_usage_events[]
-
-  @@unique([execution_id, attempt_no])
-  @@unique([id, talent_id])
-  @@unique([id, execution_id], map: "uq_ai_execution_attempts_id_execution")
-  @@schema("app_private")
-}
-
-/// CR-05 / Q&A No.38: today's news/trends from one AI web search per JST day, shared by every Talent (migration 20261123000300).
-model ai_daily_trends {
-  day           DateTime @id @db.Date
-  content       String
-  sources       Json     @default("[]")
-  provider      String
-  model         String
-  input_tokens  Int?
-  output_tokens Int?
-  created_at    DateTime @default(now()) @db.Timestamptz(6)
-
-  @@schema("app_private")
-}
-
-model agent_change_proposals {
-  id                                                                      String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  actor_user_id                                                           String           @db.Uuid
-  channel                                                                 String
-  execution_id                                                            String?          @db.Uuid
-  tool_step_id                                                            String?          @unique @db.Uuid
-  command_type                                                            String
-  scope_kind                                                              String
-  scope_id                                                                String?          @db.Uuid
-  target_label                                                            String
-  before                                                                  Json?
-  patch                                                                   Json
-  payload_hash                                                            String
-  base_version                                                            BigInt
-  expires_at                                                              DateTime         @db.Timestamptz(6)
-  state                                                                   String           @default("prepared")
-  confirmed_by                                                            String?          @db.Uuid
-  confirmed_at                                                            DateTime?        @db.Timestamptz(6)
-  decided_at                                                              DateTime?        @db.Timestamptz(6)
-  version                                                                 BigInt           @default(1)
-  created_at                                                              DateTime         @default(now()) @db.Timestamptz(6)
-  updated_at                                                              DateTime         @default(now()) @db.Timestamptz(6)
-  auth_principals_agent_change_proposals_actor_user_idToauth_principals   auth_principals  @relation("agent_change_proposals_actor_user_idToauth_principals", fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
-  auth_principals_agent_change_proposals_confirmed_byToauth_principals    auth_principals? @relation("agent_change_proposals_confirmed_byToauth_principals", fields: [confirmed_by], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
-  ai_executions_agent_change_proposals_execution_idToai_executions        ai_executions?   @relation("agent_change_proposals_execution_idToai_executions", fields: [execution_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  agent_steps                                                             agent_steps?     @relation(fields: [tool_step_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  agent_commands                                                          agent_commands[]
-  ai_executions_ai_executions_waiting_proposal_idToagent_change_proposals ai_executions[]  @relation("ai_executions_waiting_proposal_idToagent_change_proposals")
-
-  @@index([actor_user_id, state, expires_at], map: "idx_agent_proposals_actor")
-  @@schema("app_private")
-}
-
-model agent_commands {
-  id                     String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  operation_id           String                 @db.Uuid
-  proposal_id            String                 @unique @db.Uuid
-  execution_id           String?                @db.Uuid
-  actor_user_id          String                 @db.Uuid
-  kind                   String
-  target_label           String
-  payload_hash           String
-  resource_version       BigInt
-  created_at             DateTime               @default(now()) @db.Timestamptz(6)
-  auth_principals        auth_principals        @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
-  ai_executions          ai_executions?         @relation(fields: [execution_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  domain_operations      domain_operations      @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
-  agent_change_proposals agent_change_proposals @relation(fields: [proposal_id], references: [id], onUpdate: NoAction)
-
-  @@index([execution_id], map: "idx_agent_commands_execution", where: raw("(execution_id IS NOT NULL)"))
-  @@schema("app_private")
-}
-
 model agent_conversations {
-  id                                                                             String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  actor_user_id                                                                  String          @db.Uuid
-  channel                                                                        String
-  talent_id                                                                      String?         @db.Uuid
-  request_key                                                                    String          @db.Uuid
-  next_sequence                                                                  BigInt          @default(1)
-  version                                                                        BigInt          @default(1)
-  created_at                                                                     DateTime        @default(now()) @db.Timestamptz(6)
-  updated_at                                                                     DateTime        @default(now()) @db.Timestamptz(6)
-  auth_principals                                                                auth_principals @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
-  talents                                                                        talents?        @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  agent_entries                                                                  agent_entries[]
-  ai_executions_ai_executions_conversation_idToagent_conversations               ai_executions[] @relation("ai_executions_conversation_idToagent_conversations")
-  ai_executions_ai_executions_conversation_id_actor_user_idToagent_conversations ai_executions[] @relation("ai_executions_conversation_id_actor_user_idToagent_conversations")
+  id                                                                       String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  actor_user_id                                                            String                @db.Uuid
+  channel                                                                  String
+  talent_id                                                                String?               @db.Uuid
+  request_key                                                              String                @db.Uuid
+  next_sequence                                                            BigInt                @default(1)
+  version                                                                  BigInt                @default(1)
+  created_at                                                               DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at                                                               DateTime              @default(now()) @db.Timestamptz(6)
+  auth_principals                                                          auth_principals       @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+  talents                                                                  talents?              @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  agent_runs_agent_runs_conversation_id_actor_user_idToagent_conversations agent_runs[]          @relation("agent_runs_conversation_id_actor_user_idToagent_conversations")
+  agent_runs_agent_runs_conversation_idToagent_conversations               agent_runs?           @relation("agent_runs_conversation_idToagent_conversations")
+  agent_session_items                                                      agent_session_items[]
 
   @@unique([actor_user_id, request_key])
   @@unique([id, actor_user_id])
   @@schema("app_private")
 }
 
-model agent_entries {
-  id                                                                         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  conversation_id                                                            String              @db.Uuid
-  sequence                                                                   BigInt
-  role                                                                       String
-  body                                                                       String
-  created_at                                                                 DateTime            @default(now()) @db.Timestamptz(6)
-  agent_conversations                                                        agent_conversations @relation(fields: [conversation_id], references: [id], onUpdate: NoAction)
-  ai_executions_ai_executions_input_entry_id_conversation_idToagent_entries  ai_executions[]     @relation("ai_executions_input_entry_id_conversation_idToagent_entries")
-  ai_executions_ai_executions_output_entry_id_conversation_idToagent_entries ai_executions[]     @relation("ai_executions_output_entry_id_conversation_idToagent_entries")
+model business_proposals {
+  id                                                                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  command_type                                                      String
+  actor_user_id                                                     String             @db.Uuid
+  channel                                                           String
+  client_grant_id                                                   String?            @db.Uuid
+  run_id                                                            String?            @db.Uuid
+  idempotency_key                                                   String             @unique
+  target_kind                                                       String
+  target_id                                                         String?            @db.Uuid
+  target_label                                                      String
+  before                                                            Json?
+  patch                                                             Json
+  payload_hash                                                      String
+  base_version                                                      BigInt
+  expires_at                                                        DateTime           @db.Timestamptz(6)
+  state                                                             String             @default("prepared")
+  decided_by                                                        String?            @db.Uuid
+  decided_at                                                        DateTime?          @db.Timestamptz(6)
+  version                                                           BigInt             @default(1)
+  created_at                                                        DateTime           @default(now()) @db.Timestamptz(6)
+  updated_at                                                        DateTime           @default(now()) @db.Timestamptz(6)
+  business_commands                                                 business_commands?
+  auth_principals_business_proposals_actor_user_idToauth_principals auth_principals    @relation("business_proposals_actor_user_idToauth_principals", fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+  auth_principals_business_proposals_decided_byToauth_principals    auth_principals?   @relation("business_proposals_decided_byToauth_principals", fields: [decided_by], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
+  agent_runs                                                        agent_runs?        @relation(fields: [run_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  mcp_grants                                                        mcp_grants?        @relation(fields: [client_grant_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "fk_business_proposals_grant")
+
+  @@index([actor_user_id, state, expires_at], map: "idx_business_proposals_actor")
+  @@index([expires_at], map: "idx_business_proposals_due", where: raw("(state = 'prepared'::text)"))
+  @@index([run_id], map: "idx_business_proposals_run", where: raw("(run_id IS NOT NULL)"))
+  @@schema("app_private")
+}
+
+model business_commands {
+  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  command_type       String
+  actor_kind         String
+  actor_user_id      String?             @db.Uuid
+  channel            String
+  run_id             String?             @db.Uuid
+  proposal_id        String?             @unique @db.Uuid
+  operation_id       String?             @db.Uuid
+  idempotency_key    String              @unique
+  target_kind        String
+  target_id          String?             @db.Uuid
+  target_label       String
+  payload_hash       String
+  result_version     BigInt?
+  changed            Boolean
+  receipt            Json
+  created_at         DateTime            @default(now()) @db.Timestamptz(6)
+  auth_principals    auth_principals?    @relation(fields: [actor_user_id], references: [auth_user_id], onDelete: Restrict, onUpdate: NoAction)
+  domain_operations  domain_operations?  @relation(fields: [operation_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  business_proposals business_proposals? @relation(fields: [proposal_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  agent_runs         agent_runs?         @relation(fields: [run_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+
+  @@index([run_id], map: "idx_business_commands_run", where: raw("(run_id IS NOT NULL)"))
+  @@index([target_kind, target_id, created_at], map: "idx_business_commands_target")
+  @@schema("app_private")
+}
+
+model idempotency_requests {
+  actor_user_id   String          @db.Uuid
+  route_key       String
+  request_key     String          @db.Uuid
+  payload_hash    String
+  response_status Int?
+  response_body   Json?
+  created_at      DateTime        @default(now()) @db.Timestamptz(6)
+  expires_at      DateTime        @default(dbgenerated("(now() + '7 days'::interval)")) @db.Timestamptz(6)
+  auth_principals auth_principals @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+
+  @@id([actor_user_id, route_key, request_key])
+  @@index([expires_at], map: "idx_idempotency_requests_expiry")
+  @@schema("app_private")
+}
+
+model agent_runs {
+  id                                                                                String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  operation_id                                                                      String                @unique @db.Uuid
+  event_id                                                                          String?               @unique @db.Uuid
+  conversation_id                                                                   String                @unique(map: "uq_agent_runs_active", where: raw("(state = ANY (ARRAY['pending'::text, 'running'::text]))")) @db.Uuid
+  actor_user_id                                                                     String                @db.Uuid
+  channel                                                                           String
+  talent_id                                                                         String?               @db.Uuid
+  request_key                                                                       String                @db.Uuid
+  input_hash                                                                        String
+  input_text                                                                        String
+  state                                                                             String                @default("pending")
+  error_code                                                                        String?
+  final_text                                                                        String?
+  completion_kind                                                                   String?
+  prompt_version                                                                    String?
+  model                                                                             String?
+  context_manifest                                                                  Json?
+  trace_id                                                                          String?
+  lease_token                                                                       String?               @db.Uuid
+  lease_until                                                                       DateTime?             @db.Timestamptz(6)
+  heartbeat_at                                                                      DateTime?             @db.Timestamptz(6)
+  model_started_at                                                                  DateTime?             @db.Timestamptz(6)
+  cancel_requested_at                                                               DateTime?             @db.Timestamptz(6)
+  claims                                                                            Int                   @default(0)
+  version                                                                           BigInt                @default(1)
+  created_at                                                                        DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at                                                                        DateTime              @default(now()) @db.Timestamptz(6)
+  finished_at                                                                       DateTime?             @db.Timestamptz(6)
+  auth_principals                                                                   auth_principals       @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+  agent_conversations_agent_runs_conversation_id_actor_user_idToagent_conversations agent_conversations   @relation("agent_runs_conversation_id_actor_user_idToagent_conversations", fields: [conversation_id, actor_user_id], references: [id, actor_user_id], onUpdate: NoAction)
+  agent_conversations_agent_runs_conversation_idToagent_conversations               agent_conversations   @relation("agent_runs_conversation_idToagent_conversations", fields: [conversation_id], references: [id], onUpdate: NoAction)
+  outbox_events                                                                     outbox_events?        @relation(fields: [event_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  domain_operations                                                                 domain_operations     @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
+  talents                                                                           talents?              @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  agent_session_items                                                               agent_session_items[]
+  business_commands                                                                 business_commands[]
+  business_proposals                                                                business_proposals[]
+  ai_usage_events                                                                   ai_usage_events[]
+
+  @@unique([conversation_id, actor_user_id, request_key])
+  @@index([conversation_id, created_at(sort: Desc)], map: "idx_agent_runs_conversation")
+  @@index([lease_until], map: "idx_agent_runs_lease", where: raw("(state = 'running'::text)"))
+  @@schema("app_private")
+}
+
+model agent_session_items {
+  id                  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  conversation_id     String              @db.Uuid
+  sequence            BigInt
+  run_id              String?             @db.Uuid
+  kind                String
+  role                String?
+  item                Json
+  display_text        String?
+  source              String              @default("sdk")
+  discarded_at        DateTime?           @db.Timestamptz(6)
+  created_at          DateTime            @default(now()) @db.Timestamptz(6)
+  agent_conversations agent_conversations @relation(fields: [conversation_id], references: [id], onUpdate: NoAction)
+  agent_runs          agent_runs?         @relation(fields: [run_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
 
   @@unique([conversation_id, sequence])
-  @@unique([id, conversation_id])
+  @@index([conversation_id, sequence], map: "idx_agent_session_items_live", where: raw("(discarded_at IS NULL)"))
   @@schema("app_private")
 }
 
-model agent_instruction_versions {
-  instruction_id     String             @db.Uuid
-  version            BigInt
-  text               String
-  enabled            Boolean
-  actor_user_id      String             @db.Uuid
-  created_at         DateTime           @default(now()) @db.Timestamptz(6)
-  auth_principals    auth_principals    @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
-  agent_instructions agent_instructions @relation(fields: [instruction_id], references: [id], onUpdate: NoAction)
+model ai_task_runs {
+  id                String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  operation_id      String            @unique @db.Uuid
+  event_id          String            @unique @db.Uuid
+  task_key          String
+  talent_id         String?           @db.Uuid
+  input             Json
+  output            Json?
+  prompt_version    String?
+  model             String?
+  state             String            @default("pending")
+  error_code        String?
+  lease_token       String?           @db.Uuid
+  lease_until       DateTime?         @db.Timestamptz(6)
+  attempts          Int               @default(0)
+  version           BigInt            @default(1)
+  created_at        DateTime          @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime          @default(now()) @db.Timestamptz(6)
+  finished_at       DateTime?         @db.Timestamptz(6)
+  outbox_events     outbox_events     @relation(fields: [event_id], references: [id], onUpdate: NoAction)
+  domain_operations domain_operations @relation(fields: [operation_id], references: [id], onUpdate: NoAction)
+  talents           talents?          @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  ai_usage_events   ai_usage_events[]
 
-  @@id([instruction_id, version])
+  @@index([lease_until], map: "idx_ai_task_runs_lease", where: raw("(state = 'running'::text)"))
   @@schema("app_private")
 }
 
-model agent_instructions {
-  id                         String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  scope_kind                 String
-  scope_id                   String?                      @db.Uuid
-  talent_id                  String?                      @db.Uuid
-  situation                  String                       @unique(map: "uq_agent_instructions_global", where: raw("(scope_kind = 'global'::text)"))
-  text                       String
-  enabled                    Boolean
-  version                    BigInt                       @default(1)
-  updated_by                 String                       @db.Uuid
-  created_at                 DateTime                     @default(now()) @db.Timestamptz(6)
-  updated_at                 DateTime                     @default(now()) @db.Timestamptz(6)
-  agent_instruction_versions agent_instruction_versions[]
-  talents                    talents?                     @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  auth_principals            auth_principals              @relation(fields: [updated_by], references: [auth_user_id], onUpdate: NoAction)
-
-  @@unique([scope_kind, scope_id, situation], map: "uq_agent_instructions_scoped", where: raw("(scope_kind <> 'global'::text)"))
-  @@schema("app_private")
-}
-
-model agent_profile_exports {
-  talent_id             String                @id @db.Uuid
-  version               BigInt
-  item_ref              String
-  exported_at           DateTime              @default(now()) @db.Timestamptz(6)
-  agent_talent_profiles agent_talent_profiles @relation(fields: [talent_id], references: [talent_id], onUpdate: NoAction)
+model talent_profiles {
+  talent_id               String                    @id @db.Uuid
+  profile                 Json
+  version                 BigInt                    @default(1)
+  updated_by              String                    @db.Uuid
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  talent_profile_exports  talent_profile_exports?
+  talent_profile_versions talent_profile_versions[]
+  talents                 talents                   @relation(fields: [talent_id], references: [id], onUpdate: NoAction)
+  auth_principals         auth_principals           @relation(fields: [updated_by], references: [auth_user_id], onUpdate: NoAction)
 
   @@schema("app_private")
 }
 
-model agent_steps {
-  id                     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  execution_id           String                  @db.Uuid
-  attempt_id             String                  @db.Uuid
-  sequence               Int
-  kind                   String
-  state                  String
-  source_model_step_id   String?                 @db.Uuid
-  call_id                String?
-  tool_name              String?
-  input                  Json?
-  output                 Json?
-  provider               String?
-  model                  String?
-  provider_request_ref   String?
-  input_tokens           Int?
-  output_tokens          Int?
-  cached_tokens          Int?
-  usage_state            String                  @default("not_called")
-  cost_amount            Decimal?                @db.Decimal(20, 8)
-  currency               String?                 @db.Char(3)
-  error_code             String?
-  started_at             DateTime                @default(now()) @db.Timestamptz(6)
-  finished_at            DateTime?               @db.Timestamptz(6)
-  agent_change_proposals agent_change_proposals?
-  ai_execution_attempts  ai_execution_attempts   @relation(fields: [attempt_id, execution_id], references: [id, execution_id], onUpdate: NoAction)
-  ai_executions          ai_executions           @relation(fields: [execution_id], references: [id], onUpdate: NoAction)
-  agent_steps            agent_steps?            @relation("agent_stepsToagent_steps", fields: [source_model_step_id, execution_id], references: [id, execution_id], onUpdate: NoAction)
-  other_agent_steps      agent_steps[]           @relation("agent_stepsToagent_steps")
-
-  @@unique([execution_id, sequence])
-  @@unique([id, execution_id])
-  @@unique([source_model_step_id, call_id])
-  @@schema("app_private")
-}
-
-model agent_talent_profile_versions {
-  talent_id             String                @db.Uuid
-  version               BigInt
-  profile               Json
-  actor_user_id         String                @db.Uuid
-  created_at            DateTime              @default(now()) @db.Timestamptz(6)
-  auth_principals       auth_principals       @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
-  agent_talent_profiles agent_talent_profiles @relation(fields: [talent_id], references: [talent_id], onUpdate: NoAction)
+model talent_profile_versions {
+  talent_id       String          @db.Uuid
+  version         BigInt
+  profile         Json
+  actor_user_id   String          @db.Uuid
+  created_at      DateTime        @default(now()) @db.Timestamptz(6)
+  auth_principals auth_principals @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+  talent_profiles talent_profiles @relation(fields: [talent_id], references: [talent_id], onUpdate: NoAction)
 
   @@id([talent_id, version])
   @@schema("app_private")
 }
 
-model agent_talent_profiles {
-  talent_id                     String                          @id @db.Uuid
-  profile                       Json
-  version                       BigInt                          @default(1)
-  updated_by                    String                          @db.Uuid
-  created_at                    DateTime                        @default(now()) @db.Timestamptz(6)
-  updated_at                    DateTime                        @default(now()) @db.Timestamptz(6)
-  agent_profile_exports         agent_profile_exports[]
-  agent_talent_profile_versions agent_talent_profile_versions[]
-  talents                       talents                         @relation(fields: [talent_id], references: [id], onUpdate: NoAction)
-  auth_principals               auth_principals                 @relation(fields: [updated_by], references: [auth_user_id], onUpdate: NoAction)
+model ai_instructions {
+  id                      String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  scope_kind              String
+  scope_id                String?                   @db.Uuid
+  talent_id               String?                   @db.Uuid
+  situation               String                    @unique(map: "uq_ai_instructions_global", where: raw("(scope_kind = 'global'::text)"))
+  text                    String
+  enabled                 Boolean
+  version                 BigInt                    @default(1)
+  updated_by              String                    @db.Uuid
+  created_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamptz(6)
+  ai_instruction_versions ai_instruction_versions[]
+  talents                 talents?                  @relation(fields: [talent_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  auth_principals         auth_principals           @relation(fields: [updated_by], references: [auth_user_id], onUpdate: NoAction)
 
+  @@unique([scope_kind, scope_id, situation], map: "uq_ai_instructions_scoped", where: raw("(scope_kind <> 'global'::text)"))
+  @@schema("app_private")
+}
+
+model ai_instruction_versions {
+  instruction_id  String          @db.Uuid
+  version         BigInt
+  text            String
+  enabled         Boolean
+  actor_user_id   String          @db.Uuid
+  created_at      DateTime        @default(now()) @db.Timestamptz(6)
+  auth_principals auth_principals @relation(fields: [actor_user_id], references: [auth_user_id], onUpdate: NoAction)
+  ai_instructions ai_instructions @relation(fields: [instruction_id], references: [id], onUpdate: NoAction)
+
+  @@id([instruction_id, version])
+  @@schema("app_private")
+}
+
+model talent_profile_exports {
+  talent_id       String          @id @db.Uuid
+  version         BigInt
+  item_ref        String
+  exported_at     DateTime        @default(now()) @db.Timestamptz(6)
+  talent_profiles talent_profiles @relation(fields: [talent_id], references: [talent_id], onUpdate: NoAction)
+
+  @@schema("app_private")
+}
+
+model mcp_grants {
+  id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  manager_user_id    String               @db.Uuid
+  client_id          String
+  capabilities       String[]
+  issued_at          DateTime             @default(now()) @db.Timestamptz(6)
+  expires_at         DateTime             @db.Timestamptz(6)
+  revoked_at         DateTime?            @db.Timestamptz(6)
+  business_proposals business_proposals[]
+  auth_principals    auth_principals      @relation(fields: [manager_user_id], references: [auth_user_id], onUpdate: NoAction)
+
+  @@unique([manager_user_id, client_id], map: "uq_mcp_grants_active", where: raw("(revoked_at IS NULL)"))
   @@schema("app_private")
 }

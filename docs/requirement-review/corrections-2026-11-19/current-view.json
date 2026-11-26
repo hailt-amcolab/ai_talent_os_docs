@@ -1,5 +1,5 @@
 {
-  "version": "CORRECTION-1+DEC-0001+DELIVERY23112026+DELIVERY24112026",
+  "version": "CORRECTION-1+DEC-0001+DELIVERY23112026+DELIVERY24112026+QA26112026",
   "requirements": "docs/requirement-review/registers/requirements.csv",
   "business_rules": "docs/requirement-review/registers/business-rules.csv",
   "flow_index": "docs/requirement-review/corrections-2026-11-19/FLOW_INDEX.md",
@@ -8,17 +8,17 @@
   "scenarios": "docs/requirement-review/corrections-2026-11-19/scenarios.csv",
   "finding_review_applicability": "docs/requirement-review/corrections-2026-11-19/finding-review-applicability.csv",
   "qa_draft": "docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md",
-  "qa_internal": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv",
+  "qa_internal": "docs/requirement-review/qa-drafting-2026-11-19/internal-evidence-current.csv",
   "historical_bundles": "Giữ nguyên extraction/flow-reconstruction/gap/independent-review/full-reverification; không dùng snapshot cũ như nội dung hiện hành.",
   "applied_decisions": [
     "DEC-0001 —20/11/2026, không giới hạn số lượt AI viết lại"
   ],
   "decision_register": "docs/requirement-review/registers/customer-decisions.csv",
-  "current_limitations": "23 sources; QA/KS changed; current-source decisions recorded as FACT; G1 BLOCKED, affected G2–G4 STALE; G5/G6 BLOCKED; no G7/G8 PASS. See current impact register; historical review not inherited.",
+  "current_limitations": "QA26/11:93Close/7Open. Nội dung SCD/phân tích/AI Core và83REQ/BR đã cập nhật theo từng ý; trạng thái kiểm chứng phụ thuộc nguồn cũ STALE. G1/G5/G7/G8 BLOCKED; không kế thừa phê duyệt thương mại hoặc reviewer.",
   "finding_details": "docs/requirement-review/corrections-2026-11-19/finding-details.csv",
   "reconciliation": "docs/requirement-review/corrections-2026-11-19/new-delivery-intake.json#reconciliation",
-  "source_update_report": "docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md",
-  "source_update_manifest": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-manifest.json",
+  "source_update_report": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md",
+  "source_update_manifest": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-application.json",
   "artifact_freshness": {
     "steps": "STALE_FOR_QA_KS_AFFECTED_BRANCHES",
     "state_transitions": "STALE_FOR_QA_KS_AFFECTED_BRANCHES",
@@ -26,6 +26,10 @@
     "requirements": "STALE_FOR_QA_KS_AFFECTED_RECORDS",
     "business_rules": "STALE_FOR_QA_KS_AFFECTED_RECORDS"
   },
-  "latest_delivery": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-intake.json",
-  "delivery_impact": "docs/requirement-review/corrections-2026-11-19/delivery-24112026-impact.csv"
+  "latest_delivery": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-application.json",
+  "delivery_impact": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-register-changes.json",
+  "previous_source_update_report": "docs/requirement-review/corrections-2026-11-19/DELIVERY_24112026_REVIEW.md",
+  "qa_internal_freshness": "Metadata26/11 links historical v5; old review outcomes, eligibility and hashes unchanged",
+  "source_evidence_freshness": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-stale-evidence.json",
+  "qa_internal_historical": "docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv"
 }

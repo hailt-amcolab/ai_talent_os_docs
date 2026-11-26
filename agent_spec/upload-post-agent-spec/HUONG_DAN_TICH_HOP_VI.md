@@ -1,3 +1,9 @@
+## Đồng bộ nghiệp vụ theo Q&A26/11
+
+QA `Q&A!G59:H59;G71:H71;G95:H96`: đăng lại chỉ SNS lỗi, giờ mới do AI chọn khung tiếp theo; auto theo kỳ không Manager duyệt; AI sửa từ cấm rồi đặt lịch không yêu cầu Talent xác nhận lại; danh sách từ cấm mới không quét lại lịch đã kiểm. Chặn đổi/ngắt SNS còn lịch, hiển thị để Talent tự huỷ trước. Những ghi chú “No.96 còn chờ” bên dưới là lịch sử ở phần này; lỗi AI/provider vẫn cần thiết kế kỹ thuật.
+
+[Hash, bằng chứng và phần còn mở](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Không tự xác nhận khả năng dịch vụ từ quyết định nghiệp vụ.
+
 <!-- DELIVERY24112026 -->
 ## Cập nhật nguồn24/11 — đối chiếu25/11/2026
 

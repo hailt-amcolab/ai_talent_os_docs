@@ -1,3 +1,5 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 06. Tác động yêu cầu mới và khả năng mở rộng DB
 
 > **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
@@ -29,7 +31,7 @@ Locator trang dưới đây là số trang PDF thực tế; KS/QA là ô trong w
 | Bỏ dừng toàn hệ thống | KS K85, F33; dừng từng Talent còn | Cột global pause còn trong system_settings | Không làm nút sản phẩm; cột legacy chưa bị xóa. Dừng vận hành không chứng minh job đã gửi provider bị hủy |
 | Người nhận duyệt | KS K77/K93, F11: Manager phụ trách từng Talent | manager_notifications hiện một dòng/sự kiện chung; chưa có recipient | P-15/P-16: phân công và recipient lịch sử. Quyền mọi Manager xem/cập nhật khác routing; No.87/88 còn mở |
 | Đăng lỗi | KS K87, F13: báo Talent, Talent chờ rồi đăng lại; lỗi SNS/mạng không cần báo Adesso | Aggregate delivery không thay lịch sử từng lần thử | P-23: chống trùng, outcome unknown và đối soát; không tự chốt timer/retry tự động |
-| NG và xác nhận lại | KS `20261122!G4:I4`; YK3 P688: AI sửa rồi đặt lịch, không Manager sửa, không Talent xác nhận lại | Luồng chính đã rõ; chỉ timestamp chưa đủ provenance | P-23/P-26; rút xung đột ba nhánh của snapshot 23/11. Giữ vòng sửa lỗi/tương tác duyệt và QA96 riêng. |
+| NG và xác nhận lại | KS `20261122!G4:I4`; YK3 P688: AI sửa rồi đặt lịch, không Manager sửa, không Talent xác nhận lại | Luồng chính đã rõ; chỉ timestamp chưa đủ provenance | P-23/P-26; rút xung đột ba nhánh của snapshot 23/11. QA96 ngày26/11: bản mới áp từ lần kiểm sau, giữ lịch đã kiểm. Auto không Manager duyệt; lỗi AI còn thiết kế. |
 | Theo từng SNS và TikTok inbox | KS `20261122!G16:I16/G20:H20`; YK3 P249–250 | Giờ khác nhau theoSNS; hướng TikTok direct đã rõ, chưa có plan/attempt đầy đủ | Thiết kế plan/delivery/effect theoSNS; không tạo inbox baseline. Provider capability/tuân thủ do đội kiểm. |
 | Media trước, chọn theo chủ đề | KS F8, K73, F18/F19: không FIFO hoặc tự sinh media AI trong autopost | Đề xuất hàng đợi mỗi ngày 1 video và quan hệ khoảng đăng chưa phù hợp | R05-05/P-12/U-13: tập media của khoảng đăng và bản tham chiếu khi gửi; không thêm counter FIFO |
 | Lưu media | QA No.8 `Q&A!G9/H9`19/11: Supabase/OneDrive | media_assets thiên OneDrive và đường dẫn tạm | P-24: tham chiếu nơi lưu, ownership, URL có hạn, dọn tệp/đối soát; không quy định Supabase luôn chỉ tạm |
@@ -144,7 +146,7 @@ Các câu [QA] đóng ngày 15/11 là AMCOLAB tự chốt theo [YK2]; khách v�
 | No.15 | Không tự đăng lại | `post_deliveries` | Thêm cột số lần thử, lúc thử lại. Rủi ro thấp |
 | No.17 | Không trần phí AI | `ai_usage_events` | Thêm cột trần ở `system_settings` hoặc `talents`. Rủi ro thấp |
 | No.21 | Lọc nhật ký xem theo thời gian và tài năng | Chỉ mục của `manager_view_logs` | Lọc theo quản lý đã có chỉ mục `idx_manager_view_logs_manager_id`. Rủi ro thấp |
-| No.46 | Tháng đầu thu đủ; thu lỗi không tự dừng | Bảng hóa đơn (BLOCKED) | Ảnh hưởng thiết kế hóa đơn khi mở khóa |
+| No.46 → No.63/86 (26/11) | Tháng đầu thu đủ; phần thu lỗi đã bị thay: thu lại vẫn thất bại tự chuyển Chờ thanh toán | Bảng hóa đơn (BLOCKED) | Ảnh hưởng thiết kế hóa đơn khi mở khóa |
 
 </details>
 
@@ -152,7 +154,7 @@ Các câu [QA] đóng ngày 15/11 là AMCOLAB tự chốt theo [YK2]; khách v�
 
 - **Đã có căn cứ nghiệp vụ:** agent/DB/backup và token doAdesso chịu; Challenge/progress/M-17 trong phạm vi; NG rewrite không xác nhận lại; direct TikTok; không lưu đồng ý phụ huynh; không trần riêng dưới 18; giờ theoSNS; paused vẫn thu phí; category N:N; giá ước tính doManager đặt. Không chờ khách trả lời lại các ý này.
 - **Đội thiết kế/triển khai:** hoàn thiện data contract, constraint, ACL, snapshot/version, outbox/effect, price/usage ledger, recipient/email và backup/restore. Chưa có DDL không đồng nghĩa chưa có quyết định khách.
-- **Còn mở đúng nhánh:** video確認61/62 và ghi/đảo lượt, giá lịch sử/điều chỉnh kỳ, đa category xung đột QA99, reconnectQA 95, thayNGQA 96, read/handledQA 97, công nợ QA98, purge/re-registrationQA 69/94 và các nhánh lịch cũ/thiếu media. Không tự đóng toàn bộ QA chỉ vì một phần được trả lời.
+- **Còn mở đúng nhánh sau26/11:** số tiền video/khả năng Square/ngày thu (No.2/4/49), category/thứ tự dự kiến (No.99), lưu lịch sử thu trong OS/thời hạn (No.98), dự phòng Manager và đích tin ngoài duyệt (No.87/88), xác nhận prompt Nonaka. No.62/95/96/97/94 và phần kết thúc/thu cuối No.98 đã có trả lời cụ thể; đưa vào thiết kế thay vì giữ như câu chưa trả lời. Không tự đóng toàn bộ QA chỉ vì một phần được trả lời.
 - **Trạng thái vật lý:**13 migration/53 bảng trong repository; chưa replay/live verify. SQL legacy giữ trigger hoãn tới khi module đủ thiết kế, migration và kiểm thử. G5 vẫn BLOCKED, không cấp G7/G8.
 
 ## 6. Kết quả thiết kế nhóm đội/provider

@@ -1,0 +1,55 @@
+{
+  "id": "VECTOR-DEFERRED-2026-11-26",
+  "date": "2026-11-26",
+  "prepared_by": "Codex",
+  "authority": "User instruction in current conversation; internal technical scope, not customer business approval",
+  "user_instruction": "oke trước mắt thì không sử dụng vector nhé, bạn có thêm gì vào tài liệu không đấy",
+  "decision": "No vectorDB/pgvector/embedding/semantic retrieval or vector POC in current scope. Continue scoped SQL context and structured memory. Revisit only by separate instruction.",
+  "prior_vector_discussion": "Chat evaluation only; no vector schema, embedding table/index or pipeline added by that discussion.",
+  "before": [
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "124a8fcf3c4f39d89e7986a93f57ff0a53b0f5f74025c920dd93aa63d88ce13c"
+    },
+    {
+      "path": "database-design/09_technical_design.md",
+      "sha256": "0cd050edc4351126583bdcc3cef0b271b01a5423f5bea2f89e8c43901aa75591"
+    },
+    {
+      "path": "database-design/10_target_data_dictionary.md",
+      "sha256": "af007d165918950919719edfc7e8b8ee9582316831d65b0500ca44edad758440"
+    },
+    {
+      "path": "database-design/technical-design-contracts-2026-11-25.json",
+      "sha256": "450d13dd9f9fd863ff1f0fb29e797d0e3b0f36b115986f61353b064d5a1194e5"
+    },
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "ff22ff6b9b7fb8b62fc8bedba750335972502ea660b45299be15ea1fdd212669"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "database-design/07_implementation_scope_and_rules.md",
+      "sha256": "0a032b9e7bf7c9ebf486769a2efbc6dde972f1d79449777e0e8c781073ef3fd3"
+    },
+    {
+      "path": "database-design/09_technical_design.md",
+      "sha256": "9628330e44309c1c0fa01f9f6fd93136a2b93c9a6dcbdcbd96118f9f78def4fc"
+    },
+    {
+      "path": "database-design/10_target_data_dictionary.md",
+      "sha256": "5e2b6c04deb37307270ced04f0a7eaff5f4d937c1b08ac9572d30d7fe2f4717d"
+    },
+    {
+      "path": "database-design/technical-design-contracts-2026-11-25.json",
+      "sha256": "525af6f2fb678b19e2d50e76f03ae1bbdc365ac8be356a704a323587a2789e11"
+    },
+    {
+      "path": "agent_spec/AI_Talent_OS_AI_Core_Architecture_Report_v2.md",
+      "sha256": "f1e97e5afe8d3cbfdb9b13cb485e742c51fe231452471ed0a46394ab39b50086"
+    }
+  ],
+  "historical_manifests": "25/11 review manifests retained as historical snapshots; this record carries current changed artifact hashes. No gate/QA approval states promoted.",
+  "validation": "PASS structural design validator and git diff --check; no code/schema/migration/liveDB change"
+}

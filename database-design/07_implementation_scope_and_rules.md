@@ -1,3 +1,5 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 07. Phạm vi triển khai và quy tắc khi viết mã
 
 > **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
@@ -49,7 +51,7 @@ Quyết định của chủ dự án ngày 17/11/2026: **chỉ làm phần đã 
 | Chủ đề, bản nháp; danh sách từ cấm chung | [QA] No.9, 13, 40–41; CR-02, 06, 07 | Lưu và sửa bản nháp, tư liệu | Chưa làm: adopt (chấp nhận bản nháp), duyệt, hẹn giờ, gửi sang Upload-Post. Hạn và giờ đăng chờ [QA] No.55–57  AI viết lại không giới hạn lượt (KS K65/20-11; DEC-0001); P-13 cũ đã rút. Revision được duyệt cần thiết kế P-23. |
 | Hội thoại và chi phí AI | [QA] No.17; CR-16 | Lưu tin nhắn, chi phí, outbox | Manager xem hội thoại đã có phản hồi QA No.7 H 8; kiểm guard và ghi nhật ký trước triển khai, không còn chờ quyết định riêng tư cũ. Gọi AI phải chống ghi trùng từng lần gọi |
 | Thông báo cho tài năng | [QA] No.42; nền tảng PWA | Tin trong ứng dụng, đăng ký push, outbox | Không thêm loại thông báo chưa chốt; thông báo quản lý và "đã xử lý" chờ U-10, U-11 |
-| Mục tiêu, số người theo dõi, kết nối mạng xã hội | [QA] No.14 H 15; [KS] 確認10; reconnect/disconnect No.95 | **Hoãn** | Đã rõ mục tiêu theo từng SNS và một tài khoản mỗi mạng; còn tích hợp, lịch sử mục tiêu, reconnect và tác động lên lịch đã có (No.95) |
+| Mục tiêu, số người theo dõi, kết nối mạng xã hội | [QA] No.14 H 15; [KS] 確認10; reconnect/disconnect No.95 | **Hoãn** | Đã rõ mục tiêu theo từng SNS và một tài khoản mỗi mạng; còn tích hợp/lịch sử mục tiêu; No.95 ngày26/11 đã chốt chặn ngắt/đổi SNS còn lịch, hiện để Talent huỷ trước |
 | Tạo video AI có phí | Quy tắc đếm chốt ở [QA] No.1, 3; đơn giá, kỳ chưa chốt | **Hoãn chạy thật** | Không tạo lượt có thể phải tính tiền khi chưa có giá/kỳ |
 | Duyệt, adopt, hẹn, đăng, hẹn lại, hủy ở Upload-Post | [QA] No.51, 57–61 mở | **Hoãn** | Không dùng bộ trạng thái tạm hay quy tắc "một mạng lỗi thì cả bài lỗi" |
 | Thu phí tháng, giá video, hóa đơn, thanh toán | [QA] No.4, 49, 53, 62–64 mở | **Hoãn** | Không worker thu tiền, không hóa đơn giả  Đã có hướng tháng từ ngày đăng ký và trả trước (KS K104/F24); Nguồn KS actionNo.16/G17 thuật lại chọn Square; hợp đồng/capability cần đội/provider kiểm; công nợ khi ended còn No.98. |
@@ -139,7 +141,7 @@ Lệnh và quy trình: [apps/api/PRISMA.md](../apps/api/PRISMA.md). Quy tắc:
 ## 7. Điều kiện áp dụng sau rà soát 23/11
 
 - Không mở các trigger chặn ghi chỉ vì nguồn mới có thêm màn hoặc tài liệu DB đã cập nhật. G1 đang BLOCKED, G2–G4 STALE ở phạm vi bị ảnh hưởng, G5/G6 BLOCKED; lần sửa này không đổi gate. Chưa có ký độc lập hoặc phê duyệt thương mại/release.
-- Trước EP06: thiết kế cancellation cho Talent/Manager (KS K84), bỏ nút global stop (K85), retry do Talent thực hiện (K87), revision/consent và trạng thái từng SNS. KS20261122 G4:I 4 đã chốt AI sửa NG rồi đặt lịch, không Manager sửa/không Talent xác nhận lại; G20:H 20 giữ TikTok direct. Không giữ các đề nghị 22/11 như blocker nghiệp vụ; QA96 và nhánh lỗi riêng vẫn còn.
+- Trước EP06: thiết kế cancellation cho Talent/Manager (KS K84), bỏ nút global stop (K85), retry do Talent thực hiện (K87), revision/consent và trạng thái từng SNS. KS20261122 G4:I 4 đã chốt AI sửa NG rồi đặt lịch, không Manager sửa/không Talent xác nhận lại; G20:H 20 giữ TikTok direct. Không giữ các đề nghị 22/11 như blocker nghiệp vụ; QA96 ngày26/11 đã chốt không quét lại lịch đã kiểm khi đổi danh sách. Các nhánh lỗi AI/provider riêng vẫn cần thiết kế; không tự mở ghi từ trả lời nghiệp vụ.
 - Trước EP08: mô hình kỳ trả trước và snapshot giá; tạm dừng tự nguyện vẫn thu phí (K116), dừng do quá hạn một tháng mới là hướng cân nhắc (K104). Không bật auto-lock hoặc tự quyết xử lý công nợ khi ended (No.98).
 - Không tạo bảng đồng ý phụ huynh theoKS 20261122 G18:H 18; ranking/voice ngoài phase theoYK 3 P62–65. So sánh liên Talent vẫn đề nghị riêng. Tech Lead thiết kế và kiểm provider; khách quyết định chính sách/phạm vi, không thay bằng dữ liệu demo.
 - Từ điển 05 giữ nguyên snapshot 38 bảng và có bổ sung mô tả 2 bảng demo theo SQL. Khi thực sự regenerate từ catalog, dùng danh mục/mô tả cập nhật của `gen_tu_dien.py` để đủ 53 bảng và ghi nguồn catalog, migration thực áp, thời điểm; không chạy script lên DB chỉ để hoàn tất đợt tài liệu này.
@@ -158,3 +160,9 @@ Các CR được dẫn trong bảng lịch sử phải tra theo snapshot tương
 ## 9. Điều kiện dùng thiết kế kỹ thuật mới
 
 Dùng [09](09_technical_design.md) và [10](10_target_data_dictionary.md) làm contract đề xuất để viết DDL theo wave; các bảng vẫn chưa có migration. Thứ tự khóa đích tại09 §12 phải được review và áp đồng bộ các handler liên quan trước writer mới, không trộn thứ tự khóa cũ. Providerchecks theo [CSV](technical-provider-checks-2026-11-25.csv); test theo34ca tại09 §13. Không tự gỡ trigger hoãn hoặc bật payment/publish/purge từ việc tài liệu đã có thiết kế.
+
+## 10. Phạm vi truy xuất context hiện tại —26/11/2026
+
+**Quyết định nội bộ ngày26/11/2026:** Theo chỉ đạo người dùng, trước mắt không sử dụng vector DB, pgvector, embedding hoặc semantic retrieval. Không thêm bảng/vector index, worker embedding, bước embedding câu hỏi hay POC vector vào phạm vi hiện tại. Context lấy bằng SQL theo quyền và phiên bản, gồm profile/chỉ thị/mục tiêu/trạng thái, hội thoại gần đây và memory có cấu trúc; bản tóm tắt nếu dùng phải giữ nguồn. Việc xem xét vector sau này cần quyết định riêng, không tự bật khi có dữ liệu hoặc benchmark. Quyết định này không loại bỏ chức năng memory/Challenge hay thay đổi yêu cầu khách về AI Coach.
+
+[Hồ sơ quyết định](vector-decision-2026-11-26.json).

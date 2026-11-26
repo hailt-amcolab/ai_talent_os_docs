@@ -1,3 +1,5 @@
+> **Hiện hành — Q&A/KS kiểm26/11/2026:** 23 tệp nguồn; đủ5sheet mỗi workbook; QA100câu chính: **93 Close / 7 Open**. Đã cập nhật tài liệu theo từng ý trả lời/chấp thuận; No.24/34 chỉ đổi Close, chưa dùng làm bằng chứng trả lời. KS24 là snapshot cũ, không còn trùng byte KS sống. No.87/88/98/99 còn phần chờ Adesso; No.2/4/49 còn đầu vào giá/provider/chu kỳ. [Nội dung đã sửa, hash và giới hạn](requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). G1 BLOCKED chờ duyệt phạm vi; G2–G4 phụ thuộc nguồn cũ STALE; G5/G7/G8 chưa PASS. Các thông báo cũ bên dưới là lịch sử ở phần đã được thay.
+
 > **Cập nhật QA mới — 2026-11-20:** đã lọc trùng 5 sheet; bản nháp còn 2 câu, rút thêm 24 câu (gồm 6 câu phí/thanh toán theo yêu cầu). Các số đếm và gate ở nội dung đợt trước bên dưới là lịch sử; G1–G4 hiện STALE, G5/G6 BLOCKED. Bản chính: `docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md`.
 
 # Tài liệu AI Talent OS

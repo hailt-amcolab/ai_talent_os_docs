@@ -1,0 +1,130 @@
+[
+  {
+    "id": "EV-1311",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+    "current_sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1312",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1313",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1314",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1315",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1316",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1317",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1318",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1319",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1320",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1321",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1322",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1323",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+    "current_sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1324",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+    "current_sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1325",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+    "current_sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  },
+  {
+    "id": "EV-1326",
+    "previous_status": "VERIFIED",
+    "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+    "current_sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+    "reason": "Nguồn đổi hash26/11; không kế thừa kiểm chứng bản cũ",
+    "checked_at": "2026-11-26T13:29:12+07:00"
+  }
+]

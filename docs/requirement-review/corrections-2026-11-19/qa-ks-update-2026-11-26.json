@@ -1,0 +1,1344 @@
+{
+  "checked_at": "2026-11-26",
+  "checker": "Codex",
+  "scope": "Tiếp nhận và so sánh giá trị/công thức toàn bộ 5 sheet mỗi workbook với git HEAD; chưa xác minh nghiệp vụ G2–G7. Không đối chiếu định dạng, ảnh, comment hoặc thẩm quyền người trả lời.",
+  "comparison_baseline": "git HEAD (không giả định đây là lần cập nhật ngay trước của khách)",
+  "files": [
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "old_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+      "sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
+      "sheets": [
+        "Q&A",
+        "保留",
+        "デザインFB",
+        "お知らせ・メール文章",
+        "追加要件"
+      ],
+      "changes": [
+        {
+          "sheet": "Q&A",
+          "cell": "C92",
+          "old": "M-20のタレント情報の項目",
+          "new": "「タレントの情報の入力」のタレント情報の項目"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E56",
+          "old": "Câu hỏi: Giờ đăng được chốt lúc tạo 投稿案 hay lúc 採用? Nếu bỏ giới hạn số bài mỗi ngày (確認37), giờ của bài thứ 2, thứ 3 trong ngày tính thế nào? Gửi ảnh khi đã quá giờ dự kiến thì đăng lúc nào?\nVì sao cần hỏi: Quyết định việc đặt lịch và thời điểm nhắc gửi ảnh (2 giờ trước giờ đăng).\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (5-2): giờ đăng do AI quyết theo từng talent.\n- 確認30: talent không đổi giờ đăng.\n- 6-7 (6-5): nhắc gửi ảnh 2 giờ trước giờ đăng.\n- 確認37: đề xuất bỏ giới hạn số bài mỗi ngày.\nAMCOLAB đề xuất:\n- Giờ đăng chốt khi tạo 投稿案.\n- Bài thứ 2 trở đi trong ngày dùng khung giờ tốt tiếp theo, cách bài trước ít nhất 3 giờ.\n- 採用 khi đã qua giờ thì dời sang khung giờ tiếp theo.",
+          "new": "Câu hỏi: Giờ đăng được chốt lúc tạo 投稿案 hay lúc 採用? Nếu bỏ giới hạn số bài mỗi ngày (確認37), giờ của bài thứ 2, thứ 3 trong ngày tính thế nào? Gửi ảnh khi đã quá giờ dự kiến thì đăng lúc nào?\nVì sao cần hỏi: Quyết định việc đặt lịch và thời điểm nhắc gửi ảnh (2 giờ trước giờ đăng).\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (5-2): giờ đăng do AI quyết theo từng talent.\n- 確認30: talent không đổi giờ đăng.\n- 6-7 (6-5): nhắc gửi ảnh 2 giờ trước giờ đăng.\n- 確認37: đề xuất bỏ giới hạn số bài mỗi ngày.\nAMCOLAB đề xuất:\n- Giờ đăng chốt khi tạo 投稿案.\n- Bài thứ 2 trở đi trong ngày dùng khung giờ tốt tiếp theo, cách bài trước ít nhất 3 giờ.\n- 採用 khi đã qua giờ thì dời sang khung giờ tiếp theo.\n\n【Câu hỏi bổ sung】\nChúng tôi đã hiểu câu trả lời của quý công ty, tuy nhiên chúng tôi có thêm một số câu hỏi để làm rõ hơn về vấn đề này, cụ thể:\n(Liên quan 【要確認】 ở flow 4 của 業務フロー bản 19/11, 確認26)\n(1) Tới giờ đăng mà Talent chưa gửi ảnh/video mới thì dùng ảnh/video đã lưu, chờ tiếp, hay huỷ bài?\n(2) Nếu dùng ảnh/video đã lưu thì một ảnh/video được dùng lại tối đa mấy lần?\nAMCOLAB đề xuất: (1) Theo 業務フロー: dùng ảnh/video đã lưu; không có thì dừng bài của ngày đó. (2) Không giới hạn số lần, ưu tiên ảnh/video lâu chưa dùng nhất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E62",
+          "old": "Câu hỏi: Đơn giá video được cài đặt ở đâu, ai đổi được? Đổi giá giữa tháng thì các lượt đã 依頼 trước đó tính theo giá nào? Lượt bị lỗi được trừ lại lúc nào?\nVì sao cần hỏi: Ảnh hưởng trực tiếp tới số tiền thu talent mỗi tháng.\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (6-3 chức năng 5-4): đếm 1 lượt lúc 依頼; lỗi do dịch vụ tạo video thì không tính (Q&A No.1).\n- 5-6: danh sách giá trị cài đặt trên màn quản lý chưa có đơn giá video.\nAMCOLAB đề xuất: Đơn giá là 1 giá trị cài đặt chung trên màn quản lý; tính theo giá tại thời điểm 依頼; lượt lỗi được trừ ngay khi dịch vụ báo lỗi.",
+          "new": "Câu hỏi: Đơn giá video được cài đặt ở đâu, ai đổi được? Đổi giá giữa tháng thì các lượt đã 依頼 trước đó tính theo giá nào? Lượt bị lỗi được trừ lại lúc nào?\nVì sao cần hỏi: Ảnh hưởng trực tiếp tới số tiền thu talent mỗi tháng.\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (6-3 chức năng 5-4): đếm 1 lượt lúc 依頼; lỗi do dịch vụ tạo video thì không tính (Q&A No.1).\n- 5-6: danh sách giá trị cài đặt trên màn quản lý chưa có đơn giá video.\nAMCOLAB đề xuất: Đơn giá là 1 giá trị cài đặt chung trên màn quản lý; tính theo giá tại thời điểm 依頼; lượt lỗi được trừ ngay khi dịch vụ báo lỗi.\n\n【Câu hỏi bổ sung】\nNgoài câu hỏi trên, chúng tôi có thêm một số câu hỏi để làm rõ hơn về vấn đề này, cụ thể:\n(Về thời điểm tính phí video; liên quan chu kỳ thu tiền ở No.49)\n(1) Video 依頼 sau ngày chốt kỳ thì tính vào kỳ nào?\n(2) Đã tổng hợp số tiền rồi mới biết video tạo lỗi thì điều chỉnh thế nào?\nAMCOLAB đề xuất: (1) Tính theo ngày 依頼, 依頼 sau ngày chốt thì vào kỳ sau. (2) Lượt lỗi phát hiện sau khi đã tổng hợp thì trừ ở kỳ sau."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E66",
+          "old": "Câu hỏi: ID đăng nhập của 事務所アカウント là email nào? Ai kết nối SNS? Tài khoản này có trạng thái (利用中・利用終了) và xóa được không? Có hiện trong danh sách talent không?\nVì sao cần hỏi: Tài liệu chỉ ghi manager tạo và đăng nhập lại từng tài khoản; chưa đủ để thiết kế màn tạo và màn danh sách.\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (UC-12, 6-3 chức năng 1-2, 6-10 chức năng 9-1): manager tạo trên màn quản lý; đăng nhập app talent bằng ID riêng; không tính tiền tháng; không duyệt.\nAMCOLAB đề xuất: Manager nhập email khi tạo; manager kết nối SNS khi đăng nhập app; hiện trong danh sách talent với nhãn 事務所; dùng chung 3 trạng thái như talent.",
+          "new": "Câu hỏi: ID đăng nhập của 事務所アカウント là email nào? Ai kết nối SNS? Tài khoản này có trạng thái (利用中・利用終了) và xóa được không? Có hiện trong danh sách talent không?\nVì sao cần hỏi: Tài liệu chỉ ghi manager tạo và đăng nhập lại từng tài khoản; chưa đủ để thiết kế màn tạo và màn danh sách.\nTài liệu đang nói:\n- 概要要件定義書 改訂版 (UC-12, 6-3 chức năng 1-2, 6-10 chức năng 9-1): manager tạo trên màn quản lý; đăng nhập app talent bằng ID riêng; không tính tiền tháng; không duyệt.\nAMCOLAB đề xuất: Manager nhập email khi tạo; manager kết nối SNS khi đăng nhập app; hiện trong danh sách talent với nhãn 事務所; dùng chung 3 trạng thái như talent.\n\n【Câu hỏi bổ sung】\nChúng tôi đã hiểu câu trả lời của quý công ty, tuy nhiên chúng tôi có thêm một số câu hỏi để làm rõ hơn về vấn đề này, cụ thể:\n(Về cách vận hành 事務所アカウント)\n(1) Ai được đổi email và mật khẩu đăng nhập của 事務所アカウント (vd khi người đang dùng không còn phụ trách)?\n(2) 事務所アカウント chuyển 利用終了 thì bài đã đặt lịch và kết nối SNS xử lý thế nào?\nAMCOLAB đề xuất: (1) Manager đổi email trên màn quản lý; mật khẩu đặt lại qua 「パスワードを忘れた」. (2) Giống Talent 利用終了: huỷ bài đã đặt lịch, khoá đăng nhập, gỡ kết nối SNS. Giữ dữ liệu theo No.94."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E73",
+          "old": "Câu hỏi: Giờ cụ thể của 3 khung sáng / trưa / tối là mấy giờ, và loại lời nhắn nào gửi ở khung nào?\nVì sao cần hỏi: Tài liệu đang thiết kế theo \"8 giờ sáng mỗi ngày\" (5-2); nhắc gửi ảnh là 2 giờ trước giờ đăng; nên cần xác định lại.\nTài liệu đang nói:\n- Biên bản 17/11 (確認18): vì không lấy được thời điểm Talent dùng Instagram..., lúc đầu gửi theo 3 khung sáng / trưa / tối; đổi giờ theo từng Talent sẽ xem xét sau.\n- 概要要件定義書 (5-2, 6-7 chức năng 6-5): 8 giờ sáng hằng ngày; nhắc 2 giờ trước giờ đăng; thứ Hai gửi tổng kết tuần.\n- 確認19: 3 ngày không đăng thì AIコーチ nhắn; 7 ngày thì báo Manager (ý kiến: nếu đăng tự động thì không có ngày không đăng).\nAMCOLAB đề xuất (giờ đặt trong 全体の設定 ở 5-6, đổi được):\n- Sáng (8 giờ): kết quả hôm qua, 3 chủ đề gợi ý, mission hôm nay.\n- Trưa (12 giờ): nhắc gửi ảnh / video nếu chưa có.\n- Tối (20 giờ): nhắc 3 ngày không đăng (chỉ khi cần), báo đạt mục tiêu, v.v.\nVới Talent dùng đăng tự động: vẫn áp dụng nhắc \"ngày không đăng\" chỉ khi đăng tự động bị dừng hoặc hết ảnh.\nCần quý công ty phản hồi trước buổi họp 20/11 (thứ Sáu).",
+          "new": "Câu hỏi: Giờ cụ thể của 3 khung sáng / trưa / tối là mấy giờ, và loại lời nhắn nào gửi ở khung nào?\nVì sao cần hỏi: Tài liệu đang thiết kế theo \"8 giờ sáng mỗi ngày\" (5-2); nhắc gửi ảnh là 2 giờ trước giờ đăng; nên cần xác định lại.\nTài liệu đang nói:\n- Biên bản 17/11 (確認18): vì không lấy được thời điểm Talent dùng Instagram..., lúc đầu gửi theo 3 khung sáng / trưa / tối; đổi giờ theo từng Talent sẽ xem xét sau.\n- 概要要件定義書 (5-2, 6-7 chức năng 6-5): 8 giờ sáng hằng ngày; nhắc 2 giờ trước giờ đăng; thứ Hai gửi tổng kết tuần.\n- 確認19: 3 ngày không đăng thì AIコーチ nhắn; 7 ngày thì báo Manager (ý kiến: nếu đăng tự động thì không có ngày không đăng).\nAMCOLAB đề xuất (giờ đặt trong 全体の設定 ở 5-6, đổi được):\n- Sáng (8 giờ): kết quả hôm qua, 3 chủ đề gợi ý, mission hôm nay.\n- Trưa (12 giờ): nhắc gửi ảnh / video nếu chưa có.\n- Tối (20 giờ): nhắc 3 ngày không đăng (chỉ khi cần), báo đạt mục tiêu, v.v.\nVới Talent dùng đăng tự động: vẫn áp dụng nhắc \"ngày không đăng\" chỉ khi đăng tự động bị dừng hoặc hết ảnh."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E83",
+          "old": "Màn hình: T-08 (M-15)\nCâu hỏi: Auto Posting: chủ đề và ảnh lấy từ đâu, đăng với tần suất nào, hết ảnh thì làm gì, có dùng lại ảnh không? Khi đổi giữa tự đăng và xác nhận trước khi đăng thì bài đã đặt lịch xử lý ra sao?",
+          "new": "Màn hình: T-08 (M-15)\nCâu hỏi: Auto Posting: chủ đề và ảnh lấy từ đâu, đăng với tần suất nào, hết ảnh thì làm gì, có dùng lại ảnh không? Khi đổi giữa tự đăng và xác nhận trước khi đăng thì bài đã đặt lịch xử lý ra sao?\nRiêng trường hợp không đủ ảnh/video cho kỳ Auto Posting (vd cài 14 ngày nhưng chỉ có 5 ảnh), xin cho biết cụ thể:\n(1) Có báo Talent bổ sung trước khi hết ảnh/video không?\n(2) Hết ảnh/video thì dừng Auto Posting hay chỉ bỏ qua ngày đó?\n(3) Talent thêm ảnh/video rồi thì Auto Posting có tự chạy tiếp không?\nAMCOLAB đề xuất: Còn ảnh/video cho 2 ngày thì báo Talent; ngày không có ảnh/video thì không đăng; Talent thêm vào thì tự chạy tiếp từ hôm sau. Dùng lại ảnh/video hay không theo câu trả lời phần \"dùng lại ảnh\" ở trên."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E86",
+          "old": "Màn hình: T-16\nCâu hỏi: Thanh toán định kỳ lỗi thì khoá những chức năng nào (AIコーチ, tạo video, đăng bài)? Thanh toán lại thành công thì mở lại thế nào?",
+          "new": "Màn hình: T-16\nCâu hỏi: Thanh toán định kỳ lỗi thì khoá những chức năng nào (AIコーチ, tạo video, đăng bài)? Thanh toán lại thành công thì mở lại thế nào?\nTheo trả lời ở No.46 (thu tiền tháng thất bại thì báo Talent và Manager, không tự dừng sử dụng), xin quý công ty cho biết thêm:\n(1) Thu thất bại thì hệ thống có tự thu lại không (phụ thuộc cổng thanh toán, theo trả lời No.4)?\n(2) Trong thời gian Manager dừng sử dụng, bài tới giờ đăng xử lý thế nào?\nAMCOLAB đề xuất: (1) Dùng chức năng thu lại của cổng thanh toán nếu có, hệ thống không làm cơ chế thu lại riêng. (2) Không đăng các bài trong thời gian bị dừng, mở lại cũng không tự đăng bù; cần thì Talent 採用 lại."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E87",
+          "old": "Màn hình: M-00\nCâu hỏi: Talent được gán cho người phụ trách khi nào? Gán tự động hay bằng tay? Gán bằng tay thì gán ở đâu, ai là người gán?",
+          "new": "Màn hình: M-00\nCâu hỏi: Talent được gán cho người phụ trách khi nào? Gán tự động hay bằng tay? Gán bằng tay thì gán ở đâu, ai là người gán?\n\n【Câu hỏi bổ sung】\nChúng tôi đã hiểu câu trả lời của quý công ty, tuy nhiên chúng tôi có thêm một số câu hỏi để làm rõ hơn về vấn đề này, cụ thể:\nCâu trả lời họp 19/11 (\"gửi tất cả manager\") chưa khớp với No.88 (manager được gán là để nhận thông báo) và với 画面定義書 管理画面 bản 19/11, màn M-02 và M-04 (chỉ báo manager phụ trách).\n(1) Thông báo và yêu cầu duyệt gửi cho ai?\n- A: Chỉ gửi manager phụ trách (theo 画面定義書).\n- B: Gửi tất cả manager; khi đó không cần gán phụ trách để nhận thông báo.\n(2) Câu hỏi gốc (gán phụ trách thế nào): theo M-10, manager chọn tay manager phụ trách cho từng Talent. Xin xác nhận cách hiểu này.\nAMCOLAB đề xuất: (1) A, theo 画面定義書 mới nhất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E88",
+          "old": "Màn hình: M-02\nCâu hỏi: Nếu là tự động thì gán manager phụ trách theo từng talent hay theo category? Một talent có mấy người phụ trách? Khi manager phụ trách bị vô hiệu hoá thì chuyển talent và các yêu cầu duyệt cho ai?",
+          "new": "Màn hình: M-02\nCâu hỏi: Nếu là tự động thì gán manager phụ trách theo từng talent hay theo category? Một talent có mấy người phụ trách? Khi manager phụ trách bị vô hiệu hoá thì chuyển talent và các yêu cầu duyệt cho ai?\n\n【Câu hỏi bổ sung】\nChúng tôi đã hiểu câu trả lời của quý công ty, tuy nhiên chúng tôi có thêm một số câu hỏi để làm rõ hơn về vấn đề này, cụ thể:\n(Câu trả lời họp 19/11 chưa nói tới phần \"manager phụ trách bị vô hiệu hoá\"; giả định manager nào cũng duyệt và cập nhật được)\n(1) Vô hiệu hoá manager phụ trách thì có bắt buộc chuyển các Talent của người đó sang manager khác không (nếu không chuyển, Talent đó không còn ai nhận thông báo)?\n(2) Bài chờ duyệt sắp tới giờ đăng mà chưa ai duyệt thì có báo thêm cho manager không phụ trách không?\nAMCOLAB đề xuất: (1) Bắt buộc chuyển phụ trách trước khi vô hiệu hoá. (2) Không báo thêm, vì manager nào cũng duyệt được từ danh sách chờ duyệt. Người nhận thông báo theo kết quả No.87."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E92",
+          "old": "Màn hình: M-20\nCâu hỏi: Thông tin talent ở M-20 gồm những trường nào? Trường nào phải nhập xong thì AI mới chạy? Nếu M-20 và chỉ thị AI mâu thuẫn nhau thì ưu tiên bên nào?",
+          "new": "Màn hình: M-20 (màn タレントの情報の入力 phía Manager)\nCâu hỏi: Thông tin talent ở màn タレントの情報の入力 gồm những trường nào? Trường nào phải nhập xong thì AI mới chạy? Nếu thông tin talent ở màn này và chỉ thị AI mâu thuẫn nhau thì ưu tiên bên nào?"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E96",
+          "old": "Màn hình: M-18 (T-12, M-11)\nCâu hỏi: Manager thêm hoặc sửa từ cấm ở M-18 khi đã có bài qua kiểm tra và đã đặt lịch có chứa từ đó: danh sách mới có áp dụng cho bài đang chờ đăng không? Nếu có, bài đó dừng lại để ai kiểm tra, ai được sửa hoặc huỷ, và cần gì để đăng tiếp?\nVì sao cần hỏi: Cần chốt hiệu lực của danh sách mới và người xử lý. No.13, 57, 71, 90 chưa nói trường hợp danh sách đổi sau lần kiểm tra trước.\nTài liệu đang nói:\n- No.13 (13/11): AI kiểm theo ngữ cảnh khi Talent 採用; danh sách dùng chung, đăng ký trên màn quản lý.\n- No.90 (họp 19/11): Manager sửa từ cấm xong thì đăng tiếp được luôn.\n- 画面定義書 bản 19/11 (M-18): màn danh sách từ cấm.\nLựa chọn:\n- A: Danh sách mới chỉ áp dụng cho các lần kiểm sau thời điểm đổi. Bài đã kiểm và đã đặt lịch giữ nguyên; Manager muốn chặn bài nào thì huỷ lịch bài đó.\n- B: Khi danh sách đổi, hệ thống kiểm lại mọi bài đã đặt lịch chưa đăng. Bài có từ mới thì dừng, báo Manager và xử lý như No.57 và No.90. Phần kiểm lại hàng loạt nằm ngoài báo giá (御見積書 No.26) và phát sinh thêm chi phí AI.\nAMCOLAB đề xuất: A, không phát sinh chức năng ngoài báo giá.",
+          "new": "Màn hình: M-18 使ってはいけない言葉の一覧 (T-12, M-11)\nCâu hỏi: Manager thêm hoặc sửa từ cấm ở màn 使ってはいけない言葉の一覧 khi đã có bài qua kiểm tra và đã đặt lịch có chứa từ đó: danh sách mới có áp dụng cho bài đang chờ đăng không? Nếu có, bài đó dừng lại để ai kiểm tra, ai được sửa hoặc huỷ, và cần gì để đăng tiếp?\nVì sao cần hỏi: Cần chốt hiệu lực của danh sách mới và người xử lý. No.13, 57, 71, 90 chưa nói trường hợp danh sách đổi sau lần kiểm tra trước.\nTài liệu đang nói:\n- No.13 (13/11): AI kiểm theo ngữ cảnh khi Talent 採用; danh sách dùng chung, đăng ký trên màn quản lý.\n- No.90 (họp 19/11): Manager sửa từ cấm xong thì đăng tiếp được luôn.\n- 画面定義書 bản 19/11 (M-18): màn danh sách từ cấm.\nLựa chọn:\n- A: Danh sách mới chỉ áp dụng cho các lần kiểm sau thời điểm đổi. Bài đã kiểm và đã đặt lịch giữ nguyên; Manager muốn chặn bài nào thì huỷ lịch bài đó.\n- B: Khi danh sách đổi, hệ thống kiểm lại mọi bài đã đặt lịch chưa đăng. Bài có từ mới thì dừng, báo Manager và xử lý như No.57 và No.90. Phần kiểm lại hàng loạt nằm ngoài báo giá (御見積書 No.26) và phát sinh thêm chi phí AI.\nAMCOLAB đề xuất: A, không phát sinh chức năng ngoài báo giá."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E98",
+          "old": "Màn hình: M-10 (T-19)\nCâu hỏi: Talent chuyển sang 利用終了 khi trong tháng đã có phí phát sinh nhưng chưa tới kỳ thu (vd đã tạo video): hệ thống có vẫn thu các khoản này không? Có cho chuyển 利用終了 ngay khi còn khoản chưa thu không? Sau khi dữ liệu Talent bị xoá (6 tháng), dữ liệu tính tiền nào phải giữ lại?\nVì sao cần hỏi: Quyết định lần thu cuối và dữ liệu nào không xoá cùng dữ liệu Talent.\nTài liệu đang nói:\n- 確認50: tháng ngừng dùng vẫn thu đủ 1 tháng.\n- 確認55 (quyết ngày 17/11): giữ dữ liệu 6 tháng rồi tự xoá; đối tượng xoá đang hỏi ở No.69.\n- Hệ thống không lưu thông tin thẻ; lịch sử thanh toán xem ở trang của cổng thanh toán.\n- Chu kỳ thu tiền đang chờ trả lời ở No.49.\nLựa chọn:\n- A: Cho chuyển 利用終了 ngay. Phí đã phát sinh (tiền tháng cuối và phí video) thu một lần ở kỳ thu kế tiếp, sau đó dừng thu. Bản ghi số lượt video và số tiền đã thu được giữ lại, không xoá cùng dữ liệu Talent.\n- B: Chỉ cho chuyển 利用終了 sau khi đã thu xong mọi khoản.\nAMCOLAB đề xuất: A. Thời hạn giữ bản ghi tính tiền xin quý công ty cho biết theo quy định kế toán của quý công ty.",
+          "new": "Màn hình: M-10 タレントの詳細（設定） (T-19)\nCâu hỏi: Talent chuyển sang 利用終了 khi trong tháng đã có phí phát sinh nhưng chưa tới kỳ thu (vd đã tạo video): hệ thống có vẫn thu các khoản này không? Có cho chuyển 利用終了 ngay khi còn khoản chưa thu không? Sau khi dữ liệu Talent bị xoá (6 tháng), dữ liệu tính tiền nào phải giữ lại?\nVì sao cần hỏi: Quyết định lần thu cuối và dữ liệu nào không xoá cùng dữ liệu Talent.\nTài liệu đang nói:\n- 確認50: tháng ngừng dùng vẫn thu đủ 1 tháng.\n- 確認55 (quyết ngày 17/11): giữ dữ liệu 6 tháng rồi tự xoá; đối tượng xoá đang hỏi ở No.69.\n- Hệ thống không lưu thông tin thẻ; lịch sử thanh toán xem ở trang của cổng thanh toán.\n- Chu kỳ thu tiền đang chờ trả lời ở No.49.\nLựa chọn:\n- A: Cho chuyển 利用終了 ngay. Phí đã phát sinh (tiền tháng cuối và phí video) thu một lần ở kỳ thu kế tiếp, sau đó dừng thu. Bản ghi số lượt video và số tiền đã thu được giữ lại, không xoá cùng dữ liệu Talent.\n- B: Chỉ cho chuyển 利用終了 sau khi đã thu xong mọi khoản.\nAMCOLAB đề xuất: A. Thời hạn giữ bản ghi tính tiền xin quý công ty cho biết theo quy định kế toán của quý công ty."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "E99",
+          "old": "Màn hình: màn AIへの指示 (theo カテゴリー), M-21\nCâu hỏi: Một Talent có thể thuộc nhiều カテゴリー không? Nếu có và chỉ thị AI của các カテゴリー mâu thuẫn nhau (vd Model ưu tiên thời trang, Singer ưu tiên âm nhạc) thì AI làm theo cách nào?\nVì sao cần hỏi: Quyết định cách ghép chỉ thị cho AIコーチ và màn cài カテゴリー cho Talent.\nTài liệu đang nói:\n- 業務フロー bản 19/11: Manager nhập hồ sơ, カテゴリー và chỉ thị AI; AIコーチ áp dụng khi trò chuyện với Talent.\n- No.92: ưu tiên giữa thông tin Talent và chỉ thị AI, chưa có câu trả lời.\nLựa chọn:\n- A: Mỗi Talent chỉ thuộc 1 カテゴリー, không có mâu thuẫn giữa các カテゴリー.\n- B: Talent thuộc được nhiều カテゴリー. AI đọc mọi chỉ thị; mâu thuẫn thì theo thứ tự カテゴリー Manager đặt cho từng Talent. Màn quản lý thêm phần đặt thứ tự.\nAMCOLAB đề xuất: A, đơn giản. Nếu vận hành cần nhiều カテゴリー thì B.",
+          "new": "Màn hình: màn AIへの指示 (theo カテゴリー)\nCâu hỏi: Một Talent có thể thuộc nhiều カテゴリー không? Nếu có và chỉ thị AI của các カテゴリー mâu thuẫn nhau (vd Model ưu tiên thời trang, Singer ưu tiên âm nhạc) thì AI làm theo cách nào?\nVì sao cần hỏi: Quyết định cách ghép chỉ thị cho AIコーチ và màn cài カテゴリー cho Talent.\nTài liệu đang nói:\n- 業務フロー bản 19/11: Manager nhập hồ sơ, カテゴリー và chỉ thị AI; AIコーチ áp dụng khi trò chuyện với Talent.\n- No.92: ưu tiên giữa thông tin Talent và chỉ thị AI, chưa có câu trả lời.\nLựa chọn:\n- A: Mỗi Talent chỉ thuộc 1 カテゴリー, không có mâu thuẫn giữa các カテゴリー.\n- B: Talent thuộc được nhiều カテゴリー. AI đọc mọi chỉ thị; mâu thuẫn thì theo thứ tự カテゴリー Manager đặt cho từng Talent. Màn quản lý thêm phần đặt thứ tự.\nAMCOLAB đề xuất: A, đơn giản. Nếu vận hành cần nhiều カテゴリー thì B."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F56",
+          "old": "【確認事項】投稿の時刻は、投稿案を作った時点と採用した時点の、どちらで確定しますか。1日の投稿の本数の上限をなくす場合(確認37)、2本目以降の時刻はどのように決めますか。予定の時刻を過ぎてから写真・動画が届いた場合は、いつ投稿しますか。\n【確認の背景】予約の方法と、催促の時刻(投稿の時刻の2時間前)が決まるためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(5-2):投稿の時刻は、タレントごとにAIが決める。\n・確認30:タレントは投稿の時刻を変えられない。\n・6-7(機能6-5):投稿の時刻の2時間前に催促する。\n・確認37:1日の投稿の本数に上限を設けない方向。\n【AMCOLABからのご提案】\n・投稿の時刻は、投稿案を作った時点で確定する。\n・同じ日の2本目以降は、次に良い時間帯とし、前の投稿から3時間以上あける。\n・予定の時刻を過ぎて採用した場合は、次の時間帯に予約する。",
+          "new": "【確認事項】投稿の時刻は、投稿案を作った時点と採用した時点の、どちらで確定しますか。1日の投稿の本数の上限をなくす場合(確認37)、2本目以降の時刻はどのように決めますか。予定の時刻を過ぎてから写真・動画が届いた場合は、いつ投稿しますか。\n【確認の背景】予約の方法と、催促の時刻(投稿の時刻の2時間前)が決まるためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(5-2):投稿の時刻は、タレントごとにAIが決める。\n・確認30:タレントは投稿の時刻を変えられない。\n・6-7(機能6-5):投稿の時刻の2時間前に催促する。\n・確認37:1日の投稿の本数に上限を設けない方向。\n【AMCOLABからのご提案】\n・投稿の時刻は、投稿案を作った時点で確定する。\n・同じ日の2本目以降は、次に良い時間帯とし、前の投稿から3時間以上あける。\n・予定の時刻を過ぎて採用した場合は、次の時間帯に予約する。\n\n【追加のご確認事項】\nご回答いただきありがとうございます。内容は理解いたしましたが、この件をより明確にするため、追加で以下の点をご確認させてください。\n(業務フロー 11月19日版 フロー4の【要確認】、確認26 に関するご質問です)\n①タレントから新しい写真・動画が届かないまま投稿の時刻になった場合、保存してある写真・動画を使って投稿しますか、届くまで待ちますか、その投稿を取り消しますか。\n②保存してある写真・動画を使う場合、同じものを何回まで使えますか。\n【AMCOLABからのご提案】①業務フローのとおり、保存してある写真・動画を使い、保存しているものが無い場合はその日の投稿を止めます。②回数の上限は設けず、最後に使った日が古いものから順に使います。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F62",
+          "old": "【確認事項】動画1本あたりの単価は、どこで設定し、どなたが変更しますか。月の途中で単価を変えた場合、それまでに依頼された分はどちらの単価で計算しますか。動画ができなかった回数は、いつ差し引きますか。\n【確認の背景】タレントへの毎月の請求額に直接関わるためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(6-3 機能5-4):依頼した時点で1回と数える。動画生成サービスの側でできなかった場合は数えない(Q&A No.1)。\n・5-6:管理画面で変えられる設定値に、動画の単価の記載なし。\n【AMCOLABからのご提案】単価は管理画面の全体の設定値とし、依頼した時点の単価で計算いたします。動画ができなかった回数は、サービスから失敗の結果を受け取った時点で差し引きます。",
+          "new": "【確認事項】動画1本あたりの単価は、どこで設定し、どなたが変更しますか。月の途中で単価を変えた場合、それまでに依頼された分はどちらの単価で計算しますか。動画ができなかった回数は、いつ差し引きますか。\n【確認の背景】タレントへの毎月の請求額に直接関わるためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(6-3 機能5-4):依頼した時点で1回と数える。動画生成サービスの側でできなかった場合は数えない(Q&A No.1)。\n・5-6:管理画面で変えられる設定値に、動画の単価の記載なし。\n【AMCOLABからのご提案】単価は管理画面の全体の設定値とし、依頼した時点の単価で計算いたします。動画ができなかった回数は、サービスから失敗の結果を受け取った時点で差し引きます。\n\n【追加のご確認事項】\n上記のご質問に加えて、この件をより明確にするため、追加で以下の点をご確認させてください。\n(動画の費用の請求のタイミングについてのご質問です。毎月の請求サイクル(No.49)のご回答に関係します)\n①請求の締め日の後に依頼された動画の費用は、どの月の請求に含めますか。\n②請求額を集計した後に、動画ができなかったことが分かった場合、どのように調整しますか。\n【AMCOLABからのご提案】①依頼した日を基準とし、締め日の後に依頼された分は翌月の請求に含めます。②集計後に失敗が分かった分は、翌月の請求から差し引きます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F66",
+          "old": "【確認事項】事務所アカウントのログインIDは、どのメールアドレスを使いますか。SNSの接続はどなたが行いますか。事務所アカウントにも状態(利用中・利用終了)があり、削除できますか。タレントの一覧に表示しますか。\n【確認の背景】資料には、マネージャーが作成し、事務所アカウントごとにログインし直して使うことのみが記載されており、作成と一覧の画面を設計するには情報が不足しているためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(UC-12、6-3 機能1-2、6-10 機能9-1):マネージャーが管理画面で作る。事務所アカウント用のIDでタレントのアプリにログインする。月額使用料の対象外。承認は行わない。\n【AMCOLABからのご提案】作成時にマネージャーがメールアドレスを入力し、SNSの接続はマネージャーがアプリにログインして行います。タレントの一覧に「事務所」の表示を付けて表示し、状態はタレントと同じ3つを使います。",
+          "new": "【確認事項】事務所アカウントのログインIDは、どのメールアドレスを使いますか。SNSの接続はどなたが行いますか。事務所アカウントにも状態(利用中・利用終了)があり、削除できますか。タレントの一覧に表示しますか。\n【確認の背景】資料には、マネージャーが作成し、事務所アカウントごとにログインし直して使うことのみが記載されており、作成と一覧の画面を設計するには情報が不足しているためです。\n【現在の資料の記載】\n・概要要件定義書 改訂版(UC-12、6-3 機能1-2、6-10 機能9-1):マネージャーが管理画面で作る。事務所アカウント用のIDでタレントのアプリにログインする。月額使用料の対象外。承認は行わない。\n【AMCOLABからのご提案】作成時にマネージャーがメールアドレスを入力し、SNSの接続はマネージャーがアプリにログインして行います。タレントの一覧に「事務所」の表示を付けて表示し、状態はタレントと同じ3つを使います。\n\n【追加のご確認事項】\nご回答いただきありがとうございます。内容は理解いたしましたが、この件をより明確にするため、追加で以下の点をご確認させてください。\n(事務所アカウントの運用についてのご質問です)\n①ログイン用のメールアドレスとパスワードは、どなたが変更できますか(使っている方が担当を外れた場合など)。\n②事務所アカウントを利用終了にした場合、予約済みの投稿とSNSの接続はどのように扱いますか。\n【AMCOLABからのご提案】①メールアドレスはマネージャーが管理画面で変更し、パスワードはログイン画面の「パスワードを忘れた」から再設定します。②タレントの利用終了と同じく、予約済みの投稿は取り消してログインできないようにし、SNSとの接続も解除します。データの保持はNo.94のとおりとします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F73",
+          "old": "【確認事項】朝・昼・晩の具体的な時刻と、どの声かけをどの時間帯に送るかをご教示ください。\n【確認の背景】現在の資料は「毎日朝8時」を前提に設計しており(5-2)、写真・動画の催促は投稿の時刻の2時間前としているため、見直しが必要です。\n【現在の資料の記載】\n・11月17日の議事録(確認18):Instagramなどをタレントが使った時刻は取得できないため、まずは朝・昼・晩の時間帯で送る。タレントごとの時刻の変更は、傾向が分かってから検討する。\n・概要要件定義書(5-2、6-7 機能6-5):毎朝8時。投稿の時刻の2時間前に催促。月曜日に週のまとめを送信。\n・確認19:3日投稿がなければAIコーチが声かけ、7日でマネージャーへ通知。ご意見:自動投稿なら投稿のない日はない。\n【AMCOLABからのご提案】(時刻は、管理画面の全体の設定(5-6)で変えられる形にします。)\n・朝(8時台):前日の結果、今日のテーマの候補、今日のミッション。\n・昼(12時台):写真・動画がまだ届いていない場合の催促。\n・晩(20時台):投稿のない日が3日続いた場合の声かけ(必要なときのみ)、目標達成のお知らせなど。\n自動投稿のタレントには、「投稿のない日」の声かけは、自動投稿が止まったときや、写真が足りなくなったときに限って送ります。\n11月20日(金)のお打ち合わせまでにご回答をお願いいたします。",
+          "new": "【確認事項】朝・昼・晩の具体的な時刻と、どの声かけをどの時間帯に送るかをご教示ください。\n【確認の背景】現在の資料は「毎日朝8時」を前提に設計しており(5-2)、写真・動画の催促は投稿の時刻の2時間前としているため、見直しが必要です。\n【現在の資料の記載】\n・11月17日の議事録(確認18):Instagramなどをタレントが使った時刻は取得できないため、まずは朝・昼・晩の時間帯で送る。タレントごとの時刻の変更は、傾向が分かってから検討する。\n・概要要件定義書(5-2、6-7 機能6-5):毎朝8時。投稿の時刻の2時間前に催促。月曜日に週のまとめを送信。\n・確認19:3日投稿がなければAIコーチが声かけ、7日でマネージャーへ通知。ご意見:自動投稿なら投稿のない日はない。\n【AMCOLABからのご提案】(時刻は、管理画面の全体の設定(5-6)で変えられる形にします。)\n・朝(8時台):前日の結果、今日のテーマの候補、今日のミッション。\n・昼(12時台):写真・動画がまだ届いていない場合の催促。\n・晩(20時台):投稿のない日が3日続いた場合の声かけ(必要なときのみ)、目標達成のお知らせなど。\n自動投稿のタレントには、「投稿のない日」の声かけは、自動投稿が止まったときや、写真が足りなくなったときに限って送ります。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F83",
+          "old": "画面:T-08(M-15)\n【確認事項】自動投稿で使用するテーマおよび写真・動画は、どこから取得する想定でしょうか。また、投稿頻度、素材が不足した場合の対応、同じ素材の再利用可否についてご確認させてください。さらに、自動投稿と投稿前確認モードを切り替えた場合、既に予約済みの投稿はどのように扱いますでしょうか。",
+          "new": "画面:T-08(M-15)\n【確認事項】自動投稿で使用するテーマおよび写真・動画は、どこから取得する想定でしょうか。また、投稿頻度、素材が不足した場合の対応、同じ素材の再利用可否についてご確認させてください。さらに、自動投稿と投稿前確認モードを切り替えた場合、既に予約済みの投稿はどのように扱いますでしょうか。\n素材が不足した場合(自動投稿の期間に対して写真・動画が足りない場合。例:14日間の設定で写真が5枚)について、具体的には以下の点をご確認させてください。\n①写真・動画がなくなる前に、タレントに追加をお願いするお知らせを出しますか。\n②写真・動画がなくなった日は、自動投稿を止めますか、その日だけ投稿しませんか。\n③タレントが写真・動画を追加したら、自動投稿は自動で続きますか。\n【AMCOLABからのご提案】残りが2日分になった時点でタレントにお知らせします。写真・動画がない日は投稿せず、追加されたら次の日から自動で続けます。同じ写真・動画を使い回すかどうかは、上記のご質問(再利用の可否)へのご回答に合わせます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F86",
+          "old": "画面:T-16\n【確認事項】月額料金の決済に失敗した場合、AIコーチ、動画生成、SNS投稿など、どの機能を制限する想定でしょうか。また、再決済が成功した場合、利用制限は自動的に解除しますでしょうか。それともマネージャーによる操作が必要でしょうか。",
+          "new": "画面:T-16\n【確認事項】月額料金の決済に失敗した場合、AIコーチ、動画生成、SNS投稿など、どの機能を制限する想定でしょうか。また、再決済が成功した場合、利用制限は自動的に解除しますでしょうか。それともマネージャーによる操作が必要でしょうか。\nNo.46のご回答(月額料金の決済に失敗した場合はタレントとマネージャーにお知らせし、利用は自動では止めない)を踏まえ、あわせて以下の点をご確認させてください。\n①決済に失敗した場合、自動で決済をやり直しますか(決済代行会社の機能によるため、No.4のご回答に合わせます)。\n②マネージャーが利用を止めている間に投稿の時刻が来た投稿は、どのように扱いますか。\n【AMCOLABからのご提案】①決済代行会社に再決済の機能がある場合はそれを使い、システム独自のやり直しは設けません。②利用を止めている間の投稿は行わず、再開後も自動では投稿し直しません(必要な場合はタレントがあらためて採用します)。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F87",
+          "old": "画面:M-00\n【確認事項】タレントの担当マネージャーは、どのタイミングで割り当てますでしょうか。自動割当と手動割当のどちらを想定されていますでしょうか。手動の場合、どの画面で、誰が割当操作を行いますでしょうか。",
+          "new": "画面:M-00\n【確認事項】タレントの担当マネージャーは、どのタイミングで割り当てますでしょうか。自動割当と手動割当のどちらを想定されていますでしょうか。手動の場合、どの画面で、誰が割当操作を行いますでしょうか。\n\n【追加のご確認事項】\nご回答いただきありがとうございます。内容は理解いたしましたが、この件をより明確にするため、追加で以下の点をご確認させてください。\n打合せでは「お知らせはすべてのマネージャーに送る」とのご回答でしたが、No.88のご回答(担当として割り当てられたマネージャーは、お知らせを受け取るためのもの)、および画面定義書(管理画面、11月19日版)のM-02・M-04(担当のマネージャーにお知らせする)と合っていません。\n①お知らせと承認の依頼の送り先は、次のどちらにしますか。\n・A:担当のマネージャーだけに送ります(画面定義書のとおり)。\n・B:すべてのマネージャーに送ります。この場合、お知らせのための担当の割り当ては不要になります。\n②元のご質問(担当の割り当て方)について、画面定義書M-10では、マネージャーがタレントごとに担当のマネージャーを選ぶ形(手動)になっています。この理解でよろしいでしょうか。\n【AMCOLABからのご提案】①最新の画面定義書のとおり、Aを提案いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F88",
+          "old": "画面:M-02\n【確認事項】担当マネージャーを自動で割り当てる場合、タレント単位とカテゴリー単位のどちらを基準にしますでしょうか。また、1人のタレントに複数の担当マネージャーを設定できますでしょうか。担当マネージャーが無効化された場合、担当タレントおよび未処理の承認依頼は誰に引き継がれますでしょうか。",
+          "new": "画面:M-02\n【確認事項】担当マネージャーを自動で割り当てる場合、タレント単位とカテゴリー単位のどちらを基準にしますでしょうか。また、1人のタレントに複数の担当マネージャーを設定できますでしょうか。担当マネージャーが無効化された場合、担当タレントおよび未処理の承認依頼は誰に引き継がれますでしょうか。\n\n【追加のご確認事項】\nご回答いただきありがとうございます。内容は理解いたしましたが、この件をより明確にするため、追加で以下の点をご確認させてください。\n(元のご質問のうち「担当のマネージャーを無効にした場合」へのご回答がまだのため、どのマネージャーも承認・更新ができる前提でお伺いします)\n①担当のマネージャーを無効にするとき、そのマネージャーが担当していたタレントを、別のマネージャーに付け替える必要がありますか(付け替えない場合、そのタレントのお知らせを受け取る方がいなくなります)。\n②承認待ちの投稿が、投稿の時刻が近づいても承認されていない場合、担当以外のマネージャーにもお知らせしますか。\n【AMCOLABからのご提案】①マネージャーを無効にする前に、担当のタレントを別のマネージャーに付け替えることを必須にします。②追加のお知らせは設けません。どのマネージャーも承認待ちの一覧から承認できるためです。お知らせを送る相手はNo.87のご回答に合わせます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F92",
+          "old": "画面:M-20\n【確認事項】M-20で登録するタレント情報について、具体的にどの入力項目が必要でしょうか。また、AIコーチを利用開始するために必須となる項目はありますでしょうか。M-20のタレント情報とAIへの指示の内容が矛盾した場合、どちらを優先しますでしょうか。",
+          "new": "画面:M-20(マネージャー側の「タレントの情報の入力」)\n【確認事項】「タレントの情報の入力」画面で登録するタレント情報について、具体的にどの入力項目が必要でしょうか。また、AIコーチを利用開始するために必須となる項目はありますでしょうか。この画面のタレント情報とAIへの指示の内容が矛盾した場合、どちらを優先しますでしょうか。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F96",
+          "old": "画面:M-18(T-12・M-11)\n【確認事項】確認済みで予約済みの投稿に含まれる言葉を、マネージャーがM-18で使ってはいけない言葉として追加・変更した場合、新しい一覧は投稿待ちの投稿にも適用しますでしょうか。適用する場合、その投稿を止めてどなたが確認し、どなたが修正・取り消しを行い、何を確認すれば投稿を続けられますでしょうか。\n【確認の背景】一覧を変更したときの適用範囲と、対応する方を決めるためです。No.13・57・71・90では、確認後に一覧が変わった場合については決まっていないためです。\n【現在の資料の記載】\n・No.13(11月13日):タレントが採用した時点で、AIが文脈で確認する。一覧は全タレント共通で、管理画面に登録する。\n・No.90(11月19日のお打ち合わせ):マネージャーが修正した後、そのまま投稿できる。\n・画面定義書(11月19日版、M-18):使ってはいけない言葉の一覧の画面。\n【選択肢】\n・A:新しい一覧は、変更後に行う確認から適用します。確認済みで予約済みの投稿はそのままとし、止めたい投稿はマネージャーが予約を取り消します。\n・B:一覧を変更したときに、未投稿の予約済み投稿をすべて確認し直します。該当した投稿は止めてマネージャーにお知らせし、No.57・No.90と同じ流れで対応します。一括の再確認は御見積書(No.26)の範囲外となり、AIの利用料金も増えます。\n【AMCOLABからのご提案】御見積書の範囲内であるAを提案いたします。",
+          "new": "画面:M-18「使ってはいけない言葉の一覧」(T-12・M-11)\n【確認事項】確認済みで予約済みの投稿に含まれる言葉を、マネージャーが「使ってはいけない言葉の一覧」画面で使ってはいけない言葉として追加・変更した場合、新しい一覧は投稿待ちの投稿にも適用しますでしょうか。適用する場合、その投稿を止めてどなたが確認し、どなたが修正・取り消しを行い、何を確認すれば投稿を続けられますでしょうか。\n【確認の背景】一覧を変更したときの適用範囲と、対応する方を決めるためです。No.13・57・71・90では、確認後に一覧が変わった場合については決まっていないためです。\n【現在の資料の記載】\n・No.13(11月13日):タレントが採用した時点で、AIが文脈で確認する。一覧は全タレント共通で、管理画面に登録する。\n・No.90(11月19日のお打ち合わせ):マネージャーが修正した後、そのまま投稿できる。\n・画面定義書(11月19日版、M-18):使ってはいけない言葉の一覧の画面。\n【選択肢】\n・A:新しい一覧は、変更後に行う確認から適用します。確認済みで予約済みの投稿はそのままとし、止めたい投稿はマネージャーが予約を取り消します。\n・B:一覧を変更したときに、未投稿の予約済み投稿をすべて確認し直します。該当した投稿は止めてマネージャーにお知らせし、No.57・No.90と同じ流れで対応します。一括の再確認は御見積書(No.26)の範囲外となり、AIの利用料金も増えます。\n【AMCOLABからのご提案】御見積書の範囲内であるAを提案いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F98",
+          "old": "画面:M-10(T-19)\n【確認事項】月の途中で費用が発生し(例:動画を作成)、まだ請求していない状態でタレントを「利用終了」にする場合、その費用は請求しますか。請求していない費用が残っている状態で、すぐに「利用終了」にできますか。また、6か月後にタレントのデータを削除した後も、請求に関するどのデータを残す必要がありますか。\n【確認の背景】最後の請求の扱いと、タレントのデータと一緒に削除しないデータを決めるためです。\n【現在の資料の記載】\n・確認50:利用をやめた月も1か月分を請求する。\n・確認55(11月17日のご決定):データを6か月間残し、その後は自動で削除する。削除の対象はNo.69でご確認中。\n・カード情報はシステムに保存せず、支払いの履歴は決済代行会社のページで確認する。\n・毎月の請求サイクルはNo.49でご回答待ち。\n【選択肢】\n・A:すぐに「利用終了」にできるようにします。発生済みの費用(最後の月額料金と動画の費用)は次の請求で1回だけ請求し、その後は請求しません。動画の回数と請求額の記録は、タレントのデータと一緒には削除せずに残します。\n・B:すべての費用の請求が終わってから「利用終了」にできるようにします。\n【AMCOLABからのご提案】Aを提案いたします。請求の記録を残す期間は、貴社の経理のルールに合わせてご教示ください。",
+          "new": "画面:M-10「タレントの詳細（設定）」(T-19)\n【確認事項】月の途中で費用が発生し(例:動画を作成)、まだ請求していない状態でタレントを「利用終了」にする場合、その費用は請求しますか。請求していない費用が残っている状態で、すぐに「利用終了」にできますか。また、6か月後にタレントのデータを削除した後も、請求に関するどのデータを残す必要がありますか。\n【確認の背景】最後の請求の扱いと、タレントのデータと一緒に削除しないデータを決めるためです。\n【現在の資料の記載】\n・確認50:利用をやめた月も1か月分を請求する。\n・確認55(11月17日のご決定):データを6か月間残し、その後は自動で削除する。削除の対象はNo.69でご確認中。\n・カード情報はシステムに保存せず、支払いの履歴は決済代行会社のページで確認する。\n・毎月の請求サイクルはNo.49でご回答待ち。\n【選択肢】\n・A:すぐに「利用終了」にできるようにします。発生済みの費用(最後の月額料金と動画の費用)は次の請求で1回だけ請求し、その後は請求しません。動画の回数と請求額の記録は、タレントのデータと一緒には削除せずに残します。\n・B:すべての費用の請求が終わってから「利用終了」にできるようにします。\n【AMCOLABからのご提案】Aを提案いたします。請求の記録を残す期間は、貴社の経理のルールに合わせてご教示ください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "F99",
+          "old": "画面:AIへの指示の画面(カテゴリー別)、M-21\n【確認事項】1人のタレントが複数のカテゴリーに属することはありますか。ある場合、カテゴリーごとのAIへの指示が矛盾するとき(例:モデルは服の内容を優先、歌手は音楽を優先)、AIはどのように対応しますか。\n【確認の背景】AIコーチに渡す指示の組み合わせ方と、タレントのカテゴリーを設定する画面が決まるためです。\n【現在の資料の記載】\n・業務フロー(11月19日版):マネージャーがプロフィール、カテゴリー、AIへの指示を入力し、AIコーチがタレントとの会話で使う。\n・No.92:タレントの情報とAIへの指示のどちらを優先するかは、ご回答待ち。\n【選択肢】\n・A:1人のタレントは1つのカテゴリーにのみ属します。カテゴリー同士の矛盾は起きません。\n・B:複数のカテゴリーに属することができます。AIはすべての指示を読み、矛盾する場合は、マネージャーがタレントごとに決めたカテゴリーの順番に従います。管理画面に順番を決める項目が増えます。\n【AMCOLABからのご提案】シンプルなAを提案いたします。運用上、複数のカテゴリーが必要な場合はBとなります。",
+          "new": "画面:AIへの指示の画面(カテゴリー別)\n【確認事項】1人のタレントが複数のカテゴリーに属することはありますか。ある場合、カテゴリーごとのAIへの指示が矛盾するとき(例:モデルは服の内容を優先、歌手は音楽を優先)、AIはどのように対応しますか。\n【確認の背景】AIコーチに渡す指示の組み合わせ方と、タレントのカテゴリーを設定する画面が決まるためです。\n【現在の資料の記載】\n・業務フロー(11月19日版):マネージャーがプロフィール、カテゴリー、AIへの指示を入力し、AIコーチがタレントとの会話で使う。\n・No.92:タレントの情報とAIへの指示のどちらを優先するかは、ご回答待ち。\n【選択肢】\n・A:1人のタレントは1つのカテゴリーにのみ属します。カテゴリー同士の矛盾は起きません。\n・B:複数のカテゴリーに属することができます。AIはすべての指示を読み、矛盾する場合は、マネージャーがタレントごとに決めたカテゴリーの順番に従います。管理画面に順番を決める項目が増えます。\n【AMCOLABからのご提案】シンプルなAを提案いたします。運用上、複数のカテゴリーが必要な場合はBとなります。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G100",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(1-3 本書の範囲)のとおり、ランキングは今回のフェーズでは対応せず、次のフェーズ以降の対象とします(A案)。「がんばっているタレント」の画面と、メニュー・ホームのボタンは、第1段階の設計から外します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G3",
+          "old": "【2026/11/13】動画生成サービスは、fal.ai経由のKlingを想定(第8章)。未決:動画1本あたりの単価。\n【2026/11/15】単価は管理画面の設定値として設計し、開発は止めずに進めます。受入テストの開始前までにご教示ください。単価の設定場所と、月の途中で単価を変えた場合の扱いは、No.62でご確認させてください。",
+          "new": "【2026/11/26 FCP】動画1回あたりの金額は、アデッソ様が決めます。管理画面の全体の設定（M-18 ❺）で、マネージャーが設定する値として作ってください。金額は、Kling で動画の長さと画質を検証した結果をもとに決めます（確認シート「20261122」No.7）。決まり次第お知らせします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G35",
+          "old": "【2026/11/13】未回答:資料は引き続き10/29付の御見積書を参照。正式版の提出日とUAT開始日は調整予定。\n【2026/11/17】11月17日の打合せ(議事録)で、画面定義書は11月20日(金)午前、機能の細部を詰めた要件定義の決定は11月23日の週とされました(議事録アクション5・6)。御見積書の版(2026年10月28日付か10月29日付か)は、まだ未回答です。",
+          "new": null
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G38",
+          "old": "【2026/11/13】未確定:確認シートNo.32は未チェック。\n【2026/11/17 確認シート】確認32のOKは、11月17日付の確認シートでも未チェックで、ご記入・決定事項もありません。11月20日(金)の打合せでご確認させてください。",
+          "new": "【2026/11/13】未確定:確認シートNo.32は未チェック。\n【2026/11/17 確認シート】確認32のOKは、11月17日付の確認シートでも未チェックで、ご記入・決定事項もありません。11月20日(金)の打合せでご確認させてください。\n【2026/11/25 要件定義書 0.3版】0.3版(業務要件7-5、T-10 自動投稿の設定)のとおり、自分で作った動画やAIで作った動画は保存しておき、自動投稿で使えます。保存した動画を毎日1本ずつ自動で投稿案にする機能は設けません。この内容で設計いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G5",
+          "old": "【2026/11/13】決済手段はキャリア決済とカード決済、決済代行会社1社(確定)。未決:決済代行会社と、毎月変動する金額の請求可否の確認結果。\n【2026/11/17】11月17日の打合せ(議事録アクション1)で、アデッソ様が決済代行会社に次の2点を確認してくださることになりました。①登録日から1か月ごとの請求ができるか。②月額使用料(定額)に、動画生成の料金(月ごとに変わる金額)を加えた金額を、毎月請求できるか。ご回答をお待ちしております。あわせて、正式な決済代行会社名もお知らせください。\n【2026/11/19 打合せ】決済代行会社は未決です。決まり次第ご連絡をお願いいたします。",
+          "new": "【2026/11/26 FCP】決済代行会社は Square で検討しています。モバイル決済とクレジットカード決済は使えますが、キャリア決済は使えない可能性があります。動画の費用を後払いでまとめて請求できるかは、確認しています。月額使用料は毎月同じ金額です。動画の費用は、月末か月初にその月に使った分の金額をシステムで集計し、Square にデータを渡します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G50",
+          "old": "【2026/11/17】確認48・49について、登録日から1か月ごと(例:11月17日に登録したら12月16日まで)に請求する機能は、作れる見込みです。ただし、決済代行会社のサービスによって対応が変わるため、アデッソ様が決済代行会社に確認してくださいます(議事録アクション1)。御見積書(月末請求・暦月での集計)とは異なる方式(B案)のため、決済代行会社のご回答後に、影響をご報告いたします。\n【2026/11/17 確認シート】確認49のOKは未チェックのままですが、決定事項欄に「アデッソ様が決済代行会社へご確認」とご記入をいただいています。ご回答をお待ちしております。",
+          "new": "【2026/11/26 FCP】No.4 のとおり、Square で検討しています。月額使用料を請求する日と、動画の費用を集計して Square に渡す日（月末か月初）は、Square の仕様を確認してから決めます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G51",
+          "old": "【2026/11/17】自動投稿(期間を決めて自動で投稿する方式)と、投稿の前にタレントが確認する方式の2つが決まったため、投稿の状態に追加が生じます(議事録)。No.70・71でご確認いただいたうえで、状態の一覧を更新してお示しします。",
+          "new": "【2026/11/17】自動投稿(期間を決めて自動で投稿する方式)と、投稿の前にタレントが確認する方式の2つが決まったため、投稿の状態に追加が生じます(議事録)。No.70・71でご確認いただいたうえで、状態の一覧を更新してお示しします。\n【2026/11/26】No.70・71(2026/11/26 FCPご回答)と No.58・60・61・84・86 のご回答をもとに、投稿の状態を次のとおり整理し、この内容で設計いたします。\n・投稿案(未採用)、承認待ち、差し戻し、予約済み、停止中のため保留、投稿済み、失敗(投稿できたか・できなかったかはSNSごとに記録)。\n・取り消し:取り消した投稿は投稿案に戻り、もう一度採用できます(No.61)。\n・投稿しない:投稿の時刻までに承認されなかった場合、タレントが確認しなかった場合、写真・動画がない場合、自動投稿の停止中だった場合。\n・使ってはいけない言葉:No.71③のとおり、予約の前にAIが書き直して予約するため、「使ってはいけない言葉で止まった」状態は設けません。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G52",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(業務要件2-3、2-4、T-06)のとおり、承認されてから支払い方法の登録が済むまでは「利用前」とし、ログインのたびに「はじめに行うこと」の画面を開きます。支払い方法の登録が済んだ時点で「利用中」にし、タレント別のフォルダを作り、マネージャーに知らせます(A案)。この内容で設計いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G53",
+          "old": "【2026/11/17】議事録の例(11月17日に登録したら12月16日まで)にある「登録日」は、タレントが支払い方法を登録した日(弊社のご提案A)でよろしいでしょうか。",
+          "new": "【2026/11/17】議事録の例(11月17日に登録したら12月16日まで)にある「登録日」は、タレントが支払い方法を登録した日(弊社のご提案A)でよろしいでしょうか。\n【2026/11/25 要件定義書 0.3版】0.3版(業務要件2-3、T-03、T-06)のとおり、承認の後に支払い方法を登録しないタレントは「利用前」のままとし、ログインのたびに「はじめに行うこと」の画面を開きます。月額使用料は前払いとし、日割りにしません(業務要件11-3)。課金を始める日と、月の途中からの利用開始の扱いは、0.3版で「決済代行会社のサービスで対応できるかを確かめてから決める」とされているため、No.49であわせてご確認いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G54",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。A でお願いします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G55",
+          "old": "【2026/11/17】写真・動画の保存期間は、退会後半年(No.29)に合わせます。ほかの項目(テーマ、採用されなかった投稿案)は、前回のご提案のままです。",
+          "new": "【2026/11/17】写真・動画の保存期間は、退会後半年(No.29)に合わせます。ほかの項目(テーマ、採用されなかった投稿案)は、前回のご提案のままです。\n【2026/11/26 FCP】11/17 の回答のとおりです。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G56",
+          "old": "【2026/11/17】11月17日の打合せ(議事録)で、投稿の時刻は、アデッソ様がAIへの指示に効果的な時間帯を書き、それをもとにAIが決める形とされました。また、1日の投稿の本数に上限は設けません(確認37)。残るご確認事項は、時刻を確定するタイミング、2本目以降の時刻、予定の時刻を過ぎてから写真・動画が届いた場合の扱いです(弊社のご提案のとおりでよろしいかをお知らせください)。\n【2026/11/20 フロー確認】業務フロー(11月19日版)フロー4の【要確認】(確認26)について、追加でご確認させてください。①タレントから新しい写真・動画が届かないまま投稿の時刻になった場合、保存してある写真・動画を使って投稿しますか、届くまで待ちますか、その投稿を取り消しますか。②保存してある写真・動画を使う場合、同じものを何回まで使えますか。\n【AMCOLABからのご提案】①業務フローのとおり、保存してある写真・動画を使い、保存しているものが無い場合はその日の投稿を止めます。②回数の上限は設けず、最後に使った日が古いものから順に使います。",
+          "new": "【2026/11/17】11月17日の打合せ(議事録)で、投稿の時刻は、アデッソ様がAIへの指示に効果的な時間帯を書き、それをもとにAIが決める形とされました。また、1日の投稿の本数に上限は設けません(確認37)。残るご確認事項は、時刻を確定するタイミング、2本目以降の時刻、予定の時刻を過ぎてから写真・動画が届いた場合の扱いです(弊社のご提案のとおりでよろしいかをお知らせください)。\n【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。時刻は、AI への指示に書いた時間帯の中で AI が決め、タレントごとに数分ずつずらし、SNS ごとに時間帯を分けます（11/24 の定例会）。\n追加のご確認①：保存してある写真・動画の中から、投稿に合うものを AI が選んで投稿します。保存しているものがない場合は投稿せず、タレントにお知らせします。投稿の時刻の前には「写真・動画がないため投稿できません。写真・動画を送ってください」、投稿の時刻の後には「写真・動画がないため投稿できませんでした」と知らせます。その後にタレントが写真・動画を送った場合は、次の時間帯に投稿します。②：回数の上限は設けません。使うものは、投稿に合うものを AI が選びます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G57",
+          "old": "【2026/11/17】確認28のご決定で、タレントが投稿文を自分で書き直せる形になったため、あわせてご確認させてください。使ってはいけない言葉で止まった投稿は、マネージャーだけが直す形か、タレントも直せる形か。",
+          "new": "【2026/11/17】確認28のご決定で、タレントが投稿文を自分で書き直せる形になったため、あわせてご確認させてください。使ってはいけない言葉で止まった投稿は、マネージャーだけが直す形か、タレントも直せる形か。\n【2026/11/25 要件定義書 0.3版】0.3版(業務要件13-1、13-2、T-12)のとおり、投稿の前に使ってはいけない言葉をAIが確かめ、見つかった場合はAIが書き直してから予約します。マネージャーが直す形にはしません。そのため、マネージャーが直した後の流れについてのご確認は不要となりました。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G58",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G59",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。タレントは T-17 ❹「投稿し直す」、マネージャーは M-09 ❹「予約し直す」で操作します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G60",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G61",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。お知らせの一覧（別紙B）に追加します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G62",
+          "old": "【2026/11/20 フロー確認】動画の費用の請求のタイミングについて、追加でご確認させてください。①請求の締め日の後に依頼された動画の費用は、どの月の請求に含めますか。②請求額を集計した後に、動画ができなかったことが分かった場合、どのように調整しますか。毎月の請求サイクル(No.49)のご回答に関係します。\n【AMCOLABからのご提案】①依頼した日を基準とし、締め日の後に依頼された分は翌月の請求に含めます。②集計後に失敗が分かった分は、翌月の請求から差し引きます。",
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。動画の費用は、月末か月初にその月の分を集計して Square に渡します（No.4）。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G63",
+          "old": null,
+          "new": "【2026/11/26 FCP】B でお願いします。状態の名前は「支払い待ち」とします。Square の再決済でも支払いを確認できなかった時点で、タレントとマネージャーにお知らせし、状態を「支払い待ち」にして利用を自動で止めます。支払い待ちの間は、AIコーチ、動画の作成、投稿を止め、月額使用料の請求は続けます。タレントは、支払い方法を変えるためにログインできます。支払いを確認できたら、自動で「利用中」に戻します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G66",
+          "old": "【2026/11/17】確認10により、ユニットのアカウントは事務所アカウントとして扱います。確認27により、マネージャーが代わりに投稿するのは事務所アカウントの投稿のみです。ログインIDのメールアドレス、SNSの接続を行う方、状態・削除、タレント一覧での表示は、引き続きご確認事項です。\n【2026/11/20 フロー確認】事務所アカウントの運用について、追加でご確認させてください。①ログイン用のメールアドレスとパスワードは、どなたが変更できますか(使っている方が担当を外れた場合など)。②事務所アカウントを利用終了にした場合、予約済みの投稿とSNSの接続はどのように扱いますか。\n【AMCOLABからのご提案】①メールアドレスはマネージャーが管理画面で変更し、パスワードはログイン画面の「パスワードを忘れた」から再設定します。②タレントの利用終了と同じく、予約済みの投稿は取り消してログインできないようにし、SNSとの接続も解除します。データの保持はNo.94のとおりとします。",
+          "new": "【2026/11/17】確認10により、ユニットのアカウントは事務所アカウントとして扱います。確認27により、マネージャーが代わりに投稿するのは事務所アカウントの投稿のみです。ログインIDのメールアドレス、SNSの接続を行う方、状態・削除、タレント一覧での表示は、引き続きご確認事項です。\n【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G67",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G69",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(業務要件12-3、12-4、T-01)のとおり、利用終了にしたタレントは利用中に戻せません。すでに登録されているメールアドレスで申し込んだときは「すでに登録されています」と表示します。利用をやめたタレントの情報は半年間残し、その後は自動で削除します(A案)。この内容で設計いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G7",
+          "old": "【2026/11/13】貴社より、カテゴリー担当のマネージャーへ通知したいとのご意見あり(確認シートNo.34)。資料は全マネージャー宛のまま。ご確認待ち。\n【2026/11/17】確認34について、「承認の依頼は、カテゴリーごと、または担当マネージャーごとに知らせる形で対応する」とのご決定をいただきました(議事録)。全マネージャー宛としていた資料(3-3)とは異なるため、新しい方式に合わせて設計いたします。次の2点をご確認させてください。①「カテゴリーごと」と「担当マネージャーごと(タレントごとに承認者を決める)」のどちらで進めるか。②担当のマネージャーが未設定・不在のときの宛先(全マネージャーとするか)。なお、「担当マネージャーごと」は御見積書(No.42、前提条件A9)の内容です。「カテゴリーごと」の場合は、マネージャーとカテゴリーの担当割当が加わるため、範囲と費用への影響を別途ご報告し、ご合意をいただいたうえで進めます。\n【2026/11/17 確認シート】確認41にも「承認の依頼は担当ごとに分ける、担当の登録と、お知らせの宛先を分ける機能が必要」とご記入をいただきました(OKにチェック済み)。確認34のご決定とあわせ、「担当マネージャーごと(タレントごとに担当を登録)」を基本と理解してよろしいでしょうか。「カテゴリーごと」も併用する場合は、お知らせください。担当が未設定・不在のときの宛先は、引き続きご確認事項です。",
+          "new": "【2026/11/13】貴社より、カテゴリー担当のマネージャーへ通知したいとのご意見あり(確認シートNo.34)。資料は全マネージャー宛のまま。ご確認待ち。\n【2026/11/17】確認34について、「承認の依頼は、カテゴリーごと、または担当マネージャーごとに知らせる形で対応する」とのご決定をいただきました(議事録)。全マネージャー宛としていた資料(3-3)とは異なるため、新しい方式に合わせて設計いたします。次の2点をご確認させてください。①「カテゴリーごと」と「担当マネージャーごと(タレントごとに承認者を決める)」のどちらで進めるか。②担当のマネージャーが未設定・不在のときの宛先(全マネージャーとするか)。なお、「担当マネージャーごと」は御見積書(No.42、前提条件A9)の内容です。「カテゴリーごと」の場合は、マネージャーとカテゴリーの担当割当が加わるため、範囲と費用への影響を別途ご報告し、ご合意をいただいたうえで進めます。\n【2026/11/17 確認シート】確認41にも「承認の依頼は担当ごとに分ける、担当の登録と、お知らせの宛先を分ける機能が必要」とご記入をいただきました(OKにチェック済み)。確認34のご決定とあわせ、「担当マネージャーごと(タレントごとに担当を登録)」を基本と理解してよろしいでしょうか。「カテゴリーごと」も併用する場合は、お知らせください。担当が未設定・不在のときの宛先は、引き続きご確認事項です。\n【2026/11/25】タレントの登録申請は、どのマネージャーでも承認できます。登録が完了した時点で担当マネージャーが選ばれているため、投稿の承認依頼は担当マネージャーへ送ります。この内容で設計いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G70",
+          "old": "【2026/11/17 確認シート】確認24に「画像に対して文章・ハッシュタグをAIが作る」とご記入をいただきました(OKにチェック済み)。自動投稿(期間投稿)では、アップロードされた写真の内容をAIが見て、投稿の文章とハッシュタグを作る、という理解でよろしいでしょうか。写真の内容を読み取る分、AIの利用料が1投稿あたり増える可能性があります。費用への影響は、設計の中で確認してご報告します。ご提案の①(写真と投稿の対応)とあわせてご回答ください。",
+          "new": "【2026/11/17 確認シート】確認24に「画像に対して文章・ハッシュタグをAIが作る」とご記入をいただきました(OKにチェック済み)。自動投稿(期間投稿)では、アップロードされた写真の内容をAIが見て、投稿の文章とハッシュタグを作る、という理解でよろしいでしょうか。写真の内容を読み取る分、AIの利用料が1投稿あたり増える可能性があります。費用への影響は、設計の中で確認してご報告します。ご提案の①(写真と投稿の対応)とあわせてご回答ください。\n【2026/11/26 FCP】ご提案いただきありがとうございます。③④はご提案の内容で進めてください。①：写真は、アップロードした順ではなく、テーマに合うものを AI が選び、写真を見て文章とハッシュタグを作ります。足りなくなった場合は No.83 のとおりです。②：テーマは、期間中に AIコーチとの会話で変えられます（7-2）。T-10 に「自動投稿を止める」を設け、止めると予約済みの投稿を取り消します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G71",
+          "old": null,
+          "new": "【2026/11/26 FCP】①：「自動投稿／要確認」は、マイページの「投稿の前に確認／確認しないで投稿」（T-08 ❺）のことです。この設定は、毎日の投稿と自動投稿の両方に当てはまります（4-5）。「自動投稿／1回の投稿」は、確認するかどうかではなく投稿の方法の違いで、要件定義書では「自動投稿／毎日の投稿」と呼んでいます。両方を使えます（7-1）。毎日の投稿はいつでも使え、自動投稿は T-10 自動投稿の設定で始めたときだけ動きます。2つを切り替える設定は設けません。\n②：自動投稿には承認を設けません（5-5、11/20 の定例会）。\n③：使ってはいけない言葉は、予約の前に確かめ、見つかった場合は AI が書き直して予約します。マネージャーへのお知らせと、タレントのもう一度の確認は設けません（13-2、11/24 の定例会）。\n④：ご提案いただきありがとうございます。ご提案の内容で進めてください。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G72",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。①②③とも、ご提案の内容で進めてください。野中様のチャレンジの考え方は、プロンプトの形でいただいています。①②は、野中様の文章を待たずに進めてください。このプロンプトが野中様のチャレンジの考え方にあたるかは、11/27 の定例会でアデッソ様に確認します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G73",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。朝と晩は、ご提案の内容で進めてください。朝には、続けて投稿した日数も加えます（2-4-4）。時刻は M-18 ❶ で変えられる値とし、最初の値は8時・12時・20時にします。昼に伝える内容は、AIコーチへの指示の「毎日の声かけ」の場面に書き、AI が決めます。写真・動画の催促は、M-18 ❷ の「投稿の時刻の2時間前」に送ります。自動投稿で投稿したものには、声をかけません（7-7）。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G74",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(機能2-3、M-07、M-08)のとおり、管理画面に「M-08 タレントの情報の入力」を設けます。マネージャーが、プロフィール、方向性、趣味・特技、将来の目標、口調(文体)を入力し、変更の履歴を残します。同じ情報をChatGPTからも確かめ、変えられます(B案)。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G75",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(業務要件10-2、別紙B、3-8)のとおり、マネージャーへのお知らせは、そのタレントの担当のマネージャーに届け、管理画面に出し、メールでも送ります(承認の依頼は、管理画面の承認待ち一覧に出します)。メールとお知らせの文言、マネージャーへのメールの送り先のメールアドレスは、アデッソ様にご用意いただきます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G76",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版に、弊社の理解と同じ内容が記載されていることを確認いたしました。\n・確認23:業務要件14-7、機能要件「会話の話題の制限」、T-11(会話の回数に上限なし。投稿と関係のない依頼は投稿の話題に戻す)。\n・確認33:業務要件5-1(仕事に関わる投稿かどうかはタレントが判断)。\n・確認39:業務要件9-4(目標に達したときにタレントとマネージャーに知らせる)。\n・確認41:業務要件9-2(すべてのタレントを見られる)、5-2(承認の依頼は担当のマネージャーに届く)。\n・確認46:業務要件10-3、M-02(「未対応」のチェックを外すと、開いたお知らせも表示)。\n・確認50:業務要件11-3(月の途中で利用をやめた場合も1か月分)。\n・確認24は、No.70で引き続きご確認いたします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G77",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(M-11 機能要件「自動投稿の停止(タレントごと)」)のとおり、システム全体の投稿を一度に止める機能は設けません。止める必要がある場合は、システムそのものを止めて対応します。マネージャーはタレントごとに投稿の予約を止める・再開することができ、止めると予約済みの投稿も取り消します。そのため、本件のご確認は不要となりました。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G83",
+          "old": "【2026/11/20 フロー確認】自動投稿の期間に対して写真・動画が足りない場合(例:14日間の設定で写真が5枚)について、追加でご確認させてください。①写真・動画がなくなる前に、タレントに追加をお願いするお知らせを出しますか。②写真・動画がなくなった日は、自動投稿を止めますか、その日だけ投稿しませんか。③タレントが写真・動画を追加したら、自動投稿は自動で続きますか。\n【AMCOLABからのご提案】残りが2日分になった時点でタレントにお知らせします。写真・動画がない日は投稿せず、追加されたら次の日から自動で続けます。同じ写真・動画を使い回すかどうかは、上記のご質問(再利用の可否)へのご回答に合わせます。",
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。ご提案の内容で進めてください。テーマは AIコーチとの会話で決めたもの、写真・動画は T-10 ❹ で追加したものを使い、頻度は AI への指示で決めます。同じ写真・動画は、期間中に2回使いません。確認の設定を切り替えた場合は、予約済みの投稿はそのまま残し、まだ予約していない投稿から新しい設定を当てます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G84",
+          "old": null,
+          "new": "【2026/11/26 FCP】「確認しないで投稿」のタレントも、予約済みの投稿を T-16 投稿の予定と結果（予定）から開くと、T-12 投稿案の詳細で見られます。T-12 ❼ 承認の依頼にチェックを付けると承認待ちに変わり、マネージャーが確かめます。承認されたら、決めた時刻にそのまま投稿します。差し戻しの場合は、ほかの投稿と同じく、理由をタレントに知らせ、タレントが直して承認を依頼し直します。自動投稿には承認を設けません（5-5）。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G86",
+          "old": "【2026/11/20 フロー確認】No.46のとおり、月額料金の決済に失敗した場合はタレントとマネージャーにお知らせし、利用は自動では止めない前提で、追加でご確認させてください。①決済に失敗した場合、自動で決済をやり直しますか(決済代行会社の機能によるため、No.4のご回答に合わせます)。②マネージャーが利用を止めている間に投稿の時刻が来た投稿は、どのように扱いますか。\n【AMCOLABからのご提案】①決済代行会社に再決済の機能がある場合はそれを使い、システム独自のやり直しは設けません。②利用を止めている間の投稿は行わず、再開後も自動では投稿し直しません(必要な場合はタレントがあらためて採用します)。",
+          "new": "【2026/11/26 FCP】No.63 のとおり、Square の再決済でも支払いを確認できなかった場合は、タレントとマネージャーにお知らせし、状態を「支払い待ち」にして利用を自動で止めます。止めるのは、AIコーチ、動画の作成、投稿です。支払いを確認できたら、自動で「利用中」に戻します。No.46 の回答（利用は自動では止めない）は、この回答に変えます。\n①：ご提案いただきありがとうございます。ご提案の内容で進めてください。\n②：利用を止めている間の投稿は行わず、再開後も自動では投稿し直しません。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G87",
+          "old": "【2026/11/19 打合せ】お知らせはすべてのマネージャーに送ります。\n【2026/11/20 フロー確認】打合せでは「お知らせはすべてのマネージャーに送る」とのご回答でしたが、No.88のご回答(担当として割り当てられたマネージャーは、お知らせを受け取るためのもの)、および画面定義書(管理画面、11月19日版)のM-02・M-04(担当のマネージャーにお知らせする)と合っていません。どちらにするか、ご確認ください。\n・A:お知らせと承認の依頼は、担当のマネージャーだけに送ります(画面定義書のとおり)。\n・B:すべてのマネージャーに送ります。この場合、お知らせのための担当の割り当ては不要になります。\nあわせて、元のご質問(担当の割り当て方)について、画面定義書M-10では、マネージャーがタレントごとに担当のマネージャーを選ぶ形(手動)になっています。この理解でよろしいでしょうか。\n【AMCOLABからのご提案】最新の画面定義書のとおり、Aを提案いたします。",
+          "new": "【2026/11/19 打合せ】お知らせはすべてのマネージャーに送ります。\n【2026/11/26 FCP】承認の依頼は、担当のマネージャーに届けます（11/20 の定例会）。担当のマネージャーが休みのときや、見落としたときに備えた扱いは、アデッソ様に確認します。確認するのは、次のどちらにするかです。\n・タレント一覧に「承認待ち」を表示し、ほかのマネージャーも分かるようにする\n・承認の依頼を、すべてのマネージャーに届ける\n承認の依頼以外のお知らせの送り先も、あわせて確認します。\n②：手動です。マネージャーが M-11 タレントの詳細（設定）❺ で選びます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G88",
+          "old": "【2026/11/19 打合せ】マネージャーはすべてのタレントを共通で担当し、どのマネージャーも更新できます。担当として割り当てられたマネージャーは、お知らせを受け取るためのものです。\n【2026/11/20 フロー確認】どのマネージャーも承認・更新ができる前提で、ご質問のうち「担当のマネージャーを無効にした場合」へのご回答がまだのため、改めてご確認させてください。①担当のマネージャーを無効にするとき、そのマネージャーが担当していたタレントを、別のマネージャーに付け替える必要がありますか(付け替えない場合、そのタレントのお知らせを受け取る方がいなくなります)。②承認待ちの投稿が、投稿の時刻が近づいても承認されていない場合、担当以外のマネージャーにもお知らせしますか。\n【AMCOLABからのご提案】①マネージャーを無効にする前に、担当のタレントを別のマネージャーに付け替えることを必須にします。②追加のお知らせは設けません。どのマネージャーも承認待ちの一覧から承認できるためです。お知らせを送る相手はNo.87のご回答に合わせます。",
+          "new": "【2026/11/19 打合せ】マネージャーはすべてのタレントを共通で担当し、どのマネージャーも更新できます。担当として割り当てられたマネージャーは、お知らせを受け取るためのものです。\n【2026/11/26 FCP】担当は、タレントごとに1人のマネージャーとします。カテゴリーでは割り当てません。\n①：ご提案いただきありがとうございます。ご提案の内容で進めてください。\n②：No.87 のアデッソ様への確認の結果に合わせます。M-02・M-04 は、最初は担当のタレントだけを表示し、絞り込みですべてのタレントも表示できるようにします。どのマネージャーも同じ操作ができるためです（16-3）。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G89",
+          "old": null,
+          "new": "【2026/11/26 FCP】M-01 に、初回のログインのときだけ出す手順を足します。パスワードを確かめた後、QR コードと6桁の番号の入力欄を表示します（M-01 ❺「初回は、QR コードを認証アプリで読み取って登録する」）。画面定義書に追加します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G91",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】No.77と同じく、0.3版(M-11)では、すべての自動投稿を一度に止める機能を設けないため、本件のご確認は不要となりました。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G92",
+          "old": null,
+          "new": "【2026/11/26 FCP】M-08 で入力する項目は、プロフィール、方向性、趣味・特技、将来の目標、口調（文体）です。必須の項目は設けず、No.54 の「登録完了」で AIコーチを始めます。M-08 にない情報（誕生日、出演の予定など）は、マネージャーが M-17 AIと会話して指示を入れるで AI に伝えて登録し、OneDrive のタレント別のフォルダに MD ファイルで保存します。OneDrive のファイルを直接変える操作は設けません。タレントの情報と AI への指示が食い違う場合は、AI への指示を優先します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G93",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(業務要件10-5)のとおり、タレントから深刻な相談があったことをマネージャーに知らせる機能は設けません(B案)。会話の範囲は、AIコーチへの指示の「会話の制限」に書き、AIが指示に沿って答えます(業務要件14-7)。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G94",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。A でお願いします。要件定義書の 12-4 に、事務所アカウントもタレントと同じ扱いにすることを書きます。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G95",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。A でお願いします。タレントも予約を取り消せるため（6-4）、画面に関係する投稿を表示し、タレントが取り消してから接続を解除する形にしてください。T-07 には「接続を解除」を設けます（No.81）。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G96",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。A でお願いします。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G97",
+          "old": null,
+          "new": "【2026/11/25 要件定義書 0.3版】0.3版(業務要件10-3、M-02)のとおり、お知らせの行を押すと関係する画面を開き、そのお知らせを対応済みにします(A案)。「未対応」のチェックを外すと、開いたお知らせも表示します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G98",
+          "old": null,
+          "new": "【2026/11/26 FCP】ご提案いただきありがとうございます。A でお願いします。請求の記録をシステムに残すかどうかは、アデッソ様に確認してからお知らせします。確認するのは、タレントごとの毎月の請求額と動画の回数を Square の画面で見られれば、システムに記録を残さなくてよいかです。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "G99",
+          "old": null,
+          "new": "【2026/11/26 FCP】B で進める予定です。1人のタレントに、複数のカテゴリーを付けられます（M-13）。カテゴリーごとの指示が食い違う場合は、マネージャーがタレントごとに決めたカテゴリーの順番に従います。管理画面に、順番を決める項目を設けます。11/27 の定例会で、アデッソ様に確認します。"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H100",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (1-3 本書の範囲): ランキング không làm ở giai đoạn này, để cho giai đoạn sau (phương án A). Màn がんばっているタレント và nút trên menu, home bỏ khỏi thiết kế 第1段階."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H3",
+          "old": "[13/11/2026] Dịch vụ tạo video: giả định Kling qua fal.ai (mục 8). Còn thiếu: đơn giá mỗi video.\n[15/11/2026] Đơn giá được thiết kế thành giá trị cài đặt trên màn quản lý, không chặn phát triển; xin cho biết trước khi bắt đầu UAT. Nơi cài đặt và cách tính khi đổi giá giữa tháng hỏi ở câu 62.",
+          "new": "[26/11/2026 FCP] Số tiền cho mỗi video do アデッソ quyết định. Hãy làm thành giá trị Manager cài đặt ở phần cài đặt chung của màn quản lý (M-18 ❺). Số tiền sẽ quyết định dựa trên kết quả kiểm thử độ dài và chất lượng video trên Kling (sheet xác nhận 「20261122」 No.7). Khi quyết định xong sẽ thông báo."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H35",
+          "old": "[13/11/2026] Chưa trả lời: tài liệu mới vẫn dẫn 御見積書 ngày 29/10; ngày nộp bản chính thức và ngày bắt đầu UAT sẽ thoả thuận.\n[17/11/2026] Buổi họp 17/11: 画面定義書 gửi sáng thứ Sáu 20/11; 要件定義 chốt sau khi chốt chi tiết chức năng trong tuần 23/11 (action 5, 6). Phiên bản 御見積書 (28/10 hay 29/10) vẫn chưa được trả lời.",
+          "new": null
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H38",
+          "old": "[13/11/2026] Chưa chốt: 確認シートNo.32 chưa tick.\n[17/11/2026 確認シート] 確認32 vẫn chưa tick OK, không có ghi chú hay quyết định. Xin cho xác nhận trong buổi họp thứ Sáu 20/11.",
+          "new": "[13/11/2026] Chưa chốt: 確認シートNo.32 chưa tick.\n[17/11/2026 確認シート] 確認32 vẫn chưa tick OK, không có ghi chú hay quyết định. Xin cho xác nhận trong buổi họp thứ Sáu 20/11.\n[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 7-5, T-10): video tự làm và video tạo bằng AI được lưu lại và dùng trong 自動投稿. Không làm chức năng mỗi ngày tự lấy 1 video đã lưu để tạo 投稿案. AMCOLAB thiết kế theo nội dung này."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H5",
+          "old": "[13/11/2026] Phương thức: thanh toán qua nhà mạng và thẻ, kết nối một nhà cung cấp (đã rõ). Còn thiếu: nhà cung cấp chính thức và kết quả hỏi về thu số tiền thay đổi hằng tháng.\n[17/11/2026] Buổi họp 17/11 (biên bản, action 1): アデッソ sẽ hỏi cổng thanh toán 2 điểm: (1) có thu theo chu kỳ 1 tháng tính từ ngày đăng ký không; (2) có thu mỗi tháng số tiền = phí tháng cố định + phí tạo video (thay đổi theo tháng) không. Đang chờ kết quả; xin báo kèm tên cổng thanh toán chính thức.\n[19/11/2026 họp] Cổng thanh toán chưa chốt. Xin báo khi có quyết định.",
+          "new": "[26/11/2026 FCP] Đang xem xét dùng Square làm đơn vị trung gian thanh toán. Dùng được thanh toán di động và thẻ tín dụng, nhưng có thể không dùng được thanh toán qua nhà mạng (キャリア決済). Việc có thể thu gộp phí video theo kiểu trả sau hay không thì đang kiểm tra. Phí sử dụng hằng tháng là số tiền cố định mỗi tháng. Phí video: vào cuối tháng hoặc đầu tháng, hệ thống tổng hợp số tiền đã dùng trong tháng đó rồi chuyển dữ liệu cho Square."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H50",
+          "old": "[17/11/2026] 確認48・49: thu theo chu kỳ 1 tháng từ ngày đăng ký (vd đăng ký 17/11 thì tới 16/12) có thể làm được, nhưng tuỳ dịch vụ của cổng thanh toán; アデッソ sẽ hỏi cổng thanh toán (biên bản action 1). Vì khác 御見積書 (thu cuối tháng, tổng hợp theo tháng dương lịch) nên là phương án B; AMCOLAB sẽ báo ảnh hưởng sau khi có trả lời của cổng thanh toán.\n[17/11/2026 確認シート] 確認49 vẫn chưa tick OK, nhưng ở cột 決定事項 đã ghi \"アデッソ hỏi cổng thanh toán\". Đang chờ phản hồi.",
+          "new": "[26/11/2026 FCP] Như No.4, đang xem xét dùng Square. Ngày thu phí sử dụng hằng tháng và ngày tổng hợp phí video để chuyển cho Square (cuối tháng hoặc đầu tháng) sẽ quyết định sau khi kiểm tra spec của Square."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H51",
+          "old": "[17/11/2026] Đã chốt 2 cách đăng (tự động theo kỳ hạn và Talent xác nhận trước khi đăng), nên trạng thái bài đăng phải bổ sung (biên bản). AMCOLAB sẽ cập nhật danh sách trạng thái sau khi nhận trả lời No.70・71.",
+          "new": "[17/11/2026] Đã chốt 2 cách đăng (tự động theo kỳ hạn và Talent xác nhận trước khi đăng), nên trạng thái bài đăng phải bổ sung (biên bản). AMCOLAB sẽ cập nhật danh sách trạng thái sau khi nhận trả lời No.70・71.\n[26/11/2026] Dựa trên trả lời No.70・71 (FCP 26/11) và No.58・60・61・84・86, AMCOLAB chốt danh sách trạng thái bài đăng như sau và thiết kế theo nội dung này:\n- 投稿案 (chưa 採用), 承認待ち, 差し戻し, 予約済み, 停止中のため保留, 投稿済み, 失敗 (kết quả đăng ghi theo từng SNS).\n- 取り消し: bài bị huỷ quay về 投稿案, 採用 lại được (No.61).\n- 投稿しない: tới giờ đăng mà chưa được duyệt, Talent chưa xác nhận, không có ảnh/video, hoặc đang dừng đăng tự động.\n- Từ cấm: theo No.71 ③, AI viết lại rồi đặt lịch trước khi đặt lịch, nên không có trạng thái 「dừng vì từ cấm」."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H52",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 2-3, 2-4, T-06): từ lúc được duyệt tới khi đăng ký xong phương thức thanh toán, Talent ở trạng thái 利用前 và mỗi lần đăng nhập mở màn はじめに行うこと. Đăng ký thanh toán xong thì chuyển 利用中, tạo thư mục riêng của Talent và báo Manager (phương án A). AMCOLAB thiết kế theo nội dung này."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H53",
+          "old": "[17/11/2026] \"Ngày đăng ký\" trong ví dụ của biên bản (đăng ký 17/11 thì tới 16/12) có phải là ngày Talent đăng ký phương thức thanh toán (đề xuất A của AMCOLAB) không?",
+          "new": "[17/11/2026] \"Ngày đăng ký\" trong ví dụ của biên bản (đăng ký 17/11 thì tới 16/12) có phải là ngày Talent đăng ký phương thức thanh toán (đề xuất A của AMCOLAB) không?\n[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 2-3, T-03, T-06): Talent được duyệt nhưng chưa đăng ký thanh toán thì vẫn ở 利用前, mỗi lần đăng nhập mở màn はじめに行うこと. Phí tháng thu trước, không tính theo ngày (業務要件 11-3). Ngày bắt đầu tính phí và cách xử lý khi bắt đầu dùng giữa tháng: 0.3版 ghi sẽ quyết sau khi xác nhận với cổng thanh toán, nên chuyển sang hỏi chung ở No.49."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H54",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin chọn phương án A."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H55",
+          "old": "[17/11/2026] Thời gian lưu ảnh / video theo mốc 6 tháng sau 退会 (No.29). Các mục còn lại (chủ đề, 投稿案 không 採用) giữ đề xuất cũ.",
+          "new": "[17/11/2026] Thời gian lưu ảnh / video theo mốc 6 tháng sau 退会 (No.29). Các mục còn lại (chủ đề, 投稿案 không 採用) giữ đề xuất cũ.\n[26/11/2026 FCP] Như câu trả lời ngày 17/11."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H56",
+          "old": "[17/11/2026] Buổi họp 17/11: giờ đăng do AI quyết dựa trên khung giờ hiệu quả mà アデッソ ghi trong chỉ thị cho AI; không giới hạn số bài / ngày (確認37). Còn cần chốt: thời điểm chốt giờ, giờ của bài thứ 2 trở đi, và xử lý khi ảnh / video đến sau giờ dự kiến (xin cho biết có đồng ý đề xuất của AMCOLAB không).\n[20/11/2026 フロー確認] Hỏi thêm theo 【要確認】 (確認26) ở flow 4 của 業務フロー 19/11: (1) Tới giờ đăng mà Talent chưa gửi ảnh/video mới thì dùng ảnh/video đã lưu, chờ tiếp, hay huỷ bài? (2) Nếu dùng ảnh/video đã lưu thì một ảnh được dùng lại tối đa mấy lần?\nAMCOLAB đề xuất: (1) Theo 業務フロー: dùng ảnh/video đã lưu; không có thì dừng bài của ngày đó. (2) Không giới hạn số lần, ưu tiên ảnh lâu chưa dùng nhất.",
+          "new": "[17/11/2026] Buổi họp 17/11: giờ đăng do AI quyết dựa trên khung giờ hiệu quả mà アデッソ ghi trong chỉ thị cho AI; không giới hạn số bài / ngày (確認37). Còn cần chốt: thời điểm chốt giờ, giờ của bài thứ 2 trở đi, và xử lý khi ảnh / video đến sau giờ dự kiến (xin cho biết có đồng ý đề xuất của AMCOLAB không).\n[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất. Giờ đăng do AI quyết trong khung giờ ghi ở chỉ thị cho AI, lệch vài phút giữa các talent, và chia khung giờ riêng cho từng SNS (buổi họp định kỳ 24/11).\nXác nhận bổ sung ①: AI chọn trong số ảnh / video đã lưu cái phù hợp với bài để đăng. Nếu không có ảnh / video đã lưu thì không đăng và thông báo cho talent. Trước giờ đăng báo 「Không có ảnh / video nên không thể đăng. Hãy gửi ảnh / video」, sau giờ đăng báo 「Không có ảnh / video nên đã không thể đăng」. Nếu sau đó talent gửi ảnh / video thì đăng vào khung giờ kế tiếp. ②: Không đặt giới hạn số lần. Ảnh / video dùng thì AI chọn cái phù hợp với bài."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H57",
+          "old": "[17/11/2026] Vì 確認28 đã cho Talent tự sửa văn bản, xin chốt thêm: bài bị dừng do từ cấm thì chỉ Manager sửa, hay Talent cũng sửa được?",
+          "new": "[17/11/2026] Vì 確認28 đã cho Talent tự sửa văn bản, xin chốt thêm: bài bị dừng do từ cấm thì chỉ Manager sửa, hay Talent cũng sửa được?\n[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 13-1, 13-2, T-12): AI kiểm từ cấm trước khi đăng; tìm thấy thì AI tự viết lại rồi đặt lịch. Không có bước Manager sửa, nên các câu hỏi về luồng sau khi Manager sửa không còn cần."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H58",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H59",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất. Talent thao tác bằng T-17 ❹ 「Đăng lại」(投稿し直す), Manager thao tác bằng M-09 ❹ 「Đặt lịch lại」(予約し直す)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H60",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H61",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất. Sẽ thêm vào danh sách thông báo (別紙B)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H62",
+          "old": "[20/11/2026 フロー確認] Hỏi thêm về thời điểm tính phí video: (1) Video 依頼 sau ngày chốt kỳ thì tính vào kỳ nào? (2) Đã tổng hợp số tiền rồi mới biết video tạo lỗi thì điều chỉnh thế nào? Liên quan chu kỳ thu tiền (No.49).\nAMCOLAB đề xuất: (1) Tính theo ngày 依頼, 依頼 sau ngày chốt thì vào kỳ sau. (2) Lượt lỗi phát hiện sau khi đã tổng hợp thì trừ ở kỳ sau.",
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất. Phí video: vào cuối tháng hoặc đầu tháng tổng hợp phần của tháng đó rồi chuyển cho Square (No.4)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H63",
+          "old": null,
+          "new": "[26/11/2026 FCP] Xin chọn phương án B. Tên trạng thái là 「Chờ thanh toán」(支払い待ち). Khi Square thanh toán lại mà vẫn không xác nhận được thanh toán thì thông báo cho talent và Manager, chuyển trạng thái sang 「Chờ thanh toán」 và tự động dừng sử dụng. Trong thời gian chờ thanh toán: dừng AIコーチ, tạo video và đăng bài; vẫn tiếp tục thu phí sử dụng hằng tháng. Talent vẫn đăng nhập được để đổi phương thức thanh toán. Khi xác nhận được thanh toán thì tự động trở về 「Đang sử dụng」(利用中)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H66",
+          "old": "[17/11/2026] Theo 確認10: tài khoản unit được coi là 事務所アカウント. Theo 確認27: Manager đăng thay chỉ cho bài của 事務所アカウント. Vẫn cần chốt: email đăng nhập, ai kết nối SNS, trạng thái / xoá, hiển thị trên danh sách Talent.\n[20/11/2026 フロー確認] Hỏi thêm: (1) Ai được đổi email và mật khẩu đăng nhập của 事務所アカウント (vd khi người đang dùng không còn phụ trách)? (2) 事務所アカウント chuyển 利用終了 thì bài đã đặt lịch và kết nối SNS xử lý thế nào?\nAMCOLAB đề xuất: (1) Manager đổi email trên màn quản lý; mật khẩu đặt lại qua 「パスワードを忘れた」. (2) Giống Talent 利用終了: huỷ bài đã đặt lịch, khoá đăng nhập, gỡ kết nối SNS. Giữ dữ liệu theo No.94.",
+          "new": "[17/11/2026] Theo 確認10: tài khoản unit được coi là 事務所アカウント. Theo 確認27: Manager đăng thay chỉ cho bài của 事務所アカウント. Vẫn cần chốt: email đăng nhập, ai kết nối SNS, trạng thái / xoá, hiển thị trên danh sách Talent.\n[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H67",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H69",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 12-3, 12-4, T-01): Talent đã 利用終了 không quay lại 利用中 được. Đăng ký bằng email đã có thì hiện 「すでに登録されています」. Thông tin của Talent đã nghỉ giữ 6 tháng rồi tự xoá (phương án A). AMCOLAB thiết kế theo nội dung này."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H7",
+          "old": "[13/11/2026] Quý công ty ghi chú muốn thông báo cho manager phụ trách theo カテゴリー (確認シートNo.34). Tài liệu vẫn ghi mọi manager. Chờ xác nhận.\n[17/11/2026] 確認34 đã quyết: yêu cầu duyệt gửi theo category hoặc theo Manager phụ trách (khác tài liệu 3-3 là gửi mọi Manager). Cần chốt 2 điểm: (1) theo category hay theo Manager phụ trách từng Talent; (2) khi chưa có người phụ trách hoặc vắng mặt thì gửi cho ai (mọi Manager?). Lưu ý: \"theo Manager phụ trách\" là nội dung của 御見積書 (No.42, tiền đề A9). \"Theo category\" cần thêm việc gán Manager–category nên AMCOLAB sẽ báo ảnh hưởng phạm vi và chi phí riêng, đồng ý rồi mới làm.\n[17/11/2026 確認シート] 確認41 cũng ghi \"yêu cầu duyệt chia theo người phụ trách, cần chức năng đăng ký người phụ trách và tách người nhận thông báo\" (đã tick OK). Cùng với quyết định 確認34, AMCOLAB hiểu cơ bản là \"theo Manager phụ trách (đăng ký người phụ trách cho từng Talent)\". Nếu dùng thêm \"theo category\" xin báo. Việc gửi cho ai khi chưa có / vắng người phụ trách vẫn cần chốt.",
+          "new": "[13/11/2026] Quý công ty ghi chú muốn thông báo cho manager phụ trách theo カテゴリー (確認シートNo.34). Tài liệu vẫn ghi mọi manager. Chờ xác nhận.\n[17/11/2026] 確認34 đã quyết: yêu cầu duyệt gửi theo category hoặc theo Manager phụ trách (khác tài liệu 3-3 là gửi mọi Manager). Cần chốt 2 điểm: (1) theo category hay theo Manager phụ trách từng Talent; (2) khi chưa có người phụ trách hoặc vắng mặt thì gửi cho ai (mọi Manager?). Lưu ý: \"theo Manager phụ trách\" là nội dung của 御見積書 (No.42, tiền đề A9). \"Theo category\" cần thêm việc gán Manager–category nên AMCOLAB sẽ báo ảnh hưởng phạm vi và chi phí riêng, đồng ý rồi mới làm.\n[17/11/2026 確認シート] 確認41 cũng ghi \"yêu cầu duyệt chia theo người phụ trách, cần chức năng đăng ký người phụ trách và tách người nhận thông báo\" (đã tick OK). Cùng với quyết định 確認34, AMCOLAB hiểu cơ bản là \"theo Manager phụ trách (đăng ký người phụ trách cho từng Talent)\". Nếu dùng thêm \"theo category\" xin báo. Việc gửi cho ai khi chưa có / vắng người phụ trách vẫn cần chốt.\n[25/11/2026] Đơn đăng ký Talent thì Manager nào cũng duyệt được. Đăng ký xong là Talent đã có Manager phụ trách, nên yêu cầu duyệt bài gửi cho Manager phụ trách. AMCOLAB thiết kế theo nội dung này."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H70",
+          "old": "[17/11/2026 確認シート] 確認24 ghi \"AI tạo văn bản và hashtag dựa trên ảnh\" (đã tick OK). AMCOLAB hiểu: với đăng tự động theo kỳ hạn, AI xem nội dung ảnh Talent tải lên rồi tạo văn bản và hashtag. Việc đọc nội dung ảnh có thể làm tăng chi phí AI cho mỗi bài; AMCOLAB sẽ xác nhận trong thiết kế và báo ảnh hưởng chi phí. Xin trả lời cùng điểm (1) (ảnh - bài đăng ứng nhau thế nào).",
+          "new": "[17/11/2026 確認シート] 確認24 ghi \"AI tạo văn bản và hashtag dựa trên ảnh\" (đã tick OK). AMCOLAB hiểu: với đăng tự động theo kỳ hạn, AI xem nội dung ảnh Talent tải lên rồi tạo văn bản và hashtag. Việc đọc nội dung ảnh có thể làm tăng chi phí AI cho mỗi bài; AMCOLAB sẽ xác nhận trong thiết kế và báo ảnh hưởng chi phí. Xin trả lời cùng điểm (1) (ảnh - bài đăng ứng nhau thế nào).\n[26/11/2026 FCP] Cảm ơn đề xuất. ③④ xin tiến hành theo nội dung đề xuất. ①: Ảnh không dùng theo thứ tự tải lên; AI chọn ảnh hợp với chủ đề, xem ảnh rồi tạo văn bản và hashtag. Khi không đủ ảnh thì như No.83. ②: Chủ đề có thể đổi trong kỳ qua hội thoại với AIコーチ (7-2). Đặt nút 「Dừng đăng tự động」(自動投稿を止める) ở T-10; khi dừng thì huỷ các bài đã đặt lịch."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H71",
+          "old": null,
+          "new": "[26/11/2026 FCP] ①: Là mục khác nhau. Cài đặt 「Xác nhận trước khi đăng / Đăng không cần xác nhận」 ở My page (T-08 ❺) áp dụng cho cả bài đăng hằng ngày lẫn đăng tự động (4-5). Bài đăng hằng ngày và đăng tự động có thể dùng một trong hai, hoặc cả hai (7-1).\n②: Đăng tự động không có bước duyệt (5-5, buổi họp định kỳ 20/11).\n③: Từ cấm được kiểm tra trước khi đặt lịch; nếu phát hiện thì AI viết lại rồi đặt lịch. Không có thông báo cho Manager và không có bước talent xác nhận lại (13-2, buổi họp định kỳ 24/11).\n④: Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H72",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H73",
+          "old": null,
+          "new": "[26/11/2026 FCP] Giờ sáng / trưa / tối là giá trị đổi được ở M-18 ❶, giá trị ban đầu là 8 giờ, 12 giờ, 20 giờ. Buổi sáng: báo kết quả hôm trước, số ngày đăng liên tục, gợi ý chủ đề hôm nay và thử thách. Nội dung buổi trưa: ghi ở tình huống 「Lời nhắn hằng ngày」(毎日の声かけ) trong chỉ thị cho AIコーチ, AI quyết định. Buổi tối: lời nhắn khi nhiều ngày liền không đăng bài, và báo đạt mục tiêu. Nhắc gửi ảnh / video được gửi vào 「2 giờ trước giờ đăng」 theo M-18 ❷. Bài đăng bằng đăng tự động thì không gửi lời nhắn (7-7)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H74",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (chức năng 2-3, M-07, M-08): màn quản lý có thêm M-08 タレントの情報の入力. Manager nhập プロフィール, 方向性, 趣味・特技, 将来の目標, 口調, có lưu lịch sử thay đổi; ChatGPT cũng xem và sửa được cùng thông tin (phương án B)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H75",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 10-2, 別紙B, 3-8): thông báo cho Manager gửi tới Manager phụ trách Talent đó, hiện trên màn quản lý và gửi thêm email (yêu cầu duyệt thì hiện ở 承認待ち一覧). Câu chữ email/thông báo và địa chỉ email nhận do アデッソ chuẩn bị."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H76",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] 0.3版 ghi đúng như cách hiểu của AMCOLAB:\n- 確認23: 業務要件 14-7, chức năng 会話の話題の制限, T-11 (không giới hạn số lần nói chuyện; yêu cầu không liên quan bài đăng thì kéo về chủ đề bài đăng).\n- 確認33: 業務要件 5-1 (Talent tự quyết bài có liên quan công việc hay không).\n- 確認39: 業務要件 9-4 (đạt mục tiêu thì báo cả Talent và Manager).\n- 確認41: 業務要件 9-2 (xem được mọi Talent), 5-2 (yêu cầu duyệt gửi Manager phụ trách).\n- 確認46: 業務要件 10-3, M-02 (bỏ tick 未対応 thì hiện cả thông báo đã mở).\n- 確認50: 業務要件 11-3 (nghỉ giữa tháng vẫn thu đủ 1 tháng).\n- 確認24 tiếp tục hỏi ở No.70."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H77",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (M-11, chức năng 自動投稿の停止(タレントごと)): không làm chức năng dừng toàn bộ bài đăng của hệ thống; khi cần thì dừng chính hệ thống. Manager dừng/mở lại đặt lịch theo từng Talent, dừng thì huỷ cả bài đã đặt lịch. Câu hỏi này không còn cần."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H83",
+          "old": "[20/11/2026 フロー確認] Hỏi thêm cho trường hợp không đủ ảnh/video cho kỳ Auto Posting (vd cài 14 ngày nhưng chỉ có 5 ảnh): (1) Có báo Talent bổ sung trước khi hết ảnh không? (2) Hết ảnh thì dừng Auto Posting hay chỉ bỏ qua ngày đó? (3) Talent thêm ảnh rồi thì Auto Posting có tự chạy tiếp không?\nAMCOLAB đề xuất: Còn ảnh cho 2 ngày thì báo Talent; ngày không có ảnh thì không đăng; Talent thêm ảnh thì tự chạy tiếp từ hôm sau. Dùng lại ảnh hay không theo câu trả lời phần \"dùng lại ảnh\" ở trên.",
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất. Chủ đề dùng cái đã quyết trong hội thoại với AIコーチ, ảnh / video dùng cái đã thêm ở T-10 ❹, tần suất quyết định theo chỉ thị cho AI. Cùng một ảnh / video không dùng 2 lần trong một kỳ. Khi đổi cài đặt xác nhận thì các bài đã đặt lịch giữ nguyên, cài đặt mới áp dụng từ các bài chưa đặt lịch."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H84",
+          "old": null,
+          "new": "[26/11/2026 FCP] Talent chọn 「Đăng không cần xác nhận」 cũng vậy: mở bài đã đặt lịch từ T-16 Lịch và kết quả đăng bài (tab dự kiến) thì xem được ở T-12 Chi tiết 投稿案. Tick vào T-12 ❼ Yêu cầu duyệt thì bài chuyển sang chờ duyệt và Manager kiểm tra. Được duyệt thì đăng đúng giờ đã định. Nếu bị trả lại thì như các bài khác: báo lý do cho talent, talent sửa rồi yêu cầu duyệt lại. Đăng tự động không có bước duyệt (5-5)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H86",
+          "old": "[20/11/2026 フロー確認] Theo No.46: thu tiền tháng thất bại thì báo Talent và Manager, không tự dừng. Hỏi thêm: (1) Thu thất bại thì hệ thống có tự thu lại không (phụ thuộc cổng thanh toán, theo trả lời No.4)? (2) Trong thời gian Manager dừng sử dụng, bài tới giờ đăng xử lý thế nào?\nAMCOLAB đề xuất: (1) Dùng chức năng thu lại của cổng thanh toán nếu có, hệ thống không làm cơ chế thu lại riêng. (2) Không đăng các bài trong thời gian bị dừng, mở lại cũng không tự đăng bù; cần thì Talent 採用 lại.",
+          "new": "[26/11/2026 FCP] Như No.63: khi Square thanh toán lại mà vẫn không xác nhận được thanh toán thì thông báo cho talent và Manager, chuyển trạng thái sang 「Chờ thanh toán」 và tự động dừng sử dụng. Những thứ bị dừng: AIコーチ, tạo video, đăng bài. Khi xác nhận được thanh toán thì tự động trở về 「Đang sử dụng」. Câu trả lời của No.46 (không tự động dừng sử dụng) được thay bằng câu trả lời này.\n①: Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất.\n②: Trong thời gian dừng thì không đăng bài. Bài có giờ đăng đã qua trong thời gian dừng thì không đăng; các bài sau khi mở lại vẫn tự động tiếp tục như bình thường."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H87",
+          "old": "[19/11/2026 họp] Thông báo gửi tới tất cả mọi người (mọi manager).\n[20/11/2026 フロー確認] Câu trả lời họp 19/11 (\"gửi tất cả manager\") mâu thuẫn với No.88 (manager được gán là để nhận thông báo) và với 画面定義書 管理画面 19/11, màn M-02 và M-04 (chỉ báo manager phụ trách). Xin chốt:\n- A: Thông báo và yêu cầu duyệt chỉ gửi manager phụ trách (theo 画面定義書).\n- B: Gửi tất cả manager; khi đó không cần gán phụ trách để nhận thông báo.\nCâu hỏi gốc (gán phụ trách thế nào) cũng chưa được trả lời: theo M-10, manager chọn tay manager phụ trách cho từng Talent. Xin xác nhận cách hiểu này.\nAMCOLAB đề xuất: A, theo 画面定義書 mới nhất.",
+          "new": "[19/11/2026 họp] Thông báo gửi tới tất cả mọi người (mọi manager).\n[26/11/2026 FCP] Yêu cầu duyệt được gửi tới Manager phụ trách (buổi họp định kỳ 20/11). Cách xử lý khi Manager phụ trách nghỉ hoặc bỏ sót sẽ hỏi lại アデッソ. Điểm cần hỏi là chọn cách nào trong hai:\n・Hiển thị 「Chờ duyệt」 trên danh sách talent để các Manager khác cũng biết\n・Gửi yêu cầu duyệt tới tất cả Manager\nNơi nhận các thông báo khác ngoài yêu cầu duyệt cũng sẽ hỏi cùng lúc.\n②: Gán thủ công. Manager chọn ở M-11 Chi tiết talent (cài đặt) ❺."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H88",
+          "old": "[19/11/2026 họp] Manager phụ trách chung các talent, manager nào vào cập nhật cũng được; manager được gán (assign) là để nhận thông báo.\n[20/11/2026 フロー確認] Câu trả lời họp 19/11 chưa nói tới phần \"manager phụ trách bị vô hiệu hoá\", nên hỏi lại: (1) Vô hiệu hoá manager phụ trách thì có bắt buộc chuyển các Talent của người đó sang manager khác không (nếu không chuyển, Talent đó không còn ai nhận thông báo)? (2) Bài chờ duyệt sắp tới giờ đăng mà chưa ai duyệt thì có báo thêm cho manager không phụ trách không?\nAMCOLAB đề xuất: (1) Bắt buộc chuyển phụ trách trước khi vô hiệu hoá. (2) Không báo thêm, vì manager nào cũng duyệt được từ danh sách chờ duyệt. Người nhận thông báo theo kết quả No.87.",
+          "new": "[19/11/2026 họp] Manager phụ trách chung các talent, manager nào vào cập nhật cũng được; manager được gán (assign) là để nhận thông báo.\n[26/11/2026 FCP] Mỗi talent có 1 Manager phụ trách. Không gán theo category.\n①: Cảm ơn đề xuất. Xin tiến hành theo nội dung đề xuất.\n②: Theo kết quả hỏi アデッソ ở No.87. M-02, M-04 ban đầu chỉ hiển thị talent mình phụ trách, có bộ lọc để hiển thị tất cả talent. Lý do: Manager nào cũng thao tác được như nhau (16-3)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H89",
+          "old": null,
+          "new": "[26/11/2026 FCP] Thêm vào M-01 bước chỉ hiện ở lần đăng nhập đầu tiên: sau khi kiểm tra mật khẩu, hiển thị mã QR và ô nhập mã 6 số (M-01 ❺ 「Lần đầu, quét mã QR bằng ứng dụng xác thực để đăng ký」). Sẽ bổ sung vào 画面定義書."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H91",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Giống No.77: 0.3版 (M-11) không có chức năng dừng toàn bộ đăng tự động, nên câu hỏi này không còn cần."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H92",
+          "old": null,
+          "new": "[26/11/2026 FCP] Các mục nhập ở M-08 là: hồ sơ (profile), định hướng, sở thích / sở trường, mục tiêu tương lai, giọng điệu (văn phong). Không có mục bắt buộc; bắt đầu AIコーチ bằng 「Hoàn tất đăng ký」 của No.54. Thông tin không có ở M-08 (ngày sinh, lịch xuất hiện…) thì Manager truyền cho AI qua M-17 Hội thoại với AI để nhập chỉ thị, rồi lưu thành file MD trong thư mục riêng của talent trên OneDrive. Không có thao tác sửa trực tiếp file trên OneDrive. Khi thông tin talent và chỉ thị cho AI mâu thuẫn thì ưu tiên chỉ thị cho AI."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H93",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 10-5): không làm chức năng báo Manager khi Talent tâm sự chuyện nghiêm trọng (phương án B). Phạm vi hội thoại viết trong chỉ thị AIコーチ phần 会話の制限 (業務要件 14-7)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H94",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin chọn phương án A."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H95",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin chọn phương án A. Vì talent cũng huỷ được lịch đăng (6-4), hãy hiển thị các bài liên quan trên màn hình để talent huỷ xong rồi mới ngắt kết nối. T-07 có nút 「Ngắt kết nối」(接続を解除) (No.81)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H96",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin chọn phương án A."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H97",
+          "old": null,
+          "new": "[25/11/2026 要件定義書 0.3版] Theo 0.3版 (業務要件 10-3, M-02): bấm vào dòng thông báo thì mở màn liên quan và thông báo đó thành 対応済み (phương án A). Bỏ tick 未対応 thì hiện cả thông báo đã mở."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H98",
+          "old": null,
+          "new": "[26/11/2026 FCP] Cảm ơn đề xuất. Xin chọn phương án A. Có lưu lịch sử thu tiền trong hệ thống hay không sẽ hỏi アデッソ rồi báo lại. Điểm cần hỏi: nếu xem được số tiền thu hằng tháng và số lần tạo video của từng talent trên màn hình Square thì có cần lưu lịch sử trong hệ thống không."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "H99",
+          "old": null,
+          "new": "[26/11/2026 FCP] Dự kiến tiến hành theo phương án B. Một talent có thể gắn nhiều category (M-13). Khi chỉ thị của các category mâu thuẫn thì theo thứ tự category mà Manager đặt cho từng talent. Màn quản lý có mục để đặt thứ tự. Sẽ xác nhận với アデッソ ở buổi họp định kỳ 27/11."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I100",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I25",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I35",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I38",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I51",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I52",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I53",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I54",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I55",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I56",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I57",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I58",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I59",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I60",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I61",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I62",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I63",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I66",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I67",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I69",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I7",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I70",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I71",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I72",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I73",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I74",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I75",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I76",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I77",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I83",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I84",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I86",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I89",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I91",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I92",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I93",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I94",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I95",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I96",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "I97",
+          "old": "Open",
+          "new": "Close"
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J100",
+          "old": "Bổ sung theo yêu cầu của Phạm Ngọc Sơn (23/11), từ 管理画面 全画面案 bản 20/11 trang 28. Liên quan 御見積書 No.56, SOW 4.2, A20.",
+          "new": "Bổ sung theo yêu cầu của Phạm Ngọc Sơn (23/11), từ 管理画面 全画面案 bản 20/11 trang 28. Liên quan 御見積書 No.56, SOW 4.2, A20.\nClose 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J25",
+          "old": null,
+          "new": "Close 25/11/2026 theo chỉ đạo của Phạm Ngọc Sơn: hiện chưa thể có câu trả lời, sẽ cập nhật lại sau."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J3",
+          "old": null,
+          "new": "【経過ログ(回答欄から移動)】\n【2026/11/13】動画生成サービスは、fal.ai経由のKlingを想定(第8章)。未決:動画1本あたりの単価。\n【2026/11/15】単価は管理画面の設定値として設計し、開発は止めずに進めます。受入テストの開始前までにご教示ください。単価の設定場所と、月の途中で単価を変えた場合の扱いは、No.62でご確認させてください。\n\n[Log tiến trình, dời từ cột 回答]\n[13/11/2026] Dịch vụ tạo video: giả định Kling qua fal.ai (mục 8). Còn thiếu: đơn giá mỗi video.\n[15/11/2026] Đơn giá được thiết kế thành giá trị cài đặt trên màn quản lý, không chặn phát triển; xin cho biết trước khi bắt đầu UAT. Nơi cài đặt và cách tính khi đổi giá giữa tháng hỏi ở câu 62.\n\n25/11/2026: dời log từ cột 回答 sang Comment, để trống cột 回答 tới khi khách trả lời, theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J35",
+          "old": null,
+          "new": "【経過ログ(回答欄から移動)】\n【2026/11/13】未回答:資料は引き続き10/29付の御見積書を参照。正式版の提出日とUAT開始日は調整予定。\n【2026/11/17】11月17日の打合せ(議事録)で、画面定義書は11月20日(金)午前、機能の細部を詰めた要件定義の決定は11月23日の週とされました(議事録アクション5・6)。御見積書の版(2026年10月28日付か10月29日付か)は、まだ未回答です。\n\n[Log tiến trình, dời từ cột 回答]\n[13/11/2026] Chưa trả lời: tài liệu mới vẫn dẫn 御見積書 ngày 29/10; ngày nộp bản chính thức và ngày bắt đầu UAT sẽ thoả thuận.\n[17/11/2026] Buổi họp 17/11: 画面定義書 gửi sáng thứ Sáu 20/11; 要件定義 chốt sau khi chốt chi tiết chức năng trong tuần 23/11 (action 5, 6). Phiên bản 御見積書 (28/10 hay 29/10) vẫn chưa được trả lời.\n\n25/11/2026: dời log từ cột 回答 sang Comment, để trống cột 回答 tới khi khách trả lời, theo chỉ đạo của Phạm Ngọc Sơn.\nClose 25/11/2026 theo chỉ đạo của Phạm Ngọc Sơn: câu hỏi cũ; tài liệu mới liên quan đã được lưu và gửi cho Dexxa, không cần hỏi khách về bản chính thức nữa."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J38",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J5",
+          "old": null,
+          "new": "【経過ログ(回答欄から移動)】\n【2026/11/13】決済手段はキャリア決済とカード決済、決済代行会社1社(確定)。未決:決済代行会社と、毎月変動する金額の請求可否の確認結果。\n【2026/11/17】11月17日の打合せ(議事録アクション1)で、アデッソ様が決済代行会社に次の2点を確認してくださることになりました。①登録日から1か月ごとの請求ができるか。②月額使用料(定額)に、動画生成の料金(月ごとに変わる金額)を加えた金額を、毎月請求できるか。ご回答をお待ちしております。あわせて、正式な決済代行会社名もお知らせください。\n【2026/11/19 打合せ】決済代行会社は未決です。決まり次第ご連絡をお願いいたします。\n\n[Log tiến trình, dời từ cột 回答]\n[13/11/2026] Phương thức: thanh toán qua nhà mạng và thẻ, kết nối một nhà cung cấp (đã rõ). Còn thiếu: nhà cung cấp chính thức và kết quả hỏi về thu số tiền thay đổi hằng tháng.\n[17/11/2026] Buổi họp 17/11 (biên bản, action 1): アデッソ sẽ hỏi cổng thanh toán 2 điểm: (1) có thu theo chu kỳ 1 tháng tính từ ngày đăng ký không; (2) có thu mỗi tháng số tiền = phí tháng cố định + phí tạo video (thay đổi theo tháng) không. Đang chờ kết quả; xin báo kèm tên cổng thanh toán chính thức.\n[19/11/2026 họp] Cổng thanh toán chưa chốt. Xin báo khi có quyết định.\n\n25/11/2026: dời log từ cột 回答 sang Comment, để trống cột 回答 tới khi khách trả lời, theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J50",
+          "old": null,
+          "new": "【経過ログ(回答欄から移動)】\n【2026/11/17】確認48・49について、登録日から1か月ごと(例:11月17日に登録したら12月16日まで)に請求する機能は、作れる見込みです。ただし、決済代行会社のサービスによって対応が変わるため、アデッソ様が決済代行会社に確認してくださいます(議事録アクション1)。御見積書(月末請求・暦月での集計)とは異なる方式(B案)のため、決済代行会社のご回答後に、影響をご報告いたします。\n【2026/11/17 確認シート】確認49のOKは未チェックのままですが、決定事項欄に「アデッソ様が決済代行会社へご確認」とご記入をいただいています。ご回答をお待ちしております。\n\n[Log tiến trình, dời từ cột 回答]\n[17/11/2026] 確認48・49: thu theo chu kỳ 1 tháng từ ngày đăng ký (vd đăng ký 17/11 thì tới 16/12) có thể làm được, nhưng tuỳ dịch vụ của cổng thanh toán; アデッソ sẽ hỏi cổng thanh toán (biên bản action 1). Vì khác 御見積書 (thu cuối tháng, tổng hợp theo tháng dương lịch) nên là phương án B; AMCOLAB sẽ báo ảnh hưởng sau khi có trả lời của cổng thanh toán.\n[17/11/2026 確認シート] 確認49 vẫn chưa tick OK, nhưng ở cột 決定事項 đã ghi \"アデッソ hỏi cổng thanh toán\". Đang chờ phản hồi.\n\n25/11/2026: dời log từ cột 回答 sang Comment, để trống cột 回答 tới khi khách trả lời, theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J51",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn, phương án A: bỏ trạng thái dừng vì từ cấm theo No.71 ③ (họp 24/11); trả lời họp 19/11 ở No.90 (Manager sửa từ cấm xong thì đăng tiếp) không còn áp dụng.\nViệc design (DexxaDesign, chưa làm): đổi nhãn trạng thái trên các danh sách bài của Talent và Manager theo danh sách ở cột 回答; bỏ trạng thái 止まった (dừng vì từ cấm) và màn 「使ってはいけない言葉が入っていた投稿の確認」 kèm nút 予約しない."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J52",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J53",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn. Phần ngày bắt đầu tính phí chuyển sang No.49."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J54",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11).\nViệc design (DexxaDesign, chưa làm): thêm nút 「登録完了」 (hoàn tất đăng ký thông tin talent) ở màn タレントの情報の入力 phía Manager (M-08 theo 要件定義書); bấm xong thì AIコーチ mới bắt đầu đưa 投稿案."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J55",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J56",
+          "old": "20/11: bổ sung từ Add_QA_2011 (G13).",
+          "new": "20/11: bổ sung từ Add_QA_2011 (G13).\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J57",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J58",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J59",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J60",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11).\nViệc design (DexxaDesign, chưa làm): thêm trạng thái bài 「停止中のため保留」 trên các màn danh sách bài của Talent và Manager (lịch và kết quả đăng bài); khi mở lại đăng tự động, bài còn kịp giờ thì tự đặt lịch, quá giờ thì Talent 採用 lại."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J61",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J62",
+          "old": "20/11: bổ sung từ Add_QA_2011 (G23). Liên quan No.49.",
+          "new": "20/11: bổ sung từ Add_QA_2011 (G23). Liên quan No.49.\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J63",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J66",
+          "old": "20/11: bổ sung từ Add_QA_2011 (G29). Liên quan No.94.",
+          "new": "20/11: bổ sung từ Add_QA_2011 (G29). Liên quan No.94.\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đồng ý đề xuất ngày 26/11). Đã chốt: Manager nhập email đăng nhập khi tạo; Manager kết nối SNS khi đăng nhập app Talent bằng 事務所アカウント; hiện trong danh sách Talent với nhãn 「事務所」; dùng 3 trạng thái như Talent; Manager đổi email trên màn quản lý; mật khẩu đặt lại qua 「パスワードを忘れた」 của màn đăng nhập; chuyển 利用終了 thì huỷ bài đã đặt lịch, khoá đăng nhập, gỡ kết nối SNS, giữ dữ liệu theo No.94.\nViệc design (DexxaDesign, chưa làm): thêm màn chi tiết 事務所アカウント phía Manager (dùng lại bố cục màn tạo): xem và sửa email đăng nhập, nhãn trạng thái, nút chuyển 利用終了 kèm hộp xác nhận nêu hệ quả (huỷ bài đã đặt lịch, khoá đăng nhập, gỡ kết nối SNS); danh sách 事務所アカウント hiện nhãn trạng thái, bấm một dòng thì mở màn chi tiết. Không cần màn đặt lại mật khẩu mới."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J67",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J69",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J7",
+          "old": null,
+          "new": "Close 25/11/2026 theo chỉ đạo của Phạm Ngọc Sơn: mọi Manager duyệt được đơn đăng ký Talent; đăng ký xong đã chọn Manager phụ trách nên yêu cầu duyệt bài gửi cho Manager phụ trách."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J70",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J71",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J72",
+          "old": null,
+          "new": "26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J73",
+          "old": null,
+          "new": "25/11/2026: bỏ dòng hạn \"trả lời trước buổi họp 20/11\" (đã quá) ở cả bản tiếng Việt và tiếng Nhật, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J74",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn. Lưu ý nội bộ: khách chọn B, câu hỏi đã nói B ngoài báo giá, cần trao đổi phạm vi và chi phí riêng."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J75",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn. Lưu ý nội bộ: email cho mọi loại thông báo rộng hơn đề xuất của AMCOLAB (chỉ 3 loại gấp); câu hỏi đã nói sẽ báo ảnh hưởng phạm vi, chi phí riêng."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J76",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J77",
+          "old": null,
+          "new": "Close 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J83",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.70, No.71\n20/11: bổ sung từ Add_QA_2011 (G07).",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.70, No.71\n20/11: bổ sung từ Add_QA_2011 (G07).\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n25/11/2026: gộp thành một câu hỏi (bỏ tiêu đề 【Câu hỏi bổ sung】/【追加のご確認事項】 và câu mở đầu) vì khách chưa trả lời lần nào; phần mới vẫn chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J84",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.71",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.71\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J86",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.63\n20/11: bổ sung từ Add_QA_2011 (G08). Liên quan No.46, No.4.",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.63\n20/11: bổ sung từ Add_QA_2011 (G08). Liên quan No.46, No.4.\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n25/11/2026: gộp thành một câu hỏi (bỏ tiêu đề 【Câu hỏi bổ sung】/【追加のご確認事項】 và câu mở đầu) vì khách chưa trả lời lần nào; phần mới vẫn chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J87",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình. Liên quan No.6, No.88\n20/11: bổ sung từ Add_QA_2011 (G22). Mở lại vì còn câu hỏi chưa được trả lời.",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình. Liên quan No.6, No.88\n20/11: bổ sung từ Add_QA_2011 (G22). Mở lại vì còn câu hỏi chưa được trả lời.\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J88",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình. Liên quan No.6, No.87\n20/11: bổ sung từ Add_QA_2011 (G15, G31). Mở lại vì còn câu hỏi chưa được trả lời.",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình. Liên quan No.6, No.88\n20/11: bổ sung từ Add_QA_2011 (G15, G31). Mở lại vì còn câu hỏi chưa được trả lời.\n25/11/2026: chuyển câu hỏi bổ sung (20/11 フロー確認) từ cột 回答 sang cột câu hỏi, chữ đỏ, theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J89",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời.",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11).\nViệc design (DexxaDesign, chưa làm): M-01 thêm bước chỉ hiện ở lần đăng nhập đầu tiên, sau bước kiểm mật khẩu: hiển thị mã QR để quét bằng ứng dụng xác thực và ô nhập mã 6 số (M-01 ❺). Khách sẽ bổ sung vào 画面定義書."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J91",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.77",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.77\nClose 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J92",
+          "old": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.74",
+          "new": "Hỏi trong buổi họp 19/11 theo màn hình, chưa có câu trả lời. Liên quan No.74\n25/11/2026: ghi rõ M-20 là màn タレントの情報の入力 phía Manager, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J93",
+          "old": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-076-01. Liên quan No.76.",
+          "new": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-076-01. Liên quan No.76.\nClose 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn. Lưu ý nội bộ: khác 御見積書 No.20 (nối tâm sự nghiêm trọng cho Manager), cần ghi vào phần trao đổi phạm vi."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J94",
+          "old": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-066-02. Phụ thuộc No.66; liên quan No.69.",
+          "new": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-066-02. Phụ thuộc No.66; liên quan No.69.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J95",
+          "old": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-081-01. Liên quan No.81, No.23, No.61.",
+          "new": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-081-01. Liên quan No.81, No.23, No.61.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11).\nViệc design (DexxaDesign, chưa làm): T-07 thêm nút 「接続を解除」 (No.81). Khi SNS đó còn bài đã đặt lịch: chưa cho ngắt kết nối hoặc đổi tài khoản, hiển thị danh sách các bài liên quan để Talent tự huỷ (6-4) rồi mới ngắt được."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J96",
+          "old": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-013-01. Liên quan No.13, No.57, No.71, No.90.",
+          "new": "Bổ sung từ qa-draft của Lê Thanh Hải (20/11), WQA-013-01. Liên quan No.13, No.57, No.71, No.90.\n25/11/2026: ghi rõ M-18 là màn 使ってはいけない言葉の一覧, theo chỉ đạo của Phạm Ngọc Sơn.\n26/11/2026: Close theo chỉ đạo của Phạm Ngọc Sơn (khách đã trả lời ngày 26/11)."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J97",
+          "old": "Bổ sung từ Add_QA_2011 của Phạm Ngọc Sơn (20/11), G21. Liên quan No.87, No.88.",
+          "new": "Bổ sung từ Add_QA_2011 của Phạm Ngọc Sơn (20/11), G21. Liên quan No.87, No.88.\nClose 25/11/2026 theo 要件定義書 0.3版 (24/11), theo chỉ đạo của Phạm Ngọc Sơn."
+        },
+        {
+          "sheet": "Q&A",
+          "cell": "J98",
+          "old": "Bổ sung từ Add_QA_2011 của Phạm Ngọc Sơn (20/11), G24. Liên quan No.49, No.62, No.69.",
+          "new": "Bổ sung từ Add_QA_2011 của Phạm Ngọc Sơn (20/11), G24. Liên quan No.49, No.62, No.69.\n25/11/2026: ghi rõ M-10 là màn タレントの詳細（設定）, theo chỉ đạo của Phạm Ngọc Sơn."
+        }
+      ]
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "old_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+      "sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
+      "sheets": [
+        "確認事項",
+        "20261120",
+        "20261122",
+        "プロジェクトを進めるために決める事項",
+        "アクション一覧"
+      ],
+      "changes": [
+        {
+          "sheet": "20261122",
+          "cell": "A1",
+          "old": "No.",
+          "new": " "
+        },
+        {
+          "sheet": "20261122",
+          "cell": "A36",
+          "old": null,
+          "new": "35.0"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "A37",
+          "old": null,
+          "new": "36.0"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "B36",
+          "old": null,
+          "new": "お決めいただく事項"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "B37",
+          "old": null,
+          "new": "お決めいただく事項"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "C36",
+          "old": null,
+          "new": "要件定義書_5-2\n要件定義書_10-2"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "C37",
+          "old": null,
+          "new": "要件定義書_11-6\n要件定義書_12-4"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "D36",
+          "old": null,
+          "new": "FutureCore Partners"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "D37",
+          "old": null,
+          "new": "FutureCore Partners"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "E36",
+          "old": null,
+          "new": "マネージャー用の管理画面"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "E37",
+          "old": null,
+          "new": "費用"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "F36",
+          "old": null,
+          "new": "担当のマネージャーが休みのときの承認：仕事の投稿の承認の依頼は、11月20日の定例会で決めたとおり、担当のマネージャーに届きます。担当のマネージャーが休みのときや、承認の依頼を見落としたときに備えて、次のどちらにするかをお決めください。\n①タレント一覧に「承認待ち」を表示し、ほかのマネージャーも分かるようにする\n②承認の依頼を、すべてのマネージャーに届ける\nあわせて、承認の依頼以外のお知らせ（投稿のない日が続いたときなど）を、担当のマネージャーだけに送るか、すべてのマネージャーに送るかをお決めください。"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "F37",
+          "old": null,
+          "new": "請求の記録の残し方：タレントごとの毎月の請求額と動画の回数を、決済代行会社の画面で見られれば、AI育成OS には請求の記録を残さなくてよろしいでしょうか。経理のご運用で AI育成OS に残す必要がある場合は、残す期間をお聞かせください。"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "G36",
+          "old": null,
+          "new": "どのマネージャーも、すべてのタレントの承認を行えます。\n確認する場所：要件定義書 2-4-5 仕事の投稿を、マネージャーが承認する（5-2）、2-4-10 お知らせに対応する（10-2）。"
+        },
+        {
+          "sheet": "20261122",
+          "cell": "G37",
+          "old": null,
+          "new": "請求の履歴は、決済代行会社の画面で見る形にしています（11-6）。AI育成OS のタレントのデータは、利用をやめてから半年後に自動で削除します（12-4）。\n確認する場所：要件定義書 2-4-11 毎月の支払い、2-4-12 利用をやめる。"
+        }
+      ]
+    }
+  ]
+}

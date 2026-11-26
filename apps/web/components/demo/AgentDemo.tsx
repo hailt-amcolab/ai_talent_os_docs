@@ -4,25 +4,26 @@ import Link from 'next/link'
 import { AuthBoundary } from '@/components/auth/AuthBoundary'
 import { DemoHeader, errorText } from '@/components/auth/AuthForms'
 import { token } from '@/lib/auth/store'
-import { agentApi, type AgentEntry, type AgentProposal, type AgentRole, type AgentRun } from '@/lib/api/agent'
+import { agentApi, type AgentMessage, type AgentRole, type AgentRun, type Proposal } from '@/lib/api/agent'
 import { t } from '@/lib/messages'
 
-// Agent demo (report §10.1): POST saves the message and returns at once; the worker runs the AI. The page polls while a run
-// is pending/running, stops at waiting_confirmation, and the Manager's 保存 button is the ONLY way a change gets confirmed.
+// Agent demo (agent_spec/ai-core/API_DESIGN.md §2–§3): POST saves the message and returns at once; the worker runs the AI. The page
+// polls while a run is pending/running. The Manager's 保存 button is the ONLY way a proposal is saved: the confirm IS the save.
 const OPEN = new Set(['pending', 'running'])
 const stored = (role: AgentRole) => `agent-conversation-${role}`
 
 function Content() {
   const [role, setRole] = useState<AgentRole>('talent')
   const [conv, setConv] = useState<string | null>(null)
-  const [entries, setEntries] = useState<AgentEntry[]>([])
+  const [entries, setEntries] = useState<AgentMessage[]>([])
   const [runs, setRuns] = useState<AgentRun[]>([])
-  const [proposal, setProposal] = useState<AgentProposal | null>(null)
+  const [proposal, setProposal] = useState<Proposal | null>(null)
   const [error, setError] = useState('')
   const [text, setText] = useState('')
   const [busy, setBusy] = useState(false)
   const [slow, setSlow] = useState(false)
   const pendingKey = useRef<string | null>(null) // same key if the user retries the same send after a network error
+  const actionKey = useRef<string | null>(null) // same key if a 保存/取消 click is retried (idempotent at the server)
 
   // Promise chains (not async bodies) so no state is set synchronously inside the effects below.
   const start = useCallback((r: AgentRole, fresh = false) => token().then(tk => {
@@ -34,10 +35,10 @@ function Content() {
   useEffect(() => { void start(role) }, [role, start])
 
   const load = useCallback(() => conv ? token().then(async tk => {
-    const [e, r] = await Promise.all([agentApi.entries(tk, role, conv), agentApi.runs(tk, role, conv)])
-    const p = role === 'manager' ? r.items[0]?.proposalId : null
+    const [e, r] = await Promise.all([agentApi.messages(tk, role, conv), agentApi.runs(tk, role, conv)])
+    const p = role === 'manager' ? (r.items.find(x => x.proposals.some(q => q.state === 'prepared'))?.proposals.find(q => q.state === 'prepared') ?? r.items[0]?.proposals.at(-1))?.id : null
     const view = p ? await agentApi.proposal(tk, p) : null
-    setEntries(e.items); setRuns(r.items); setProposal(view); setError('')
+    setEntries([...e.items, ...e.pending]); setRuns(r.items); setProposal(view); setError('')
   }).catch(e => setError(errorText(e))) : Promise.resolve(), [conv, role])
   useEffect(() => { void load() }, [load])
 
@@ -54,7 +55,8 @@ function Content() {
 
   const act = async (fn: (tk: string) => Promise<unknown>) => {
     setBusy(true); setError('')
-    try { await fn(await token()); await load() } catch (e) { setError(errorText(e)) } finally { setBusy(false) }
+    actionKey.current ??= crypto.randomUUID()
+    try { await fn(await token()); actionKey.current = null; await load() } catch (e) { setError(errorText(e)) } finally { setBusy(false) }
   }
   async function send(e: FormEvent) {
     e.preventDefault()
@@ -75,24 +77,23 @@ function Content() {
     </section>
     {entries.map(m => <section key={m.id} className="card">
       <p className="muted">{m.role === 'user' ? t.agent.you : t.agent.ai}</p>
-      <p style={{ whiteSpace: 'pre-wrap' }}>{m.body}</p>
+      <p style={{ whiteSpace: 'pre-wrap' }}>{m.text}</p>
     </section>)}
     {latest && latest.state !== 'succeeded' && <section className="card" role="status">
       <p className="muted">{t.agent.state[latest.state]}{latest.errorCode ? ` ${t.agent.errorCode(latest.errorCode)}` : ''}</p>
-      {(OPEN.has(latest.state) || latest.state === 'waiting_confirmation') && <button disabled={busy} onClick={() => { void act(tk => agentApi.cancel(tk, role, latest.id)) }}>{t.agent.cancel}</button>}
+      {OPEN.has(latest.state) && <button disabled={busy} onClick={() => { void act(tk => agentApi.cancel(tk, role, latest.id, actionKey.current!)) }}>{t.agent.cancel}</button>}
     </section>}
-    {proposal && (proposal.allowedActions.length > 0 || latest?.state === 'waiting_confirmation') && <section className="card">
+    {proposal && <section className="card">
       <h2>{t.agent.proposal(proposal.targetLabel)}</h2>
       <table><thead><tr><th>{t.agent.field}</th><th>{t.agent.before}</th><th>{t.agent.after}</th></tr></thead>
         <tbody>{proposal.changes.map(c => <tr key={c.field}><td>{c.field}</td><td style={{ whiteSpace: 'pre-wrap' }}>{c.before ?? '—'}</td><td style={{ whiteSpace: 'pre-wrap' }}>{c.after ?? '—'}</td></tr>)}</tbody></table>
       <p className="muted">{t.agent.expires(new Date(proposal.expiresAt).toLocaleString())} · {t.agent.decided(proposal.state)}</p>
       <p>
-        {proposal.allowedActions.includes('confirm') && <button disabled={busy} onClick={() => { void act(tk => agentApi.confirm(tk, proposal.proposalId, proposal.proposalHash)) }}>{t.agent.confirm}</button>}{' '}
-        {proposal.allowedActions.includes('reject') && <button disabled={busy} onClick={() => { void act(tk => agentApi.reject(tk, proposal.proposalId)) }}>{t.agent.reject}</button>}
-        {proposal.allowedActions.includes('commit') && <button disabled={busy} onClick={() => { void act(tk => agentApi.commit(tk, proposal.proposalId)) }}>{t.agent.commit}</button>}
+        {proposal.allowedActions.includes('confirm') && <button disabled={busy} onClick={() => { void act(tk => agentApi.confirm(tk, proposal.proposalId, proposal.proposalHash, actionKey.current!)) }}>{t.agent.confirm}</button>}{' '}
+        {proposal.allowedActions.includes('reject') && <button disabled={busy} onClick={() => { void act(tk => agentApi.reject(tk, proposal.proposalId, actionKey.current!)) }}>{t.agent.reject}</button>}
       </p>
     </section>}
-    {latest?.receipts.map(r => <p key={r.commandId} className="muted" role="status">{t.agent.saved(r.targetLabel, r.resourceVersion)}</p>)}
+    {runs.flatMap(r => r.receipts).map(r => <p key={r.commandId} className="muted" role="status">{t.agent.saved(r.targetLabel, r.resultVersion)}</p>)}
     {slow && <p className="muted" role="status">{t.agent.slow}</p>}
     {error && <p role="alert">{error}</p>}
     <form className="card" onSubmit={send}>

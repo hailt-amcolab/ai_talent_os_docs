@@ -6914,5 +6914,17 @@
         }
       ]
     }
-  ]
+  ],
+  "context_retrieval_decision": {
+    "date": "2026-11-26",
+    "authority": "USER_INTERNAL_TECHNICAL_DIRECTION",
+    "status": "VECTOR_DEFERRED",
+    "vector_database": false,
+    "embeddings": false,
+    "query_embedding": false,
+    "vector_poc_in_current_scope": false,
+    "current_method": "SQL scoped and revision-aware context; recent conversation and structured memory; source-linked summaries if used",
+    "reconsideration": "Separate user decision required; no automatic activation after benchmark or corpus growth",
+    "decision_ref": "database-design/vector-decision-2026-11-26.json"
+  }
 }

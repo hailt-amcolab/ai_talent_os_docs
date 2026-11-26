@@ -1,4 +1,8 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 10. Từ điển dữ liệu đích — đề xuất kỹ thuật
+
+> **26/11/2026 — không dùng vector:** Tập bảng đích không bổ sung embedding/vector index hoặc pipeline embedding. Memory/context tiếp tục bằng SQL; xem [quyết định](vector-decision-2026-11-26.json).
 
 Phiên bản1.0 · 25/11/2026 · **PROPOSAL, chưa có migration/catalog đích**. Chọn phương án và transaction tại [09](09_technical_design.md). Dữ liệu máy đọc tại [contract JSON](technical-design-contracts-2026-11-25.json).
 
@@ -1165,7 +1169,7 @@ Tập đề xuất: **52 bảng mới**, **10 bảng mở rộng**; đây không
 **Invariant bắt buộc:**
 
 - Partial unique talent+platform when connected; reconnect same account retains stable logical identity.
-- Account switch with pending plans is blocked on QA95; do not reuse historical external_post binding for another account.
+- QA95 answered 2026-11-26: block disconnect/account switch for an SNS with scheduled posts; show related posts so Talent can cancel first. Other SNS without plans remain available. Do not reuse historical external_post binding for another account.
 
 **Khóa ngoại:**
 

@@ -14,6 +14,8 @@ SCHEMAS = {'baselines.csv': ['baseline_id', 'version', 'scope', 'excluded_scope'
 
 def main():
     errors = []
+    view_path = DOCS / 'corrections-2026-11-19/current-view.json'
+    view = json.loads(view_path.read_text()) if view_path.exists() else {}
     manifest_path = DOCS / 'source-inventory-current.json'
     if not manifest_path.exists():
         manifest_path = ROOT / 'Phan_tich/28_Kiem_ke_nguon_19-11-2026.json'
@@ -70,7 +72,9 @@ def main():
 
             questions = table('qa-drafting-2026-11-19/customer-draft-v5/questions.csv')
             export = table('qa-drafting-2026-11-19/csv-export/qa-draft.csv')
-            internal = table('qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv')
+            internal_path = ROOT / view.get('qa_internal', 'docs/requirement-review/qa-drafting-2026-11-19/customer-draft-v5/internal-evidence.csv')
+            with internal_path.open(newline='') as handle:
+                internal = list(csv.DictReader(handle))
             active = {row['qa_id'] for row in questions if row['status'] == 'DRAFT_UNAPPROVED'}
             exported = {row['\ufeffID'] for row in export}
             if active != exported or active != set(reconciliation['active_qa_ids']):
@@ -99,7 +103,7 @@ def main():
                 artifact = ROOT / item['path']
                 if not artifact.is_file() or hashlib.sha256(artifact.read_bytes()).hexdigest() != item['sha256']:
                     errors.append(f'Current Q&A export hash differs: {item["path"]}')
-    delivery_path = DOCS / 'corrections-2026-11-19/delivery-24112026-intake.json'
+    delivery_path = ROOT / view.get('latest_delivery', 'docs/requirement-review/corrections-2026-11-19/delivery-24112026-intake.json')
     if delivery_path.exists():
         delivery = json.loads(delivery_path.read_text())
         for relative, expected_hash in delivery['source_hashes'].items():

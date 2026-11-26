@@ -40,7 +40,7 @@ Nguồn: [QA/KS và danh mục phiên bản](../TAI_LIEU_NGUON.md), [BF19](../so
 
 **Quyết định kỹ thuật của người dùng:** dùng **BullMQ với Redis** cho hàng đợi và lịch worker; bằng chứng trong trao đổi: “chốt sử dụng bullmq đi”. Quyết định này thay phương án pg-boss trước đây, chỉ chốt lựa chọn công nghệ, chưa phải đã cài đặt/triển khai hoặc khách phê duyệt nghiệp vụ. Chưa có BullMQ/Redis trong dependencies hoặc worker trong Compose hiện hành. Phiên bản, cấu hình Redis, kết nối, lưu dữ liệu bền vững và vận hành cần được xác định khi triển khai.
 
-**Phần còn cần quyết định riêng:** nơi chạy API/worker; phương án BE trên Vercel trong [báo cáo AI Core v2](AI_Talent_OS_AI_Core_Architecture_Report_v2.md) chưa thay quy ước `apps/api`. Phần báo cáo AI Core cho sửa trực tiếp OneDrive hoặc bỏ màn chỉ thị nghiệp vụ cũng cần đồng bộ theo nguồn ở bảng trên trước khi triển khai.
+**Phần còn cần quyết định riêng:** nơi chạy API/worker (xem [Phan_tich/18 §12](../Phan_tich/18_Ha_tang_he_thong.md)). Kiến trúc đích của AI Core (Agents SDK, Business Control Plane, context, xác nhận) và ranh giới các module nghiệp vụ nằm ở [bộ AI Core](ai-core/README.md), chưa triển khai.
 
 ## 1. Kiến trúc tổng thể
 
@@ -216,9 +216,9 @@ Mẫu dùng khi có tính năng cần (chưa đưa vào base, theo các bộ đ�
 - Bộ tích hợp 2.0 còn ghi hạn mật khẩu tạm chưa rõ; **QA hiện hành No.65/79 đã bổ sung**: không hạn mật khẩu tạm, gửi thư một lần; quên mật khẩu qua link đặt lại. Áp dụng nguồn mới khi triển khai, không lấy đề xuất cũ 7 ngày làm quyết định.
 - Guard production phải kiểm danh tính Talent/Manager, trạng thái sử dụng, phiên và quyền nghiệp vụ theo phạm vi DB hiện hành; JWT hợp lệ chưa đủ. No.88 không cho phép khóa mọi thao tác của Manager theo assign. Việc gửi thông báo còn chờ đối chiếu No.87/88.
 
-### 4.5. Worker (dự kiến)
+### 4.5. Worker
 
-- Điểm vào `src/worker.ts`, dùng chung `container.ts` với API.
+- Đã có `src/worker.ts` (dispatcher + reconciler + queue `agent-interactive` + xuất OneDrive), dùng chung `container.ts` với API; chạy bằng service `worker` trong `docker-compose.yml`. Thiết kế đích thay runtime này ở [AI Core](ai-core/AI_RUNTIME_DESIGN.md). Phần dưới là việc còn lại cho các tác vụ khác.
 - Thêm vào `ecosystem.config.cjs` một app thứ hai: `script: 'dist/worker.js'`, `exec_mode: 'fork'`, `instances: 1`. Trong Docker Compose thêm service dùng cùng image, `command: ["node_modules/.bin/pm2-runtime", "ecosystem.config.cjs", "--only", "worker"]` (hoặc tách hai service `api`, `worker`).
 - Hàng đợi/lịch chạy dùng **BullMQ với Redis** theo quyết định người dùng (mục 0); không triển khai thêm pg-boss. Lịch lời nhắn sáng/trưa/tối cấu hình được theo SD-M19 trang22, không gắn cứng 08:00. Lịch AI, tác vụ video, thu thập số liệu, email/push và lịch đăng ngoài cần ranh giới rõ.
 - Retry lỗi kỹ thuật phải chống trùng; không biến retry job thành tự đăng lại bài lỗi, vì nguồn đã bỏ tự đăng lại (QA No.15/CR-15). Thay đổi nhà cung cấp, SNS, dừng đăng hoặc trạng thái Talent cần kiểm điều kiện hiệu lực trước thao tác, theo quyết định đã được xác nhận; các ứng viên Q&A mới chưa là quy tắc triển khai.

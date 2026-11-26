@@ -1,3 +1,22 @@
+<!-- QA26112026 -->
+## Nội dung hiện hành theo Q&A — 26/11/2026
+
+Áp dụng các trả lời và phần chấp thuận được nêu dưới đây theo yêu cầu cập nhật tài liệu của người dùng. Đây là FACT về phản hồi nguồn; chưa tự cấp G7/G8, phê duyệt thiết kế hoặc thương mại. Phần lịch sử chỉ còn hiệu lực ở chủ đề không bị thay. Mã màn trong trả lời25–26/11 theo YK3 bản0.3, không đổi mã SD18/SD19.
+
+### Ngắt hoặc đổi SNS còn lịch
+
+Chặn ngắt kết nối hoặc đổi tài khoản của đúng SNS còn bài đã đặt lịch. Hiện danh sách bài liên quan để Talent tự huỷ trước rồi mới ngắt; không bắt buộc chỉ Manager huỷ. T-07 có nút 「接続を解除」. SNS không có lịch không chịu chặn này.
+
+**Phần còn mở/giới hạn:** Không áp dụng thao tác người dùng này để suy cách xử lý SNS tự hết hạn/mất kết nối; cơ chế phát hiện do đội/provider.
+
+Căn cứ: QA `Q&A!A95:J95 (No.95)`; `EV-1346` / `DEC-0030`.
+
+[Phiên bản nguồn, hash và phạm vi kiểm](../../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md).
+<!-- /QA26112026 -->
+
+<details>
+<summary>Nội dung trước cập nhật26/11 — giữ để truy vết; phần mâu thuẫn đã được thay ở trên</summary>
+
 # 8-6 Thông báo khi mất kết nối
 
 ## Đối chiếu nguồn hiện hành — 20/11/2026
@@ -73,3 +92,5 @@ Câu hỏi gửi khách, danh sách kiểm chứng Upload-Post, đề xuất và
 - Các lỗi mất kết nối của Upload-Post chủ yếu là chuỗi chữ ("session has expired", "Token expired and refresh failed"…), chỉ TikTok có mã `tiktok_reconnect_required`. Phân loại theo mẫu chuỗi đã kiểm trong POC.
 - **Instagram `account_checkpoint_required`:** chủ tài khoản phải mở Instagram để xử lý cảnh báo bảo mật; kết nối lại không giải quyết được. Câu thông báo cho tài năng phải khác với câu "kết nối lại".
 - Chi tiết: bộ Upload-Post §9 (U26).
+
+</details>

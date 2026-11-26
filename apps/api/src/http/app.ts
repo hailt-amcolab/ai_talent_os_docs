@@ -13,11 +13,15 @@ import { authModule } from '../modules/auth/routes.ts'
 import { pwaModule } from '../modules/pwa/routes.ts'
 import { onedriveModule } from '../modules/onedrive/routes.ts'
 import { uploadPostModule } from '../modules/upload-post/routes.ts'
-import { agentModule } from '../modules/ai-coach/routes.ts'
+import { agentModule } from './agent.ts'
+import { proposalsModule } from './proposals.ts'
+import { aiSandboxModule } from './ai-sandbox.ts'
+import { mcpModule } from '../mcp/server.ts'
+import { devVerifier, type TokenVerifier } from '../mcp/auth.ts'
 
 // Dựng ứng dụng HTTP từ phụ thuộc đã tạo sẵn. Tách khỏi server.ts để kiểm thử bằng app.request() không cần mở cổng.
 // Thêm module mới: tạo src/modules/<tên>/ rồi gắn ở mục "Modules" bên dưới.
-export function createApp(deps: AppDeps) {
+export function createApp(deps: AppDeps, mcpVerifier?: TokenVerifier) {
   const app = new OpenAPIHono({
     // Mọi lỗi kiểm đầu vào của createRoute: 422 cùng một dạng
     defaultHook: (result, c) => {
@@ -52,7 +56,13 @@ export function createApp(deps: AppDeps) {
     app.route('/', onedriveModule(deps))
     app.route('/', uploadPostModule(deps))
     if (deps.agent) app.route('/', agentModule(deps))
+    if (deps.control) app.route('/', proposalsModule(deps))
+    if (deps.control) app.route('/', aiSandboxModule(deps))
   }
+
+  // MCP for ChatGPT: own Bearer auth (not the app session), outside /api. Without a verifier nothing is mounted (VT-08 pending).
+  const verifier = mcpVerifier ?? devVerifier(deps.env)
+  if (deps.env.ENABLE_MANAGER_MCP && deps.control && verifier) app.route('/', mcpModule(deps, verifier))
 
   // Tài liệu API để FE sinh client. Không bật ở production để không lộ danh sách API.
   if (deps.env.NODE_ENV !== 'production') {

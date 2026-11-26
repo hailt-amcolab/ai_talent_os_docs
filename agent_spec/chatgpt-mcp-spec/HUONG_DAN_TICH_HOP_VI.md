@@ -267,6 +267,6 @@ Hoàn tất kỹ thuật khi [AC/ca kiểm thử](CA_KIEM_THU_VI.md) có kết q
 
 ## 13. Kết luận review bản 1.1
 
-Đã đối chiếu [AI Core 2.1](../AI_Talent_OS_AI_Core_Architecture_Report_v2.md), [tech stack](../TECH_STACK_VA_CAU_TRUC_DU_AN.md), code `apps/api/src/http/app.ts`/package/container, nguồn QA hiện hành No.78–92 và BF19/SD-M19. Giữ thiết kế preview/approval/commit, CAS/eTag, revoke và unknown/reconcile; sửa quyền Manager, phạm vi UI, queue/outbox và điểm mount MCP. Đây là review tác giả; tất cả test vẫn NOT RUN, không tự ký Independent Verification.
+Đã đối chiếu [tech stack](../TECH_STACK_VA_CAU_TRUC_DU_AN.md), code `apps/api/src/http/app.ts`/package/container, nguồn QA hiện hành No.78–92 và BF19/SD-M19. Giữ thiết kế preview/approval/commit, CAS/eTag, revoke và unknown/reconcile; sửa quyền Manager, phạm vi UI, queue/outbox và điểm mount MCP. Đây là review tác giả; tất cả test vẫn NOT RUN, không tự ký Independent Verification.
 
 **Có thể bắt đầu:** code khung/ports, tool/schema không dữ liệu thật, POC OAuth/transport trên staging. **Chưa đủ:** ghi hồ sơ thật, đầy đủ hệ thống MCP cho mọi chức năng dự án, hoặc production. Chặn tương ứng ở MCP-G01–G06; không dùng scaffold pass thay POC ChatGPT/Graph/worker và phê duyệt UX/template.

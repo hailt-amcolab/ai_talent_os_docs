@@ -86,7 +86,7 @@ Cột nơi lưu là **phương án đích đề xuất**. Dấu “không mặc 
 
 ## 4. Kiến trúc và trách nhiệm thành phần
 
-PWA/Manager gọi Hono BE để kiểm danh tính, quyền và asset/Talent đích. BE gọi service lưu trữ chung; worker xử lý chuyển file, tạo preview, xuất tài liệu và đối soát. API và worker dùng cùng adapter nhưng có entrypoint/credential theo vai trò, theo [AI Core bản2.2](AI_Talent_OS_AI_Core_Architecture_Report_v2.md).
+PWA/Manager gọi Hono BE để kiểm danh tính, quyền và asset/Talent đích. BE gọi service lưu trữ chung; worker xử lý chuyển file, tạo preview, xuất tài liệu và đối soát. API và worker dùng cùng adapter nhưng có entrypoint/credential theo vai trò, theo [AI Core](ai-core/AI_CORE_ARCHITECTURE.md).
 
 | Thành phần | Trách nhiệm | Không được mặc định |
 |---|---|---|
@@ -228,7 +228,7 @@ Trước báo hoàn tất: kiểm truy cập chéo Talent, URL/ticket hết hạ
 
 [Hướng dẫn OneDrive cũ](onedrive-agent-spec/HUONG_DAN_TICH_HOP_VI.md) và [ca kiểm thử](onedrive-agent-spec/CA_KIEM_THU_VI.md) giữ làm tham chiếu adapter/lịch sử. Các phần Supabase chỉ tạm, bắt chuyển toàn bộ media, xóa sau7ngày, sửa trực tiếp OneDrive và ROPC mặc định không được sao chép vào triển khai mới khi chưa đối chiếu tài liệu này và nguồn hiện hành. Tài liệu mới không tự phê duyệt thiết kế, migration hoặc thay mọi nội dung kỹ thuật cũ.
 
-Đọc kèm [AI Core](AI_Talent_OS_AI_Core_Architecture_Report_v2.md), [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md), [DB scope](../database-design/07_implementation_scope_and_rules.md), [MCP](chatgpt-mcp-spec/README.md). Không tạo một bộ biến môi trường/cây thư mục/schema cạnh tranh với các bộ này.
+Đọc kèm [AI Core](ai-core/README.md), [tech stack](TECH_STACK_VA_CAU_TRUC_DU_AN.md), [DB scope](../database-design/07_implementation_scope_and_rules.md), [MCP](chatgpt-mcp-spec/README.md). Không tạo một bộ biến môi trường/cây thư mục/schema cạnh tranh với các bộ này.
 
 Soạn23/11/2026 bởi Codex theo yêu cầu người dùng; dùng skill requirement-review và supabase. Đã đọc QA No.8 G9/H9, bộ OneDrive/code và các căn cứ liên kết; tham chiếu chính thức Microsoft/Supabase kiểm23/11. Đã đọc [changelog Supabase](https://supabase.com/changelog.md) để đối chiếu thay đổi gần đây; không kết luận tương thích mọi phiên bản hoặc đã kiểm cấu hình project. Không truy cập tenant/project live, tạo bucket, chạy migration hoặc đổi code. Chưa có reviewer độc lập/VERIFIED, không đổi G1–G8 hoặc phê duyệt thương mại/release. Các đề xuất còn mở được nêu ở §10.
 

@@ -1,8 +1,14 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 09. Thiết kế kỹ thuật dữ liệu cho các miền cần hoàn thiện
 
 Phiên bản 1.0 · 25/11/2026 · Tác giả: Codex · **PROPOSAL — chưa review độc lập, chưa migrate**.
 
 ## 1. Phạm vi và cách dùng
+
+**Quyết định nội bộ ngày26/11/2026:** Theo chỉ đạo người dùng, trước mắt không sử dụng vector DB, pgvector, embedding hoặc semantic retrieval. Không thêm bảng/vector index, worker embedding, bước embedding câu hỏi hay POC vector vào phạm vi hiện tại. Context lấy bằng SQL theo quyền và phiên bản, gồm profile/chỉ thị/mục tiêu/trạng thái, hội thoại gần đây và memory có cấu trúc; bản tóm tắt nếu dùng phải giữ nguồn. Việc xem xét vector sau này cần quyết định riêng, không tự bật khi có dữ liệu hoặc benchmark. Quyết định này không loại bỏ chức năng memory/Challenge hay thay đổi yêu cầu khách về AI Coach.
+
+[Hồ sơ quyết định](vector-decision-2026-11-26.json).
 
 Chọn phương án cho 12 nhóm được giao: agent, quyền/xác nhận, Challenge, memory/context, category/phân công, posting/autopost, media/OneDrive, video, billing, notifications, metrics và lifecycle/backup. Nền hiện có vẫn là 13 migration/53 bảng trong repository, chưa xác minh live DB. Các bảng đích không tự cộng vào số đã triển khai.
 
@@ -20,7 +26,7 @@ FACT về yêu cầu và quyết định nguồn giữ tại [01](01_confirmed_r
 | Posting/autopost/NG | YK3 P247–250/P318–343/P355–457/P688; KS20261122 G4:I 4/G16:I 16/G20:H 20 | P-12/P-22/P-23/P-26; AI Core §8 | QA58/59/70/83/95/96, deadline và lỗi |
 | Media/video | QA8; YK3 P303–305/P350/P462–511; KS20261122 G3:I 10 | P-20/P-24; AI Core §2.8/6 | 確認61/62, thời điểm tính lượt, provider |
 | Billing | KS action No.16/G17; YK3 P617–650/P661/P819 | P-03/P-18/P-21 | QA49/53/62/63/98, Square, thương mại |
-| Notifications/metrics | YK3 P390–407/P516–612/P1277–1347 | P-16; AI Core §2.10 | QA72/87/88/95/97, metric khả dụng |
+| Notifications/metrics | YK3 P390–407/P516–612/P1277–1347 | P-16; AI Core §2.10 | QA72/95/97 đã trả lời26/11; fallback/đích tin No.87/88 và metric khả dụng còn cần xử lý |
 | Lifecycle/backup | YK3 P660–677/P888/P913/P916–918; QA101 | P-18/P-21; AI Core §11.2 | QA69/94/98, CR08, retention audit/tài chính |
 
 P là số đoạn XML của DOCX 0.3, không là số trang. Hash nguồn và giới hạn đọc hình tại [manifest](technical-design-review-2026-11-25.json). Không tuyên bố VERIFIED toàn bộ nguồn hoặc giao diện.
@@ -120,7 +126,7 @@ Progress phân loại provider evidence và self-report. Key theo challenge+sour
 
 Observation phân biệt manager_fact/explicit_user/ai_inference, có source refs/confidence/revision. AI inference không sửa 5 trường profile/chỉ thị Manager. Content/source bất biến; invalidation có actor/audit. Context không dùng observation đã mất nguồn/quyền; purge đi theo source graph.
 
-Manifest ghi ID/version/hash/asOf cho profile/readiness/instruction/category/goal/metrics/memory/persona và post/media liên quan. Typed ref kiểm owner/scope khi build và consumption; manifest private. Missing/stale metrics có nhãn trước model. Public news cache chỉ dữ liệu công khai; personalization không đặt shared cache. News giữ URL/publishedAt/fetchedAt/hash trong manifest. Không thêm embedding/vector DB/finetune khi chưa có query/quality proof.
+Manifest ghi ID/version/hash/asOf cho profile/readiness/instruction/category/goal/metrics/memory/persona và post/media liên quan. Typed ref kiểm owner/scope khi build và consumption; manifest private. Missing/stale metrics có nhãn trước model. Public news cache chỉ dữ liệu công khai; personalization không đặt shared cache. News giữ URL/publishedAt/fetchedAt/hash trong manifest. Trước mắt không dùng vector/embedding theo quyết định26/11; memory vẫn lưu và đọc bằng SQL. Finetune không thuộc thiết kế này.
 
 ## 6. Media, chat và OneDrive
 
@@ -136,7 +142,7 @@ Document export dùng logical key Talent/kind/sourceRevision, render DB version�
 
 Giữ post logical, thêm immutable revision: caption/hashtags/mediaVersionSet/targetPlatforms/hash. Topic tự nêu có entry ref, không bắt buộc theme_suggestion. post_media là projection bản hiện tại, không nguồn duy nhất cho history duyệt.
 
-Review giữ snapshot/revision/hash/media/đích/mode policy/actor, round/deadline và return reason. Legacy decisions được giữ, map qua adapter trong expand/contract. Chọn logical post ổn định để giữ history là đề xuất kỹ thuật; QA58 về resubmit và giờ cũ vẫn cần quyết định trước UX tương ứng. Pending Manager approval không sửa qua agent để né QA85.
+Review giữ snapshot/revision/hash/media/đích/mode policy/actor, round/deadline và return reason. Legacy decisions được giữ, map qua adapter trong expand/contract. QA58 ngày26/11 chấp thuận gửi duyệt lại trên cùng bài, giữ lịch sử; giữ giờ nếu kịp, quá giờ dời khung tiếp theo. Logical post/revision phục vụ quy tắc này; không giữ câu hỏi đã trả lời làm blocker UX. Pending Manager approval không sửa qua agent để né QA85.
 
 Work flag do Talent chọn, PR do Talent thêm. Không Manager approval cho autopost/office. AI rewrite NG không thêm Talent re-confirm; nếu tương tác với Manager approval đã có chưa rõ thì block đúng nhánh, không giả approval còn hiệu lực hoặc hỏi lại ai sửa NG.
 
@@ -144,7 +150,7 @@ Work flag do Talent chọn, PR do Talent thêm. Không Manager approval cho auto
 
 Preference confirm/no_confirm độc lập với source daily/autopost/office. Period có local dates/themeRevision/mediaSet/context refs; không FIFO/1 bài-ngày. Logical generation key chống trùng draft do job retry. Daily và period có thể cùng dùng; overlap period policy không tự gộp.
 
-Theme change CAS, không tự sửa plan cũ khi QA70/83 chưa quyết. Thiếu media không tự tạo AI photo/video; producer ghi blocked reason và thông báo theo approved policy. Kết thúc kỳ có event key+chat receipt; autopost không voice từng bài.
+Chủ đề kỳ đổi qua hội thoại theo QA70 ngày26/11; thao tác dùng CAS. QA83: đổi cài đặt xác nhận giữ lịch đã có, áp bài chưa đặt lịch; không suy đổi chủ đề buộc sửa lại mọi plan cũ. Thiếu media không tự tạo AI photo/video; producer ghi blocked reason và thông báo theo approved policy. Kết thúc kỳ có event key+chat receipt; autopost không voice từng bài.
 
 ### 7.3. Plan/effect
 
@@ -152,17 +158,17 @@ Delivery giữ 1 logical destination/post/platform; plan revision giữ plannedA
 
 Trước schedule và send kiểm owner/status/posting gate/readiness/review/NG/account/capability. Photo IG/TikTok, video 3 SNS đã kết nối. Agent quyết giờ trong khung chỉ thị, OS thực thi. Giá trị jitter là thuật toán kỹ thuật cần load test, không SLA.
 
-Cancel command→intent+effect outbox; chỉ cancel ack mới cancelled. Nếu đã publish trước cancel, giữ kết quả thật và receipt, không tuyên bố hủy ngược. Late callback không phục hồi plan đã hủy cancelled/superseded plan. User retry failed tạo command/plan revision mới; không auto repost hoặc gửi lại SNS đã thành công. Đích retry/account switch theo QA59/95, không tự chọn 3 mạng.
+Cancel command→intent+effect outbox; chỉ cancel ack mới cancelled. Nếu đã publish trước cancel, giữ kết quả thật và receipt, không tuyên bố hủy ngược. Late callback không phục hồi plan đã hủy cancelled/superseded plan. User retry failed tạo command/plan revision mới; không auto repost hoặc gửi lại SNS đã thành công. QA59 ngày26/11: đăng lại chỉ SNS lỗi, AI chọn khung tiếp theo; QA95: chặn đổi/ngắt đúng SNS còn lịch, hiện để Talent huỷ trước, không tự chọn lại cả3mạng.
 
 ### 7.4. NG
 
-Save ng_words xuất ruleset revision cùng transaction. Check gắn input revision/ruleset/execution/result; rewrite tạo revision mới và check lại. Failed/unknown không schedule. Giới hạn loop kỹ thuật trả blocked/error, không tự NG pass. Không đặt số vòng nghiệp vụ hoặc rescan/hủy lịch cũ khi QA96 chưa quyết.
+Save ng_words xuất ruleset revision cùng transaction. Check gắn input revision/ruleset/execution/result; rewrite tạo revision mới và check lại. Failed/unknown không schedule. Giới hạn loop kỹ thuật trả blocked/error, không tự NG pass. QA96 ngày26/11 chọn A: NG mới chỉ áp từ lần kiểm sau thay đổi, không quét lại hoặc huỷ lịch đã kiểm. Manager muốn dừng thì huỷ lịch. Số vòng lỗi kỹ thuật không tự biến thành giới hạn nghiệp vụ.
 
 ## 8. Video, usage và billing
 
 Video idea/scenario sửa tự do không generation effect. Consent chụp scenario/media/model/price estimate/disclosure/hash/actor/beneficiary/expiry. Request unique consent; remake là request mới nối gốc. Manager làm thay giữ actor khác Talent thụ hưởng. Chọn use tạo asset ready+draft, không publish; discard khác failed job. Provider từ chối trẻ em trả lỗi mẫu/hướng dẫn tự quay, không đổi provider để né restriction.
 
-Tách request count, provider/model cost và lượt/giá thu Talent. Usage entries bất biến có fact/billable/adjustment; is_counted là legacy projection. Failed video không billable theo nguồn, nhưng thời điểm ghi/late adjustment vẫn QA1/62. Không lấy provider success thay mọi billing policy.
+Tách request count, provider/model cost và lượt/giá thu Talent. Usage entries bất biến có fact/billable/adjustment; is_counted là legacy projection. Failed video không billable theo nguồn, nhưng QA62 ngày26/11 chấp thuận ghi lượt tại依頼, giá tại thời điểm đó; lỗi dịch vụ trừ ngay, phát hiện sau tổng hợp trừ kỳ sau. Số tiền cụ thể/ngày chốt còn No.2/4/49. Không lấy provider success thay mọi billing policy.
 
 Model usage hợp nhất legacy call với agent steps, không cộng attempt tổng lần 2. cached tokens là subset input: uncached=input-cached; giá revision cố định, decimal numeric. Provider hosted fee theo receipt riêng, không bịa từ token. Giá chưa biết là NULL, khác 0. Manager global không gán Talent giả; Adesso trả token, không thu Talent hoặc phí ChatGPT.
 
@@ -176,7 +182,7 @@ payment_attempts là request, payment_settlements là tiền đã dịch chuyể
 
 Ingest run theo account/connectionRevision/local day. Observations immutable mỗi fetch; canonical metric map và available/missing/unsupported/error. Chỉ available có value, zero là số đo. Stale tính theo observed/fetched/freshness policy, không ghi đè 0. UI/agent cùng read model; legacy snapshots là compatibility projection, không cộng hai nguồn.
 
-Account switch không gộp history cũ vào mới. Không suy hourly/watchtime/completion khi chỉ daily. Fetch retry là read, khác auto repost bị cấm. Goal change tạo revision/update projection ngay; achievement unique goal revision nối đúng metric owner/platform/value, outbox chống notify trùng. Ngưỡng 25/50/75% và streak QA72 không tự bật. Autopost tính inactivity không tự định nghĩa mọi streak.
+Account switch không gộp history cũ vào mới. Không suy hourly/watchtime/completion khi chỉ daily. Fetch retry là read, khác auto repost bị cấm. Goal change tạo revision/update projection ngay; achievement unique goal revision nối đúng metric owner/platform/value, outbox chống notify trùng. Ngưỡng25/50/75% chưa tự bật. QA72 ngày26/11 đã chấp thuận streak: ngày có ít nhất1bài thành công trên mộtSNS đã nối; sau ngày trống, lần đăng tiếp vềngày1. Autopost tính inactivity không tự định nghĩa mọi streak.
 
 ## 10. Notifications/audit
 

@@ -1,3 +1,5 @@
+> **Căn cứ nghiệp vụ cập nhật26/11:** [Q&A đã trả lời và phần còn mở](../docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md). Chỉ cập nhật tài liệu; trạng thái triển khai/DDL và các trigger chặn ghi giữ theo bằng chứng kỹ thuật hiện có. Không coi trả lời nghiệp vụ là phê duyệt schema hoặc mở ghi.
+
 # 02. Danh mục thực thể
 
 > **Cập nhật quyết định 25/11/2026:** Đã đồng bộ nhóm quyết định đã rõ vào nội dung tài liệu. Phân biệt yêu cầu nguồn, SQL hiện có và thiết kế đích chưa có migration. Cấu trúc repository: 13 migration/53 bảng ứng dụng; chưa kiểm DB live. Các ghi chú ngày 18/11 và 23/11 giữ vai trò lịch sử ở phần đã được thay. [Hồ sơ thay đổi](decisions-update-2026-11-25.json); [review và phần còn thiếu](08_full_review_2026-11-25.md).
@@ -106,7 +108,7 @@ Kiểu dữ liệu, giá trị mặc định và ràng buộc chi tiết ở `04
 | Hóa đơn tháng và kết quả thu tiền | **BLOCKED** | Đã có hướng một tháng từ đăng ký và trả trước (KS K104/F24); mốc thu video, công nợ và hợp đồng provider còn cần thiết kế/quyết định, chưa đủ mở ghi hóa đơn. | U-01, R08-06 |
 | Đơn giá video | Đã rõ nơi cài đặt; còn hiệu lực giá | Manager đặt giá ước tính ở cài đặt chung theo YK3 P803–809; snapshot giá/điều chỉnh kỳ thuộc thiết kế và QA62 | U-02 |
 | Đồng ý điều khoản | Yêu cầu đã rõ; chưa có DDL | YK3 P116/P136/P148; 確認57 chỉ còn cách hiển thị văn bản | U-14 |
-| Nhóm tài năng, quản lý phụ trách Talent, chỉ thị AI | Category/assignment chưa có; instruction đã có một phần | SQL 25/11 có global/Talent/history; category bị chặn tới khi có catalog; đa category đã rõ, precedence giữa category còn QA99 | U-15, P-15/P-16/P-17 |
+| Nhóm tài năng, quản lý phụ trách Talent, chỉ thị AI | Category/assignment chưa có; instruction đã có một phần | SQL 25/11 có global/Talent/history; category bị chặn tới khi có catalog; nhiều category/thứ tự là hướng dự kiến ở QA99 ngày26/11, còn chờ Adesso27/11 | U-15, P-15/P-16/P-17 |
 | Khoảng đăng tự động (自動投稿) | **Đã chốt, chưa có bảng** | [KS] 確認19, 25; chi tiết luồng chưa có | U-16, P-12 |
 | Thử thách (チャレンジ) | Đã chốt hướng, chưa có bảng | [KS] 確認5; đã rõ hướng AI cá nhân hóa theo K27/F30/F31; còn cách đo/vòng đời | P-17 |
 | Tập tư liệu của khoảng đăng | Đã rõ hướng, chưa thiết kế | Chọn theo chủ đề, không FIFO; không tự sinh media trong autopost | U-13; KS K73, F18/F19 |

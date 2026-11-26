@@ -1,3 +1,5 @@
+> **Cập nhật26/11:** theo dõi [Q&A hiện hành](../../docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md). Các phần đã trả lời tại No.54–96 không hỏi lại; No.87/88/98/99 chỉ tiếp tục phần còn mở. Xem mục “Nội dung hiện hành theo Q&A” trong SCD của module trước khi dùng các ghi chú cũ.
+
 # Theo dõi câu hỏi EP07
 
 Bản câu hỏi đang dùng được biên tập duy nhất tại [Q&A hiện hành](../../docs/requirement-review/qa-drafting-2026-11-19/qa-draft.md). Không gửi lại danh sách câu hỏi cũ của module như bộ độc lập.

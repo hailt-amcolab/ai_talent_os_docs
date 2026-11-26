@@ -1,14 +1,15 @@
-// Live smoke of the agent core with the REAL worker process (src/worker.ts), Redis/BullMQ and the configured OpenAI model.
+// Live smoke of the AI Core (Agents SDK runtime + Control Plane) with the REAL worker process (src/worker.ts), Redis/BullMQ and the configured OpenAI model.
 // API runs in this process with a fake Auth (token → login) on a DISPOSABLE local Postgres; nothing touches Supabase or OneDrive.
 //   TEST_DATABASE_URL=postgresql://<runtime login>@127.0.0.1/... TEST_OWNER_DATABASE_URL=postgresql://<owner>@127.0.0.1/... npm run agent:smoke
 // Start the worker against the same DB first, e.g.:
 //   DATABASE_URL=$TEST_DATABASE_URL REDIS_URL=redis://127.0.0.1:6379 ENABLE_AGENT_CORE=true ENABLE_AGENT_WRITES=true ONEDRIVE_AUTH_MODE= npm run worker
-// Flow: Manager M-17 asks for a profile change → proposal → Manager confirms → saved; Talent asks with the new profile; Talent asks a forbidden change.
+// Flow: Manager M-17 asks for a profile change → proposal → Manager confirms (saved at once, no AI run) → Manager asks if saved;
+// Talent asks with the new profile; Talent asks a forbidden change.
 import { randomUUID } from 'node:crypto'
 import { createDatabase } from '../src/infra/database/client.ts'
 import { loadEnv } from '../src/config/env.ts'
 import { createApp } from '../src/http/app.ts'
-import { agentServices, type AppDeps } from '../src/container.ts'
+import { agentServices, controlServices, type AppDeps } from '../src/container.ts'
 import { AppError } from '../src/core/errors.ts'
 import type { AuthService } from '../src/modules/auth/service.ts'
 
@@ -19,7 +20,7 @@ const env = loadEnv({ DATABASE_URL: url, CORS_ORIGINS: ORIGIN, ENABLE_AUTH_DEMO:
 const db = createDatabase(url), owner = createDatabase(ownerUrl)
 const tokens = new Map<string, string>()
 const auth = { authenticate: async (t: string) => { const u = tokens.get(t); if (!u) throw new AppError('AUTH_REQUIRED', 401); return { userId: u, aal: 'aal2', sessionId: 's', email: 'e', factors: [] } } } as unknown as AuthService
-const app = createApp({ env, db, auth, pwa: {} as NonNullable<AppDeps['pwa']>, agent: agentServices(env, db) })
+const app = createApp({ env, db, auth, pwa: {} as NonNullable<AppDeps['pwa']>, agent: agentServices(db), control: controlServices(env, db) })
 const call = async (token: string, method: string, path: string, body?: unknown) => {
   const r = await app.request(path, { method, headers: { Authorization: `Bearer ${token}`, Origin: ORIGIN, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
   const json = await r.json() as any
@@ -36,12 +37,13 @@ const until = async (token: string, base: string, runId: string, states: string[
 const ask = async (token: string, base: string, conv: string, text: string) => {
   console.log(`\n>>> ${base.includes('admin') ? 'Manager' : 'Talent'}: ${text}`)
   const r = await call(token, 'POST', `${base}/conversations/${conv}/messages`, { requestKey: randomUUID(), body: text })
-  return until(token, base, r.id, ['succeeded', 'failed', 'unknown', 'waiting_confirmation'])
+  return until(token, base, r.id, ['succeeded', 'failed', 'cancelled'])
 }
-const show = async (token: string, base: string, conv: string, runId: string) => {
-  const items = (await call(token, 'GET', `${base}/conversations/${conv}/messages?limit=100`)).items
-  console.log('<<<', items.at(-1).body)
-  console.table(await db.$queryRaw`SELECT kind,tool_name,state,error_code,input_tokens,output_tokens FROM app_private.agent_steps WHERE execution_id=${runId}::uuid ORDER BY sequence`)
+const show = async (token: string, base: string, runId: string) => {
+  const v = await call(token, 'GET', `${base}/runs/${runId}`)
+  console.log('<<<', v.state, v.completionKind ?? v.errorCode, '\n', v.finalText)
+  console.table(await db.$queryRaw`SELECT input_tokens,output_tokens,cached_input_tokens,reasoning_tokens FROM public.ai_usage_events WHERE run_id=${runId}::uuid`)
+  return v
 }
 
 try {
@@ -55,21 +57,21 @@ try {
 
   const mc = (await call('M', 'POST', `${ADMIN}/conversations`, { requestKey: randomUUID() })).conversationId
   let v = await ask('M', ADMIN, mc, `タレント「${name}」のプロフィールを「ダンスと写真が好きで、毎日練習動画を撮っている」に、口調を「明るく短く」に変更してください。`)
-  if (v.state !== 'waiting_confirmation') { await show('M', ADMIN, mc, v.id); throw new Error(`expected a proposal, got ${v.state} ${v.errorCode ?? ''}`) }
-  const p = await call('M', 'GET', `${ADMIN}/proposals/${v.proposalId}`)
+  await show('M', ADMIN, v.id)
+  if (!v.proposals.length) throw new Error(`expected a proposal, got ${v.state} ${v.errorCode ?? ''}`)
+  const p = await call('M', 'GET', `/api/v1/admin/proposals/${v.proposals[0].id}`)
   console.log('PROPOSAL', p.targetLabel); console.table(p.changes)
-  await call('M', 'POST', `${ADMIN}/proposals/${p.proposalId}/confirm`, { requestKey: randomUUID(), proposalHash: p.proposalHash })
-  console.log('Manager pressed 保存 (confirm)')
-  v = await until('M', ADMIN, v.id, ['succeeded', 'failed', 'unknown'])
-  await show('M', ADMIN, mc, v.id)
-  if (!v.receipts.length) { console.log('Model did not call change_commit; saving through the REST fallback'); console.log(await call('M', 'POST', `${ADMIN}/proposals/${p.proposalId}/commit`, { requestKey: randomUUID() })) }
+  const c = await call('M', 'POST', `/api/v1/admin/proposals/${p.proposalId}/confirm`, { requestKey: randomUUID(), proposalHash: p.proposalHash })
+  console.log('Manager pressed 保存 → saved at once:', c.receipt)
+  v = await ask('M', ADMIN, mc, '今の変更は保存された？')
+  await show('M', ADMIN, v.id)
 
   const tc = (await call('T', 'POST', `${ME}/conversations`, { requestKey: randomUUID() })).conversationId
   v = await ask('T', ME, tc, '私のプロフィールを踏まえて、今日の投稿テーマを1つだけ提案して。')
-  await show('T', ME, tc, v.id)
+  await show('T', ME, v.id)
   v = await ask('T', ME, tc, 'マネージャーの全体の指示を「敬語禁止」に変えて保存して。')
-  await show('T', ME, tc, v.id)
-  console.log('\nDB profile:', (await db.$queryRaw`SELECT p.version,p.profile FROM app_private.agent_talent_profiles p JOIN public.talents t ON t.id=p.talent_id WHERE t.auth_user_id=${tal}::uuid`))
+  await show('T', ME, v.id)
+  console.log('\nDB profile:', (await db.$queryRaw`SELECT p.version,p.profile FROM app_private.talent_profiles p JOIN public.talents t ON t.id=p.talent_id WHERE t.auth_user_id=${tal}::uuid`))
 } finally {
   await db.$disconnect(); await owner.$disconnect()
 }

@@ -1,9 +1,9 @@
 {
-  "snapshot_date": "2026-11-25",
+  "snapshot_date": "2026-11-26",
   "source_root": "source_requiments",
   "catalog": "TAI_LIEU_NGUON.md",
   "file_count": 23,
-  "notice": "23 tệp; QA/KS cập nhật, KS24 trùng byte KS trong Q&A; YK3 0.3 chưa đồng bộ QA101/Square. Giữ lịch sử và giới hạn phê duyệt.",
+  "notice": "23 tệp; QA26/11 93Close/7Open (kiểm đếm trực tiếp); KS sống đổi, KS24 là snapshot cũ, không còn trùng byte. Thay đổi tài liệu theo phản hồi; không tự cấp G7/G8.",
   "files": [
     {
       "path": "source_requiments/16112026/AI育成OS_概要要件定義書_v2.docx",
@@ -56,33 +56,18 @@
     },
     {
       "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
-      "bytes": 246498,
-      "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+      "bytes": 264936,
+      "sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf",
       "comparison_18nov": "unchanged",
       "sheets": [
-        {
-          "name": "Q&A",
-          "nonempty_cells": 889
-        },
-        {
-          "name": "保留",
-          "nonempty_cells": 17
-        },
-        {
-          "name": "デザインFB",
-          "nonempty_cells": 11
-        },
-        {
-          "name": "お知らせ・メール文章",
-          "nonempty_cells": 11
-        },
-        {
-          "name": "追加要件",
-          "nonempty_cells": 201
-        }
+        "Q&A",
+        "保留",
+        "デザインFB",
+        "お知らせ・メール文章",
+        "追加要件"
       ],
       "source_code": "QA",
-      "use": "living_log; inspect current statements and statuses",
+      "use": "Current living log; decisions apply per cell, not blanket approval",
       "previous_versions": [
         {
           "sha256": "d31c5c12825a8fa8093e0c6ec97cda4ff7d8b6641feb22b9298663979e7e5765",
@@ -95,58 +80,55 @@
           "bytes": 170399,
           "snapshot_date": "2026-11-20",
           "retrieval": "Các giá trị ô của snapshot trước nằm trong hồ sơ delta new-delivery-intake.json; không giả định HEAD chứa phiên bản này."
+        },
+        {
+          "sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
+          "bytes": 246498,
+          "snapshot_date": "2026-11-25",
+          "retrieval": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-source-inventory-before.json"
         }
       ],
-      "checked_at": "2026-11-20T07:26:43.748512+00:00",
-      "checked_by": "Codex — tiếp nhận và lọc trùng Q&A",
-      "comparison_current": "QA: cập nhật trả lời No.4/8/65, thêm No.78–92; so cả năm sheet.",
-      "previous_sha256": "c7f6d048be795ad2b44e7ce7a560da8a7b7477b8b8855adbb533c4425deeaeda",
+      "checked_at": "2026-11-26T13:26:37+07:00",
+      "checked_by": "Codex",
+      "comparison_current": "So git HEAD: QA203 ô; KS15 ô; đủ5sheet; chi tiết qa-ks-update-2026-11-26.json",
+      "previous_sha256": "388b9264fe884a25956ef56523a64d597af6a939766b826cabb31b67c16f6554",
       "received_at": "2026-11-23T09:11:28+07:00",
-      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md"
     },
     {
       "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
-      "bytes": 71832,
-      "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+      "bytes": 72495,
+      "sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03",
       "comparison_18nov": "unchanged",
       "sheets": [
-        {
-          "name": "確認事項",
-          "nonempty_cells": 608
-        },
-        {
-          "name": "20261120",
-          "nonempty_cells": 179
-        },
-        {
-          "name": "20261122",
-          "nonempty_cells": 289
-        },
-        {
-          "name": "プロジェクトを進めるために決める事項",
-          "nonempty_cells": 17
-        },
-        {
-          "name": "アクション一覧",
-          "nonempty_cells": 105
-        }
+        "確認事項",
+        "20261120",
+        "20261122",
+        "プロジェクトを進めるために決める事項",
+        "アクション一覧"
       ],
       "source_code": "KS",
-      "use": "living_log; inspect current statements and statuses",
+      "use": "Current living log; decisions apply per cell, not blanket approval",
       "previous_versions": [
         {
           "sha256": "b7e8d88ab7f57b6fb36b04060a55cf20b3ee37e8f34f4e4595c7c1067c36bd82",
           "bytes": 36242,
           "snapshot_date": "2026-11-20",
           "retrieval": "git show HEAD:source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx"
+        },
+        {
+          "sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
+          "bytes": 71832,
+          "snapshot_date": "2026-11-25",
+          "retrieval": "docs/requirement-review/corrections-2026-11-19/qa-ks-26nov-source-inventory-before.json"
         }
       ],
-      "checked_at": "2026-11-20T09:59:02+07:00",
-      "checked_by": "Codex — tiếp nhận nguồn",
-      "comparison_current": "QA: giá trị và công thức 5 sheet không đổi; KS: sửa 2 ô, thêm 2 sheet và bình luận FCP",
-      "previous_sha256": "b3d5a2688141d7d725dafd8e7ed49d892ba9efa2affdb73df3eb8590a5fd191c",
+      "checked_at": "2026-11-26T13:26:37+07:00",
+      "checked_by": "Codex",
+      "comparison_current": "So git HEAD: QA203 ô; KS15 ô; đủ5sheet; chi tiết qa-ks-update-2026-11-26.json",
+      "previous_sha256": "3686e10dd1e1c3a10575506c19d76f166777f480c9d7dff1706757033bc3fb03",
       "received_at": "2026-11-23T09:11:28+07:00",
-      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-23.md"
+      "source_review_ref": "docs/requirement-review/corrections-2026-11-19/QA_KS_UPDATE_2026-11-26.md"
     },
     {
       "path": "source_requiments/base/AI育成OS_概要要件定義書.docx",
@@ -301,7 +283,7 @@
       "path": "source_requiments/24112026/要件定義確認シート_AI育成OS.xlsx",
       "source_code": "KS24",
       "document_date": "Nhiều ngày; xem từng sheet/ô",
-      "use": "Source input; not blanket approval",
+      "use": "Snapshot24/11; no longer byte-identical to living KS26/11; not a second customer confirmation",
       "sha256": "af9fdf78c763c1b462249a5cf2d8fe29b74be564fdb2ad40874d7798a557c122",
       "bytes": 71980,
       "sheets": [

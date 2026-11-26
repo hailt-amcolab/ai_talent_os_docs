@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "checked_by": "Codex — kiểm cơ học, không review độc lập",
+  "checked_at": "2026-11-26T06:35:18+00:00",
+  "checks": {
+    "source_hashes": 23,
+    "business_documents_with_preserved_history": 45,
+    "additional_technical_documents": 13,
+    "register_records_updated": 83,
+    "protected_workbook_unchanged": true,
+    "structural_validator_exit_code": 0,
+    "whitespace_check_exit_code": 0,
+    "whitespace_note": "Kiểm CRLF-aware cho CSV vốn dùng CRLF; không bỏ qua whitespace thực"
+  },
+  "structural_validator_output": "NOTICE: 831 historical evidence records are STALE; excluded from current-evidence checks, no gate approval implied\nPASS: 23 source files match inventory and hashes; 9 CSV schemas and workflow links checked.\nNo business verification, independent review, customer approval or G1-G8 PASS is implied.\n",
+  "errors": [],
+  "approval_boundary": "Không tự cấp G1–G8 PASS, không phê duyệt thương mại hoặc phát hành"
+}

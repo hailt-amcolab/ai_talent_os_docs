@@ -1,0 +1,606 @@
+{
+  "date": "2026-11-26",
+  "author": "Codex",
+  "status": "PROPOSAL_NOT_BENCHMARKED_NOT_APPROVED_FOR_EXTERNAL_SENDING",
+  "scope": "Đề xuất chỉ tiêu phi chức năng; không tạo Q&A, không đổi gate, requirement hoặc quyết định khách",
+  "user_direction": "150 Talent ban đầu; mục tiêu thiết kế/mở rộng 1.000 Talent theo chỉ đạo người dùng trong hội thoại ngày 26/11/2026. Không tự xác nhận thay đổi thương mại CR-09.",
+  "inputs": [
+    {
+      "path": "Phan_tich/18_Ha_tang_he_thong.md",
+      "sha256": "4dafcc9c444b443fd5e666c0c9ff50ad4a1de7a8bdbdd7263646880225c9d626"
+    },
+    {
+      "path": "agent_spec/upload-post-agent-spec/HUONG_DAN_TICH_HOP_VI.md",
+      "sha256": "7d58e12db0416989a8c16f3fe8f8983c58dee726fef3191cd3d18aabbe36161f"
+    },
+    {
+      "path": "source_requiments/Q&A/AI-Talent-OS_Q&A表.xlsx",
+      "sha256": "289f6964364caccd63593ab8555b1ebdc1ecc8d3fd668a7dbaa07b3bbf2ac7cf"
+    },
+    {
+      "path": "source_requiments/Q&A/要件定義確認シート_AI育成OS.xlsx",
+      "sha256": "7b6fdc91a228638f7110ca68b2fc9391520551d87c33fca74d736ea696756c03"
+    }
+  ],
+  "locators": [
+    "Phan_tich/18_Ha_tang_he_thong.md §12.1–12.2: hạ tầng chưa benchmark, cần quota, backup và kiểm tải",
+    "Hướng dẫn Upload-Post §12: hạn mức/gói là snapshot 17/11; cần kiểm gói thực",
+    "QA Q&A!G101:H101: DB/backup; G92:H92: OneDrive; G69:J69: retention; G98:H98: lịch sử tính tiền còn mở"
+  ],
+  "numbers": "Toàn bộ tải, latency, SLO, RPO/RTO, backup và hỗ trợ định lượng trong đề xuất là lựa chọn tác giả để trình duyệt, không phải số đo hay xác nhận khách.",
+  "validation": "Kiểm nội dung và bảng; chưa chạy benchmark, restore hoặc kiểm quota gói đã mua.",
+  "output": {
+    "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+    "sha256": "d1290931e8a74bb5f50d6faaa850d6a89a40da1c649382890bec2c10ffffba62"
+  },
+  "revisions": [
+    {
+      "version": "0.2",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "f5f20fb0f750adad217bef59e9bcffbf3ce21647897f174406609bc51a2bd73b"
+      },
+      "reference": {
+        "path": "docs/non-functional/README.md",
+        "sha256": "263769d2985b492205b2c637b3b708a47349f43d3f6694f49170bc8ac2502d7c",
+        "scope": "Tham khảo cấu trúc và khoảng trống mô tả; không kế thừa quyết định Q&A/FD, stack, retention hoặc chỉ tiêu FOF."
+      },
+      "changes": [
+        "Phân biệt duyệt chính sách, triển khai và kiểm chứng",
+        "Timeout và công việc chạy nền",
+        "Phục hồi DB/tệp/hàng đợi/giao dịch nhất quán",
+        "Rate limit, retry nhiều lớp và trạng thái chưa xác định",
+        "An toàn tệp, giám sát nhiều lớp, môi trường và triển khai",
+        "Ma trận bằng chứng, trách nhiệm và điều kiện kiểm lại"
+      ],
+      "validation": "Kiểm cấu trúc bảng và nội dung; chưa benchmark hoặc xác nhận triển khai. Không đổi gate hoặc nguồn."
+    },
+    {
+      "version": "0.3",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "8ab9922e9b690d4a0d129110f8245fd9f4272d10670e46f945a575e741265525"
+      },
+      "changes": [
+        "Thay ký hiệu p95 bằng ít nhất 95% số lần và thời gian cụ thể",
+        "Thay RPO/RTO/SLO/SLA và thuật ngữ kỹ thuật bằng cách diễn đạt tiếng Việt",
+        "Giữ nguyên các giá trị, điều kiện đo và trạng thái đề xuất"
+      ],
+      "validation": "Kiểm thuật ngữ còn sót, cấu trúc bảng và giá trị chỉ tiêu; không benchmark hoặc phê duyệt gửi ngoài."
+    },
+    {
+      "version": "0.4",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "8dd95cd94ad186a9009a8c3b9f1c9f0b2503cadf08cdbb9a95ded74563f55db3"
+      },
+      "source": {
+        "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+        "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+        "locators": "w:p898–962, p834–845 (zero-based XML paragraph index); YK3 §3-1–3-8, §4, §2-4-16"
+      },
+      "changes": [
+        "Đưa yêu cầu hiện có từ nguồn khách cung cấp lên đầu, phân biệt với quyết định được xác nhận",
+        "Thêm đề xuất sau review về dữ liệu, trợ lý, quyền qua ChatGPT, lưu trữ, retention, yêu cầu dữ liệu, thiết bị, tài khoản và đầu vào nghiệm thu",
+        "Giữ quy mô150/1000 theo chỉ đạo người dùng; không tự duyệt thương mại",
+        "Đổi số mục và các liên kết tham chiếu trong nội dung"
+      ],
+      "classification": "FACT: nội dung nguồn được mở lại. PROPOSAL: phần2 và chỉ tiêu đo lường. Chưa VERIFIED/APPROVED; chưa có review độc lập.",
+      "validation": "Rà thuật ngữ, bảng và tham chiếu mục; không sửa nguồn, gate hoặc workbook theo dõi."
+    },
+    {
+      "version": "0.5",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "2d8aa7b4074af6c5fbeba9c76a0a302f1c573224dbca3e484eace71f5faf5d35"
+      },
+      "changes": [
+        "Chuyển toàn bộ bảng thành đoạn văn theo tên tiêu chí, tương tự cách viết bản yêu cầu khách",
+        "Giữ nội dung nguồn và đề xuất tách riêng, không đổi chỉ tiêu hoặc trạng thái duyệt"
+      ],
+      "validation": {
+        "table_rows_converted": 114,
+        "no_markdown_tables": true,
+        "quantitative_values_preserved": true,
+        "scope": "Kiểm biên tập/định dạng, không kiểm năng lực thực tế"
+      }
+    },
+    {
+      "version": "0.6",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "587f4df879fd3a8e48366389e4b7372e329188e93fd930e2fba527c23fbbdb2d"
+      },
+      "changes": [
+        "Tích hợp thành chương3 Yêu cầu phi chức năng với3-1 đến3-11",
+        "Phân bố yêu cầu nguồn và đề xuất theo chủ đề, bỏ chia phần theo nguồn gốc",
+        "Giữ trạng thái đề xuất và các điểm cần thống nhất tại chỗ; gộp nội dung trùng",
+        "Chuyển các tham chiếu cũ và hồ sơ nguồn sang metadata, không đưa mã kỹ thuật vào bản khách"
+      ],
+      "section_mapping": {
+        "3-1": "Nguồn3-1; đề xuất thiết bị",
+        "3-2": "Nguồn3-2; mục3/4/5 cũ, quy mô theo người dùng; chi phí mở rộng",
+        "3-3": "Nguồn3-3; mục6 cũ",
+        "3-4": "Nguồn3-4 và đề xuất retention",
+        "3-5": "Nguồn3-5/2-4-16, Q&A89/88; mục9 cũ; quyền ChatGPT",
+        "3-6": "Nguồn3-6/2-4-12, Q&A69/92/98/101; đề xuất chính sách dữ liệu",
+        "3-7": "Nguồn3-7/3-8; mục8 cũ",
+        "3-8": "Nguồn3-8; đầu vào nghiệm thu và phần còn mở",
+        "3-9": "Mục7 cũ, backup theo Q&A101",
+        "3-10": "Mục10 cũ",
+        "3-11": "Nguồn4; mục11 cũ"
+      },
+      "references": "\n\nCác nguồn dưới hướng dẫn cách đặt và đo chỉ tiêu; không chứng minh ứng dụng hiện tại đạt các con số đề xuất.\n\n- [Microsoft — Đặt mục tiêu hiệu năng theo luồng và điều kiện tải](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/performance-targets).\n- [Google — Chỉ số, mục tiêu và thỏa thuận mức dịch vụ](https://sre.google/sre-book/service-level-objectives/).\n- [AWS — Mục tiêu và kiểm thử khôi phục sau sự cố](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html).\n- [Upload-Post — Hạn mức gọi dịch vụ và cách xử lý giới hạn tốc độ](https://docs.upload-post.com/guides/rate-limits).\n",
+      "validation": "Kiểm cấu trúc chương, tham chiếu, chỉ tiêu chính và trạng thái; chưa benchmark hoặc ký gate."
+    },
+    {
+      "version": "0.7",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "21e040aad066e9d46917fc449099a8c65bd27049f14c69eec4fee13b6e75f38f"
+      },
+      "scope": "Chỉ mục3-1 và phiên bản tài liệu",
+      "changes": [
+        "Bổ sung Android10+ với Chrome là phương án kiểm thử, không nhầm ngưỡng hỗ trợ Chrome với chứng minh hỗ trợ ứng dụng",
+        "Làm rõ iPhone16.4+ cần ứng dụng màn hình chính và cấp quyền để nhận thông báo",
+        "Danh sách phiên bản/máy thật, trình duyệt trong ứng dụng, quyền media, kết nối lại, nhập tiếng Nhật, cập nhật và thông báo",
+        "Thiết bị/browser ngoài danh sách và hỗ trợ offline cần xác nhận riêng"
+      ],
+      "sources": [
+        {
+          "url": "https://support.google.com/chrome/answer/95414?hl=en&co=GENIE.Platform%3DAndroid",
+          "locator": "Get a Chrome update when available: Android10 and up"
+        },
+        {
+          "url": "https://support.google.com/chrome/answer/3220216?hl=en&co=GENIE.Platform%3DAndroid",
+          "locator": "How notifications work; Allow or block notifications"
+        },
+        {
+          "url": "https://web.dev/learn/pwa/installation/",
+          "locator": "Android installation"
+        },
+        {
+          "url": "https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/",
+          "locator": "Web Push for Web Apps added to the Home Screen"
+        }
+      ],
+      "classification": "Điều kiện nền tảng: đọc nguồn chính thức26/11; phạm vi hỗ trợ/kiểm thử và hành vi bổ sung: PROPOSAL, chưa kiểm thiết bị thật hay phê duyệt.",
+      "validation": "Đối chiếu mục ngoài3-1 giữ nguyên; cấu trúc và liên kết nội dung. Không thay gate."
+    },
+    {
+      "version": "0.8",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "96af00b56408a2e92182d661816a770072012b97a2471d9e8e05dca7906ed4ab"
+      },
+      "changes": [
+        "Rút gọn mục3-1 theo yêu cầu người dùng; giữ điều kiện chính, đề xuất Android và kiểm thiết bị thật",
+        "Nguồn nền tảng tiếp tục theo hồ sơ0.7; lược chi tiết vận hành khỏi mục3-1"
+      ],
+      "validation": "Các mục3-2 đến3-11 không đổi; chưa kiểm máy thật."
+    },
+    {
+      "version": "0.9",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "7518f766a94f985717aa7abf60673a2ab6eb088f298b71302b3f79df3d48fab9"
+      },
+      "changes": [
+        "Ghi mức phiên bản đề xuất ngay trong3-1: iPhone16.4+ với Safari đi kèm; Android10+ với Chrome hai bản chính gần nhất tương thích; desktop Chrome/Edge hai bản chính gần nhất tại nghiệm thu",
+        "Phép kiểm xác nhận mục tiêu đề xuất, không thay bằng yêu cầu khách tự chọn phiên bản"
+      ],
+      "classification": "PROPOSAL_NOT_DEVICE_TESTED; điều kiện nền tảng tham chiếu hồ sơ0.7"
+    },
+    {
+      "version": "0.10",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "0425bbd682026c76f67a4a84b7545c518da5c3cb93ada40d587143aac7168a7a"
+      },
+      "changes": [
+        "Nâng tải thường lên155/1010người và35/220request/giây; chat30/100, video tiếp nhận20/50",
+        "Tách burst150/1000tin khỏi mục tiêu chat15/60giây, yêu cầu kiểm thời gian chờ riêng",
+        "Bổ sung cấu hình sizing ở Phan_tich/18 §12.3, không đưa chi tiết vận hành vào yêu cầu khách"
+      ],
+      "source_locator": "YK3 w:p905–908, §3-2: không ghi concurrent users; quy mô/chỉ đạo concurrency từ hội thoại người dùng",
+      "classification": "PROPOSAL/ASSUMPTION_NOT_BENCHMARKED",
+      "internal_design": {
+        "path": "Phan_tich/18_Ha_tang_he_thong.md",
+        "sha256": "6427f72b7ac5be33bada4af274e1bc550d33a20887d572c88518c128244f9edb"
+      },
+      "validation": "Kiểm nhất quán con số/chỉ tiêu và đơn vị; chưa chạy load test, kiểm quota tài khoản hoặc mua tài nguyên."
+    },
+    {
+      "version": "0.11",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "404d7e73a5e6dd180b9a4f9637d854d58249dee8cfe87df9d77562127cdf5d89"
+      },
+      "changes": [
+        "Đính chính155/1010là kịch bản kiểm chứng, không phải năng lực trọn nghiệp vụ đã có căn cứ",
+        "Chỉ rõ35/220request/giây và30/100chat không chứng minh tải AI của toàn bộTalent",
+        "Ghi kiểm cấu hình mẫuconcurrency1, tối đa8bước/120giây; cần profile nghiệp vụ và benchmark trước chốt máy"
+      ],
+      "local_evidence": [
+        "apps/api/.env.example: AGENT_INTERACTIVE_CONCURRENCY=1, AGENT_MODEL_MAX_STEPS=8, AGENT_COMPUTE_TIMEOUT_MS=120000",
+        "agent_spec/ai-core/AI_RUNTIME_DESIGN.md §6.4/8.2/8.3: quota limiter chưa làm và ước tính tải chưa benchmark"
+      ],
+      "classification": "CORRECTION_OF_UNSUPPORTED_CAPACITY_INFERENCE; không thay quyết định quy mô150/1000",
+      "internal_design": {
+        "path": "Phan_tich/18_Ha_tang_he_thong.md",
+        "sha256": "74aaf9e769e189e2b4f6040d84fce0d8083c13dc55dba5b91af23688eeda3b64"
+      }
+    },
+    {
+      "version": "0.12",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "51e6af72485b675beea9beabe11f50d51bc30408bfe3fd346b4232371177b0c4"
+      },
+      "previous_section_3_2": "## 3-2. Hiệu năng và khả năng mở rộng\n\nĐội thiết kế cho 150 Talent khi bắt đầu vận hành và mục tiêu 1.000 Talent; cấu hình ban đầu không tự được coi là đáp ứng tải của giai đoạn mở rộng.\n\n### Quy mô và số người thao tác cùng lúc\n\nTalent đăng ký và quản lý: ban đầu 150 người; khi mở rộng 1.000 người.\n\nNgười thao tác đồng thời: lấy 150 Talent và 5 quản lý cùng sử dụng làm kịch bản kiểm chứng ban đầu; khi mở rộng kiểm 1.000 Talent và 10 quản lý. Đây là mục tiêu cần đánh giá, chưa phải năng lực đã xác nhận. Phép kiểm phải có trò chuyện với trợ lý, đọc/ghi dữ liệu, tải tư liệu và công việc tự động chạy cùng lúc; kiểm thao tác xem thông tin đơn thuần chưa đủ kết luận đạt.\n\nQuản lý thao tác đồng thời, nằm trong tổng trên: ban đầu 5 người; khi mở rộng 10 người.\n\nTrò chuyện với trợ lý AI: dùng mức 30 và 100 cuộc có yêu cầu đang chờ hoặc đang xử lý để thử tải trung gian. Đồng thời phải thử cả 150 và 1.000 Talent gửi tin cùng đợt, có quản lý thao tác và công việc tự động đi kèm. Đội đo thời gian chờ, thời gian trả lời, số lần gọi dịch vụ, lượng dữ liệu xử lý và chi phí trước khi chốt năng lực. Các mức trung gian không thay phép kiểm toàn bộ số Talent và chưa phải năng lực được bảo đảm.\n\nYêu cầu tạo video được tiếp nhận và theo dõi đồng thời, kể cả đang chờ: đề xuất ban đầu 20 yêu cầu; khi mở rộng 50 yêu cầu. Số video thực sự tạo cùng lúc phụ thuộc hạn mức đã được cấp của dịch vụ tạo video.\n\nSố yêu cầu xử lý nghiệp vụ liên tục, chưa gồm truyền tệp, hiển thị câu trả lời từng phần của trợ lý và gọi dịch vụ bên ngoài: đề xuất ban đầu 35 yêu cầu/giây; khi mở rộng 220 yêu cầu/giây.\n\n“Thao tác đồng thời” nghĩa là người dùng thực hiện một thao tác đọc hoặc ghi thông thường khoảng mỗi 5–10 giây. Người chỉ đăng nhập hoặc để ứng dụng mở không tính là đang thao tác. Cơ cấu thao tác thường dùng để thử: 70% xem thông tin, 20% lưu/cập nhật/duyệt, 10% xem trạng thái công việc. Đây chỉ là phép kiểm phần thao tác thường; đội phải bổ sung nhịp gửi tin, số cuộc trò chuyện, tải tệp, xử lý video và công việc tự động rồi chạy kết hợp để đánh giá nghiệp vụ thực tế.\n\nSố cuộc trò chuyện và video trên là số yêu cầu hệ thống phải quản lý cùng lúc, không phải số yêu cầu gửi tới dịch vụ bên ngoài bắt buộc chạy song song. Hệ thống xếp hàng theo năng lực thực tế và hiển thị trạng thái chờ. Khi vượt tải thiết kế, hệ thống trả thông báo bận hoặc chờ, không hiển thị đã hoàn tất khi chưa lưu thành công. Kịch bản đo hiệu năng bên dưới phải đáp ứng tải của cả hai giai đoạn.\n\nNếu toàn bộ 150 hoặc 1.000 Talent cùng gửi một tin cho trợ lý trong cùng đợt, hệ thống phải tiếp nhận và theo dõi được yêu cầu hợp lệ, xử lý theo thứ tự và báo trạng thái chờ. Thời gian phản hồi 15 giây và 60 giây không áp dụng cho đợt đồng loạt vượt mức 30 hoặc 100 cuộc đang được kiểm thời gian phản hồi. Đội phải báo thời gian chờ và thời gian xử lý hết đợt trong kết quả thử; hai bên duyệt các mức này trước khi cam kết tình huống đồng loạt.\n\nCấu hình đáp ứng: chưa đủ dữ liệu để chốt số máy hoặc bộ nhớ. Đội phải đo nghiệp vụ thực tế và kiểm hạn mức dịch vụ trước khi xác nhận cấu hình; các cấu hình dự trù hiện có chỉ dùng để bắt đầu thử tải. Tách việc phục vụ người dùng khỏi xử lý AI và lô buổi sáng; cấp riêng tài nguyên cho cơ sở dữ liệu, danh sách công việc và kho ảnh/video. Khi mở rộng, tăng số máy phục vụ và xử lý tự động cùng hạn mức dịch vụ ngoài. Không coi một máy chủ hoặc một gói dịch vụ ban đầu tự đáp ứng 1.000 người cùng thao tác.\n\n### Thời gian phản hồi\n\nVới các chỉ tiêu đề xuất yêu cầu đạt 95%, cứ 100 lần thực hiện thì ít nhất 95 lần phải hoàn tất trong thời gian nêu dưới đây. Đội đo riêng từng loại thao tác, không gộp thao tác nhanh và chậm thành một giá trị trung bình.\n\nMáy chủ xử lý yêu cầu xem dữ liệu thông thường: ít nhất 95% số lần không quá 1 giây. Từ máy chủ nhận yêu cầu tới trả kết quả; không chờ AI/dịch vụ bên ngoài.\n\nMáy chủ xử lý yêu cầu lưu/cập nhật/duyệt thông thường: ít nhất 95% số lần không quá 2 giây. Chỉ báo thành công sau khi lưu bền vững.\n\nMàn hình thông thường sẵn sàng thao tác: ít nhất 95% số lần không quá 3 giây. Thiết bị và mạng chuẩn ở mục 3-11; không gồm tải hết video/tệp gốc.\n\nTrò chuyện với trợ lý AI bắt đầu hiển thị nội dung trả lời: ít nhất 95% số lần không quá 15 giây. Từ gửi tin tới có nội dung AI; gồm chờ hàng đợi, không tính thông báo “đang xử lý” là trả lời.\n\nTrò chuyện với trợ lý AI thông thường hoàn tất: ít nhất 95% số lần không quá 60 giây. Hội thoại chữ với dữ liệu có sẵn; tác vụ phân tích ảnh và video, tìm kiếm ngoài và nhiều bước đo riêng.\n\nTiếp nhận yêu cầu tạo video: ít nhất 95% số lần không quá 3 giây. Trả thông tin theo dõi sau khi lưu công việc; không phải thời gian tạo xong.\n\nTheo dõi video tạo lâu: Sau 10 phút chưa xong, hiển thị rõ đang xử lý hoặc cần kiểm tra. Không tự coi hết thời gian chờ là thất bại hoặc gửi lại tạo video mới.\n\nCập nhật kết quả dịch vụ bên ngoài vào hệ thống: ít nhất 95% số lần không quá 60 giây. Từ lúc máy chủ nhận thông báo kết quả hợp lệ do dịch vụ bên ngoài gửi về tới khi người dùng có thể xem trạng thái mới.\n\nThời gian tạo xong video là mục tiêu phải bổ sung sau khi thử mô hình, độ dài và chất lượng video đã chọn. Chưa cam kết “mọi video xong trong 10 phút”. Với trò chuyện, đội ghi riêng tỷ lệ lỗi dịch vụ bên ngoài và các lượt không hoàn tất; không loại mẫu chậm/hết thời gian chờ khỏi báo cáo để làm kết quả trông tốt hơn thực tế.\n\nTốc độ tải ảnh/video phụ thuộc dung lượng và đường truyền. Đội kiểm tối thiểu ảnh 10 MB và video 100 MB để đo thời gian, tiến độ, lỗi và khả năng tiếp tục sau gián đoạn; đây là bộ tệp thử, chưa xác lập giới hạn tải lên cho người dùng. Hai bên duyệt giới hạn tệp và tổng dung lượng sau khi đội tính chi phí.\n\n### Thời gian chờ và công việc chạy nền\n\nĐội quy định thời gian chờ cho trình duyệt, máy chủ, bộ phận chuyển tiếp kết nối, bộ phận xử lý tự động và từng dịch vụ bên ngoài; ghi rõ mốc chờ kết nối, đọc dữ liệu và tổng thời gian của một công việc. Tác vụ dài trả thông tin theo dõi sau khi lưu, cho phép người dùng đóng/mở lại ứng dụng để xem kết quả. Hết thời gian chờ ở trình duyệt không tự hủy công việc đã nhận.\n\nKhi người dùng gửi lại sau mất kết nối, hệ thống tìm công việc theo thông tin nhận diện yêu cầu trước khi tạo việc mới. Hệ thống chỉ trả “thất bại” khi có đủ bằng chứng; trường hợp chưa biết kết quả phải hiển thị đang kiểm tra. Đội kiểm kịch bản trình duyệt hết thời gian chờ trong khi dịch vụ bên ngoài vẫn xử lý.\n\n### Xử lý buổi sáng và lịch đăng\n\nXử lý buổi sáng: Đọc thông tin, kết quả và chuẩn bị chủ đề trước giờ trợ lý chào Talent.\n\nLô chuẩn bị nội dung buổi sáng: Ít nhất 99% Talent đủ điều kiện có nội dung sẵn sàng trước giờ chào; thử đủ 150 và 1.000 Talent theo khung chuẩn bị 3 giờ trước giờ chào.\n\nTài khoản chưa xử lý kịp: Ghi rõ danh sách, lý do và cảnh báo vận hành trong vòng 5 phút sau hạn; không báo hoàn tất cho tài khoản còn thiếu.\n\nTiếp nhận lịch đăng: ít nhất 95% số lần không quá 5 giây để lưu yêu cầu và trả trạng thái đang xử lý; hiển thị đặt lịch thành công sau khi dịch vụ bên ngoài xác nhận.\n\nGửi bài tới hạn do hệ thống tự điều phối: Ít nhất 99% lệnh bắt đầu gửi trong vòng 60 giây từ giờ hẹn, trong tải đã kiểm và hạn mức đã cấp.\n\nBài đặt lịch ở Upload-Post: Đối soát việc dịch vụ bên ngoài đã nhận lịch và lưu thông tin xác nhận; thời gian bài xuất hiện trên mạng xã hội báo riêng theo kết quả thử thật.\n\nThu thập số liệu mạng xã hội: Chạy ít nhất một lần/ngày; lưu và hiển thị thời điểm cập nhật gần nhất.\n\nĐội không dùng thời điểm gửi yêu cầu làm thời điểm bài đã xuất hiện công khai trên mạng xã hội. Giới hạn và xử lý của mạng xã hội/Upload-Post có thể gây trễ hoặc từ chối đăng; hệ thống phải hiển thị trạng thái thực tế. Việc nhắc lại, thử lại hay đăng bù tuân theo quy tắc nghiệp vụ hiện hành.\n\nChi phí mở rộng: Cung cấp ước tính phí dịch vụ ngoài theo số Talent, dung lượng và mức sử dụng.\n\nTổng chi phí tới 1.000 Talent: Ước tính riêng cho các mức 150, 300, 500 và 1.000 Talent, ghi giả định lượt trò chuyện, ảnh, video, số bài, thời gian giữ tệp, sao lưu, phí thanh toán và khoản vượt gói. Tách phí trả nhà cung cấp, phí bảo trì và tiền thu Talent; cảnh báo theo ngân sách được duyệt. Đội lập kịch bản và xác minh báo giá; Adesso duyệt ngân sách từng mốc.\n\n",
+      "changes": [
+        "Theo người dùng chốt mức thiết kế30Talent+5Manager và10lượtAI tương tác song song tổng cộng",
+        "Rút gọn3-2, bỏ mục tiêu155/1010và35/220request/giây; giữ quy mô tài khoản150/1000",
+        "Làm rõ thời gian chat áp dụng trong10yêu cầu và gồm queue wait; batch riêng",
+        "Đồng bộ3-11 và đánh dấu phương án sizing cũ là lịch sử tạiPhan_tich18 §12.3"
+      ],
+      "classification": "DESIGN_TARGET_ACCEPTED_BY_USER_NOT_MEASURED_CAPACITY; không phải xác nhận khách Adesso hoặc gatePASS",
+      "internal_design": {
+        "path": "Phan_tich/18_Ha_tang_he_thong.md",
+        "sha256": "7e3466400c6d9e3b519c409d242536a02c83b133ef4c6e70c8e8cd21b4405c95"
+      }
+    },
+    {
+      "version": "0.13",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "3cf39abb7891fd7f06dfb5a3fe090539ae9a49659e256e44fcbdf00f0b14806a"
+      },
+      "changes": [
+        "Theo yêu cầu người dùng giảm mục tiêu mở màn hình từ3xuống2giây; AI bắt đầu từ15xuống10giây; hoàn tất dưới60giây",
+        "Giữ tỷ lệ95% và phạm vi10yêu cầuAI đang chờ/xử lý, tính từ gửi gồm queue wait"
+      ],
+      "classification": "PROPOSED_PERFORMANCE_TARGET_NOT_MEASURED",
+      "validation": "Đối chiếu đúng đoạn3-2, giữ phần còn lại; không suy mục tiêu đã đạt."
+    },
+    {
+      "version": "0.14",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "9c85a7739388e6648ac2ffcfdec2e6f005fa564aa09d60e39446fd9d91389272"
+      },
+      "previous_section_3_2": "## 3-2. Hiệu năng và khả năng mở rộng\n\nQuy mô: Quản lý 150 Talent khi bắt đầu vận hành, thiết kế để mở rộng tới 1.000 Talent.\n\nSử dụng đồng thời: Mức thiết kế ban đầu là 30 Talent và 5 quản lý cùng thao tác. Số tài khoản đang đăng nhập không tính là số người đang thao tác.\n\nXử lý trợ lý AI: Tối đa 10 lượt xử lý song song trên toàn hệ thống, dùng chung cho Talent và quản lý. Yêu cầu tiếp theo được xếp hàng và hiển thị trạng thái chờ; việc xử lý buổi sáng được bố trí riêng để không chiếm các lượt này.\n\nThời gian phản hồi đề xuất: Ít nhất 95% lần mở màn hình thông thường không quá 2 giây. Với hội thoại chữ thông thường, ít nhất 95% lượt bắt đầu trả lời trong 10 giây và hoàn tất dưới 60 giây, tính từ khi gửi và gồm thời gian chờ; áp dụng khi số lượt AI đang chờ hoặc xử lý không quá 10. Khi nhiều yêu cầu đến cùng lúc vượt mức này, ứng dụng báo chờ, không áp dụng hai mốc trả lời trên.\n\nTạo video: Tiếp nhận yêu cầu trong 3 giây ở ít nhất 95% số lần, cho phép đóng ứng dụng và xem lại kết quả sau. Thời gian tạo xong phụ thuộc dịch vụ; sau 10 phút chưa xong, hiển thị rõ trạng thái và không tự tạo thêm yêu cầu trùng.\n\nXử lý buổi sáng: Chuẩn bị thông tin và chủ đề trước giờ chào cho ít nhất 99% Talent đủ điều kiện; dự kiến bắt đầu trước 3 giờ. Những trường hợp chưa xong được báo cho vận hành trong 5 phút sau hạn.\n\nĐăng theo lịch: Lưu yêu cầu trong 5 giây ở ít nhất 95% số lần. Với lịch do hệ thống điều phối, ít nhất 99% lệnh bắt đầu gửi trong 60 giây từ giờ hẹn, khi còn đủ hạn mức dịch vụ. Chỉ báo đặt lịch thành công khi dịch vụ xác nhận; thời gian bài xuất hiện thực tế phụ thuộc mạng xã hội.\n\nẢnh, video và số liệu: Giới hạn mỗi tệp và tổng dung lượng được chốt trong thiết kế. Số liệu mạng xã hội được lấy ít nhất một lần/ngày và hiển thị thời điểm cập nhật.\n\nMất kết nối: Công việc đã tiếp nhận tiếp tục được theo dõi; khi mở lại, ứng dụng lấy trạng thái cũ, không tự gửi lại gây trùng.\n\nMở rộng: Tổng số 1.000 Talent không đồng nghĩa 1.000 người cùng thao tác hoặc cùng được AI trả lời ngay. Khi tăng tải đồng thời, bổ sung tài nguyên và hạn mức dịch vụ, kèm dự toán chi phí cho các mốc 150, 300, 500 và 1.000 Talent.\n\nCác mức trên là chỉ tiêu thiết kế đề xuất, chưa phải kết quả đo năng lực thực tế.\n\n",
+      "changes": [
+        "Gộp xử lý BE thông thường và tiếp nhận công việc thành95%trong2giây, thay mức tiếp nhậnvideo3giây/lưulịch5giây",
+        "Giữ đo mở màn hình2giây end-to-end riêng với BE2giây; mục tiêuAI10/60giây gồm queue wait giữ nguyên",
+        "Gộp mô tả phụ thuộc provider; không coi tiếp nhận là hoàn tất"
+      ],
+      "classification": "PROPOSED_TARGET_NOT_MEASURED",
+      "validation": "Đối chiếu3-2, bỏ mục tiêu tiếp nhận trùng và giữ các điều kiện đo."
+    },
+    {
+      "version": "0.15",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "fcc737cc325a4732066351fa2d60d367d532dae7892c63405ab45057c0f9ba3a"
+      },
+      "changes": [
+        "Đổi lịch buổi sáng từ cố định trước3giờ sang bắt đầu5–6giờJST, xong trước giờchào8giờ mặc định",
+        "Đồng bộ kịch bản nghiệm thu3-11, giữ tỷ lệ99%và cảnh báo5phút; đổi giờchào thì điều chỉnh lịch"
+      ],
+      "classification": "PROPOSED_SCHEDULE_NOT_MEASURED",
+      "validation": "Kiểm thay đúng3-2/3-11, không đổi code hoặc lịch vận hành thực."
+    },
+    {
+      "version": "0.16",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "8f98f48ab4c2c360d668d32963390391f82c1b6fee3c4699d09298968a3ffd40"
+      },
+      "changes": [
+        "Đề xuất ảnh20MB JPEG/PNG/HEIC; video300MB MP4/MOV,3giây–3phút",
+        "Tách giới hạn tệp đầu vào khỏi yêu cầu SNS và tổng dung lượng lưu trữ"
+      ],
+      "basis": [
+        {
+          "path": "SCD/EP05_Tu_lieu_va_video_AI/6-3_Gui_anh_va_video.md",
+          "locator": "§thông số, S05-01: nội bộ đề xuất20MBảnh/300MBvideo và format",
+          "sha256": "b14ce69dd11217fcf0667996e414cf96bafd786523efa5dfd025d74697d5126d"
+        },
+        {
+          "path": "agent_spec/upload-post-agent-spec/HUONG_DAN_TICH_HOP_VI.md",
+          "locator": "§7.4: đề xuất chuẩn hóa và video3giây–3phút; không là khách duyệt",
+          "sha256": "7d58e12db0416989a8c16f3fe8f8983c58dee726fef3191cd3d18aabbe36161f"
+        },
+        {
+          "url": "https://docs.upload-post.com/api/upload-video/",
+          "locator": "Common Parameters: giới hạn truyền và giới hạn riêng theo nền tảng"
+        },
+        {
+          "url": "https://docs.upload-post.com/api/upload-photo/",
+          "locator": "Common Parameters: nhậnjpg/png; yêu cầu theo platform"
+        }
+      ],
+      "classification": "PROPOSAL_INPUT_FILE_LIMITS_NOT_CUSTOMER_CONFIRMED_NOT_IMPLEMENTED",
+      "validation": "Đối chiếu tham số nội bộ; chưa kiểm chuyển mã/HEIC hoặc thay code."
+    },
+    {
+      "version": "0.17",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "478d65ac39d8261c0c760b8ab7a96bf89def2240dad21d5239e3de700ca1ae90"
+      },
+      "previous_section_3_3": "## 3-3. Thời gian hoạt động và xử lý sự cố\n\nDịch vụ ngoài gặp sự cố: Chỉ dừng chức năng bị ảnh hưởng; các chức năng khác tiếp tục dùng được khi thành phần cần thiết còn hoạt động.\n\nGiờ phục vụ dự kiến: 24 giờ/ngày, 7 ngày/tuần.\n\nMức sẵn sàng chức năng cốt lõi: Đạt tỷ lệ hoạt động 99,5% theo tháng, tương đương tối đa 3 giờ 36 phút không sẵn sàng trong tháng 30 ngày.\n\nChức năng cốt lõi: Đăng nhập, xem dữ liệu và lưu thao tác nghiệp vụ không cần chờ AI/mạng xã hội.\n\nCách đo: Kiểm tra độc lập mỗi phút; một phút không đạt nếu luồng đăng nhập/xem/lưu kiểm tra không hoàn tất trong 10 giây; tính cả lỗi hạ tầng và cơ sở dữ liệu/xác thực.\n\nBảo trì có kế hoạch: Dự kiến tối đa 2 giờ/tháng, thông báo trước ít nhất 3 ngày làm việc và tránh khung xử lý buổi sáng; thời gian gây gián đoạn vẫn tính vào mục tiêu tỷ lệ hoạt động trên.\n\nChức năng phụ thuộc dịch vụ bên ngoài: Đo riêng tỷ lệ thành công và thời gian chờ của trò chuyện, video, đăng mạng xã hội, thanh toán; báo cáo cả ảnh hưởng tới người dùng.\n\nTỷ lệ hoạt động nêu trên là mục tiêu chất lượng đề xuất. Nếu hai bên muốn cam kết trong hợp đồng, cần thống nhất trách nhiệm, mức bồi hoàn và các trường hợp loại trừ. Bản này chưa xác lập cam kết hợp đồng hoặc hỗ trợ liên tục cả ngày lẫn đêm. Một sự cố có thể làm tháng đó không đạt tỷ lệ hoạt động mục tiêu dù đội vẫn tiếp nhận sự cố đúng giờ; hai chỉ tiêu được báo cáo riêng.\n\n",
+      "changes": [
+        "Viết ngắn3-3 theo giờ sử dụng, tổng gián đoạn/tháng, bảo trì, lỗi dịch vụ ngoài và giờ hỗ trợ",
+        "Giữ99.5%/3giờ36phút, bảo trì2giờ và báo trước3ngày; chỉ rõ tổng tháng không là thời gian sửa từng sự cố",
+        "Lưu cách đo chi tiết cũ trong lịch sử, bỏ thuật ngữ khỏi bản khách"
+      ],
+      "classification": "EDITORIAL_SIMPLIFICATION_OF_PROPOSED_TARGETS",
+      "validation": "Giữ ý nghĩa và các ngưỡng, tham chiếu3-9/3-10."
+    },
+    {
+      "version": "0.18",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "cfb5b33d2ffa0dc4dc2e5dc734381d5d4a49d1f0583526d19ab1065f9bb67a06"
+      },
+      "user_text": "対応時間は平日のベトナム時間 8:30～17:30（日本時間 10:30～19:30）、祝日はベトナム",
+      "changes": [
+        "Thay thời gian hỗ trợ ở3-3và3-10 bằng thứHai–thứSáu8:30–17:30VN/10:30–19:30JP, nghỉ lễTếtVN",
+        "Bỏ đoạn bảo trì định kỳ2giờ/tháng và báo trước3ngày ở3-3; bỏ bảo trì khỏi tiêu đề3-10",
+        "Giữ điều khoản hợp đồng bảo trì sau vận hành tại3-8 vì là phạm vi thương mại nguồn, không phải lịch hỗ trợ"
+      ],
+      "classification": "USER_DIRECTED_DOCUMENT_CHANGE_NOT_EXTERNAL_CUSTOMER_SIGNOFF",
+      "validation": "Đối chiếu hai đoạn giờ hỗ trợ và xóa lịch bảo trì; không đổi lịch vận hành hoặc code."
+    },
+    {
+      "version": "0.19",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "a30715d35c2b3afc81fbe98396669d6adb12e32d5ee547e14e23e76b35fa9724"
+      },
+      "changes": [
+        "Theo yêu cầu người dùng, ghi rõ thời gian gián đoạn3-3bao gồm thời gian dừng để bảo trì; giữ99.5%và3giờ36phút/tháng30ngày"
+      ],
+      "validation": "Đối chiếu đoạn3-3; không bổ sung lại lịch bảo trì riêng."
+    },
+    {
+      "version": "0.20",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "64874e942acce0f3b5d5a535e5d629ae7535b5cefac90fd49cc8656fe2348d99"
+      },
+      "changes": [
+        "Theo chỉ đạo người dùng, đổi tổng gián đoạn thành tối đa5giờ/tháng30ngày, bao gồm bảo trì; bỏ99.5%và3giờ36phút"
+      ],
+      "classification": "USER_SELECTED_PROPOSED_TARGET_NOT_OPERATIONAL_MEASUREMENT",
+      "validation": "Đối chiếu3-3 và giữ nguyên giờ hỗ trợ."
+    },
+    {
+      "version": "0.21",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "61774cd4ce168143efafcb028cc6d4cfac9453dfb23140015c893d63356512b6"
+      },
+      "previous_sections_3_3_to_3_11": " Thời gian hoạt động và xử lý sự cố\n\nThời gian sử dụng: Hệ thống phục vụ cả ngày, kể cả cuối tuần.\n\nThời gian gián đoạn: Đề xuất tổng thời gian không đăng nhập, xem hoặc lưu dữ liệu được, bao gồm cả thời gian dừng để bảo trì, không vượt quá 3 giờ 36 phút trong tháng 30 ngày, tương đương hoạt động ít nhất 99,5% thời gian. Đây là tổng thời gian gián đoạn trong tháng, không phải thời gian được phép xử lý cho mỗi sự cố.\n\nThời gian hỗ trợ: Thứ Hai–thứ Sáu, 8:30–17:30 giờ Việt Nam (10:30–19:30 giờ Nhật), trừ ngày lễ, Tết theo lịch Việt Nam. Nội dung hỗ trợ theo mục 3-10; sao lưu và khôi phục theo mục 3-9. Mức thời gian gián đoạn trên là đề xuất, chưa phải cam kết bồi hoàn trong hợp đồng.\n\n## 3-4. Ghi nhận thao tác và kết quả xử lý\n\nLịch sử xem dữ liệu: Khi quản lý xem thông tin, hội thoại hoặc kết quả Talent, ghi người xem, thời điểm và Talent liên quan; không cho sửa lịch sử xem.\n\nLịch sử thao tác: Ghi việc duyệt, đổi trạng thái, dừng/tiếp tục đăng bài và thay đổi cài đặt.\n\nLịch sử xử lý: Ghi kết quả đăng bài, lấy số liệu, tạo video và tính tiền; thời hạn lưu cần được thống nhất.\n\nNhật ký và thời hạn giữ: Đề xuất giữ nhật ký kỹ thuật 30 ngày; lịch sử xem, thao tác và kết quả nghiệp vụ 180 ngày, có quyền xem và không cho sửa. Khi xóa Talent, xóa hoặc loại thông tin nhận diện trong nhật ký theo chính sách đã duyệt; không dùng mức 180 ngày để tự quyết thời hạn giữ dữ liệu kế toán. Đội tính dung lượng và cách thực hiện; Adesso duyệt chính sách; lịch sử tính tiền tiếp tục theo câu đang mở.\n\nNhật ký cho phép liên kết từng yêu cầu với công việc và kết quả tại dịch vụ ngoài để tra cứu. Không ghi khóa bí mật, đường dẫn có kèm quyền truy cập tệp hoặc toàn bộ hội thoại vào nhật ký kỹ thuật.\n\n## 3-5. Bảo mật và quyền truy cập\n\nBảo mật: Mã hóa đường truyền và dữ liệu lưu; không để lộ thông tin kết nối bí mật trên màn hình hoặc nhật ký.\n\nĐăng nhập của quản lý: Xác thực hai bước. Lần đầu có hướng dẫn quét hình đăng ký bằng ứng dụng xác thực và nhập số xác nhận; khi vô hiệu hóa người phụ trách phải chuyển Talent sang người khác trước.\n\nĐăng nhập và quản lý nghỉ việc: Giữ xác thực hai bước; áp dụng yêu cầu đăng nhập lại sau 30 phút không thao tác ở màn quản lý theo nội dung đang áp dụng. Bàn giao Talent trước khi khóa tài khoản, chặn phiên cũ theo thời gian đề xuất ở mục 3-5; việc người phụ trách vắng mặt/bỏ sót và người nhận thông báo khác vẫn cần Adesso quyết định. Đội kiểm cách thu hồi quyền; Adesso tiếp tục quyết định phần thông báo còn mở.\n\nQuản lý truy cập qua ChatGPT: Dùng tài khoản quản lý đã xác thực, giữ cùng phạm vi quyền như ứng dụng; ghi người thực hiện và kết quả cập nhật. Vô hiệu hóa quản lý phải chặn cả đường truy cập này. Không mặc định tài khoản ChatGPT tự có quyền xem dữ liệu Talent. Đội đề xuất và kiểm chứng cách kiểm quyền; Adesso duyệt người được truy cập và gói tài khoản.\n\nTruyền dữ liệu: Mã hóa đường truyền của ứng dụng và kết nối tới dịch vụ có hỗ trợ; không đưa khóa bí mật vào trình duyệt hoặc nhật ký.\n\nQuản lý: Xác thực hai bước; kiểm quyền tại máy chủ; chuyển người phụ trách trước khi vô hiệu hóa tài khoản.\n\nThu hồi quyền: Trong vòng 5 phút sau khi vô hiệu hóa, yêu cầu mới từ phiên cũ không còn truy cập được dữ liệu được bảo vệ.\n\nSửa dữ liệu đồng thời: Phát hiện xung đột trên dữ liệu nhạy cảm như lịch đăng, trạng thái và cài đặt tính tiền; không âm thầm ghi đè.\n\nSự kiện/yêu cầu lặp: Kiểm thử thông báo kết quả do dịch vụ ngoài gửi lặp và gửi lại yêu cầu; không tạo hiệu lực nghiệp vụ trùng.\n\nKiểm tra trước vận hành: Không còn lỗ hổng mức nghiêm trọng/cao chưa xử lý hoặc chưa có quyết định chấp nhận rủi ro của người có thẩm quyền.\n\nKiểm thử xâm nhập do đơn vị độc lập, nếu yêu cầu, cần xác nhận phạm vi và ngân sách riêng.\n\nVới tệp tải lên, đội kiểm quyền sở hữu, loại tệp thực tế, kích thước và đường dẫn truy cập; chặn truy cập chéo Talent. Đội trình phạm vi quét mã độc, trạng thái cách ly và cách xử lý khi công cụ quét lỗi trước khi chốt chi phí. Chỉ chia sẻ tệp cho AI/dịch vụ bên ngoài sau khi hoàn tất các kiểm tra an toàn đã duyệt. Đường dẫn truy cập có thời hạn; đội kiểm thời hạn phù hợp với thời gian dịch vụ bên ngoài tải tệp, không mặc định hết hạn ngắn là luôn phù hợp.\n\n## 3-6. Dữ liệu cá nhân và nơi lưu dữ liệu\n\nĐồng ý sử dụng dữ liệu: Adesso chịu trách nhiệm lấy sự đồng ý về cung cấp dữ liệu cho dịch vụ ngoài và quyền sử dụng hình ảnh. Nếu đồng ý đã có bao gồm đúng phạm vi thì không yêu cầu lấy lại chỉ để lặp thủ tục.\n\nTalent chưa thành niên: Adesso lấy đồng ý của phụ huynh theo hợp đồng; bản yêu cầu không đặt việc lưu hồ sơ đồng ý đó trong hệ thống.\n\nDữ liệu phát triển và kiểm thử: Ưu tiên dữ liệu giả; chỉ dùng dữ liệu Talent thật trong phạm vi đã có chấp thuận bằng văn bản.\n\nTrợ lý sử dụng dữ liệu: Chỉ gửi thông tin cần cho hội thoại và tạo bài. Bản yêu cầu yêu cầu không dùng dữ liệu đó để huấn luyện; đội phải kiểm đúng điều kiện dịch vụ, gói hợp đồng và cài đặt trước khi xác nhận đáp ứng.\n\nPhạm vi dữ liệu chuyển ra ngoài: Với từng dịch vụ, ghi rõ loại dữ liệu, mục đích, nơi xử lý/lưu, thời gian giữ, quyền sử dụng dữ liệu và cách yêu cầu xóa. Adesso duyệt nội dung thông báo và đồng ý phù hợp sau khi đội cung cấp thông tin nhà cung cấp. Đội xác minh theo đúng dịch vụ và hợp đồng; Adesso rà chính sách và quyết định phạm vi được phép.\n\nNgười dùng biết đang tương tác với trợ lý: Hiển thị rõ đây là trợ lý trí tuệ nhân tạo và nhắc kiểm tra nội dung trước khi dùng; gắn nhãn nội dung do trí tuệ nhân tạo tạo khi nền tảng yêu cầu. Đội kiểm điều kiện tuổi và cách xử lý nội dung không phù hợp, nhất là với trẻ em. Đội kiểm dịch vụ/nền tảng; Adesso duyệt nội dung hướng dẫn và cách vận hành.\n\nNơi lưu dữ liệu: Giữ quyết định trợ lý đọc/ghi cơ sở dữ liệu, đồng thời làm rõ nội dung vẫn được mô tả lưu trên OneDrive. Trước mắt không tự kết luận OneDrive chỉ giữ bản xuất. Với ảnh/video/tệp, đội trình phương án lưu trữ kèm phép đo và tổng chi phí rồi hai bên chọn. Đội/FCP làm rõ mô tả; Adesso duyệt phần ảnh hưởng vận hành, phạm vi và chi phí.\n\nNgừng sử dụng: Theo nội dung đang áp dụng: giữ dữ liệu sáu tháng rồi tự xóa; không chuyển lại từ ngừng sử dụng sang đang sử dụng, email còn tồn tại không đăng ký lại được. Phạm vi xóa và ngoại lệ lịch sử tính tiền vẫn cần làm rõ.\n\nNgười dùng yêu cầu xem hoặc xóa dữ liệu: Adesso tiếp nhận và xác minh người yêu cầu; đội hỗ trợ xác định phạm vi, xuất hoặc xóa theo quyết định đã duyệt. Có danh sách theo dõi để xử lý dữ liệu tại dịch vụ ngoài và ngăn bản sao lưu khôi phục lại dữ liệu đã xóa. Adesso quy định đầu mối và thời hạn theo chính sách; đội xác minh khả năng thực hiện, không tự đặt cam kết pháp lý.\n\n## 3-7. Giới hạn dịch vụ ngoài và bảo vệ tài khoản mạng xã hội\n\nTài khoản mạng xã hội: Có biện pháp giảm rủi ro bị khóa nhưng không bảo đảm không bị hạn chế. Giữ nguyên cảnh báo về sự khác nhau giữa cách đăng dự kiến và phản hồi TikTok; việc dịch vụ trung gian có kết nối không tự chứng minh toàn bộ cách sử dụng đã được nền tảng chấp thuận.\n\nĐiều kiện sử dụng dịch vụ: Tài khoản phải đáp ứng điều kiện tuổi của từng mạng xã hội; cách kiểm quyền đối với nội dung và tư liệu cần thống nhất trong thiết kế.\n\nChống khóa và giới hạn đăng: Tôn trọng giới hạn theo tài khoản và thời gian, chống nội dung trùng, dừng gửi khi bị hạn chế và báo người phụ trách. Kiểm cách đặt lịch/hủy lịch ở dịch vụ ngoài. Không dùng nhiều khóa hoặc tài khoản để né giới hạn; không cam kết nền tảng sẽ không khóa. Đội kiểm khả năng và quy định; Adesso quyết định cách vận hành/rủi ro trong thẩm quyền của mình.\n\nĐội ghi rõ năng lực thực tế cho Upload-Post, AI, tạo video, kho tệp và thanh toán theo đúng gói hợp đồng. Nội dung bao gồm số hồ sơ, tốc độ gọi dịch vụ, số lịch chờ, giới hạn từng tài khoản mạng xã hội, dung lượng và chi phí vượt mức.\n\nCảnh báo hạn mức theo kỳ: Cảnh báo ở 80% và 95% hạn mức đo được; hạn mức tốc độ điều phối theo phản hồi dịch vụ bên ngoài.\n\nDịch vụ báo vượt số lượt gọi cho phép: Chờ theo thời điểm dịch vụ bên ngoài cho phép; không đổi khóa hoặc tài khoản để né giới hạn.\n\nThao tác có thể gây đăng/thu tiền trùng: Có cách nhận biết yêu cầu trùng và đối soát trạng thái trước khi gửi lại.\n\nDịch vụ bên ngoài lỗi: Cô lập chức năng bị ảnh hưởng; vẫn cho xem dữ liệu đã có nếu các thành phần cần thiết còn hoạt động.\n\nMở rộng tới 1.000 Talent: Hoàn tất hợp đồng/hạn mức, kiểm lịch đăng cao điểm và chi phí trước khi nhận tải thực.\n\n225 hồ sơ trong một gói Upload-Post không được mặc định là trần toàn hệ thống. Khả năng mua thêm hoặc đổi gói cho 1.000 Talent cần dịch vụ bên ngoài xác nhận. Không cam kết số bài không giới hạn vượt quy định nền tảng. Giới hạn kỹ thuật cũng không tự thay quyết định nghiệp vụ về số lần Talent nhờ AI viết lại.\n\n### Kiểm soát tốc độ, thử lại và kết quả chưa xác định\n\nĐội cấu hình riêng số yêu cầu được chạy cùng lúc và số lần gọi trong một khoảng thời gian. Chạy tuần tự một bộ phận xử lý tự động chưa chứng minh tuân thủ hạn mức gọi dịch vụ. Nếu nhiều bộ phận xử lý tự động dùng chung tài khoản dịch vụ bên ngoài, chúng phải dùng chung ngân sách gọi theo tài khoản và kỳ giới hạn.\n\nĐọc dữ liệu lỗi tạm thời: Thử lại có giãn khoảng chờ, số lần và hạn tổng; ghi cấu hình theo dịch vụ bên ngoài.\n\nGửi đăng bài, thanh toán hoặc tạo video bị hết thời gian chờ: Đối soát thông tin nhận diện yêu cầu/kết quả ở dịch vụ bên ngoài trước khi gửi lại; chưa rõ kết quả thì giữ trạng thái cần đối soát.\n\nLỗi xác thực hoặc dữ liệu không hợp lệ: Dừng lặp tự động, báo đúng bên xử lý; không tiêu hao hạn mức bằng cùng yêu cầu lỗi.\n\nCông việc hết số lần thử: Chuyển sang danh sách lỗi cần xử lý, giữ lịch sử và đầu mối phụ trách; không âm thầm bỏ việc.\n\nNgười vận hành gửi lại: Kiểm quyền, ghi lý do và nhật ký; thực hiện quy tắc nghiệp vụ và chống trùng như luồng tự động.\n\nĐội quy định rõ cách thử lại tại bộ phận kết nối dịch vụ, danh sách công việc chờ và ứng dụng, kiểm tổng số lần gọi khi các lớp cùng hoạt động. Phép thử phải bao gồm bộ phận xử lý tự động dừng sau khi dịch vụ bên ngoài nhận lệnh nhưng trước khi hệ thống lưu kết quả. Không dùng cơ chế thử lại khi gặp lỗi để tự đăng bù bài quá giờ hoặc thay quyết định nghiệp vụ đã chốt.\n\n## 3-8. Điều kiện tiền đề và giới hạn trách nhiệm\n\nAdesso chuẩn bị điều khoản sử dụng; hướng dẫn đăng ký và trang giới thiệu; nội dung giá, cách thu tiền và thông tin công khai bắt buộc; nội dung thư/thông báo và địa chỉ nhận của quản lý; logo, màu sắc, hình trợ lý; rà danh sách từ không được dùng; đăng ký thông tin Talent, mục tiêu, kinh nghiệm và chỉ dẫn cho trợ lý trước khi sử dụng. Đội lập danh sách từng tài liệu, bên cung cấp và ngày cần có để hai bên xác nhận.\n\nAdesso quyết định đơn giá tạo video, ký hợp đồng và hoàn thành thủ tục xét duyệt dịch vụ ngoài, cung cấp tài khoản/kết nối phục vụ phát triển và thử nghiệm, đồng thời chịu các khoản phí dịch vụ đã thống nhất. Chi phí trợ lý do Adesso trả và phí thu Talent là hai khoản cần trình bày riêng.\n\nĐầu vào nghiệm thu: Bổ sung chính sách riêng tư, Talent/tài khoản mạng xã hội được phép thử, môi trường thanh toán thử, tên miền và địa chỉ gửi thư, gói ChatGPT cho quản lý. Hai bên lập người phụ trách và hạn cung cấp trước khi bắt đầu kiểm thử liên quan. Adesso chuẩn bị nội dung/tài khoản; đội nêu rõ điều kiện và ngày cần có.\n\nThông báo điện thoại: Có thể chậm hoặc không tới do thiết bị, cài đặt và kết nối; không bảo đảm người dùng nhận mọi thông báo.\n\nNội dung và phán đoán của trợ lý: Không bảo đảm mọi câu trả lời, bài viết, video, kiểm tra từ cấm hoặc đánh giá của trợ lý đều đúng. Adesso điều chỉnh chỉ dẫn; chức năng chạy sai mô tả vẫn phải được xử lý như lỗi.\n\nThanh toán: Phương thức qua nhà mạng có thể không dùng được; lựa chọn đơn vị thanh toán và chu kỳ thu còn cần kiểm tra trước khi cam kết.\n\nBảo trì sau vận hành: Thỏa thuận trong hợp đồng riêng, bao gồm xử lý khi dịch vụ ngoài thay đổi tính năng, giá hoặc điều khoản.\n\nCác quyết định còn mở về người nhận thông báo, lịch sử tính tiền, giá video và đơn vị/chu kỳ thanh toán tiếp tục được xử lý theo nội dung đang theo dõi. Đội không hỏi lại những ý đã có câu trả lời.\n\n## 3-9. Sao lưu và khôi phục dữ liệu\n\nSao lưu: Có sao lưu dữ liệu; phạm vi, tần suất và thời gian lưu cần được thống nhất. Bảng hỏi đáp đã ghi nhận trợ lý đọc/ghi trực tiếp cơ sở dữ liệu hệ thống và dữ liệu được sao lưu.\n\nDữ liệu nghiệp vụ: Sao lưu cơ sở dữ liệu tối thiểu một lần/ngày, gồm dữ liệu Talent, hội thoại, chỉ dẫn AI, lịch đăng, quyền và dữ liệu tính tiền do hệ thống quản lý.\n\nẢnh/video/tệp hệ thống quản lý: Sao lưu hoặc cơ chế khôi phục độc lập ít nhất một lần/ngày; kiểm đủ nội dung tệp và thông tin liên kết, không chỉ sao lưu đường dẫn.\n\nCấu hình triển khai: Lưu phiên bản mã và cấu hình để dựng lại dịch vụ; quản lý bí mật và quy trình khôi phục quyền truy cập riêng.\n\nThời gian giữ bản sao: Tối thiểu 7 bản hằng ngày và 4 bản hằng tuần; bản sao hết hạn phải được xóa theo lịch.\n\nMức mất dữ liệu tối đa của cơ sở dữ liệu và tệp được sao lưu: Tối đa 24 giờ: điểm dữ liệu khôi phục không cũ hơn 24 giờ so với thời điểm sự cố.\n\nThời gian khôi phục chức năng chính: Trong 8 giờ làm việc kể từ khi sự cố được phát hiện hoặc tiếp nhận trong giờ hỗ trợ; đo tới khi đăng nhập, xem/lưu và hàng đợi quan trọng hoạt động lại.\n\nKhôi phục ảnh và video: Mục tiêu trong 2 ngày làm việc; khi chờ, hiển thị rõ tệp chưa sẵn sàng; kiểm tại dung lượng thực trước mỗi mốc mở rộng.\n\nGiám sát sao lưu: Kiểm tra sau mỗi lần chạy, báo vận hành trong 30 phút sau khi phát hiện lỗi; theo dõi tuổi bản sao thành công mới nhất để kiểm mức mất dữ liệu tối đa.\n\nKiểm thử khôi phục: Trước vận hành, trước mốc 1.000 Talent, sau thay đổi lớn về kho/sao lưu và tối thiểu mỗi quý khi có hợp đồng vận hành.\n\nBảo vệ bản sao: Mã hóa, giới hạn quyền; lưu bản sao ngoài máy chủ ứng dụng và tách quyền xóa khỏi tài khoản ứng dụng.\n\nKhôi phục phải kiểm cả lịch đăng, yêu cầu chưa hoàn tất và giao dịch đã gửi ra ngoài để tránh đăng hoặc thu tiền trùng. Thời gian khôi phục trên tính theo giờ làm việc; thời gian gián đoạn thực ngoài giờ có thể dài hơn. Muốn tính thời gian khôi phục liên tục cả ngày lẫn đêm cần thêm trực vận hành và ngân sách.\n\nĐội lập danh mục sao lưu riêng cho cơ sở dữ liệu, kho tệp và OneDrive sau khi hai bên thống nhất vai trò từng nơi lưu. Sao lưu cơ sở dữ liệu không tự chứng minh tệp bên ngoài đã được bảo vệ. Dữ liệu chỉ do dịch vụ bên ngoài giữ phải có khả năng xuất/khôi phục được xác minh trước khi đưa vào cam kết.\n\nKhi khôi phục bản sao cũ, đội áp dụng lại danh sách dữ liệu đã yêu cầu xóa để tránh đưa dữ liệu đó trở lại sử dụng. Chính sách xóa sau sáu tháng, ngoại lệ dữ liệu kế toán và thời gian bản sao hết hạn cần thống nhất trong chính sách dữ liệu.\n\n### Quy trình khôi phục và điều kiện hoàn tất\n\n1. Đầu mối kỹ thuật và đại diện nghiệp vụ xác nhận phạm vi sự cố, điểm dữ liệu khôi phục và việc cần tạm dừng để tránh phát sinh giao dịch trùng.\n2. Đội khôi phục vào môi trường cô lập, chặn đăng mạng xã hội, gửi email, thanh toán và yêu cầu tạo video thật; bảo vệ dữ liệu cá nhân và giới hạn người truy cập.\n3. Đội kiểm tính nhất quán giữa cơ sở dữ liệu, tệp, quyền, lịch đăng và công việc đang chờ; đối soát các lệnh dịch vụ bên ngoài đã nhận sau điểm sao lưu. Khi dữ liệu khôi phục cho thấy phiên đã bị thu hồi còn hiệu lực, đội vô hiệu hóa lại trước khi mở truy cập.\n4. Người có trách nhiệm duyệt chuyển sang môi trường đã khôi phục; đội ghi thời điểm mở lại, giao dịch cần xử lý tiếp và kết quả đo mức mất dữ liệu và thời gian khôi phục. Không ghi đè dữ liệu đang phục vụ khi chưa có quyết định khôi phục và phương án quay lui.\n\nViệc giữ dữ liệu trên ổ đĩa máy chủ, lưu danh sách công việc và giữ các phiên bản tệp cần có phương án riêng; các cơ chế này chưa đủ để chứng minh đã có bản sao lưu an toàn. Đội phải chứng minh có thể dựng lại hàng đợi từ dữ liệu bền vững hoặc khôi phục nguồn hàng đợi, không phụ thuộc vào bản lưu duy nhất trên máy ứng dụng. Nếu chọn khả năng khôi phục dữ liệu về một thời điểm cụ thể, đội phải ghi rõ có thể quay lại trong khoảng thời gian nào, chi phí và kết quả thử. Tính năng này cần hai bên duyệt riêng.\n\nBiên bản khôi phục ghi số bản ghi/tệp đối chiếu, dữ liệu thiếu hoặc lỗi, lịch/giao dịch đã đối soát, thời gian từng bước và người duyệt. Đội kiểm thử ở dung lượng dự kiến cho từng mốc; số Talent đơn thuần chưa đủ xác định thời gian phục hồi ảnh và video.\n\n## 3-10. Giám sát và hỗ trợ\n\nThời gian tiếp nhận sự cố và trách nhiệm vận hành dưới đây là đề xuất áp dụng khi hai bên ký hợp đồng vận hành.\n\nThời gian hỗ trợ: Thứ Hai–thứ Sáu, 8:30–17:30 giờ Việt Nam (10:30–19:30 giờ Nhật), trừ ngày lễ, Tết theo lịch Việt Nam.\n\nPhát hiện hệ thống không sẵn sàng: Cảnh báo tự động sau 3 lần kiểm tra liên tiếp không đạt; gửi đầu mối vận hành trong vòng 5 phút từ lần lỗi đầu.\n\nSự cố nghiêm trọng: Tiếp nhận và phân công trong 1 giờ làm việc; cập nhật tình hình mỗi 2 giờ làm việc tới khi khôi phục hoặc có phương án tạm.\n\nSự cố một phần, có cách thay thế: Tiếp nhận trong 4 giờ làm việc; thông báo kế hoạch xử lý trong 1 ngày làm việc.\n\nThời gian tiếp nhận không đồng nghĩa thời gian sửa xong. Lỗi do dịch vụ bên ngoài cần báo rõ người phụ trách, trạng thái và biện pháp tạm; đội không tự cam kết thời điểm dịch vụ bên ngoài sửa xong. Cảnh báo tự động hoạt động ngoài giờ hỗ trợ, nhưng phản hồi của con người ngoài giờ cần thỏa thuận riêng.\n\n### Phạm vi giám sát\n\nTiến trình: Máy chủ và bộ phận xử lý tự động có chạy và phản hồi hay không.\n\nKhả năng nhận việc: Cơ sở dữ liệu, hàng đợi và thành phần cần cho từng luồng có sẵn sàng không; lỗi video không tự làm mọi luồng bị đánh dấu ngừng.\n\nLuồng người dùng: Đăng nhập, xem và lưu trên tài khoản kiểm tra; dùng kết quả này cho mục tiêu tỷ lệ hoạt động, không chỉ dùng kiểm tiến trình.\n\nCông việc nền: Thời gian chờ, tuổi công việc lâu nhất, số việc lỗi/kẹt, phần lô buổi sáng chưa hoàn tất và lịch đăng gần tới hạn.\n\nDịch vụ bên ngoài và tài nguyên: Tỷ lệ lỗi, hạn mức, độ trễ; mức sử dụng bộ xử lý, bộ nhớ, dung lượng lưu trữ và kết nối cơ sở dữ liệu.\n\nBảo vệ dữ liệu: Lần sao lưu thành công gần nhất, lỗi khôi phục thử và thay đổi quyền quan trọng.\n\nĐội hoàn tất ngưỡng cảnh báo hàng đợi theo mục tiêu từng luồng trước vận hành, kèm người nhận và hướng dẫn xử lý. Cảnh báo hạ tầng đi qua kênh độc lập với ứng dụng khi ứng dụng bị dừng. Nhật ký thực hiện theo mục 3-4.\n\n### Môi trường và triển khai\n\nĐội tách phát triển, kiểm thử và môi trường vận hành chính thức về dữ liệu, quyền truy cập, bí mật và tài khoản dịch vụ. Mặc định môi trường kiểm thử không gửi bài, email hoặc giao dịch tới người dùng thật; chỉ mở phép thử tích hợp thật cho tài khoản được cho phép, có người phụ trách và phạm vi rõ ràng. Dữ liệu từ môi trường vận hành chính thức đưa sang kiểm thử phải có quyền sử dụng, che thông tin cá nhân theo phạm vi đã duyệt và có lịch xóa.\n\nTrước mỗi bản phát hành, đội chạy kiểm tra tự động bắt buộc, ghi phiên bản, thay đổi dữ liệu/cấu hình, phép kiểm sau triển khai và cách quay lui. Đội kiểm việc nâng cấp không làm mất công việc đã nhận hoặc gửi trùng. Thay đổi dữ liệu cần phương án phục hồi phù hợp; quay lại mã cũ không được mặc định là đã quay lại dữ liệu cũ.\n\n## 3-11. Kiểm tra và nghiệm thu\n\nNghiệm thu: Đội cung cấp kết quả kiểm thử; quản lý và Talent trực tiếp thao tác xác nhận. Thử đăng thật theo danh sách tài khoản và kế hoạch đã duyệt.\n\nĐội kiểm trên dữ liệu 150 Talent với mức 30 Talent và 5 quản lý thao tác đồng thời. Dữ liệu mở rộng 1.000 Talent được kiểm riêng; số tài khoản không được dùng thay số người thao tác đồng thời. Khi nâng tải đồng thời, ghi rõ cấu hình, hạn mức và chi phí tương ứng.\n\nTải duy trì: Chạy 60 phút ở mức mục 3-2; đáp ứng thời gian và tỷ lệ hoàn tất tại mục 3-2; lỗi kỹ thuật nội bộ không quá 1% yêu cầu hợp lệ, tính cả hết thời gian chờ và từ chối do quá tải trong tải thiết kế.\n\nTải tăng đột ngột: Gấp đôi số người thao tác đồng thời ở mục 3-2 trong 5 phút; không mất yêu cầu đã xác nhận, không tạo hiệu lực trùng; đáp ứng lại mục tiêu thời gian phản hồi trong 10 phút sau khi tải về bình thường.\n\nChạy kéo dài: Chạy 8 giờ ở mức 50% tải thiết kế, theo dõi bộ nhớ, kết nối, hàng đợi và lỗi; không có công việc bị kẹt không phát hiện.\n\nLô buổi sáng: Kiểm đủ số Talent của từng mốc với lịch bắt đầu trong khoảng 5–6 giờ sáng và hạn hoàn tất trước 8 giờ, giờ Nhật, hoặc theo giờ chào đã điều chỉnh; đo phần hoàn tất trước hạn và chi phí AI.\n\nLỗi dịch vụ bên ngoài và kết nối: Mô phỏng hết thời gian chờ, giới hạn tốc độ, thông báo kết quả do dịch vụ ngoài gửi lặp, mất kết nối và khởi động lại bộ phận xử lý tự động; giữ trạng thái đúng, đối soát trước khi gửi lại.\n\nKhôi phục: Thử phục hồi cơ sở dữ liệu/tệp ở dung lượng dự kiến, đo mức mất dữ liệu và thời gian khôi phục, kiểm quyền và tránh đăng/thu tiền trùng.\n\nMạng chuẩn để kiểm giao diện: kết nối ổn định, tốc độ tải xuống ít nhất 20 megabit/giây, tải lên ít nhất 10 megabit/giây, thời gian truyền tới hệ thống không quá 0,1 giây. Đội ghi thiết bị, hệ điều hành và trình duyệt cụ thể trong biên bản thử; kiểm tối thiểu Safari trên iPhone, Chrome trên Android và Chrome/Edge trên máy tính theo phiên bản được hỗ trợ.\n\nKiểm tải nội bộ có thể dùng dịch vụ ngoài mô phỏng để cô lập năng lực ứng dụng. Đội báo cáo tách kết quả này với kiểm tích hợp thật; các chỉ tiêu trò chuyện, video, mạng xã hội và lô buổi sáng phụ thuộc dịch vụ bên ngoài chỉ được xác nhận sau kiểm chứng hạn mức, cấu hình và phép thử phù hợp được dịch vụ bên ngoài cho phép.\n\n### Hồ sơ kiểm chứng trước vận hành và mở rộng\n\nTải và hiệu năng: cần lưu kịch bản, cơ cấu dữ liệu/tệp, thời gian chạy, tỷ lệ thao tác hoàn tất đúng hạn, lỗi, cấu hình, hạn mức và chi phí ở 150/1.000 Talent. Người phụ trách kỹ thuật và đội kiểm thử chịu trách nhiệm chuẩn bị.\n\nSẵn sàng và cảnh báo: cần lưu cách tính mục tiêu tỷ lệ hoạt động, phép thử lỗi, bằng chứng cảnh báo đến đúng đầu mối và hướng dẫn xử lý. Đội vận hành và đội kiểm thử chịu trách nhiệm chuẩn bị.\n\nSao lưu và khôi phục: cần lưu danh mục dữ liệu, lịch/thời gian lưu giữ, cấu hình bảo vệ, biên bản phục hồi nhất quán và kết quả đo mức mất dữ liệu và thời gian khôi phục. Đội vận hành, người phụ trách kỹ thuật và đại diện nghiệp vụ chịu trách nhiệm chuẩn bị.\n\nDịch vụ ngoài và việc thử lại: cần lưu bảng thời gian chờ, cách thử lại và hạn mức, phép thử kết quả chưa biết, chống trùng và đối soát. Đội tích hợp và đội kiểm thử chịu trách nhiệm chuẩn bị.\n\nBảo mật và tệp: cần lưu kiểm quyền, thu hồi phiên, truy cập chéo, phạm vi quét tệp và kết quả xử lý lỗ hổng. Người phụ trách kỹ thuật và đội kiểm thử chịu trách nhiệm chuẩn bị.\n\nTriển khai: cần lưu kiểm tra tự động, phân tách môi trường, chuyển phiên bản/quay lui và kiểm sau triển khai. Đội phát triển và vận hành chịu trách nhiệm chuẩn bị.\n\nMỗi kết quả ghi ngày, người thực hiện, phiên bản ứng dụng, môi trường, dữ liệu thử, kết quả đạt/chưa đạt và người duyệt. Các nội dung trên là danh mục bằng chứng phải chuẩn bị, chưa phải xác nhận đã hoàn tất. Khi đổi cấu hình, dịch vụ bên ngoài, mô hình AI hoặc điều kiện tải, đội đánh giá ảnh hưởng và kiểm lại các chỉ tiêu liên quan. Kế hoạch phát hành cần người có thẩm quyền duyệt riêng sau khi có bằng chứng và xử lý các điểm chặn.\n\nHai bên xác nhận phạm vi nghiệm thu và thời điểm bàn giao; việc dịch vụ ngoài chưa ký hợp đồng hoặc chưa xét duyệt không tự cho phép loại chức năng khỏi phạm vi. Cách xử lý lỗi nặng/nhẹ và bàn giao tách đợt cần phù hợp điều kiện hợp đồng đã duyệt.\n\nĐội quản lý riêng việc duyệt yêu cầu, hoàn tất triển khai và kiểm chứng đạt. Mỗi chỉ tiêu có người phụ trách, phiên bản cấu hình, kết quả kiểm tra và người duyệt; không dùng việc chấp thuận chính sách thay kết quả kiểm chứng.\n",
+      "changes": [
+        "Rà3-4đến3-11: rút gọn, bỏ lặp, tách log kỹ thuật khỏi lịch sử nghiệp vụ theo chức năng",
+        "Bỏ đề xuất180ngàylog nghiệp vụ; giữ30ngàylog kỹ thuật; không thay nguồn yêu cầu lịch sử",
+        "Giữ nguyên người dùng sửa3-1/3-2; đồng bộ3-3từ bản hiện có99.5%về chỉ đạo5giờ gồm bảo trì",
+        "Làm rõ phục hồi8giờ/2ngày không loại trừ khỏi tổnggiánđoạn5giờ",
+        "Gộp bảo mật/quyền, chính sách dữ liệu, retry/provider, backup và hồ sơ nghiệm thu; không đổi gate"
+      ],
+      "classification": "EDITORIAL_REVIEW_AND_SCOPE_CORRECTION; targets remain proposed",
+      "validation": "Kiểm giữ3-1/3-2, mục3-1..3-11, thuật ngữ, giờhỗtrợ,log30ngày và các chỉ tiêu chính; không kiểm code hoặc provider."
+    },
+    {
+      "version": "0.22",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "0d192f2096fac4947de290713f94e7161bda15d1f8c38f0a57f19d7653b3236d"
+      },
+      "previous_section_3_9": "## 3-9. Sao lưu và khôi phục dữ liệu\n\nPhạm vi: Sao lưu cơ sở dữ liệu, ảnh/video/tệp do hệ thống quản lý và cấu hình cần để khôi phục dịch vụ. Dữ liệu tại OneDrive hoặc dịch vụ ngoài cần xác định riêng khả năng sao lưu; sao lưu cơ sở dữ liệu không tự bao gồm các tệp đó.\n\nTần suất và thời gian giữ đề xuất: Ít nhất một lần/ngày, giữ 7 bản hằng ngày và 4 bản hằng tuần. Điểm dữ liệu khôi phục không cũ hơn 24 giờ so với thời điểm sự cố; bản sao hết hạn được xóa theo lịch.\n\nBảo vệ và giám sát: Mã hóa, giới hạn quyền và lưu bản sao ngoài máy chủ ứng dụng. Kiểm sau mỗi lần sao lưu, theo dõi bản thành công gần nhất và báo vận hành trong 30 phút sau khi phát hiện lỗi.\n\nThời gian khôi phục đề xuất: Chức năng chính trong 8 giờ làm việc; ảnh/video trong 2 ngày làm việc. Tính từ khi phát hiện hoặc tiếp nhận sự cố trong giờ hỗ trợ tại mục 3-10. Đây là mục tiêu khôi phục sau sự cố lớn, không phải thời gian gián đoạn được miễn tính vào giới hạn 5 giờ ở mục 3-3; nếu vượt giới hạn tháng thì ghi nhận không đạt mục tiêu đó.\n\nKhôi phục an toàn: Thử trên môi trường cô lập trước khi mở lại; kiểm dữ liệu, quyền, tệp, công việc chờ và giao dịch đã gửi ra ngoài để tránh mất dữ liệu hoặc đăng/thu tiền trùng. Người phụ trách kỹ thuật và đại diện nghiệp vụ duyệt thời điểm mở lại.\n\nKiểm tra khôi phục: Trước vận hành, trước mốc 1.000 Talent, sau thay đổi lớn và tối thiểu mỗi quý khi có hợp đồng vận hành. Ghi kết quả, dữ liệu thiếu và thời gian thực hiện; lưu phương án xử lý dữ liệu đã yêu cầu xóa.\n\n",
+      "changes": [
+        "Thay chính sách backup tự đặt bằng phạm vi có điều kiện theo dịch vụ:SupabasePro daily7ngày khôngbaoStorage; OneDrive restore30ngày nếuM365phùhợp; falexpiredkhôngkhôiphục",
+        "Bỏ4bảntuần, mất dữ liệu24giờ, phục hồi8giờ/2ngày, cảnhbáo30phút và diễn tậpquý chưa có căn cứ cấu hình",
+        "Tách lịch sử UploadPost/Square khỏi backup toàn dịch vụ; phạmvi dữ liệu nghiệp vụ vẫn theo khách quyết định",
+        "Nêu rõ chưa xác nhận gói/cấu hình tài khoản; thời gian gián đoạn vẫn tính theo3-3"
+      ],
+      "sources": [
+        {
+          "url": "https://supabase.com/docs/guides/platform/backups",
+          "locator": "Daily backups; plan retention; Storage objects excluded; restoration duration depends on DB size",
+          "accessed": "2026-11-26"
+        },
+        {
+          "url": "https://support.microsoft.com/en-us/onedrive/restore-your-onedrive",
+          "locator": "Prerequisites;last30days;permanentlydeletedfilesnotrecoverable",
+          "accessed": "2026-11-26"
+        },
+        {
+          "url": "https://fal.ai/docs/documentation/model-apis/media-expiration",
+          "locator": "GeneratedMedia: expiredfilespermanentlydeletednotrecoverable",
+          "accessed": "2026-11-26"
+        },
+        {
+          "url": "https://docs.upload-post.com/api/upload-history",
+          "locator": "History retrieval only; not evidence of full backup/restore",
+          "accessed": "2026-11-26"
+        },
+        {
+          "url": "https://developer.squareup.com/docs/payments-api/retrieve-payments",
+          "locator": "Retrieve payments; not evidence of full backup/restore",
+          "accessed": "2026-11-26"
+        }
+      ],
+      "classification": "PUBLIC_DOCUMENTED_CAPABILITIES_CONDITIONAL_ON_PLAN; PROJECT_SETTINGS_NOT_INSPECTED; NO_RESTORE_EXECUTED",
+      "validation": "Giữ ngoài3-9trừversion; kiểm không còn các mục tiêu backup/restore chưa có căn cứ trong3-9."
+    },
+    {
+      "version": "0.23",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "853545f8351ea7ef860d2c290cdd4f5da6897608adfb5c8bab0bcf5aad513b96"
+      },
+      "previous_section_3_9": "## 3-9. Sao lưu và khôi phục dữ liệu\n\nCơ sở dữ liệu: Sử dụng cơ chế sao lưu theo gói Supabase được ký. Với gói Pro, dịch vụ tự sao lưu hằng ngày và cho khôi phục từ các bản trong 7 ngày gần nhất. Muốn giữ lâu hơn hoặc khôi phục về thời điểm cụ thể cần phương án và chi phí riêng. Sao lưu cơ sở dữ liệu không bao gồm ảnh/video trong kho tệp. Căn cứ: [Supabase](https://supabase.com/docs/guides/platform/backups).\n\nẢnh, video và tệp: Tệp cần giữ phải được lưu vào kho chính của hệ thống; sao lưu tệp cần phương án riêng theo nơi lưu và dung lượng. Không dùng đường dẫn tạm của dịch vụ tạo video làm bản sao lưu. Tệp trên fal.ai đã hết hạn thì không khôi phục được. Căn cứ: [fal.ai](https://fal.ai/docs/documentation/model-apis/media-expiration).\n\nOneDrive: Khi dùng thuê bao Microsoft 365 phù hợp, có thể khôi phục OneDrive về thời điểm trong 30 ngày gần nhất. Không khôi phục được tệp đã xóa vĩnh viễn khỏi thùng rác; khả năng áp dụng phụ thuộc tài khoản thực tế. Căn cứ: [Microsoft](https://support.microsoft.com/en-us/onedrive/restore-your-onedrive).\n\nDữ liệu dịch vụ ngoài: Chức năng xem lịch sử đăng bài hoặc giao dịch không thay cho sao lưu toàn bộ dịch vụ. Hệ thống lưu thông tin nghiệp vụ thuộc phạm vi đã thống nhất và thông tin cần đối soát; không cam kết khôi phục thay Upload-Post hoặc đơn vị thanh toán.\n\nBảo vệ bản sao: Giới hạn quyền truy cập, bảo vệ thông tin bí mật và theo dõi tình trạng sao lưu. Khi phục hồi, kiểm quyền, tệp, công việc chờ và giao dịch đã gửi để tránh đăng/thu tiền trùng hoặc đưa dữ liệu đã yêu cầu xóa trở lại sử dụng.\n\nKhôi phục: Thực hiện theo bản sao còn khả dụng, dung lượng và khả năng của dịch vụ. Hai bên thống nhất phương án, phạm vi và thời gian phục hồi theo gói thực tế; mục này chưa đặt thời gian phục hồi cố định hoặc mức mất dữ liệu được bảo đảm. Thời gian hệ thống không sử dụng được vẫn tính vào tổng gián đoạn tại mục 3-3.\n\nXác nhận trước vận hành: Ghi rõ gói dịch vụ, nơi lưu tệp, cách sao lưu, thời gian giữ, người phụ trách và chi phí. Thử khôi phục dữ liệu thuộc phạm vi hệ thống, lưu kết quả và thời gian thực hiện. Các khả năng công bố trên chưa xác nhận đã được bật trong tài khoản dự án.\n\n",
+      "changes": [
+        "Rút gọn3-9còn4đoạn, giữ giới hạnDB/tệp, điều kiệnMicrosoft365, khôi phục và xác nhận trước vận hành"
+      ],
+      "classification": "EDITORIAL_ONLY; nguồn theo revision0.22"
+    },
+    {
+      "version": "0.24",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "e66ab5ff4bf0a057ec0badf8631c321e1bda67474bdbad8b1c3f753d040e9d2e"
+      },
+      "changes": [
+        "Khôi phục yêu cầu màn quản lýPC/mobile và giới hạn khác nhau giữa thiết bị",
+        "Khôi phục hoàn tất lôtrướcgiờchào, lịch5–6giờ theo người dùng và tổngdunglượng xác định khi thiết kế",
+        "Khôi phục ủy thácTalentsởthuộc, miễn lấy lại đồng ý đủ phạm vi, Adesso lấy đồngýphụhuynh và hệ thốngkhônglưuhồsơ",
+        "Khôi phục kiểmquyềnbênthứba, bốn trường hợpTikTok cụthể, cảnh báoAI và điều kiệncarrier",
+        "Khôi phục trangđăngký/hìnhquét, bênđội chuẩn bị bảngnộidungthôngbáo/mẫuNG, hợpđồngngoàiđứngtênAdesso và phídev/test",
+        "Sửa tham chiếu mạng sang3-10, bỏ tham chiếu giờhỗtrợ tới mụcnghiệmthu; giữlognghiệpvụ theo chức năng"
+      ],
+      "source": {
+        "path": "source_requiments/24112026/AI育成OS_要件定義書.docx",
+        "sha256": "a44b25c8d046a41212d11a894d5fee052145ac3cc64da0fecfd6f006b6a114bf",
+        "locators": {
+          "901": "管理画面：ウェブの画面とし、パソコンでの利用を基本とする。スマートフォンでも表示がずれずに情報を確かめられるようにし、承認の画面と AIコーチへの指示の画面は、スマートフォンでも操作できるようにする。スマートフォンの機種によって表示が変わるため、見た目を細部まで同じにすることはしない。",
+          "906": "毎朝の処理：声をかける時刻までに、タレントの情報と実績の読み込みと、テーマの候補の作成を終える。決めた時刻までに終わることを、最初に始める人数で確かめる。",
+          "907": "写真・動画の容量：1件あたりの上限と、保存する容量の合計は、設計の中で決める。",
+          "924": "所属のタレントからは、ご契約の時点で、個人情報と肖像権の扱いを委託いただいている。",
+          "925": "タレントの情報を外部サービス（AI など）に渡すことへの同意は、アデッソ様がタレントからいただく。すでに同意をいただいていて、外部サービスへの提供も含まれていれば、改めての手続きは要らない。",
+          "926": "未成年のタレントの保護者の同意は、アデッソ様がタレントとのご契約のときにいただく。本システムには、同意の記録を持たない。",
+          "932": "利用規約（アデッソ様に作成いただいた文面を使います）、申し込みの案内とアデッソ様のページ・QR コード、料金・課金の表示、特定商取引法にもとづく表記",
+          "933": "メールとお知らせの文言。弊社が、ご用意いただく文言を場面ごとにまとめた表をお送りします",
+          "936": "使ってはいけない言葉の一覧の見直し。弊社が、一般的な内容のサンプルを作ってお渡しします",
+          "939": "外部サービスのご契約と審査の手続き（アデッソ様の名義。開発とテストの期間の利用料も含みます）、開発とテストに使うアカウントと接続情報",
+          "942": "凍結対策を行っても、SNS のアカウントが凍結されないことを保証するものではありません。TikTok への投稿のうち、予約投稿、「確認しないで投稿」、自動投稿、公開範囲の指定は、TikTok から2026年11月にいただいた回答の内容に合いません。今の仕様のまま進めるため、TikTok の判断により、投稿やアカウントが制限される可能性があります。ただし、自動投稿を行うサービスは、Upload-Post のほかにも実際に運用されています。",
+          "944": "使ってはいけない言葉の確かめと、AI が判断して出すお知らせ（投稿のない日が続いたタレント、目標の達成）は、AI の判断のため、外れる場合があります。",
+          "945": "キャリア決済は、携帯会社やご契約の内容によって、使えない場合があります。",
+          "949": "投稿の内容と素材が第三者の権利を侵害していないかを確認する方法は、設計の中で決めます。"
+        },
+        "locator_convention": "zero-based index of all w:p in document.xml; not Word page"
+      },
+      "classification": "RESTORED_SOURCE_CONTENT_NOT_BLANKET_CUSTOMER_APPROVAL; lịch5–6JST theo chỉ đạo người dùng trước đó",
+      "validation": "Rà các nội dung khôi phục, mục3-1..3-10, tham chiếu tồn tại, khôngbảng/khôngmã kỹthuật; không sửa nguồn/gate."
+    },
+    {
+      "version": "0.25",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "c07de8023636338e930089fc6d5864a071b2c82926d7b5823ec3cbaf4b57408a"
+      },
+      "previous_section_3_6": "## 3-6. Dữ liệu cá nhân và nơi lưu dữ liệu\n\nĐồng ý sử dụng dữ liệu: Adesso đã nhận ủy thác xử lý thông tin cá nhân và quyền hình ảnh của Talent thuộc công ty khi ký hợp đồng. Adesso lấy sự đồng ý về cung cấp dữ liệu cho dịch vụ ngoài; nếu đồng ý hiện có đã bao gồm đúng phạm vi thì không cần lấy lại.\n\nTalent chưa thành niên: Adesso lấy đồng ý của phụ huynh khi ký hợp đồng với Talent; hệ thống không lưu hồ sơ đồng ý này.\n\nDữ liệu gửi cho trợ lý: Chỉ gửi thông tin cần thiết. Yêu cầu không dùng dữ liệu để huấn luyện phải được đáp ứng theo đúng gói dịch vụ, hợp đồng và cài đặt của nhà cung cấp.\n\nDịch vụ ngoài: Ghi rõ loại dữ liệu chuyển đi, mục đích, nơi lưu, thời gian giữ và cách yêu cầu xóa. Adesso duyệt phạm vi cho phép và nội dung thông báo cho người dùng.\n\nNơi lưu: Dữ liệu trợ lý đọc/ghi nằm trong cơ sở dữ liệu hệ thống. Vai trò OneDrive và nơi lưu ảnh/video cần thống nhất để tránh mô tả khác nhau giữa các tài liệu; lựa chọn kèm chi phí và phương án sao lưu.\n\nGiữ và xóa dữ liệu: Theo chức năng ngừng sử dụng, dữ liệu Talent giữ sáu tháng rồi tự xóa. Phạm vi xóa tại dịch vụ ngoài và ngoại lệ dữ liệu tính tiền vẫn cần thống nhất. Khi phục hồi bản sao lưu, không đưa dữ liệu đã yêu cầu xóa trở lại sử dụng.\n\nYêu cầu xem/xóa dữ liệu: Adesso tiếp nhận và xác minh; đội hỗ trợ thực hiện theo phạm vi và chính sách đã duyệt.\n\nDữ liệu kiểm thử: Ưu tiên dữ liệu giả. Chỉ dùng dữ liệu thật trong phạm vi đã có chấp thuận bằng văn bản, bảo vệ thông tin cá nhân và xóa theo lịch đã thống nhất.\n\n",
+      "changes": [
+        "Viết lại3-6thành trách nhiệmAdesso, đồngýphụhuynh, dữliệugửirangoài, nơilưu, xóa, yêucầuTalent và dữliệuthử",
+        "Giữ rõ OneDrive/media và ngoại lệ tính tiền còn cần chốt; không thêm cam kết pháp lý hoặc đổi phạm vi lưu hồsơđồngý"
+      ],
+      "classification": "EDITORIAL_CLARIFICATION_NO_NEW_CUSTOMER_APPROVAL",
+      "validation": "Giữ nội dung nguồn và phần còn mở; chỉ sửa3-6vàversion."
+    },
+    {
+      "version": "0.26",
+      "date": "2026-11-26",
+      "author": "Codex",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "9073c7a87c4e009b46ffc589d078e1b111bc3279bd28df5f0e59e921a0d1dfac"
+      },
+      "previous_section_3_7": "## 3-7. Dịch vụ ngoài và tài khoản mạng xã hội\n\nHạn mức: Chọn gói đủ số tài khoản, lượt gọi, lịch đăng chờ và dung lượng cần dùng. Đề xuất cảnh báo khi dùng đến 80% và 95% hạn mức theo kỳ có thể theo dõi; tốc độ gọi tuân theo giới hạn thực tế của từng dịch vụ.\n\nVượt hạn mức hoặc lỗi tạm thời: Cho chờ hoặc thử lại theo điều kiện dịch vụ; báo rõ trạng thái và chuyển cho vận hành khi không xử lý được. Không đổi khóa hoặc tài khoản để né giới hạn.\n\nChống trùng: Khi chưa biết đăng bài, thanh toán hoặc tạo video đã thành công hay chưa, đối soát trước khi gửi lại. Việc thử lại kỹ thuật không thay quy tắc đăng lại hoặc đăng bù của chức năng nghiệp vụ.\n\nCô lập lỗi: Dịch vụ ngoài lỗi chỉ ảnh hưởng chức năng liên quan; các chức năng khác tiếp tục dùng được khi thành phần cần thiết còn hoạt động.\n\nMạng xã hội: Tuân thủ điều kiện tuổi, định dạng, tần suất và nội dung. Có biện pháp giảm rủi ro khóa tài khoản nhưng không bảo đảm tài khoản không bị hạn chế. Cách đặt lịch, đăng không cần Talent xác nhận, tự động đăng và chọn phạm vi công khai hiện dự kiến không phù hợp với nội dung phản hồi TikTok được ghi trong tài liệu khách; TikTok có thể hạn chế bài đăng hoặc tài khoản. Kết nối của Upload-Post không tự chứng minh toàn bộ cách sử dụng đã được chấp thuận.\n\nQuyền đối với nội dung: Cách kiểm tra bài đăng và tư liệu có vi phạm quyền của bên thứ ba hay không được xác định trong thiết kế.\n\n",
+      "changes": [
+        "Đặt tiêu đề3-7theo chủ đề biện pháp chống khóaSNS",
+        "Nêu rõ tần suất, chốngtrùng, dừnggửi khi bịhạnchế, điều kiệnnộidung và giới hạnbảođảm; giữ cảnhbáoTikTok theo nguồn",
+        "Giữ hạnmức80/95% và đốisoátthanhtoán/video, không tựđặt trầnsốbài hoặc thay quy tắc retrynghiệpvụ"
+      ],
+      "classification": "CLARIFIED_PROPOSED_MEASURES; NOT_PROVIDER_COMPLIANCE_VERIFIED",
+      "validation": "Chỉ sửa3-7vàversion; không bỏ cảnhbáoTikTok hoặc khẳng định khôngbịkhóa."
+    },
+    {
+      "date": "2026-11-26",
+      "author": "Codex",
+      "action": "RESTORE_SECTION_3_7_FROM_0.26_ONLY",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "a26a682388c42b0cf5e8b24521344c63fc380af863e1f840e71b6a30c167a119"
+      },
+      "changes": [
+        "Khôi phục nguyên mục3-7đã viết theo yêu cầu người dùng; giữ nguyên các phần khác và phiên bản họ đang chỉnh"
+      ],
+      "validation": "So sánh prefix/suffix, chỉ đoạn3-7thay đổi."
+    },
+    {
+      "date": "2026-11-26",
+      "author": "Codex",
+      "action": "RESTORE_CUSTOMER_SECTION_3_8",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "fc347f8bdc616727d2102361ac3b7ac9b2ce44e52f99a72ab0fa90f936fb213a"
+      },
+      "scope": "Chỉ3-8: bảndịch tiếngViệt theo YK3§3-8,w:p931–950; giữ a/nội dungAdesso,b/phạmvi khôngbảođảm và điều kiệnkhác; bỏ các phần bổ sung vào3-8khôngcótrongnguồn",
+      "validation": "Ngoài3-8giữ nguyên."
+    },
+    {
+      "date": "2026-11-26",
+      "author": "Codex",
+      "action": "FIX_SECTION_3_8_C_LABEL",
+      "previous_output": {
+        "path": "docs/non-functional/DE_XUAT_CHI_TIEU_PHI_CHUC_NANG_GUI_KHACH_2026-11-26.md",
+        "sha256": "08db9d99f6e3c15aabece1137d352089a5c5fe82689c38687c9452f1463bf036"
+      },
+      "changes": [
+        "Sửa tiêu đề thành c. Các điều kiện khác; không đổi nội dung."
+      ]
+    }
+  ]
+}
